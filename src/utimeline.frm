@@ -1,0 +1,29 @@
+object frmTimeLine: TfrmTimeLine
+  Left = 307
+  Height = 150
+  Top = 162
+  Width = 320
+  BorderIcons = []
+  BorderStyle = bsSizeToolWin
+  Caption = 'Timeline'
+  ClientHeight = 150
+  ClientWidth = 320
+  FormStyle = fsMDIChild
+  OnClose = FormClose
+  Position = poDefault
+  LCLVersion = '6.9'
+  object JvTimeLine1: TJvTimeLine
+    Left = 0
+    Height = 120
+    Top = 0
+    Width = 320
+    Color = clWhite
+    FirstVisibleDate = 43709
+    HorzSupports = False
+    ItemHeight = 19
+    Items = <>
+    ShowMonthNames = False
+    TabOrder = 0
+    YearFont.Height = -24
+  end
+end

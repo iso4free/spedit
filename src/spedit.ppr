@@ -1,0 +1,36 @@
+//**********************************************************************
+//*    Sprite Editor 4.0                                               *
+//*    Copyright (c) 2000-2019 by ViruZ                                *
+//*                                                                    *
+//*    See the file COPYING.FPC, included in this distribution,        *
+//*    for details about the copyright.                                *
+//*                                                                    *
+//*    This program is distributed in the hope that it will be useful, *
+//*    but WITHOUT ANY WARRANTY; without even the implied warranty of  *
+//*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.            *
+//*                                                                    *
+//**********************************************************************
+
+program spedit;
+
+{$mode objfpc}{$H+}
+
+uses
+  {$IFDEF UNIX}{$IFDEF UseCThreads}
+  cthreads,
+  {$ENDIF}{$ENDIF}
+  Interfaces, // this includes the adLCL widgetset
+  Forms, umain, uzastavka, uglobals, utsppalette, ulayers, utimeline, uselsprlib
+  { you can add units after this };
+
+{$R *.res}
+
+begin
+  RequireDerivedFormResource:=True;
+  Application.Scaled:=True;
+  Application.Initialize;
+  Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmSelectSpriteLib, frmSelectSpriteLib);
+  Application.Run;
+end.
+
