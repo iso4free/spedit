@@ -36,9 +36,22 @@ var
 implementation
 
 procedure LoadSpriteLibDirs;
-//try recursive check nested directories
+var
+  sr: TSearchRec;
 begin
-  //todo: fix get dir list!!! works wrong!
+  If SpriteLibPath[Length(SpriteLibPath)] <> PathDelim then
+    SpriteLibPath := SpriteLibPath + PathDelim;
+  If FindFirst(SpriteLibPath + '*.*', faDirectory, sr) = 0 then
+    repeat
+      If (sr.Name = '') or (sr.Name = '.') or (sr.Name = '..') then
+        continue;
+       // тут напиши код добавления в листбокс или куда угодно
+       // sr.Name будет содержать имя очередной папки
+       // чтобы получить полный путь надо написать
+       //    FolderName + sr.Name
+       SpriteLibNames.Add(sr.Name);
+    until (FindNext(sr) <> 0);
+  FindClose(sr);
 end;
 
 initialization
@@ -46,7 +59,7 @@ initialization
  // get app settings path and file
  UserSettingsPath:=GetAppConfigDir(false);
  AppSettingsFile:=GetAppConfigFile(false);
- SpriteLibPath:=UserSettingsPath+DirectorySeparator+'spritelib';
+ SpriteLibPath:=UserSettingsPath+'spritelib';
 
  INI:= TIniFile.Create(AppSettingsFile,[]);
 
