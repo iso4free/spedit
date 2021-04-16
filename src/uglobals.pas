@@ -1,6 +1,6 @@
 //**********************************************************************
 //*    Sprite Editor 4.0                                               *
-//*    Copyright (c) 2000-2019 by ViruZ                                *
+//*    Copyright (c) 2000-2021 by Vadim Vitomsky                       *
 //*                                                                    *
 //*    See the file COPYING.FPC, included in this distribution,        *
 //*    for details about the copyright.                                *
@@ -17,7 +17,19 @@ unit uglobals;
 
 interface
 
-uses Classes, sysutils, Graphics, IniFiles, BGRABitmap, BGRABitmapTypes;
+uses Classes, sysutils, Graphics, IniFiles, fpjson;
+
+const MAX_FRAMES = 5000;
+
+type
+  TWorkMode = (wrkProject,wrkSpriteActions,wrkEditor,wrkSourceImage,wrkLibrary,wrkSettings);
+  //uses for check which tab now active
+
+  TSrcFrameInfo = record
+    fX,fY, fWidth, fHeight : Word;
+  end;
+
+  PSrcFrameInfo = ^TSrcFrameInfo;
 
 var
 
@@ -26,14 +38,26 @@ var
   AppSettingsFile  : UTF8String;
   INI              : TIniFile;
   SpriteLibNames   : TStringList;
-  CurrentLibName   : UTF8String;
-  LibraryChanged   : Boolean;
+  CurrentLibName   : UTF8String;//selected library name
+  libpath          : UTF8String;//selected library full path
 
+  SrcFramesArray : array [0..MAX_FRAMES] of PSrcFrameInfo;
   //Drawing colors
   spclForeColor : TColor;  //foreground color - left mouse button drawing
   spclBackColor : TColor; //background color - right mouse button drawing
+  FrameGridSize : Byte;
+
+  procedure ClearSrcFramesArray;
+  //clear used items an free memory for source image frames
+  function AddSrcFrame(x,y,w,h : Word) : Integer;
+  //add new item to array and return it`s index
+  function SaveSrcFramesToFile(aFile : String) : Boolean;
+  //save all frames to JSON file
 
 implementation
+
+var
+  UsedSrcFrames : Word;
 
 procedure LoadSpriteLibDirs;
 var
@@ -41,17 +65,45 @@ var
 begin
   If SpriteLibPath[Length(SpriteLibPath)] <> PathDelim then
     SpriteLibPath := SpriteLibPath + PathDelim;
-  If FindFirst(SpriteLibPath + '*.*', faDirectory, sr) = 0 then
+  If FindFirst(SpriteLibPath + '*', faDirectory, sr) = 0 then
     repeat
       If (sr.Name = '') or (sr.Name = '.') or (sr.Name = '..') then
-        continue;
-       // тут напиши код добавления в листбокс или куда угодно
-       // sr.Name будет содержать имя очередной папки
-       // чтобы получить полный путь надо написать
-       //    FolderName + sr.Name
+       Continue;
        SpriteLibNames.Add(sr.Name);
     until (FindNext(sr) <> 0);
   FindClose(sr);
+end;
+
+procedure ClearSrcFramesArray;
+var
+  i: Integer;
+begin
+  if UsedSrcFrames<>0 then
+  for i:= 0 to UsedSrcFrames -1 do begin
+    FreeMemAndNil(SrcFramesArray[i]);
+  end;
+end;
+
+function AddSrcFrame(x, y, w, h: Word): Integer;
+begin
+  Result:=-1;
+  if UsedSrcFrames<MAX_FRAMES then begin
+    Getmem(SrcFramesArray[UsedSrcFrames],SizeOf(TSrcFrameInfo));
+    SrcFramesArray[UsedSrcFrames]^.fX:=x;
+    SrcFramesArray[UsedSrcFrames]^.fY:=y;
+    SrcFramesArray[UsedSrcFrames]^.fWidth:=w;
+    SrcFramesArray[UsedSrcFrames]^.fHeight:=h;
+    Inc(UsedSrcFrames);
+    Result:=UsedSrcFrames;
+  end;
+end;
+
+function SaveSrcFramesToFile(aFile: String): Boolean;
+begin
+  result := false;
+  if UsedSrcFrames<>0 then begin
+  //todo: create JSON file and write array
+  end;
 end;
 
 initialization
@@ -69,11 +121,12 @@ initialization
  ForceDirectories(SpriteLibPath);
  LoadSpriteLibDirs;
  //get last spritelib name
- CurrentLibName:=INI.ReadString('INTERFACE','SPRITELIB','');
- LibraryChanged:=False;
+ CurrentLibName:=INI.ReadString('INTERFACE','SPRITELIB','default');
+ libpath:=SpriteLibPath+DirectorySeparator+CurrentLibName;
  spclBackColor:=clBlack;
  spclForeColor:=clWhite;
-
+ FrameGridSize:=10;
+ UsedSrcFrames:=0;
 
 
  finalization

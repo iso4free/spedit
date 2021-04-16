@@ -5,7 +5,7 @@ unit uselsprlib;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Forms, Controls, StdCtrls;
 
 type
 

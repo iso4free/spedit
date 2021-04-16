@@ -18,15 +18,13 @@ unit utimeline;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, JvTMTimeLine,
-  JvTimeLine;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs;
 
 type
 
   { TfrmTimeLine }
 
   TfrmTimeLine = class(TForm)
-    JvTimeLine1: TJvTimeLine;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   private
 
@@ -48,7 +46,6 @@ uses uglobals, umain;
 procedure TfrmTimeLine.FormClose(Sender: TObject; var CloseAction: TCloseAction
   );
 begin
-  frmMain.TimeLineToolVisibleMenuItem.Checked:=false;
   Hide;
 end;
 

@@ -18,16 +18,15 @@ unit ulayers;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, TplPaintGridUnit,
-  XGR32_ExtLayers_Panel, igLayersListBox;
+  SysUtils, Forms, Controls, ExtCtrls, StdCtrls;
 
 type
 
   { TfrmLayers }
 
   TfrmLayers = class(TForm)
-    ExLayers32Panel1: TExLayers32Panel;
-    igLayersListBox1: TigLayersListBox;
+    ExLayers32Panel1: TPanel;
+    igLayersListBox1: TListBox;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   private
 
@@ -42,7 +41,7 @@ implementation
 
 {$R *.frm}
 
-uses umain, uglobals;
+uses umain;
 
 { TfrmLayers }
 

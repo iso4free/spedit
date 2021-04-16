@@ -10,27 +10,26 @@ object frmLayers: TfrmLayers
   ClientWidth = 320
   FormStyle = fsMDIChild
   OnClose = FormClose
-  LCLVersion = '6.9'
-  object ExLayers32Panel1: TExLayers32Panel
+  LCLVersion = '7.1'
+  object ExLayers32Panel1: TPanel
     Left = 0
     Height = 150
     Top = 0
     Width = 320
-    HorzScrollBar.Page = 8
-    VertScrollBar.Increment = 5
-    VertScrollBar.Page = 50
-    VertScrollBar.Smooth = True
-    VertScrollBar.Tracking = True
     Align = alTop
-    ClientHeight = 148
-    ClientWidth = 318
+    ClientHeight = 146
+    ClientWidth = 316
     TabOrder = 0
-    object igLayersListBox1: TigLayersListBox
-      Left = 0
-      Height = 148
-      Top = 0
-      Width = 318
+    object igLayersListBox1: TListBox
+      Left = 1
+      Height = 144
+      Top = 1
+      Width = 314
       Align = alClient
+      ItemHeight = 0
+      ScrollWidth = 310
+      TabOrder = 0
+      TopIndex = -1
     end
   end
 end

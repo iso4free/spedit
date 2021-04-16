@@ -18,8 +18,7 @@ unit utools;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  BGRAResizeSpeedButton, BGRASpeedButton, uETileImage, uETilePanel;
+  SysUtils, Forms, Controls;
 
 type
 
@@ -40,7 +39,7 @@ implementation
 
 {$R *.frm}
 
-uses uglobals, umain;
+uses umain;
 
 { TfrmTools }
 

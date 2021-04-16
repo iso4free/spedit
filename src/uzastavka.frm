@@ -1,7 +1,7 @@
 object frmZastavka: TfrmZastavka
-  Left = 260
+  Left = 105
   Height = 350
-  Top = 185
+  Top = 117
   Width = 640
   AlphaBlend = True
   AlphaBlendValue = 240
@@ -20,15 +20,25 @@ object frmZastavka: TfrmZastavka
   ParentDoubleBuffered = False
   Position = poScreenCenter
   ShowInTaskBar = stNever
-  LCLVersion = '6.9'
+  LCLVersion = '7.3'
+  object SkyImage: TImage
+    Left = 0
+    Height = 350
+    Top = 0
+    Width = 640
+    Align = alClient
+    AutoSize = True
+    OnClick = FormClick
+    Proportional = True
+  end
   object Label2: TLabel
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Side = asrBottom
     AnchorSideBottom.Control = Label3
     Left = 288
-    Height = 17
-    Top = 209
-    Width = 65
+    Height = 16
+    Top = 210
+    Width = 71
     Anchors = [akLeft, akBottom]
     BorderSpacing.Top = 30
     BorderSpacing.Bottom = 30
@@ -44,13 +54,13 @@ object frmZastavka: TfrmZastavka
     AnchorSideTop.Side = asrBottom
     AnchorSideBottom.Control = Owner
     Left = 209
-    Height = 17
+    Height = 16
     Top = 256
-    Width = 223
+    Width = 244
     Anchors = [akLeft]
     BorderSpacing.Top = 30
     BorderSpacing.Bottom = 30
-    Caption = 'Copyright (c) by CyberSoft, 2001-2019'
+    Caption = 'Copyright (c) by CyberSoft, 2001-2021'
     Font.Color = clRed
     Font.Style = [fsBold]
     ParentColor = False
@@ -61,10 +71,10 @@ object frmZastavka: TfrmZastavka
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 517
+    Left = 509
     Height = 23
     Top = 317
-    Width = 113
+    Width = 121
     Alignment = taLeftJustify
     Anchors = [akRight, akBottom]
     BidiMode = bdRightToLeft
@@ -81,13 +91,12 @@ object frmZastavka: TfrmZastavka
     TabOrder = 0
   end
   object BGRASpriteAnimation1: TBGRASpriteAnimation
-    AnchorSideLeft.Control = Label1
+    AnchorSideLeft.Control = Owner
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = Label1
-    AnchorSideBottom.Side = asrBottom
     Left = 283
     Height = 50
-    Top = 139
+    Top = 112
     Width = 75
     AnimInvert = False
     AnimPosition = 1
@@ -11038,9 +11047,8 @@ object frmZastavka: TfrmZastavka
   end
   object Timer2: TTimer
     Enabled = False
-    Interval = 50
+    Interval = 100
     OnTimer = Timer2Timer
-    OnStopTimer = Timer2StopTimer
     Left = 250
     Top = 76
   end

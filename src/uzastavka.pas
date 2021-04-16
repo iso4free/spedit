@@ -27,6 +27,7 @@ type
 
   TfrmZastavka = class(TForm)
     BGRASpriteAnimation1: TBGRASpriteAnimation;
+    SkyImage: TImage;
     Label1: TBGRALabelFX;
     ShowSplashCheckBox: TCheckBox;
     Label2: TLabel;
@@ -38,7 +39,6 @@ type
     procedure FormKeyPress(Sender: TObject; var Key: char);
     procedure ShowSplashCheckBoxChange(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
-    procedure Timer2StopTimer(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
   private
 
@@ -87,11 +87,6 @@ begin
   Label3.Visible:=not Label3.Visible;
 end;
 
-procedure TfrmZastavka.Timer2StopTimer(Sender: TObject);
-begin
-
-end;
-
 procedure TfrmZastavka.Timer2Timer(Sender: TObject);
 var
   fntsize: Integer;
@@ -102,13 +97,13 @@ begin
    repeat
     Label1.Font.Size:=fntsize;
     Inc(fntsize);
-    Canvas.Pixels[Random(Width),Random(Height)]:=Random(MaxInt);
+    SkyImage.Canvas.Pixels[Random(Width),Random(Height)]:=Random(MaxInt);
     Application.ProcessMessages;
    until fntsize>=50;
    repeat
     Label1.Font.Size:=fntsize;
     Dec(fntsize);
-    Canvas.Pixels[Random(Width),Random(Height)]:=Random(MaxInt);
+    SkyImage.Canvas.Pixels[Random(Width),Random(Height)]:=Random(MaxInt);
     Application.ProcessMessages;
    until fntsize<=1;
 end;

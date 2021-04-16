@@ -12,6 +12,6 @@ object frmTools: TfrmTools
   OnClose = FormClose
   ParentDoubleBuffered = False
   UseDockManager = True
-  LCLVersion = '6.9'
+  LCLVersion = '7.1'
   Visible = True
 end

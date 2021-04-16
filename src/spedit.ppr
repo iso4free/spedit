@@ -19,9 +19,9 @@ uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
   {$ENDIF}{$ENDIF}
-  Interfaces, // this includes the adLCL widgetset
-  Forms, umain, uzastavka, uglobals, utsppalette, ulayers, utimeline, uselsprlib
-  { you can add units after this };
+  Forms, Interfaces, umain,
+  { you can add units after this }
+  uselsprlib;
 
 {$R *.res}
 

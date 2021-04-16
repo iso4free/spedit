@@ -9,7 +9,7 @@ object frmSelectSpriteLib: TfrmSelectSpriteLib
   ClientWidth = 320
   OnActivate = FormActivate
   Position = poScreenCenter
-  LCLVersion = '6.9'
+  LCLVersion = '7.3'
   object ListBox1: TListBox
     Left = 0
     Height = 240

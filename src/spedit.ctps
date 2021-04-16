@@ -2,16 +2,17 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="12"/>
-    <BuildModes Active="Default"/>
+    <BuildModes Active="Debug"/>
     <Units>
       <Unit>
         <Filename Value="spedit.ppr"/>
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="7"/>
-        <CursorPos Y="34"/>
-        <UsageCount Value="61"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="51"/>
       </Unit>
       <Unit>
         <Filename Value="umain.pas"/>
@@ -21,382 +22,271 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="152"/>
-        <CursorPos Y="167"/>
-        <UsageCount Value="61"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="uzastavka.pas"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmZastavka"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="64"/>
-        <CursorPos Y="78"/>
-        <UsageCount Value="61"/>
+        <TopLine Value="217"/>
+        <CursorPos X="42" Y="220"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="uglobals.pas"/>
         <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="101"/>
+        <CursorPos X="43" Y="105"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/colorbox.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="ColorBox"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="156"/>
+        <CursorPos X="3" Y="165"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/stdctrls.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="StdCtrls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="519"/>
+        <CursorPos X="3" Y="528"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/BaseUtils/laztracer.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="LazTracer"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="40"/>
+        <CursorPos Y="50"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/pl_BGRAcontrols/source/bcgamegrid.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="BCGameGrid"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="65"/>
+        <CursorPos X="3" Y="68"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/typshrdh.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="101"/>
+        <CursorPos X="3" Y="101"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/pl_BGRAbitmap/source/bgrapixel.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="174"/>
+        <CursorPos X="5" Y="174"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uzastavka.pas"/>
+        <FRMtype Value="0"/>
+        <ComponentName Value="frmZastavka"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="30"/>
-        <CursorPos Y="42"/>
-        <UsageCount Value="47"/>
-        <Loaded Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="spedcomponents/utsppalette.pas"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
-        <CursorPos X="99"/>
-        <UsageCount Value="46"/>
-        <Loaded Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="utools.pas"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmTools"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
-        <CursorPos X="11" Y="13"/>
-        <UsageCount Value="44"/>
+        <TopLine Value="86"/>
+        <CursorPos X="14" Y="106"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="ulayers.pas"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmLayers"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="24"/>
-        <CursorPos X="5" Y="52"/>
-        <UsageCount Value="41"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="utimeline.pas"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmTimeLine"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="25"/>
-        <CursorPos X="38" Y="51"/>
-        <UsageCount Value="40"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="umain.frm"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="2" Y="12"/>
-        <UsageCount Value="8"/>
-        <DefaultSyntaxHighlighter Value="FRM"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/codetyphon/typhon/ide/typhon.pp"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="118"/>
-        <CursorPos Y="137"/>
-        <UsageCount Value="8"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/codetyphon/CodeOcean/FpFreeVision/samples/102_setvideomode/setvideomode1.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="8"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/codetyphon/typhon/components/pl_ColorLib/source/TplColorPaletteUnit.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="19"/>
-        <CursorPos X="15" Y="33"/>
-        <UsageCount Value="12"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/codetyphon/typhon/components/pl_ColorLib/source/mbColorPalette.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1033"/>
-        <CursorPos X="11" Y="1036"/>
-        <UsageCount Value="9"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/codetyphon/typhon/components/pl_ColorLib/source/PalUtils.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="534"/>
-        <CursorPos X="24" Y="549"/>
-        <UsageCount Value="9"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/codetyphon/typhon/lcl/graphics.pp"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="Graphics"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="253"/>
-        <CursorPos X="3" Y="262"/>
-        <UsageCount Value="9"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/application.inc"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1396"/>
-        <CursorPos Y="1407"/>
-        <UsageCount Value="8"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/codetyphon/typhon/components/pl_BGRAcontrols/source/bgraimagemanipulation.pas"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="BGRAImageManipulation"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1312"/>
-        <CursorPos X="19" Y="1328"/>
-        <UsageCount Value="9"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/customform.inc"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="2316"/>
-        <CursorPos Y="2331"/>
-        <UsageCount Value="8"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/codetyphon/typhon/components/pl_BGRAcontrols/source/bcbasectrls.pas"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="BCBaseCtrls"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="43"/>
-        <CursorPos X="3" Y="48"/>
-        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/lcl/controls.pp"/>
         <FRMtype Value="0"/>
         <UnitName Value="Controls"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="2348"/>
-        <CursorPos X="3" Y="2362"/>
+        <TopLine Value="1632"/>
+        <CursorPos X="15" Y="1639"/>
         <UsageCount Value="8"/>
       </Unit>
       <Unit>
-        <Filename Value="/usr/local/codetyphon/typhon/components/pl_BGRAbitmap/source/bgradefaultbitmap.pas"/>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/graphics.pp"/>
         <FRMtype Value="0"/>
-        <UnitName Value="BGRADefaultBitmap"/>
+        <UnitName Value="Graphics"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="165"/>
-        <CursorPos X="14" Y="178"/>
-        <UsageCount Value="8"/>
+        <TopLine Value="910"/>
+        <CursorPos X="15" Y="917"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
-        <Filename Value="/usr/local/codetyphon/typhon/components/pl_BGRAbitmap/source/bgracanvas.pas"/>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/picture.inc"/>
         <FRMtype Value="0"/>
-        <UnitName Value="BGRACanvas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="90"/>
-        <CursorPos X="3" Y="98"/>
-        <UsageCount Value="8"/>
+        <TopLine Value="614"/>
+        <CursorPos X="3" Y="619"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
-        <Filename Value="/usr/local/codetyphon/fpcsrc/packages/fcl-base/src/inifiles.pp"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="IniFiles"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="130"/>
-        <CursorPos X="3" Y="137"/>
-        <UsageCount Value="8"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/codetyphon/typhon/lcl/interfaces/gtk2/gtk2proc.inc"/>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/sysutils/sysutilh.inc"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="3817"/>
-        <CursorPos Y="3832"/>
-        <UsageCount Value="8"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/codetyphon/typhon/components/pl_ExControls/source/TplGalleryUnit.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="42"/>
-        <CursorPos X="3" Y="57"/>
+        <TopLine Value="322"/>
+        <CursorPos X="13" Y="331"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
-        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/sysutils/finah.inc"/>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/sysutils/sysutils.inc"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="14"/>
-        <CursorPos X="10" Y="42"/>
+        <TopLine Value="157"/>
+        <CursorPos X="7" Y="168"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
-        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/sysutils/fina.inc"/>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/heaph.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="89"/>
+        <CursorPos X="24" Y="100"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/systemh.inc"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="398"/>
-        <CursorPos X="3" Y="403"/>
+        <CursorPos X="3" Y="407"/>
         <UsageCount Value="10"/>
       </Unit>
-      <Unit>
-        <Filename Value="uselsprlib.pas"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmSelectSpriteLib"/>
-        <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="18"/>
-        <CursorPos X="8" Y="38"/>
-        <UsageCount Value="21"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
-      </Unit>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
-      <Position1>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="52" TopLine="41"/>
-      </Position1>
-      <Position2>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="53" TopLine="41"/>
-      </Position2>
-      <Position3>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="55" TopLine="41"/>
-      </Position3>
-      <Position4>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="59" TopLine="41"/>
-      </Position4>
-      <Position5>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="60" TopLine="41"/>
-      </Position5>
-      <Position6>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="61" TopLine="41"/>
-      </Position6>
-      <Position7>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="42" TopLine="37"/>
-      </Position7>
-      <Position8>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="43" TopLine="37"/>
-      </Position8>
-      <Position9>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="44" TopLine="37"/>
-      </Position9>
-      <Position10>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="45" TopLine="37"/>
-      </Position10>
-      <Position11>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="46" TopLine="37"/>
-      </Position11>
-      <Position12>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="43" Column="15" TopLine="36"/>
-      </Position12>
-      <Position13>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="45" TopLine="36"/>
-      </Position13>
-      <Position14>
+    <JumpHistory HistoryIndex="27">
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="154" TopLine="142"/>
-      </Position14>
-      <Position15>
+        <Caret Line="154" Column="5" TopLine="152"/>
+      </Position>
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="155" TopLine="142"/>
-      </Position15>
-      <Position16>
+        <Caret Line="155" Column="5" TopLine="153"/>
+      </Position>
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="158" TopLine="142"/>
-      </Position16>
-      <Position17>
+        <Caret Line="157" TopLine="153"/>
+      </Position>
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="159" TopLine="142"/>
-      </Position17>
-      <Position18>
+        <Caret Line="158" TopLine="154"/>
+      </Position>
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="154" TopLine="142"/>
-      </Position18>
-      <Position19>
+        <Caret Line="157" Column="3" TopLine="155"/>
+      </Position>
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="130" TopLine="114"/>
-      </Position19>
-      <Position20>
+        <Caret Line="273" Column="61" TopLine="259"/>
+      </Position>
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="131" TopLine="114"/>
-      </Position20>
-      <Position21>
+        <Caret Line="275" Column="56" TopLine="259"/>
+      </Position>
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="136" Column="96" TopLine="120"/>
-      </Position21>
-      <Position22>
+        <Caret Line="159" Column="39" TopLine="156"/>
+      </Position>
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="133" Column="79" TopLine="120"/>
-      </Position22>
-      <Position23>
+        <Caret Line="268" Column="11" TopLine="255"/>
+      </Position>
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="180" Column="51" TopLine="168"/>
-      </Position23>
-      <Position24>
-        <Filename Value="uselsprlib.pas"/>
-      </Position24>
-      <Position25>
-        <Filename Value="uselsprlib.pas"/>
-        <Caret Line="37" Column="3" TopLine="9"/>
-      </Position25>
-      <Position26>
+        <Caret Line="240" Column="61" TopLine="231"/>
+      </Position>
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="151" Column="22" TopLine="149"/>
-      </Position26>
-      <Position27>
+        <Caret Line="257" Column="81" TopLine="249"/>
+      </Position>
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="77" Column="65" TopLine="71"/>
-      </Position27>
-      <Position28>
+        <Caret Line="258" Column="81" TopLine="250"/>
+      </Position>
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="152" Column="29" TopLine="137"/>
-      </Position28>
-      <Position29>
+        <Caret Line="259" Column="81" TopLine="251"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="260" Column="81" TopLine="252"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="267" Column="81" TopLine="259"/>
+      </Position>
+      <Position>
         <Filename Value="uglobals.pas"/>
-        <Caret Line="46" Column="21" TopLine="30"/>
-      </Position29>
-      <Position30>
+        <Caret Line="48" Column="30" TopLine="30"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="81" Column="31" TopLine="65"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="22" Column="17" TopLine="65"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="81" Column="18" TopLine="68"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="81" Column="18" TopLine="68"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="80" Column="33" TopLine="68"/>
+      </Position>
+      <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="141" Column="34" TopLine="121"/>
-      </Position30>
+        <Caret Line="217" Column="46" TopLine="215"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="218" Column="42" TopLine="215"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="219" Column="42" TopLine="216"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="52" Column="16" TopLine="44"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="96" Column="50" TopLine="84"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="99" Column="26" TopLine="87"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="54" Column="24" TopLine="48"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
-      <Modes Count="0" ActiveMode=""/>
+      <Modes ActiveMode=""/>
     </RunParams>
+    <HistoryLists>
+      <List Name="LaunchingApplication" Type="File" Count="5">
+        <Item1 Value="/usr/bin/xterm -T &apos;Typhon Run Output&apos; -e $(TargetCmdLine)"/>
+        <Item2 Value="${CmdExe} ${TargetCmdLine}"/>
+        <Item3 Value="&quot;$(Pas2JSBrowser)&quot; &quot;$(Pas2JSProjectURL)&quot;"/>
+        <Item4 Value="/usr/bin/gnome-terminal -t &apos;Typhon Run Output&apos; -e &apos;$(TargetCmdLine)&apos;"/>
+        <Item5 Value="/usr/bin/konsole -T &apos;Typhon Run Output&apos; -e $(TargetCmdLine)"/>
+      </List>
+    </HistoryLists>
   </ProjectSession>
 </CONFIG>
