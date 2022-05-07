@@ -1,0 +1,9 @@
+16.04.2021
+* Completly redesigned work process
+* Implemented Local Sprite Library to store imported images in PNG format separated by categories
+
+26.04.2022
++ On tab 'Source Image' added work with frames (frames list, frame properties, deleting selected frames)
+
+07.05.2022
+* Changed 'About' splash screen (optimmized drawing, replaced animation)

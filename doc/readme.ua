@@ -1,7 +1,7 @@
 ***************************** Спрайт-редактор ***********************
 *                           для Windows/Linux                       *
 *                                 v. 4.0                            *
-*                 (C)opyright by Vadim Vitomsky, 2000-2019          *
+*                 (C)opyright by Vadim Vitomsky, 2001-2021          *
 *********************************************************************
 
 WELCOME
@@ -28,7 +28,7 @@ THE FUTURE
 COPYRIGHT
 =========
 
-Copyright (C) 2000-2019 Vadim V. Vitomsky
+Copyright (C) 2001-2021 Vadim V. Vitomsky
 
 This program may be used freely, and you are welcome to
 redistribute it under certain conditions.
@@ -48,7 +48,7 @@ Vadim V. Vitomsky
 
 
    Vadim V. Vitomsky
-   cybersoft@rambler.ru
+   iso4free@gmail.com
 
 
 [ Feel free to contact us if you have commercial compression requirements

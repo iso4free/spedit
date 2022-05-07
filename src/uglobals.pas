@@ -1,15 +1,3 @@
-//**********************************************************************
-//*    Sprite Editor 4.0                                               *
-//*    Copyright (c) 2000-2021 by Vadim Vitomsky                       *
-//*                                                                    *
-//*    See the file COPYING.FPC, included in this distribution,        *
-//*    for details about the copyright.                                *
-//*                                                                    *
-//*    This program is distributed in the hope that it will be useful, *
-//*    but WITHOUT ANY WARRANTY; without even the implied warranty of  *
-//*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.            *
-//*                                                                    *
-//**********************************************************************
 //In this unit delared all global constants, variables etc. for Spedit4
 unit uglobals;
 
@@ -47,6 +35,8 @@ var
   spclBackColor : TColor; //background color - right mouse button drawing
   FrameGridSize : Byte;
 
+  function IsDigits(s : String) : Boolean;
+  //check string for digits only
   procedure ClearSrcFramesArray;
   //clear used items an free memory for source image frames
   function AddSrcFrame(x,y,w,h : Word) : Integer;
@@ -72,6 +62,19 @@ begin
        SpriteLibNames.Add(sr.Name);
     until (FindNext(sr) <> 0);
   FindClose(sr);
+end;
+
+function IsDigits(s: String): Boolean;
+var
+  C: Char;
+  B: Boolean;
+begin
+  for C in S do
+  begin
+    B := C in ['0'..'9'];
+    if not B then Break;
+  end;
+  result := B;
 end;
 
 procedure ClearSrcFramesArray;

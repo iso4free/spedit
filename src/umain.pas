@@ -6,19 +6,21 @@ interface
 
 uses
   sysutils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls, Dialogs,
-  ExtCtrls, Grids, Types, Graphics, StdCtrls, Buttons, ValEdit;
+  ExtCtrls, Grids, Types, Graphics, StdCtrls, Buttons, ValEdit, BGRAImageList,
+  BGRAImageManipulation, BCGameGrid;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
-    ButtonsImageList: TImageList;
-    ImportImage: TImage;
+    ProjectSheet: TBGRAImageManipulation;
+    DrawGrid1: TBCGameGrid;
+    ImportImage: TBGRAImageManipulation;
+    ButtonsImageList: TBGRAImageList;
     Label2: TLabel;
     LibImage: TImage;
     LibraryComboBox: TComboBox;
-    DrawGrid1: TDrawGrid;
     FrameEditorTabSheet: TTabSheet;
     GroupBox1: TGroupBox;
     Image1: TImage;
@@ -48,6 +50,8 @@ type
     ScrollBox1: TScrollBox;
     ScrollBox2: TScrollBox;
     ScrollBox3: TScrollBox;
+    ScrollBox4: TScrollBox;
+    SpeedButton1: TSpeedButton;
     SpeedButtonAutoSelect: TSpeedButton;
     SpeedButtonLoadSpritesheet: TSpeedButton;
     SpeedButtonSaveToLib: TSpeedButton;
@@ -62,19 +66,19 @@ type
     LibraryTabSheet: TTabSheet;
     ActionsTabSheet: TTabSheet;
     SettingsTabSheet: TTabSheet;
+    StaticText1: TStaticText;
     TimeLineToolVisibleMenuItem: TMenuItem;
     PaintToolPanelVisibleMenuItem: TMenuItem;
     N2: TMenuItem;
     OpenPictureDialog1: TOpenPictureDialog;
     SrcImageFramesOptsValueListEditor: TValueListEditor;
+    ProjectProperties: TValueListEditor;
     ViewZoomResetMenuItem: TMenuItem;
     ViewZoomOutMenuItem: TMenuItem;
     ViewZoomInMenuItem: TMenuItem;
     N1: TMenuItem;
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
-    procedure DrawGrid1DrawCell(Sender: TObject; aCol, aRow: Integer;
-      aRect: TRect; aState: TGridDrawState);
     procedure DrawGrid1KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure DrawGrid1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
@@ -84,17 +88,26 @@ type
     procedure FileLoadSpritesheetMenuItemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Image1Click(Sender: TObject);
+    procedure ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation;
+      CropArea: TCropArea);
     procedure LayersToolVisibleMenuItemClick(Sender: TObject);
     procedure LibImageDblClick(Sender: TObject);
     procedure LibraryComboBoxChange(Sender: TObject);
     procedure LibraryItemsListBoxClick(Sender: TObject);
+    procedure ListBox1Click(Sender: TObject);
+    procedure ListBox1SelectionChange(Sender: TObject; User: boolean);
     procedure MenuItem7Click(Sender: TObject);
     procedure Panel1Paint(Sender: TObject);
     procedure SelectSpriteLibMenuItemClick(Sender: TObject);
     procedure SaveSpriteLibMenuItemClick(Sender: TObject);
     procedure PaintToolPanelVisibleMenuItemClick(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButtonSaveToLibClick(Sender: TObject);
+    procedure SrcImageFramesOptsValueListEditorEditingDone(Sender: TObject);
+    procedure SrcImageFramesOptsValueListEditorValidate(Sender: TObject; ACol,
+      ARow: Longint; const KeyName, KeyValue: string);
     procedure TimeLineToolVisibleMenuItemClick(Sender: TObject);
+    procedure ViewZoomInMenuItemClick(Sender: TObject);
   private
 
   public
@@ -133,13 +146,6 @@ begin
   frmZastavka.Show;
 end;
 
-procedure TfrmMain.DrawGrid1DrawCell(Sender: TObject; aCol, aRow: Integer;
-  aRect: TRect; aState: TGridDrawState);
-begin
-  DrawGrid1.Canvas.Brush.Color:=Image1.Picture.PNG.Canvas.Pixels[aCol,aRow];
-  DrawGrid1.Canvas.FillRect(aRect);
-end;
-
 procedure TfrmMain.DrawGrid1KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -162,7 +168,11 @@ end;
 procedure TfrmMain.FileLoadSpritesheetMenuItemClick(Sender: TObject);
 begin
   if OpenPictureDialog1.Execute then begin
-    ImportImage.Picture.LoadFromFile(OpenPictureDialog1.FileName);
+    ImportImage.Bitmap.Bitmap.Clear;
+    ImportImage.Bitmap.LoadFromFile(OpenPictureDialog1.FileName);
+    ImportImage.Width:=ImportImage.Bitmap.Bitmap.Width;
+    ImportImage.Height:=ImportImage.Bitmap.Bitmap.Height;
+    ImportImage.AutoSize:=true;
     PageControl1.ActivePage:=SourceTabSheet;
     SpeedButtonSaveToLib.Enabled:=true;
   end;
@@ -203,10 +213,16 @@ end;
 
 procedure TfrmMain.Image1Click(Sender: TObject);
 begin
-  DrawGrid1.ColCount:=Image1.Width;
-  DrawGrid1.RowCount:=Image1.Height;
+  DrawGrid1.GridWidth:=Image1.Width;
+  DrawGrid1.GridHeight:=Image1.Height;
   DrawGrid1.Width:=Image1.Width*10+5;
   DrawGrid1.Height:=Image1.Height*10+5;
+end;
+
+procedure TfrmMain.ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation;
+  CropArea: TCropArea);
+begin
+  ListBox1.AddItem('Frame'+IntToStr(ListBox1.Count+1),CropArea);
 end;
 
 procedure TfrmMain.LayersToolVisibleMenuItemClick(Sender: TObject);
@@ -217,8 +233,11 @@ end;
 
 procedure TfrmMain.LibImageDblClick(Sender: TObject);
 begin
-  ImportImage.Picture.Assign(LibImage.Picture);
-  PageControl1.ActivePage:=SourceTabSheet;
+ ImportImage.Width:=LibImage.Width;
+ ImportImage.Height:=LibImage.Height;
+ ImportImage.Bitmap.LoadFromFile(libpath+DirectorySeparator+LibraryItemsListBox.GetSelectedText);
+ //todo: load frames description if exists
+ PageControl1.ActivePage:=SourceTabSheet;
 end;
 
 procedure TfrmMain.LibraryComboBoxChange(Sender: TObject);
@@ -232,6 +251,24 @@ end;
 procedure TfrmMain.LibraryItemsListBoxClick(Sender: TObject);
 begin
   LibImage.Picture.LoadFromFile(libpath+DirectorySeparator+LibraryItemsListBox.GetSelectedText);
+end;
+
+procedure TfrmMain.ListBox1Click(Sender: TObject);
+begin
+  ListBox1SelectionChange(Sender,true);
+end;
+
+procedure TfrmMain.ListBox1SelectionChange(Sender: TObject; User: boolean);
+begin
+  if ListBox1.Count=0 then Exit;
+  with SrcImageFramesOptsValueListEditor do
+  begin
+    Values['npp'] := IntToStr(ListBox1.ItemIndex);
+    Values['x'] := IntToStr(ImportImage.CropAreas[ListBox1.ItemIndex].Area.Left);
+    Values['y'] := IntToStr(ImportImage.CropAreas[ListBox1.ItemIndex].Area.Top);
+    Values['width'] := IntToStr(ImportImage.CropAreas[ListBox1.ItemIndex].Area.Width);
+    Values['height'] := IntToStr(ImportImage.CropAreas[ListBox1.ItemIndex].Area.Height);
+  end;
 end;
 
 procedure TfrmMain.MenuItem7Click(Sender: TObject);
@@ -265,6 +302,13 @@ begin
  frmTools.Visible:=PaintToolPanelVisibleMenuItem.Checked;
 end;
 
+procedure TfrmMain.SpeedButton1Click(Sender: TObject);
+begin
+  if ListBox1.Count=0 then Exit;
+  ImportImage.delCropArea(ImportImage.CropAreas[ListBox1.ItemIndex]);
+  ListBox1.DeleteSelected;
+end;
+
 procedure TfrmMain.SpeedButtonSaveToLibClick(Sender: TObject);
 var
   i: Integer;
@@ -273,7 +317,7 @@ begin
    //add this image to current lib
    for i:=0 to LibraryItemsListBox.Items.Count do begin
     if not FileExists(libpath+DirectorySeparator+IntToStr(i)+'.png') then begin
-     ImportImage.Picture.SaveToFile(libpath+DirectorySeparator+IntToStr(i)+'.png','png');
+     ImportImage.Bitmap.SaveToFile(libpath+DirectorySeparator+IntToStr(i)+'.png');
      LibraryItemsListBox.Items.Add(IntToStr(i)+'.png');
      SpeedButtonSaveToLib.Enabled:=false;
      Exit;
@@ -282,10 +326,43 @@ begin
   end;
 end;
 
+procedure TfrmMain.SrcImageFramesOptsValueListEditorEditingDone(Sender: TObject
+  );
+var Area : TCropArea;
+begin
+
+  with ImportImage do begin
+    SelectedCropArea:=CropAreas[ListBox1.ItemIndex];
+    Area := SelectedCropArea;
+    Area.Left:=StrToInt(SrcImageFramesOptsValueListEditor.Values['x']);
+    Area.Top:=StrToInt(SrcImageFramesOptsValueListEditor.Values['y']);
+    Area.Width:=StrToInt(SrcImageFramesOptsValueListEditor.Values['width']);
+    Area.Height:=StrToInt(SrcImageFramesOptsValueListEditor.Values['height']);
+    SelectedCropArea:=Area;
+  end;
+end;
+
+procedure TfrmMain.SrcImageFramesOptsValueListEditorValidate(Sender: TObject;
+  ACol, ARow: Longint; const KeyName, KeyValue: string);
+begin
+  if KeyValue<>'' then
+  if  not IsDigits(KeyValue) then begin
+     ShowMessage(QuotedStr(KeyName)+' has non-integer value!');
+  end;
+end;
+
 procedure TfrmMain.TimeLineToolVisibleMenuItemClick(Sender: TObject);
 begin
  TimeLineToolVisibleMenuItem.Checked:= not TimeLineToolVisibleMenuItem.Checked;
  frmTimeLine.Visible:=TimeLineToolVisibleMenuItem.Checked;
+end;
+
+procedure TfrmMain.ViewZoomInMenuItemClick(Sender: TObject);
+begin
+  if DrawGrid1.GridHeight<=30 then with DrawGrid1 do begin
+   GridHeight:=GridHeight+1;
+   GridWidth:=GridHeight;
+  end;
 end;
 
 end.
