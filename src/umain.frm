@@ -2,14 +2,14 @@ object frmMain: TfrmMain
   Left = 85
   Height = 480
   Top = 85
-  Width = 640
-  HorzScrollBar.Page = 627
-  VertScrollBar.Page = 467
+  Width = 639
+  HorzScrollBar.Page = 243
+  VertScrollBar.Page = 281
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
-  ClientHeight = 467
-  ClientWidth = 627
+  ClientHeight = 480
+  ClientWidth = 639
   DockSite = True
   DoubleBuffered = True
   FormStyle = fsMDIForm
@@ -23,26 +23,26 @@ object frmMain: TfrmMain
   Visible = True
   object PageControl1: TPageControl
     Left = 0
-    Height = 478
+    Height = 480
     Top = 0
-    Width = 790
-    ActivePage = SourceTabSheet
+    Width = 639
+    ActivePage = FrameEditorTabSheet
     Align = alClient
     DockSite = True
-    TabIndex = 3
+    TabIndex = 2
     TabOrder = 0
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 448
-      ClientWidth = 780
+      ClientHeight = 450
+      ClientWidth = 629
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 630
+        Width = 629
         Align = alTop
         ClientHeight = 50
-        ClientWidth = 630
+        ClientWidth = 629
         TabOrder = 0
         object StaticText1: TStaticText
           Left = 344
@@ -64,19 +64,19 @@ object frmMain: TfrmMain
         TabOrder = 1
         ColWidths = (
           64
-          132
+          134
         )
       end
       object ScrollBox4: TScrollBox
         Left = 200
         Height = 400
         Top = 50
-        Width = 430
+        Width = 429
         HorzScrollBar.Page = 320
         VertScrollBar.Page = 240
         Align = alClient
-        ClientHeight = 396
-        ClientWidth = 426
+        ClientHeight = 398
+        ClientWidth = 427
         TabOrder = 2
         object ProjectSheet: TBGRAImageManipulation
           AnchorSideLeft.Control = ScrollBox4
@@ -94,21 +94,21 @@ object frmMain: TfrmMain
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 448
-      ClientWidth = 780
+      ClientHeight = 450
+      ClientWidth = 629
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 630
+        Width = 629
         Align = alTop
         TabOrder = 0
       end
     end
     object FrameEditorTabSheet: TTabSheet
       Caption = 'Frame Editor'
-      ClientHeight = 448
-      ClientWidth = 780
+      ClientHeight = 450
+      ClientWidth = 629
       object Panel1: TPanel
         AnchorSideLeft.Control = FrameEditorTabSheet
         AnchorSideTop.Control = FramesButtonsPanel
@@ -133,13 +133,15 @@ object frmMain: TfrmMain
           GridHeight = 32
           BlockWidth = 10
           BlockHeight = 10
+          OnRenderControl = DrawGrid1RenderControl
+          OnClickControl = DrawGrid1ClickControl
         end
       end
       object FramesButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 630
+        Width = 629
         Align = alTop
         TabOrder = 1
       end
@@ -192,8 +194,8 @@ object frmMain: TfrmMain
     end
     object SourceTabSheet: TTabSheet
       Caption = 'Source Image'
-      ClientHeight = 448
-      ClientWidth = 780
+      ClientHeight = 450
+      ClientWidth = 629
       object SrcImageButtonsPanel: TPanel
         Left = 0
         Height = 30
@@ -314,7 +316,7 @@ object frmMain: TfrmMain
           OnValidate = SrcImageFramesOptsValueListEditorValidate
           ColWidths = (
             64
-            82
+            80
           )
         end
       end
@@ -348,13 +350,13 @@ object frmMain: TfrmMain
     end
     object LibraryTabSheet: TTabSheet
       Caption = 'Local Library'
-      ClientHeight = 448
-      ClientWidth = 780
+      ClientHeight = 450
+      ClientWidth = 629
       object LibraryButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 630
+        Width = 629
         Align = alTop
         TabOrder = 0
       end
@@ -402,12 +404,12 @@ object frmMain: TfrmMain
         Left = 185
         Height = 400
         Top = 50
-        Width = 445
+        Width = 444
         HorzScrollBar.Page = 90
         VertScrollBar.Page = 90
         Align = alClient
-        ClientHeight = 396
-        ClientWidth = 441
+        ClientHeight = 398
+        ClientWidth = 442
         TabOrder = 2
         object LibImage: TImage
           AnchorSideLeft.Control = ScrollBox1

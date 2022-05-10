@@ -1,0 +1,4 @@
+
+bin/x86_64-linux/spedit
+*.dbg
+/doc/patettegridtest/*.*

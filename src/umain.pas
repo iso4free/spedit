@@ -7,7 +7,7 @@ interface
 uses
   sysutils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls, Dialogs,
   ExtCtrls, Grids, Types, Graphics, StdCtrls, Buttons, ValEdit, BGRAImageList,
-  BGRAImageManipulation, BCGameGrid;
+  BGRAImageManipulation, BCGameGrid, BGRABitmap, BGRABitmapTypes;
 
 type
 
@@ -79,12 +79,15 @@ type
     N1: TMenuItem;
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
+    procedure DrawGrid1ClickControl(Sender: TObject; n, x, y: integer);
     procedure DrawGrid1KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure DrawGrid1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
       );
     procedure DrawGrid1MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure DrawGrid1RenderControl(Sender: TObject; Bitmap: TBGRABitmap;
+      r: TRect; n, x, y: integer);
     procedure FileLoadSpritesheetMenuItemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Image1Click(Sender: TObject);
@@ -146,6 +149,11 @@ begin
   frmZastavka.Show;
 end;
 
+procedure TfrmMain.DrawGrid1ClickControl(Sender: TObject; n, x, y: integer);
+begin
+
+end;
+
 procedure TfrmMain.DrawGrid1KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -163,6 +171,12 @@ procedure TfrmMain.DrawGrid1MouseDown(Sender: TObject; Button: TMouseButton;
 begin
   Image1.Canvas.Pixels[x div 10,y div 10]:=clRed;
   Application.ProcessMessages;
+end;
+
+procedure TfrmMain.DrawGrid1RenderControl(Sender: TObject; Bitmap: TBGRABitmap;
+  r: TRect; n, x, y: integer);
+begin
+  Bitmap.FillRect(r,ColorToBGRA(Image1.Picture.Bitmap.Canvas.Pixels[x,y]),dmSet);
 end;
 
 procedure TfrmMain.FileLoadSpritesheetMenuItemClick(Sender: TObject);
@@ -185,7 +199,7 @@ begin
   //create and show if checked splashscreen
   Application.CreateForm(TfrmZastavka,frmZastavka);
   if INI.ReadBool('INTERFACE','SHOWSPLASH',false) then frmZastavka.Show;
- { //Create and show tools form and set position on screen
+  //Create and show tools form and set position on screen
   Application.CreateForm(TfrmTools,frmTools);
   frmTools.Left:=Screen.WorkAreaLeft+10;
   frmTools.Top:=Screen.WorkAreaTop+10;
@@ -202,7 +216,7 @@ begin
   frmTimeLine.Top:=frmMain.Top+frmMain.Height+50;
   frmTimeLine.Left:=Left;
   frmTimeLine.Width:=Width;
-  frmTimeLine.Show; }
+  frmTimeLine.Show;
   //load last sprite library if exists
   LibraryComboBox.Clear;
   LibraryComboBox.Items.Assign(SpriteLibNames);
