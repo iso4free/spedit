@@ -1,15 +1,15 @@
 object frmMain: TfrmMain
-  Left = 85
+  Left = 485
   Height = 304
-  Top = 85
+  Top = 267
   Width = 639
-  HorzScrollBar.Page = 380
-  VertScrollBar.Page = 285
+  HorzScrollBar.Page = 376
+  VertScrollBar.Page = 282
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
-  ClientHeight = 304
-  ClientWidth = 639
+  ClientHeight = 282
+  ClientWidth = 625
   DockSite = True
   DoubleBuffered = True
   FormStyle = fsMDIForm
@@ -23,9 +23,9 @@ object frmMain: TfrmMain
   Visible = True
   object PageControl1: TPageControl
     Left = 0
-    Height = 304
+    Height = 287
     Top = 0
-    Width = 639
+    Width = 625
     ActivePage = FrameEditorTabSheet
     Align = alClient
     DockSite = True
@@ -33,13 +33,13 @@ object frmMain: TfrmMain
     TabOrder = 0
     object FrameEditorTabSheet: TTabSheet
       Caption = 'Frame Editor'
-      ClientHeight = 274
-      ClientWidth = 629
+      ClientHeight = 253
+      ClientWidth = 619
       object FlowPanel1: TFlowPanel
         Left = 0
-        Height = 41
+        Height = 39
         Top = 0
-        Width = 629
+        Width = 619
         Align = alTop
         AutoSize = True
         Caption = 'FlowPanel1'
@@ -54,9 +54,9 @@ object frmMain: TfrmMain
         TabOrder = 0
         object BitBtnNewFrame: TBitBtn
           Left = 1
-          Height = 38
+          Height = 36
           Top = 1
-          Width = 38
+          Width = 34
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -71,14 +71,14 @@ object frmMain: TfrmMain
         AnchorSideRight.Control = PageControlFrameEditTools
         AnchorSideBottom.Control = Panel1
         Left = 0
-        Height = 183
-        Top = 41
-        Width = 429
+        Height = 164
+        Top = 39
+        Width = 419
         HorzScrollBar.Page = 168
         VertScrollBar.Page = 162
         Anchors = [akTop, akLeft, akRight, akBottom]
-        ClientHeight = 181
-        ClientWidth = 427
+        ClientHeight = 162
+        ClientWidth = 417
         TabOrder = 1
         object BCGameGridFrameditor: TBCGameGrid
           AnchorSideLeft.Control = FrameGridScrollBox
@@ -99,8 +99,8 @@ object frmMain: TfrmMain
         AnchorSideBottom.Side = asrBottom
         Left = 0
         Height = 50
-        Top = 224
-        Width = 629
+        Top = 203
+        Width = 619
         Align = alBottom
         Caption = 'Panel1'
         TabOrder = 2
@@ -111,15 +111,14 @@ object frmMain: TfrmMain
         AnchorSideRight.Control = FrameEditorTabSheet
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = Panel1
-        Left = 429
-        Height = 183
-        Top = 41
+        Left = 419
+        Height = 164
+        Top = 39
         Width = 200
         TabStop = False
         ActivePage = TabSheet1
         Anchors = [akTop, akRight, akBottom]
         Images = ButtonsImageList
-        Style = tsButtons
         TabIndex = 0
         TabOrder = 3
         TabPosition = tpRight
@@ -130,8 +129,8 @@ object frmMain: TfrmMain
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 274
-      ClientWidth = 629
+      ClientHeight = 253
+      ClientWidth = 619
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -143,8 +142,8 @@ object frmMain: TfrmMain
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 274
-      ClientWidth = 629
+      ClientHeight = 253
+      ClientWidth = 619
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -204,8 +203,8 @@ object frmMain: TfrmMain
     end
     object SourceTabSheet: TTabSheet
       Caption = 'Source Image'
-      ClientHeight = 274
-      ClientWidth = 629
+      ClientHeight = 253
+      ClientWidth = 619
       object SrcImageButtonsPanel: TPanel
         Left = 0
         Height = 30
@@ -360,8 +359,8 @@ object frmMain: TfrmMain
     end
     object LibraryTabSheet: TTabSheet
       Caption = 'Local Library'
-      ClientHeight = 274
-      ClientWidth = 629
+      ClientHeight = 253
+      ClientWidth = 619
       object LibraryButtonsPanel: TPanel
         Left = 0
         Height = 50
