@@ -129,6 +129,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="pl_GlassDocking"/>
+      </Item>
+      <Item>
         <PackageName Value="pl_BGRAcontrols"/>
       </Item>
       <Item>

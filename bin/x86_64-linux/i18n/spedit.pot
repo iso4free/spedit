@@ -47,6 +47,10 @@ msgstr ""
 msgid "Save Sprite Project"
 msgstr ""
 
+#: tfrmmain.flowpanel1.caption
+msgid "FlowPanel1"
+msgstr ""
+
 #: tfrmmain.frameeditortabsheet.caption
 msgid "Frame Editor"
 msgstr ""
@@ -99,6 +103,10 @@ msgstr ""
 msgid "Paint tools"
 msgstr ""
 
+#: tfrmmain.panel1.caption
+msgid "Panel1"
+msgstr ""
+
 #: tfrmmain.projecttabsheet.caption
 msgid "Project info"
 msgstr ""
@@ -133,6 +141,10 @@ msgstr ""
 
 #: tfrmmain.statictext1.caption
 msgid "StaticText1"
+msgstr ""
+
+#: tfrmmain.tabsheet1.caption
+msgid "TabSheet1"
 msgstr ""
 
 #: tfrmmain.timelinetoolvisiblemenuitem.caption
