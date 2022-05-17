@@ -7,7 +7,7 @@ interface
 uses
   SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls, Dialogs,
   ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, BGRAImageList,
-  BGRAImageManipulation, BCGameGrid, BCToolBar,
+  BGRAImageManipulation, BCGameGrid, BCToolBar, BCListBox,
   BGRABitmapTypes;
 
 type
@@ -15,11 +15,11 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
-    BCGameGridFrameditor: TBCGameGrid;
+    BCGameGridFrameEditor: TBCGameGrid;
+    BCPaperPanelFrameEditor: TBCPaperPanel;
     BitBtnNewFrame: TBitBtn;
     FlowPanel1: TFlowPanel;
     PageControlFrameEditTools: TPageControl;
-    Panel1: TPanel;
     ProjectSheet: TBGRAImageManipulation;
     ImportImage: TBGRAImageManipulation;
     ButtonsImageList: TBGRAImageList;
@@ -53,7 +53,6 @@ type
     ScrollBox2: TScrollBox;
     ScrollBox3: TScrollBox;
     ScrollBox4: TScrollBox;
-    FrameGridScrollBox: TScrollBox;
     SpeedButton1: TSpeedButton;
     SpeedButtonAutoSelect: TSpeedButton;
     SpeedButtonLoadSpritesheet: TSpeedButton;
@@ -63,14 +62,13 @@ type
     SelectSpriteLibMenuItem: TMenuItem;
     MenuItem7: TMenuItem;
     N3: TMenuItem;
-    PageControl1: TPageControl;
+    MainPageControl: TPageControl;
     SourceTabSheet: TTabSheet;
     ProjectTabSheet: TTabSheet;
     LibraryTabSheet: TTabSheet;
     ActionsTabSheet: TTabSheet;
     SettingsTabSheet: TTabSheet;
     StaticText1: TStaticText;
-    TabSheet1: TTabSheet;
     TimeLineToolVisibleMenuItem: TMenuItem;
     PaintToolPanelVisibleMenuItem: TMenuItem;
     N2: TMenuItem;
@@ -83,12 +81,13 @@ type
     N1: TMenuItem;
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
-    procedure BCGameGridFrameditorMouseWheelDown(Sender: TObject; Shift: TShiftState;
+    procedure BCGameGridFrameEditorMouseWheelDown(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: Boolean);
-    procedure BCGameGridFrameditorMouseWheelUp(Sender: TObject;
+    procedure BCGameGridFrameEditorMouseWheelUp(Sender: TObject;
       Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
     procedure FileLoadSpritesheetMenuItemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormResize(Sender: TObject);
     procedure ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
     procedure LayersToolVisibleMenuItemClick(Sender: TObject);
     procedure LibImageDblClick(Sender: TObject);
@@ -146,14 +145,14 @@ begin
   frmZastavka.Show;
 end;
 
-procedure TfrmMain.BCGameGridFrameditorMouseWheelDown(Sender: TObject;
+procedure TfrmMain.BCGameGridFrameEditorMouseWheelDown(Sender: TObject;
   Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
 begin
    if FrameGridSize>=2 then Dec(FrameGridSize);
    ResizeFrameGrid;
 end;
 
-procedure TfrmMain.BCGameGridFrameditorMouseWheelUp(Sender: TObject;
+procedure TfrmMain.BCGameGridFrameEditorMouseWheelUp(Sender: TObject;
   Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
 begin
    if FrameGridSize<=30 then Inc(FrameGridSize);
@@ -169,7 +168,7 @@ begin
     ImportImage.Width := ImportImage.Bitmap.Bitmap.Width;
     ImportImage.Height := ImportImage.Bitmap.Bitmap.Height;
     ImportImage.AutoSize := True;
-    PageControl1.ActivePage := SourceTabSheet;
+    MainPageControl.ActivePage := SourceTabSheet;
     SpeedButtonSaveToLib.Enabled := True;
   end;
 end;
@@ -204,7 +203,12 @@ begin
   LibraryComboBox.Items.Assign(SpriteLibNames);
   LibraryComboBox.ItemIndex := LibraryComboBox.Items.IndexOf(INI.ReadString('INTERFACE', 'SPRITELIB', 'default'));
   LoadSpriteLib;
-  PageControl1.ActivePageIndex := 0;
+  MainPageControl.ActivePageIndex := 0;
+end;
+
+procedure TfrmMain.FormResize(Sender: TObject);
+begin
+  ResizeFrameGrid;
 end;
 
 procedure TfrmMain.ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
@@ -224,7 +228,7 @@ begin
   ImportImage.Height := LibImage.Height;
   ImportImage.Bitmap.LoadFromFile(libpath + DirectorySeparator + LibraryItemsListBox.GetSelectedText);
   //todo: load frames description if exists
-  PageControl1.ActivePage := SourceTabSheet;
+  MainPageControl.ActivePage := SourceTabSheet;
 end;
 
 procedure TfrmMain.LibraryComboBoxChange(Sender: TObject);
@@ -340,10 +344,14 @@ end;
 
 procedure TfrmMain.ResizeFrameGrid;
 begin
-  BCGameGridFrameditor.BlockHeight:=FrameGridSize;
-  BCGameGridFrameditor.BlockWidth:=FrameGridSize;
-  BCGameGridFrameditor.Width:=FrameGridSize*BCGameGridFrameditor.GridWidth+2;
-  BCGameGridFrameditor.Height:=FrameGridSize*BCGameGridFrameditor.GridHeight+2;
+  if ((FrameGridSize*BCGameGridFrameEditor.GridHeight+2)>=MainPageControl.Height-30) then FrameGridSize:= (MainPageControl.Height-30) div BCGameGridFrameEditor.GridHeight;
+  if ((FrameGridSize*BCGameGridFrameEditor.GridWidth+2)>=MainPageControl.Width-PageControlFrameEditTools.Width) then FrameGridSize:= (MainPageControl.Width-PageControlFrameEditTools.Width) div BCGameGridFrameEditor.GridWidth;
+  BCGameGridFrameEditor.BlockHeight:=FrameGridSize;
+  BCGameGridFrameEditor.BlockWidth:=FrameGridSize;
+
+  BCGameGridFrameEditor.Width:=FrameGridSize*BCGameGridFrameEditor.GridWidth+2;
+  BCGameGridFrameEditor.Height:=FrameGridSize*BCGameGridFrameEditor.GridHeight+2;
+  Caption:=IntToStr(FrameGridSize);
 end;
 
 end.

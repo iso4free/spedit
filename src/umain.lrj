@@ -2,8 +2,6 @@
 {"hash":247726402,"name":"tfrmmain.caption","sourcebytes":[83,112,114,105,116,101,32,69,100,105,116,111,114],"value":"Sprite Editor"},
 {"hash":6523410,"name":"tfrmmain.frameeditortabsheet.caption","sourcebytes":[70,114,97,109,101,32,69,100,105,116,111,114],"value":"Frame Editor"},
 {"hash":207919249,"name":"tfrmmain.flowpanel1.caption","sourcebytes":[70,108,111,119,80,97,110,101,108,49],"value":"FlowPanel1"},
-{"hash":90721265,"name":"tfrmmain.panel1.caption","sourcebytes":[80,97,110,101,108,49],"value":"Panel1"},
-{"hash":127854081,"name":"tfrmmain.tabsheet1.caption","sourcebytes":[84,97,98,83,104,101,101,116,49],"value":"TabSheet1"},
 {"hash":128648723,"name":"tfrmmain.actionstabsheet.caption","sourcebytes":[65,99,116,105,111,110,115],"value":"Actions"},
 {"hash":253731967,"name":"tfrmmain.projecttabsheet.caption","sourcebytes":[80,114,111,106,101,99,116,32,105,110,102,111],"value":"Project info"},
 {"hash":265316305,"name":"tfrmmain.statictext1.caption","sourcebytes":[83,116,97,116,105,99,84,101,120,116,49],"value":"StaticText1"},

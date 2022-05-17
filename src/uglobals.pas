@@ -33,7 +33,7 @@ var
   //Drawing colors
   spclForeColor : TColor;  //foreground color - left mouse button drawing
   spclBackColor : TColor; //background color - right mouse button drawing
-  FrameGridSize : Byte;
+  FrameGridSize : Word;
 
   function IsDigits(s : String) : Boolean;
   //check string for digits only
