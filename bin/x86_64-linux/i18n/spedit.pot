@@ -9,6 +9,11 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
+#: tfrmmain.bcpaperpanelreferenceimage.hint
+msgctxt "tfrmmain.bcpaperpanelreferenceimage.hint"
+msgid "Click to load reference image"
+msgstr ""
+
 #: tfrmmain.caption
 msgid "Sprite Editor"
 msgstr ""
@@ -57,6 +62,10 @@ msgstr ""
 
 #: tfrmmain.groupbox1.caption
 msgid "Local libraries"
+msgstr ""
+
+#: tfrmmain.groupbox2.caption
+msgid "Reference Image"
 msgstr ""
 
 #: tfrmmain.helpmenuitem.caption

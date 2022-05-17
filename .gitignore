@@ -2,3 +2,5 @@
 bin/x86_64-linux/spedit
 *.dbg
 /doc/patettegridtest/*.*
+*.compiled
+lib/x86_64-linux/*.*

@@ -8,18 +8,19 @@ uses
   SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls, Dialogs,
   ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, BGRAImageList,
   BGRAImageManipulation, BCGameGrid, BCToolBar, BCListBox,
-  BGRABitmapTypes;
+  BGRABitmapTypes, BGRABitmap, BCTypes;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
-    BCGameGridFrameEditor: TBCGameGrid;
+    BCPaperPanelReferenceImage: TBCPaperPanel;
     BCPaperPanelFrameEditorAdditionalTools: TBCPaperPanel;
     BCPaperPanelFrameEditor: TBCPaperPanel;
     BitBtnNewFrame: TBitBtn;
     FlowPanel1: TFlowPanel;
+    GroupBox2: TGroupBox;
     ProjectSheet: TBGRAImageManipulation;
     ImportImage: TBGRAImageManipulation;
     ButtonsImageList: TBGRAImageList;
@@ -85,6 +86,13 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure BCGameGridFrameEditorMouseWheelUp(Sender: TObject;
       Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+    procedure BCGameGridFrameEditorRenderControl(Sender: TObject;
+      Bitmap: TBGRABitmap; r: TRect; n, x, y: integer);
+    procedure BCPaperPanelFrameEditorRedraw(Sender: TObject; Bitmap: TBGRABitmap
+      );
+    procedure BCPaperPanelReferenceImageClick(Sender: TObject);
+    procedure BCPaperPanelReferenceImageRedraw(Sender: TObject;
+      Bitmap: TBGRABitmap);
     procedure FileLoadSpritesheetMenuItemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
@@ -159,6 +167,34 @@ begin
    ResizeFrameGrid;
 end;
 
+procedure TfrmMain.BCGameGridFrameEditorRenderControl(Sender: TObject;
+  Bitmap: TBGRABitmap; r: TRect; n, x, y: integer);
+begin
+  DrawCheckers(Bitmap,r);
+end;
+
+procedure TfrmMain.BCPaperPanelFrameEditorRedraw(Sender: TObject;
+  Bitmap: TBGRABitmap);
+begin
+  DrawCheckers(Bitmap,BCPaperPanelFrameEditor.ClientRect);
+end;
+
+procedure TfrmMain.BCPaperPanelReferenceImageClick(Sender: TObject);
+begin
+  if OpenPictureDialog1.Execute then begin
+   ReferenceImage.Bitmap.Clear;
+   ReferenceImage.LoadFromFile(OpenPictureDialog1.FileName);
+   //BCPaperPanelReferenceImageRedraw(Sender,ReferenceImage);
+  end;
+end;
+
+procedure TfrmMain.BCPaperPanelReferenceImageRedraw(Sender: TObject;
+  Bitmap: TBGRABitmap);
+begin
+   DrawCheckers(Bitmap,BCPaperPanelReferenceImage.ClientRect);
+  Bitmap.PutImage(0,0,ReferenceImage,dmDrawWithTransparency);
+end;
+
 procedure TfrmMain.FileLoadSpritesheetMenuItemClick(Sender: TObject);
 begin
   if OpenPictureDialog1.Execute then
@@ -204,6 +240,9 @@ begin
   LibraryComboBox.ItemIndex := LibraryComboBox.Items.IndexOf(INI.ReadString('INTERFACE', 'SPRITELIB', 'default'));
   LoadSpriteLib;
   MainPageControl.ActivePageIndex := 0;
+
+  //reference image
+  ReferenceImage:=TBGRABitmap.Create(BCPaperPanelReferenceImage.ClientRect.Width,BCPaperPanelReferenceImage.ClientRect.Height);
 end;
 
 procedure TfrmMain.FormResize(Sender: TObject);
@@ -344,14 +383,15 @@ end;
 
 procedure TfrmMain.ResizeFrameGrid;
 begin
-  if ((FrameGridSize*BCGameGridFrameEditor.GridHeight+2)>=MainPageControl.Height-30) then FrameGridSize:= (MainPageControl.Height-30) div BCGameGridFrameEditor.GridHeight;
+  //todo: draw resized grid for per-pixel zoomed frame
+ { if ((FrameGridSize*BCGameGridFrameEditor.GridHeight+2)>=MainPageControl.Height-30) then FrameGridSize:= (MainPageControl.Height-30) div BCGameGridFrameEditor.GridHeight;
   if ((FrameGridSize*BCGameGridFrameEditor.GridWidth+2)>=MainPageControl.Width-BCPaperPanelFrameEditorAdditionalTools.Width) then FrameGridSize:= (MainPageControl.Width-BCPaperPanelFrameEditorAdditionalTools.Width) div BCGameGridFrameEditor.GridWidth;
   BCGameGridFrameEditor.BlockHeight:=FrameGridSize;
   BCGameGridFrameEditor.BlockWidth:=FrameGridSize;
 
   BCGameGridFrameEditor.Width:=FrameGridSize*BCGameGridFrameEditor.GridWidth+2;
   BCGameGridFrameEditor.Height:=FrameGridSize*BCGameGridFrameEditor.GridHeight+2;
-  Caption:=IntToStr(FrameGridSize);
+  Caption:=IntToStr(FrameGridSize); }
 end;
 
 end.
