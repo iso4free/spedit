@@ -16,10 +16,10 @@ type
 
   TfrmMain = class(TForm)
     BCGameGridFrameEditor: TBCGameGrid;
+    BCPaperPanelFrameEditorAdditionalTools: TBCPaperPanel;
     BCPaperPanelFrameEditor: TBCPaperPanel;
     BitBtnNewFrame: TBitBtn;
     FlowPanel1: TFlowPanel;
-    PageControlFrameEditTools: TPageControl;
     ProjectSheet: TBGRAImageManipulation;
     ImportImage: TBGRAImageManipulation;
     ButtonsImageList: TBGRAImageList;
@@ -345,7 +345,7 @@ end;
 procedure TfrmMain.ResizeFrameGrid;
 begin
   if ((FrameGridSize*BCGameGridFrameEditor.GridHeight+2)>=MainPageControl.Height-30) then FrameGridSize:= (MainPageControl.Height-30) div BCGameGridFrameEditor.GridHeight;
-  if ((FrameGridSize*BCGameGridFrameEditor.GridWidth+2)>=MainPageControl.Width-PageControlFrameEditTools.Width) then FrameGridSize:= (MainPageControl.Width-PageControlFrameEditTools.Width) div BCGameGridFrameEditor.GridWidth;
+  if ((FrameGridSize*BCGameGridFrameEditor.GridWidth+2)>=MainPageControl.Width-BCPaperPanelFrameEditorAdditionalTools.Width) then FrameGridSize:= (MainPageControl.Width-BCPaperPanelFrameEditorAdditionalTools.Width) div BCGameGridFrameEditor.GridWidth;
   BCGameGridFrameEditor.BlockHeight:=FrameGridSize;
   BCGameGridFrameEditor.BlockWidth:=FrameGridSize;
 

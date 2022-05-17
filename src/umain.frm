@@ -1,14 +1,14 @@
 object frmMain: TfrmMain
   Left = 484
-  Height = 467
+  Height = 454
   Top = 270
   Width = 668
-  HorzScrollBar.Page = 552
-  VertScrollBar.Page = 413
+  HorzScrollBar.Page = 508
+  VertScrollBar.Page = 405
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
-  ClientHeight = 467
+  ClientHeight = 432
   ClientWidth = 668
   DockSite = True
   DoubleBuffered = True
@@ -25,7 +25,7 @@ object frmMain: TfrmMain
   Visible = True
   object MainPageControl: TPageControl
     Left = 0
-    Height = 467
+    Height = 432
     Top = 0
     Width = 668
     ActivePage = FrameEditorTabSheet
@@ -35,13 +35,13 @@ object frmMain: TfrmMain
     TabOrder = 0
     object FrameEditorTabSheet: TTabSheet
       Caption = 'Frame Editor'
-      ClientHeight = 437
-      ClientWidth = 658
+      ClientHeight = 398
+      ClientWidth = 662
       object FlowPanel1: TFlowPanel
         Left = 0
-        Height = 41
+        Height = 39
         Top = 0
-        Width = 658
+        Width = 662
         Align = alTop
         AutoSize = True
         Caption = 'FlowPanel1'
@@ -56,9 +56,9 @@ object frmMain: TfrmMain
         TabOrder = 0
         object BitBtnNewFrame: TBitBtn
           Left = 1
-          Height = 38
+          Height = 36
           Top = 1
-          Width = 38
+          Width = 34
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -66,46 +66,31 @@ object frmMain: TfrmMain
           TabOrder = 0
         end
       end
-      object PageControlFrameEditTools: TPageControl
-        AnchorSideTop.Control = FlowPanel1
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = FrameEditorTabSheet
-        AnchorSideRight.Side = asrBottom
-        Left = 458
-        Height = 346
-        Top = 41
-        Width = 200
-        TabStop = False
-        Anchors = [akTop, akRight, akBottom]
-        Images = ButtonsImageList
-        TabOrder = 1
-        TabPosition = tpRight
-      end
       object BCPaperPanelFrameEditor: TBCPaperPanel
         AnchorSideLeft.Control = FrameEditorTabSheet
         AnchorSideTop.Control = FlowPanel1
         AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = PageControlFrameEditTools
+        AnchorSideRight.Control = BCPaperPanelFrameEditorAdditionalTools
         AnchorSideBottom.Control = FrameEditorTabSheet
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 396
-        Top = 41
-        Width = 458
+        Height = 359
+        Top = 39
+        Width = 492
         Alignment = taLeftJustify
         Anchors = [akTop, akLeft, akRight, akBottom]
         Caption = 'BCPaperPanelFrameEditor'
-        ClientHeight = 396
-        ClientWidth = 458
+        ClientHeight = 359
+        ClientWidth = 492
         Color = clWhite
         ParentColor = False
-        TabOrder = 2
+        TabOrder = 1
         object BCGameGridFrameEditor: TBCGameGrid
           AnchorSideLeft.Control = BCPaperPanelFrameEditor
           AnchorSideTop.Control = BCPaperPanelFrameEditor
-          Left = 10
+          Left = 5
           Height = 322
-          Top = 10
+          Top = 5
           Width = 322
           GridWidth = 32
           GridHeight = 32
@@ -115,11 +100,28 @@ object frmMain: TfrmMain
           OnMouseWheelUp = BCGameGridFrameEditorMouseWheelUp
         end
       end
+      object BCPaperPanelFrameEditorAdditionalTools: TBCPaperPanel
+        AnchorSideTop.Control = FlowPanel1
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = FrameEditorTabSheet
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = BCPaperPanelFrameEditor
+        AnchorSideBottom.Side = asrBottom
+        Left = 492
+        Height = 359
+        Top = 39
+        Width = 170
+        Alignment = taLeftJustify
+        Anchors = [akTop, akRight, akBottom]
+        Color = clWhite
+        ParentColor = False
+        TabOrder = 2
+      end
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 437
-      ClientWidth = 658
+      ClientHeight = 398
+      ClientWidth = 662
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -131,8 +133,8 @@ object frmMain: TfrmMain
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 437
-      ClientWidth = 658
+      ClientHeight = 398
+      ClientWidth = 662
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -192,8 +194,8 @@ object frmMain: TfrmMain
     end
     object SourceTabSheet: TTabSheet
       Caption = 'Source Image'
-      ClientHeight = 437
-      ClientWidth = 658
+      ClientHeight = 398
+      ClientWidth = 662
       object SrcImageButtonsPanel: TPanel
         Left = 0
         Height = 30
@@ -348,8 +350,8 @@ object frmMain: TfrmMain
     end
     object LibraryTabSheet: TTabSheet
       Caption = 'Local Library'
-      ClientHeight = 437
-      ClientWidth = 658
+      ClientHeight = 398
+      ClientWidth = 662
       object LibraryButtonsPanel: TPanel
         Left = 0
         Height = 50
