@@ -8,19 +8,20 @@ uses
   SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls, Dialogs,
   ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, BGRAImageList,
   BGRAImageManipulation, BCGameGrid, BCToolBar, BCListBox,
-  BGRABitmapTypes, BGRABitmap, BCTypes;
+  BGRABitmapTypes, BGRABitmap, BCTypes, BGRAGraphicControl;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
-    BCPaperPanelReferenceImage: TBCPaperPanel;
-    BCPaperPanelFrameEditorAdditionalTools: TBCPaperPanel;
-    BCPaperPanelFrameEditor: TBCPaperPanel;
+    FrameBGRAGraphicControl: TBGRAGraphicControl;
     BitBtnNewFrame: TBitBtn;
     FlowPanel1: TFlowPanel;
-    GroupBox2: TGroupBox;
+    Panel1: TPanel;
+    ToolsGroupBox: TGroupBox;
+    ReferenceGroupBox: TGroupBox;
+    ReferenceImage: TImage;
     ProjectSheet: TBGRAImageManipulation;
     ImportImage: TBGRAImageManipulation;
     ButtonsImageList: TBGRAImageList;
@@ -70,6 +71,7 @@ type
     ActionsTabSheet: TTabSheet;
     SettingsTabSheet: TTabSheet;
     StaticText1: TStaticText;
+    StatusBar1: TStatusBar;
     TimeLineToolVisibleMenuItem: TMenuItem;
     PaintToolPanelVisibleMenuItem: TMenuItem;
     N2: TMenuItem;
@@ -86,16 +88,10 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure BCGameGridFrameEditorMouseWheelUp(Sender: TObject;
       Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
-    procedure BCGameGridFrameEditorRenderControl(Sender: TObject;
-      Bitmap: TBGRABitmap; r: TRect; n, x, y: integer);
-    procedure BCPaperPanelFrameEditorRedraw(Sender: TObject; Bitmap: TBGRABitmap
-      );
-    procedure BCPaperPanelReferenceImageClick(Sender: TObject);
-    procedure BCPaperPanelReferenceImageRedraw(Sender: TObject;
-      Bitmap: TBGRABitmap);
     procedure FileLoadSpritesheetMenuItemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
+    procedure FrameBGRAGraphicControlPaint(Sender: TObject);
     procedure ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
     procedure LayersToolVisibleMenuItemClick(Sender: TObject);
     procedure LibImageDblClick(Sender: TObject);
@@ -103,6 +99,7 @@ type
     procedure LibraryItemsListBoxClick(Sender: TObject);
     procedure ListBox1Click(Sender: TObject);
     procedure ListBox1SelectionChange(Sender: TObject; User: boolean);
+    procedure ReferenceImageClick(Sender: TObject);
     procedure SelectSpriteLibMenuItemClick(Sender: TObject);
     procedure SaveSpriteLibMenuItemClick(Sender: TObject);
     procedure PaintToolPanelVisibleMenuItemClick(Sender: TObject);
@@ -167,34 +164,6 @@ begin
    ResizeFrameGrid;
 end;
 
-procedure TfrmMain.BCGameGridFrameEditorRenderControl(Sender: TObject;
-  Bitmap: TBGRABitmap; r: TRect; n, x, y: integer);
-begin
-  DrawCheckers(Bitmap,r);
-end;
-
-procedure TfrmMain.BCPaperPanelFrameEditorRedraw(Sender: TObject;
-  Bitmap: TBGRABitmap);
-begin
-  DrawCheckers(Bitmap,BCPaperPanelFrameEditor.ClientRect);
-end;
-
-procedure TfrmMain.BCPaperPanelReferenceImageClick(Sender: TObject);
-begin
-  if OpenPictureDialog1.Execute then begin
-   ReferenceImage.Bitmap.Clear;
-   ReferenceImage.LoadFromFile(OpenPictureDialog1.FileName);
-   //BCPaperPanelReferenceImageRedraw(Sender,ReferenceImage);
-  end;
-end;
-
-procedure TfrmMain.BCPaperPanelReferenceImageRedraw(Sender: TObject;
-  Bitmap: TBGRABitmap);
-begin
-   DrawCheckers(Bitmap,BCPaperPanelReferenceImage.ClientRect);
-  Bitmap.PutImage(0,0,ReferenceImage,dmDrawWithTransparency);
-end;
-
 procedure TfrmMain.FileLoadSpritesheetMenuItemClick(Sender: TObject);
 begin
   if OpenPictureDialog1.Execute then
@@ -241,13 +210,16 @@ begin
   LoadSpriteLib;
   MainPageControl.ActivePageIndex := 0;
 
-  //reference image
-  ReferenceImage:=TBGRABitmap.Create(BCPaperPanelReferenceImage.ClientRect.Width,BCPaperPanelReferenceImage.ClientRect.Height);
 end;
 
 procedure TfrmMain.FormResize(Sender: TObject);
 begin
   ResizeFrameGrid;
+end;
+
+procedure TfrmMain.FrameBGRAGraphicControlPaint(Sender: TObject);
+begin
+  FrameBGRAGraphicControl.Bitmap.DrawCheckers(FrameBGRAGraphicControl.ClientRect);
 end;
 
 procedure TfrmMain.ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
@@ -298,6 +270,14 @@ begin
     Values['y'] := IntToStr(ImportImage.CropAreas[ListBox1.ItemIndex].Area.Top);
     Values['width'] := IntToStr(ImportImage.CropAreas[ListBox1.ItemIndex].Area.Width);
     Values['height'] := IntToStr(ImportImage.CropAreas[ListBox1.ItemIndex].Area.Height);
+  end;
+end;
+
+procedure TfrmMain.ReferenceImageClick(Sender: TObject);
+begin
+  if OpenPictureDialog1.Execute then begin
+   ReferenceImage.Picture.Clear;
+   ReferenceImage.Picture.LoadFromFile(OpenPictureDialog1.FileName);
   end;
 end;
 

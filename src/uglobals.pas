@@ -28,7 +28,6 @@ var
   SpriteLibNames   : TStringList;
   CurrentLibName   : UTF8String;//selected library name
   libpath          : UTF8String;//selected library full path
-  ReferenceImage   : TBGRABitmap; //for store reference image
 
   SrcFramesArray : array [0..MAX_FRAMES] of PSrcFrameInfo;
   //Drawing colors
@@ -44,8 +43,6 @@ var
   //add new item to array and return it`s index
   function SaveSrcFramesToFile(aFile : String) : Boolean;
   //save all frames to JSON file
-  procedure DrawCheckers(bmp : TBGRABitmap; aRect : TRect);
-  //draw background checkers for transparent images
 
 implementation
 
@@ -112,35 +109,6 @@ begin
   end;
 end;
 
-procedure DrawCheckers(bmp: TBGRABitmap; ARect: TRect);
-  const
-    tx = 8;
-    ty = 8;
-  var
-    xb, yb, xdest, ydest, nbx, nby: integer;
-    oddColor, evenColor: TBGRAPixel;
-  begin
-    oddColor := BGRA(220, 220, 220);
-    evenColor := BGRA(255, 255, 255);
-    bmp.ClipRect := ARect;
-    xdest := ARect.Left;
-    nbx := ((ARect.Right - ARect.Left) + tx - 1) div tx;
-    nby := ((ARect.Bottom - ARect.Top) + ty - 1) div ty;
-    for xb := 0 to nbx - 1 do
-    begin
-      ydest := ARect.Top;
-      for yb := 0 to nby - 1 do
-      begin
-        if odd(xb + yb) then
-          bmp.FillRect(xdest, ydest, xdest + tx, ydest + ty, oddColor, dmSet)
-        else
-          bmp.FillRect(xdest, ydest, xdest + tx, ydest + ty, evenColor, dmSet);
-        Inc(ydest, ty);
-      end;
-      Inc(xdest, tx);
-    end;
-    bmp.NoClip;
-  end;
 
 initialization
 
@@ -171,6 +139,5 @@ initialization
   INI.WriteString('INTERFACE','SPRITELIB',CurrentLibName);
   FreeAndNil(SpriteLibNames);
   FreeAndNil(INI);
-  FreeAndNil(ReferenceImage);
 end.
 

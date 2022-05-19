@@ -9,11 +9,6 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
-#: tfrmmain.bcpaperpanelreferenceimage.hint
-msgctxt "tfrmmain.bcpaperpanelreferenceimage.hint"
-msgid "Click to load reference image"
-msgstr ""
-
 #: tfrmmain.caption
 msgid "Sprite Editor"
 msgstr ""
@@ -56,16 +51,16 @@ msgstr ""
 msgid "FlowPanel1"
 msgstr ""
 
+#: tfrmmain.framebgragraphiccontrol.caption
+msgid "FrameBGRAGraphicControl"
+msgstr ""
+
 #: tfrmmain.frameeditortabsheet.caption
 msgid "Frame Editor"
 msgstr ""
 
 #: tfrmmain.groupbox1.caption
 msgid "Local libraries"
-msgstr ""
-
-#: tfrmmain.groupbox2.caption
-msgid "Reference Image"
 msgstr ""
 
 #: tfrmmain.helpmenuitem.caption
@@ -112,8 +107,17 @@ msgstr ""
 msgid "Paint tools"
 msgstr ""
 
+#: tfrmmain.panel1.caption
+msgid "Panel1"
+msgstr ""
+
 #: tfrmmain.projecttabsheet.caption
 msgid "Project info"
+msgstr ""
+
+#: tfrmmain.referencegroupbox.caption
+msgctxt "tfrmmain.referencegroupbox.caption"
+msgid "Reference Image"
 msgstr ""
 
 #: tfrmmain.savespritelibmenuitem.caption
@@ -150,6 +154,11 @@ msgstr ""
 
 #: tfrmmain.timelinetoolvisiblemenuitem.caption
 msgid "Timeline"
+msgstr ""
+
+#: tfrmmain.toolsgroupbox.caption
+msgctxt "tfrmmain.toolsgroupbox.caption"
+msgid "Tools"
 msgstr ""
 
 #: tfrmmain.viewmenuitem.caption
