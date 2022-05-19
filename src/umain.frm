@@ -3,12 +3,12 @@ object frmMain: TfrmMain
   Height = 454
   Top = 270
   Width = 668
-  HorzScrollBar.Page = 180
-  VertScrollBar.Page = 219
+  HorzScrollBar.Page = 176
+  VertScrollBar.Page = 227
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
-  ClientHeight = 454
+  ClientHeight = 432
   ClientWidth = 668
   DockSite = True
   DoubleBuffered = True
@@ -25,7 +25,7 @@ object frmMain: TfrmMain
   Visible = True
   object MainPageControl: TPageControl
     Left = 0
-    Height = 437
+    Height = 409
     Top = 0
     Width = 668
     ActivePage = FrameEditorTabSheet
@@ -35,13 +35,13 @@ object frmMain: TfrmMain
     TabOrder = 0
     object FrameEditorTabSheet: TTabSheet
       Caption = 'Frame Editor'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 375
+      ClientWidth = 662
       object FlowPanel1: TFlowPanel
         Left = 0
-        Height = 41
+        Height = 39
         Top = 0
-        Width = 658
+        Width = 662
         Align = alTop
         AutoSize = True
         Caption = 'FlowPanel1'
@@ -56,9 +56,9 @@ object frmMain: TfrmMain
         TabOrder = 0
         object BitBtnNewFrame: TBitBtn
           Left = 1
-          Height = 38
+          Height = 36
           Top = 1
-          Width = 38
+          Width = 34
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -73,8 +73,8 @@ object frmMain: TfrmMain
         AnchorSideBottom.Control = FrameEditorTabSheet
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 366
-        Top = 41
+        Height = 336
+        Top = 39
         Width = 80
         Anchors = [akTop, akLeft, akBottom]
         Caption = 'Tools'
@@ -88,9 +88,9 @@ object frmMain: TfrmMain
         AnchorSideBottom.Control = FrameEditorTabSheet
         AnchorSideBottom.Side = asrBottom
         Left = 80
-        Height = 366
-        Top = 41
-        Width = 408
+        Height = 336
+        Top = 39
+        Width = 412
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderWidth = 1
         Color = clWhite
@@ -107,13 +107,13 @@ object frmMain: TfrmMain
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = FrameEditorTabSheet
         AnchorSideBottom.Side = asrBottom
-        Left = 488
-        Height = 366
-        Top = 41
+        Left = 492
+        Height = 336
+        Top = 39
         Width = 170
         Anchors = [akTop, akRight, akBottom]
         Caption = 'Panel1'
-        ClientHeight = 366
+        ClientHeight = 336
         ClientWidth = 170
         TabOrder = 2
         object ReferenceGroupBox: TGroupBox
@@ -148,8 +148,8 @@ object frmMain: TfrmMain
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 375
+      ClientWidth = 662
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -161,8 +161,8 @@ object frmMain: TfrmMain
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 375
+      ClientWidth = 662
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -222,8 +222,8 @@ object frmMain: TfrmMain
     end
     object SourceTabSheet: TTabSheet
       Caption = 'Source Image'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 375
+      ClientWidth = 662
       object SrcImageButtonsPanel: TPanel
         Left = 0
         Height = 30
@@ -378,8 +378,8 @@ object frmMain: TfrmMain
     end
     object LibraryTabSheet: TTabSheet
       Caption = 'Local Library'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 375
+      ClientWidth = 662
       object LibraryButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -457,8 +457,8 @@ object frmMain: TfrmMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 17
-    Top = 437
+    Height = 23
+    Top = 409
     Width = 668
     Panels = <    
       item

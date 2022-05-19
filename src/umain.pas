@@ -219,7 +219,7 @@ end;
 
 procedure TfrmMain.FrameBGRAGraphicControlPaint(Sender: TObject);
 begin
-  FrameBGRAGraphicControl.Bitmap.DrawCheckers(FrameBGRAGraphicControl.ClientRect);
+  FrameBGRAGraphicControl.Bitmap.DrawCheckers(FrameBGRAGraphicControl.ClientRect,ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF));
 end;
 
 procedure TfrmMain.ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
