@@ -2,6 +2,7 @@
 unit uglobals;
 
 {$mode objfpc}{$H+}
+{$modeswitch advancedrecords}
 
 interface
 
@@ -19,6 +20,24 @@ type
 
   PSrcFrameInfo = ^TSrcFrameInfo;
 
+  TColors = array[0..255] of TColor;
+
+  { TPalette }
+
+  TPalette = record
+    private
+     Count : Byte;   //colors in palette
+     Colors : TColors; //colors array
+     function GetColor(Index : Byte): TColor;
+    public
+     function isEmpty : Boolean; //check if palette is empty
+     procedure Clear;
+     property Color[Index : Byte] : TColor read GetColor; //get color by index
+     function AddColor(aColor : TColor) : Integer;   //add new color to palette. Return index for new color or if color exists. If palette full returns -1
+    private
+     function ColorExists(aColor : TColor) : Integer;
+  end;
+
 var
 
   UserSettingsPath : UTF8String;
@@ -33,7 +52,10 @@ var
   //Drawing colors
   spclForeColor : TColor;  //foreground color - left mouse button drawing
   spclBackColor : TColor; //background color - right mouse button drawing
-  FrameGridSize : Word;
+  FrameGridSize : Word;   //current grid size
+  FrameWidth,
+  FrameHeight   : Word;   //frame size in pixels
+  FrameZoom     : Integer;//zoom coeff for drawing grid
 
   function IsDigits(s : String) : Boolean;
   //check string for digits only
@@ -109,6 +131,45 @@ begin
   end;
 end;
 
+{ TPalette }
+
+function TPalette.GetColor(Index : Byte): TColor;
+begin
+  if Index>Count then Result:=clNone
+   else Result:=Colors[Index];
+end;
+
+function TPalette.isEmpty: Boolean;
+begin
+  Result:=Count=0;
+end;
+
+
+procedure TPalette.Clear;
+var
+  i: Integer;
+begin
+  Count :=  0;
+  for i :=  0 to 255 do Colors[i]:=clNone;
+end;
+
+function TPalette.AddColor(aColor: TColor): Integer;
+begin
+  if Count=0 then begin
+    Colors[count]:=aColor;
+    Inc(Count);
+    Result:=Count;
+    Exit;
+  end;
+  //todo: check if color exists
+  if Count=255 then Result:=-1;
+end;
+
+function TPalette.ColorExists(aColor: TColor): Integer;
+begin
+
+end;
+
 
 initialization
 
@@ -127,9 +188,13 @@ initialization
  //get last spritelib name
  CurrentLibName:=INI.ReadString('INTERFACE','SPRITELIB','default');
  libpath:=SpriteLibPath+DirectorySeparator+CurrentLibName;
- spclBackColor:=clBlack;
- spclForeColor:=clWhite;
- FrameGridSize:=10;
+ //frame editor params
+ spclBackColor:=INI.ReadInteger('FRAME EDITOR','BACKGROUND COLOR',clNone);
+ spclForeColor:=INI.ReadInteger('FRAME EDITOR','FOREGROUND COLOR',clBlack);
+ FrameGridSize:=INI.ReadInteger('FRAME EDITOR','GRID SIZE',10);
+ FrameWidth := INI.ReadInteger('FRAME EDITOR','FRAME WIDTH',32);
+ FrameHeight := INI.ReadInteger('FRAME EDITOR','FRAME HEIGHT',32);
+ FrameZoom := 1;
  UsedSrcFrames:=0;
 
 
