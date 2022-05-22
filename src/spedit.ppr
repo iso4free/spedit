@@ -19,7 +19,7 @@ uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
   {$ENDIF}{$ENDIF}
-  Forms, Interfaces, umain, utimeline,
+  Forms, Interfaces, umain,
   { you can add units after this }
   uselsprlib;
 
@@ -31,7 +31,6 @@ begin
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmSelectSpriteLib, frmSelectSpriteLib);
-  Application.CreateForm(TfrmTimeLine,frmTimeLine);
   Application.Run;
 end.
 

@@ -9,12 +9,34 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
+#: tfrmmain.bgcolor.caption
+msgid "BG"
+msgstr ""
+
+#: tfrmmain.bgcolor.hint
+msgctxt "tfrmmain.bgcolor.hint"
+msgid ""
+"Left click to select color\n"
+"Right click to set transparent color"
+msgstr ""
+
 #: tfrmmain.caption
 msgid "Sprite Editor"
 msgstr ""
 
 #: tfrmmain.editmenuitem.caption
 msgid "Edit"
+msgstr ""
+
+#: tfrmmain.fgcolor.caption
+msgid "FG"
+msgstr ""
+
+#: tfrmmain.fgcolor.hint
+msgctxt "tfrmmain.fgcolor.hint"
+msgid ""
+"Left click to select color\n"
+"Right click to set transparent color"
 msgstr ""
 
 #: tfrmmain.fileexitmenuitem.caption
@@ -63,6 +85,11 @@ msgstr ""
 msgid "Local libraries"
 msgstr ""
 
+#: tfrmmain.groupbox2.caption
+msgctxt "tfrmmain.groupbox2.caption"
+msgid "Palette"
+msgstr ""
+
 #: tfrmmain.helpmenuitem.caption
 msgid "Help"
 msgstr ""
@@ -92,6 +119,7 @@ msgid "Layers"
 msgstr ""
 
 #: tfrmmain.menuitem3.caption
+msgctxt "tfrmmain.menuitem3.caption"
 msgid "Palette"
 msgstr ""
 
@@ -101,6 +129,22 @@ msgstr ""
 
 #: tfrmmain.menuitem7.caption
 msgid "New Sprite Library"
+msgstr ""
+
+#: tfrmmain.mipaletteclear.caption
+msgid "Clear palette"
+msgstr ""
+
+#: tfrmmain.mipaletteimportfromfile.caption
+msgid "Import from image file"
+msgstr ""
+
+#: tfrmmain.mipaletteloadfromfile.caption
+msgid "Load from file"
+msgstr ""
+
+#: tfrmmain.mipalettesavetofile.caption
+msgid "Save to file"
 msgstr ""
 
 #: tfrmmain.painttoolpanelvisiblemenuitem.caption
@@ -150,6 +194,10 @@ msgstr ""
 
 #: tfrmmain.statictext1.caption
 msgid "StaticText1"
+msgstr ""
+
+#: tfrmmain.swapbgfg.hint
+msgid "Swap colors"
 msgstr ""
 
 #: tfrmmain.timelinetoolvisiblemenuitem.caption

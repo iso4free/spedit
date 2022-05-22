@@ -129,6 +129,12 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="pl_ColorLib"/>
+      </Item>
+      <Item>
+        <PackageName Value="pl_BGRAshapes"/>
+      </Item>
+      <Item>
         <PackageName Value="pl_GlassDocking"/>
       </Item>
       <Item>

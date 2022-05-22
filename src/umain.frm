@@ -3,12 +3,12 @@ object frmMain: TfrmMain
   Height = 454
   Top = 270
   Width = 668
-  HorzScrollBar.Page = 176
-  VertScrollBar.Page = 227
+  HorzScrollBar.Page = 180
+  VertScrollBar.Page = 295
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
-  ClientHeight = 432
+  ClientHeight = 454
   ClientWidth = 668
   DockSite = True
   DoubleBuffered = True
@@ -16,16 +16,14 @@ object frmMain: TfrmMain
   KeyPreview = True
   Menu = MainMenu1
   OnCreate = FormCreate
-  OnResize = FormResize
-  OnWindowStateChange = FormResize
   ParentDoubleBuffered = False
   Position = poDefault
-  UseDockManager = True
   LCLVersion = '7.7'
   Visible = True
+  WindowState = wsMaximized
   object MainPageControl: TPageControl
     Left = 0
-    Height = 409
+    Height = 437
     Top = 0
     Width = 668
     ActivePage = FrameEditorTabSheet
@@ -35,13 +33,13 @@ object frmMain: TfrmMain
     TabOrder = 0
     object FrameEditorTabSheet: TTabSheet
       Caption = 'Frame Editor'
-      ClientHeight = 375
-      ClientWidth = 662
+      ClientHeight = 407
+      ClientWidth = 658
       object FlowPanel1: TFlowPanel
         Left = 0
-        Height = 39
+        Height = 41
         Top = 0
-        Width = 662
+        Width = 658
         Align = alTop
         AutoSize = True
         Caption = 'FlowPanel1'
@@ -56,9 +54,9 @@ object frmMain: TfrmMain
         TabOrder = 0
         object BitBtnNewFrame: TBitBtn
           Left = 1
-          Height = 36
+          Height = 38
           Top = 1
-          Width = 34
+          Width = 38
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -73,12 +71,125 @@ object frmMain: TfrmMain
         AnchorSideBottom.Control = FrameEditorTabSheet
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 336
-        Top = 39
+        Height = 366
+        Top = 41
         Width = 80
         Anchors = [akTop, akLeft, akBottom]
         Caption = 'Tools'
+        ClientHeight = 349
+        ClientWidth = 78
         TabOrder = 1
+        object GroupBox2: TGroupBox
+          AnchorSideLeft.Control = ToolsGroupBox
+          AnchorSideRight.Control = ToolsGroupBox
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = ColorsPanel
+          Left = 0
+          Height = 129
+          Top = 159
+          Width = 78
+          Anchors = [akLeft, akBottom]
+          Caption = 'Palette'
+          ClientHeight = 112
+          ClientWidth = 76
+          TabOrder = 0
+          object ScrollBox5: TScrollBox
+            Left = 0
+            Height = 112
+            Top = 0
+            Width = 76
+            HorzScrollBar.Page = 61
+            VertScrollBar.Page = 97
+            Align = alClient
+            ClientHeight = 97
+            ClientWidth = 61
+            TabOrder = 0
+            object PaletteGrid: TBCGameGrid
+              AnchorSideLeft.Control = ScrollBox5
+              AnchorSideTop.Control = ScrollBox5
+              Left = 0
+              Height = 400
+              Top = 0
+              Width = 62
+              GridWidth = 6
+              GridHeight = 40
+              BlockWidth = 10
+              BlockHeight = 10
+              OnRenderControl = PaletteGridRenderControl
+              OnMouseUp = PaletteGridMouseUp
+            end
+          end
+        end
+        object ColorsPanel: TPanel
+          AnchorSideLeft.Control = ToolsGroupBox
+          AnchorSideRight.Control = ToolsGroupBox
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = ToolsGroupBox
+          AnchorSideBottom.Side = asrBottom
+          Left = 0
+          Height = 61
+          Top = 288
+          Width = 78
+          Anchors = [akLeft, akRight, akBottom]
+          ClientHeight = 61
+          ClientWidth = 78
+          TabOrder = 1
+          object SwapBgFg: TBGRAGraphicControl
+            Left = 1
+            Height = 59
+            Hint = 'Swap colors'
+            Top = 1
+            Width = 76
+            Align = alClient
+            Color = clWhite
+            ColorOpacity = 128
+            Alignment = taCenter
+            OnClick = SwapColors
+          end
+          object BgColor: TBGRAGraphicControl
+            Tag = 1
+            AnchorSideTop.Side = asrCenter
+            AnchorSideRight.Control = ColorsPanel
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = ColorsPanel
+            AnchorSideBottom.Side = asrBottom
+            Left = 45
+            Height = 32
+            Hint = 'Left click to select color'#10'Right click to set transparent color'
+            Top = 28
+            Width = 32
+            Anchors = [akRight, akBottom]
+            BorderWidth = 1
+            BevelInner = bvLowered
+            Color = clWhite
+            ColorOpacity = 128
+            Alignment = taCenter
+            OnMouseDown = BgColorMouseUp
+            OnPaint = BgColorPaint
+            Caption = 'BG'
+          end
+          object FgColor: TBGRAGraphicControl
+            Tag = 2
+            AnchorSideLeft.Control = ColorsPanel
+            AnchorSideLeft.Side = asrCenter
+            AnchorSideTop.Control = ColorsPanel
+            AnchorSideTop.Side = asrCenter
+            Left = 23
+            Height = 32
+            Hint = 'Left click to select color'#10'Right click to set transparent color'
+            Top = 14
+            Width = 32
+            BorderWidth = 1
+            BevelInner = bvRaised
+            BevelOuter = bvLowered
+            Color = clWhite
+            ColorOpacity = 128
+            Alignment = taCenter
+            OnMouseDown = BgColorMouseUp
+            OnPaint = BgColorPaint
+            Caption = 'FG'
+          end
+        end
       end
       object FrameBGRAGraphicControl: TBGRAGraphicControl
         AnchorSideLeft.Control = ToolsGroupBox
@@ -88,11 +199,13 @@ object frmMain: TfrmMain
         AnchorSideBottom.Control = FrameEditorTabSheet
         AnchorSideBottom.Side = asrBottom
         Left = 80
-        Height = 336
-        Top = 39
-        Width = 412
+        Height = 366
+        Top = 41
+        Width = 408
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderWidth = 1
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
         Color = clWhite
         ColorOpacity = 128
         Alignment = taCenter
@@ -107,13 +220,13 @@ object frmMain: TfrmMain
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = FrameEditorTabSheet
         AnchorSideBottom.Side = asrBottom
-        Left = 492
-        Height = 336
-        Top = 39
+        Left = 488
+        Height = 366
+        Top = 41
         Width = 170
         Anchors = [akTop, akRight, akBottom]
         Caption = 'Panel1'
-        ClientHeight = 336
+        ClientHeight = 366
         ClientWidth = 170
         TabOrder = 2
         object ReferenceGroupBox: TGroupBox
@@ -148,8 +261,8 @@ object frmMain: TfrmMain
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 375
-      ClientWidth = 662
+      ClientHeight = 407
+      ClientWidth = 658
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -161,8 +274,8 @@ object frmMain: TfrmMain
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 375
-      ClientWidth = 662
+      ClientHeight = 407
+      ClientWidth = 658
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -222,8 +335,8 @@ object frmMain: TfrmMain
     end
     object SourceTabSheet: TTabSheet
       Caption = 'Source Image'
-      ClientHeight = 375
-      ClientWidth = 662
+      ClientHeight = 407
+      ClientWidth = 658
       object SrcImageButtonsPanel: TPanel
         Left = 0
         Height = 30
@@ -378,8 +491,8 @@ object frmMain: TfrmMain
     end
     object LibraryTabSheet: TTabSheet
       Caption = 'Local Library'
-      ClientHeight = 375
-      ClientWidth = 662
+      ClientHeight = 407
+      ClientWidth = 658
       object LibraryButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -457,12 +570,12 @@ object frmMain: TfrmMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 23
-    Top = 409
+    Height = 17
+    Top = 437
     Width = 668
     Panels = <    
       item
-        Width = 50
+        Width = 200
       end    
       item
         Width = 50
@@ -522,6 +635,24 @@ object frmMain: TfrmMain
     end
     object MenuItem3: TMenuItem
       Caption = 'Palette'
+      object miPaletteLoadFromFile: TMenuItem
+        Caption = 'Load from file'
+        OnClick = miPaletteLoadFromFileClick
+      end
+      object miPaletteSaveToFile: TMenuItem
+        Caption = 'Save to file'
+        OnClick = miPaletteSaveToFileClick
+      end
+      object miPaletteClear: TMenuItem
+        Caption = 'Clear palette'
+        OnClick = miPaletteClearClick
+      end
+      object Separator1: TMenuItem
+        Caption = '-'
+      end
+      object miPaletteImportFromFile: TMenuItem
+        Caption = 'Import from image file'
+      end
     end
     object ViewMenuItem: TMenuItem
       Caption = 'View'
@@ -530,16 +661,13 @@ object frmMain: TfrmMain
         object PaintToolPanelVisibleMenuItem: TMenuItem
           Caption = 'Paint tools'
           Checked = True
-          OnClick = PaintToolPanelVisibleMenuItemClick
         end
         object LayersToolVisibleMenuItem: TMenuItem
           Caption = 'LayersToolVisibleMenuItem'
           Checked = True
-          OnClick = LayersToolVisibleMenuItemClick
         end
         object TimeLineToolVisibleMenuItem: TMenuItem
           Caption = 'Timeline'
-          OnClick = TimeLineToolVisibleMenuItemClick
         end
       end
       object N2: TMenuItem
@@ -1172,5 +1300,42 @@ object frmMain: TfrmMain
       A913DBD7F9671466CD9A596CE98C188B6EBD87A27DD7BE68D7431B9DBAAAE3FF
       01FF5093EF
     }
+  end
+  object ColorDialog1: TColorDialog
+    Color = clBlack
+    CustomColors.Strings = (
+      'ColorA=000000'
+      'ColorB=000080'
+      'ColorC=008000'
+      'ColorD=008080'
+      'ColorE=800000'
+      'ColorF=800080'
+      'ColorG=808000'
+      'ColorH=808080'
+      'ColorI=C0C0C0'
+      'ColorJ=0000FF'
+      'ColorK=00FF00'
+      'ColorL=00FFFF'
+      'ColorM=FF0000'
+      'ColorN=FF00FF'
+      'ColorO=FFFF00'
+      'ColorP=FFFFFF'
+      'ColorQ=C0DCC0'
+      'ColorR=F0CAA6'
+      'ColorS=F0FBFF'
+      'ColorT=A4A0A0'
+    )
+    Left = 194
+    Top = 96
+  end
+  object OpenPaletteDialog: TOpenDialog
+    Left = 139
+    Top = 162
+  end
+  object SavePaletteDialog: TSaveDialog
+    DefaultExt = '.hex'
+    FileName = 'default'
+    Left = 344
+    Top = 276
   end
 end

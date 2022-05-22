@@ -7,18 +7,33 @@ interface
 uses
   SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls, Dialogs,
   ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, BGRAImageList,
-  BGRAImageManipulation, BCGameGrid, BCToolBar, BCListBox,
-  BGRABitmapTypes, BGRABitmap, BCTypes, BGRAGraphicControl;
+  BGRAImageManipulation, BCGameGrid, BCToolBar, BGRABitmapTypes, BGRABitmap,
+  BGRAGraphicControl;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    miPaletteImportFromFile: TMenuItem;
+    SavePaletteDialog: TSaveDialog;
+    Separator1: TMenuItem;
+    miPaletteClear: TMenuItem;
+    miPaletteSaveToFile: TMenuItem;
+    miPaletteLoadFromFile: TMenuItem;
+    OpenPaletteDialog: TOpenDialog;
+    PaletteGrid: TBCGameGrid;
+    BgColor: TBGRAGraphicControl;
+    SwapBgFg: TBGRAGraphicControl;
+    FgColor: TBGRAGraphicControl;
+    ColorDialog1: TColorDialog;
     FrameBGRAGraphicControl: TBGRAGraphicControl;
     BitBtnNewFrame: TBitBtn;
     FlowPanel1: TFlowPanel;
+    GroupBox2: TGroupBox;
     Panel1: TPanel;
+    ColorsPanel: TPanel;
+    ScrollBox5: TScrollBox;
     ToolsGroupBox: TGroupBox;
     ReferenceGroupBox: TGroupBox;
     ReferenceImage: TImage;
@@ -84,16 +99,21 @@ type
     N1: TMenuItem;
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
-    procedure BCGameGridFrameEditorMouseWheelDown(Sender: TObject; Shift: TShiftState;
-      MousePos: TPoint; var Handled: Boolean);
-    procedure BCGameGridFrameEditorMouseWheelUp(Sender: TObject;
-      Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+    procedure miPaletteClearClick(Sender: TObject);
+    procedure miPaletteLoadFromFileClick(Sender: TObject);
+    procedure miPaletteSaveToFileClick(Sender: TObject);
+    procedure PaletteGridMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure PaletteGridRenderControl(Sender: TObject; Bitmap: TBGRABitmap;
+      r: TRect; n, x, y: integer);
+    procedure BgColorMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure BgColorPaint(Sender: TObject);
+    procedure SwapColors(Sender: TObject);
     procedure FileLoadSpritesheetMenuItemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure FormResize(Sender: TObject);
     procedure FrameBGRAGraphicControlPaint(Sender: TObject);
     procedure ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
-    procedure LayersToolVisibleMenuItemClick(Sender: TObject);
     procedure LibImageDblClick(Sender: TObject);
     procedure LibraryComboBoxChange(Sender: TObject);
     procedure LibraryItemsListBoxClick(Sender: TObject);
@@ -102,15 +122,11 @@ type
     procedure ReferenceImageClick(Sender: TObject);
     procedure SelectSpriteLibMenuItemClick(Sender: TObject);
     procedure SaveSpriteLibMenuItemClick(Sender: TObject);
-    procedure PaintToolPanelVisibleMenuItemClick(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButtonSaveToLibClick(Sender: TObject);
     procedure SrcImageFramesOptsValueListEditorEditingDone(Sender: TObject);
     procedure SrcImageFramesOptsValueListEditorValidate(Sender: TObject; ACol, ARow: longint; const KeyName, KeyValue: string);
-    procedure TimeLineToolVisibleMenuItemClick(Sender: TObject);
   private
-    procedure ResizeFrameGrid;
-
   public
 
   end;
@@ -121,7 +137,7 @@ var
 
 implementation
 
-uses uglobals, uzastavka, utools, ulayers, utimeline, uselsprlib;
+uses uglobals, uzastavka, uselsprlib;
 
 {$R *.frm}
 
@@ -150,18 +166,102 @@ begin
   frmZastavka.Show;
 end;
 
-procedure TfrmMain.BCGameGridFrameEditorMouseWheelDown(Sender: TObject;
-  Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+procedure TfrmMain.miPaletteClearClick(Sender: TObject);
 begin
-   if FrameGridSize>=2 then Dec(FrameGridSize);
-   ResizeFrameGrid;
+  if MessageDlg('Warning!','All colors in palette will be deleted! Are You shure?',mtWarning,mbYesNo,'')=mrYes then Palette.Clear;
+  PaletteGrid.RenderAndDrawControl;
 end;
 
-procedure TfrmMain.BCGameGridFrameEditorMouseWheelUp(Sender: TObject;
-  Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+procedure TfrmMain.miPaletteLoadFromFileClick(Sender: TObject);
 begin
-   if FrameGridSize<=30 then Inc(FrameGridSize);
-   ResizeFrameGrid;
+  if OpenPaletteDialog.Execute then begin
+    Palette.LoadFromFile(OpenPaletteDialog.FileName);
+  end;
+  PaletteGrid.RenderAndDrawControl;
+end;
+
+procedure TfrmMain.miPaletteSaveToFileClick(Sender: TObject);
+begin
+  if SavePaletteDialog.Execute then begin
+    Palette.SaveToFile(SavePaletteDialog.FileName);
+  end;
+end;
+
+procedure TfrmMain.PaletteGridMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var xx,yy,n : Integer;
+begin
+  xx:=x div PaletteGrid.BlockWidth+1;
+  yy:=y div PaletteGrid.BlockHeight+1;
+  n := xx-PaletteGrid.GridWidth+yy*PaletteGrid.GridWidth-1;
+  if n>Palette.Count then Exit;
+  Palette.SelectColor(n);
+  case Button of
+    mbLeft:begin
+     spclForeColor:=Palette.SelectedColor;
+     FgColor.Invalidate;
+    end;
+    mbRight:begin
+     spclBackColor:=Palette.SelectedColor;
+     BgColor.Invalidate;
+    end;
+  end;
+end;
+
+procedure TfrmMain.PaletteGridRenderControl(Sender: TObject;
+  Bitmap: TBGRABitmap; r: TRect; n, x, y: integer);
+var b, c : TBGRAPixel;
+begin
+  if (n=0) or (n>Palette.Count-1) then begin
+   c:=clNone;
+   b:=clNone;
+   end  else begin
+     c := ColorToBGRA(palette.Color[n]);
+     b:=ColorToBGRA(clBlack);
+   end;
+  Bitmap.Rectangle(r,b,c,dmSet);
+end;
+
+procedure TfrmMain.BgColorMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  case Button of
+    mbLeft:  if ColorDialog1.Execute then begin
+                if (Sender as TBGRAGraphicControl).Tag=1 then spclBackColor:=ColorDialog1.Color
+                else spclForeColor:=ColorDialog1.Color;
+                Palette.AddColor(ColorDialog1.Color);
+                StatusBar1.Panels[0].Text:='Colors: '+IntToStr(Palette.Count);
+                PaletteGrid.RenderAndDrawControl;
+              end;
+    mbRight:if (Sender as TBGRAGraphicControl).Tag=1 then spclBackColor:=clNone
+                else spclForeColor:=clNone;
+  end;
+  BgColorPaint(Sender);
+end;
+
+procedure TfrmMain.BgColorPaint(Sender: TObject);
+var cl : TColor;
+begin
+  if (Sender as TBGRAGraphicControl).Tag = 1 then cl := spclBackColor
+    else cl:=spclForeColor;
+  if cl=clNone then begin
+   (Sender as TBGRAGraphicControl).Bitmap.DrawCheckers(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),
+                                              ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),4,4);
+  end
+    else (Sender as TBGRAGraphicControl).Bitmap.FillRect(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(cl));
+  (Sender as TBGRAGraphicControl).Invalidate;
+  StatusBar1.Panels[1].Text:='FG: '+IntToHex(spclForeColor)+' / BG: '+IntToHex(spclBackColor);
+end;
+
+
+procedure TfrmMain.SwapColors(Sender: TObject);
+var cl : TColor;
+begin
+   cl := spclBackColor;
+   spclBackColor:=spclForeColor;
+   spclForeColor:=cl;
+   FgColor.Invalidate;
+   BgColor.Invalidate;
 end;
 
 procedure TfrmMain.FileLoadSpritesheetMenuItemClick(Sender: TObject);
@@ -185,52 +285,28 @@ begin
   //create and show if checked splashscreen
   Application.CreateForm(TfrmZastavka, frmZastavka);
   if INI.ReadBool('INTERFACE', 'SHOWSPLASH', False) then frmZastavka.Show;
-  //Create and show tools form and set position on screen
-  Application.CreateForm(TfrmTools, frmTools);
-  frmTools.Left := Screen.WorkAreaLeft + 10;
-  frmTools.Top := Screen.WorkAreaTop + 10;
-  Left := frmTools.Left + frmTools.Width + 20;
-  Top := frmTools.Top;
-  frmTools.Show;
-  //Create and show layers form and set position on screen
-  Application.CreateForm(TfrmLayers, frmLayers);
-  frmLayers.Top := Top;
-  frmLayers.Left := Left + Width + 20;
-  frmLayers.Show;
-  //Create and show timeline form and set position on screen
-  Application.CreateForm(TfrmTimeLine, frmTimeLine);
-  frmTimeLine.Top := frmMain.Top + frmMain.Height + 50;
-  frmTimeLine.Left := Left;
-  frmTimeLine.Width := Width;
-  frmTimeLine.Show;
   //load last sprite library if exists
   LibraryComboBox.Clear;
   LibraryComboBox.Items.Assign(SpriteLibNames);
   LibraryComboBox.ItemIndex := LibraryComboBox.Items.IndexOf(INI.ReadString('INTERFACE', 'SPRITELIB', 'default'));
   LoadSpriteLib;
   MainPageControl.ActivePageIndex := 0;
+  BgColor.ShowHint:=true;
+  FgColor.ShowHint:=true;
+  SwapBgFg.ShowHint:=true;
 
-end;
-
-procedure TfrmMain.FormResize(Sender: TObject);
-begin
-  ResizeFrameGrid;
 end;
 
 procedure TfrmMain.FrameBGRAGraphicControlPaint(Sender: TObject);
 begin
-  FrameBGRAGraphicControl.Bitmap.DrawCheckers(FrameBGRAGraphicControl.ClientRect,ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF));
+  FrameBGRAGraphicControl.Bitmap.DrawCheckers(Rect(5,5,FrameBGRAGraphicControl.Width-5,FrameBGRAGraphicControl.Height-5),
+                                              ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF));
+  //todo: draw here zoomed frame data
 end;
 
 procedure TfrmMain.ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
 begin
   ListBox1.AddItem('Frame' + IntToStr(ListBox1.Count + 1), CropArea);
-end;
-
-procedure TfrmMain.LayersToolVisibleMenuItemClick(Sender: TObject);
-begin
-  LayersToolVisibleMenuItem.Checked := not LayersToolVisibleMenuItem.Checked;
-  frmLayers.Visible := LayersToolVisibleMenuItem.Checked;
 end;
 
 procedure TfrmMain.LibImageDblClick(Sender: TObject);
@@ -296,12 +372,6 @@ begin
   libpath := SpriteLibPath + DirectorySeparator + CurrentLibName;
 end;
 
-procedure TfrmMain.PaintToolPanelVisibleMenuItemClick(Sender: TObject);
-begin
-  PaintToolPanelVisibleMenuItem.Checked := not PaintToolPanelVisibleMenuItem.Checked;
-  frmTools.Visible := PaintToolPanelVisibleMenuItem.Checked;
-end;
-
 procedure TfrmMain.SpeedButton1Click(Sender: TObject);
 begin
   if ListBox1.Count = 0 then Exit;
@@ -353,25 +423,6 @@ begin
     begin
       ShowMessage(QuotedStr(KeyName) + ' has non-integer value!');
     end;
-end;
-
-procedure TfrmMain.TimeLineToolVisibleMenuItemClick(Sender: TObject);
-begin
-  TimeLineToolVisibleMenuItem.Checked := not TimeLineToolVisibleMenuItem.Checked;
-  frmTimeLine.Visible := TimeLineToolVisibleMenuItem.Checked;
-end;
-
-procedure TfrmMain.ResizeFrameGrid;
-begin
-  //todo: draw resized grid for per-pixel zoomed frame
- { if ((FrameGridSize*BCGameGridFrameEditor.GridHeight+2)>=MainPageControl.Height-30) then FrameGridSize:= (MainPageControl.Height-30) div BCGameGridFrameEditor.GridHeight;
-  if ((FrameGridSize*BCGameGridFrameEditor.GridWidth+2)>=MainPageControl.Width-BCPaperPanelFrameEditorAdditionalTools.Width) then FrameGridSize:= (MainPageControl.Width-BCPaperPanelFrameEditorAdditionalTools.Width) div BCGameGridFrameEditor.GridWidth;
-  BCGameGridFrameEditor.BlockHeight:=FrameGridSize;
-  BCGameGridFrameEditor.BlockWidth:=FrameGridSize;
-
-  BCGameGridFrameEditor.Width:=FrameGridSize*BCGameGridFrameEditor.GridWidth+2;
-  BCGameGridFrameEditor.Height:=FrameGridSize*BCGameGridFrameEditor.GridHeight+2;
-  Caption:=IntToStr(FrameGridSize); }
 end;
 
 end.
