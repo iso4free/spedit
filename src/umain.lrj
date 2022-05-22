@@ -40,7 +40,7 @@
 {"hash":109235189,"name":"tfrmmain.menuitem3.caption","sourcebytes":[80,97,108,101,116,116,101],"value":"Palette"},
 {"hash":8431845,"name":"tfrmmain.mipaletteloadfromfile.caption","sourcebytes":[76,111,97,100,32,102,114,111,109,32,102,105,108,101],"value":"Load from file"},
 {"hash":9308581,"name":"tfrmmain.mipalettesavetofile.caption","sourcebytes":[83,97,118,101,32,116,111,32,102,105,108,101],"value":"Save to file"},
-{"hash":208228245,"name":"tfrmmain.mipaletteclear.caption","sourcebytes":[67,108,101,97,114,32,112,97,108,101,116,116,101],"value":"Clear palette"},
+{"hash":248188293,"name":"tfrmmain.mipaletteclear.caption","sourcebytes":[82,101,115,101,116,32,112,97,108,101,116,116,101],"value":"Reset palette"},
 {"hash":236152661,"name":"tfrmmain.mipaletteimportfromfile.caption","sourcebytes":[73,109,112,111,114,116,32,102,114,111,109,32,105,109,97,103,101,32,102,105,108,101],"value":"Import from image file"},
 {"hash":380871,"name":"tfrmmain.viewmenuitem.caption","sourcebytes":[86,105,101,119],"value":"View"},
 {"hash":121450451,"name":"tfrmmain.menuitem4.caption","sourcebytes":[84,111,111,108,32,112,97,110,101,108,115],"value":"Tool panels"},

@@ -644,7 +644,7 @@ object frmMain: TfrmMain
         OnClick = miPaletteSaveToFileClick
       end
       object miPaletteClear: TMenuItem
-        Caption = 'Clear palette'
+        Caption = 'Reset palette'
         OnClick = miPaletteClearClick
       end
       object Separator1: TMenuItem
@@ -652,6 +652,7 @@ object frmMain: TfrmMain
       end
       object miPaletteImportFromFile: TMenuItem
         Caption = 'Import from image file'
+        OnClick = miPaletteImportFromFileClick
       end
     end
     object ViewMenuItem: TMenuItem

@@ -132,7 +132,7 @@ msgid "New Sprite Library"
 msgstr ""
 
 #: tfrmmain.mipaletteclear.caption
-msgid "Clear palette"
+msgid "Reset palette"
 msgstr ""
 
 #: tfrmmain.mipaletteimportfromfile.caption

@@ -100,6 +100,7 @@ type
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
     procedure miPaletteClearClick(Sender: TObject);
+    procedure miPaletteImportFromFileClick(Sender: TObject);
     procedure miPaletteLoadFromFileClick(Sender: TObject);
     procedure miPaletteSaveToFileClick(Sender: TObject);
     procedure PaletteGridMouseUp(Sender: TObject; Button: TMouseButton;
@@ -168,8 +169,34 @@ end;
 
 procedure TfrmMain.miPaletteClearClick(Sender: TObject);
 begin
-  if MessageDlg('Warning!','All colors in palette will be deleted! Are You shure?',mtWarning,mbYesNo,'')=mrYes then Palette.Clear;
+  if MessageDlg('Warning!','Palette will be resetted to default colors! Are You shure?',mtWarning,mbYesNo,'')=mrYes then Palette.Reset;
   PaletteGrid.RenderAndDrawControl;
+end;
+
+procedure TfrmMain.miPaletteImportFromFileClick(Sender: TObject);
+label stop;
+var
+    img : TBGRABitmap;
+    w,h , i, j: Integer;
+begin
+  if OpenPictureDialog1.Execute then begin
+   img:=TBGRABitmap.Create(OpenPictureDialog1.FileName);
+   w:=img.Width-1;
+   h:=img.Height-1;
+   Palette.Clear;
+   for i :=0 to w do
+     for j:=0 to h do begin
+       if Palette.AddColor(FPColorToTColor(img.Colors[i,j]))=-1 then begin
+        ShowMessage('Image has too many colors!');
+        Palette.Reset;
+        goto stop;
+       end;
+     end;
+stop:
+   FreeAndNil(img);
+   PaletteGrid.RenderAndDrawControl;
+
+  end;
 end;
 
 procedure TfrmMain.miPaletteLoadFromFileClick(Sender: TObject);
