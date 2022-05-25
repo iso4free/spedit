@@ -8,8 +8,10 @@ interface
 
 uses Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson, BGRABitmap, BGRABitmapTypes;
 
-const MAX_FRAMES = 5000;
-      MAX_PALETTE_COLORS = 255;
+const MAX_FRAMES = 50;          //it will be enought for one animation?
+      MAX_PALETTE_COLORS = 255;  //max colors count in palette
+      MAX_PIXELS = 512*512;      //max pixels array (sprite size 512x512 pixels)
+      MAX_LAYERS = 10;           //max layers count in one frame
 
 
 
@@ -17,15 +19,12 @@ type
  // TWorkMode = (wrkProject,wrkSpriteActions,wrkEditor,wrkSourceImage,wrkLibrary,wrkSettings);
   //uses for check which tab now active
 
-  TSrcFrameInfo = record
-    fX,fY, fWidth, fHeight : Word;
-  end;
-
-  PSrcFrameInfo = ^TSrcFrameInfo;
-
-  TColors = array[0..MAX_PALETTE_COLORS] of TColor;
+  TColors = array[0..MAX_PALETTE_COLORS] of TColor;  //palette - array of colors
+  TPixels = array[0..MAX_PIXELS] of Byte;            //array of indexes to palette
 
   { TPalette }
+
+  PPalette = ^TPalette;
 
   TPalette = record
     private
@@ -40,27 +39,60 @@ type
      function isEmpty : Boolean; //check if palette is empty
      procedure Clear;
      procedure Reset; //reset palette to default 16 colors
-     procedure SelectColor(Index : Byte);
-     procedure SaveToFile(aName : TFileName);
-     function LoadFromFile(aName : TFileName) : Boolean;
+     procedure SelectColor(Index : Byte);//Select active color
+     procedure SaveToFile(aName : TFileName);//save palette to HEX file (with colors hex codes)
+     function LoadFromFile(aName : TFileName) : Boolean;//load from HEX file
      property Color[Index : Byte] : TColor read GetColor; //get color by index
      function AddColor(aColor : TColor) : Integer;   //add new color to palette. Return index for new color or if color exists. If palette full returns -1
     private
      procedure Sort; //sort colors in palette
-     function ColorExists(aColor : TColor) : Integer;
+     function ColorExists(aColor : TColor) : Integer; //check if color in palette before adding
+  end;
+
+  { TLayer }
+
+  TLayer = record       //layer record
+    Count : Word;       //pixels count
+    Pixels : TPixels;   //array of pixels
+    Visible : Boolean;  //if false not draw on screen
+    procedure Clear;
+  end;
+
+  TLayers = array[0..MAX_LAYERS] of TLayer;
+
+  { TFrame }
+
+  PFrame = ^TFrame;
+  TFrame = record
+    Count : Byte;
+    fLayers : TLayers;
+    procedure Clear;
+  end;
+
+  TCamera = record           //camera view on canvas
+    posX, posY : Integer;
+    camWidth, camHeight : Word;
   end;
 
   { TFrameGrid }
 
-  TFrameGrid = record
-   fFrameGridSize : Word;   //current grid size
-   fFrameWidth,
-   fFrameHeight   : Word;   //frame size in pixels
-   fFrameZoom     : Integer;//zoom coeff for drawing grid
-   fRect          : TRect;  //grid area on canvas
-   fBitmap        : TBGRABitmap; //where grid will be draw
-   constructor Init(aW,aH,aSize : Word);
-
+  TFrameGrid = class
+   private
+    fBuffer        : TBgraBitmap; //for in-memory drawig before show on screen
+    fFrameGridSize : Word;   //current grid size
+    fFrameWidth,
+    fFrameHeight   : Word;   //frame size in pixels
+    fFrameZoom     : Integer;//zoom coeff for drawing grid (0 for normal size)
+    fRect          : TRect;  //grid area on canvas
+    fFrame         : PFrame; //pointer to frame record with all layers
+    fCamera        : TCamera;//visible on screen part of frame
+    fShowGrid      : Boolean;
+   public
+    constructor Create(aBmp : TBGRABitmap; aW: Integer = 32; aH : Integer = 32; aSize : Word = 10);
+     //aBmp here is for drawing
+    destructor Destroy; override;
+    procedure RenderAndDraw(Canvas : TCanvas);
+    property ShowGrid : Boolean read fShowGrid write fShowGrid;
   end;
 
 var
@@ -73,26 +105,21 @@ var
   CurrentLibName   : UTF8String;//selected library name
   libpath          : UTF8String;//selected library full path
 
-  SrcFramesArray : array [0..MAX_FRAMES] of PSrcFrameInfo;
+
   //Drawing colors
   spclForeColor : TColor;  //foreground color - left mouse button drawing
   spclBackColor : TColor; //background color - right mouse button drawing
   //Work palette
   Palette       : TPalette;
 
+  FrameGrid     : TFrameFrid;
+
+  //**********************************************************************
   function IsDigits(s : String) : Boolean;
   //check string for digits only
-  procedure ClearSrcFramesArray;
-  //clear used items an free memory for source image frames
-  function AddSrcFrame(x,y,w,h : Word) : Integer;
-  //add new item to array and return it`s index
-  function SaveSrcFramesToFile(aFile : String) : Boolean;
-  //save all frames to JSON file
+
 
 implementation
-
-var
-  UsedSrcFrames : Word;
 
 procedure LoadSpriteLibDirs;
 var
@@ -122,49 +149,70 @@ begin
   result := B;
 end;
 
-procedure ClearSrcFramesArray;
+{ TFrame }
+
+procedure TFrame.Clear;
 var
   i: Integer;
 begin
-  if UsedSrcFrames<>0 then
-  for i:= 0 to UsedSrcFrames -1 do begin
-    FreeMemAndNil(SrcFramesArray[i]);
-  end;
+  for i:=0 to MAX_LAYERS do fLayers[i].Clear;
+  Count:=0;
 end;
 
-function AddSrcFrame(x, y, w, h: Word): Integer;
-begin
-  Result:=-1;
-  if UsedSrcFrames<MAX_FRAMES then begin
-    Getmem(SrcFramesArray[UsedSrcFrames],SizeOf(TSrcFrameInfo));
-    SrcFramesArray[UsedSrcFrames]^.fX:=x;
-    SrcFramesArray[UsedSrcFrames]^.fY:=y;
-    SrcFramesArray[UsedSrcFrames]^.fWidth:=w;
-    SrcFramesArray[UsedSrcFrames]^.fHeight:=h;
-    Inc(UsedSrcFrames);
-    Result:=UsedSrcFrames;
-  end;
-end;
+{ TLayer }
 
-function SaveSrcFramesToFile(aFile: String): Boolean;
+procedure TLayer.Clear;
+var
+  i: Integer;
 begin
-  result := false;
-  if UsedSrcFrames<>0 then begin
-  //todo: create JSON file and write array
-  end;
+  for i:=0 to MAX_PIXELS do Pixels[i]:=0; //in palette first color always means transparent - clNone
+  Count:=0;
 end;
 
 { TFrameGrid }
 
-constructor TFrameGrid.Init(aW, aH, aSize: Word);
+constructor TFrameGrid.Create(aBmp: TBGRABitmap; aW: Integer; aH: Integer;
+  aSize: Word);
 begin
   fFrameGridSize:=aSize;
   fFrameHeight:=aH;
   fFrameWidth:=aW;
   fFrameZoom:=0;
-  fBitmap:=TBGRABitmap.Create(fFrameWidth*(aSize+fFrameZoom),fFrameHeight*(aSize+fFrameZoom));
+  fCamera.posX:=0;
+  fCamera.posY:=0;
+  fCamera.camWidth:=aBmp.Width;
+  fCamera.camHeight:=aBmp.Height;
+  Getmem(fFrame);
+end;
+
+destructor TFrameGrid.Destroy;
+begin
+  FreeMemAndNil(fFrame);
+  FreeAndNil(fBuffer);
+  inherited Destroy;
+end;
+
+procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas);
+
+  procedure DrawGrid(x1,y1,x2,y2 : Integer; size : Integer);
+   var i, xsize, ysize : Integer;
+  begin
+    xsize := (x2-x1) div size;
+    ysize := (y2-y1) div size;
+    For i := 1 to xsize do fBuffer.DrawLine(x1,y1+i*size,x2,y1+i*size,ColorFToBGRA(clNavy));
+    For i := 1 to ysize do fBuffer.DrawLine(x1+i*size,y1,x1+i*size,y2,ColorFToBGRA(clNavy));
+    fBuffer.Rectangle(x1,y1,x2,y2,ColorFToBGRA(clNavy));
+  end;
 
 
+begin
+  FreeAndNil(fBuffer);
+  fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize*fFrameZoom+1),fFrameHeight*(fFrameGridSize*fFrameZoom+1));
+  ShowGrid:=not (fFrameZoom<3);
+  fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF));
+  if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize*fFrameZoom+1);
+  //todo : draw all layers per pixels
+  fBuffer.Draw(Canvas,0,0);
 end;
 
 { TPalette }
@@ -305,9 +353,11 @@ initialization
  //frame editor params
  spclBackColor:=INI.ReadInteger('FRAME EDITOR','BACKGROUND COLOR',clNone);
  spclForeColor:=INI.ReadInteger('FRAME EDITOR','FOREGROUND COLOR',clBlack);
+ //palette with default colors
  Palette.Reset;
 
- UsedSrcFrames:=0;
+  //create new frame with default parameters
+  FrameGrid:=TFrameGrid.Create();
 
 
 

@@ -225,7 +225,6 @@ object frmMain: TfrmMain
         Top = 41
         Width = 170
         Anchors = [akTop, akRight, akBottom]
-        Caption = 'Panel1'
         ClientHeight = 366
         ClientWidth = 170
         TabOrder = 2

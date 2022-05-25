@@ -306,12 +306,10 @@ begin
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
-var
-  i: integer;
 begin
   //create and show if checked splashscreen
   Application.CreateForm(TfrmZastavka, frmZastavka);
-  if INI.ReadBool('INTERFACE', 'SHOWSPLASH', False) then frmZastavka.Show;
+  if INI.ReadBool('INTERFACE', 'SHOWSPLASH', true) then frmZastavka.Show;
   //load last sprite library if exists
   LibraryComboBox.Clear;
   LibraryComboBox.Items.Assign(SpriteLibNames);

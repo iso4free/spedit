@@ -151,10 +151,6 @@ msgstr ""
 msgid "Paint tools"
 msgstr ""
 
-#: tfrmmain.panel1.caption
-msgid "Panel1"
-msgstr ""
-
 #: tfrmmain.projecttabsheet.caption
 msgid "Project info"
 msgstr ""
