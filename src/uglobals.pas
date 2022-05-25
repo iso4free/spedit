@@ -112,7 +112,7 @@ var
   //Work palette
   Palette       : TPalette;
 
-  FrameGrid     : TFrameFrid;
+  FrameGrid     : TFrameGrid;
 
   //**********************************************************************
   function IsDigits(s : String) : Boolean;
@@ -182,7 +182,7 @@ begin
   fCamera.posY:=0;
   fCamera.camWidth:=aBmp.Width;
   fCamera.camHeight:=aBmp.Height;
-  Getmem(fFrame);
+ // Getmem(fFrame);
 end;
 
 destructor TFrameGrid.Destroy;
@@ -199,9 +199,9 @@ procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas);
   begin
     xsize := (x2-x1) div size;
     ysize := (y2-y1) div size;
-    For i := 1 to xsize do fBuffer.DrawLine(x1,y1+i*size,x2,y1+i*size,ColorFToBGRA(clNavy));
-    For i := 1 to ysize do fBuffer.DrawLine(x1+i*size,y1,x1+i*size,y2,ColorFToBGRA(clNavy));
-    fBuffer.Rectangle(x1,y1,x2,y2,ColorFToBGRA(clNavy));
+    For i := 1 to xsize do fBuffer.DrawLine(x1,y1+i*size,x2,y1+i*size,ColorToBGRA(clNavy),False);
+    For i := 1 to ysize do fBuffer.DrawLine(x1+i*size,y1,x1+i*size,y2,ColorToBGRA(clNavy),False);
+    fBuffer.Rectangle(x1,y1,x2,y2,ColorToBGRA(clNavy));
   end;
 
 
@@ -303,18 +303,32 @@ begin
     Result:=fCount;
     Exit;
   end;
-  //todo: check if color exists
+  //check if color exists
   Result:= ColorExists(aColor);
   if (Result=-1) and (fCount<MAX_PALETTE_COLORS) then begin
     fColors[fCount]:=aColor;
     Inc(fCount);
     Result:=fCount;
   end;
+  Sort;
 end;
 
 procedure TPalette.Sort;
+var  Temp: Integer;
+  i: Integer;
+  Changed: Boolean;
 begin
-  //todo: sort array
+  repeat
+    Changed:= False;
+    for i:= 1 to fCount - 1 do
+      if fColors[i] > fColors[i + 1] then
+      begin
+        Temp:= fColors[i];
+        fColors[i]:= fColors[i + 1];
+        fColors[i + 1]:= Temp;
+        Changed:= True;
+      end;
+  until not Changed;
 end;
 
 function TPalette.ColorExists(aColor: TColor): Integer;
@@ -357,7 +371,7 @@ initialization
  Palette.Reset;
 
   //create new frame with default parameters
-  FrameGrid:=TFrameGrid.Create();
+ // FrameGrid:=TFrameGrid.Create();
 
 
 
