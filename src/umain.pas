@@ -99,6 +99,7 @@ type
     N1: TMenuItem;
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
+    procedure BitBtnNewFrameClick(Sender: TObject);
     procedure miPaletteClearClick(Sender: TObject);
     procedure miPaletteImportFromFileClick(Sender: TObject);
     procedure miPaletteLoadFromFileClick(Sender: TObject);
@@ -165,6 +166,13 @@ end;
 procedure TfrmMain.AboutMenuItemClick(Sender: TObject);
 begin
   frmZastavka.Show;
+end;
+
+procedure TfrmMain.BitBtnNewFrameClick(Sender: TObject);
+begin
+  //create new frame with default parameters
+  FreeAndNil(FrameGrid);
+  FrameGrid:=TFrameGrid.Create(FrameBGRAGraphicControl.Bitmap);
 end;
 
 procedure TfrmMain.miPaletteClearClick(Sender: TObject);
@@ -324,9 +332,10 @@ end;
 
 procedure TfrmMain.FrameBGRAGraphicControlPaint(Sender: TObject);
 begin
-  FrameBGRAGraphicControl.Bitmap.DrawCheckers(Rect(5,5,FrameBGRAGraphicControl.Width-5,FrameBGRAGraphicControl.Height-5),
-                                              ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF));
+ // FrameBGRAGraphicControl.Bitmap.DrawCheckers(Rect(5,5,FrameBGRAGraphicControl.Width-5,FrameBGRAGraphicControl.Height-5),
+ //                                             ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF));
   //todo: draw here zoomed frame data
+  if Assigned(FrameGrid) then FrameGrid.RenderAndDraw(FrameBGRAGraphicControl.Canvas);
 end;
 
 procedure TfrmMain.ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);

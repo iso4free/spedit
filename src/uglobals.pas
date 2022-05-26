@@ -370,12 +370,6 @@ initialization
  //palette with default colors
  Palette.Reset;
 
-  //create new frame with default parameters
- // FrameGrid:=TFrameGrid.Create();
-
-
-
-
  finalization
   INI.WriteString('INTERFACE','SPRITELIB',CurrentLibName);
   FreeAndNil(SpriteLibNames);
