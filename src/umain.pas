@@ -100,6 +100,8 @@ type
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
     procedure BitBtnNewFrameClick(Sender: TObject);
+    procedure FrameBGRAGraphicControlMouseMove(Sender: TObject;
+      Shift: TShiftState; X, Y: Integer);
     procedure miPaletteClearClick(Sender: TObject);
     procedure miPaletteImportFromFileClick(Sender: TObject);
     procedure miPaletteLoadFromFileClick(Sender: TObject);
@@ -172,7 +174,14 @@ procedure TfrmMain.BitBtnNewFrameClick(Sender: TObject);
 begin
   //create new frame with default parameters
   FreeAndNil(FrameGrid);
-  FrameGrid:=TFrameGrid.Create(FrameBGRAGraphicControl.Bitmap);
+  FrameGrid:=TFrameGrid.Create(FrameBGRAGraphicControl.Bitmap,10,10,10);
+  FrameBGRAGraphicControl.Invalidate;
+end;
+
+procedure TfrmMain.FrameBGRAGraphicControlMouseMove(Sender: TObject;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
 end;
 
 procedure TfrmMain.miPaletteClearClick(Sender: TObject);
@@ -327,15 +336,20 @@ begin
   BgColor.ShowHint:=true;
   FgColor.ShowHint:=true;
   SwapBgFg.ShowHint:=true;
-
+  //create empty new frame with default params
+  BitBtnNewFrameClick(Sender);
 end;
 
 procedure TfrmMain.FrameBGRAGraphicControlPaint(Sender: TObject);
+var x,y : Integer;
 begin
- // FrameBGRAGraphicControl.Bitmap.DrawCheckers(Rect(5,5,FrameBGRAGraphicControl.Width-5,FrameBGRAGraphicControl.Height-5),
- //                                             ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF));
   //todo: draw here zoomed frame data
-  if Assigned(FrameGrid) then FrameGrid.RenderAndDraw(FrameBGRAGraphicControl.Canvas);
+  if Assigned(FrameGrid) then begin
+    x:=Round((FrameBGRAGraphicControl.ClientWidth-FrameGrid.FrameWidth)/2);
+    y:=Round((FrameBGRAGraphicControl.ClientHeight-FrameGrid.FrameHeight)/2);
+    FrameGrid.RenderAndDraw(FrameBGRAGraphicControl.Canvas,x,y);
+  end;
+  StatusBar1.Panels[2].Text:='w='+IntToStr(FrameBGRAGraphicControl.ClientWidth)+'/h='+IntToStr(FrameBGRAGraphicControl.ClientHeight)+'/x='+IntToStr(x)+'/y='+IntToStr(y);
 end;
 
 procedure TfrmMain.ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);

@@ -73,10 +73,6 @@ msgstr ""
 msgid "FlowPanel1"
 msgstr ""
 
-#: tfrmmain.framebgragraphiccontrol.caption
-msgid "FrameBGRAGraphicControl"
-msgstr ""
-
 #: tfrmmain.frameeditortabsheet.caption
 msgid "Frame Editor"
 msgstr ""

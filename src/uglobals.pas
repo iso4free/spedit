@@ -81,7 +81,7 @@ type
     fBuffer        : TBgraBitmap; //for in-memory drawig before show on screen
     fFrameGridSize : Word;   //current grid size
     fFrameWidth,
-    fFrameHeight   : Word;   //frame size in pixels
+    fFrameHeight   : Integer;   //frame size in pixels
     fFrameZoom     : Integer;//zoom coeff for drawing grid (0 for normal size)
     fRect          : TRect;  //grid area on canvas
     fFrame         : PFrame; //pointer to frame record with all layers
@@ -91,8 +91,11 @@ type
     constructor Create(aBmp : TBGRABitmap; aW: Integer = 32; aH : Integer = 32; aSize : Word = 10);
      //aBmp here is for drawing
     destructor Destroy; override;
-    procedure RenderAndDraw(Canvas : TCanvas);
+    procedure RenderAndDraw(Canvas : TCanvas; PosX: Integer = 0; PosY : Integer = 0);
     property ShowGrid : Boolean read fShowGrid write fShowGrid;
+    property FrameWidth : Integer read FFrameWidth;
+    property FrameHeight : Integer read fFrameHeight;
+    property FrameZoom : Integer read fFrameZoom;
   end;
 
 var
@@ -192,27 +195,28 @@ begin
   inherited Destroy;
 end;
 
-procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas);
+procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas; PosX: Integer; PosY: Integer
+  );
 
   procedure DrawGrid(x1,y1,x2,y2 : Integer; size : Integer);
    var i, xsize, ysize : Integer;
   begin
     xsize := (x2-x1) div size;
     ysize := (y2-y1) div size;
-    For i := 1 to xsize do fBuffer.DrawLine(x1,y1+i*size,x2,y1+i*size,ColorToBGRA(clNavy),False);
-    For i := 1 to ysize do fBuffer.DrawLine(x1+i*size,y1,x1+i*size,y2,ColorToBGRA(clNavy),False);
+    For i := 1 to xsize do fBuffer.DrawLine(x1,y1+i*size,x2,y1+i*size,ColorToBGRA(clLime),False);
+    For i := 1 to ysize do fBuffer.DrawLine(x1+i*size,y1,x1+i*size,y2,ColorToBGRA(clLime),False);
     fBuffer.Rectangle(x1,y1,x2,y2,ColorToBGRA(clNavy));
   end;
 
-
 begin
   FreeAndNil(fBuffer);
-  fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize*fFrameZoom+1),fFrameHeight*(fFrameGridSize*fFrameZoom+1));
-  ShowGrid:=not (fFrameZoom<3);
+  fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),fFrameHeight*(fFrameGridSize+fFrameZoom));
+  ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
   fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF));
-  if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize*fFrameZoom+1);
+  if ShowGrid then DrawGrid(0,0,fBuffer.Width,fBuffer.Height,fFrameGridSize+fFrameZoom);
+  //calculate position to draw in canvas center
   //todo : draw all layers per pixels
-  fBuffer.Draw(Canvas,0,0);
+  fBuffer.Draw(Canvas,PosX,PosY);
 end;
 
 { TPalette }
