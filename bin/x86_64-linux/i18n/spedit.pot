@@ -24,6 +24,11 @@ msgstr ""
 msgid "Sprite Editor"
 msgstr ""
 
+#: tfrmmain.drawtoolsgroupbox.caption
+msgctxt "tfrmmain.drawtoolsgroupbox.caption"
+msgid "Tools"
+msgstr ""
+
 #: tfrmmain.editmenuitem.caption
 msgid "Edit"
 msgstr ""
@@ -75,6 +80,10 @@ msgstr ""
 
 #: tfrmmain.frameeditortabsheet.caption
 msgid "Frame Editor"
+msgstr ""
+
+#: tfrmmain.gbframepreview.caption
+msgid "Preview"
 msgstr ""
 
 #: tfrmmain.groupbox1.caption
@@ -194,11 +203,6 @@ msgstr ""
 
 #: tfrmmain.timelinetoolvisiblemenuitem.caption
 msgid "Timeline"
-msgstr ""
-
-#: tfrmmain.toolsgroupbox.caption
-msgctxt "tfrmmain.toolsgroupbox.caption"
-msgid "Tools"
 msgstr ""
 
 #: tfrmmain.viewmenuitem.caption

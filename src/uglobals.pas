@@ -3,6 +3,7 @@ unit uglobals;
 
 {$mode objfpc}{$H+}
 {$modeswitch advancedrecords}
+ {$DEFINE DEBUG}
 
 interface
 
@@ -18,6 +19,8 @@ const MAX_FRAMES = 50;          //it will be enought for one animation?
 type
  // TWorkMode = (wrkProject,wrkSpriteActions,wrkEditor,wrkSourceImage,wrkLibrary,wrkSettings);
   //uses for check which tab now active
+
+  TDrawGridMode = (dgmNone,dgmMove);
 
   TColors = array[0..MAX_PALETTE_COLORS] of TColor;  //palette - array of colors
   TPixels = array[0..MAX_PIXELS] of Byte;            //array of indexes to palette
@@ -51,6 +54,7 @@ type
 
   { TLayer }
 
+  PLayer = ^TLayer;
   TLayer = record       //layer record
     Count : Word;       //pixels count
     Pixels : TPixels;   //array of pixels
@@ -58,7 +62,7 @@ type
     procedure Clear;
   end;
 
-  TLayers = array[0..MAX_LAYERS] of TLayer;
+  TLayers = array[0..MAX_LAYERS] of PLayer;
 
   { TFrame }
 
@@ -67,6 +71,7 @@ type
     Count : Byte;
     fLayers : TLayers;
     procedure Clear;
+    function AddLayer: Integer; //add new layer and return it`s index or -1 if error
   end;
 
   TCamera = record           //camera view on canvas
@@ -79,6 +84,7 @@ type
   TFrameGrid = class
    private
     fBuffer        : TBgraBitmap; //for in-memory drawig before show on screen
+    fPreview       : TBGRABitmap; //for draw image preview
     fFrameGridSize : Word;   //current grid size
     fFrameWidth,
     fFrameHeight   : Integer;   //frame size in pixels
@@ -86,16 +92,19 @@ type
     fRect          : TRect;  //grid area on canvas
     fFrame         : PFrame; //pointer to frame record with all layers
     fCamera        : TCamera;//visible on screen part of frame
-    fShowGrid      : Boolean;
+    fShowGrid      : Boolean;//if true grid will be draw
+    fOffset        : TPoint; //offset to draw frame on canvas
+    procedure SetFrameZoom(AValue: Integer);
+    procedure SetOffset(AValue: TPoint);
    public
-    constructor Create(aBmp : TBGRABitmap; aW: Integer = 32; aH : Integer = 32; aSize : Word = 10);
-     //aBmp here is for drawing
+    constructor Create(aW: Integer = 32; aH : Integer = 32; aSize : Word = 10);
     destructor Destroy; override;
-    procedure RenderAndDraw(Canvas : TCanvas; PosX: Integer = 0; PosY : Integer = 0);
+    procedure RenderAndDraw(Canvas : TCanvas; Offset : TPoint);
+    procedure RenderPicture(Canvas : TCanvas);
     property ShowGrid : Boolean read fShowGrid write fShowGrid;
-    property FrameWidth : Integer read FFrameWidth;
-    property FrameHeight : Integer read fFrameHeight;
-    property FrameZoom : Integer read fFrameZoom;
+    property FrameZoom : Integer read fFrameZoom write SetFrameZoom;
+    property Offset : TPoint read FOffset write SetOffset;
+
   end;
 
 var
@@ -158,9 +167,20 @@ procedure TFrame.Clear;
 var
   i: Integer;
 begin
-  for i:=0 to MAX_LAYERS do fLayers[i].Clear;
+  for i:=0 to MAX_LAYERS do fLayers[i]^.Clear;
   Count:=0;
 end;
+
+function TFrame.AddLayer: Integer;
+begin
+  Result:=-1;
+  if Count<MAX_LAYERS then begin
+   Getmem(fLayers[Count],SizeOf(TLayer));
+   Inc(Count);
+   Result:=Count;
+  end;
+end;
+
 
 { TLayer }
 
@@ -174,8 +194,21 @@ end;
 
 { TFrameGrid }
 
-constructor TFrameGrid.Create(aBmp: TBGRABitmap; aW: Integer; aH: Integer;
-  aSize: Word);
+procedure TFrameGrid.SetOffset(AValue: TPoint);
+begin
+  FOffset.SetLocation(AValue);
+  {$IFDEF DEBUG}
+   WriteLN('Offset.X=',fOffset.X,' / Offset.Y=',fOffset.Y);
+  {$ENDIF}
+end;
+
+procedure TFrameGrid.SetFrameZoom(AValue: Integer);
+begin
+  if fFrameZoom=AValue then Exit;
+  fFrameZoom:=AValue;
+end;
+
+constructor TFrameGrid.Create(aW: Integer; aH: Integer; aSize: Word);
 begin
   fFrameGridSize:=aSize;
   fFrameHeight:=aH;
@@ -183,28 +216,27 @@ begin
   fFrameZoom:=0;
   fCamera.posX:=0;
   fCamera.posY:=0;
-  fCamera.camWidth:=aBmp.Width;
-  fCamera.camHeight:=aBmp.Height;
- // Getmem(fFrame);
+  fPreview:=TBGRABitmap.Create(aW,aH,ColorToBGRA(clWhite));
+  Getmem(fFrame,SizeOf(PFrame));
 end;
 
 destructor TFrameGrid.Destroy;
 begin
   FreeMemAndNil(fFrame);
   FreeAndNil(fBuffer);
+  FreeAndNil(fPreview);
   inherited Destroy;
 end;
 
-procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas; PosX: Integer; PosY: Integer
-  );
+procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas; Offset: TPoint);
 
   procedure DrawGrid(x1,y1,x2,y2 : Integer; size : Integer);
    var i, xsize, ysize : Integer;
   begin
     xsize := (x2-x1) div size;
     ysize := (y2-y1) div size;
-    For i := 1 to xsize do fBuffer.DrawLine(x1,y1+i*size,x2,y1+i*size,ColorToBGRA(clLime),False);
-    For i := 1 to ysize do fBuffer.DrawLine(x1+i*size,y1,x1+i*size,y2,ColorToBGRA(clLime),False);
+    For i := 1 to xsize do fBuffer.DrawLine(x1,y1+i*size,x2,y1+i*size,ColorToBGRA(clNavy),False);
+    For i := 1 to ysize do fBuffer.DrawLine(x1+i*size,y1,x1+i*size,y2,ColorToBGRA(clNavy),False);
     fBuffer.Rectangle(x1,y1,x2,y2,ColorToBGRA(clNavy));
   end;
 
@@ -212,11 +244,20 @@ begin
   FreeAndNil(fBuffer);
   fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),fFrameHeight*(fFrameGridSize+fFrameZoom));
   ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
-  fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF));
+  fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),16,16);
   if ShowGrid then DrawGrid(0,0,fBuffer.Width,fBuffer.Height,fFrameGridSize+fFrameZoom);
-  //calculate position to draw in canvas center
   //todo : draw all layers per pixels
-  fBuffer.Draw(Canvas,PosX,PosY);
+  {$IFDEF DEBUG}
+   WriteLN('TFrameGrid.RenderAndDraw(): Offset.X=',fOffset.X,' / Offset.Y=',fOffset.Y);
+  {$ENDIF}
+  //Canvas.Clear;
+  fBuffer.Draw(Canvas,fOffset.X,fOffset.Y);
+end;
+
+procedure TFrameGrid.RenderPicture(Canvas: TCanvas);
+begin
+  //todo: draw pixels from all layers to canvas
+  fPreview.Draw(Canvas,0,0);
 end;
 
 { TPalette }

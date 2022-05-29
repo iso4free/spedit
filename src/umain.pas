@@ -5,17 +5,21 @@ unit umain;
 interface
 
 uses
-  SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls, Dialogs,
+  uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls, Dialogs,
   ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, BGRAImageList,
   BGRAImageManipulation, BCGameGrid, BCToolBar, BGRABitmapTypes, BGRABitmap,
-  BGRAGraphicControl;
+  BGRAGraphicControl, TBGRAShapeObjects;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    gbFramePreview: TGroupBox;
+    imgPreview: TImage;
     miPaletteImportFromFile: TMenuItem;
+    FrameDrawPanel: TPanel;
+    pbFrameDraw: TPaintBox;
     SavePaletteDialog: TSaveDialog;
     Separator1: TMenuItem;
     miPaletteClear: TMenuItem;
@@ -27,14 +31,13 @@ type
     SwapBgFg: TBGRAGraphicControl;
     FgColor: TBGRAGraphicControl;
     ColorDialog1: TColorDialog;
-    FrameBGRAGraphicControl: TBGRAGraphicControl;
     BitBtnNewFrame: TBitBtn;
     FlowPanel1: TFlowPanel;
     GroupBox2: TGroupBox;
-    Panel1: TPanel;
+    AdditionalToolsPanel: TPanel;
     ColorsPanel: TPanel;
     ScrollBox5: TScrollBox;
-    ToolsGroupBox: TGroupBox;
+    DrawToolsGroupBox: TGroupBox;
     ReferenceGroupBox: TGroupBox;
     ReferenceImage: TImage;
     ProjectSheet: TBGRAImageManipulation;
@@ -100,12 +103,19 @@ type
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
     procedure BitBtnNewFrameClick(Sender: TObject);
-    procedure FrameBGRAGraphicControlMouseMove(Sender: TObject;
-      Shift: TShiftState; X, Y: Integer);
+    procedure FormDestroy(Sender: TObject);
+    procedure imgPreviewPaint(Sender: TObject);
     procedure miPaletteClearClick(Sender: TObject);
     procedure miPaletteImportFromFileClick(Sender: TObject);
     procedure miPaletteLoadFromFileClick(Sender: TObject);
     procedure miPaletteSaveToFileClick(Sender: TObject);
+    procedure pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
+    procedure pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure pbFrameDrawPaint(Sender: TObject);
     procedure PaletteGridMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure PaletteGridRenderControl(Sender: TObject; Bitmap: TBGRABitmap;
@@ -116,7 +126,6 @@ type
     procedure SwapColors(Sender: TObject);
     procedure FileLoadSpritesheetMenuItemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure FrameBGRAGraphicControlPaint(Sender: TObject);
     procedure ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
     procedure LibImageDblClick(Sender: TObject);
     procedure LibraryComboBoxChange(Sender: TObject);
@@ -130,7 +139,13 @@ type
     procedure SpeedButtonSaveToLibClick(Sender: TObject);
     procedure SrcImageFramesOptsValueListEditorEditingDone(Sender: TObject);
     procedure SrcImageFramesOptsValueListEditorValidate(Sender: TObject; ACol, ARow: longint; const KeyName, KeyValue: string);
+    procedure ViewZoomInMenuItemClick(Sender: TObject);
+    procedure ViewZoomOutMenuItemClick(Sender: TObject);
+    procedure ViewZoomResetMenuItemClick(Sender: TObject);
   private
+   DrawGridMode : TDrawGridMode;
+    dx,dy : Integer;             //offset to move grid
+    startx,starty : Integer;     //start position to move
   public
 
   end;
@@ -141,7 +156,7 @@ var
 
 implementation
 
-uses uglobals, uzastavka, uselsprlib;
+uses uzastavka, uselsprlib;
 
 {$R *.frm}
 
@@ -174,14 +189,20 @@ procedure TfrmMain.BitBtnNewFrameClick(Sender: TObject);
 begin
   //create new frame with default parameters
   FreeAndNil(FrameGrid);
-  FrameGrid:=TFrameGrid.Create(FrameBGRAGraphicControl.Bitmap,10,10,10);
-  FrameBGRAGraphicControl.Invalidate;
+  FrameGrid:=TFrameGrid.Create;
+  FrameGrid.Offset:=Point(0,0);
+  dx:=0;
+  dy:=0;
 end;
 
-procedure TfrmMain.FrameBGRAGraphicControlMouseMove(Sender: TObject;
-  Shift: TShiftState; X, Y: Integer);
+procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
-  StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
+  FreeAndNil(FrameGrid);
+end;
+
+procedure TfrmMain.imgPreviewPaint(Sender: TObject);
+begin
+  FrameGrid.RenderPicture(imgPreview.Canvas);
 end;
 
 procedure TfrmMain.miPaletteClearClick(Sender: TObject);
@@ -229,6 +250,52 @@ begin
   if SavePaletteDialog.Execute then begin
     Palette.SaveToFile(SavePaletteDialog.FileName);
   end;
+end;
+
+procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  case Button of
+    mbLeft:;//todo: start draw with current tool FG color
+    mbRight:;//todo: start draw with current tool BG color
+    mbMiddle: begin   //start grid drag
+      DrawGridMode:=dgmMove;
+      dx:=0;
+      dy:=0;
+      startx:=x;
+      starty:=y;
+    end;
+  end;
+end;
+
+procedure TfrmMain.pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+   if DrawGridMode=dgmMove then begin //move grid inside paintbox
+     dx:=x-startx;
+     dy:=y-starty;
+     FrameGrid.Offset.Offset(dx,dy);
+     startx:=x;
+     starty:=y;
+     pbFrameDraw.Invalidate;
+   end;
+   StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
+end;
+
+procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  DrawGridMode:=dgmNone;
+end;
+
+procedure TfrmMain.pbFrameDrawPaint(Sender: TObject);
+begin
+   //todo: draw here zoomed frame data
+  if Assigned(FrameGrid) then begin
+    FrameGrid.RenderAndDraw(pbFrameDraw.Canvas,Point(0,0));
+  end;
+  StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);
+
 end;
 
 procedure TfrmMain.PaletteGridMouseUp(Sender: TObject; Button: TMouseButton;
@@ -291,12 +358,12 @@ begin
   if cl=clNone then begin
    (Sender as TBGRAGraphicControl).Bitmap.DrawCheckers(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),
                                               ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),4,4);
+   (Sender as TBGRAGraphicControl).Bitmap.Rectangle(Rect(0,0,(Sender as TBGRAGraphicControl).Width,(Sender as TBGRAGraphicControl).Height),ColorToBGRA(clBlack));
   end
     else (Sender as TBGRAGraphicControl).Bitmap.FillRect(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(cl));
   (Sender as TBGRAGraphicControl).Invalidate;
   StatusBar1.Panels[1].Text:='FG: '+IntToHex(spclForeColor)+' / BG: '+IntToHex(spclBackColor);
 end;
-
 
 procedure TfrmMain.SwapColors(Sender: TObject);
 var cl : TColor;
@@ -338,18 +405,6 @@ begin
   SwapBgFg.ShowHint:=true;
   //create empty new frame with default params
   BitBtnNewFrameClick(Sender);
-end;
-
-procedure TfrmMain.FrameBGRAGraphicControlPaint(Sender: TObject);
-var x,y : Integer;
-begin
-  //todo: draw here zoomed frame data
-  if Assigned(FrameGrid) then begin
-    x:=Round((FrameBGRAGraphicControl.ClientWidth-FrameGrid.FrameWidth)/2);
-    y:=Round((FrameBGRAGraphicControl.ClientHeight-FrameGrid.FrameHeight)/2);
-    FrameGrid.RenderAndDraw(FrameBGRAGraphicControl.Canvas,x,y);
-  end;
-  StatusBar1.Panels[2].Text:='w='+IntToStr(FrameBGRAGraphicControl.ClientWidth)+'/h='+IntToStr(FrameBGRAGraphicControl.ClientHeight)+'/x='+IntToStr(x)+'/y='+IntToStr(y);
 end;
 
 procedure TfrmMain.ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
@@ -471,6 +526,24 @@ begin
     begin
       ShowMessage(QuotedStr(KeyName) + ' has non-integer value!');
     end;
+end;
+
+procedure TfrmMain.ViewZoomInMenuItemClick(Sender: TObject);
+begin
+  FrameGrid.FrameZoom:=FrameGrid.FrameZoom+1;
+  pbFrameDraw.Invalidate;
+end;
+
+procedure TfrmMain.ViewZoomOutMenuItemClick(Sender: TObject);
+begin
+  FrameGrid.FrameZoom:=FrameGrid.FrameZoom-1;
+  pbFrameDraw.Invalidate;
+end;
+
+procedure TfrmMain.ViewZoomResetMenuItemClick(Sender: TObject);
+begin
+  FrameGrid.FrameZoom:=0;
+  pbFrameDraw.Invalidate;
 end;
 
 end.
