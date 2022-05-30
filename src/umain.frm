@@ -3,12 +3,12 @@ object frmMain: TfrmMain
   Height = 454
   Top = 270
   Width = 668
-  HorzScrollBar.Page = 377
-  VertScrollBar.Page = 295
+  HorzScrollBar.Page = 373
+  VertScrollBar.Page = 303
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
-  ClientHeight = 454
+  ClientHeight = 432
   ClientWidth = 668
   DockSite = True
   DoubleBuffered = True
@@ -24,7 +24,7 @@ object frmMain: TfrmMain
   WindowState = wsMaximized
   object MainPageControl: TPageControl
     Left = 0
-    Height = 437
+    Height = 409
     Top = 0
     Width = 668
     ActivePage = FrameEditorTabSheet
@@ -34,13 +34,13 @@ object frmMain: TfrmMain
     TabOrder = 0
     object FrameEditorTabSheet: TTabSheet
       Caption = 'Frame Editor'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 375
+      ClientWidth = 662
       object FlowPanel1: TFlowPanel
         Left = 0
-        Height = 41
+        Height = 39
         Top = 0
-        Width = 658
+        Width = 662
         Align = alTop
         AutoSize = True
         Caption = 'FlowPanel1'
@@ -55,9 +55,9 @@ object frmMain: TfrmMain
         TabOrder = 0
         object BitBtnNewFrame: TBitBtn
           Left = 1
-          Height = 38
+          Height = 36
           Top = 1
-          Width = 38
+          Width = 34
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -68,12 +68,12 @@ object frmMain: TfrmMain
       end
       object DrawToolsGroupBox: TGroupBox
         Left = 0
-        Height = 366
-        Top = 41
+        Height = 336
+        Top = 39
         Width = 80
         Align = alLeft
         Caption = 'Tools'
-        ClientHeight = 349
+        ClientHeight = 319
         ClientWidth = 78
         TabOrder = 1
         object GroupBox2: TGroupBox
@@ -83,7 +83,7 @@ object frmMain: TfrmMain
           AnchorSideBottom.Control = ColorsPanel
           Left = 0
           Height = 129
-          Top = 159
+          Top = 129
           Width = 78
           Anchors = [akLeft, akBottom]
           Caption = 'Palette'
@@ -95,11 +95,11 @@ object frmMain: TfrmMain
             Height = 112
             Top = 0
             Width = 76
-            HorzScrollBar.Page = 61
-            VertScrollBar.Page = 97
+            HorzScrollBar.Page = 60
+            VertScrollBar.Page = 96
             Align = alClient
-            ClientHeight = 97
-            ClientWidth = 61
+            ClientHeight = 96
+            ClientWidth = 60
             TabOrder = 0
             object PaletteGrid: TBCGameGrid
               AnchorSideLeft.Control = ScrollBox5
@@ -125,7 +125,7 @@ object frmMain: TfrmMain
           AnchorSideBottom.Side = asrBottom
           Left = 0
           Height = 61
-          Top = 288
+          Top = 258
           Width = 78
           Anchors = [akLeft, akRight, akBottom]
           ClientHeight = 61
@@ -190,12 +190,12 @@ object frmMain: TfrmMain
       end
       object AdditionalToolsPanel: TPanel
         AnchorSideLeft.Side = asrBottom
-        Left = 488
-        Height = 366
-        Top = 41
+        Left = 492
+        Height = 336
+        Top = 39
         Width = 170
         Align = alRight
-        ClientHeight = 366
+        ClientHeight = 336
         ClientWidth = 170
         TabOrder = 2
         object ReferenceGroupBox: TGroupBox
@@ -229,7 +229,7 @@ object frmMain: TfrmMain
         object gbFramePreview: TGroupBox
           Left = 1
           Height = 125
-          Top = 240
+          Top = 210
           Width = 168
           Align = alBottom
           Caption = 'Preview'
@@ -239,10 +239,11 @@ object frmMain: TfrmMain
           object imgPreview: TImage
             AnchorSideLeft.Control = gbFramePreview
             AnchorSideTop.Control = gbFramePreview
-            Left = 0
+            Left = 3
             Height = 90
-            Top = 0
+            Top = 3
             Width = 90
+            BorderSpacing.Around = 3
             OnPaint = imgPreviewPaint
             Transparent = True
           end
@@ -250,33 +251,35 @@ object frmMain: TfrmMain
       end
       object FrameDrawPanel: TPanel
         Left = 85
-        Height = 356
-        Top = 46
-        Width = 398
+        Height = 326
+        Top = 44
+        Width = 402
         Align = alClient
         BorderSpacing.Around = 5
         BevelInner = bvLowered
         BevelOuter = bvNone
-        ClientHeight = 356
-        ClientWidth = 398
+        ClientHeight = 326
+        ClientWidth = 402
         TabOrder = 3
         object pbFrameDraw: TPaintBox
           Left = 1
-          Height = 354
+          Height = 324
           Top = 1
-          Width = 396
+          Width = 400
           Align = alClient
           OnMouseDown = pbFrameDrawMouseDown
           OnMouseMove = pbFrameDrawMouseMove
           OnMouseUp = pbFrameDrawMouseUp
+          OnMouseWheelDown = pbFrameDrawMouseWheelDown
+          OnMouseWheelUp = pbFrameDrawMouseWheelUp
           OnPaint = pbFrameDrawPaint
         end
       end
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 375
+      ClientWidth = 662
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -288,8 +291,8 @@ object frmMain: TfrmMain
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 375
+      ClientWidth = 662
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -349,8 +352,8 @@ object frmMain: TfrmMain
     end
     object SourceTabSheet: TTabSheet
       Caption = 'Source Image'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 375
+      ClientWidth = 662
       object SrcImageButtonsPanel: TPanel
         Left = 0
         Height = 30
@@ -505,8 +508,8 @@ object frmMain: TfrmMain
     end
     object LibraryTabSheet: TTabSheet
       Caption = 'Local Library'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 375
+      ClientWidth = 662
       object LibraryButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -584,8 +587,8 @@ object frmMain: TfrmMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 17
-    Top = 437
+    Height = 23
+    Top = 409
     Width = 668
     Panels = <    
       item

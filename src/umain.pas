@@ -115,6 +115,10 @@ type
       Y: Integer);
     procedure pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure pbFrameDrawMouseWheelDown(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: Boolean);
+    procedure pbFrameDrawMouseWheelUp(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: Boolean);
     procedure pbFrameDrawPaint(Sender: TObject);
     procedure PaletteGridMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -202,7 +206,8 @@ end;
 
 procedure TfrmMain.imgPreviewPaint(Sender: TObject);
 begin
-  FrameGrid.RenderPicture(imgPreview.Canvas);
+  FrameGrid.RenderPicture(imgPreview.Picture.Bitmap.Canvas);
+  imgPreview.Invalidate;
 end;
 
 procedure TfrmMain.miPaletteClearClick(Sender: TObject);
@@ -286,6 +291,18 @@ procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   DrawGridMode:=dgmNone;
+end;
+
+procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;
+  Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
+begin
+  if (ssCtrl in Shift) then ViewZoomOutMenuItemClick(Sender);
+end;
+
+procedure TfrmMain.pbFrameDrawMouseWheelUp(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: Boolean);
+begin
+  if (ssCtrl in Shift) then ViewZoomInMenuItemClick(Sender);
 end;
 
 procedure TfrmMain.pbFrameDrawPaint(Sender: TObject);
