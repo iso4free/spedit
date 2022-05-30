@@ -84,6 +84,7 @@ type
   TFrameGrid = class
    private
     fBuffer        : TBgraBitmap; //for in-memory drawig before show on screen
+    FCheckersSize: Byte;
     fPreview       : TBGRABitmap; //for draw image preview
     fFrameGridSize : Word;   //current grid size
     fFrameWidth,
@@ -94,6 +95,7 @@ type
     fCamera        : TCamera;//visible on screen part of frame
     fShowGrid      : Boolean;//if true grid will be draw
     fOffset        : TPoint; //offset to draw frame on canvas
+    procedure SetCheckersSize(AValue: Byte);
     procedure SetFrameZoom(AValue: Integer);
     procedure SetOffset(AValue: TPoint);
    public
@@ -104,7 +106,7 @@ type
     property ShowGrid : Boolean read fShowGrid write fShowGrid;
     property FrameZoom : Integer read fFrameZoom write SetFrameZoom;
     property Offset : TPoint read FOffset write SetOffset;
-
+    property CheckersSize : Byte read FCheckersSize write SetCheckersSize default 16;
   end;
 
 var
@@ -208,11 +210,18 @@ begin
   fFrameZoom:=AValue;
 end;
 
+procedure TFrameGrid.SetCheckersSize(AValue: Byte);
+begin
+  if FCheckersSize=AValue then Exit;
+  if (AValue>0) and (AValue<255) then FCheckersSize:=AValue;
+end;
+
 constructor TFrameGrid.Create(aW: Integer; aH: Integer; aSize: Word);
 begin
   fFrameGridSize:=aSize;
   fFrameHeight:=aH;
   fFrameWidth:=aW;
+  FCheckersSize:=INI.ReadInteger('INTERFACE','CHECKERS SIZE',32);
   fFrameZoom:=0;
   fCamera.posX:=0;
   fCamera.posY:=0;
@@ -222,6 +231,7 @@ end;
 
 destructor TFrameGrid.Destroy;
 begin
+  INI.WriteInteger('INTERFACE','CHECKERS SIZE',FCheckersSize);
   FreeMemAndNil(fFrame);
   FreeAndNil(fBuffer);
   FreeAndNil(fPreview);
@@ -244,7 +254,7 @@ begin
   FreeAndNil(fBuffer);
   fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),fFrameHeight*(fFrameGridSize+fFrameZoom));
   ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
-  fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),16,16);
+  fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),FCheckersSize,FCheckersSize);
   if ShowGrid then DrawGrid(0,0,fBuffer.Width,fBuffer.Height,fFrameGridSize+fFrameZoom);
   //todo : draw all layers per pixels
   {$IFDEF DEBUG}

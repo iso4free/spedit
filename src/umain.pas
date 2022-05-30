@@ -297,12 +297,16 @@ procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;
   Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
 begin
   if (ssCtrl in Shift) then ViewZoomOutMenuItemClick(Sender);
+  if (ssAlt in Shift) then FrameGrid.CheckersSize:=FrameGrid.CheckersSize-1;
+  pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseWheelUp(Sender: TObject; Shift: TShiftState;
   MousePos: TPoint; var Handled: Boolean);
 begin
   if (ssCtrl in Shift) then ViewZoomInMenuItemClick(Sender);
+  if (ssAlt in Shift) then FrameGrid.CheckersSize:=FrameGrid.CheckersSize+1;
+  pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawPaint(Sender: TObject);
