@@ -92,13 +92,15 @@ type
     fFrameZoom     : Integer;//zoom coeff for drawing grid (0 for normal size)
     fRect          : TRect;  //grid area on canvas
     fFrame         : PFrame; //pointer to frame record with all layers
-    fCamera        : TCamera;//visible on screen part of frame
     fShowGrid      : Boolean;//if true grid will be draw
     fOffset        : TPoint; //offset to draw frame on canvas
+    procedure CalcGridRect;
     procedure SetCheckersSize(AValue: Byte);
     procedure SetFrameZoom(AValue: Integer);
     procedure SetOffset(AValue: TPoint);
    public
+    function Coords(x,y : Integer): TPoint; //return pixel coordinates in grid cell
+    function PixelPos(x,y : Integer) : Integer; //return pixel index in array
     constructor Create(aW: Integer = 32; aH : Integer = 32; aSize : Word = 10);
     destructor Destroy; override;
     procedure RenderAndDraw(Canvas : TCanvas; Offset : TPoint);
@@ -202,18 +204,43 @@ begin
   {$IFDEF DEBUG}
    WriteLN('Offset.X=',fOffset.X,' / Offset.Y=',fOffset.Y);
   {$ENDIF}
+  CalcGridRect;
+end;
+
+function TFrameGrid.Coords(x, y: Integer): TPoint;
+var posx,posy : Integer; //relative grid coordinates
+begin
+  Result := Point(MaxLongint,MaxLongint);
+  if fRect.Contains(Point(x,y)) then begin
+     posx:=x-fOffset.X;
+     posy:=y-fOffset.Y;
+     Result.X:= posx div (fFrameGridSize+fFrameZoom);
+     Result.Y:= posy div (fFrameGridSize+fFrameZoom);
+  end;
+end;
+
+function TFrameGrid.PixelPos(x, y: Integer): Integer;
+begin
+    Result := y*fFrameWidth+x;
 end;
 
 procedure TFrameGrid.SetFrameZoom(AValue: Integer);
 begin
   if fFrameZoom=AValue then Exit;
   fFrameZoom:=AValue;
+  CalcGridRect;
 end;
 
 procedure TFrameGrid.SetCheckersSize(AValue: Byte);
 begin
   if FCheckersSize=AValue then Exit;
   if (AValue>0) and (AValue<255) then FCheckersSize:=AValue;
+end;
+
+procedure TFrameGrid.CalcGridRect;
+begin
+  fRect.Create(fOffset, fFrameWidth*(fFrameGridSize+fFrameZoom), fFrameHeight*(
+    fFrameGridSize+fFrameZoom));
 end;
 
 constructor TFrameGrid.Create(aW: Integer; aH: Integer; aSize: Word);
@@ -223,8 +250,7 @@ begin
   fFrameWidth:=aW;
   FCheckersSize:=INI.ReadInteger('INTERFACE','CHECKERS SIZE',32);
   fFrameZoom:=0;
-  fCamera.posX:=0;
-  fCamera.posY:=0;
+  CalcGridRect;
   fPreview:=TBGRABitmap.Create(aW,aH,ColorToBGRA(clWhite));
   Getmem(fFrame,SizeOf(PFrame));
 end;

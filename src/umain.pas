@@ -259,7 +259,10 @@ end;
 
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
+var p : TPoint;
 begin
+  p:=FrameGrid.Coords(x,y);
+  StatusBar1.Panels[0].Text:='x='+IntToStr(p.X)+'/y='+IntToStr(p.y)+'/idx='+IntToStr(FrameGrid.PixelPos(p.X,p.y));
   case Button of
     mbLeft:;//todo: start draw with current tool FG color
     mbRight:;//todo: start draw with current tool BG color
@@ -284,7 +287,7 @@ begin
      starty:=y;
      pbFrameDraw.Invalidate;
    end;
-   StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
+  // StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
 end;
 
 procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
