@@ -201,9 +201,6 @@ end;
 procedure TFrameGrid.SetOffset(AValue: TPoint);
 begin
   FOffset.SetLocation(AValue);
-  {$IFDEF DEBUG}
-   WriteLN('Offset.X=',fOffset.X,' / Offset.Y=',fOffset.Y);
-  {$ENDIF}
   CalcGridRect;
 end;
 
@@ -283,10 +280,7 @@ begin
   fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),FCheckersSize,FCheckersSize);
   if ShowGrid then DrawGrid(0,0,fBuffer.Width,fBuffer.Height,fFrameGridSize+fFrameZoom);
   //todo : draw all layers per pixels
-  {$IFDEF DEBUG}
-   WriteLN('TFrameGrid.RenderAndDraw(): Offset.X=',fOffset.X,' / Offset.Y=',fOffset.Y);
-  {$ENDIF}
-  //Canvas.Clear;
+
   fBuffer.Draw(Canvas,fOffset.X,fOffset.Y);
 end;
 

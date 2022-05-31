@@ -7,16 +7,16 @@ interface
 uses
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls, Dialogs,
   ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, BGRAImageList,
-  BGRAImageManipulation, BCGameGrid, BCToolBar, BGRABitmapTypes, BGRABitmap,
-  BGRAGraphicControl, TBGRAShapeObjects;
+  BGRAImageManipulation, BCGameGrid, BGRABitmapTypes, BGRABitmap,
+  BGRAGraphicControl, udraw;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    FramePreview: TBGRAGraphicControl;
     gbFramePreview: TGroupBox;
-    imgPreview: TImage;
     miPaletteImportFromFile: TMenuItem;
     FrameDrawPanel: TPanel;
     pbFrameDraw: TPaintBox;
@@ -104,7 +104,7 @@ type
     procedure AboutMenuItemClick(Sender: TObject);
     procedure BitBtnNewFrameClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure imgPreviewPaint(Sender: TObject);
+    procedure FramePreviewPaint(Sender: TObject);
     procedure miPaletteClearClick(Sender: TObject);
     procedure miPaletteImportFromFileClick(Sender: TObject);
     procedure miPaletteLoadFromFileClick(Sender: TObject);
@@ -150,6 +150,7 @@ type
    DrawGridMode : TDrawGridMode;
     dx,dy : Integer;             //offset to move grid
     startx,starty : Integer;     //start position to move
+    DrawTool : TSPDrawTool;      //current drawing tool
   public
 
   end;
@@ -191,12 +192,14 @@ end;
 
 procedure TfrmMain.BitBtnNewFrameClick(Sender: TObject);
 begin
-  //create new frame with default parameters
+  //todo: show dialog to create new frame with default parameters
   FreeAndNil(FrameGrid);
   FrameGrid:=TFrameGrid.Create;
   FrameGrid.Offset:=Point(0,0);
   dx:=0;
   dy:=0;
+  FramePreview.Width:=32;
+  FramePreview.Height:=32;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -204,10 +207,9 @@ begin
   FreeAndNil(FrameGrid);
 end;
 
-procedure TfrmMain.imgPreviewPaint(Sender: TObject);
+procedure TfrmMain.FramePreviewPaint(Sender: TObject);
 begin
-  FrameGrid.RenderPicture(imgPreview.Picture.Bitmap.Canvas);
-  imgPreview.Invalidate;
+  FrameGrid.RenderPicture(FramePreview.Bitmap.Canvas);
 end;
 
 procedure TfrmMain.miPaletteClearClick(Sender: TObject);
@@ -294,6 +296,7 @@ procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   DrawGridMode:=dgmNone;
+  FramePreview.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;
