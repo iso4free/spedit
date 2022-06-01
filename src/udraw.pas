@@ -16,23 +16,19 @@ type
 
   TSPDrawTool = class
     private
-      FBrush: TBrush;
       fBuffer : TBGRABitmap;
+      FColor: TColor;
       FMouseDown: Boolean;
-      FPen: TPen;
       FPrevPoint: TPoint;
-      procedure SetBrush(AValue: TBrush);
+      procedure SetColor(AValue: TColor);
       procedure SetMouseDown(AValue: Boolean);
-      procedure SetPen(AValue: TPen);
       procedure SetPrevPoint(AValue: TPoint);
     public
       constructor Create(Width : Integer = 32; Height : Integer = 32);
       destructor Destroy; override;
       property MouseDown : Boolean read FMouseDown write SetMouseDown default False;
-      property Pen : TPen read FPen write SetPen;
-      property Brush : TBrush read FBrush write SetBrush;
       property PrevPoint : TPoint read FPrevPoint write SetPrevPoint;
-
+      property Color : TColor read FColor write SetColor;
   end;
 
 
@@ -46,16 +42,10 @@ begin
   FMouseDown:=AValue;
 end;
 
-procedure TSPDrawTool.SetBrush(AValue: TBrush);
+procedure TSPDrawTool.SetColor(AValue: TColor);
 begin
-  if FBrush=AValue then Exit;
-  FBrush:=AValue;
-end;
-
-procedure TSPDrawTool.SetPen(AValue: TPen);
-begin
-  if FPen=AValue then Exit;
-  FPen:=AValue;
+  if FColor=AValue then Exit;
+  FColor:=AValue;
 end;
 
 procedure TSPDrawTool.SetPrevPoint(AValue: TPoint);
@@ -66,15 +56,12 @@ end;
 
 constructor TSPDrawTool.Create(Width: Integer; Height: Integer);
 begin
-  FPen := TPen.Create;
-  FBrush := TBrush.Create;
   fBuffer:=TBGRABitmap.Create(Width,Height,ColorToBGRA(clNone));
+  FColor:=clNone;
 end;
 
 destructor TSPDrawTool.Destroy;
 begin
-  FreeAndNil(FBrush);
-  FreeAndNil(FPen);
   FreeAndNil(fBuffer);
   inherited Destroy;
 end;

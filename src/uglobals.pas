@@ -200,14 +200,17 @@ end;
 
 procedure TFrameGrid.SetOffset(AValue: TPoint);
 begin
-  FOffset.SetLocation(AValue);
+  FOffset.Offset(AValue);
+  {$IFDEF DEBUG}
+   WriteLN('Offset: x=',fOffset.X,', y=',fOffset.Y);
+  {$ENDIF}
   CalcGridRect;
 end;
 
 function TFrameGrid.Coords(x, y: Integer): TPoint;
 var posx,posy : Integer; //relative grid coordinates
 begin
-  Result := Point(MaxLongint,MaxLongint);
+  Result := Point(-1,-1);
   if fRect.Contains(Point(x,y)) then begin
      posx:=x-fOffset.X;
      posy:=y-fOffset.Y;
@@ -218,6 +221,7 @@ end;
 
 function TFrameGrid.PixelPos(x, y: Integer): Integer;
 begin
+    if ((x<0) or (y<0)) then Result:=-1 else
     Result := y*fFrameWidth+x;
 end;
 
@@ -238,6 +242,9 @@ procedure TFrameGrid.CalcGridRect;
 begin
   fRect.Create(fOffset, fFrameWidth*(fFrameGridSize+fFrameZoom), fFrameHeight*(
     fFrameGridSize+fFrameZoom));
+  {$IFDEF DEBUG}
+    WriteLN('Grid pos: x=',fRect.Left,', y=',fRect.Top);
+  {$ENDIF}
 end;
 
 constructor TFrameGrid.Create(aW: Integer; aH: Integer; aSize: Word);

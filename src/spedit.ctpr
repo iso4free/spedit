@@ -195,6 +195,12 @@
       <Item>
         <Name Value="RunError(216)"/>
       </Item>
+      <Item>
+        <Name Value="RunError(201)"/>
+      </Item>
+      <Item>
+        <Name Value="ERangeError"/>
+      </Item>
     </Exceptions>
   </Debugging>
 </CONFIG>

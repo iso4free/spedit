@@ -263,10 +263,11 @@ procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var p : TPoint;
 begin
-  p:=FrameGrid.Coords(x,y);
-  StatusBar1.Panels[0].Text:='x='+IntToStr(p.X)+'/y='+IntToStr(p.y)+'/idx='+IntToStr(FrameGrid.PixelPos(p.X,p.y));
   case Button of
-    mbLeft:;//todo: start draw with current tool FG color
+    mbLeft:begin //todo: start draw with current tool FG color
+        p:=FrameGrid.Coords(x,y);
+        StatusBar1.Panels[3].Text:='x='+IntToStr(P.X)+'/y='+IntToStr(P.y)+'/n='+IntToStr(FrameGrid.PixelPos(P.x,P.y));
+    end;
     mbRight:;//todo: start draw with current tool BG color
     mbMiddle: begin   //start grid drag
       DrawGridMode:=dgmMove;
@@ -284,12 +285,12 @@ begin
    if DrawGridMode=dgmMove then begin //move grid inside paintbox
      dx:=x-startx;
      dy:=y-starty;
-     FrameGrid.Offset.Offset(dx,dy);
      startx:=x;
      starty:=y;
+     FrameGrid.Offset:=Point(dx,dy);
      pbFrameDraw.Invalidate;
    end;
-  // StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
+   StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
 end;
 
 procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;

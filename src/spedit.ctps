@@ -10,9 +10,9 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="7"/>
+        <TopLine Value="15"/>
         <CursorPos X="13" Y="24"/>
-        <UsageCount Value="131"/>
+        <UsageCount Value="134"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -24,9 +24,9 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="146"/>
-        <CursorPos X="56" Y="153"/>
-        <UsageCount Value="131"/>
+        <TopLine Value="244"/>
+        <CursorPos X="116" Y="269"/>
+        <UsageCount Value="134"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -35,9 +35,9 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="61"/>
-        <CursorPos X="3" Y="63"/>
-        <UsageCount Value="22"/>
+        <TopLine Value="49"/>
+        <CursorPos Y="65"/>
+        <UsageCount Value="25"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -46,9 +46,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="272"/>
-        <CursorPos Y="283"/>
-        <UsageCount Value="59"/>
+        <TopLine Value="14"/>
+        <CursorPos X="19" Y="60"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -94,11 +94,12 @@
       <Unit>
         <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/typshrdh.inc"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="108"/>
-        <CursorPos X="24" Y="108"/>
+        <TopLine Value="66"/>
+        <CursorPos X="18" Y="78"/>
         <UsageCount Value="12"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/components/pl_BGRAbitmap/source/bgrapixel.inc"/>
@@ -435,8 +436,8 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="2311"/>
-        <CursorPos X="3" Y="2316"/>
+        <TopLine Value="2283"/>
+        <CursorPos Y="2293"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
@@ -471,8 +472,8 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="138"/>
-        <CursorPos X="3" Y="140"/>
+        <TopLine Value="117"/>
+        <CursorPos X="2" Y="119"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
@@ -504,127 +505,136 @@
         <CursorPos Y="2928"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/custompage.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="219"/>
+        <CursorPos Y="234"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="265" Column="67" TopLine="257"/>
+        <Caret Line="288" TopLine="274"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="331" Column="60" TopLine="325"/>
+        <Caret Line="289" TopLine="274"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="265" Column="112" TopLine="260"/>
+        <Caret Line="290" TopLine="274"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="293" TopLine="275"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="271" Column="5" TopLine="275"/>
       </Position>
       <Position>
         <Filename Value="uglobals.pas"/>
-        <Caret Line="224" Column="21" TopLine="220"/>
+        <Caret Line="110" Column="14" TopLine="100"/>
       </Position>
       <Position>
         <Filename Value="uglobals.pas"/>
-        <Caret Line="103" Column="14" TopLine="83"/>
+        <Caret Line="100" Column="15" TopLine="100"/>
       </Position>
       <Position>
         <Filename Value="uglobals.pas"/>
-        <Caret Line="223" Column="41" TopLine="213"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="331" Column="59" TopLine="325"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="209" Column="23" TopLine="207"/>
+        <Caret Line="203" TopLine="199"/>
       </Position>
       <Position>
         <Filename Value="uglobals.pas"/>
-        <Caret Line="107" Column="15" TopLine="97"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="209" Column="23" TopLine="207"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="208" Column="23" TopLine="206"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="215" Column="23" TopLine="213"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="210" TopLine="198"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="200" Column="33" TopLine="192"/>
+        <Caret Line="97" Column="15" TopLine="88"/>
       </Position>
       <Position>
         <Filename Value="uglobals.pas"/>
-        <Caret Line="131" Column="3" TopLine="120"/>
+        <Caret Line="243" TopLine="237"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="203" TopLine="192"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="243" TopLine="232"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="200" Column="33" TopLine="192"/>
+        <Caret Line="292" Column="3" TopLine="281"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="110" Column="14" TopLine="100"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="100" Column="15" TopLine="100"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="203" Column="3" TopLine="199"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/typshrdh.inc"/>
+        <Caret Line="78" Column="18" TopLine="66"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="203" Column="18" TopLine="192"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="201" Column="26" TopLine="192"/>
+        <Caret Line="286" TopLine="281"/>
       </Position>
       <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="22" Column="36" TopLine="16"/>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="23" Column="20" TopLine="12"/>
       </Position>
       <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="38" Column="21" TopLine="21"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="266" TopLine="257"/>
       </Position>
       <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="17" Column="14" TopLine="5"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="272" TopLine="257"/>
       </Position>
       <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="25" Column="71" TopLine="5"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="273" TopLine="257"/>
       </Position>
       <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="23" Column="22" TopLine="12"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="274" TopLine="257"/>
       </Position>
       <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="41" Column="3" TopLine="30"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="275" TopLine="257"/>
       </Position>
       <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="28" Column="50" TopLine="12"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="276" TopLine="258"/>
       </Position>
       <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="45" Column="3" TopLine="40"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="279" TopLine="261"/>
       </Position>
       <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="29" Column="31" TopLine="12"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="286" TopLine="276"/>
       </Position>
       <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="25" Column="22" TopLine="12"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="268" TopLine="270"/>
       </Position>
       <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="53" Column="6" TopLine="41"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="31" Column="58" TopLine="14"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="34" Column="70" TopLine="16"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="269" Column="109" TopLine="262"/>
       </Position>
     </JumpHistory>
     <RunParams>
