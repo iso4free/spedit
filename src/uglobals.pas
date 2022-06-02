@@ -134,6 +134,9 @@ var
   function IsDigits(s : String) : Boolean;
   //check string for digits only
 
+  function ConvertHtmlHexToTColor(HexColor: String):TColor;
+  function CheckHexForHash(col: string):string;
+  function ConvertTColorToHTML(aColor: TColor) : String;
 
 implementation
 
@@ -163,6 +166,34 @@ begin
     if not B then Break;
   end;
   result := B;
+end;
+
+function ConvertHtmlHexToTColor(HexColor: String): TColor;
+var
+    rColor : TColor;
+begin
+     HexColor := CheckHexForHash(HexColor);
+
+     if (length(Hexcolor) = 6) then
+     begin
+           {remember that TColor is bgr not rgb: so you need to switch then around}
+           hexcolor := '$00' + copy(hexcolor,5,2) + copy(hexcolor,3,2) + copy(hexcolor,1,2);
+           rColor := StrToInt(hexcolor);
+     end;
+
+     result := rColor;
+end;
+
+function CheckHexForHash(col: string): string;
+begin
+     if col[1] = '#' then
+           col := StringReplace(col,'#','',[rfReplaceAll]);
+     result := col;
+end;
+
+function ConvertTColorToHTML(aColor: TColor): String;
+begin
+   Result := '#'+IntToHex(Blue(aColor))+IntToHex(Green(aColor))+IntToHex(Red(aColor));
 end;
 
 { TFrame }
@@ -255,7 +286,7 @@ begin
   FCheckersSize:=INI.ReadInteger('INTERFACE','CHECKERS SIZE',32);
   fFrameZoom:=0;
   CalcGridRect;
-  fPreview:=TBGRABitmap.Create(aW,aH,ColorToBGRA(clWhite));
+  fPreview:=TBGRABitmap.Create(aW,aH,ColorToBGRA(clBlack));
   Getmem(fFrame,SizeOf(PFrame));
 end;
 
@@ -355,7 +386,7 @@ var l : TStringList;
   i: Integer;
 begin
   l:=TStringList.Create;
-  for i := 1 to fCount-1 do l.Add(IntToHex(fColors[i]));
+  for i := 1 to fCount-1 do l.Add(ConvertTColorToHTML(fColors[i]));
   l.SaveToFile(aName);
   FreeAndNil(l);
 end;
@@ -371,7 +402,7 @@ begin
   AddColor(clNone);
   for i:=0 to l.Count-1 do begin
     if l.Strings[i]<>'' then begin
-      AddColor(Hex2Dec(l.Strings[i]));
+      AddColor(ConvertHtmlHexToTColor(l.Strings[i]));
     end;
   end;
   FreeAndNil(l);

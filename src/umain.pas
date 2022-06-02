@@ -495,8 +495,6 @@ begin
 end;
 
 procedure TfrmMain.SaveSpriteLibMenuItemClick(Sender: TObject);
-var
-  i: integer;
 begin
   if Trim(CurrentLibName) = '' then
     CurrentLibName := InputBox('Please input new library name', CurrentLibName, 'default');

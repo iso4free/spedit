@@ -19,7 +19,7 @@ object frmMain: TfrmMain
   OnDestroy = FormDestroy
   ParentDoubleBuffered = False
   Position = poDefault
-  LCLVersion = '7.7'
+  LCLVersion = '7.8'
   Visible = True
   WindowState = wsMaximized
   object MainPageControl: TPageControl
@@ -602,7 +602,7 @@ object frmMain: TfrmMain
         Width = 300
       end    
       item
-        Width = 50
+        Width = 250
       end    
       item
         Width = 50
