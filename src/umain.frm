@@ -187,6 +187,24 @@ object frmMain: TfrmMain
             Caption = 'FG'
           end
         end
+        object DropDownButton1: TDropDownButton
+          Left = 8
+          Height = 22
+          Top = 8
+          Width = 23
+          Style = dbsCombo
+          AllowAllUp = True
+          GroupIndex = 1
+        end
+        object SpeedButton2: TSpeedButton
+          Left = 10
+          Height = 28
+          Top = 40
+          Width = 28
+          AutoSize = True
+          Images = ButtonsImageList
+          ImageIndex = 16
+        end
       end
       object AdditionalToolsPanel: TPanel
         AnchorSideLeft.Side = asrBottom

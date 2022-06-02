@@ -7,7 +7,8 @@
 WELCOME
 =======
 
-Welcome to Spedit 4.0, free and open source pixel-art editor.
+Welcome to Spedit 4.0, free and open source pixel-art editor and Sprite
+Library Manager!
 
 
 INTRODUCTION

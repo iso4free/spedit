@@ -5,16 +5,18 @@ unit umain;
 interface
 
 uses
-  uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls, Dialogs,
-  ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, BGRAImageList,
+  uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
+  Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, BGRAImageList,
   BGRAImageManipulation, BCGameGrid, BGRABitmapTypes, BGRABitmap,
-  BGRAGraphicControl, udraw;
+  BGRAGraphicControl,
+  DropDownButton, udraw;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    DropDownButton1: TDropDownButton;
     FramePreview: TBGRAGraphicControl;
     gbFramePreview: TGroupBox;
     miPaletteImportFromFile: TMenuItem;
@@ -28,6 +30,7 @@ type
     OpenPaletteDialog: TOpenDialog;
     PaletteGrid: TBCGameGrid;
     BgColor: TBGRAGraphicControl;
+    SpeedButton2: TSpeedButton;
     SwapBgFg: TBGRAGraphicControl;
     FgColor: TBGRAGraphicControl;
     ColorDialog1: TColorDialog;

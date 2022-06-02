@@ -129,6 +129,24 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="pl_RX"/>
+      </Item>
+      <Item>
+        <PackageName Value="pl_LuiControls"/>
+      </Item>
+      <Item>
+        <PackageName Value="pl_KControls"/>
+      </Item>
+      <Item>
+        <PackageName Value="pl_ExControls"/>
+      </Item>
+      <Item>
+        <PackageName Value="pl_ECControls"/>
+      </Item>
+      <Item>
+        <PackageName Value="pl_BGRAextra"/>
+      </Item>
+      <Item>
         <PackageName Value="pl_ColorLib"/>
       </Item>
       <Item>
