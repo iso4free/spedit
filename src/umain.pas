@@ -16,11 +16,12 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
-    DropDownButton1: TDropDownButton;
+    BitBtnLayers: TBitBtn;
     FramePreview: TBGRAGraphicControl;
     gbFramePreview: TGroupBox;
     miPaletteImportFromFile: TMenuItem;
     FrameDrawPanel: TPanel;
+    pnlToolsOptions: TPanel;
     pbFrameDraw: TPaintBox;
     SavePaletteDialog: TSaveDialog;
     Separator1: TMenuItem;
@@ -30,12 +31,14 @@ type
     OpenPaletteDialog: TOpenDialog;
     PaletteGrid: TBCGameGrid;
     BgColor: TBGRAGraphicControl;
-    SpeedButton2: TSpeedButton;
+    sbEracer: TSpeedButton;
+    sbPen: TSpeedButton;
+    sbPipette: TSpeedButton;
     SwapBgFg: TBGRAGraphicControl;
     FgColor: TBGRAGraphicControl;
     ColorDialog1: TColorDialog;
     BitBtnNewFrame: TBitBtn;
-    FlowPanel1: TFlowPanel;
+    FrameFlowPanel: TFlowPanel;
     GroupBox2: TGroupBox;
     AdditionalToolsPanel: TPanel;
     ColorsPanel: TPanel;

@@ -1,7 +1,6 @@
 {"version":1,"strings":[
 {"hash":247726402,"name":"tfrmmain.caption","sourcebytes":[83,112,114,105,116,101,32,69,100,105,116,111,114],"value":"Sprite Editor"},
 {"hash":6523410,"name":"tfrmmain.frameeditortabsheet.caption","sourcebytes":[70,114,97,109,101,32,69,100,105,116,111,114],"value":"Frame Editor"},
-{"hash":207919249,"name":"tfrmmain.flowpanel1.caption","sourcebytes":[70,108,111,119,80,97,110,101,108,49],"value":"FlowPanel1"},
 {"hash":5989939,"name":"tfrmmain.drawtoolsgroupbox.caption","sourcebytes":[84,111,111,108,115],"value":"Tools"},
 {"hash":109235189,"name":"tfrmmain.groupbox2.caption","sourcebytes":[80,97,108,101,116,116,101],"value":"Palette"},
 {"hash":115412659,"name":"tfrmmain.swapbgfg.hint","sourcebytes":[83,119,97,112,32,99,111,108,111,114,115],"value":"Swap colors"},
