@@ -10,3 +10,9 @@
 
 22.05.2022
 + Implemented palette and colors selection
+
+08.06.2022
++ Added interface to layers work
+* Fixed grid drawing bug
+* Changed preview (centered and with checkers as transparent BG)
+* Some minor changes

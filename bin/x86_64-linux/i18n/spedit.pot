@@ -9,6 +9,22 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
+#: tfrmmain.bbtnaddlayer.hint
+msgid "Add new layer"
+msgstr ""
+
+#: tfrmmain.bbtncopylayer.hint
+msgid "Copy selected layer"
+msgstr ""
+
+#: tfrmmain.bbtndeletelayer.hint
+msgid "Delete selected layer"
+msgstr ""
+
+#: tfrmmain.bbtnmergelayers.hint
+msgid "Merge with previous layer"
+msgstr ""
+
 #: tfrmmain.bgcolor.caption
 msgid "BG"
 msgstr ""
@@ -87,6 +103,11 @@ msgctxt "tfrmmain.groupbox2.caption"
 msgid "Palette"
 msgstr ""
 
+#: tfrmmain.groupbox3.caption
+msgctxt "tfrmmain.groupbox3.caption"
+msgid "Layers"
+msgstr ""
+
 #: tfrmmain.helpmenuitem.caption
 msgid "Help"
 msgstr ""
@@ -112,6 +133,7 @@ msgid "Sprite"
 msgstr ""
 
 #: tfrmmain.menuitem2.caption
+msgctxt "tfrmmain.menuitem2.caption"
 msgid "Layers"
 msgstr ""
 
@@ -149,7 +171,7 @@ msgid "Paint tools"
 msgstr ""
 
 #: tfrmmain.previewaccordionitem.caption
-msgid "PreviewAccordionItem"
+msgid "Preview"
 msgstr ""
 
 #: tfrmmain.projecttabsheet.caption
@@ -157,7 +179,7 @@ msgid "Project info"
 msgstr ""
 
 #: tfrmmain.refimageaccordionitem.caption
-msgid "RefImageAccordionItem"
+msgid "Reference image"
 msgstr ""
 
 #: tfrmmain.savespritelibmenuitem.caption

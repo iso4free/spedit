@@ -109,6 +109,8 @@ type
     property FrameZoom : Integer read fFrameZoom write SetFrameZoom;
     property Offset : TPoint read FOffset write SetOffset;
     property CheckersSize : Byte read FCheckersSize write SetCheckersSize default 16;
+    property FrameWidth : Integer read fFrameWidth;
+    property FrameHeight : Integer read fFrameHeight;
   end;
 
 var
@@ -286,7 +288,7 @@ begin
   FCheckersSize:=INI.ReadInteger('INTERFACE','CHECKERS SIZE',32);
   fFrameZoom:=0;
   CalcGridRect;
-  fPreview:=TBGRABitmap.Create(aW,aH,ColorToBGRA(clBlack));
+  fPreview:=TBGRABitmap.Create(aW,aH,ColorToBGRA(clWhite));
   Getmem(fFrame,SizeOf(PFrame));
 end;
 
@@ -306,8 +308,11 @@ procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas; Offset: TPoint);
   begin
     xsize := (x2-x1) div size;
     ysize := (y2-y1) div size;
-    For i := 1 to xsize do fBuffer.DrawLine(x1,y1+i*size,x2,y1+i*size,ColorToBGRA(clNavy),False);
-    For i := 1 to ysize do fBuffer.DrawLine(x1+i*size,y1,x1+i*size,y2,ColorToBGRA(clNavy),False);
+    {$IFDEF DEBUG}
+     WriteLN('x1=',x1,'; y1=',y1,'; x2=',x2,'; y2=',y2,'; xsize=',xsize,'; ysize=',ysize,' in: DrawGrid');
+    {$ENDIF}
+    For i := 1 to ysize do fBuffer.DrawLine(x1,y1+i*size,x2,y1+i*size,ColorToBGRA(clNavy),False);
+    For i := 1 to xsize do fBuffer.DrawLine(x1+i*size,y1,x1+i*size,y2,ColorToBGRA(clNavy),False);
     fBuffer.Rectangle(x1,y1,x2,y2,ColorToBGRA(clNavy));
   end;
 
@@ -315,17 +320,25 @@ begin
   FreeAndNil(fBuffer);
   fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),fFrameHeight*(fFrameGridSize+fFrameZoom));
   ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
-  fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),FCheckersSize,FCheckersSize);
-  if ShowGrid then DrawGrid(0,0,fBuffer.Width,fBuffer.Height,fFrameGridSize+fFrameZoom);
+  fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width-1,fBuffer.Height-1),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),FCheckersSize,FCheckersSize);
+  if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
   //todo : draw all layers per pixels
 
   fBuffer.Draw(Canvas,fOffset.X,fOffset.Y);
 end;
 
 procedure TFrameGrid.RenderPicture(Canvas: TCanvas);
+ var ImagePos: TPoint;
 begin
+  fPreview.DrawCheckers(Rect(0,0,fPreview.Width,fPreview.Height),
+                                              ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),4,4);
   //todo: draw pixels from all layers to canvas
-  fPreview.Draw(Canvas,0,0);
+  ImagePos:=Point((Canvas.Width-fPreview.Width) div 2,
+                  (Canvas.Height-fPreview.Height) div 2);
+  if ImagePos.X<0 then ImagePos.X:=0;
+  if ImagePos.Y<0 then ImagePos.Y:=0;
+
+  fPreview.Draw(Canvas,ImagePos.X,ImagePos.Y,true);
 end;
 
 { TPalette }

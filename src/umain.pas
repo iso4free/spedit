@@ -6,21 +6,27 @@ interface
 
 uses
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
-  Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, BGRAImageList,
-  BGRAImageManipulation, BCGameGrid, BGRABitmapTypes, BGRABitmap,
-  BGRAGraphicControl, ECAccordion,
-  udraw;
+  Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, CheckLst,
+  BGRAImageList, BGRAImageManipulation, BCGameGrid, BGRABitmapTypes, BGRABitmap,
+  BGRAGraphicControl, ECAccordion, udraw;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    bbtnAddLayer: TBitBtn;
+    bbtnDeleteLayer: TBitBtn;
+    bbtnCopyLayer: TBitBtn;
+    bbtnMergeLayers: TBitBtn;
+    LayersCheckListBox: TCheckListBox;
+    LayersFlowPanel: TFlowPanel;
+    GroupBox3: TGroupBox;
+    FramePreview: TPaintBox;
     RefImageAccordionItem: TAccordionItem;
     PreviewAccordionItem: TAccordionItem;
     BitBtnLayers: TBitBtn;
     ECAccordion1: TECAccordion;
-    FramePreview: TBGRAGraphicControl;
     miPaletteImportFromFile: TMenuItem;
     FrameDrawPanel: TPanel;
     pnlToolsOptions: TPanel;
@@ -109,13 +115,17 @@ type
     N1: TMenuItem;
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
+    procedure bbtnAddLayerClick(Sender: TObject);
+    procedure bbtnCopyLayerClick(Sender: TObject);
+    procedure bbtnDeleteLayerClick(Sender: TObject);
+    procedure bbtnMergeLayersClick(Sender: TObject);
     procedure BitBtnNewFrameClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure FramePreviewPaint(Sender: TObject);
     procedure miPaletteClearClick(Sender: TObject);
     procedure miPaletteImportFromFileClick(Sender: TObject);
     procedure miPaletteLoadFromFileClick(Sender: TObject);
     procedure miPaletteSaveToFileClick(Sender: TObject);
+    procedure FramePreviewPaint(Sender: TObject);
     procedure pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -197,26 +207,46 @@ begin
   frmZastavka.Show;
 end;
 
+procedure TfrmMain.bbtnAddLayerClick(Sender: TObject);
+var LayerName : String;
+begin
+   LayerName := InputBox('Add new layer','Input layer name:','Layer'+IntToStr(LayersCheckListBox.Count+1));
+   if Trim(LayerName)<>'' then LayersCheckListBox.AddItem(LayerName,nil); //todo: add new layer object to list
+end;
+
+procedure TfrmMain.bbtnCopyLayerClick(Sender: TObject);
+begin
+  ShowMessage('Not implemented yet! Sorry...');
+end;
+
+procedure TfrmMain.bbtnDeleteLayerClick(Sender: TObject);
+begin
+  if LayersCheckListBox.Count>0 then begin
+    if MessageDlg('Are You sure delete selected layer?',mtWarning,mbYesNo,0)=mrYes then
+       LayersCheckListBox.DeleteSelected;
+  end;
+end;
+
+procedure TfrmMain.bbtnMergeLayersClick(Sender: TObject);
+begin
+  ShowMessage('Not implemeted yet! Sorry...');
+end;
+
 procedure TfrmMain.BitBtnNewFrameClick(Sender: TObject);
 begin
   //todo: show dialog to create new frame with default parameters
   FreeAndNil(FrameGrid);
-  FrameGrid:=TFrameGrid.Create;
+  FrameGrid:=TFrameGrid.Create(32,32);
   FrameGrid.Offset:=Point(0,0);
   dx:=0;
   dy:=0;
-  FramePreview.Width:=32;
-  FramePreview.Height:=32;
+  FramePreview.Width:=FrameGrid.FrameWidth;
+  FramePreview.Height:=FrameGrid.FrameHeight;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(FrameGrid);
-end;
-
-procedure TfrmMain.FramePreviewPaint(Sender: TObject);
-begin
-  FrameGrid.RenderPicture(FramePreview.Bitmap.Canvas);
 end;
 
 procedure TfrmMain.miPaletteClearClick(Sender: TObject);
@@ -264,6 +294,12 @@ begin
   if SavePaletteDialog.Execute then begin
     Palette.SaveToFile(SavePaletteDialog.FileName);
   end;
+end;
+
+procedure TfrmMain.FramePreviewPaint(Sender: TObject);
+begin
+  if Assigned(FrameGrid) then
+  FrameGrid.RenderPicture(FramePreview.Canvas);
 end;
 
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
