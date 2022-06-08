@@ -78,10 +78,6 @@ msgstr ""
 msgid "Frame Editor"
 msgstr ""
 
-#: tfrmmain.gbframepreview.caption
-msgid "Preview"
-msgstr ""
-
 #: tfrmmain.groupbox1.caption
 msgid "Local libraries"
 msgstr ""
@@ -152,13 +148,16 @@ msgstr ""
 msgid "Paint tools"
 msgstr ""
 
+#: tfrmmain.previewaccordionitem.caption
+msgid "PreviewAccordionItem"
+msgstr ""
+
 #: tfrmmain.projecttabsheet.caption
 msgid "Project info"
 msgstr ""
 
-#: tfrmmain.referencegroupbox.caption
-msgctxt "tfrmmain.referencegroupbox.caption"
-msgid "Reference Image"
+#: tfrmmain.refimageaccordionitem.caption
+msgid "RefImageAccordionItem"
 msgstr ""
 
 #: tfrmmain.savespritelibmenuitem.caption

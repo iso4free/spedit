@@ -8,17 +8,19 @@ uses
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
   Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, BGRAImageList,
   BGRAImageManipulation, BCGameGrid, BGRABitmapTypes, BGRABitmap,
-  BGRAGraphicControl,
-  DropDownButton, udraw;
+  BGRAGraphicControl, ECAccordion,
+  udraw;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    RefImageAccordionItem: TAccordionItem;
+    PreviewAccordionItem: TAccordionItem;
     BitBtnLayers: TBitBtn;
+    ECAccordion1: TECAccordion;
     FramePreview: TBGRAGraphicControl;
-    gbFramePreview: TGroupBox;
     miPaletteImportFromFile: TMenuItem;
     FrameDrawPanel: TPanel;
     pnlToolsOptions: TPanel;
@@ -44,7 +46,6 @@ type
     ColorsPanel: TPanel;
     ScrollBox5: TScrollBox;
     DrawToolsGroupBox: TGroupBox;
-    ReferenceGroupBox: TGroupBox;
     ReferenceImage: TImage;
     ProjectSheet: TBGRAImageManipulation;
     ImportImage: TBGRAImageManipulation;
