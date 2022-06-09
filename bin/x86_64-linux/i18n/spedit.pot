@@ -40,11 +40,6 @@ msgstr ""
 msgid "Sprite Editor"
 msgstr ""
 
-#: tfrmmain.drawtoolsgroupbox.caption
-msgctxt "tfrmmain.drawtoolsgroupbox.caption"
-msgid "Tools"
-msgstr ""
-
 #: tfrmmain.editmenuitem.caption
 msgid "Edit"
 msgstr ""
@@ -103,11 +98,6 @@ msgctxt "tfrmmain.groupbox2.caption"
 msgid "Palette"
 msgstr ""
 
-#: tfrmmain.groupbox3.caption
-msgctxt "tfrmmain.groupbox3.caption"
-msgid "Layers"
-msgstr ""
-
 #: tfrmmain.helpmenuitem.caption
 msgid "Help"
 msgstr ""
@@ -118,6 +108,11 @@ msgstr ""
 
 #: tfrmmain.label2.caption
 msgid "Frames"
+msgstr ""
+
+#: tfrmmain.layersgroupbox.caption
+msgctxt "tfrmmain.layersgroupbox.caption"
+msgid "Layers"
 msgstr ""
 
 #: tfrmmain.layerstoolvisiblemenuitem.caption
@@ -214,12 +209,21 @@ msgstr ""
 msgid "StaticText1"
 msgstr ""
 
-#: tfrmmain.swapbgfg.hint
+#: tfrmmain.swapbgrashapeline.hint
 msgid "Swap colors"
 msgstr ""
 
 #: tfrmmain.timelinetoolvisiblemenuitem.caption
 msgid "Timeline"
+msgstr ""
+
+#: tfrmmain.tooloptionsaccordionitem.caption
+msgid "Tool options"
+msgstr ""
+
+#: tfrmmain.toolsaccordionitem.caption
+msgctxt "tfrmmain.toolsaccordionitem.caption"
+msgid "Tools"
 msgstr ""
 
 #: tfrmmain.viewmenuitem.caption

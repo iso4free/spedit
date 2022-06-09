@@ -6,7 +6,7 @@ unit udraw;
 interface
 
 uses
-  Classes, SysUtils, Graphics, uglobals, BGRABitmap, BGRABitmapTypes;
+  Classes, SysUtils, Graphics, uglobals, ustuff, BGRABitmap, BGRABitmapTypes;
 
 type
 
@@ -16,33 +16,35 @@ type
 
   TSPDrawTool = class
     private
+      FParameters: TSTaticDic;
       fstartx,starty : Integer;  //coords from start drawing
       fX,fY          : Integer;  //current coords
       fBuffer : TBGRABitmap;
-      FColor: TColor;
       FMouseDown: Boolean;
       FPenSize: Byte;
       FPrevPoint: TPoint;
       procedure SetColor(AValue: TColor);
+      procedure SetParameters(AValue: TSTaticDic);
       procedure SetPenSize(AValue: Byte);
       procedure SetPrevPoint(AValue: TPoint);
     public
       constructor Create(Width : Integer = 32; Height : Integer = 32);
       destructor Destroy; override;
       property PrevPoint : TPoint read FPrevPoint write SetPrevPoint;
-      property Color : TColor read FColor write SetColor;
       property PenSize : Byte read FPenSize write SetPenSize;
       procedure StartDraw(x,y : Integer);virtual;abstract;
-      procedure EndDraw(x,y : Integer);virtual;abstract;
+      procedure MouseMove(x,y : Integer);virtual;abstract;
       procedure Render(aBMP : TBGRABitmap);
-
+      property Parameters : TSTaticDic read FParameters write SetParameters;
   end;
 
 
   { TSPPen - simple pen tool}
 
   TSPPen = class(TSPDrawTool)
-     procedure StartDraw(x, y: Integer); override;
+     prevx, prevy : Integer;
+     procedure StartDraw(x, y: Integer; Color : TColor);
+     procedure MouseMove(x,y : Integer); override;
   end;
 
 
@@ -55,8 +57,18 @@ implementation
 
 { TSPPen }
 
-procedure TSPPen.StartDraw(x, y: Integer);
+procedure TSPPen.StartDraw(x, y: Integer; Color: TColor);
 begin
+  fBuffer.Canvas.Pen.Color:=Color;
+  prevx := x;
+  prevy := y;
+end;
+
+procedure TSPPen.MouseMove(x, y: Integer);
+begin
+  fBuffer.Canvas.Line(prevx,prevy,x,y);
+  prevx:=x;
+  prevy:=y;
 
 end;
 
@@ -70,8 +82,13 @@ end;
 
 procedure TSPDrawTool.SetColor(AValue: TColor);
 begin
-  if FColor=AValue then Exit;
-  FColor:=AValue;
+
+end;
+
+procedure TSPDrawTool.SetParameters(AValue: TSTaticDic);
+begin
+  if FParameters=AValue then Exit;
+  FParameters:=AValue;
 end;
 
 procedure TSPDrawTool.SetPrevPoint(AValue: TPoint);
@@ -83,7 +100,6 @@ end;
 constructor TSPDrawTool.Create(Width: Integer; Height: Integer);
 begin
   fBuffer:=TBGRABitmap.Create(Width,Height,ColorToBGRA(clNone));
-  FColor:=clNone;
   FPenSize:=1; //default 1px
 end;
 

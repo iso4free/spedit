@@ -16,3 +16,7 @@
 * Fixed grid drawing bug
 * Changed preview (centered and with checkers as transparent BG)
 * Some minor changes
+
+09.06.2022
+* Some interface changes (Draw tools now has properties)
++ Started try draw (not work well now - needs to be fixed)

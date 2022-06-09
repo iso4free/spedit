@@ -20,7 +20,7 @@ type
  // TWorkMode = (wrkProject,wrkSpriteActions,wrkEditor,wrkSourceImage,wrkLibrary,wrkSettings);
   //uses for check which tab now active
 
-  TDrawGridMode = (dgmNone,dgmMove);
+  TDrawGridMode = (dgmNone,dgmMove,dgmDraw);
 
   TColors = array[0..MAX_PALETTE_COLORS] of TColor;  //palette - array of colors
   TPixels = array[0..MAX_PIXELS] of Byte;            //array of indexes to palette
@@ -85,6 +85,7 @@ type
    private
     fBuffer        : TBgraBitmap; //for in-memory drawig before show on screen
     FCheckersSize: Byte;
+    FDrawLayer: TLayer;
     fPreview       : TBGRABitmap; //for draw image preview
     fFrameGridSize : Word;   //current grid size
     fFrameWidth,
@@ -111,6 +112,7 @@ type
     property CheckersSize : Byte read FCheckersSize write SetCheckersSize default 16;
     property FrameWidth : Integer read fFrameWidth;
     property FrameHeight : Integer read fFrameHeight;
+    property DrawLayer : TLayer read FDrawLayer;
   end;
 
 var
@@ -290,6 +292,8 @@ begin
   CalcGridRect;
   fPreview:=TBGRABitmap.Create(aW,aH,ColorToBGRA(clWhite));
   Getmem(fFrame,SizeOf(PFrame));
+  FDrawLayer.Count:=aw*ah;
+  FDrawLayer.Clear;
 end;
 
 destructor TFrameGrid.Destroy;

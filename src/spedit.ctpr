@@ -129,6 +129,15 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="pl_Graphics32"/>
+      </Item>
+      <Item>
+        <PackageName Value="pl_Graphics32EXT"/>
+      </Item>
+      <Item>
+        <PackageName Value="pl_ExDesign"/>
+      </Item>
+      <Item>
         <PackageName Value="pl_RX"/>
       </Item>
       <Item>

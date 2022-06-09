@@ -8,20 +8,27 @@ uses
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
   Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, CheckLst,
   BGRAImageList, BGRAImageManipulation, BCGameGrid, BGRABitmapTypes, BGRABitmap,
-  BGRAGraphicControl, ECAccordion, udraw;
+  BGRAGraphicControl, ECAccordion, TBGRAShapeLineUnit,
+  udraw;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    DrawToolsFlowPanel: TFlowPanel;
+    LayersCheckListBox: TCheckListBox;
+    SwapBGRAShapeLine: TBGRAShapeLine;
+    DrawToolsPanel: TPanel;
+    ToolOptionsAccordionItem: TAccordionItem;
+    ToolsAccordionItem: TAccordionItem;
     bbtnAddLayer: TBitBtn;
     bbtnDeleteLayer: TBitBtn;
     bbtnCopyLayer: TBitBtn;
     bbtnMergeLayers: TBitBtn;
-    LayersCheckListBox: TCheckListBox;
+    ToolsECAccordion: TECAccordion;
     LayersFlowPanel: TFlowPanel;
-    GroupBox3: TGroupBox;
+    LayersGroupBox: TGroupBox;
     FramePreview: TPaintBox;
     RefImageAccordionItem: TAccordionItem;
     PreviewAccordionItem: TAccordionItem;
@@ -29,7 +36,6 @@ type
     ECAccordion1: TECAccordion;
     miPaletteImportFromFile: TMenuItem;
     FrameDrawPanel: TPanel;
-    pnlToolsOptions: TPanel;
     pbFrameDraw: TPaintBox;
     SavePaletteDialog: TSaveDialog;
     Separator1: TMenuItem;
@@ -42,7 +48,6 @@ type
     sbEracer: TSpeedButton;
     sbPen: TSpeedButton;
     sbPipette: TSpeedButton;
-    SwapBgFg: TBGRAGraphicControl;
     FgColor: TBGRAGraphicControl;
     ColorDialog1: TColorDialog;
     BitBtnNewFrame: TBitBtn;
@@ -109,6 +114,7 @@ type
     OpenPictureDialog1: TOpenPictureDialog;
     SrcImageFramesOptsValueListEditor: TValueListEditor;
     ProjectProperties: TValueListEditor;
+    ValueListEditor1: TValueListEditor;
     ViewZoomResetMenuItem: TMenuItem;
     ViewZoomOutMenuItem: TMenuItem;
     ViewZoomInMenuItem: TMenuItem;
@@ -121,11 +127,13 @@ type
     procedure bbtnMergeLayersClick(Sender: TObject);
     procedure BitBtnNewFrameClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure LayersToolVisibleMenuItemClick(Sender: TObject);
     procedure miPaletteClearClick(Sender: TObject);
     procedure miPaletteImportFromFileClick(Sender: TObject);
     procedure miPaletteLoadFromFileClick(Sender: TObject);
     procedure miPaletteSaveToFileClick(Sender: TObject);
     procedure FramePreviewPaint(Sender: TObject);
+    procedure PaintToolPanelVisibleMenuItemClick(Sender: TObject);
     procedure pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -144,6 +152,7 @@ type
     procedure BgColorMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure BgColorPaint(Sender: TObject);
+    procedure sbPenClick(Sender: TObject);
     procedure SwapColors(Sender: TObject);
     procedure FileLoadSpritesheetMenuItemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -168,6 +177,7 @@ type
     dx,dy : Integer;             //offset to move grid
     startx,starty : Integer;     //start position to move
     DrawTool : TSPDrawTool;      //current drawing tool
+    DrawPen : TSPPen;
   public
 
   end;
@@ -208,10 +218,8 @@ begin
 end;
 
 procedure TfrmMain.bbtnAddLayerClick(Sender: TObject);
-var LayerName : String;
 begin
-   LayerName := InputBox('Add new layer','Input layer name:','Layer'+IntToStr(LayersCheckListBox.Count+1));
-   if Trim(LayerName)<>'' then LayersCheckListBox.AddItem(LayerName,nil); //todo: add new layer object to list
+ ShowMessage('Not implemented yet! Sorry...');
 end;
 
 procedure TfrmMain.bbtnCopyLayerClick(Sender: TObject);
@@ -221,10 +229,7 @@ end;
 
 procedure TfrmMain.bbtnDeleteLayerClick(Sender: TObject);
 begin
-  if LayersCheckListBox.Count>0 then begin
-    if MessageDlg('Are You sure delete selected layer?',mtWarning,mbYesNo,0)=mrYes then
-       LayersCheckListBox.DeleteSelected;
-  end;
+  ShowMessage('Not implemented yet! Sorry...');
 end;
 
 procedure TfrmMain.bbtnMergeLayersClick(Sender: TObject);
@@ -242,11 +247,19 @@ begin
   dy:=0;
   FramePreview.Width:=FrameGrid.FrameWidth;
   FramePreview.Height:=FrameGrid.FrameHeight;
+
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
+  FreeAndNil(DrawTool);
+  FreeAndNil(DrawPen);
   FreeAndNil(FrameGrid);
+end;
+
+procedure TfrmMain.LayersToolVisibleMenuItemClick(Sender: TObject);
+begin
+  LayersGroupBox.Visible:=not LayersGroupBox.Visible;
 end;
 
 procedure TfrmMain.miPaletteClearClick(Sender: TObject);
@@ -302,16 +315,29 @@ begin
   FrameGrid.RenderPicture(FramePreview.Canvas);
 end;
 
+procedure TfrmMain.PaintToolPanelVisibleMenuItemClick(Sender: TObject);
+begin
+  DrawToolsPanel.Visible:= not DrawToolsPanel.Visible;
+end;
+
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var p : TPoint;
 begin
   case Button of
-    mbLeft:begin //todo: start draw with current tool FG color
+    mbLeft:begin
         p:=FrameGrid.Coords(x,y);
         StatusBar1.Panels[3].Text:='x='+IntToStr(P.X)+'/y='+IntToStr(P.y)+'/n='+IntToStr(FrameGrid.PixelPos(P.x,P.y));
+        //todo: check wich tool selected
+        (DrawTool as TSPPen).StartDraw(p.X,p.Y,spclForeColor);
+        DrawGridMode:=dgmDraw;
+
     end;
-    mbRight:;//todo: start draw with current tool BG color
+    mbRight:begin
+      //todo: check wich tool selected
+       (DrawTool as TSPPen).StartDraw(p.X,p.Y,spclBackColor);
+       DrawGridMode:=dgmDraw;
+    end;
     mbMiddle: begin   //start grid drag
       DrawGridMode:=dgmMove;
       dx:=0;
@@ -324,6 +350,7 @@ end;
 
 procedure TfrmMain.pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
+var p : TPoint;
 begin
    if DrawGridMode=dgmMove then begin //move grid inside paintbox
      dx:=x-startx;
@@ -332,6 +359,11 @@ begin
      starty:=y;
      FrameGrid.Offset:=Point(dx,dy);
      pbFrameDraw.Invalidate;
+   end;
+   if DrawGridMode=dgmDraw then begin
+     p:=FrameGrid.Coords(x,y);
+    //todo: check which tool selected
+    (DrawTool as TSPPen).MouseMove(p.X,p.Y);
    end;
    StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
 end;
@@ -436,6 +468,11 @@ begin
   StatusBar1.Panels[1].Text:='FG: '+IntToHex(spclForeColor)+' / BG: '+IntToHex(spclBackColor);
 end;
 
+procedure TfrmMain.sbPenClick(Sender: TObject);
+begin
+  DrawTool:=DrawPen;
+end;
+
 procedure TfrmMain.SwapColors(Sender: TObject);
 var cl : TColor;
 begin
@@ -473,9 +510,11 @@ begin
   MainPageControl.ActivePageIndex := 0;
   BgColor.ShowHint:=true;
   FgColor.ShowHint:=true;
-  SwapBgFg.ShowHint:=true;
   //create empty new frame with default params
   BitBtnNewFrameClick(Sender);
+  //create draw tools
+  DrawPen:=TSPPen.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+  DrawTool:=DrawPen;
 end;
 
 procedure TfrmMain.ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);

@@ -2,14 +2,14 @@ object frmMain: TfrmMain
   Left = 484
   Height = 454
   Top = 270
-  Width = 668
-  HorzScrollBar.Page = 377
-  VertScrollBar.Page = 434
+  Width = 667
+  HorzScrollBar.Page = 461
+  VertScrollBar.Page = 390
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
   ClientHeight = 454
-  ClientWidth = 668
+  ClientWidth = 667
   DockSite = True
   DoubleBuffered = True
   FormStyle = fsMDIForm
@@ -24,9 +24,9 @@ object frmMain: TfrmMain
   WindowState = wsMaximized
   object MainPageControl: TPageControl
     Left = 0
-    Height = 437
+    Height = 431
     Top = 0
-    Width = 668
+    Width = 667
     ActivePage = FrameEditorTabSheet
     Align = alClient
     DockSite = True
@@ -34,13 +34,13 @@ object frmMain: TfrmMain
     TabOrder = 0
     object FrameEditorTabSheet: TTabSheet
       Caption = 'Frame Editor'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 397
+      ClientWidth = 661
       object FrameFlowPanel: TFlowPanel
         Left = 0
-        Height = 41
+        Height = 39
         Top = 0
-        Width = 658
+        Width = 661
         Align = alTop
         AutoSize = True
         ControlList = <        
@@ -59,9 +59,9 @@ object frmMain: TfrmMain
         TabOrder = 0
         object BitBtnNewFrame: TBitBtn
           Left = 1
-          Height = 38
+          Height = 36
           Top = 1
-          Width = 38
+          Width = 34
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -70,10 +70,10 @@ object frmMain: TfrmMain
           TabOrder = 0
         end
         object BitBtnLayers: TBitBtn
-          Left = 39
-          Height = 38
+          Left = 35
+          Height = 36
           Top = 1
-          Width = 38
+          Width = 34
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -81,179 +81,16 @@ object frmMain: TfrmMain
           TabOrder = 1
         end
       end
-      object DrawToolsGroupBox: TGroupBox
-        Left = 0
-        Height = 316
-        Top = 41
-        Width = 80
-        Align = alLeft
-        Caption = 'Tools'
-        ClientHeight = 299
-        ClientWidth = 78
-        TabOrder = 1
-        object GroupBox2: TGroupBox
-          AnchorSideLeft.Control = DrawToolsGroupBox
-          AnchorSideRight.Control = DrawToolsGroupBox
-          AnchorSideRight.Side = asrBottom
-          AnchorSideBottom.Control = ColorsPanel
-          Left = 0
-          Height = 129
-          Top = 109
-          Width = 78
-          Anchors = [akLeft, akBottom]
-          Caption = 'Palette'
-          ClientHeight = 112
-          ClientWidth = 76
-          TabOrder = 0
-          object ScrollBox5: TScrollBox
-            Left = 0
-            Height = 112
-            Top = 0
-            Width = 76
-            HorzScrollBar.Page = 61
-            VertScrollBar.Page = 97
-            Align = alClient
-            ClientHeight = 97
-            ClientWidth = 61
-            TabOrder = 0
-            object PaletteGrid: TBCGameGrid
-              AnchorSideLeft.Control = ScrollBox5
-              AnchorSideTop.Control = ScrollBox5
-              Left = 0
-              Height = 400
-              Top = 0
-              Width = 62
-              GridWidth = 6
-              GridHeight = 40
-              BlockWidth = 10
-              BlockHeight = 10
-              OnRenderControl = PaletteGridRenderControl
-              OnMouseUp = PaletteGridMouseUp
-            end
-          end
-        end
-        object ColorsPanel: TPanel
-          AnchorSideLeft.Control = DrawToolsGroupBox
-          AnchorSideRight.Control = DrawToolsGroupBox
-          AnchorSideRight.Side = asrBottom
-          AnchorSideBottom.Control = DrawToolsGroupBox
-          AnchorSideBottom.Side = asrBottom
-          Left = 0
-          Height = 61
-          Top = 238
-          Width = 78
-          Anchors = [akLeft, akRight, akBottom]
-          ClientHeight = 61
-          ClientWidth = 78
-          TabOrder = 1
-          object SwapBgFg: TBGRAGraphicControl
-            Left = 1
-            Height = 59
-            Hint = 'Swap colors'
-            Top = 1
-            Width = 76
-            Align = alClient
-            Color = clWhite
-            ColorOpacity = 128
-            Alignment = taCenter
-            OnClick = SwapColors
-          end
-          object BgColor: TBGRAGraphicControl
-            Tag = 1
-            AnchorSideTop.Side = asrCenter
-            AnchorSideRight.Control = ColorsPanel
-            AnchorSideRight.Side = asrBottom
-            AnchorSideBottom.Control = ColorsPanel
-            AnchorSideBottom.Side = asrBottom
-            Left = 45
-            Height = 32
-            Hint = 'Left click to select color'#10'Right click to set transparent color'
-            Top = 28
-            Width = 32
-            Anchors = [akRight, akBottom]
-            BorderWidth = 1
-            BevelInner = bvLowered
-            Color = clWhite
-            ColorOpacity = 128
-            Alignment = taCenter
-            OnMouseDown = BgColorMouseUp
-            OnPaint = BgColorPaint
-            Caption = 'BG'
-          end
-          object FgColor: TBGRAGraphicControl
-            Tag = 2
-            AnchorSideLeft.Control = ColorsPanel
-            AnchorSideLeft.Side = asrCenter
-            AnchorSideTop.Control = ColorsPanel
-            AnchorSideTop.Side = asrCenter
-            Left = 23
-            Height = 32
-            Hint = 'Left click to select color'#10'Right click to set transparent color'
-            Top = 14
-            Width = 32
-            BorderWidth = 1
-            BevelInner = bvRaised
-            BevelOuter = bvLowered
-            Color = clWhite
-            ColorOpacity = 128
-            Alignment = taCenter
-            OnMouseDown = BgColorMouseUp
-            OnPaint = BgColorPaint
-            Caption = 'FG'
-          end
-        end
-        object sbEracer: TSpeedButton
-          AnchorSideLeft.Control = sbPen
-          AnchorSideTop.Control = sbPen
-          AnchorSideTop.Side = asrBottom
-          Left = 2
-          Height = 28
-          Top = 32
-          Width = 28
-          AutoSize = True
-          GroupIndex = 1
-          Images = ButtonsImageList
-          ImageIndex = 24
-        end
-        object sbPen: TSpeedButton
-          AnchorSideLeft.Control = DrawToolsGroupBox
-          AnchorSideTop.Control = DrawToolsGroupBox
-          Left = 2
-          Height = 28
-          Top = 2
-          Width = 28
-          AutoSize = True
-          BorderSpacing.Around = 2
-          Down = True
-          GroupIndex = 1
-          Images = ButtonsImageList
-          ImageIndex = 28
-        end
-        object sbPipette: TSpeedButton
-          AnchorSideLeft.Control = sbPen
-          AnchorSideTop.Control = sbEracer
-          AnchorSideTop.Side = asrBottom
-          Left = 2
-          Height = 28
-          Top = 62
-          Width = 28
-          AutoSize = True
-          BorderSpacing.Top = 2
-          GroupIndex = 1
-          Images = ButtonsImageList
-          ImageIndex = 29
-        end
-      end
       object AdditionalToolsPanel: TPanel
         AnchorSideLeft.Side = asrBottom
-        Left = 488
-        Height = 316
-        Top = 41
+        Left = 491
+        Height = 358
+        Top = 39
         Width = 170
         Align = alRight
-        ClientHeight = 316
+        ClientHeight = 358
         ClientWidth = 170
-        TabOrder = 2
+        TabOrder = 1
         object ECAccordion1: TECAccordion
           Left = 1
           Height = 156
@@ -293,20 +130,20 @@ object frmMain: TfrmMain
             end
           end
         end
-        object GroupBox3: TGroupBox
+        object LayersGroupBox: TGroupBox
           Left = 1
-          Height = 158
+          Height = 200
           Top = 157
           Width = 168
           Align = alClient
           Caption = 'Layers'
-          ClientHeight = 141
+          ClientHeight = 183
           ClientWidth = 166
           TabOrder = 1
           object LayersFlowPanel: TFlowPanel
             Left = 0
-            Height = 41
-            Top = 100
+            Height = 39
+            Top = 144
             Width = 166
             Align = alBottom
             AutoSize = True
@@ -336,10 +173,10 @@ object frmMain: TfrmMain
             TabOrder = 0
             object bbtnAddLayer: TBitBtn
               Left = 1
-              Height = 38
+              Height = 36
               Hint = 'Add new layer'
               Top = 1
-              Width = 38
+              Width = 34
               Anchors = []
               AutoSize = True
               Images = ButtonsImageList
@@ -350,11 +187,11 @@ object frmMain: TfrmMain
               TabOrder = 0
             end
             object bbtnDeleteLayer: TBitBtn
-              Left = 39
-              Height = 38
+              Left = 35
+              Height = 36
               Hint = 'Delete selected layer'
               Top = 1
-              Width = 38
+              Width = 34
               Anchors = []
               AutoSize = True
               Images = ButtonsImageList
@@ -365,11 +202,11 @@ object frmMain: TfrmMain
               TabOrder = 1
             end
             object bbtnCopyLayer: TBitBtn
-              Left = 77
-              Height = 38
+              Left = 69
+              Height = 36
               Hint = 'Copy selected layer'
               Top = 1
-              Width = 38
+              Width = 34
               Anchors = []
               AutoSize = True
               Images = ButtonsImageList
@@ -380,11 +217,11 @@ object frmMain: TfrmMain
               TabOrder = 2
             end
             object bbtnMergeLayers: TBitBtn
-              Left = 115
-              Height = 38
+              Left = 103
+              Height = 36
               Hint = 'Merge with previous layer'
               Top = 1
-              Width = 38
+              Width = 34
               Anchors = []
               AutoSize = True
               Images = ButtonsImageList
@@ -397,11 +234,10 @@ object frmMain: TfrmMain
           end
           object LayersCheckListBox: TCheckListBox
             Left = 0
-            Height = 100
+            Height = 144
             Top = 0
             Width = 166
             Align = alClient
-            AllowGrayed = True
             ItemHeight = 0
             TabOrder = 1
             TopIndex = -1
@@ -409,22 +245,22 @@ object frmMain: TfrmMain
         end
       end
       object FrameDrawPanel: TPanel
-        Left = 85
-        Height = 306
-        Top = 46
-        Width = 398
+        Left = 173
+        Height = 348
+        Top = 44
+        Width = 313
         Align = alClient
         BorderSpacing.Around = 5
         BevelInner = bvLowered
         BevelOuter = bvNone
-        ClientHeight = 306
-        ClientWidth = 398
-        TabOrder = 3
+        ClientHeight = 348
+        ClientWidth = 313
+        TabOrder = 2
         object pbFrameDraw: TPaintBox
           Left = 1
-          Height = 304
+          Height = 346
           Top = 1
-          Width = 396
+          Width = 311
           Align = alClient
           OnMouseDown = pbFrameDrawMouseDown
           OnMouseMove = pbFrameDrawMouseMove
@@ -434,19 +270,234 @@ object frmMain: TfrmMain
           OnPaint = pbFrameDrawPaint
         end
       end
-      object pnlToolsOptions: TPanel
+      object DrawToolsPanel: TPanel
         Left = 0
-        Height = 50
-        Top = 357
-        Width = 658
-        Align = alBottom
-        TabOrder = 4
+        Height = 358
+        Top = 39
+        Width = 168
+        Align = alLeft
+        ClientHeight = 358
+        ClientWidth = 168
+        TabOrder = 3
+        object ToolsECAccordion: TECAccordion
+          Left = 1
+          Height = 356
+          Top = 1
+          Width = 166
+          Align = alClient
+          FullExpand = True
+          ItemIndex = 0
+          SelectedFontOptions.FontStyles = [fsBold]
+          object ToolsAccordionItem: TAccordionItem
+            Caption = 'Tools'
+            Order = 0
+            object DrawToolsGroupBox: TGroupBox
+              Left = 0
+              Height = 314
+              Top = 0
+              Width = 166
+              Align = alClient
+              AutoSize = True
+              ClientHeight = 312
+              ClientWidth = 164
+              TabOrder = 0
+              object GroupBox2: TGroupBox
+                Left = 0
+                Height = 129
+                Top = 131
+                Width = 164
+                Align = alBottom
+                Caption = 'Palette'
+                ClientHeight = 112
+                ClientWidth = 162
+                TabOrder = 0
+                object ScrollBox5: TScrollBox
+                  Left = 0
+                  Height = 112
+                  Top = 0
+                  Width = 162
+                  HorzScrollBar.Page = 140
+                  VertScrollBar.Page = 110
+                  Align = alClient
+                  ClientHeight = 110
+                  ClientWidth = 146
+                  TabOrder = 0
+                  object PaletteGrid: TBCGameGrid
+                    AnchorSideLeft.Control = ScrollBox5
+                    AnchorSideTop.Control = ScrollBox5
+                    Left = 0
+                    Height = 400
+                    Top = 0
+                    Width = 140
+                    GridWidth = 14
+                    GridHeight = 40
+                    BlockWidth = 10
+                    BlockHeight = 10
+                    OnRenderControl = PaletteGridRenderControl
+                    OnMouseUp = PaletteGridMouseUp
+                  end
+                end
+              end
+              object ColorsPanel: TPanel
+                Left = 0
+                Height = 52
+                Top = 260
+                Width = 164
+                Align = alBottom
+                AutoSize = True
+                ClientHeight = 52
+                ClientWidth = 164
+                TabOrder = 1
+                OnClick = SwapColors
+                object BgColor: TBGRAGraphicControl
+                  Tag = 1
+                  Left = 113
+                  Height = 50
+                  Hint = 'Left click to select color'#10'Right click to set transparent color'
+                  Top = 1
+                  Width = 50
+                  Align = alRight
+                  BorderWidth = 1
+                  BevelInner = bvLowered
+                  Color = clWhite
+                  ColorOpacity = 128
+                  Alignment = taCenter
+                  OnMouseDown = BgColorMouseUp
+                  OnPaint = BgColorPaint
+                  Caption = 'BG'
+                end
+                object FgColor: TBGRAGraphicControl
+                  Tag = 2
+                  Left = 1
+                  Height = 50
+                  Hint = 'Left click to select color'#10'Right click to set transparent color'
+                  Top = 1
+                  Width = 50
+                  Align = alLeft
+                  BorderWidth = 1
+                  BevelInner = bvRaised
+                  BevelOuter = bvLowered
+                  Color = clWhite
+                  ColorOpacity = 128
+                  Alignment = taCenter
+                  OnMouseDown = BgColorMouseUp
+                  OnPaint = BgColorPaint
+                  Caption = 'FG'
+                end
+                object SwapBGRAShapeLine: TBGRAShapeLine
+                  Left = 51
+                  Height = 50
+                  Hint = 'Swap colors'
+                  Top = 1
+                  Width = 62
+                  Align = alClient
+                  BevelInner = bvRaised
+                  BevelOuter = bvLowered
+                  Color = clNone
+                  ColorOpacity = 0
+                  Alignment = taCenter
+                  OnClick = SwapColors
+                  ParentShowHint = False
+                  ShowHint = True
+                  LineColor = clGreen
+                  ArrowColor = clRed
+                  LineWidth = 10
+                  Arrow1 = True
+                  Arrow2 = True
+                  ArrowFactor = 10
+                end
+              end
+              object DrawToolsFlowPanel: TFlowPanel
+                Left = 0
+                Height = 31
+                Top = 0
+                Width = 164
+                Align = alTop
+                AutoSize = True
+                ControlList = <                
+                  item
+                    Control = sbPen
+                    WrapAfter = waAuto
+                    Index = 0
+                  end                
+                  item
+                    Control = sbEracer
+                    WrapAfter = waAuto
+                    Index = 1
+                  end                
+                  item
+                    Control = sbPipette
+                    WrapAfter = waAuto
+                    Index = 2
+                  end>
+                FlowLayout = tlTop
+                FlowStyle = fsLeftRightTopBottom
+                TabOrder = 2
+                object sbEracer: TSpeedButton
+                  AnchorSideTop.Side = asrBottom
+                  Left = 29
+                  Height = 28
+                  Top = 1
+                  Width = 28
+                  Anchors = []
+                  AutoSize = True
+                  GroupIndex = 1
+                  Images = ButtonsImageList
+                  ImageIndex = 24
+                end
+                object sbPen: TSpeedButton
+                  Left = 1
+                  Height = 28
+                  Top = 1
+                  Width = 28
+                  Anchors = []
+                  AutoSize = True
+                  Down = True
+                  GroupIndex = 1
+                  Images = ButtonsImageList
+                  ImageIndex = 28
+                  OnClick = sbPenClick
+                end
+                object sbPipette: TSpeedButton
+                  AnchorSideTop.Side = asrBottom
+                  Left = 57
+                  Height = 28
+                  Top = 1
+                  Width = 28
+                  Anchors = []
+                  AutoSize = True
+                  GroupIndex = 1
+                  Images = ButtonsImageList
+                  ImageIndex = 29
+                end
+              end
+            end
+          end
+          object ToolOptionsAccordionItem: TAccordionItem
+            Caption = 'Tool options'
+            Order = 1
+            object ValueListEditor1: TValueListEditor
+              Left = 0
+              Height = 1
+              Top = 0
+              Width = 166
+              Align = alClient
+              FixedCols = 0
+              RowCount = 2
+              TabOrder = 0
+              ColWidths = (
+                64
+                86
+              )
+            end
+          end
+        end
       end
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 397
+      ClientWidth = 661
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -458,8 +509,8 @@ object frmMain: TfrmMain
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 397
+      ClientWidth = 661
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -519,8 +570,8 @@ object frmMain: TfrmMain
     end
     object SourceTabSheet: TTabSheet
       Caption = 'Source Image'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 397
+      ClientWidth = 661
       object SrcImageButtonsPanel: TPanel
         Left = 0
         Height = 30
@@ -675,8 +726,8 @@ object frmMain: TfrmMain
     end
     object LibraryTabSheet: TTabSheet
       Caption = 'Local Library'
-      ClientHeight = 407
-      ClientWidth = 658
+      ClientHeight = 397
+      ClientWidth = 661
       object LibraryButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -754,9 +805,9 @@ object frmMain: TfrmMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 17
-    Top = 437
-    Width = 668
+    Height = 23
+    Top = 431
+    Width = 667
     Panels = <    
       item
         Width = 200
@@ -824,10 +875,12 @@ object frmMain: TfrmMain
         object PaintToolPanelVisibleMenuItem: TMenuItem
           Caption = 'Paint tools'
           Checked = True
+          OnClick = PaintToolPanelVisibleMenuItemClick
         end
         object LayersToolVisibleMenuItem: TMenuItem
           Caption = 'LayersToolVisibleMenuItem'
           Checked = True
+          OnClick = LayersToolVisibleMenuItemClick
         end
         object TimeLineToolVisibleMenuItem: TMenuItem
           Caption = 'Timeline'
