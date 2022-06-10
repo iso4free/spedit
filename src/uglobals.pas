@@ -23,7 +23,7 @@ type
   TDrawGridMode = (dgmNone,dgmMove,dgmDraw);
 
   TColors = array[0..MAX_PALETTE_COLORS] of TColor;  //palette - array of colors
-  TPixels = array[0..MAX_PIXELS] of Byte;            //array of indexes to palette
+  TPixels = array[0..MAX_PIXELS] of TBGRAPixel;      //array of pixels
 
   { TPalette }
 
@@ -124,7 +124,7 @@ var
   SpriteLibNames   : TStringList;
   CurrentLibName   : UTF8String;//selected library name
   libpath          : UTF8String;//selected library full path
-
+  BufferLayer      : TLayer;    //for temporary drawing
 
   //Drawing colors
   spclForeColor : TColor;  //foreground color - left mouse button drawing

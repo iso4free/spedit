@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="12"/>
         <CursorPos X="13" Y="24"/>
-        <UsageCount Value="153"/>
+        <UsageCount Value="154"/>
       </Unit>
       <Unit>
         <Filename Value="umain.pas"/>
@@ -25,29 +25,28 @@
         <WindowIndex Value="0"/>
         <TopLine Value="371"/>
         <CursorPos X="10" Y="375"/>
-        <UsageCount Value="153"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="udraw.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="91"/>
         <CursorPos Y="103"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="45"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="uglobals.pas"/>
         <FRMtype Value="0"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="99"/>
-        <CursorPos X="48" Y="115"/>
-        <UsageCount Value="69"/>
+        <TopLine Value="14"/>
+        <CursorPos X="71" Y="26"/>
+        <UsageCount Value="70"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -526,14 +525,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="uglobals.pas"/>
-        <Caret Line="114" Column="32" TopLine="94"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="60" Column="18" TopLine="49"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
         <Caret Line="116" Column="69" TopLine="108"/>
       </Position>
       <Position>
@@ -643,6 +634,14 @@
       <Position>
         <Filename Value="udraw.pas"/>
         <Caret Line="46" TopLine="35"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="127" Column="56" TopLine="113"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="60" Column="19" TopLine="55"/>
       </Position>
     </JumpHistory>
     <RunParams>
