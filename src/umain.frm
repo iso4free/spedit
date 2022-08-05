@@ -487,7 +487,7 @@ object frmMain: TfrmMain
               TabOrder = 0
               ColWidths = (
                 64
-                86
+                100
               )
             end
           end

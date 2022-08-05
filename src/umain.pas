@@ -328,13 +328,13 @@ begin
     mbLeft:begin
         p:=FrameGrid.Coords(x,y);
         StatusBar1.Panels[3].Text:='x='+IntToStr(P.X)+'/y='+IntToStr(P.y)+'/n='+IntToStr(FrameGrid.PixelPos(P.x,P.y));
-        //todo: check wich tool selected
+        //todo: check wich tool selected for drawing
         (DrawTool as TSPPen).StartDraw(p.X,p.Y,spclForeColor);
         DrawGridMode:=dgmDraw;
 
     end;
     mbRight:begin
-      //todo: check wich tool selected
+      //todo: check wich tool selected for drawing
        (DrawTool as TSPPen).StartDraw(p.X,p.Y,spclBackColor);
        DrawGridMode:=dgmDraw;
     end;
