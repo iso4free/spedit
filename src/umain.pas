@@ -8,7 +8,7 @@ uses
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
   Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, CheckLst,
   BGRAImageList, BGRAImageManipulation, BCGameGrid, BGRABitmapTypes, BGRABitmap,
-  BGRAGraphicControl, ECAccordion, TBGRAShapeLineUnit,
+  BGRAGraphicControl, ECAccordion, TBGRAShapeLineUnit, LCLType,
   udraw;
 
 type
@@ -16,6 +16,9 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
     DrawToolsFlowPanel: TFlowPanel;
     LayersCheckListBox: TCheckListBox;
     SwapBGRAShapeLine: TBGRAShapeLine;
@@ -126,7 +129,9 @@ type
     procedure bbtnDeleteLayerClick(Sender: TObject);
     procedure bbtnMergeLayersClick(Sender: TObject);
     procedure BitBtnNewFrameClick(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure LayersToolVisibleMenuItemClick(Sender: TObject);
     procedure miPaletteClearClick(Sender: TObject);
     procedure miPaletteImportFromFileClick(Sender: TObject);
@@ -250,11 +255,40 @@ begin
 
 end;
 
+procedure TfrmMain.Button3Click(Sender: TObject);
+begin
+  //todo: this is for test only
+  FrameGrid.CellCursor.Cells:=StrToInt((Sender as TButton).Caption);
+  pbFrameDraw.Invalidate;
+end;
+
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(DrawTool);
-  FreeAndNil(DrawPen);
   FreeAndNil(FrameGrid);
+end;
+
+procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  //if in Frame Editor mode
+  if MainPageControl.ActivePage.Tag=1 then begin
+    //when arrow keys pressed move cell cursor in drawing grid
+    case Key of
+      VK_LEFT : begin
+        FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X-1;
+      end;
+      VK_RIGHT : begin
+        FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X+1;
+      end;
+      VK_UP : begin
+        FrameGrid.CellCursor.y:=FrameGrid.CellCursor.y-1;
+      end;
+      VK_DOWN : begin
+        FrameGrid.CellCursor.Y:=FrameGrid.CellCursor.Y+1;
+      end;
+    end;
+  end;
 end;
 
 procedure TfrmMain.LayersToolVisibleMenuItemClick(Sender: TObject);
@@ -322,20 +356,17 @@ end;
 
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
-var p : TPoint;
 begin
   case Button of
     mbLeft:begin
-        p:=FrameGrid.Coords(x,y);
-        StatusBar1.Panels[3].Text:='x='+IntToStr(P.X)+'/y='+IntToStr(P.y)+'/n='+IntToStr(FrameGrid.PixelPos(P.x,P.y));
         //todo: check wich tool selected for drawing
-        (DrawTool as TSPPen).StartDraw(p.X,p.Y,spclForeColor);
+        (DrawTool as TSPPen).StartDraw(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y,spclForeColor);
         DrawGridMode:=dgmDraw;
 
     end;
     mbRight:begin
       //todo: check wich tool selected for drawing
-       (DrawTool as TSPPen).StartDraw(p.X,p.Y,spclBackColor);
+       (DrawTool as TSPPen).StartDraw(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y,spclBackColor);
        DrawGridMode:=dgmDraw;
     end;
     mbMiddle: begin   //start grid drag
@@ -350,22 +381,22 @@ end;
 
 procedure TfrmMain.pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
-var p : TPoint;
 begin
+   FrameGrid.CellCursor.Coords:=FrameGrid.Coords(x,y);
+        StatusBar1.Panels[3].Text:='x='+IntToStr(FrameGrid.CellCursor.X)+'/y='+IntToStr(FrameGrid.CellCursor.y);
    if DrawGridMode=dgmMove then begin //move grid inside paintbox
      dx:=x-startx;
      dy:=y-starty;
      startx:=x;
      starty:=y;
      FrameGrid.Offset:=Point(dx,dy);
-     pbFrameDraw.Invalidate;
    end;
    if DrawGridMode=dgmDraw then begin
-     p:=FrameGrid.Coords(x,y);
     //todo: check which tool selected
-    (DrawTool as TSPPen).MouseMove(p.X,p.Y);
+    (DrawTool as TSPPen).MouseMove(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y);
    end;
    StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
+   pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
@@ -395,7 +426,7 @@ procedure TfrmMain.pbFrameDrawPaint(Sender: TObject);
 begin
    //todo: draw here zoomed frame data
   if Assigned(FrameGrid) then begin
-    FrameGrid.RenderAndDraw(pbFrameDraw.Canvas,Point(0,0));
+    FrameGrid.RenderAndDraw(pbFrameDraw.Canvas);
   end;
   StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);
 

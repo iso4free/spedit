@@ -9,7 +9,8 @@ interface
 
 uses Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson, BGRABitmap, BGRABitmapTypes;
 
-const MAX_FRAMES = 50;          //it will be enought for one animation?
+const
+      MAX_FRAMES = 50;           //it will be enought for one animation?
       MAX_PALETTE_COLORS = 255;  //max colors count in palette
       MAX_PIXELS = 512*512;      //max pixels array (sprite size 512x512 pixels)
       MAX_LAYERS = 10;           //max layers count in one frame
@@ -79,13 +80,37 @@ type
     camWidth, camHeight : Word;
   end;
 
+  { TCellCursor }
+
+  TCellCursor = class
+   private
+     FCells: Byte;
+     FPrevX: Integer;
+     FPrevY: Integer;
+     FX: Integer;
+     FY: Integer;
+     function GetPrevCoords: TPoint;
+     procedure SetCells(AValue: Byte);
+     procedure SetCoords(AValue: TPoint);
+     function GetCoords : TPoint;
+   public
+    property X : Integer read FX write FX default 0;
+    property Y : Integer read FY write FY default 0;
+    property Coords : TPoint read GetCoords write SetCoords;
+    property PrevCoords : TPoint read GetPrevCoords;
+    property PrevX : Integer read FPrevX default 0;
+    property PrevY : Integer read FPrevY default 0;
+    property Cells : Byte read FCells write SetCells default 1;
+  end;
+
   { TFrameGrid }
 
   TFrameGrid = class
    private
     fBuffer        : TBgraBitmap; //for in-memory drawig before show on screen
-    FCheckersSize: Byte;
-    FDrawLayer: TLayer;
+    FCellCursor: TCellCursor;
+    FCheckersSize  : Byte;
+    FDrawLayer     : TLayer;
     fPreview       : TBGRABitmap; //for draw image preview
     fFrameGridSize : Word;   //current grid size
     fFrameWidth,
@@ -104,7 +129,7 @@ type
     function PixelPos(x,y : Integer) : Integer; //return pixel index in array
     constructor Create(aW: Integer = 32; aH : Integer = 32; aSize : Word = 10);
     destructor Destroy; override;
-    procedure RenderAndDraw(Canvas : TCanvas; Offset : TPoint);
+    procedure RenderAndDraw(Canvas : TCanvas);
     procedure RenderPicture(Canvas : TCanvas);
     property ShowGrid : Boolean read fShowGrid write fShowGrid;
     property FrameZoom : Integer read fFrameZoom write SetFrameZoom;
@@ -113,7 +138,9 @@ type
     property FrameWidth : Integer read fFrameWidth;
     property FrameHeight : Integer read fFrameHeight;
     property DrawLayer : TLayer read FDrawLayer;
+    property CellCursor : TCellCursor read FCellCursor;
   end;
+
 
 var
 
@@ -198,6 +225,32 @@ end;
 function ConvertTColorToHTML(aColor: TColor): String;
 begin
    Result := '#'+IntToHex(Blue(aColor))+IntToHex(Green(aColor))+IntToHex(Red(aColor));
+end;
+
+{ TCellCursor }
+
+procedure TCellCursor.SetCoords(AValue: TPoint);
+begin
+  if (AValue.X<0) or (AValue.Y<0) then Exit;
+  X:=AValue.X;
+
+  Y:=AValue.Y;
+end;
+
+function TCellCursor.GetPrevCoords: TPoint;
+begin
+  Result := Point(PrevX,PrevY);
+end;
+
+procedure TCellCursor.SetCells(AValue: Byte);
+begin
+  if (AValue<1) or (AValue>3) then Exit;
+  FCells:=AValue;
+end;
+
+function TCellCursor.GetCoords: TPoint;
+begin
+  Result := Point(X,Y);
 end;
 
 { TFrame }
@@ -294,6 +347,8 @@ begin
   Getmem(fFrame,SizeOf(PFrame));
   FDrawLayer.Count:=aw*ah;
   FDrawLayer.Clear;
+  FCellCursor := TCellCursor.Create;
+  FCellCursor.Cells:=1;
 end;
 
 destructor TFrameGrid.Destroy;
@@ -302,10 +357,11 @@ begin
   FreeMemAndNil(fFrame);
   FreeAndNil(fBuffer);
   FreeAndNil(fPreview);
+  FreeAndNil(FCellCursor);
   inherited Destroy;
 end;
 
-procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas; Offset: TPoint);
+procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas);
 
   procedure DrawGrid(x1,y1,x2,y2 : Integer; size : Integer);
    var i, xsize, ysize : Integer;
@@ -328,6 +384,11 @@ begin
   if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
   //todo : draw all layers per pixels
 
+  //draw highlited cell cursor
+  fBuffer.Rectangle(CellCursor.X*(fFrameGridSize+fFrameZoom),
+                    CellCursor.Y*(fFrameGridSize+fFrameZoom),
+                    CellCursor.X*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.Cells,
+                    CellCursor.Y*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.Cells,clRed);
   fBuffer.Draw(Canvas,fOffset.X,fOffset.Y);
 end;
 

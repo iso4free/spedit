@@ -1,6 +1,9 @@
 {"version":1,"strings":[
 {"hash":247726402,"name":"tfrmmain.caption","sourcebytes":[83,112,114,105,116,101,32,69,100,105,116,111,114],"value":"Sprite Editor"},
 {"hash":6523410,"name":"tfrmmain.frameeditortabsheet.caption","sourcebytes":[70,114,97,109,101,32,69,100,105,116,111,114],"value":"Frame Editor"},
+{"hash":49,"name":"tfrmmain.button1.caption","sourcebytes":[49],"value":"1"},
+{"hash":50,"name":"tfrmmain.button2.caption","sourcebytes":[50],"value":"2"},
+{"hash":51,"name":"tfrmmain.button3.caption","sourcebytes":[51],"value":"3"},
 {"hash":195611637,"name":"tfrmmain.refimageaccordionitem.caption","sourcebytes":[82,101,102,101,114,101,110,99,101,32,105,109,97,103,101],"value":"Reference image"},
 {"hash":126668695,"name":"tfrmmain.previewaccordionitem.caption","sourcebytes":[80,114,101,118,105,101,119],"value":"Preview"},
 {"hash":86572179,"name":"tfrmmain.layersgroupbox.caption","sourcebytes":[76,97,121,101,114,115],"value":"Layers"},
