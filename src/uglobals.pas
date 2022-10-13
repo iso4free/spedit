@@ -376,6 +376,7 @@ procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas);
     fBuffer.Rectangle(x1,y1,x2,y2,ColorToBGRA(clNavy));
   end;
 
+
 begin
   FreeAndNil(fBuffer);
   fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),fFrameHeight*(fFrameGridSize+fFrameZoom));
@@ -383,7 +384,7 @@ begin
   fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width-1,fBuffer.Height-1),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),FCheckersSize,FCheckersSize);
   if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
   //todo : draw all layers per pixels
-
+  //for i := 0 to
   //draw highlited cell cursor
   fBuffer.Rectangle(CellCursor.X*(fFrameGridSize+fFrameZoom),
                     CellCursor.Y*(fFrameGridSize+fFrameZoom),

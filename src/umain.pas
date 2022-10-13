@@ -280,6 +280,7 @@ begin
       end;
       VK_RIGHT : begin
         FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X+1;
+        Key:=0;
       end;
       VK_UP : begin
         FrameGrid.CellCursor.y:=FrameGrid.CellCursor.y-1;
@@ -288,6 +289,7 @@ begin
         FrameGrid.CellCursor.Y:=FrameGrid.CellCursor.Y+1;
       end;
     end;
+    pbFrameDraw.Invalidate;
   end;
 end;
 
@@ -362,7 +364,7 @@ begin
         //todo: check wich tool selected for drawing
         (DrawTool as TSPPen).StartDraw(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y,spclForeColor);
         DrawGridMode:=dgmDraw;
-
+        pbFrameDraw.Invalidate;
     end;
     mbRight:begin
       //todo: check wich tool selected for drawing
