@@ -56,10 +56,21 @@ type
   { TLayer }
 
   PLayer = ^TLayer;
-  TLayer = record       //layer record
-    Count : Word;       //pixels count
-    Pixels : TPixels;   //array of pixels
-    Visible : Boolean;  //if false not draw on screen
+  TLayer = class       //layer record
+   private
+    FHeight: Integer;
+    fName: String;
+    fVisible : Boolean;  //if false not draw on screen
+    fLayerImg : TBGRABitmap; //layer image
+    FWidth: Integer;
+   public
+    property LayerName : String read fName write fName;
+    property Visible : Boolean read fVisible write fVisible default True;
+    property Height : Integer read FHeight;
+    property Width : Integer read FWidth;
+    procedure Resize(NewHeight, newWidth : Integer; Stretched : Boolean = False);
+    constructor Create(aName : String = 'layer'; aWidth : Integer = 32; aHeight : Integer = 32);
+    destructor Destroy; override;
     procedure Clear;
   end;
 
@@ -75,10 +86,10 @@ type
     function AddLayer: Integer; //add new layer and return it`s index or -1 if error
   end;
 
-  TCamera = record           //camera view on canvas
+{  TCamera = record           //camera view on canvas
     posX, posY : Integer;
     camWidth, camHeight : Word;
-  end;
+  end;  }
 
   { TCellCursor }
 
@@ -276,12 +287,24 @@ end;
 
 { TLayer }
 
-procedure TLayer.Clear;
-var
-  i: Integer;
+procedure TLayer.Resize(NewHeight, newWidth: Integer; Stretched: Boolean);
 begin
-  for i:=0 to MAX_PIXELS do Pixels[i]:=0; //in palette first color always means transparent - clNone
-  Count:=0;
+
+end;
+
+constructor TLayer.Create(aName: String; aWidth: Integer; aHeight: Integer);
+begin
+
+end;
+
+destructor TLayer.Destroy;
+begin
+  inherited Destroy;
+end;
+
+procedure TLayer.Clear;
+begin
+
 end;
 
 { TFrameGrid }
@@ -345,8 +368,6 @@ begin
   CalcGridRect;
   fPreview:=TBGRABitmap.Create(aW,aH,ColorToBGRA(clWhite));
   Getmem(fFrame,SizeOf(PFrame));
-  FDrawLayer.Count:=aw*ah;
-  FDrawLayer.Clear;
   FCellCursor := TCellCursor.Create;
   FCellCursor.Cells:=1;
 end;
@@ -383,9 +404,9 @@ begin
   ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
   fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width-1,fBuffer.Height-1),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),FCheckersSize,FCheckersSize);
   if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
-  //todo : draw all layers per pixels
+  //todo : draw all layers to base and then out base to fBuffer per pixel
   //for i := 0 to
-  //draw highlited cell cursor
+  //draw highlited cell cursor over the grid
   fBuffer.Rectangle(CellCursor.X*(fFrameGridSize+fFrameZoom),
                     CellCursor.Y*(fFrameGridSize+fFrameZoom),
                     CellCursor.X*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.Cells,
