@@ -7,13 +7,13 @@ unit uglobals;
 
 interface
 
-uses Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson, BGRABitmap, BGRABitmapTypes;
+uses Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson, BGRABitmap, BGRABitmapTypes, fgl;
 
 const
       MAX_FRAMES = 50;           //it will be enought for one animation?
       MAX_PALETTE_COLORS = 255;  //max colors count in palette
       MAX_PIXELS = 512*512;      //max pixels array (sprite size 512x512 pixels)
-      MAX_LAYERS = 10;           //max layers count in one frame
+      //MAX_LAYERS = 10;           //max layers count in one frame
 
 
 
@@ -54,36 +54,45 @@ type
   end;
 
   { TLayer }
-
-  PLayer = ^TLayer;
-  TLayer = class       //layer record
+  {Uses for layers in every frameframe }
+  TLayer = class
    private
     FHeight: Integer;
     fName: String;
-    fVisible : Boolean;  //if false not draw on screen
+    fVisible : Boolean;
     fLayerImg : TBGRABitmap; //layer image
     FWidth: Integer;
    public
-    property LayerName : String read fName write fName;
+    property LayerName : String read fName write fName; //text to layers list identify
     property Visible : Boolean read fVisible write fVisible default True;
     property Height : Integer read FHeight;
     property Width : Integer read FWidth;
-    procedure Resize(NewHeight, newWidth : Integer; Stretched : Boolean = False);
-    constructor Create(aName : String = 'layer'; aWidth : Integer = 32; aHeight : Integer = 32);
+    property Drawable : TBGRABitmap read fLayerImg;
+    procedure Resize(newWidth, NewHeight: Integer; Stretched: Boolean=False);
+    constructor Create(aName : String = 'Layer'; aWidth : Integer = 32; aHeight : Integer = 32);
     destructor Destroy; override;
     procedure Clear;
   end;
 
-  TLayers = array[0..MAX_LAYERS] of PLayer;
+  TLayers = specialize TFPGMap<String,TLayer>;
 
   { TFrame }
 
-  PFrame = ^TFrame;
-  TFrame = record
-    Count : Byte;
+  //PFrame = ^TFrame;
+  TFrame = class
+   private
+    FCount : Byte;
+    FIndex: Integer;
     fLayers : TLayers;
+    function GetSelectedLayer: TLayer;
+    procedure SetIndex(AValue: Integer);
+   public
+    constructor Create();
+    property Layers : TLayers read fLayers;
+    property Index : Integer read FIndex write SetIndex;
+    property SelectedLayer : TLayer read GetSelectedLayer;
     procedure Clear;
-    function AddLayer: Integer; //add new layer and return it`s index or -1 if error
+    function AddLayer(LayerName : String): Integer; //add new layer and return it`s index or -1 if error
   end;
 
 {  TCamera = record           //camera view on canvas
@@ -128,7 +137,7 @@ type
     fFrameHeight   : Integer;   //frame size in pixels
     fFrameZoom     : Integer;//zoom coeff for drawing grid (0 for normal size)
     fRect          : TRect;  //grid area on canvas
-    fFrame         : PFrame; //pointer to frame record with all layers
+    //fFrame         : PFrame; //pointer to frame record with all layers
     fShowGrid      : Boolean;//if true grid will be draw
     fOffset        : TPoint; //offset to draw frame on canvas
     procedure CalcGridRect;
@@ -266,45 +275,64 @@ end;
 
 { TFrame }
 
-procedure TFrame.Clear;
-var
-  i: Integer;
+function TFrame.GetSelectedLayer: TLayer;
 begin
-  for i:=0 to MAX_LAYERS do fLayers[i]^.Clear;
-  Count:=0;
+  Result:= fLayers.Data[FIndex];
 end;
 
-function TFrame.AddLayer: Integer;
+procedure TFrame.SetIndex(AValue: Integer);
+begin
+  if (FIndex=AValue) or (AValue>FCount) then Exit;
+  FIndex:=AValue;
+end;
+
+constructor TFrame.Create();
+begin
+
+end;
+
+procedure TFrame.Clear;
+begin
+  fLayers.Clear;
+  FCount := fLayers.Add('Layer',TLayer.Create('Layer',FrameGrid.FrameWidth,FrameGrid.FrameHeight));
+end;
+
+function TFrame.AddLayer(LayerName: String): Integer;
+var
+  _Index: Integer;
 begin
   Result:=-1;
-  if Count<MAX_LAYERS then begin
-   Getmem(fLayers[Count],SizeOf(TLayer));
-   Inc(Count);
-   Result:=Count;
-  end;
+  if fLayers.Find(LayerName,_Index) then LayerName:=LayerName+'1';
+  Result:=fLayers.Add(LayerName,TLayer.Create(LayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight));
 end;
 
 
 { TLayer }
 
-procedure TLayer.Resize(NewHeight, newWidth: Integer; Stretched: Boolean);
+procedure TLayer.Resize(newWidth, NewHeight: Integer; Stretched: Boolean);
 begin
+  if Stretched then begin
+    fLayerImg:=fLayerImg.Resample(newWidth,NewHeight);
+  end else begin
+    fLayerImg.SetSize(newWidth,NewHeight);
+  end;
 
 end;
 
 constructor TLayer.Create(aName: String; aWidth: Integer; aHeight: Integer);
 begin
-
+  fLayerImg := TBGRABitmap.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
 end;
 
 destructor TLayer.Destroy;
 begin
+  FreeAndNil(fLayerImg);
   inherited Destroy;
 end;
 
 procedure TLayer.Clear;
 begin
-
+ fLayerImg.EraseRect(0,0,fLayerImg.Width,fLayerImg.Height,255);
 end;
 
 { TFrameGrid }
@@ -367,7 +395,7 @@ begin
   fFrameZoom:=0;
   CalcGridRect;
   fPreview:=TBGRABitmap.Create(aW,aH,ColorToBGRA(clWhite));
-  Getmem(fFrame,SizeOf(PFrame));
+  //Getmem(fFrame,SizeOf(PFrame));
   FCellCursor := TCellCursor.Create;
   FCellCursor.Cells:=1;
 end;
@@ -375,7 +403,7 @@ end;
 destructor TFrameGrid.Destroy;
 begin
   INI.WriteInteger('INTERFACE','CHECKERS SIZE',FCheckersSize);
-  FreeMemAndNil(fFrame);
+  //FreeMemAndNil(fFrame);
   FreeAndNil(fBuffer);
   FreeAndNil(fPreview);
   FreeAndNil(FCellCursor);

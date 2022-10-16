@@ -25,6 +25,11 @@ msgstr ""
 msgid "Merge with previous layer"
 msgstr ""
 
+#: tfrmmain.bbtnswapcolors.hint
+msgctxt "tfrmmain.bbtnswapcolors.hint"
+msgid "Swap colors"
+msgstr ""
+
 #: tfrmmain.bgcolor.caption
 msgid "BG"
 msgstr ""
@@ -219,10 +224,6 @@ msgstr ""
 
 #: tfrmmain.statictext1.caption
 msgid "StaticText1"
-msgstr ""
-
-#: tfrmmain.swapbgrashapeline.hint
-msgid "Swap colors"
 msgstr ""
 
 #: tfrmmain.timelinetoolvisiblemenuitem.caption

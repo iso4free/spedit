@@ -16,12 +16,12 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    bbtnSwapColors: TBitBtn;
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
     DrawToolsFlowPanel: TFlowPanel;
     LayersCheckListBox: TCheckListBox;
-    SwapBGRAShapeLine: TBGRAShapeLine;
     DrawToolsPanel: TPanel;
     ToolOptionsAccordionItem: TAccordionItem;
     ToolsAccordionItem: TAccordionItem;
