@@ -54,10 +54,13 @@ type
   end;
 
   { TLayer }
-  {Uses for layers in every frameframe }
+  {Uses for layers in every frame.
+  }
+  PLayer = ^TLayer;
   TLayer = class
    private
     FHeight: Integer;
+    FLocked: Boolean;
     fName: String;
     fVisible : Boolean;
     fLayerImg : TBGRABitmap; //layer image
@@ -65,40 +68,37 @@ type
    public
     property LayerName : String read fName write fName; //text to layers list identify
     property Visible : Boolean read fVisible write fVisible default True;
+    property Locked : Boolean read FLocked write FLocked default False;
     property Height : Integer read FHeight;
     property Width : Integer read FWidth;
     property Drawable : TBGRABitmap read fLayerImg;
-    procedure Resize(newWidth, NewHeight: Integer; Stretched: Boolean=False);
+    procedure Resize(newWidth, NewHeight: Integer; Stretched: Boolean=False); //resize layer
+    procedure Draw(DstRec : TRect; const Canvas : TCanvas); //draw layer to any canvas resized to DstRect
     constructor Create(aName : String = 'Layer'; aWidth : Integer = 32; aHeight : Integer = 32);
     destructor Destroy; override;
     procedure Clear;
   end;
 
-  TLayers = specialize TFPGMap<String,TLayer>;
+  TLayers = specialize TFPGMap<String,PLayer>;
 
   { TFrame }
 
-  //PFrame = ^TFrame;
+  PFrame = ^TFrame;
   TFrame = class
    private
     FCount : Byte;
     FIndex: Integer;
     fLayers : TLayers;
-    function GetSelectedLayer: TLayer;
+    function GetSelectedLayer: PLayer;
     procedure SetIndex(AValue: Integer);
    public
     constructor Create();
     property Layers : TLayers read fLayers;
     property Index : Integer read FIndex write SetIndex;
-    property SelectedLayer : TLayer read GetSelectedLayer;
+    property SelectedLayer : PLayer read GetSelectedLayer;
     procedure Clear;
     function AddLayer(LayerName : String): Integer; //add new layer and return it`s index or -1 if error
   end;
-
-{  TCamera = record           //camera view on canvas
-    posX, posY : Integer;
-    camWidth, camHeight : Word;
-  end;  }
 
   { TCellCursor }
 
@@ -275,7 +275,7 @@ end;
 
 { TFrame }
 
-function TFrame.GetSelectedLayer: TLayer;
+function TFrame.GetSelectedLayer: PLayer;
 begin
   Result:= fLayers.Data[FIndex];
 end;
@@ -292,18 +292,22 @@ begin
 end;
 
 procedure TFrame.Clear;
+var NewLayer : TLayer;
 begin
   fLayers.Clear;
-  FCount := fLayers.Add('Layer',TLayer.Create('Layer',FrameGrid.FrameWidth,FrameGrid.FrameHeight));
+  NewLayer:=TLayer.Create('Layer',FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+  FCount := fLayers.Add('Layer',@NewLayer);
 end;
 
 function TFrame.AddLayer(LayerName: String): Integer;
 var
   _Index: Integer;
+  NewLayer : TLayer;
 begin
   Result:=-1;
   if fLayers.Find(LayerName,_Index) then LayerName:=LayerName+'1';
-  Result:=fLayers.Add(LayerName,TLayer.Create(LayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight));
+  NewLayer := TLayer.Create(LayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+  Result:=fLayers.Add(LayerName,@NewLayer);
 end;
 
 
@@ -322,6 +326,8 @@ end;
 constructor TLayer.Create(aName: String; aWidth: Integer; aHeight: Integer);
 begin
   fLayerImg := TBGRABitmap.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+  fVisible:=True;
+  FLocked:=False;
 end;
 
 destructor TLayer.Destroy;
@@ -431,9 +437,10 @@ begin
   fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),fFrameHeight*(fFrameGridSize+fFrameZoom));
   ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
   fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width-1,fBuffer.Height-1),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),FCheckersSize,FCheckersSize);
-  if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
   //todo : draw all layers to base and then out base to fBuffer per pixel
   //for i := 0 to
+  if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
+
   //draw highlited cell cursor over the grid
   fBuffer.Rectangle(CellCursor.X*(fFrameGridSize+fFrameZoom),
                     CellCursor.Y*(fFrameGridSize+fFrameZoom),

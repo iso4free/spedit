@@ -8,7 +8,7 @@ uses
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
   Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, CheckLst,
   BGRAImageList, BGRAImageManipulation, BCGameGrid, BGRABitmapTypes, BGRABitmap,
-  BGRAGraphicControl, ECAccordion, TBGRAShapeLineUnit, LCLType,
+  BGRAGraphicControl, ECAccordion, LCLType,
   udraw;
 
 type
