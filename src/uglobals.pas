@@ -53,10 +53,17 @@ type
      function ColorExists(aColor : TColor) : Integer; //check if color in palette before adding
   end;
 
+  PLayer = ^TLayer;
+  PFrame = ^TFrame;
+
+  TLayers = specialize TFPGMap<String,PLayer>;  //mapped layers list
+  TFrames = specialize TFPGMap<String,PFrame>;  //mapped frames list
+
   { TLayer }
   {Uses for layers in every frame.
   }
-  PLayer = ^TLayer;
+
+
   TLayer = class
    private
     FHeight: Integer;
@@ -65,13 +72,16 @@ type
     fVisible : Boolean;
     fLayerImg : TBGRABitmap; //layer image
     FWidth: Integer;
+    FFrames : TFrames;
    public
     property LayerName : String read fName write fName; //text to layers list identify
-    property Visible : Boolean read fVisible write fVisible default True;
-    property Locked : Boolean read FLocked write FLocked default False;
+    property Visible : Boolean read fVisible write fVisible default True; //is drawable
+    property Locked : Boolean read FLocked write FLocked default False; //can be changed
     property Height : Integer read FHeight;
     property Width : Integer read FWidth;
-    property Drawable : TBGRABitmap read fLayerImg;
+    property Drawable : TBGRABitmap read fLayerImg;  //BGRABitmap for drawing
+
+    property Frames : TFrames read FFrames; //mapped frames list containing current layer
     procedure Resize(newWidth, NewHeight: Integer; Stretched: Boolean=False); //resize layer
     procedure Draw(DstRec : TRect; const Canvas : TCanvas); //draw layer to any canvas resized to DstRect
     constructor Create(aName : String = 'Layer'; aWidth : Integer = 32; aHeight : Integer = 32);
@@ -79,11 +89,9 @@ type
     procedure Clear;
   end;
 
-  TLayers = specialize TFPGMap<String,PLayer>;
 
   { TFrame }
 
-  PFrame = ^TFrame;
   TFrame = class
    private
     FCount : Byte;
@@ -100,7 +108,7 @@ type
     function AddLayer(LayerName : String): Integer; //add new layer and return it`s index or -1 if error
   end;
 
-  { TCellCursor }
+  { TCellCursor - for drawing red rectangle followed by mouse cursor or moved by arrow keys}
 
   TCellCursor = class
    private
@@ -116,18 +124,17 @@ type
    public
     property X : Integer read FX write FX default 0;
     property Y : Integer read FY write FY default 0;
-    property Coords : TPoint read GetCoords write SetCoords;
-    property PrevCoords : TPoint read GetPrevCoords;
+    property Coords : TPoint read GetCoords write SetCoords; //cell coords
+    property PrevCoords : TPoint read GetPrevCoords; //prevoius coords for correct moving
     property PrevX : Integer read FPrevX default 0;
     property PrevY : Integer read FPrevY default 0;
-    property Cells : Byte read FCells write SetCells default 1;
+    property Cells : Byte read FCells write SetCells default 1; //cursor size in cells i.e. 2x2, 4x4 etc.
   end;
 
   { TFrameGrid }
 
   TFrameGrid = class
    private
-    fBuffer        : TBgraBitmap; //for in-memory drawig before show on screen
     FCellCursor: TCellCursor;
     FCheckersSize  : Byte;
     FDrawLayer     : TLayer;
@@ -180,6 +187,8 @@ var
   Palette       : TPalette;
 
   FrameGrid     : TFrameGrid;
+
+  TempLayer : TLayer;  //temporary for test purposes only
 
   //**********************************************************************
   function IsDigits(s : String) : Boolean;
@@ -288,7 +297,7 @@ end;
 
 constructor TFrame.Create();
 begin
-
+ //todo: create an empty frame without layers
 end;
 
 procedure TFrame.Clear;
@@ -323,15 +332,22 @@ begin
 
 end;
 
+procedure TLayer.Draw(DstRec: TRect; const Canvas: TCanvas);
+begin
+  fLayerImg.Draw(Canvas,DstRec,False);
+end;
+
 constructor TLayer.Create(aName: String; aWidth: Integer; aHeight: Integer);
 begin
-  fLayerImg := TBGRABitmap.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+  fLayerImg := TBGRABitmap.Create(aWidth,aHeight,BGRA(0,0,0,0));
   fVisible:=True;
   FLocked:=False;
+  FFrames := TFrames.Create;
 end;
 
 destructor TLayer.Destroy;
 begin
+  FreeAndNil(FFrames);
   FreeAndNil(fLayerImg);
   inherited Destroy;
 end;
@@ -404,19 +420,25 @@ begin
   //Getmem(fFrame,SizeOf(PFrame));
   FCellCursor := TCellCursor.Create;
   FCellCursor.Cells:=1;
+
+   //todo: delete me after test
+   TempLayer:= TLayer.Create();
 end;
 
 destructor TFrameGrid.Destroy;
 begin
   INI.WriteInteger('INTERFACE','CHECKERS SIZE',FCheckersSize);
-  //FreeMemAndNil(fFrame);
-  FreeAndNil(fBuffer);
+  //todo: delete me after test
+  FreeAndNil(TempLayer);
+
   FreeAndNil(fPreview);
   FreeAndNil(FCellCursor);
   inherited Destroy;
 end;
 
 procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas);
+
+var fBuffer : TBGRABitmap;
 
   procedure DrawGrid(x1,y1,x2,y2 : Integer; size : Integer);
    var i, xsize, ysize : Integer;
@@ -433,10 +455,12 @@ procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas);
 
 
 begin
-  FreeAndNil(fBuffer);
   fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),fFrameHeight*(fFrameGridSize+fFrameZoom));
   ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
   fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width-1,fBuffer.Height-1),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),FCheckersSize,FCheckersSize);
+   //todo: delete me after test
+   TempLayer.Draw(fBuffer.ClipRect,fBuffer.Canvas);
+
   //todo : draw all layers to base and then out base to fBuffer per pixel
   //for i := 0 to
   if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
@@ -447,6 +471,7 @@ begin
                     CellCursor.X*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.Cells,
                     CellCursor.Y*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.Cells,clRed);
   fBuffer.Draw(Canvas,fOffset.X,fOffset.Y);
+  FreeAndNil(fBuffer);
 end;
 
 procedure TFrameGrid.RenderPicture(Canvas: TCanvas);
@@ -454,7 +479,8 @@ procedure TFrameGrid.RenderPicture(Canvas: TCanvas);
 begin
   fPreview.DrawCheckers(Rect(0,0,fPreview.Width,fPreview.Height),
                                               ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),4,4);
-  //todo: draw pixels from all layers to canvas
+  //todo: draw all layers to canvas
+
   ImagePos:=Point((Canvas.Width-fPreview.Width) div 2,
                   (Canvas.Height-fPreview.Height) div 2);
   if ImagePos.X<0 then ImagePos.X:=0;

@@ -3,8 +3,8 @@ object frmMain: TfrmMain
   Height = 454
   Top = 270
   Width = 667
-  HorzScrollBar.Page = 469
-  VertScrollBar.Page = 392
+  HorzScrollBar.Page = 465
+  VertScrollBar.Page = 385
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
@@ -36,7 +36,7 @@ object frmMain: TfrmMain
     object FrameEditorTabSheet: TTabSheet
       Tag = 1
       Caption = 'Frame Editor'
-      ClientHeight = 403
+      ClientHeight = 406
       ClientWidth = 657
       object FrameFlowPanel: TFlowPanel
         Left = 0
@@ -134,18 +134,18 @@ object frmMain: TfrmMain
       object AdditionalToolsPanel: TPanel
         AnchorSideLeft.Side = asrBottom
         Left = 487
-        Height = 362
+        Height = 365
         Top = 41
         Width = 170
         Align = alRight
-        ClientHeight = 358
-        ClientWidth = 166
+        ClientHeight = 365
+        ClientWidth = 170
         TabOrder = 1
         object ECAccordion1: TECAccordion
           Left = 1
           Height = 156
           Top = 1
-          Width = 164
+          Width = 168
           Align = alTop
           FullExpand = True
           ItemIndex = 1
@@ -157,7 +157,7 @@ object frmMain: TfrmMain
               Left = 0
               Height = 1
               Top = 0
-              Width = 164
+              Width = 168
               Align = alClient
               AutoSize = True
               Center = True
@@ -174,7 +174,7 @@ object frmMain: TfrmMain
               Left = 0
               Height = 114
               Top = 0
-              Width = 164
+              Width = 168
               Align = alClient
               OnPaint = FramePreviewPaint
             end
@@ -182,19 +182,19 @@ object frmMain: TfrmMain
         end
         object LayersGroupBox: TGroupBox
           Left = 1
-          Height = 200
+          Height = 207
           Top = 157
-          Width = 164
+          Width = 168
           Align = alClient
           Caption = 'Layers'
-          ClientHeight = 183
-          ClientWidth = 162
+          ClientHeight = 190
+          ClientWidth = 166
           TabOrder = 1
           object LayersFlowPanel: TFlowPanel
             Left = 0
             Height = 41
-            Top = 142
-            Width = 162
+            Top = 149
+            Width = 166
             Align = alBottom
             AutoSize = True
             ControlList = <            
@@ -284,9 +284,9 @@ object frmMain: TfrmMain
           end
           object LayersCheckListBox: TCheckListBox
             Left = 0
-            Height = 142
+            Height = 149
             Top = 0
-            Width = 162
+            Width = 166
             Align = alClient
             ItemHeight = 0
             TabOrder = 1
@@ -296,21 +296,21 @@ object frmMain: TfrmMain
       end
       object FrameDrawPanel: TPanel
         Left = 173
-        Height = 352
+        Height = 355
         Top = 46
         Width = 309
         Align = alClient
         BorderSpacing.Around = 5
         BevelInner = bvLowered
         BevelOuter = bvNone
-        ClientHeight = 348
-        ClientWidth = 305
+        ClientHeight = 355
+        ClientWidth = 309
         TabOrder = 2
         object pbFrameDraw: TPaintBox
           Left = 1
-          Height = 346
+          Height = 353
           Top = 1
-          Width = 303
+          Width = 307
           Align = alClient
           OnMouseDown = pbFrameDrawMouseDown
           OnMouseMove = pbFrameDrawMouseMove
@@ -322,18 +322,18 @@ object frmMain: TfrmMain
       end
       object DrawToolsPanel: TPanel
         Left = 0
-        Height = 362
+        Height = 365
         Top = 41
         Width = 168
         Align = alLeft
-        ClientHeight = 358
-        ClientWidth = 164
+        ClientHeight = 365
+        ClientWidth = 168
         TabOrder = 3
         object ToolsECAccordion: TECAccordion
           Left = 1
-          Height = 356
+          Height = 363
           Top = 1
-          Width = 162
+          Width = 166
           Align = alClient
           FullExpand = True
           ItemIndex = 0
@@ -343,34 +343,34 @@ object frmMain: TfrmMain
             Order = 0
             object DrawToolsGroupBox: TGroupBox
               Left = 0
-              Height = 314
+              Height = 321
               Top = 0
-              Width = 162
+              Width = 166
               Align = alClient
               AutoSize = True
-              ClientHeight = 312
-              ClientWidth = 160
+              ClientHeight = 319
+              ClientWidth = 164
               TabOrder = 0
               object GroupBox2: TGroupBox
                 Left = 0
                 Height = 129
-                Top = 131
-                Width = 160
+                Top = 138
+                Width = 164
                 Align = alBottom
                 Caption = 'Palette'
                 ClientHeight = 112
-                ClientWidth = 158
+                ClientWidth = 162
                 TabOrder = 0
                 object ScrollBox5: TScrollBox
                   Left = 0
                   Height = 112
                   Top = 0
-                  Width = 158
+                  Width = 162
                   HorzScrollBar.Page = 140
-                  VertScrollBar.Page = 108
+                  VertScrollBar.Page = 110
                   Align = alClient
-                  ClientHeight = 108
-                  ClientWidth = 151
+                  ClientHeight = 110
+                  ClientWidth = 147
                   TabOrder = 0
                   object PaletteGrid: TBCGameGrid
                     AnchorSideLeft.Control = ScrollBox5
@@ -391,17 +391,17 @@ object frmMain: TfrmMain
               object ColorsPanel: TPanel
                 Left = 0
                 Height = 52
-                Top = 260
-                Width = 160
+                Top = 267
+                Width = 164
                 Align = alBottom
                 AutoSize = True
                 ClientHeight = 52
-                ClientWidth = 160
+                ClientWidth = 164
                 TabOrder = 1
                 OnClick = SwapColors
                 object BgColor: TBGRAGraphicControl
                   Tag = 1
-                  Left = 109
+                  Left = 113
                   Height = 50
                   Hint = 'Left click to select color'#10'Right click to set transparent color'
                   Top = 1
@@ -439,7 +439,7 @@ object frmMain: TfrmMain
                   Height = 50
                   Hint = 'Swap colors'
                   Top = 1
-                  Width = 58
+                  Width = 62
                   Align = alClient
                   Glyph.Data = {
                     36100000424D3610000000000000360000002800000020000000200000000100
@@ -583,7 +583,7 @@ object frmMain: TfrmMain
                 Left = 0
                 Height = 31
                 Top = 0
-                Width = 160
+                Width = 164
                 Align = alTop
                 AutoSize = True
                 ControlList = <                
@@ -652,14 +652,14 @@ object frmMain: TfrmMain
               Left = 0
               Height = 1
               Top = 0
-              Width = 162
+              Width = 166
               Align = alClient
               FixedCols = 0
               RowCount = 2
               TabOrder = 0
               ColWidths = (
                 64
-                94
+                100
               )
             end
           end
@@ -668,8 +668,8 @@ object frmMain: TfrmMain
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 432
-      ClientWidth = 663
+      ClientHeight = 406
+      ClientWidth = 657
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -681,16 +681,16 @@ object frmMain: TfrmMain
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 432
-      ClientWidth = 663
+      ClientHeight = 406
+      ClientWidth = 657
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
         Width = 616
         Align = alTop
-        ClientHeight = 46
-        ClientWidth = 612
+        ClientHeight = 50
+        ClientWidth = 616
         TabOrder = 0
         object StaticText1: TStaticText
           Left = 344
@@ -742,8 +742,8 @@ object frmMain: TfrmMain
     end
     object SourceTabSheet: TTabSheet
       Caption = 'Source Image'
-      ClientHeight = 432
-      ClientWidth = 663
+      ClientHeight = 406
+      ClientWidth = 657
       object SrcImageButtonsPanel: TPanel
         Left = 0
         Height = 30
@@ -751,8 +751,8 @@ object frmMain: TfrmMain
         Width = 780
         Align = alTop
         AutoSize = True
-        ClientHeight = 26
-        ClientWidth = 776
+        ClientHeight = 30
+        ClientWidth = 780
         TabOrder = 0
         object SpeedButtonLoadSpritesheet: TSpeedButton
           Left = 24
@@ -898,8 +898,8 @@ object frmMain: TfrmMain
     end
     object LibraryTabSheet: TTabSheet
       Caption = 'Local Library'
-      ClientHeight = 432
-      ClientWidth = 663
+      ClientHeight = 406
+      ClientWidth = 657
       object LibraryButtonsPanel: TPanel
         Left = 0
         Height = 50

@@ -228,6 +228,9 @@
       <Item>
         <Name Value="ERangeError"/>
       </Item>
+      <Item>
+        <Name Value="FPImageException"/>
+      </Item>
     </Exceptions>
   </Debugging>
 </CONFIG>

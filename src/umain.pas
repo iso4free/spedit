@@ -288,6 +288,11 @@ begin
       VK_DOWN : begin
         FrameGrid.CellCursor.Y:=FrameGrid.CellCursor.Y+1;
       end;
+       //todo: delete me after test
+      VK_SPACE : begin
+        Caption:=IntToStr(FrameGrid.CellCursor.Coords.X)+'x'+IntToStr(FrameGrid.CellCursor.Coords.Y);
+        TempLayer.Drawable.SetPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,ColorToBGRA(spclForeColor,255));
+      end;
     end;
     pbFrameDraw.Invalidate;
   end;
@@ -362,8 +367,8 @@ begin
   case Button of
     mbLeft:begin
         //todo: check wich tool selected for drawing
-        (DrawTool as TSPPen).StartDraw(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y,spclForeColor);
-        DrawGridMode:=dgmDraw;
+      {  (DrawTool as TSPPen).StartDraw(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y,spclForeColor);
+        DrawGridMode:=dgmDraw;}
         pbFrameDraw.Invalidate;
     end;
     mbRight:begin
@@ -395,7 +400,7 @@ begin
    end;
    if DrawGridMode=dgmDraw then begin
     //todo: check which tool selected
-    (DrawTool as TSPPen).MouseMove(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y);
+    //(DrawTool as TSPPen).MouseMove(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y);
    end;
    StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
    pbFrameDraw.Invalidate;

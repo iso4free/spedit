@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="12"/>
         <CursorPos X="13" Y="24"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="183"/>
       </Unit>
       <Unit>
         <Filename Value="umain.pas"/>
@@ -21,33 +21,33 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="427"/>
-        <CursorPos X="4" Y="429"/>
-        <UsageCount Value="178"/>
+        <TopLine Value="279"/>
+        <CursorPos Y="292"/>
+        <UsageCount Value="183"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="udraw.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="19"/>
         <CursorPos X="52" Y="36"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="74"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="uglobals.pas"/>
         <FRMtype Value="0"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="63"/>
-        <CursorPos X="93" Y="75"/>
-        <UsageCount Value="83"/>
+        <TopLine Value="331"/>
+        <CursorPos Y="337"/>
+        <UsageCount Value="85"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -409,7 +409,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="192"/>
         <CursorPos X="23" Y="208"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/objpas.inc"/>
@@ -432,11 +432,12 @@
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/lcl/include/control.inc"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="2283"/>
-        <CursorPos Y="2293"/>
-        <UsageCount Value="9"/>
+        <TopLine Value="2300"/>
+        <CursorPos Y="2318"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_BGRAbitmap/source/geometrytypes.inc"/>
@@ -490,9 +491,9 @@
         <UnitName Value="BGRAGtkBitmap"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="174"/>
-        <CursorPos X="3" Y="177"/>
-        <UsageCount Value="9"/>
+        <TopLine Value="86"/>
+        <CursorPos X="3" Y="91"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_BGRAbitmap/source/unibitmap.inc"/>
@@ -525,152 +526,163 @@
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/lcl/include/wincontrol.inc"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="5680"/>
-        <CursorPos Y="5700"/>
-        <UsageCount Value="9"/>
+        <TopLine Value="7214"/>
+        <CursorPos Y="7230"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_BGRAbitmap/source/bgrapixel.inc"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="20"/>
-        <CursorPos X="3" Y="34"/>
+        <TopLine Value="592"/>
+        <CursorPos Y="611"/>
         <UsageCount Value="14"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/fgl.pp"/>
         <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1695"/>
+        <CursorPos Y="1712"/>
+        <UsageCount Value="13"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/customnotebook.inc"/>
+        <FRMtype Value="0"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="334"/>
-        <CursorPos X="18" Y="334"/>
-        <UsageCount Value="11"/>
+        <TopLine Value="778"/>
+        <CursorPos Y="793"/>
+        <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="uglobals.pas"/>
-        <Caret Line="280" Column="33" TopLine="278"/>
+        <Caret Line="337" Column="37" TopLine="327"/>
       </Position>
       <Position>
         <Filename Value="uglobals.pas"/>
-        <Caret Line="87" Column="14" TopLine="78"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="93" Column="58" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="140" Column="7" TopLine="133"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="305" Column="30" TopLine="294"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="398" Column="5" TopLine="389"/>
+        <Caret Line="343" Column="28" TopLine="327"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="365" Column="34" TopLine="359"/>
+        <Caret Line="293" Column="119" TopLine="279"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="364" Column="34" TopLine="358"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="435" Column="18" TopLine="412"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="72" Column="20" TopLine="50"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="59" Column="20" TopLine="62"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="283" Column="23" TopLine="268"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="90" Column="33" TopLine="75"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="96" Column="31" TopLine="81"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="302" Column="42" TopLine="285"/>
+        <Caret Line="402" Column="7" TopLine="393"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="11" Column="36"/>
+        <Caret Line="293" Column="126" TopLine="270"/>
       </Position>
       <Position>
         <Filename Value="uglobals.pas"/>
-        <Caret Line="312" TopLine="296"/>
+        <Caret Line="160" Column="18" TopLine="146"/>
       </Position>
       <Position>
         <Filename Value="uglobals.pas"/>
-        <Caret Line="84" Column="3" TopLine="59"/>
+        <Caret Line="462" Column="4" TopLine="450"/>
       </Position>
       <Position>
         <Filename Value="uglobals.pas"/>
-        <Caret Line="72" Column="74" TopLine="44"/>
+        <Caret Line="86" Column="15" TopLine="71"/>
       </Position>
       <Position>
         <Filename Value="uglobals.pas"/>
-        <Caret Line="319" Column="3" TopLine="317"/>
+        <Caret Line="337" TopLine="331"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="68" Column="22" TopLine="53"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="292" TopLine="279"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="319" Column="3" TopLine="317"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="293" TopLine="279"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="68" TopLine="53"/>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_BGRAbitmap/source/bgrapixel.inc"/>
+        <Caret Line="608" TopLine="592"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="317" TopLine="317"/>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_BGRAbitmap/source/bgrapixel.inc"/>
+        <Caret Line="609" TopLine="592"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="68" Column="15" TopLine="53"/>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_BGRAbitmap/source/bgrapixel.inc"/>
+        <Caret Line="610" TopLine="592"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="317" TopLine="317"/>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_BGRAbitmap/source/bgrapixel.inc"/>
+        <Caret Line="611" TopLine="592"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="77" Column="20" TopLine="62"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="296" TopLine="279"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="330" Column="17" TopLine="325"/>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/control.inc"/>
+        <Caret Line="2317" TopLine="2300"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="77" Column="17" TopLine="63"/>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/control.inc"/>
+        <Caret Line="2318" TopLine="2300"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="328" Column="3" TopLine="325"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="298" TopLine="279"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/wincontrol.inc"/>
+        <Caret Line="5700" TopLine="5680"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/wincontrol.inc"/>
+        <Caret Line="5701" TopLine="5680"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/wincontrol.inc"/>
+        <Caret Line="5702" TopLine="5680"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/customnotebook.inc"/>
+        <Caret Line="793" TopLine="778"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/wincontrol.inc"/>
+        <Caret Line="5710" TopLine="5685"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/wincontrol.inc"/>
+        <Caret Line="5800" TopLine="5786"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/wincontrol.inc"/>
+        <Caret Line="5841" TopLine="5826"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/wincontrol.inc"/>
+        <Caret Line="5845" TopLine="5826"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/wincontrol.inc"/>
+        <Caret Line="5848" TopLine="5826"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/wincontrol.inc"/>
+        <Caret Line="5849" TopLine="5826"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/wincontrol.inc"/>
+        <Caret Line="7230" TopLine="7214"/>
       </Position>
     </JumpHistory>
     <RunParams>
