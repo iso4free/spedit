@@ -1,6 +1,15 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: tfrmdrawtools.caption
+msgctxt "tfrmdrawtools.caption"
+msgid "Tools"
+msgstr ""
+
+#: tfrmdrawtools.flowpanel1.caption
+msgid "FlowPanel1"
+msgstr ""
+
 #: tfrmmain.aboutmenuitem.caption
 msgid "About"
 msgstr ""
@@ -39,18 +48,6 @@ msgctxt "tfrmmain.bgcolor.hint"
 msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-
-#: tfrmmain.button1.caption
-msgid "1"
-msgstr ""
-
-#: tfrmmain.button2.caption
-msgid "2"
-msgstr ""
-
-#: tfrmmain.button3.caption
-msgid "3"
 msgstr ""
 
 #: tfrmmain.caption
@@ -228,15 +225,6 @@ msgstr ""
 
 #: tfrmmain.timelinetoolvisiblemenuitem.caption
 msgid "Timeline"
-msgstr ""
-
-#: tfrmmain.tooloptionsaccordionitem.caption
-msgid "Tool options"
-msgstr ""
-
-#: tfrmmain.toolsaccordionitem.caption
-msgctxt "tfrmmain.toolsaccordionitem.caption"
-msgid "Tools"
 msgstr ""
 
 #: tfrmmain.viewmenuitem.caption

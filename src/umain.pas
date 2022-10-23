@@ -8,8 +8,7 @@ uses
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
   Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, CheckLst,
   BGRAImageList, BGRAImageManipulation, BCGameGrid, BGRABitmapTypes, BGRABitmap,
-  BGRAGraphicControl, ECAccordion, LCLType,
-  udraw;
+  BGRAGraphicControl, ECAccordion, LCLType;
 
 type
 
@@ -23,13 +22,10 @@ type
     DrawToolsFlowPanel: TFlowPanel;
     LayersCheckListBox: TCheckListBox;
     DrawToolsPanel: TPanel;
-    ToolOptionsAccordionItem: TAccordionItem;
-    ToolsAccordionItem: TAccordionItem;
     bbtnAddLayer: TBitBtn;
     bbtnDeleteLayer: TBitBtn;
     bbtnCopyLayer: TBitBtn;
     bbtnMergeLayers: TBitBtn;
-    ToolsECAccordion: TECAccordion;
     LayersFlowPanel: TFlowPanel;
     LayersGroupBox: TGroupBox;
     FramePreview: TPaintBox;
@@ -59,7 +55,6 @@ type
     AdditionalToolsPanel: TPanel;
     ColorsPanel: TPanel;
     ScrollBox5: TScrollBox;
-    DrawToolsGroupBox: TGroupBox;
     ReferenceImage: TImage;
     ProjectSheet: TBGRAImageManipulation;
     ImportImage: TBGRAImageManipulation;
@@ -117,7 +112,6 @@ type
     OpenPictureDialog1: TOpenPictureDialog;
     SrcImageFramesOptsValueListEditor: TValueListEditor;
     ProjectProperties: TValueListEditor;
-    ValueListEditor1: TValueListEditor;
     ViewZoomResetMenuItem: TMenuItem;
     ViewZoomOutMenuItem: TMenuItem;
     ViewZoomInMenuItem: TMenuItem;
@@ -129,7 +123,6 @@ type
     procedure bbtnDeleteLayerClick(Sender: TObject);
     procedure bbtnMergeLayersClick(Sender: TObject);
     procedure BitBtnNewFrameClick(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure LayersToolVisibleMenuItemClick(Sender: TObject);
@@ -157,7 +150,6 @@ type
     procedure BgColorMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure BgColorPaint(Sender: TObject);
-    procedure sbPenClick(Sender: TObject);
     procedure SwapColors(Sender: TObject);
     procedure FileLoadSpritesheetMenuItemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -180,9 +172,8 @@ type
   private
    DrawGridMode : TDrawGridMode;
     dx,dy : Integer;             //offset to move grid
+    FCurrentLayer: PLayer;
     startx,starty : Integer;     //start position to move
-    DrawTool : TSPDrawTool;      //current drawing tool
-    DrawPen : TSPPen;
   public
 
   end;
@@ -193,7 +184,7 @@ var
 
 implementation
 
-uses uzastavka, uselsprlib;
+uses uzastavka, udrawtools, uselsprlib, udraw;
 
 {$R *.frm}
 
@@ -255,16 +246,10 @@ begin
 
 end;
 
-procedure TfrmMain.Button3Click(Sender: TObject);
-begin
-  //todo: this is for test only
-  FrameGrid.CellCursor.Cells:=StrToInt((Sender as TButton).Caption);
-  pbFrameDraw.Invalidate;
-end;
-
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
-  FreeAndNil(DrawTool);
+
+  FreeAndNil(frmDrawTools);
   FreeAndNil(FrameGrid);
 end;
 
@@ -288,10 +273,12 @@ begin
       VK_DOWN : begin
         FrameGrid.CellCursor.Y:=FrameGrid.CellCursor.Y+1;
       end;
-       //todo: delete me after test
+
       VK_SPACE : begin
-        Caption:=IntToStr(FrameGrid.CellCursor.Coords.X)+'x'+IntToStr(FrameGrid.CellCursor.Coords.Y);
-        TempLayer.Drawable.SetPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,ColorToBGRA(spclForeColor,255));
+      //todo: draw pixels depends on selected cursor size
+        if not FrameGrid.DrawLayer^.Locked then begin
+         FrameGrid.DrawLayer^.Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,ColorToBGRA(spclForeColor,255));
+        end;
       end;
     end;
     pbFrameDraw.Invalidate;
@@ -373,7 +360,7 @@ begin
     end;
     mbRight:begin
       //todo: check wich tool selected for drawing
-       (DrawTool as TSPPen).StartDraw(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y,spclBackColor);
+      // (DrawTool as TSPPen).StartDraw(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y,spclBackColor);
        DrawGridMode:=dgmDraw;
     end;
     mbMiddle: begin   //start grid drag
@@ -434,6 +421,7 @@ begin
    //todo: draw here zoomed frame data
   if Assigned(FrameGrid) then begin
     FrameGrid.RenderAndDraw(pbFrameDraw.Canvas);
+
   end;
   StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);
 
@@ -506,11 +494,6 @@ begin
   StatusBar1.Panels[1].Text:='FG: '+IntToHex(spclForeColor)+' / BG: '+IntToHex(spclBackColor);
 end;
 
-procedure TfrmMain.sbPenClick(Sender: TObject);
-begin
-  DrawTool:=DrawPen;
-end;
-
 procedure TfrmMain.SwapColors(Sender: TObject);
 var cl : TColor;
 begin
@@ -550,9 +533,13 @@ begin
   FgColor.ShowHint:=true;
   //create empty new frame with default params
   BitBtnNewFrameClick(Sender);
-  //create draw tools
-  DrawPen:=TSPPen.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
-  DrawTool:=DrawPen;
+
+  //create tools floating window
+  frmDrawTools:=TfrmDrawTools.Create(Self);
+  DrawToolsPanel.InsertControl(frmDrawTools);
+  frmDrawTools.Left:=0;
+  frmDrawTools.Top:=0;
+  frmDrawTools.Show;
 end;
 
 procedure TfrmMain.ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);

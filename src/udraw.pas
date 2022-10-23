@@ -14,6 +14,7 @@ type
 
   { TSPDrawTool }
 
+  PSPDrawTool = ^TSPDrawTool;
   TSPDrawTool = class
     protected
       FParameters: TSTaticDic;
