@@ -277,7 +277,8 @@ begin
       VK_SPACE : begin
       //todo: draw pixels depends on selected cursor size
         if not FrameGrid.DrawLayer^.Locked then begin
-         FrameGrid.DrawLayer^.Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,ColorToBGRA(spclForeColor,255));
+         if FrameGrid.DrawLayer^.Drawable <> nil then
+            FrameGrid.DrawLayer^.Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,ColorToBGRA(spclForeColor,255));
         end;
       end;
     end;
@@ -536,9 +537,11 @@ begin
 
   //create tools floating window
   frmDrawTools:=TfrmDrawTools.Create(Self);
-  DrawToolsPanel.InsertControl(frmDrawTools);
+//  DrawToolsPanel.InsertControl(frmDrawTools);
+  frmMain.Left:=100;
   frmDrawTools.Left:=0;
   frmDrawTools.Top:=0;
+  frmDrawTools.Width:=100;
   frmDrawTools.Show;
 end;
 

@@ -72,7 +72,7 @@ type
     fVisible : Boolean;
     fLayerImg : TBGRABitmap; //layer image
     FWidth: Integer;
-    FFrames : TFrames;
+//  FFrames : TFrames;
    public
     property LayerName : String read fName write fName; //text to layers list identify
     property Visible : Boolean read fVisible write fVisible default True; //is drawable
@@ -81,7 +81,7 @@ type
     property Width : Integer read FWidth;
     property Drawable : TBGRABitmap read fLayerImg;  //BGRABitmap for drawing
 
-    property Frames : TFrames read FFrames; //mapped frames list containing current layer
+//  property Frames : TFrames read FFrames; //mapped frames list containing current layer
     procedure Resize(newWidth, NewHeight: Integer; Stretched: Boolean=False); //resize layer
 
     constructor Create(aName : String = 'Layer'; aWidth : Integer = 32; aHeight : Integer = 32);
@@ -99,7 +99,7 @@ type
     fFrameName: String;
     FHeight: Integer;
     FIndex: Integer;
-    fLayers : TLayers;
+//    fLayers : TLayers;
     FWidth: Integer;
     function GetSelectedLayer: PLayer;
     procedure SetIndex(AValue: Integer);
@@ -108,7 +108,7 @@ type
     destructor Destroy; override;
 
     property FrameName : String read fFrameName;//unique frame name for correct managing in mapped list
-    property Layers : TLayers read fLayers;  //layers mapped list
+//    property Layers : TLayers read fLayers;  //layers mapped list
     property Index : Integer read FIndex write SetIndex;
     property SelectedLayer : PLayer read GetSelectedLayer;
     property Width : Integer read FWidth;
@@ -301,7 +301,8 @@ end;
 
 function TFrame.GetSelectedLayer: PLayer;
 begin
-  Result:= fLayers.Data[FIndex];
+  Result := nil;
+//  Result:= fLayers.Data[FIndex];
 end;
 
 procedure TFrame.SetIndex(AValue: Integer);
@@ -312,50 +313,60 @@ end;
 
 constructor TFrame.Create(aName: String; w: Integer; h: integer);
 begin
- //todo: create an empty frame without layers
+ //create an empty frame without layers
  fFrameName:=aName;
  FWidth:=w;
  FHeight:=h;
- fLayers:=TLayers.Create;
+// fLayers:=TLayers.Create;
  Clear;
 end;
 
 destructor TFrame.Destroy;
+// var i : Integer;
 begin
-  FreeAndNil(fLayers);
+{  i:=fLayers.Count;
+  while i>0 do begin
+    FreeAndNil(fLayers.Data[i]^);
+    fLayers.Delete(i);
+    Dec(i);
+  end;
+  fLayers.Clear;
+  FreeAndNil(fLayers);}
   inherited Destroy;
 end;
 
 procedure TFrame.Clear;
-var NewLayer : TLayer;
 begin
-  if fLayers.Count>0 then fLayers.Clear;
-  NewLayer:=TLayer.Create('Layer',Width,Height);
-  FCount := fLayers.Add('Layer',@NewLayer);
+//  if fLayers.Count>0 then fLayers.Clear;
 end;
 
 function TFrame.AddLayer(LayerName: String): Integer;
 var
-  _Index: Integer;
   NewLayer : TLayer;
 begin
   Result:=-1;
-  if fLayers.Find(LayerName,_Index) then LayerName:=LayerName+'1';
+{  if fLayers.Count>0 then if fLayers.TryGetData(LayerName,PNewLayer) then LayerName:=LayerName+' copy';
   NewLayer := TLayer.Create(LayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
   NewLayer.Frames.Add(fFrameName);
-  Result:=fLayers.Add(LayerName,@NewLayer);
+  Result:=fLayers.Add(LayerName,@NewLayer);}
 end;
 
 function TFrame.RemoveSelectedLayer: Boolean;
 var LayerName : String;
+    aidx      : Integer;
 begin
   Result := False;
   if FIndex>=0 then begin
-    LayerName:=fLayers.Keys[FIndex];
-    //todo: remove from layer link to current frame first
+{    LayerName:=fLayers.Keys[FIndex];
+    //remove from layer link to current frame first
+    if fLayers[LayerName]^.FFrames.Find(fFrameName,aidx) then
+       fLayers[LayerName]^.FFrames.Remove(fFrameName);
     //then check if no other frames used selected layer
-    //free and nil pointer and remove from layers list
-    fLayers.Remove(LayerName);
+    if fLayers[LayerName]^.FFrames.Count=0 then begin
+     //free and nil pointer and remove from layers list
+      FreeAndNil(fLayers[LayerName]^);
+      fLayers.Remove(LayerName);
+    end;}
     Result := True;
   end;
 end;
@@ -378,12 +389,19 @@ begin
   fLayerImg := TBGRABitmap.Create(aWidth,aHeight,ColorToBGRA(clFuchsia,0));
   fVisible:=True;
   FLocked:=False;
-  FFrames := TFrames.Create;
+//  FFrames := TFrames.Create;
 end;
 
 destructor TLayer.Destroy;
+//var i : Integer;
 begin
-  FreeAndNil(FFrames);
+{  i:= FFrames.Count;
+  while i>0 do begin
+   FFrames.Data[i]^.fLayers.Delete(i);
+   FFrames.Delete(i);
+   Dec(i);
+  end;
+  FreeAndNil(FFrames);}
   FreeAndNil(fLayerImg);
   inherited Destroy;
 end;
@@ -456,15 +474,31 @@ begin
   FCellCursor := TCellCursor.Create;
   FCellCursor.Cells:=1;
   //add frame
+  FFrames := TFrames.Create;
   AddFrame('Frame0');
   FDrawFrame:=Frames['Frame0'];
+  FDrawFrame^.AddLayer('background');
   FDrawLayer:=DrawFrame^.SelectedLayer;
 end;
 
 destructor TFrameGrid.Destroy;
+var FrameName : String;
+    i         : Integer;
+    rmFrame   : PFrame;
 begin
   INI.WriteInteger('INTERFACE','CHECKERS SIZE',FCheckersSize);
+  for i:= FFrames.Count-1 downto 0do begin
+   rmFrame:=FFrames.Data[i];
+//   FFrames.Remove(FrameName);
+     FrameName:=rmFrame^.FrameName;
+     WriteLN('FrameName=',FrameName);
 
+//     rmFrame^.Destroy;
+//   FreeAndNil(rmFrame^);
+   rmFrame:=nil;
+  end;
+
+  FreeAndNil(FFrames);
   FreeAndNil(fPreview);
   FreeAndNil(FCellCursor);
   inherited Destroy;
