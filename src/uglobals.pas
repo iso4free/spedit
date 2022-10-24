@@ -10,7 +10,7 @@ interface
 uses Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson, BGRABitmap, BGRABitmapTypes, fgl;
 
 const
-      MAX_FRAMES = 50;           //it will be enought for one animation?
+      //MAX_FRAMES = 50;           //it will be enought for one animation?
       MAX_PALETTE_COLORS = 255;  //max colors count in palette
       MAX_PIXELS = 512*512;      //max pixels array (sprite size 512x512 pixels)
       //MAX_LAYERS = 10;           //max layers count in one frame
@@ -28,7 +28,7 @@ type
 
   { TPalette }
 
-  PPalette = ^TPalette;
+  //PPalette = ^TPalette;
 
   TPalette = record
     private
@@ -53,11 +53,9 @@ type
      function ColorExists(aColor : TColor) : Integer; //check if color in palette before adding
   end;
 
-  PLayer = ^TLayer;
-  PFrame = ^TFrame;
+ { PLayer = ^TLayer;
+  PFrame = ^TFrame; }
 
-  TLayers = specialize TFPGMap<String,PLayer>;  //mapped layers list
-  TFrames = specialize TFPGMap<String,PFrame>;  //mapped frames list
 
   { TLayer }
   {Uses for layers in every frame.
@@ -72,7 +70,7 @@ type
     fVisible : Boolean;
     fLayerImg : TBGRABitmap; //layer image
     FWidth: Integer;
-//  FFrames : TFrames;
+    FFrames : TStringList;
    public
     property LayerName : String read fName write fName; //text to layers list identify
     property Visible : Boolean read fVisible write fVisible default True; //is drawable
@@ -80,9 +78,9 @@ type
     property Height : Integer read FHeight;
     property Width : Integer read FWidth;
     property Drawable : TBGRABitmap read fLayerImg;  //BGRABitmap for drawing
-
-//  property Frames : TFrames read FFrames; //mapped frames list containing current layer
+    property FramesList : TStringList read FFrames; //frame names list containing current layer
     procedure Resize(newWidth, NewHeight: Integer; Stretched: Boolean=False); //resize layer
+    procedure AddToFrame(FrameName : String); //add layer to frame
 
     constructor Create(aName : String = 'Layer'; aWidth : Integer = 32; aHeight : Integer = 32);
     destructor Destroy; override;
@@ -99,23 +97,20 @@ type
     fFrameName: String;
     FHeight: Integer;
     FIndex: Integer;
-//    fLayers : TLayers;
+    fLayers : TStringList;
     FWidth: Integer;
-    function GetSelectedLayer: PLayer;
     procedure SetIndex(AValue: Integer);
    public
     constructor Create(aName : String; w : Integer = 32; h : integer = 32);
     destructor Destroy; override;
 
     property FrameName : String read fFrameName;//unique frame name for correct managing in mapped list
-//    property Layers : TLayers read fLayers;  //layers mapped list
+    property LayersList : TStringList read fLayers;  //layers mapped list
     property Index : Integer read FIndex write SetIndex;
-    property SelectedLayer : PLayer read GetSelectedLayer;
+
     property Width : Integer read FWidth;
     property Height : Integer read FHeight;
-    procedure Clear;
     function AddLayer(LayerName : String): Integer; //add new layer and return it`s index or -1 if error
-    function RemoveSelectedLayer : Boolean;
   end;
 
   { TCellCursor - for drawing red rectangle followed by mouse cursor or moved by arrow keys}
@@ -145,11 +140,10 @@ type
 
   TFrameGrid = class
    private
+     fActiveFrame: String;
+     FActiveLayer: String;
     FCellCursor: TCellCursor;
     FCheckersSize  : Byte;
-    FDrawFrame: PFrame;
-    FDrawLayer     : PLayer;
-    FFrames: TFrames;
     fPreview       : TBGRABitmap; //for draw image preview
     fFrameGridSize : Word;   //current grid size
     fFrameWidth,
@@ -178,13 +172,14 @@ type
     property CheckersSize : Byte read FCheckersSize write SetCheckersSize default 16;
     property FrameWidth : Integer read fFrameWidth;
     property FrameHeight : Integer read fFrameHeight;
-    property Frames : TFrames read FFrames;             //all frames
-    property DrawFrame : PFrame read FDrawFrame;        //current selected frame
-    property DrawLayer : PLayer read FDrawLayer;        //current selected layer for drawing
+    property ActiveFrame : String read fActiveFrame write fActiveFrame; //work frame name to access through mapped list
+    property ActiveLayer : String read FActiveLayer write FActiveLayer; //current layer to draw
     property CellCursor : TCellCursor read FCellCursor; //just red frame to show where draw in grid
-    function AddFrame(aName : String) : Boolean;        //add new frame tomapped list
   end;
 
+
+  TLayers = specialize TFPGMap<String,TLayer>;  //mapped layers list
+  TFrames = specialize TFPGMap<String,TFrame>;  //mapped frames list
 
 var
 
@@ -204,6 +199,8 @@ var
   Palette       : TPalette;
 
   FrameGrid     : TFrameGrid;
+  Layers        : TLayers;
+  Frames        : TFrames;
 
   //**********************************************************************
   function IsDigits(s : String) : Boolean;
@@ -271,6 +268,34 @@ begin
    Result := '#'+IntToHex(Blue(aColor))+IntToHex(Green(aColor))+IntToHex(Red(aColor));
 end;
 
+procedure CreateFirstFrameAndLayer;
+begin
+ Frames['Frame']:=TFrame.Create('Frame');
+ Layers['Layer']:=TLayer.Create();
+ Layers['Layer'].AddToFrame('Frame');
+ Frames['Frame'].AddLayer('Layer');
+ WriteLN('Layers in frame:',Frames['Frame'].LayersList.Text);
+ WriteLN('Frames in layer:',Layers['Layer'].FramesList.Text);
+end;
+
+procedure ClearFramesAndLayers;
+var
+    f , l : Integer;
+begin
+  l:=Layers.Count;
+  while l>0 do begin
+    Layers.Data[l].Free;
+    Layers.Data[l]:=nil;
+  end;
+  Layers.Clear;
+  f:=Frames.Count;
+  while f>0 do begin
+    Frames.Data[f].Free;
+    Frames.Data[f]:=nil;
+  end;
+  Frames.Clear;
+end;
+
 { TCellCursor }
 
 procedure TCellCursor.SetCoords(AValue: TPoint);
@@ -299,12 +324,6 @@ end;
 
 { TFrame }
 
-function TFrame.GetSelectedLayer: PLayer;
-begin
-  Result := nil;
-//  Result:= fLayers.Data[FIndex];
-end;
-
 procedure TFrame.SetIndex(AValue: Integer);
 begin
   if (FIndex=AValue) or (AValue>FCount) then Exit;
@@ -317,60 +336,20 @@ begin
  fFrameName:=aName;
  FWidth:=w;
  FHeight:=h;
-// fLayers:=TLayers.Create;
- Clear;
+ fLayers:=TStringList.Create;
 end;
 
 destructor TFrame.Destroy;
-// var i : Integer;
 begin
-{  i:=fLayers.Count;
-  while i>0 do begin
-    FreeAndNil(fLayers.Data[i]^);
-    fLayers.Delete(i);
-    Dec(i);
-  end;
   fLayers.Clear;
-  FreeAndNil(fLayers);}
+  FreeAndNil(fLayers);
   inherited Destroy;
 end;
 
-procedure TFrame.Clear;
-begin
-//  if fLayers.Count>0 then fLayers.Clear;
-end;
-
 function TFrame.AddLayer(LayerName: String): Integer;
-var
-  NewLayer : TLayer;
 begin
-  Result:=-1;
-{  if fLayers.Count>0 then if fLayers.TryGetData(LayerName,PNewLayer) then LayerName:=LayerName+' copy';
-  NewLayer := TLayer.Create(LayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
-  NewLayer.Frames.Add(fFrameName);
-  Result:=fLayers.Add(LayerName,@NewLayer);}
+  LayersList.Add(LayerName);
 end;
-
-function TFrame.RemoveSelectedLayer: Boolean;
-var LayerName : String;
-    aidx      : Integer;
-begin
-  Result := False;
-  if FIndex>=0 then begin
-{    LayerName:=fLayers.Keys[FIndex];
-    //remove from layer link to current frame first
-    if fLayers[LayerName]^.FFrames.Find(fFrameName,aidx) then
-       fLayers[LayerName]^.FFrames.Remove(fFrameName);
-    //then check if no other frames used selected layer
-    if fLayers[LayerName]^.FFrames.Count=0 then begin
-     //free and nil pointer and remove from layers list
-      FreeAndNil(fLayers[LayerName]^);
-      fLayers.Remove(LayerName);
-    end;}
-    Result := True;
-  end;
-end;
-
 
 { TLayer }
 
@@ -384,24 +363,24 @@ begin
 
 end;
 
+procedure TLayer.AddToFrame(FrameName: String);
+begin
+  FramesList.Add(FrameName);
+end;
+
 constructor TLayer.Create(aName: String; aWidth: Integer; aHeight: Integer);
 begin
   fLayerImg := TBGRABitmap.Create(aWidth,aHeight,ColorToBGRA(clFuchsia,0));
   fVisible:=True;
   FLocked:=False;
-//  FFrames := TFrames.Create;
+  FFrames := TStringList.Create;
+  FFrames.CaseSensitive:=false;
 end;
 
 destructor TLayer.Destroy;
-//var i : Integer;
 begin
-{  i:= FFrames.Count;
-  while i>0 do begin
-   FFrames.Data[i]^.fLayers.Delete(i);
-   FFrames.Delete(i);
-   Dec(i);
-  end;
-  FreeAndNil(FFrames);}
+  FFrames.Clear;
+  FreeAndNil(FFrames);
   FreeAndNil(fLayerImg);
   inherited Destroy;
 end;
@@ -473,32 +452,15 @@ begin
   fPreview:=TBGRABitmap.Create(aW,aH,ColorToBGRA(clWhite));
   FCellCursor := TCellCursor.Create;
   FCellCursor.Cells:=1;
-  //add frame
-  FFrames := TFrames.Create;
-  AddFrame('Frame0');
-  FDrawFrame:=Frames['Frame0'];
-  FDrawFrame^.AddLayer('background');
-  FDrawLayer:=DrawFrame^.SelectedLayer;
+  WriteLN('Layers count ',Layers.Count);
+  FActiveLayer:=Layers.Keys[0];
+  fActiveFrame:=Frames.Keys[0];
 end;
 
 destructor TFrameGrid.Destroy;
-var FrameName : String;
-    i         : Integer;
-    rmFrame   : PFrame;
 begin
   INI.WriteInteger('INTERFACE','CHECKERS SIZE',FCheckersSize);
-  for i:= FFrames.Count-1 downto 0do begin
-   rmFrame:=FFrames.Data[i];
-//   FFrames.Remove(FrameName);
-     FrameName:=rmFrame^.FrameName;
-     WriteLN('FrameName=',FrameName);
 
-//     rmFrame^.Destroy;
-//   FreeAndNil(rmFrame^);
-   rmFrame:=nil;
-  end;
-
-  FreeAndNil(FFrames);
   FreeAndNil(fPreview);
   FreeAndNil(FCellCursor);
   inherited Destroy;
@@ -507,6 +469,7 @@ end;
 procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas);
 
 var fBuffer : TBGRABitmap;
+  i: Integer;
 
   procedure DrawGrid(x1,y1,x2,y2 : Integer; size : Integer);
    var i, xsize, ysize : Integer;
@@ -521,7 +484,7 @@ var fBuffer : TBGRABitmap;
     fBuffer.Rectangle(x1,y1,x2,y2,ColorToBGRA(clNavy));
   end;
 
-  procedure InternalDrawLayer(aLayer : TLayer);
+  procedure InternalDrawLayer(const aLayer : TLayer);
   var
     x,y: Integer;
     tmpPix : TBGRAPixel;
@@ -548,9 +511,10 @@ begin
   if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
 
 
-  //todo : draw all layers to base and then out base to fBuffer per pixel
-  //InternalDrawLayer();
-
+  //draw all layers to fBuffer per pixel
+  WriteLN('Active frame: ',ActiveFrame);
+  for i:=0 to Frames[ActiveFrame].LayersList.Count-1 do
+   InternalDrawLayer(Layers[Frames[ActiveFrame].LayersList.Strings[i]]);
 
   //draw highlited cell cursor over the grid
   fBuffer.Rectangle(CellCursor.X*(fFrameGridSize+fFrameZoom),
@@ -563,27 +527,27 @@ end;
 
 procedure TFrameGrid.RenderPicture(Canvas: TCanvas);
  var ImagePos: TPoint;
+   i,w,h : Integer;
+   tmppix : TBGRAPixel;
 begin
   fPreview.DrawCheckers(Rect(0,0,fPreview.Width,fPreview.Height),
-                                              ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),4,4);
-  //todo: draw all layers to canvas
-
+                        ColorToBGRA($BFBFBF),
+                        ColorToBGRA($FFFFFF),
+                        4,
+                        4);
+  //draw all layers to canvas
+  for i:=0 to Frames[ActiveFrame].LayersList.Count-1 do
+    for w:=0 to FrameWidth-1 do
+      for h:=0 to FrameHeight-1 do begin
+        tmppix := Layers[Frames[ActiveFrame].LayersList.Strings[i]].Drawable.GetPixel(w,h);
+        if tmppix.alpha>0 then fPreview.SetPixel(w,h,tmpPix);
+      end;
   ImagePos:=Point((Canvas.Width-fPreview.Width) div 2,
                   (Canvas.Height-fPreview.Height) div 2);
   if ImagePos.X<0 then ImagePos.X:=0;
   if ImagePos.Y<0 then ImagePos.Y:=0;
 
   fPreview.Draw(Canvas,ImagePos.X,ImagePos.Y,true);
-end;
-
-function TFrameGrid.AddFrame(aName: String): Boolean;
- var
-   NewFrame : TFrame;
-begin
-   Result := False;
-   NewFrame:=TFrame.Create(aName,FrameWidth,FrameHeight);
-   Frames[NewFrame.FrameName]:=@NewFrame;
-   Result:= True;
 end;
 
 { TPalette }
@@ -741,8 +705,16 @@ initialization
  //palette with default colors
  Palette.Reset;
 
+ //mapped lists of frames and layers
+ Frames:=TFrames.Create;
+ Layers :=TLayers.Create;
+ CreateFirstFrameAndLayer;
+
+
  finalization
   INI.WriteString('INTERFACE','SPRITELIB',CurrentLibName);
+  FreeAndNil(Layers);
+  FreeAndNil(Frames);
   FreeAndNil(SpriteLibNames);
   FreeAndNil(INI);
 end.

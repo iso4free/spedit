@@ -172,7 +172,6 @@ type
   private
    DrawGridMode : TDrawGridMode;
     dx,dy : Integer;             //offset to move grid
-    FCurrentLayer: PLayer;
     startx,starty : Integer;     //start position to move
   public
 
@@ -243,7 +242,9 @@ begin
   dy:=0;
   FramePreview.Width:=FrameGrid.FrameWidth;
   FramePreview.Height:=FrameGrid.FrameHeight;
-
+  WriteLN(Frames.IndexOf(FrameGrid.ActiveFrame));
+  FrameGrid.ActiveFrame:=Frames.Keys[0];
+  FrameGrid.ActiveLayer:=Layers.Keys[0];
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -276,10 +277,7 @@ begin
 
       VK_SPACE : begin
       //todo: draw pixels depends on selected cursor size
-        if not FrameGrid.DrawLayer^.Locked then begin
-         if FrameGrid.DrawLayer^.Drawable <> nil then
-            FrameGrid.DrawLayer^.Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,ColorToBGRA(spclForeColor,255));
-        end;
+        Layers[FrameGrid.ActiveLayer].Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,ColorToBGRA(spclForeColor,255));
       end;
     end;
     pbFrameDraw.Invalidate;
@@ -422,7 +420,7 @@ begin
    //todo: draw here zoomed frame data
   if Assigned(FrameGrid) then begin
     FrameGrid.RenderAndDraw(pbFrameDraw.Canvas);
-
+    FramePreview.Invalidate;
   end;
   StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);
 
