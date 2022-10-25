@@ -1,0 +1,243 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tfrmdrawtools.caption
+msgid "Tools"
+msgstr ""
+
+#: tfrmdrawtools.flowpanel1.caption
+msgid "FlowPanel1"
+msgstr ""
+
+#: tfrmmain.aboutmenuitem.caption
+msgid "About"
+msgstr ""
+
+#: tfrmmain.actionstabsheet.caption
+msgid "Actions"
+msgstr ""
+
+#: tfrmmain.bbtnaddlayer.hint
+msgid "Add new layer"
+msgstr ""
+
+#: tfrmmain.bbtncopylayer.hint
+msgid "Copy selected layer"
+msgstr ""
+
+#: tfrmmain.bbtndeletelayer.hint
+msgid "Delete selected layer"
+msgstr ""
+
+#: tfrmmain.bbtnmergelayers.hint
+msgid "Merge with previous layer"
+msgstr ""
+
+#: tfrmmain.bbtnswapcolors.hint
+msgid "Swap colors"
+msgstr ""
+
+#: tfrmmain.bgcolor.caption
+msgid "BG"
+msgstr ""
+
+#: tfrmmain.bgcolor.hint
+msgctxt "tfrmmain.bgcolor.hint"
+msgid ""
+"Left click to select color\n"
+"Right click to set transparent color"
+msgstr ""
+
+#: tfrmmain.caption
+msgid "Sprite Editor"
+msgstr ""
+
+#: tfrmmain.editmenuitem.caption
+msgid "Edit"
+msgstr ""
+
+#: tfrmmain.fgcolor.caption
+msgid "FG"
+msgstr ""
+
+#: tfrmmain.fgcolor.hint
+msgctxt "tfrmmain.fgcolor.hint"
+msgid ""
+"Left click to select color\n"
+"Right click to set transparent color"
+msgstr ""
+
+#: tfrmmain.fileexitmenuitem.caption
+msgid "E&xit"
+msgstr ""
+
+#: tfrmmain.fileloadspritesheetmenuitem.caption
+msgid "Import Spritesheet"
+msgstr ""
+
+#: tfrmmain.fileloadspritesheetmenuitem.hint
+msgid ""
+"You can import image or spritesheet file\n"
+"and add it to the library"
+msgstr ""
+
+#: tfrmmain.filemenuitem.caption
+msgid "File"
+msgstr ""
+
+#: tfrmmain.filenewspritemenuitem.caption
+msgid "New Sprite Project"
+msgstr ""
+
+#: tfrmmain.filesaveasmenuitem.caption
+msgid "Save Sprite Project As..."
+msgstr ""
+
+#: tfrmmain.filesavespritemenuitem.caption
+msgid "Save Sprite Project"
+msgstr ""
+
+#: tfrmmain.frameeditortabsheet.caption
+msgid "Frame Editor"
+msgstr ""
+
+#: tfrmmain.groupbox1.caption
+msgid "Local libraries"
+msgstr ""
+
+#: tfrmmain.groupbox2.caption
+msgctxt "tfrmmain.groupbox2.caption"
+msgid "Palette"
+msgstr ""
+
+#: tfrmmain.helpmenuitem.caption
+msgid "Help"
+msgstr ""
+
+#: tfrmmain.label1.caption
+msgid "Select library"
+msgstr ""
+
+#: tfrmmain.label2.caption
+msgid "Frames"
+msgstr ""
+
+#: tfrmmain.layersgroupbox.caption
+msgctxt "tfrmmain.layersgroupbox.caption"
+msgid "Layers"
+msgstr ""
+
+#: tfrmmain.layerstoolvisiblemenuitem.caption
+msgid "LayersToolVisibleMenuItem"
+msgstr ""
+
+#: tfrmmain.librarytabsheet.caption
+msgid "Local Library"
+msgstr ""
+
+#: tfrmmain.menuitem1.caption
+msgid "Sprite"
+msgstr ""
+
+#: tfrmmain.menuitem2.caption
+msgctxt "tfrmmain.menuitem2.caption"
+msgid "Layers"
+msgstr ""
+
+#: tfrmmain.menuitem3.caption
+msgctxt "tfrmmain.menuitem3.caption"
+msgid "Palette"
+msgstr ""
+
+#: tfrmmain.menuitem4.caption
+msgid "Tool panels"
+msgstr ""
+
+#: tfrmmain.menuitem7.caption
+msgid "New Sprite Library"
+msgstr ""
+
+#: tfrmmain.mipaletteclear.caption
+msgid "Reset palette"
+msgstr ""
+
+#: tfrmmain.mipaletteimportfromfile.caption
+msgid "Import from image file"
+msgstr ""
+
+#: tfrmmain.mipaletteloadfromfile.caption
+msgid "Load from file"
+msgstr ""
+
+#: tfrmmain.mipalettesavetofile.caption
+msgid "Save to file"
+msgstr ""
+
+#: tfrmmain.painttoolpanelvisiblemenuitem.caption
+msgid "Paint tools"
+msgstr ""
+
+#: tfrmmain.previewaccordionitem.caption
+msgid "Preview"
+msgstr ""
+
+#: tfrmmain.projecttabsheet.caption
+msgid "Project info"
+msgstr ""
+
+#: tfrmmain.refimageaccordionitem.caption
+msgid "Reference image"
+msgstr ""
+
+#: tfrmmain.savespritelibmenuitem.caption
+msgid "Save Sprite Library"
+msgstr ""
+
+#: tfrmmain.selectspritelibmenuitem.caption
+msgid "Select Sprite Library"
+msgstr ""
+
+#: tfrmmain.settingstabsheet.caption
+msgid "Settings"
+msgstr ""
+
+#: tfrmmain.sourcetabsheet.caption
+msgid "Source Image"
+msgstr ""
+
+#: tfrmmain.speedbuttonautoselect.hint
+msgid "Clear all previous frames and try autorecognize new"
+msgstr ""
+
+#: tfrmmain.speedbuttonloadspritesheet.hint
+msgid "Import Spritesheet image"
+msgstr ""
+
+#: tfrmmain.speedbuttonsavetolib.hint
+msgid "Save image to current spritelib"
+msgstr ""
+
+#: tfrmmain.statictext1.caption
+msgid "StaticText1"
+msgstr ""
+
+#: tfrmmain.timelinetoolvisiblemenuitem.caption
+msgid "Timeline"
+msgstr ""
+
+#: tfrmmain.viewmenuitem.caption
+msgid "View"
+msgstr ""
+
+#: tfrmmain.viewzoominmenuitem.caption
+msgid "Zoom++"
+msgstr ""
+
+#: tfrmmain.viewzoomoutmenuitem.caption
+msgid "Zoom--"
+msgstr ""
+
+#: tfrmmain.viewzoomresetmenuitem.caption
+msgid "Reset zoom"
+msgstr ""
+

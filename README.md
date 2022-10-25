@@ -10,7 +10,6 @@ Program written with CodeTyphon IDE/Free Pascal Compiler.
 Simple but (maybe) powerful Sprite Editor and local sprite library for pixel-art based 2D games.
 
 
-
 WORK PROGRESS
 =============
 Still development, new features will be added when i have enought time and motivation.
@@ -58,6 +57,12 @@ In future will be avaliable:
 - other features that will be needed
 - interface localization to other languages
 
+
+TROUBLESHOOTING
+===============
+- [ ] In Windows some troubles with terminal output. Temporarily added APPTYPE console.
+
+- [ ] In Windows keys won't work. Will be fixed soon.
 
 COPYRIGHT
 =========

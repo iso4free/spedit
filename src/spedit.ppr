@@ -12,7 +12,7 @@
 //**********************************************************************
 
 program spedit;
-
+{$IFDEF MSWINDOWS} {$APPTYPE CONSOLE} {$ENDIF}
 {$mode objfpc}{$H+}
 
 uses

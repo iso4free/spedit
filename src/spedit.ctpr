@@ -56,17 +56,23 @@
               </Win32>
             </Options>
           </Linking>
+          <Other>
+            <Verbosity>
+              <ShoLineNum Value="True"/>
+              <ShowExecInfo Value="True"/>
+            </Verbosity>
+          </Other>
         </CompilerOptions>
       </Item>
       <Item Name="Release">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="spedit"/>
+            <Filename Value="../bin/$(TargetCPU)-$(TargetOS)/spedit"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+            <UnitOutputDirectory Value="../lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
             <SmartLinkUnit Value="True"/>
@@ -91,11 +97,11 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="spedit"/>
+            <Filename Value="../bin/$(TargetCPU)-$(TargetOS)spedit"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+            <UnitOutputDirectory Value="../lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
             <SmartLinkUnit Value="True"/>
@@ -129,40 +135,7 @@
     </RunParams>
     <RequiredPackages>
       <Item>
-        <PackageName Value="pl_Graphics32"/>
-      </Item>
-      <Item>
-        <PackageName Value="pl_Graphics32EXT"/>
-      </Item>
-      <Item>
-        <PackageName Value="pl_ExDesign"/>
-      </Item>
-      <Item>
-        <PackageName Value="pl_RX"/>
-      </Item>
-      <Item>
-        <PackageName Value="pl_LuiControls"/>
-      </Item>
-      <Item>
-        <PackageName Value="pl_KControls"/>
-      </Item>
-      <Item>
-        <PackageName Value="pl_ExControls"/>
-      </Item>
-      <Item>
         <PackageName Value="pl_ECControls"/>
-      </Item>
-      <Item>
-        <PackageName Value="pl_BGRAextra"/>
-      </Item>
-      <Item>
-        <PackageName Value="pl_ColorLib"/>
-      </Item>
-      <Item>
-        <PackageName Value="pl_BGRAshapes"/>
-      </Item>
-      <Item>
-        <PackageName Value="pl_GlassDocking"/>
       </Item>
       <Item>
         <PackageName Value="pl_BGRAcontrols"/>
@@ -191,7 +164,7 @@
       </Unit>
       <Unit>
         <Filename Value="udrawtools.pas"/>
-        <FRMtype Value="0"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmDrawTools"/>
         <HasResources Value="True"/>
@@ -202,11 +175,11 @@
   <CompilerOptions>
     <Version Value="11"/>
     <Target>
-      <Filename Value="spedit"/>
+      <Filename Value="../bin/$(TargetCPU)-$(TargetOS)/spedit"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+      <UnitOutputDirectory Value="../lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
       <Options>

@@ -8,9 +8,9 @@
         <Filename Value="spedit.ppr"/>
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="6"/>
         <CursorPos Y="34"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -22,11 +22,8 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="545"/>
-        <CursorPos X="17" Y="565"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -43,14 +40,14 @@
       </Unit>
       <Unit>
         <Filename Value="udrawtools.pas"/>
-        <FRMtype Value="0"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmDrawTools"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="28"/>
+        <TopLine Value="24"/>
         <CursorPos Y="46"/>
         <UsageCount Value="45"/>
         <Loaded Value="True"/>
@@ -603,16 +600,16 @@
         <CursorPos X="3" Y="477"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_ECControls/source/ecaccordion.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="ECAccordion"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="275" Column="58" TopLine="262"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="83" Column="15" TopLine="76"/>
-      </Position>
       <Position>
         <Filename Value="uglobals.pas"/>
         <Caret Line="369" TopLine="364"/>
@@ -724,6 +721,13 @@
       <Position>
         <Filename Value="umain.pas"/>
         <Caret Line="296" Column="122" TopLine="272"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="553" Column="22" TopLine="545"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
       </Position>
     </JumpHistory>
     <RunParams>
