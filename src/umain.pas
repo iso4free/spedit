@@ -1,3 +1,27 @@
+{***************************************************************************}
+{*     This file is a part of                                              *}
+{*                                                                         *}
+{* @@@@@@  @@@@@@@  @@@@@@@@ @@@@@@@  @@@ @@@@@@@   @@@  @@@         @@@   *}
+{*@@@@@@@  @@@@@@@@ @@@@@@@@ @@@@@@@@ @@@ @@@@@@@   @@@  @@@        @@@@   *}
+{*!@@      @@!  @@@ @@!      @@!  @@@ @@!   @@!     @@!  @@@       @@!@!   *}
+{*!@!      !@!  @!@ !@!      !@!  @!@ !@!   !@!     !@!  @!@      !@!!@!   *}
+{*!!@@!!   @!@@!@!  @!!!:!   @!@  !@! !!@   @!!     @!@  !@!     @!! @!!   *}
+{* !!@!!!  !!@!!!   !!!!!:   !@!  !!! !!!   !!!     !@!  !!!    !!!  !@!   *}
+{*     !:! !!:      !!:      !!:  !!! !!:   !!:     :!:  !!:    :!!:!:!!:  *}
+{*    !:!  :!:      :!:      :!:  !:! :!:   :!:      ::!!:! :!: !:::!!:::  *}
+{*:::: ::   ::       :: ::::  :::: ::  ::    ::       ::::  :::      :::   *}
+{*:: : :    :       : :: ::  :: :  :  :      :         :    :::      :::   *}
+{*                                                                         *}
+{***************************************************************************}
+{*    Sprite Editor 4.0                                                    *}
+{*    Copyright (c) 2000-2022 by Vadim Vitomsky                            *}
+{*                                                                         *}
+{*    See the file LICENSE, included in this distribution, for details.    *}                                 *}
+{*                                                                         *}
+{*    This program is distributed in the hope that it will be useful,      *}
+{*    but WITHOUT ANY WARRANTY; without even the implied warranty of       *}
+{*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                 *}
+{***************************************************************************}
 unit umain;
 
 {$mode objfpc}{$H+}
@@ -15,13 +39,11 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
-    bbtnSwapColors: TBitBtn;
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
     DrawToolsFlowPanel: TFlowPanel;
     LayersCheckListBox: TCheckListBox;
-    DrawToolsPanel: TPanel;
     bbtnAddLayer: TBitBtn;
     bbtnDeleteLayer: TBitBtn;
     bbtnCopyLayer: TBitBtn;
@@ -43,19 +65,12 @@ type
     miPaletteSaveToFile: TMenuItem;
     miPaletteLoadFromFile: TMenuItem;
     OpenPaletteDialog: TOpenDialog;
-    PaletteGrid: TBCGameGrid;
-    BgColor: TBGRAGraphicControl;
     sbEracer: TSpeedButton;
     sbPen: TSpeedButton;
     sbPipette: TSpeedButton;
-    FgColor: TBGRAGraphicControl;
-    ColorDialog1: TColorDialog;
     BitBtnNewFrame: TBitBtn;
     FrameFlowPanel: TFlowPanel;
-    GroupBox2: TGroupBox;
     AdditionalToolsPanel: TPanel;
-    ColorsPanel: TPanel;
-    ScrollBox5: TScrollBox;
     ReferenceImage: TImage;
     ProjectSheet: TBGRAImageManipulation;
     ImportImage: TBGRAImageManipulation;
@@ -145,14 +160,7 @@ type
     procedure pbFrameDrawMouseWheelUp(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: Boolean);
     procedure pbFrameDrawPaint(Sender: TObject);
-    procedure PaletteGridMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure PaletteGridRenderControl(Sender: TObject; Bitmap: TBGRABitmap;
-      r: TRect; n, x, y: integer);
-    procedure BgColorMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure BgColorPaint(Sender: TObject);
-    procedure SwapColors(Sender: TObject);
     procedure FileLoadSpritesheetMenuItemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
@@ -185,7 +193,7 @@ var
 
 implementation
 
-uses uzastavka, udrawtools, uselsprlib, udraw;
+uses uzastavka, udrawtools, uselsprlib;
 
 {$R *.frm}
 
@@ -244,14 +252,22 @@ begin
   dy:=0;
   FramePreview.Width:=FrameGrid.FrameWidth;
   FramePreview.Height:=FrameGrid.FrameHeight;
-  WriteLN(Frames.IndexOf(FrameGrid.ActiveFrame));
   FrameGrid.ActiveFrame:=Frames.Keys[0];
   FrameGrid.ActiveLayer:=Layers.Keys[0];
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
+  //save forms size and position
+  INI.WriteInteger('FRMMAIN','TOP',frmMain.Top);
+  INI.WriteInteger('FRMMAIN','LEFT',frmMain.Left);
+  INI.WriteInteger('FRMMAIN','WIDTH',frmMain.Width);
+  INI.WriteInteger('FRMMAIN','HEIHFT',frmMain.Height);
 
+  INI.WriteInteger('FRMDRAWTOOLS','TOP',frmDrawTools.Top);
+  INI.WriteInteger('FRMDRAWTOOLS','LEFT',frmDrawTools.Left);
+  INI.WriteInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
+  INI.WriteInteger('FRMDRAWTOOLS','HEIHFT',frmDrawTools.Height);
   FreeAndNil(frmDrawTools);
   FreeAndNil(FrameGrid);
 end;
@@ -318,7 +334,7 @@ end;
 procedure TfrmMain.miPaletteClearClick(Sender: TObject);
 begin
   if MessageDlg('Warning!','Palette will be resetted to default colors! Are You shure?',mtWarning,mbYesNo,'')=mrYes then Palette.Reset;
-  PaletteGrid.RenderAndDrawControl;
+  frmDrawTools.PaletteGrid.RenderAndDrawControl;
 end;
 
 procedure TfrmMain.miPaletteImportFromFileClick(Sender: TObject);
@@ -342,8 +358,7 @@ begin
      end;
 stop:
    FreeAndNil(img);
-   PaletteGrid.RenderAndDrawControl;
-
+  frmDrawTools.PaletteGrid.RenderAndDrawControl;
   end;
 end;
 
@@ -352,7 +367,7 @@ begin
   if OpenPaletteDialog.Execute then begin
     Palette.LoadFromFile(OpenPaletteDialog.FileName);
   end;
-  PaletteGrid.RenderAndDrawControl;
+ frmDrawTools.PaletteGrid.RenderAndDrawControl;
 end;
 
 procedure TfrmMain.miPaletteSaveToFileClick(Sender: TObject);
@@ -370,7 +385,7 @@ end;
 
 procedure TfrmMain.PaintToolPanelVisibleMenuItemClick(Sender: TObject);
 begin
-  DrawToolsPanel.Visible:= not DrawToolsPanel.Visible;
+  frmDrawTools.Visible:= not frmDrawTools.Visible;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
@@ -443,65 +458,13 @@ end;
 
 procedure TfrmMain.pbFrameDrawPaint(Sender: TObject);
 begin
-   //todo: draw here zoomed frame data
+   //draw here zoomed frame data
   if Assigned(FrameGrid) then begin
     FrameGrid.RenderAndDraw(pbFrameDraw.Canvas);
     FramePreview.Invalidate;
   end;
   StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);
 
-end;
-
-procedure TfrmMain.PaletteGridMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-var xx,yy,n : Integer;
-begin
-  xx:=x div PaletteGrid.BlockWidth+1;
-  yy:=y div PaletteGrid.BlockHeight+1;
-  n := xx-PaletteGrid.GridWidth+yy*PaletteGrid.GridWidth-1;
-  if n>Palette.Count then Exit;
-  Palette.SelectColor(n);
-  case Button of
-    mbLeft:begin
-     spclForeColor:=Palette.SelectedColor;
-     FgColor.Invalidate;
-    end;
-    mbRight:begin
-     spclBackColor:=Palette.SelectedColor;
-     BgColor.Invalidate;
-    end;
-  end;
-end;
-
-procedure TfrmMain.PaletteGridRenderControl(Sender: TObject;
-  Bitmap: TBGRABitmap; r: TRect; n, x, y: integer);
-var b, c : TBGRAPixel;
-begin
-  if (n=0) or (n>Palette.Count-1) then begin
-   c:=clNone;
-   b:=clNone;
-   end  else begin
-     c := ColorToBGRA(palette.Color[n]);
-     b:=ColorToBGRA(clBlack);
-   end;
-  Bitmap.Rectangle(r,b,c,dmSet);
-end;
-
-procedure TfrmMain.BgColorMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-  case Button of
-    mbLeft:  if ColorDialog1.Execute then begin
-                if (Sender as TBGRAGraphicControl).Tag=1 then spclBackColor:=ColorDialog1.Color
-                else spclForeColor:=ColorDialog1.Color;
-                Palette.AddColor(ColorDialog1.Color);
-                StatusBar1.Panels[0].Text:='Colors: '+IntToStr(Palette.Count);
-                PaletteGrid.RenderAndDrawControl;
-              end;
-    mbRight:if (Sender as TBGRAGraphicControl).Tag=1 then spclBackColor:=clNone
-                else spclForeColor:=clNone;
-  end;
-  BgColorPaint(Sender);
 end;
 
 procedure TfrmMain.BgColorPaint(Sender: TObject);
@@ -517,16 +480,6 @@ begin
     else (Sender as TBGRAGraphicControl).Bitmap.FillRect(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(cl));
   (Sender as TBGRAGraphicControl).Invalidate;
   StatusBar1.Panels[1].Text:='FG: '+IntToHex(spclForeColor)+' / BG: '+IntToHex(spclBackColor);
-end;
-
-procedure TfrmMain.SwapColors(Sender: TObject);
-var cl : TColor;
-begin
-   cl := spclBackColor;
-   spclBackColor:=spclForeColor;
-   spclForeColor:=cl;
-   FgColor.Invalidate;
-   BgColor.Invalidate;
 end;
 
 procedure TfrmMain.FileLoadSpritesheetMenuItemClick(Sender: TObject);
@@ -545,6 +498,12 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  //load form size and position from settings
+  frmMain.Top:=INI.ReadInteger('FRMMAIN','TOP',frmMain.Top);
+  frmMain.Left:=INI.ReadInteger('FRMMAIN','LEFT',frmMain.Left);
+  frmMain.Width:=INI.ReadInteger('FRMMAIN','WIDTH',frmMain.Width);
+  frmMain.Height:=INI.ReadInteger('FRMMAIN','HEIHFT',frmMain.Height);
+
   //create and show if checked splashscreen
   Application.CreateForm(TfrmZastavka, frmZastavka);
   if INI.ReadBool('INTERFACE', 'SHOWSPLASH', true) then frmZastavka.Show;
@@ -554,19 +513,16 @@ begin
   LibraryComboBox.ItemIndex := LibraryComboBox.Items.IndexOf(INI.ReadString('INTERFACE', 'SPRITELIB', 'default'));
   LoadSpriteLib;
   MainPageControl.ActivePageIndex := 0;
-  BgColor.ShowHint:=true;
-  FgColor.ShowHint:=true;
   //create empty new frame with default params
   BitBtnNewFrameClick(Sender);
 
   //create tools floating window
   frmDrawTools:=TfrmDrawTools.Create(Self);
-//  DrawToolsPanel.InsertControl(frmDrawTools);
-  frmMain.Top:=0;
-  frmMain.Left:=100;
-  frmDrawTools.Left:=0;
-  frmDrawTools.Top:=0;
-  frmDrawTools.Width:=100;
+//  load tools form size and position
+  frmDrawTools.Top:=INI.ReadInteger('FRMDRAWTOOLS','TOP',frmDrawTools.Top);
+  frmDrawTools.Left:=INI.ReadInteger('FRMDRAWTOOLS','LEFT',frmDrawTools.Left);
+  frmDrawTools.Width:=INI.ReadInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
+  frmDrawTools.Height:=INI.ReadInteger('FRMDRAWTOOLS','HEIHFT',frmDrawTools.Height);
   frmDrawTools.Show;
 end;
 

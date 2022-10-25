@@ -3,8 +3,8 @@ object frmMain: TfrmMain
   Height = 454
   Top = 270
   Width = 667
-  HorzScrollBar.Page = 465
-  VertScrollBar.Page = 385
+  HorzScrollBar.Page = 293
+  VertScrollBar.Page = 383
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
@@ -24,7 +24,7 @@ object frmMain: TfrmMain
   Visible = True
   object MainPageControl: TPageControl
     Left = 0
-    Height = 436
+    Height = 433
     Top = 0
     Width = 667
     ActivePage = FrameEditorTabSheet
@@ -35,13 +35,13 @@ object frmMain: TfrmMain
     object FrameEditorTabSheet: TTabSheet
       Tag = 1
       Caption = 'Frame Editor'
-      ClientHeight = 406
-      ClientWidth = 657
+      ClientHeight = 398
+      ClientWidth = 661
       object FrameFlowPanel: TFlowPanel
         Left = 0
-        Height = 41
+        Height = 35
         Top = 0
-        Width = 657
+        Width = 661
         Align = alTop
         AutoSize = True
         ControlList = <        
@@ -60,9 +60,9 @@ object frmMain: TfrmMain
         TabOrder = 0
         object BitBtnNewFrame: TBitBtn
           Left = 1
-          Height = 38
+          Height = 32
           Top = 1
-          Width = 38
+          Width = 32
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -71,10 +71,10 @@ object frmMain: TfrmMain
           TabOrder = 0
         end
         object BitBtnLayers: TBitBtn
-          Left = 39
-          Height = 38
+          Left = 33
+          Height = 32
           Top = 1
-          Width = 38
+          Width = 32
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -84,12 +84,12 @@ object frmMain: TfrmMain
       end
       object AdditionalToolsPanel: TPanel
         AnchorSideLeft.Side = asrBottom
-        Left = 487
-        Height = 365
-        Top = 41
+        Left = 491
+        Height = 363
+        Top = 35
         Width = 170
         Align = alRight
-        ClientHeight = 365
+        ClientHeight = 363
         ClientWidth = 170
         TabOrder = 1
         object ECAccordion1: TECAccordion
@@ -134,19 +134,19 @@ object frmMain: TfrmMain
         end
         object LayersGroupBox: TGroupBox
           Left = 1
-          Height = 207
+          Height = 205
           Top = 157
           Width = 168
           Align = alClient
           Caption = 'Layers'
-          ClientHeight = 190
-          ClientWidth = 166
+          ClientHeight = 186
+          ClientWidth = 164
           TabOrder = 1
           object LayersFlowPanel: TFlowPanel
             Left = 0
-            Height = 41
-            Top = 149
-            Width = 166
+            Height = 35
+            Top = 151
+            Width = 164
             Align = alBottom
             AutoSize = True
             ControlList = <            
@@ -175,10 +175,10 @@ object frmMain: TfrmMain
             TabOrder = 0
             object bbtnAddLayer: TBitBtn
               Left = 1
-              Height = 38
+              Height = 32
               Hint = 'Add new layer'
               Top = 1
-              Width = 38
+              Width = 32
               Anchors = []
               AutoSize = True
               Images = ButtonsImageList
@@ -189,11 +189,11 @@ object frmMain: TfrmMain
               TabOrder = 0
             end
             object bbtnDeleteLayer: TBitBtn
-              Left = 39
-              Height = 38
+              Left = 33
+              Height = 32
               Hint = 'Delete selected layer'
               Top = 1
-              Width = 38
+              Width = 32
               Anchors = []
               AutoSize = True
               Images = ButtonsImageList
@@ -204,11 +204,11 @@ object frmMain: TfrmMain
               TabOrder = 1
             end
             object bbtnCopyLayer: TBitBtn
-              Left = 77
-              Height = 38
+              Left = 65
+              Height = 32
               Hint = 'Copy selected layer'
               Top = 1
-              Width = 38
+              Width = 32
               Anchors = []
               AutoSize = True
               Images = ButtonsImageList
@@ -219,11 +219,11 @@ object frmMain: TfrmMain
               TabOrder = 2
             end
             object bbtnMergeLayers: TBitBtn
-              Left = 115
-              Height = 38
+              Left = 97
+              Height = 32
               Hint = 'Merge with previous layer'
               Top = 1
-              Width = 38
+              Width = 32
               Anchors = []
               AutoSize = True
               Images = ButtonsImageList
@@ -236,9 +236,9 @@ object frmMain: TfrmMain
           end
           object LayersCheckListBox: TCheckListBox
             Left = 0
-            Height = 149
+            Height = 151
             Top = 0
-            Width = 166
+            Width = 164
             Align = alClient
             ItemHeight = 0
             TabOrder = 1
@@ -247,22 +247,22 @@ object frmMain: TfrmMain
         end
       end
       object FrameDrawPanel: TPanel
-        Left = 173
-        Height = 355
-        Top = 46
-        Width = 309
+        Left = 5
+        Height = 353
+        Top = 40
+        Width = 481
         Align = alClient
         BorderSpacing.Around = 5
         BevelInner = bvLowered
         BevelOuter = bvNone
-        ClientHeight = 355
-        ClientWidth = 309
+        ClientHeight = 353
+        ClientWidth = 481
         TabOrder = 2
         object pbFrameDraw: TPaintBox
           Left = 1
-          Height = 353
+          Height = 351
           Top = 1
-          Width = 307
+          Width = 479
           Align = alClient
           OnMouseDown = pbFrameDrawMouseDown
           OnMouseMove = pbFrameDrawMouseMove
@@ -272,249 +272,11 @@ object frmMain: TfrmMain
           OnPaint = pbFrameDrawPaint
         end
       end
-      object DrawToolsPanel: TPanel
-        Left = 0
-        Height = 365
-        Top = 41
-        Width = 168
-        Align = alLeft
-        ClientHeight = 365
-        ClientWidth = 168
-        TabOrder = 3
-        object GroupBox2: TGroupBox
-          Left = 1
-          Height = 129
-          Top = 235
-          Width = 166
-          Align = alBottom
-          Caption = 'Palette'
-          ClientHeight = 112
-          ClientWidth = 164
-          TabOrder = 0
-          object ScrollBox5: TScrollBox
-            Left = 0
-            Height = 112
-            Top = 0
-            Width = 164
-            HorzScrollBar.Page = 140
-            VertScrollBar.Page = 110
-            Align = alClient
-            ClientHeight = 110
-            ClientWidth = 149
-            TabOrder = 0
-            object PaletteGrid: TBCGameGrid
-              AnchorSideLeft.Control = ScrollBox5
-              AnchorSideTop.Control = ScrollBox5
-              Left = 0
-              Height = 400
-              Top = 0
-              Width = 140
-              GridWidth = 14
-              GridHeight = 40
-              BlockWidth = 10
-              BlockHeight = 10
-              OnRenderControl = PaletteGridRenderControl
-              OnMouseUp = PaletteGridMouseUp
-            end
-          end
-        end
-        object ColorsPanel: TPanel
-          Left = 1
-          Height = 52
-          Top = 183
-          Width = 166
-          Align = alBottom
-          AutoSize = True
-          ClientHeight = 52
-          ClientWidth = 166
-          TabOrder = 1
-          OnClick = SwapColors
-          object BgColor: TBGRAGraphicControl
-            Tag = 1
-            Left = 115
-            Height = 50
-            Hint = 'Left click to select color'#10'Right click to set transparent color'
-            Top = 1
-            Width = 50
-            Align = alRight
-            BorderWidth = 1
-            BevelInner = bvLowered
-            Color = clWhite
-            ColorOpacity = 128
-            Alignment = taCenter
-            OnMouseDown = BgColorMouseUp
-            OnPaint = BgColorPaint
-            Caption = 'BG'
-          end
-          object FgColor: TBGRAGraphicControl
-            Tag = 2
-            Left = 1
-            Height = 50
-            Hint = 'Left click to select color'#10'Right click to set transparent color'
-            Top = 1
-            Width = 50
-            Align = alLeft
-            BorderWidth = 1
-            BevelInner = bvRaised
-            BevelOuter = bvLowered
-            Color = clWhite
-            ColorOpacity = 128
-            Alignment = taCenter
-            OnMouseDown = BgColorMouseUp
-            OnPaint = BgColorPaint
-            Caption = 'FG'
-          end
-          object bbtnSwapColors: TBitBtn
-            Left = 51
-            Height = 50
-            Hint = 'Swap colors'
-            Top = 1
-            Width = 64
-            Align = alClient
-            Glyph.Data = {
-              36100000424D3610000000000000360000002800000020000000200000000100
-              2000000000000010000064000000640000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000FF000000FF000000FF000000FF000000FF0000
-              00FF000000FF000000FF000000FF000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00FF000000FF000000FF009957FF009957FF009957FF009957FF009957FF0099
-              57FF009957FF009957FF009957FF000000FF000000FF000000FF000000000000
-              000000000000000000FF000000FF000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000FF000000FF0099
-              57FF009957FF009957FF009957FF009957FF009957FF009957FF009957FF0099
-              57FF009957FF009957FF009957FF009957FF009957FF009957FF000000FF0000
-              00FF000000FF009957FF009957FF000000FF0000000000000000000000000000
-              000000000000000000000000000000000000000000FF009957FF009957FF0099
-              57FF009957FF009957FF000000FF000000FF000000FF000000FF000000FF0000
-              00FF000000FF000000FF000000FF009957FF009957FF009957FF009957FF0099
-              57FF000000FF009957FF009957FF000000FF0000000000000000000000000000
-              0000000000000000000000000000000000FF009957FF009957FF009957FF0099
-              57FF000000FF000000FF00000000000000000000000000000000000000000000
-              0000000000000000000000000000000000FF000000FF009957FF009957FF0099
-              57FF009957FF00A860FF00A860FF000000FF0000000000000000000000000000
-              00000000000000000000000000FF009957FF009957FF009957FF000000FF0000
-              00FF000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000FF000000FF0099
-              57FF00A860FF00B769FF00A860FF000000FF0000000000000000000000000000
-              000000000000000000FF009957FF009957FF009957FF000000FF000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000FF009957FF009957FF00A8
-              60FF00B769FF00B769FF00A860FF000000FF0000000000000000000000000000
-              000000000000000000FF009957FF009957FF000000FF00000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000FF009957FF009957FF00A8
-              60FF00A860FF00A860FF00A860FF000000FF0000000000000000000000000000
-              0000000000FF008A4EFF008A4EFF000000FF0000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000FF000000FF0000
-              00FF000000FF000000FF000000FF000000FF0000000000000000000000000000
-              0000000000FF008A4EFF008A4EFF000000FF0000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000FF000000FF000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000FF000000FF0000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000FF00008AFF00008AFF000000FF00000000000000000000
-              000000000000000000FF000000FF000000FF000000FF000000FF000000FF0000
-              00FF000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000FF00008AFF00008AFF000000FF00000000000000000000
-              000000000000000000FF0000B7FF0000C6FF0000A8FF000099FF000099FF0000
-              99FF000000FF0000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000FF000099FF000099FF000000FF0000000000000000000000000000
-              000000000000000000FF0000C6FF0000D5FF0000A8FF000099FF000099FF0000
-              99FF000000FF0000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00FF000099FF000099FF000099FF000000FF0000000000000000000000000000
-              000000000000000000FF0000A8FF0000A8FF000099FF000099FF000000FF0000
-              00FF000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000FF000000FF0000
-              99FF000099FF000099FF000000FF000000000000000000000000000000000000
-              000000000000000000FF000099FF000099FF000099FF000099FF000099FF0000
-              99FF000000FF000000FF00000000000000000000000000000000000000000000
-              0000000000000000000000000000000000FF000000FF000099FF000099FF0000
-              99FF000099FF000000FF00000000000000000000000000000000000000000000
-              000000000000000000FF000099FF000099FF000000FF000099FF000099FF0000
-              99FF000099FF000099FF000000FF000000FF000000FF000000FF000000FF0000
-              00FF000000FF000000FF000000FF000099FF000099FF000099FF000099FF0000
-              99FF000000FF0000000000000000000000000000000000000000000000000000
-              000000000000000000FF000099FF000099FF000000FF000000FF000000FF0000
-              99FF000099FF000099FF000099FF000099FF000099FF000099FF000099FF0000
-              99FF000099FF000099FF000099FF000099FF000099FF000099FF000000FF0000
-              00FF000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000FF000000FF0000000000000000000000000000
-              00FF000000FF000000FF000099FF000099FF000099FF000099FF000099FF0000
-              99FF000099FF000099FF000099FF000000FF000000FF000000FF000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000FF000000FF000000FF000000FF000000FF0000
-              00FF000000FF000000FF000000FF000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000
-            }
-            OnClick = SwapColors
-            ParentShowHint = False
-            ShowHint = True
-            TabOrder = 0
-          end
-        end
-      end
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 406
-      ClientWidth = 657
+      ClientHeight = 398
+      ClientWidth = 661
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -526,8 +288,8 @@ object frmMain: TfrmMain
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 406
-      ClientWidth = 657
+      ClientHeight = 398
+      ClientWidth = 661
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -587,8 +349,8 @@ object frmMain: TfrmMain
     end
     object SourceTabSheet: TTabSheet
       Caption = 'Source Image'
-      ClientHeight = 406
-      ClientWidth = 657
+      ClientHeight = 398
+      ClientWidth = 661
       object SrcImageButtonsPanel: TPanel
         Left = 0
         Height = 30
@@ -743,8 +505,8 @@ object frmMain: TfrmMain
     end
     object LibraryTabSheet: TTabSheet
       Caption = 'Local Library'
-      ClientHeight = 406
-      ClientWidth = 657
+      ClientHeight = 398
+      ClientWidth = 661
       object LibraryButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -760,8 +522,8 @@ object frmMain: TfrmMain
         Width = 185
         Align = alLeft
         Caption = 'Local libraries'
-        ClientHeight = 383
-        ClientWidth = 183
+        ClientHeight = 381
+        ClientWidth = 181
         TabOrder = 1
         object Label1: TLabel
           Left = 26
@@ -822,8 +584,8 @@ object frmMain: TfrmMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 18
-    Top = 436
+    Height = 21
+    Top = 433
     Width = 667
     Panels = <    
       item
@@ -1755,33 +1517,6 @@ object frmMain: TfrmMain
       85DF7DD3F1CA0ABFF9A6DCD711A928CA1FE23E89C320FEAFF44BF8D5B28360FF
       599E51FE07302C7C8A
     }
-  end
-  object ColorDialog1: TColorDialog
-    Color = clBlack
-    CustomColors.Strings = (
-      'ColorA=000000'
-      'ColorB=000080'
-      'ColorC=008000'
-      'ColorD=008080'
-      'ColorE=800000'
-      'ColorF=800080'
-      'ColorG=808000'
-      'ColorH=808080'
-      'ColorI=C0C0C0'
-      'ColorJ=0000FF'
-      'ColorK=00FF00'
-      'ColorL=00FFFF'
-      'ColorM=FF0000'
-      'ColorN=FF00FF'
-      'ColorO=FFFF00'
-      'ColorP=FFFFFF'
-      'ColorQ=C0DCC0'
-      'ColorR=F0CAA6'
-      'ColorS=F0FBFF'
-      'ColorT=A4A0A0'
-    )
-    Left = 194
-    Top = 96
   end
   object OpenPaletteDialog: TOpenDialog
     Left = 139

@@ -1,13 +1,43 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
+#: tfrmdrawtools.bbtnswapcolors.hint
+msgctxt "tfrmdrawtools.bbtnswapcolors.hint"
+msgid "Swap colors"
+msgstr ""
+
+#: tfrmdrawtools.bgcolor.caption
+msgctxt "tfrmdrawtools.bgcolor.caption"
+msgid "BG"
+msgstr ""
+
+#: tfrmdrawtools.bgcolor.hint
+msgctxt "tfrmdrawtools.bgcolor.hint"
+msgid ""
+"Left click to select color\n"
+"Right click to set transparent color"
+msgstr ""
+
 #: tfrmdrawtools.caption
 msgctxt "tfrmdrawtools.caption"
 msgid "Tools"
 msgstr ""
 
-#: tfrmdrawtools.flowpanel1.caption
-msgid "FlowPanel1"
+#: tfrmdrawtools.fgcolor.caption
+msgctxt "tfrmdrawtools.fgcolor.caption"
+msgid "FG"
+msgstr ""
+
+#: tfrmdrawtools.fgcolor.hint
+msgctxt "tfrmdrawtools.fgcolor.hint"
+msgid ""
+"Left click to select color\n"
+"Right click to set transparent color"
+msgstr ""
+
+#: tfrmdrawtools.groupbox2.caption
+msgctxt "tfrmdrawtools.groupbox2.caption"
+msgid "Palette"
 msgstr ""
 
 #: tfrmmain.aboutmenuitem.caption
@@ -34,39 +64,12 @@ msgstr ""
 msgid "Merge with previous layer"
 msgstr ""
 
-#: tfrmmain.bbtnswapcolors.hint
-msgctxt "tfrmmain.bbtnswapcolors.hint"
-msgid "Swap colors"
-msgstr ""
-
-#: tfrmmain.bgcolor.caption
-msgid "BG"
-msgstr ""
-
-#: tfrmmain.bgcolor.hint
-msgctxt "tfrmmain.bgcolor.hint"
-msgid ""
-"Left click to select color\n"
-"Right click to set transparent color"
-msgstr ""
-
 #: tfrmmain.caption
 msgid "Sprite Editor"
 msgstr ""
 
 #: tfrmmain.editmenuitem.caption
 msgid "Edit"
-msgstr ""
-
-#: tfrmmain.fgcolor.caption
-msgid "FG"
-msgstr ""
-
-#: tfrmmain.fgcolor.hint
-msgctxt "tfrmmain.fgcolor.hint"
-msgid ""
-"Left click to select color\n"
-"Right click to set transparent color"
 msgstr ""
 
 #: tfrmmain.fileexitmenuitem.caption
@@ -105,11 +108,6 @@ msgstr ""
 
 #: tfrmmain.groupbox1.caption
 msgid "Local libraries"
-msgstr ""
-
-#: tfrmmain.groupbox2.caption
-msgctxt "tfrmmain.groupbox2.caption"
-msgid "Palette"
 msgstr ""
 
 #: tfrmmain.helpmenuitem.caption
