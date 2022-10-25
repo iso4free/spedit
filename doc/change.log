@@ -20,3 +20,14 @@
 09.06.2022
 * Some interface changes (Draw tools now has properties)
 + Started try draw (not work well now - needs to be fixed)
+
+25.10.2022
+A lot of changes for all the time (12.10-25.10):
++ Implemented cell highlitning while mouse moves over grid
++ Added arrow keys to move cell cursor
++ Added basic layer class and frame class
++ Added layers/frames mapped lists
+! Fixed memory leak
++ Added Export frame to PNG
+* Fixed cursor control by key
++ Added drawing by secondary color (Enter key), deleting pixel by Del key
