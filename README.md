@@ -64,6 +64,8 @@ TROUBLESHOOTING
 
 - [ ] In Windows keys won't work. Will be fixed soon.
 
+- [ ] When trying open project Windows with CT 7.9 CT crashes
+
 COPYRIGHT
 =========
 
