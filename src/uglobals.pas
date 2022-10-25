@@ -110,7 +110,7 @@ type
 
     property Width : Integer read FWidth;
     property Height : Integer read FHeight;
-    function AddLayer(LayerName : String): Integer; //add new layer and return it`s index or -1 if error
+    function AddLayer(LayerName : String): Boolean; //add new layer and return it`s index or -1 if error
   end;
 
   { TCellCursor - for drawing red rectangle followed by mouse cursor or moved by arrow keys}
@@ -166,6 +166,7 @@ type
 
     procedure RenderAndDraw(Canvas : TCanvas);  //draw background and all layers data to canvas
     procedure RenderPicture(Canvas : TCanvas);
+    procedure ExpotPng(aFilename : TFileName);  //export frame to file
     property ShowGrid : Boolean read fShowGrid write fShowGrid;      //draw grid
     property FrameZoom : Integer read fFrameZoom write SetFrameZoom; //scale index
     property Offset : TPoint read FOffset write SetOffset;
@@ -178,8 +179,8 @@ type
   end;
 
 
-  TLayers = specialize TFPGMap<String,TLayer>;  //mapped layers list
-  TFrames = specialize TFPGMap<String,TFrame>;  //mapped frames list
+  TLayers = specialize TFPGMapObject<String,TLayer>;  //mapped layers list
+  TFrames = specialize TFPGMapObject<String,TFrame>;  //mapped frames list
 
 var
 
@@ -282,13 +283,13 @@ procedure ClearFramesAndLayers;
 var
     f , l : Integer;
 begin
-  l:=Layers.Count;
+  l:=Layers.Count-1;
   while l>0 do begin
     Layers.Data[l].Free;
     Layers.Data[l]:=nil;
   end;
   Layers.Clear;
-  f:=Frames.Count;
+  f:=Frames.Count-1;
   while f>0 do begin
     Frames.Data[f].Free;
     Frames.Data[f]:=nil;
@@ -346,9 +347,12 @@ begin
   inherited Destroy;
 end;
 
-function TFrame.AddLayer(LayerName: String): Integer;
+function TFrame.AddLayer(LayerName: String): Boolean;
 begin
+  result := False;
+  if LayersList.IndexOf(LayerName)<>-1 then Exit;
   LayersList.Add(LayerName);
+  Result:=True;
 end;
 
 { TLayer }
@@ -550,6 +554,11 @@ begin
   fPreview.Draw(Canvas,ImagePos.X,ImagePos.Y,true);
 end;
 
+procedure TFrameGrid.ExpotPng(aFilename: TFileName);
+begin
+  if aFilename<>'' then fPreview.SaveToFileUTF8(aFilename);
+end;
+
 { TPalette }
 
 function TPalette.GetColor(Index : Byte): TColor;
@@ -713,6 +722,7 @@ initialization
 
  finalization
   INI.WriteString('INTERFACE','SPRITELIB',CurrentLibName);
+  ClearFramesAndLayers;
   FreeAndNil(Layers);
   FreeAndNil(Frames);
   FreeAndNil(SpriteLibNames);

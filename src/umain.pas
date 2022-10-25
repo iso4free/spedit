@@ -36,6 +36,7 @@ type
     miPaletteImportFromFile: TMenuItem;
     FrameDrawPanel: TPanel;
     pbFrameDraw: TPaintBox;
+    sdExportFrameSaveDialog: TSaveDialog;
     SavePaletteDialog: TSaveDialog;
     Separator1: TMenuItem;
     miPaletteClear: TMenuItem;
@@ -125,6 +126,7 @@ type
     procedure BitBtnNewFrameClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FramePreviewClick(Sender: TObject);
     procedure LayersToolVisibleMenuItemClick(Sender: TObject);
     procedure miPaletteClearClick(Sender: TObject);
     procedure miPaletteImportFromFileClick(Sender: TObject);
@@ -262,25 +264,49 @@ begin
     //when arrow keys pressed move cell cursor in drawing grid
     case Key of
       VK_LEFT : begin
-        FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X-1;
+        if FrameGrid.CellCursor.X=0 then FrameGrid.CellCursor.X:=FrameGrid.FrameWidth-1 else
+           FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X-1;
       end;
       VK_RIGHT : begin
-        FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X+1;
+        if FrameGrid.CellCursor.X=(FrameGrid.FrameWidth-1) then FrameGrid.CellCursor.X:=0 else
+           FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X+1;
+        //need to block change tab
         Key:=0;
       end;
       VK_UP : begin
-        FrameGrid.CellCursor.y:=FrameGrid.CellCursor.y-1;
+        if FrameGrid.CellCursor.Y=0 then FrameGrid.CellCursor.Y:=FrameGrid.FrameHeight-1 else
+           FrameGrid.CellCursor.y:=FrameGrid.CellCursor.y-1;
       end;
       VK_DOWN : begin
+        if FrameGrid.CellCursor.Y=(FrameGrid.FrameHeight-1) then FrameGrid.CellCursor.Y:=0 else
         FrameGrid.CellCursor.Y:=FrameGrid.CellCursor.Y+1;
       end;
-
-      VK_SPACE : begin
-      //todo: draw pixels depends on selected cursor size
+      //next keys can be used to drawing
+       VK_SPACE : begin
+      //draw pixels depends on selected cursor size - first color
         Layers[FrameGrid.ActiveLayer].Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,ColorToBGRA(spclForeColor,255));
       end;
+       VK_RETURN : begin
+      //draw pixels depends on selected cursor size - second color
+        Layers[FrameGrid.ActiveLayer].Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,ColorToBGRA(spclBackColor,255));
+      end;
+       //just set pixel to background by setting opacity to 0
+       VK_DELETE : begin
+      //erace pixel to transparent
+        Layers[FrameGrid.ActiveLayer].Drawable.ErasePixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,255);
+     end;
     end;
     pbFrameDraw.Invalidate;
+  end;
+end;
+
+procedure TfrmMain.FramePreviewClick(Sender: TObject);
+begin
+  sdExportFrameSaveDialog.InitialDir:=GetUserDir;
+  sdExportFrameSaveDialog.FileName:=FrameGrid.ActiveFrame;
+  if sdExportFrameSaveDialog.Execute then begin
+    //save current frame to PNG file by default to user dir and with frame name
+    FrameGrid.ExpotPng(sdExportFrameSaveDialog.FileName);
   end;
 end;
 
@@ -536,6 +562,7 @@ begin
   //create tools floating window
   frmDrawTools:=TfrmDrawTools.Create(Self);
 //  DrawToolsPanel.InsertControl(frmDrawTools);
+  frmMain.Top:=0;
   frmMain.Left:=100;
   frmDrawTools.Left:=0;
   frmDrawTools.Top:=0;
