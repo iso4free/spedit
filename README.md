@@ -27,19 +27,23 @@ Hold Alt and use mouse scroll to change background checkers size.
 
 Hold mouse scroll to drag drawable area.
 
+For show/hide preview window press F7 or check menu 'View>Tool panels>Preview'
+
 Click to 'Preview' image for export in PNG file format.
 
-Click to 'Reference image' to expand it and click again to empty space below to open any image used as reference.
+For show referense image check menu 'View>Tool panels>Referense'.
 
-You can select primary and secondary colors clickin' on any color in palette with left (primary) or right (secondary) mouse buttons.
+Click to 'Referense' window to open any image used as reference.
+
+You can select primary and secondary colors click on any color in palette with left (primary) or right (secondary) mouse buttons.
 
 Also You can select any color just clickin' on primary or secondary colors with left button or set it to transparent clickin' by right mouse button.
 
-To swap colors, click on middle button (with red and green circled arrows) between primary and secondary colors.
+To swap colors, press X key or click on middle button (with red and green circled arrows) between primary and secondary colors.
 
 To manage palette, You can import it from palette file in HEX format (more formats will be added in future) or import from image file. For now, palette limited 256 indexed colors only, but in future this limits may be cancelled.
 
-To reset palette to default colors just ude menu 'Palette>Reset palette'.
+To reset palette to default colors just use menu 'Palette>Reset palette'.
 
 You can export palette in HEX format to use it for any purpose.
 
@@ -180,3 +184,10 @@ DEV.LOG
 - [!] Fixed cursor control by key
 - [+] Added drawing by secondary color (Enter key), deleting pixel by Del key
 
+27.10.2022
+=
+- [*] Created separate windows for preview, referense, layers
+- [*] Code refactoring and optimization
+- [*] Get rid of some unneedful components
+- [*] Some changes in project organization
+- [*] Updated this file

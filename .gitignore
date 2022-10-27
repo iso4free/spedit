@@ -1,6 +1,7 @@
-bin/x86_64-linux/spedit
+bin/*.*
 *.dbg
-/doc/patettegridtest/*.*
 *.compiled
 lib/x86_64-linux/*.*
-bin/x86_64-win64/spedit.exe
+lib/x86_64-win64/*.*
+debug/*.*
+debug/spedit

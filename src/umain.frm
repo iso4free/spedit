@@ -2,14 +2,14 @@ object frmMain: TfrmMain
   Left = 484
   Height = 454
   Top = 270
-  Width = 667
-  HorzScrollBar.Page = 293
-  VertScrollBar.Page = 383
+  Width = 557
+  HorzScrollBar.Page = 111
+  VertScrollBar.Page = 196
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
   ClientHeight = 454
-  ClientWidth = 667
+  ClientWidth = 557
   DockSite = True
   DoubleBuffered = True
   FormStyle = fsMDIForm
@@ -26,7 +26,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 433
     Top = 0
-    Width = 667
+    Width = 557
     ActivePage = FrameEditorTabSheet
     Align = alClient
     DockSite = True
@@ -36,12 +36,12 @@ object frmMain: TfrmMain
       Tag = 1
       Caption = 'Frame Editor'
       ClientHeight = 398
-      ClientWidth = 661
+      ClientWidth = 551
       object FrameFlowPanel: TFlowPanel
         Left = 0
         Height = 35
         Top = 0
-        Width = 661
+        Width = 551
         Align = alTop
         AutoSize = True
         ControlList = <        
@@ -82,206 +82,29 @@ object frmMain: TfrmMain
           TabOrder = 1
         end
       end
-      object AdditionalToolsPanel: TPanel
-        AnchorSideLeft.Side = asrBottom
-        Left = 491
+      object pbFrameDraw: TPaintBox
+        Left = 0
         Height = 363
         Top = 35
-        Width = 170
-        Align = alRight
-        ClientHeight = 363
-        ClientWidth = 170
-        TabOrder = 1
-        object ECAccordion1: TECAccordion
-          Left = 1
-          Height = 156
-          Top = 1
-          Width = 168
-          Align = alTop
-          FullExpand = True
-          ItemIndex = 1
-          SelectedFontOptions.FontStyles = [fsBold]
-          object RefImageAccordionItem: TAccordionItem
-            Caption = 'Reference image'
-            Order = 0
-            object ReferenceImage: TImage
-              Left = 0
-              Height = 1
-              Top = 0
-              Width = 168
-              Align = alClient
-              AutoSize = True
-              Center = True
-              KeepOriginXWhenClipped = True
-              KeepOriginYWhenClipped = True
-              OnClick = ReferenceImageClick
-              Proportional = True
-            end
-          end
-          object PreviewAccordionItem: TAccordionItem
-            Caption = 'Preview'
-            Order = 1
-            object FramePreview: TPaintBox
-              Left = 0
-              Height = 114
-              Top = 0
-              Width = 168
-              Align = alClient
-              OnClick = FramePreviewClick
-              OnPaint = FramePreviewPaint
-            end
-          end
-        end
-        object LayersGroupBox: TGroupBox
-          Left = 1
-          Height = 205
-          Top = 157
-          Width = 168
-          Align = alClient
-          Caption = 'Layers'
-          ClientHeight = 186
-          ClientWidth = 164
-          TabOrder = 1
-          object LayersFlowPanel: TFlowPanel
-            Left = 0
-            Height = 35
-            Top = 151
-            Width = 164
-            Align = alBottom
-            AutoSize = True
-            ControlList = <            
-              item
-                Control = bbtnAddLayer
-                WrapAfter = waAuto
-                Index = 0
-              end            
-              item
-                Control = bbtnDeleteLayer
-                WrapAfter = waAuto
-                Index = 1
-              end            
-              item
-                Control = bbtnCopyLayer
-                WrapAfter = waAuto
-                Index = 2
-              end            
-              item
-                Control = bbtnMergeLayers
-                WrapAfter = waAuto
-                Index = 3
-              end>
-            FlowLayout = tlTop
-            FlowStyle = fsLeftRightTopBottom
-            TabOrder = 0
-            object bbtnAddLayer: TBitBtn
-              Left = 1
-              Height = 32
-              Hint = 'Add new layer'
-              Top = 1
-              Width = 32
-              Anchors = []
-              AutoSize = True
-              Images = ButtonsImageList
-              ImageIndex = 31
-              OnClick = bbtnAddLayerClick
-              ParentShowHint = False
-              ShowHint = True
-              TabOrder = 0
-            end
-            object bbtnDeleteLayer: TBitBtn
-              Left = 33
-              Height = 32
-              Hint = 'Delete selected layer'
-              Top = 1
-              Width = 32
-              Anchors = []
-              AutoSize = True
-              Images = ButtonsImageList
-              ImageIndex = 33
-              OnClick = bbtnDeleteLayerClick
-              ParentShowHint = False
-              ShowHint = True
-              TabOrder = 1
-            end
-            object bbtnCopyLayer: TBitBtn
-              Left = 65
-              Height = 32
-              Hint = 'Copy selected layer'
-              Top = 1
-              Width = 32
-              Anchors = []
-              AutoSize = True
-              Images = ButtonsImageList
-              ImageIndex = 32
-              OnClick = bbtnCopyLayerClick
-              ParentShowHint = False
-              ShowHint = True
-              TabOrder = 2
-            end
-            object bbtnMergeLayers: TBitBtn
-              Left = 97
-              Height = 32
-              Hint = 'Merge with previous layer'
-              Top = 1
-              Width = 32
-              Anchors = []
-              AutoSize = True
-              Images = ButtonsImageList
-              ImageIndex = 20
-              OnClick = bbtnMergeLayersClick
-              ParentShowHint = False
-              ShowHint = True
-              TabOrder = 3
-            end
-          end
-          object LayersCheckListBox: TCheckListBox
-            Left = 0
-            Height = 151
-            Top = 0
-            Width = 164
-            Align = alClient
-            ItemHeight = 0
-            TabOrder = 1
-            TopIndex = -1
-          end
-        end
-      end
-      object FrameDrawPanel: TPanel
-        Left = 5
-        Height = 353
-        Top = 40
-        Width = 481
+        Width = 551
         Align = alClient
-        BorderSpacing.Around = 5
-        BevelInner = bvLowered
-        BevelOuter = bvNone
-        ClientHeight = 353
-        ClientWidth = 481
-        TabOrder = 2
-        object pbFrameDraw: TPaintBox
-          Left = 1
-          Height = 351
-          Top = 1
-          Width = 479
-          Align = alClient
-          OnMouseDown = pbFrameDrawMouseDown
-          OnMouseMove = pbFrameDrawMouseMove
-          OnMouseUp = pbFrameDrawMouseUp
-          OnMouseWheelDown = pbFrameDrawMouseWheelDown
-          OnMouseWheelUp = pbFrameDrawMouseWheelUp
-          OnPaint = pbFrameDrawPaint
-        end
+        OnMouseDown = pbFrameDrawMouseDown
+        OnMouseMove = pbFrameDrawMouseMove
+        OnMouseUp = pbFrameDrawMouseUp
+        OnMouseWheelDown = pbFrameDrawMouseWheelDown
+        OnMouseWheelUp = pbFrameDrawMouseWheelUp
+        OnPaint = pbFrameDrawPaint
       end
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
       ClientHeight = 398
-      ClientWidth = 661
+      ClientWidth = 551
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 658
+        Width = 661
         Align = alTop
         TabOrder = 0
       end
@@ -289,15 +112,15 @@ object frmMain: TfrmMain
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
       ClientHeight = 398
-      ClientWidth = 661
+      ClientWidth = 551
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 616
+        Width = 661
         Align = alTop
         ClientHeight = 50
-        ClientWidth = 616
+        ClientWidth = 661
         TabOrder = 0
         object StaticText1: TStaticText
           Left = 344
@@ -310,7 +133,7 @@ object frmMain: TfrmMain
       end
       object ProjectProperties: TValueListEditor
         Left = 0
-        Height = 242
+        Height = 348
         Top = 50
         Width = 200
         Align = alLeft
@@ -324,14 +147,14 @@ object frmMain: TfrmMain
       end
       object ScrollBox4: TScrollBox
         Left = 200
-        Height = 242
+        Height = 348
         Top = 50
-        Width = 416
+        Width = 461
         HorzScrollBar.Page = 320
         VertScrollBar.Page = 240
         Align = alClient
-        ClientHeight = 238
-        ClientWidth = 412
+        ClientHeight = 344
+        ClientWidth = 457
         TabOrder = 2
         object ProjectSheet: TBGRAImageManipulation
           AnchorSideLeft.Control = ScrollBox4
@@ -350,7 +173,7 @@ object frmMain: TfrmMain
     object SourceTabSheet: TTabSheet
       Caption = 'Source Image'
       ClientHeight = 398
-      ClientWidth = 661
+      ClientWidth = 551
       object SrcImageButtonsPanel: TPanel
         Left = 0
         Height = 30
@@ -429,9 +252,9 @@ object frmMain: TfrmMain
         TabOrder = 1
         object Label2: TLabel
           Left = 5
-          Height = 16
+          Height = 17
           Top = 5
-          Width = 43
+          Width = 48
           BorderSpacing.Around = 5
           Caption = 'Frames'
         end
@@ -440,9 +263,9 @@ object frmMain: TfrmMain
           AnchorSideRight.Side = asrBottom
           AnchorSideBottom.Side = asrBottom
           Left = 0
-          Height = 388
+          Height = 390
           Top = 26
-          Width = 148
+          Width = 150
           Anchors = [akTop, akLeft, akRight, akBottom]
           ItemHeight = 0
           OnClick = ListBox1Click
@@ -506,35 +329,35 @@ object frmMain: TfrmMain
     object LibraryTabSheet: TTabSheet
       Caption = 'Local Library'
       ClientHeight = 398
-      ClientWidth = 661
+      ClientWidth = 551
       object LibraryButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 629
+        Width = 647
         Align = alTop
         TabOrder = 0
       end
       object GroupBox1: TGroupBox
         Left = 0
-        Height = 400
+        Height = 371
         Top = 50
         Width = 185
         Align = alLeft
         Caption = 'Local libraries'
-        ClientHeight = 381
+        ClientHeight = 352
         ClientWidth = 181
         TabOrder = 1
         object Label1: TLabel
           Left = 26
-          Height = 16
+          Height = 17
           Top = 11
-          Width = 78
+          Width = 86
           Caption = 'Select library'
         end
         object LibraryComboBox: TComboBox
           Left = 4
-          Height = 29
+          Height = 31
           Top = 42
           Width = 156
           ItemHeight = 0
@@ -557,14 +380,14 @@ object frmMain: TfrmMain
       end
       object ScrollBox1: TScrollBox
         Left = 185
-        Height = 400
+        Height = 371
         Top = 50
-        Width = 444
+        Width = 462
         HorzScrollBar.Page = 90
         VertScrollBar.Page = 90
         Align = alClient
-        ClientHeight = 396
-        ClientWidth = 440
+        ClientHeight = 367
+        ClientWidth = 458
         TabOrder = 2
         object LibImage: TImage
           AnchorSideLeft.Control = ScrollBox1
@@ -586,7 +409,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 21
     Top = 433
-    Width = 667
+    Width = 557
     Panels = <    
       item
         Width = 200
@@ -652,17 +475,30 @@ object frmMain: TfrmMain
       object MenuItem4: TMenuItem
         Caption = 'Tool panels'
         object PaintToolPanelVisibleMenuItem: TMenuItem
-          Caption = 'Paint tools'
+          Caption = 'Drawing tools'
           Checked = True
+          ShortCut = 8276
           OnClick = PaintToolPanelVisibleMenuItemClick
         end
         object LayersToolVisibleMenuItem: TMenuItem
-          Caption = 'LayersToolVisibleMenuItem'
+          Caption = 'Layers'
           Checked = True
+          ShortCut = 8268
           OnClick = LayersToolVisibleMenuItemClick
         end
-        object TimeLineToolVisibleMenuItem: TMenuItem
-          Caption = 'Timeline'
+        object FramesMenuItem: TMenuItem
+          Caption = 'Frames'
+          ShortCut = 8262
+          OnClick = FramesMenuItemClick
+        end
+        object PreviewMenuItem: TMenuItem
+          Caption = 'Preview'
+          ShortCut = 118
+          OnClick = PreviewMenuItemClick
+        end
+        object ReferenseImageMenuItem: TMenuItem
+          Caption = 'Referense'
+          OnClick = ReferenseImageMenuItemClick
         end
       end
       object N2: TMenuItem
@@ -1527,11 +1363,5 @@ object frmMain: TfrmMain
     FileName = 'default'
     Left = 344
     Top = 276
-  end
-  object sdExportFrameSaveDialog: TSaveDialog
-    DefaultExt = '.png'
-    Filter = 'PNG files|*.png; *.PNG|all files|*.*'
-    Left = 563
-    Top = 147
   end
 end

@@ -1,4 +1,6 @@
 {***************************************************************************}
+{*     This file is a part of                                              *}
+{*                                                                         *}
 {* @@@@@@  @@@@@@@  @@@@@@@@ @@@@@@@  @@@ @@@@@@@   @@@  @@@         @@@   *}
 {*@@@@@@@  @@@@@@@@ @@@@@@@@ @@@@@@@@ @@@ @@@@@@@   @@@  @@@        @@@@   *}
 {*!@@      @@!  @@@ @@!      @@!  @@@ @@!   @@!     @@!  @@@       @@!@!   *}
@@ -20,28 +22,40 @@
 {*    but WITHOUT ANY WARRANTY; without even the implied warranty of       *}
 {*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                 *}
 {***************************************************************************}
+unit ulayers;
 
+{$mode ObjFPC}{$H+}
 
-program spedit;
-{$IFDEF MSWINDOWS} {$APPTYPE CONSOLE} {$ENDIF}
-{$mode objfpc}{$H+}
+interface
 
 uses
-  {$IFDEF UNIX}{$IFDEF UseCThreads}
-  cthreads,
-  {$ENDIF}{$ENDIF}
-  Forms, Interfaces, umain,
-  { you can add units after this }
-  uselsprlib, ulayers, upreview, ureferense;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
+  StdCtrls;
 
-{$R *.res}
+type
 
-begin
-  RequireDerivedFormResource:=True;
-  Application.Scaled:=True;
-  Application.Initialize;
-  Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TfrmSelectSpriteLib, frmSelectSpriteLib);
-  Application.Run;
+  { TfrmLayers }
+
+  TfrmLayers = class(TForm)
+    bbtnAddLayer: TBitBtn;
+    bbtnCopyLayer: TBitBtn;
+    bbtnDeleteLayer: TBitBtn;
+    bbtnMergeLayers: TBitBtn;
+    LayersFlowPanel: TFlowPanel;
+    LayersGroupBox: TGroupBox;
+  private
+
+  public
+
+  end;
+
+var
+  frmLayers: TfrmLayers;
+
+implementation
+
+uses uglobals, umain;
+{$R *.frm}
+
 end.
 

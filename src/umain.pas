@@ -16,7 +16,7 @@
 {*    Sprite Editor 4.0                                                    *}
 {*    Copyright (c) 2000-2022 by Vadim Vitomsky                            *}
 {*                                                                         *}
-{*    See the file LICENSE, included in this distribution, for details.    *}                                 *}
+{*    See the file LICENSE, included in this distribution, for details.    *}
 {*                                                                         *}
 {*    This program is distributed in the hope that it will be useful,      *}
 {*    but WITHOUT ANY WARRANTY; without even the implied warranty of       *}
@@ -30,9 +30,9 @@ interface
 
 uses
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
-  Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit, CheckLst,
-  BGRAImageList, BGRAImageManipulation, BCGameGrid, BGRABitmapTypes, BGRABitmap,
-  BGRAGraphicControl, ECAccordion, LCLType;
+  Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit,
+  BGRAImageList, BGRAImageManipulation, BGRABitmapTypes, BGRABitmap,
+  LCLType;
 
 type
 
@@ -43,22 +43,11 @@ type
     Button2: TButton;
     Button3: TButton;
     DrawToolsFlowPanel: TFlowPanel;
-    LayersCheckListBox: TCheckListBox;
-    bbtnAddLayer: TBitBtn;
-    bbtnDeleteLayer: TBitBtn;
-    bbtnCopyLayer: TBitBtn;
-    bbtnMergeLayers: TBitBtn;
-    LayersFlowPanel: TFlowPanel;
-    LayersGroupBox: TGroupBox;
-    FramePreview: TPaintBox;
-    RefImageAccordionItem: TAccordionItem;
-    PreviewAccordionItem: TAccordionItem;
-    BitBtnLayers: TBitBtn;
-    ECAccordion1: TECAccordion;
-    miPaletteImportFromFile: TMenuItem;
-    FrameDrawPanel: TPanel;
+    ReferenseImageMenuItem: TMenuItem;
+    PreviewMenuItem: TMenuItem;
     pbFrameDraw: TPaintBox;
-    sdExportFrameSaveDialog: TSaveDialog;
+    BitBtnLayers: TBitBtn;
+    miPaletteImportFromFile: TMenuItem;
     SavePaletteDialog: TSaveDialog;
     Separator1: TMenuItem;
     miPaletteClear: TMenuItem;
@@ -70,8 +59,6 @@ type
     sbPipette: TSpeedButton;
     BitBtnNewFrame: TBitBtn;
     FrameFlowPanel: TFlowPanel;
-    AdditionalToolsPanel: TPanel;
-    ReferenceImage: TImage;
     ProjectSheet: TBGRAImageManipulation;
     ImportImage: TBGRAImageManipulation;
     ButtonsImageList: TBGRAImageList;
@@ -122,7 +109,7 @@ type
     SettingsTabSheet: TTabSheet;
     StaticText1: TStaticText;
     StatusBar1: TStatusBar;
-    TimeLineToolVisibleMenuItem: TMenuItem;
+    FramesMenuItem: TMenuItem;
     PaintToolPanelVisibleMenuItem: TMenuItem;
     N2: TMenuItem;
     OpenPictureDialog1: TOpenPictureDialog;
@@ -134,20 +121,15 @@ type
     N1: TMenuItem;
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
-    procedure bbtnAddLayerClick(Sender: TObject);
-    procedure bbtnCopyLayerClick(Sender: TObject);
-    procedure bbtnDeleteLayerClick(Sender: TObject);
-    procedure bbtnMergeLayersClick(Sender: TObject);
     procedure BitBtnNewFrameClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure FramePreviewClick(Sender: TObject);
+    procedure FramesMenuItemClick(Sender: TObject);
     procedure LayersToolVisibleMenuItemClick(Sender: TObject);
     procedure miPaletteClearClick(Sender: TObject);
     procedure miPaletteImportFromFileClick(Sender: TObject);
     procedure miPaletteLoadFromFileClick(Sender: TObject);
     procedure miPaletteSaveToFileClick(Sender: TObject);
-    procedure FramePreviewPaint(Sender: TObject);
     procedure PaintToolPanelVisibleMenuItemClick(Sender: TObject);
     procedure pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -160,7 +142,6 @@ type
     procedure pbFrameDrawMouseWheelUp(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: Boolean);
     procedure pbFrameDrawPaint(Sender: TObject);
-    procedure BgColorPaint(Sender: TObject);
     procedure FileLoadSpritesheetMenuItemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
@@ -169,7 +150,8 @@ type
     procedure LibraryItemsListBoxClick(Sender: TObject);
     procedure ListBox1Click(Sender: TObject);
     procedure ListBox1SelectionChange(Sender: TObject; User: boolean);
-    procedure ReferenceImageClick(Sender: TObject);
+    procedure PreviewMenuItemClick(Sender: TObject);
+    procedure ReferenseImageMenuItemClick(Sender: TObject);
     procedure SelectSpriteLibMenuItemClick(Sender: TObject);
     procedure SaveSpriteLibMenuItemClick(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
@@ -181,10 +163,8 @@ type
     procedure ViewZoomResetMenuItemClick(Sender: TObject);
   private
    DrawGridMode : TDrawGridMode;
-    dx,dy : Integer;             //offset to move grid
-    startx,starty : Integer;     //start position to move
-  public
-
+   dx,dy : Integer;             //offset to move grid
+   startx,starty : Integer;     //start position to move
   end;
 
 var
@@ -193,7 +173,7 @@ var
 
 implementation
 
-uses uzastavka, udrawtools, uselsprlib;
+uses uzastavka, udrawtools, uselsprlib, ulayers, upreview, ureferense;
 
 {$R *.frm}
 
@@ -219,27 +199,8 @@ end;
 
 procedure TfrmMain.AboutMenuItemClick(Sender: TObject);
 begin
-  frmZastavka.Show;
-end;
-
-procedure TfrmMain.bbtnAddLayerClick(Sender: TObject);
-begin
- ShowMessage('Not implemented yet! Sorry...');
-end;
-
-procedure TfrmMain.bbtnCopyLayerClick(Sender: TObject);
-begin
-  ShowMessage('Not implemented yet! Sorry...');
-end;
-
-procedure TfrmMain.bbtnDeleteLayerClick(Sender: TObject);
-begin
-  ShowMessage('Not implemented yet! Sorry...');
-end;
-
-procedure TfrmMain.bbtnMergeLayersClick(Sender: TObject);
-begin
-  ShowMessage('Not implemeted yet! Sorry...');
+  if not Assigned(frmZastavka) then frmZastavka:= TfrmZastavka.Create(Application);
+     frmZastavka.ShowModal;
 end;
 
 procedure TfrmMain.BitBtnNewFrameClick(Sender: TObject);
@@ -250,8 +211,10 @@ begin
   FrameGrid.Offset:=Point(0,0);
   dx:=0;
   dy:=0;
-  FramePreview.Width:=FrameGrid.FrameWidth;
-  FramePreview.Height:=FrameGrid.FrameHeight;
+  if Assigned(FrmPreview) then begin
+   FrmPreview.FramePreview.Width:=FrameGrid.FrameWidth;
+   FrmPreview.FramePreview.Height:=FrameGrid.FrameHeight;
+  end;
   FrameGrid.ActiveFrame:=Frames.Keys[0];
   FrameGrid.ActiveLayer:=Layers.Keys[0];
 end;
@@ -262,13 +225,43 @@ begin
   INI.WriteInteger('FRMMAIN','TOP',frmMain.Top);
   INI.WriteInteger('FRMMAIN','LEFT',frmMain.Left);
   INI.WriteInteger('FRMMAIN','WIDTH',frmMain.Width);
-  INI.WriteInteger('FRMMAIN','HEIHFT',frmMain.Height);
+  INI.WriteInteger('FRMMAIN','HEIGHT',frmMain.Height);
 
-  INI.WriteInteger('FRMDRAWTOOLS','TOP',frmDrawTools.Top);
-  INI.WriteInteger('FRMDRAWTOOLS','LEFT',frmDrawTools.Left);
-  INI.WriteInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
-  INI.WriteInteger('FRMDRAWTOOLS','HEIHFT',frmDrawTools.Height);
-  FreeAndNil(frmDrawTools);
+  if Assigned(frmDrawTools) then begin
+   INI.WriteInteger('FRMDRAWTOOLS','TOP',frmDrawTools.Top);
+   INI.WriteInteger('FRMDRAWTOOLS','LEFT',frmDrawTools.Left);
+   INI.WriteInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
+   INI.WriteInteger('FRMDRAWTOOLS','HEIGHT',frmDrawTools.Height);
+   FreeAndNil(frmDrawTools);
+  end;
+
+  if Assigned(frmLayers) then begin
+   INI.WriteInteger('FRMLAYERS','TOP',frmLayers.Top);
+   INI.WriteInteger('FRMLAYERS','LEFT',frmLayers.Left);
+   INI.WriteInteger('FRMLAYERS','WIDTH',frmLayers.Width);
+   INI.WriteInteger('FRMLAYERS','HEIGHT',frmLayers.Height);
+   FreeAndNil(frmLayers);
+  end;
+
+  if Assigned(FrmPreview) then begin
+   INI.WriteInteger('FRMPREVIEW','TOP',FrmPreview.Top);
+   INI.WriteInteger('FRMPREVIEW','LEFT',FrmPreview.Left);
+   INI.WriteInteger('FRMPREVIEW','WIDTH',FrmPreview.Width);
+   INI.WriteInteger('FRMPREVIEW','HEIGHT',FrmPreview.Height);
+   INI.WriteBool('FRMPREVIEW','VISIBLE',PreviewMenuItem.Checked);
+   FreeAndNil(FrmPreview);
+  end;
+
+  if Assigned(frmReferense) then begin
+   INI.WriteInteger('FRMREFERENSE','TOP',frmReferense.Top);
+   INI.WriteInteger('FRMREFERENSE','LEFT',frmReferense.Left);
+   INI.WriteInteger('FRMREFERENSE','WIDTH',frmReferense.Width);
+   INI.WriteInteger('FRMREFERENSE','HEIGHT',frmReferense.Height);
+   FreeAndNil(frmReferense);
+  end;
+
+  if Assigned(frmZastavka) then FreeAndNil(frmZastavka);
+
   FreeAndNil(FrameGrid);
 end;
 
@@ -277,8 +270,8 @@ procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
 begin
   //if in Frame Editor mode
   if MainPageControl.ActivePage.Tag=1 then begin
-    //when arrow keys pressed move cell cursor in drawing grid
     case Key of
+     //when arrow keys pressed move cell cursor in drawing grid
       VK_LEFT : begin
         if FrameGrid.CellCursor.X=0 then FrameGrid.CellCursor.X:=FrameGrid.FrameWidth-1 else
            FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X-1;
@@ -311,24 +304,28 @@ begin
       //erace pixel to transparent
         Layers[FrameGrid.ActiveLayer].Drawable.ErasePixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,255);
      end;
+     //swap colors
+     VK_X: begin
+       frmDrawTools.bbtnSwapColorsClick(Sender);
+      end;
+
+     //show/hide preview window
+       VK_F7: begin
+        PreviewMenuItemClick(Sender);
+       end;
     end;
     pbFrameDraw.Invalidate;
   end;
 end;
 
-procedure TfrmMain.FramePreviewClick(Sender: TObject);
+procedure TfrmMain.FramesMenuItemClick(Sender: TObject);
 begin
-  sdExportFrameSaveDialog.InitialDir:=GetUserDir;
-  sdExportFrameSaveDialog.FileName:=FrameGrid.ActiveFrame;
-  if sdExportFrameSaveDialog.Execute then begin
-    //save current frame to PNG file by default to user dir and with frame name
-    FrameGrid.ExpotPng(sdExportFrameSaveDialog.FileName);
-  end;
+
 end;
 
 procedure TfrmMain.LayersToolVisibleMenuItemClick(Sender: TObject);
 begin
-  LayersGroupBox.Visible:=not LayersGroupBox.Visible;
+ frmLayers.Show;
 end;
 
 procedure TfrmMain.miPaletteClearClick(Sender: TObject);
@@ -375,12 +372,6 @@ begin
   if SavePaletteDialog.Execute then begin
     Palette.SaveToFile(SavePaletteDialog.FileName);
   end;
-end;
-
-procedure TfrmMain.FramePreviewPaint(Sender: TObject);
-begin
-  if Assigned(FrameGrid) then
-  FrameGrid.RenderPicture(FramePreview.Canvas);
 end;
 
 procedure TfrmMain.PaintToolPanelVisibleMenuItemClick(Sender: TObject);
@@ -437,7 +428,7 @@ procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   DrawGridMode:=dgmNone;
-  FramePreview.Invalidate;
+  FrmPreview.FramePreview.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;
@@ -461,25 +452,10 @@ begin
    //draw here zoomed frame data
   if Assigned(FrameGrid) then begin
     FrameGrid.RenderAndDraw(pbFrameDraw.Canvas);
-    FramePreview.Invalidate;
+    if Assigned(FrmPreview) then
+     FrameGrid.RenderPicture(FrmPreview.FramePreview.Canvas);
   end;
   StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);
-
-end;
-
-procedure TfrmMain.BgColorPaint(Sender: TObject);
-var cl : TColor;
-begin
-  if (Sender as TBGRAGraphicControl).Tag = 1 then cl := spclBackColor
-    else cl:=spclForeColor;
-  if cl=clNone then begin
-   (Sender as TBGRAGraphicControl).Bitmap.DrawCheckers(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),
-                                              ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),4,4);
-   (Sender as TBGRAGraphicControl).Bitmap.Rectangle(Rect(0,0,(Sender as TBGRAGraphicControl).Width,(Sender as TBGRAGraphicControl).Height),ColorToBGRA(clBlack));
-  end
-    else (Sender as TBGRAGraphicControl).Bitmap.FillRect(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(cl));
-  (Sender as TBGRAGraphicControl).Invalidate;
-  StatusBar1.Panels[1].Text:='FG: '+IntToHex(spclForeColor)+' / BG: '+IntToHex(spclBackColor);
 end;
 
 procedure TfrmMain.FileLoadSpritesheetMenuItemClick(Sender: TObject);
@@ -498,15 +474,36 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  //if checked create and  show  splashscreen
+   if INI.ReadBool('INTERFACE', 'SHOWSPLASH', true) then begin
+     frmZastavka:= TfrmZastavka.Create(Application);
+     frmZastavka.Show;
+   end;
+
   //load form size and position from settings
   frmMain.Top:=INI.ReadInteger('FRMMAIN','TOP',frmMain.Top);
   frmMain.Left:=INI.ReadInteger('FRMMAIN','LEFT',frmMain.Left);
   frmMain.Width:=INI.ReadInteger('FRMMAIN','WIDTH',frmMain.Width);
-  frmMain.Height:=INI.ReadInteger('FRMMAIN','HEIHFT',frmMain.Height);
+  frmMain.Height:=INI.ReadInteger('FRMMAIN','HEIGHT',frmMain.Height);
 
-  //create and show if checked splashscreen
-  Application.CreateForm(TfrmZastavka, frmZastavka);
-  if INI.ReadBool('INTERFACE', 'SHOWSPLASH', true) then frmZastavka.Show;
+  //create tools floating window and set size and position
+  frmDrawTools:=TfrmDrawTools.Create(Self);
+  frmDrawTools.Top:=INI.ReadInteger('FRMDRAWTOOLS','TOP',frmDrawTools.Top);
+  frmDrawTools.Left:=INI.ReadInteger('FRMDRAWTOOLS','LEFT',frmDrawTools.Left);
+  frmDrawTools.Width:=INI.ReadInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
+  frmDrawTools.Height:=INI.ReadInteger('FRMDRAWTOOLS','HEIGHT',frmDrawTools.Height);
+  frmDrawTools.Show;
+  //create Layers floating window and set size and position
+  frmLayers:=TfrmLayers.Create(Self);
+  frmLayers.Top:=INI.ReadInteger('FRMLAYERS','TOP',frmLayers.Top);
+  frmLayers.Left:=INI.ReadInteger('FRMLAYERS','LEFT',frmLayers.Left);
+  frmLayers.Width:=INI.ReadInteger('FRMLAYERS','WIDTH',frmLayers.Width);
+  frmLayers.Height:=INI.ReadInteger('FRMLAYERS','HEIGHT',frmLayers.Height);
+  frmLayers.Show;
+
+  if INI.ReadBool('FRMPREVIEW','VISIBLE',False) then PreviewMenuItemClick(Sender)
+     else PreviewMenuItem.Checked:=False;
+
   //load last sprite library if exists
   LibraryComboBox.Clear;
   LibraryComboBox.Items.Assign(SpriteLibNames);
@@ -516,14 +513,7 @@ begin
   //create empty new frame with default params
   BitBtnNewFrameClick(Sender);
 
-  //create tools floating window
-  frmDrawTools:=TfrmDrawTools.Create(Self);
-//  load tools form size and position
-  frmDrawTools.Top:=INI.ReadInteger('FRMDRAWTOOLS','TOP',frmDrawTools.Top);
-  frmDrawTools.Left:=INI.ReadInteger('FRMDRAWTOOLS','LEFT',frmDrawTools.Left);
-  frmDrawTools.Width:=INI.ReadInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
-  frmDrawTools.Height:=INI.ReadInteger('FRMDRAWTOOLS','HEIHFT',frmDrawTools.Height);
-  frmDrawTools.Show;
+
 end;
 
 procedure TfrmMain.ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
@@ -571,12 +561,31 @@ begin
   end;
 end;
 
-procedure TfrmMain.ReferenceImageClick(Sender: TObject);
+procedure TfrmMain.PreviewMenuItemClick(Sender: TObject);
 begin
-  if OpenPictureDialog1.Execute then begin
-   ReferenceImage.Picture.Clear;
-   ReferenceImage.Picture.LoadFromFile(OpenPictureDialog1.FileName);
-  end;
+  //preview form
+ if not Assigned(FrmPreview) then begin
+  FrmPreview:=TFrmPreview.Create(frmMain);
+  FrmPreview.Top:=INI.ReadInteger('FRMPREVIEW','TOP',FrmPreview.Top);
+  FrmPreview.Left:=INI.ReadInteger('FRMPREVIEW','LEFT',FrmPreview.Left);
+  FrmPreview.Width:=INI.ReadInteger('FRMPREVIEW','WIDTH',FrmPreview.Width);
+  FrmPreview.Height:=INI.ReadInteger('FRMPREVIEW','HEIGHT',FrmPreview.Height);
+ end;
+ FrmPreview.Visible:=not FrmPreview.Visible;
+ PreviewMenuItem.Checked:=FrmPreview.Visible;
+end;
+
+procedure TfrmMain.ReferenseImageMenuItemClick(Sender: TObject);
+begin
+ if not Assigned(frmReferense) then begin
+  //referense image form
+  frmReferense:=TfrmReferense.Create(frmMain);
+  frmReferense.Top:=INI.ReadInteger('FRMREFERENSE','TOP',frmReferense.Top);
+  frmReferense.Left:=INI.ReadInteger('FRMREFERENSE','LEFT',frmReferense.Left);
+  frmReferense.Width:=INI.ReadInteger('FRMREFERENSE','WIDTH',frmReferense.Width);
+  frmReferense.Height:=INI.ReadInteger('FRMREFERENSE','HEIGHT',frmReferense.Height);
+ end;
+ frmReferense.Show;
 end;
 
 procedure TfrmMain.SelectSpriteLibMenuItemClick(Sender: TObject);

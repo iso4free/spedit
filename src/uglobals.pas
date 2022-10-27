@@ -16,7 +16,7 @@
 {*    Sprite Editor 4.0                                                    *}
 {*    Copyright (c) 2000-2022 by Vadim Vitomsky                            *}
 {*                                                                         *}
-{*    See the file LICENSE, included in this distribution, for details.    *}                                 *}
+{*    See the file LICENSE, included in this distribution, for details.    *}
 {*                                                                         *}
 {*    This program is distributed in the hope that it will be useful,      *}
 {*    but WITHOUT ANY WARRANTY; without even the implied warranty of       *}
@@ -569,12 +569,12 @@ begin
         tmppix := Layers[Frames[ActiveFrame].LayersList.Strings[i]].Drawable.GetPixel(w,h);
         if tmppix.alpha>0 then fPreview.SetPixel(w,h,tmpPix);
       end;
-  ImagePos:=Point((Canvas.Width-fPreview.Width) div 2,
+  {ImagePos:=Point((Canvas.Width-fPreview.Width) div 2,
                   (Canvas.Height-fPreview.Height) div 2);
   if ImagePos.X<0 then ImagePos.X:=0;
-  if ImagePos.Y<0 then ImagePos.Y:=0;
+  if ImagePos.Y<0 then ImagePos.Y:=0; }
 
-  fPreview.Draw(Canvas,ImagePos.X,ImagePos.Y,true);
+  fPreview.Draw(Canvas,{ImagePos.X,ImagePos.Y,}0,0,true);
 end;
 
 procedure TFrameGrid.ExpotPng(aFilename: TFileName);

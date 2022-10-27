@@ -62,7 +62,7 @@ object frmDrawTools: TfrmDrawTools
     object bbtnSwapColors: TBitBtn
       Left = 51
       Height = 50
-      Hint = 'Swap colors'
+      Hint = 'Swap colors [X]'
       Top = 1
       Width = 64
       Anchors = []
@@ -223,7 +223,7 @@ object frmDrawTools: TfrmDrawTools
   end
   object DrawToolsFlowPanel: TFlowPanel
     Left = 0
-    Height = 131
+    Height = 31
     Top = 0
     Width = 189
     Align = alTop
@@ -244,11 +244,6 @@ object frmDrawTools: TfrmDrawTools
         Control = sbPipette
         WrapAfter = waAuto
         Index = 2
-      end    
-      item
-        Control = GroupBox2
-        WrapAfter = waAuto
-        Index = 3
       end>
     FlowLayout = tlTop
     FlowStyle = fsLeftRightTopBottom
@@ -289,44 +284,61 @@ object frmDrawTools: TfrmDrawTools
       Images = frmMain.ButtonsImageList
       ImageIndex = 29
     end
-    object GroupBox2: TGroupBox
-      Left = 1
-      Height = 100
-      Top = 29
-      Width = 189
-      Align = alBottom
-      Anchors = []
-      Caption = 'Palette'
-      ClientHeight = 81
-      ClientWidth = 185
+  end
+  object gbPalette: TGroupBox
+    AnchorSideBottom.Control = ColorsFlowPanel
+    Left = 1
+    Height = 100
+    Top = 165
+    Width = 189
+    Anchors = [akLeft, akBottom]
+    Caption = 'Palette'
+    ClientHeight = 81
+    ClientWidth = 185
+    TabOrder = 2
+    object ScrollBox5: TScrollBox
+      Left = 0
+      Height = 81
+      Top = 0
+      Width = 185
+      HorzScrollBar.Page = 140
+      VertScrollBar.Page = 79
+      Align = alClient
+      ClientHeight = 79
+      ClientWidth = 169
       TabOrder = 0
-      object ScrollBox5: TScrollBox
+      object PaletteGrid: TBCGameGrid
+        AnchorSideLeft.Control = ScrollBox5
+        AnchorSideTop.Control = ScrollBox5
         Left = 0
-        Height = 81
+        Height = 400
         Top = 0
-        Width = 185
-        HorzScrollBar.Page = 140
-        VertScrollBar.Page = 79
-        Align = alClient
-        ClientHeight = 79
-        ClientWidth = 169
-        TabOrder = 0
-        object PaletteGrid: TBCGameGrid
-          AnchorSideLeft.Control = ScrollBox5
-          AnchorSideTop.Control = ScrollBox5
-          Left = 0
-          Height = 400
-          Top = 0
-          Width = 140
-          GridWidth = 14
-          GridHeight = 40
-          BlockWidth = 10
-          BlockHeight = 10
-          OnRenderControl = PaletteGridRenderControl
-          OnMouseUp = PaletteGridMouseUp
-        end
+        Width = 140
+        GridWidth = 14
+        GridHeight = 40
+        BlockWidth = 10
+        BlockHeight = 10
+        OnRenderControl = PaletteGridRenderControl
+        OnMouseUp = PaletteGridMouseUp
       end
     end
+  end
+  object flpnlToolOptions: TFlowPanel
+    AnchorSideLeft.Control = DrawToolsFlowPanel
+    AnchorSideTop.Control = DrawToolsFlowPanel
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = DrawToolsFlowPanel
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = gbPalette
+    Left = 0
+    Height = 134
+    Top = 31
+    Width = 189
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    ControlList = <>
+    FlowLayout = tlTop
+    FlowStyle = fsLeftRightTopBottom
+    TabOrder = 3
   end
   object ColorDialog1: TColorDialog
     Color = clBlack
