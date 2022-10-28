@@ -173,7 +173,7 @@ var
 
 implementation
 
-uses uzastavka, udrawtools, uselsprlib, ulayers, upreview, ureferense;
+uses uzastavka, udrawtools, uselsprlib, ulayers, uframes, upreview, ureferense;
 
 {$R *.frm}
 
@@ -233,6 +233,14 @@ begin
    INI.WriteInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
    INI.WriteInteger('FRMDRAWTOOLS','HEIGHT',frmDrawTools.Height);
    FreeAndNil(frmDrawTools);
+  end;
+
+  if Assigned(frmFrames) then begin
+   INI.WriteInteger('FRMFRAMES','TOP',frmFrames.Top);
+   INI.WriteInteger('FRMFRAMES','LEFT',frmFrames.Left);
+   INI.WriteInteger('FRMFRAMES','WIDTH',frmFrames.Width);
+   INI.WriteInteger('FRMFRAMES','HEIGHT',frmFrames.Height);
+   FreeAndNil(frmFrames);
   end;
 
   if Assigned(frmLayers) then begin
@@ -308,11 +316,14 @@ begin
      VK_X: begin
        frmDrawTools.bbtnSwapColorsClick(Sender);
       end;
-
      //show/hide preview window
        VK_F7: begin
         PreviewMenuItemClick(Sender);
        end;
+     //show/hide Frames window
+      VK_F: begin
+       if (ssShift in Shift) then FramesMenuItemClick(Sender);
+      end;
     end;
     pbFrameDraw.Invalidate;
   end;
@@ -320,7 +331,7 @@ end;
 
 procedure TfrmMain.FramesMenuItemClick(Sender: TObject);
 begin
-
+ frmFrames.Show;
 end;
 
 procedure TfrmMain.LayersToolVisibleMenuItemClick(Sender: TObject);
@@ -428,7 +439,7 @@ procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   DrawGridMode:=dgmNone;
-  FrmPreview.FramePreview.Invalidate;
+  if Assigned(FrmPreview) then FrmPreview.FramePreview.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;
@@ -493,6 +504,15 @@ begin
   frmDrawTools.Width:=INI.ReadInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
   frmDrawTools.Height:=INI.ReadInteger('FRMDRAWTOOLS','HEIGHT',frmDrawTools.Height);
   frmDrawTools.Show;
+
+  //frames floating window
+  frmFrames:=TfrmFrames.Create(Self);
+  frmFrames.Top:=INI.ReadInteger('FRMFRAMES','TOP',frmFrames.Top);
+  frmFrames.Left:=INI.ReadInteger('FRMFRAMES','LEFT',frmFrames.Left);
+  frmFrames.Width:=INI.ReadInteger('FRMFRAMES','WIDTH',frmFrames.Width);
+  frmFrames.Height:=INI.ReadInteger('FRMFRAMES','HEIGHT',frmFrames.Height);
+  frmFrames.Show;
+
   //create Layers floating window and set size and position
   frmLayers:=TfrmLayers.Create(Self);
   frmLayers.Top:=INI.ReadInteger('FRMLAYERS','TOP',frmLayers.Top);

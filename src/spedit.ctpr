@@ -15,7 +15,7 @@
     </General>
     <i18n>
       <EnableI18N Value="True"/>
-      <OutDir Value="../bin/$(TargetCPU)-$(TargetOS)/i18n"/>
+      <OutDir Value="../bin/i18n"/>
     </i18n>
     <BuildModes>
       <Item Name="Default" Default="True"/>
@@ -188,6 +188,14 @@
         <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmReferense"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uframes.pas"/>
+        <FRMtype Value="200"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmFrames"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>

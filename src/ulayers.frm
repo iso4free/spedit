@@ -3,6 +3,7 @@ object frmLayers: TfrmLayers
   Height = 240
   Top = 171
   Width = 320
+  BorderIcons = [biSystemMenu]
   Caption = 'Layers'
   ClientHeight = 240
   ClientWidth = 320
@@ -15,14 +16,14 @@ object frmLayers: TfrmLayers
     Width = 320
     Align = alClient
     Caption = 'Layers'
-    ClientHeight = 221
-    ClientWidth = 316
+    ClientHeight = 223
+    ClientWidth = 318
     TabOrder = 0
     object LayersFlowPanel: TFlowPanel
       Left = 0
-      Height = 35
-      Top = 186
-      Width = 316
+      Height = 41
+      Top = 182
+      Width = 318
       Align = alBottom
       AutoSize = True
       ControlList = <      
@@ -51,10 +52,10 @@ object frmLayers: TfrmLayers
       TabOrder = 0
       object bbtnAddLayer: TBitBtn
         Left = 1
-        Height = 32
+        Height = 38
         Hint = 'Add new layer'
         Top = 1
-        Width = 32
+        Width = 38
         Anchors = []
         AutoSize = True
         Images = frmMain.ButtonsImageList
@@ -64,11 +65,11 @@ object frmLayers: TfrmLayers
         TabOrder = 0
       end
       object bbtnDeleteLayer: TBitBtn
-        Left = 33
-        Height = 32
+        Left = 39
+        Height = 38
         Hint = 'Delete selected layer'
         Top = 1
-        Width = 32
+        Width = 38
         Anchors = []
         AutoSize = True
         Images = frmMain.ButtonsImageList
@@ -78,11 +79,11 @@ object frmLayers: TfrmLayers
         TabOrder = 1
       end
       object bbtnCopyLayer: TBitBtn
-        Left = 65
-        Height = 32
+        Left = 77
+        Height = 38
         Hint = 'Copy selected layer'
         Top = 1
-        Width = 32
+        Width = 38
         Anchors = []
         AutoSize = True
         Images = frmMain.ButtonsImageList
@@ -92,11 +93,11 @@ object frmLayers: TfrmLayers
         TabOrder = 2
       end
       object bbtnMergeLayers: TBitBtn
-        Left = 97
-        Height = 32
+        Left = 115
+        Height = 38
         Hint = 'Merge with previous layer'
         Top = 1
-        Width = 32
+        Width = 38
         Anchors = []
         AutoSize = True
         Images = frmMain.ButtonsImageList

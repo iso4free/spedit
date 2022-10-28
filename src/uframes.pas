@@ -22,23 +22,17 @@
 {*    but WITHOUT ANY WARRANTY; without even the implied warranty of       *}
 {*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                 *}
 {***************************************************************************}
-unit ureferense;
+unit uframes;
 
 {$mode ObjFPC}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtDlgs, ExtCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs;
 
 type
-
-  { TfrmReferense }
-
-  TfrmReferense = class(TForm)
-    OpenPictureDialog1: TOpenPictureDialog;
-    ReferenceImage: TImage;
-    procedure FormClick(Sender: TObject);
+  TfrmFrames = class(TForm)
   private
 
   public
@@ -46,21 +40,11 @@ type
   end;
 
 var
-  frmReferense: TfrmReferense;
+  frmFrames: TfrmFrames;
 
 implementation
-
+ uses uglobals;
 {$R *.frm}
-
-{ TfrmReferense }
-
-procedure TfrmReferense.FormClick(Sender: TObject);
-begin
-    if OpenPictureDialog1.Execute then begin
-   ReferenceImage.Picture.Clear;
-   ReferenceImage.Picture.LoadFromFile(OpenPictureDialog1.FileName);
-  end;
-end;
 
 end.
 

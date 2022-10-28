@@ -32,7 +32,7 @@ uses
   {$ENDIF}{$ENDIF}
   Forms, Interfaces, umain,
   { you can add units after this }
-  uselsprlib, ulayers, upreview, ureferense;
+  uselsprlib, ulayers, upreview, ureferense, uframes;
 
 {$R *.res}
 

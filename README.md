@@ -67,7 +67,6 @@ TROUBLESHOOTING
 
 - [ ] In Windows keys won't work. Will be fixed soon.
 
-- [ ] When trying open project Windows with CT 7.9 CT crashes
 
 COPYRIGHT
 =========
@@ -117,7 +116,7 @@ enlarged form. Only 16 colors were used in the palette. A custom file format was
  Sources also avaliasble in the 'archive/spedit 3.0' directory.
 ![SPEDit v.3.0 UI](doc/spedit3.png)
 
-For now I decided create new version of SPEDit from scratch using CodeTyphon IDE with lot of functionality.
+For now I decided to create a new version of SPEDit from scratch using CodeTyphon IDE with lot of functionality.
 This version get number 4.
 
 DEV.LOG
@@ -191,3 +190,8 @@ DEV.LOG
 - [*] Get rid of some unneedful components
 - [*] Some changes in project organization
 - [*] Updated this file
+
+28.10.2022
+=
+- [+] Added template window for frames
+- [*] Some minor fixes and changes

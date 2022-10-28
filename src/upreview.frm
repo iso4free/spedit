@@ -3,6 +3,7 @@ object FrmPreview: TFrmPreview
   Height = 240
   Top = 156
   Width = 320
+  BorderIcons = [biSystemMenu]
   BorderStyle = bsSizeToolWin
   Caption = 'Preview'
   ClientHeight = 240
