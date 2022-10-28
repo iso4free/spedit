@@ -8,7 +8,6 @@
 {"hash":268030853,"name":"tfrmmain.speedbuttonloadspritesheet.hint","sourcebytes":[73,109,112,111,114,116,32,83,112,114,105,116,101,115,104,101,101,116,32,105,109,97,103,101],"value":"Import Spritesheet image"},
 {"hash":180817954,"name":"tfrmmain.speedbuttonsavetolib.hint","sourcebytes":[83,97,118,101,32,105,109,97,103,101,32,116,111,32,99,117,114,114,101,110,116,32,115,112,114,105,116,101,108,105,98],"value":"Save image to current spritelib"},
 {"hash":124504343,"name":"tfrmmain.speedbuttonautoselect.hint","sourcebytes":[67,108,101,97,114,32,97,108,108,32,112,114,101,118,105,111,117,115,32,102,114,97,109,101,115,32,97,110,100,32,116,114,121,32,97,117,116,111,114,101,99,111,103,110,105,122,101,32,110,101,119],"value":"Clear all previous frames and try autorecognize new"},
-{"hash":81298371,"name":"tfrmmain.label2.caption","sourcebytes":[70,114,97,109,101,115],"value":"Frames"},
 {"hash":27326137,"name":"tfrmmain.librarytabsheet.caption","sourcebytes":[76,111,99,97,108,32,76,105,98,114,97,114,121],"value":"Local Library"},
 {"hash":16174691,"name":"tfrmmain.groupbox1.caption","sourcebytes":[76,111,99,97,108,32,108,105,98,114,97,114,105,101,115],"value":"Local libraries"},
 {"hash":248655001,"name":"tfrmmain.label1.caption","sourcebytes":[83,101,108,101,99,116,32,108,105,98,114,97,114,121],"value":"Select library"},

@@ -134,11 +134,6 @@ msgstr ""
 msgid "Select library"
 msgstr ""
 
-#: tfrmmain.label2.caption
-msgctxt "tfrmmain.label2.caption"
-msgid "Frames"
-msgstr ""
-
 #: tfrmmain.layerstoolvisiblemenuitem.caption
 msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
 msgid "Layers"

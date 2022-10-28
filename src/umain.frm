@@ -4,7 +4,7 @@ object frmMain: TfrmMain
   Top = 270
   Width = 557
   HorzScrollBar.Page = 115
-  VertScrollBar.Page = 194
+  VertScrollBar.Page = 86
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
@@ -24,24 +24,24 @@ object frmMain: TfrmMain
   Visible = True
   object MainPageControl: TPageControl
     Left = 0
-    Height = 436
+    Height = 433
     Top = 0
     Width = 557
-    ActivePage = FrameEditorTabSheet
+    ActivePage = SourceTabSheet
     Align = alClient
     DockSite = True
-    TabIndex = 0
+    TabIndex = 3
     TabOrder = 0
     object FrameEditorTabSheet: TTabSheet
       Tag = 1
       Caption = 'Frame Editor'
-      ClientHeight = 406
-      ClientWidth = 547
+      ClientHeight = 398
+      ClientWidth = 551
       object FrameFlowPanel: TFlowPanel
         Left = 0
-        Height = 41
+        Height = 35
         Top = 0
-        Width = 547
+        Width = 551
         Align = alTop
         AutoSize = True
         ControlList = <        
@@ -60,9 +60,9 @@ object frmMain: TfrmMain
         TabOrder = 0
         object BitBtnNewFrame: TBitBtn
           Left = 1
-          Height = 38
+          Height = 32
           Top = 1
-          Width = 38
+          Width = 32
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -71,10 +71,10 @@ object frmMain: TfrmMain
           TabOrder = 0
         end
         object BitBtnLayers: TBitBtn
-          Left = 39
-          Height = 38
+          Left = 33
+          Height = 32
           Top = 1
-          Width = 38
+          Width = 32
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -84,9 +84,9 @@ object frmMain: TfrmMain
       end
       object pbFrameDraw: TPaintBox
         Left = 0
-        Height = 365
-        Top = 41
-        Width = 547
+        Height = 363
+        Top = 35
+        Width = 551
         Align = alClient
         OnMouseDown = pbFrameDrawMouseDown
         OnMouseMove = pbFrameDrawMouseMove
@@ -98,29 +98,29 @@ object frmMain: TfrmMain
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 406
-      ClientWidth = 547
+      ClientHeight = 398
+      ClientWidth = 551
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 547
+        Width = 551
         Align = alTop
         TabOrder = 0
       end
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 406
-      ClientWidth = 547
+      ClientHeight = 398
+      ClientWidth = 551
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 547
+        Width = 551
         Align = alTop
         ClientHeight = 50
-        ClientWidth = 547
+        ClientWidth = 551
         TabOrder = 0
         object StaticText1: TStaticText
           Left = 344
@@ -133,7 +133,7 @@ object frmMain: TfrmMain
       end
       object ProjectProperties: TValueListEditor
         Left = 0
-        Height = 356
+        Height = 348
         Top = 50
         Width = 200
         Align = alLeft
@@ -142,19 +142,19 @@ object frmMain: TfrmMain
         TabOrder = 1
         ColWidths = (
           64
-          132
+          134
         )
       end
       object ScrollBox4: TScrollBox
         Left = 200
-        Height = 356
+        Height = 348
         Top = 50
-        Width = 347
+        Width = 351
         HorzScrollBar.Page = 320
         VertScrollBar.Page = 240
         Align = alClient
-        ClientHeight = 352
-        ClientWidth = 343
+        ClientHeight = 346
+        ClientWidth = 349
         TabOrder = 2
         object ProjectSheet: TBGRAImageManipulation
           AnchorSideLeft.Control = ScrollBox4
@@ -172,17 +172,17 @@ object frmMain: TfrmMain
     end
     object SourceTabSheet: TTabSheet
       Caption = 'Source Image'
-      ClientHeight = 406
-      ClientWidth = 547
+      ClientHeight = 398
+      ClientWidth = 551
       object SrcImageButtonsPanel: TPanel
         Left = 0
         Height = 30
         Top = 0
-        Width = 780
+        Width = 551
         Align = alTop
         AutoSize = True
         ClientHeight = 30
-        ClientWidth = 780
+        ClientWidth = 551
         TabOrder = 0
         object SpeedButtonLoadSpritesheet: TSpeedButton
           Left = 24
@@ -194,7 +194,6 @@ object frmMain: TfrmMain
           AutoSize = True
           Images = ButtonsImageList
           ImageIndex = 5
-          OnClick = FileLoadSpritesheetMenuItemClick
           ShowHint = True
           ParentShowHint = False
         end
@@ -209,7 +208,6 @@ object frmMain: TfrmMain
           Enabled = False
           Images = ButtonsImageList
           ImageIndex = 6
-          OnClick = SpeedButtonSaveToLibClick
           ShowHint = True
           ParentShowHint = False
         end
@@ -236,100 +234,13 @@ object frmMain: TfrmMain
           AutoSize = True
           Images = ButtonsImageList
           ImageIndex = 7
-          OnClick = SpeedButton1Click
-        end
-      end
-      object ScrollBox2: TScrollBox
-        Left = 0
-        Height = 418
-        Top = 30
-        Width = 630
-        HorzScrollBar.Page = 148
-        VertScrollBar.Page = 416
-        Align = alLeft
-        ClientHeight = 414
-        ClientWidth = 626
-        TabOrder = 1
-        object Label2: TLabel
-          Left = 5
-          Height = 16
-          Top = 5
-          Width = 43
-          BorderSpacing.Around = 5
-          Caption = 'Frames'
-        end
-        object ListBox1: TListBox
-          AnchorSideTop.Side = asrBottom
-          AnchorSideRight.Side = asrBottom
-          AnchorSideBottom.Side = asrBottom
-          Left = 0
-          Height = 392
-          Top = 26
-          Width = 152
-          Anchors = [akTop, akLeft, akRight, akBottom]
-          ItemHeight = 0
-          OnClick = ListBox1Click
-          OnSelectionChange = ListBox1SelectionChange
-          ScrollWidth = 146
-          TabOrder = 0
-          TopIndex = -1
-        end
-        object SrcImageFramesOptsValueListEditor: TValueListEditor
-          AnchorSideRight.Side = asrBottom
-          Left = 0
-          Height = 148
-          Top = 268
-          Width = 148
-          FixedCols = 0
-          RowCount = 6
-          TabOrder = 1
-          OnEditingDone = SrcImageFramesOptsValueListEditorEditingDone
-          Strings.Strings = (
-            'npp='
-            'x='
-            'y='
-            'width='
-            'height='
-          )
-          OnValidate = SrcImageFramesOptsValueListEditorValidate
-          ColWidths = (
-            64
-            80
-          )
-        end
-      end
-      object ScrollBox3: TScrollBox
-        Left = 630
-        Height = 418
-        Top = 30
-        Width = 150
-        HorzScrollBar.Page = 1
-        VertScrollBar.Page = 240
-        Align = alClient
-        ClientHeight = 414
-        ClientWidth = 146
-        TabOrder = 2
-        object ImportImage: TBGRAImageManipulation
-          AnchorSideLeft.Control = ScrollBox3
-          AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = ScrollBox3
-          Left = 148
-          Height = 240
-          Top = 0
-          Width = 320
-          AnchorSize = 11
-          AspectRatio = '3:4'
-          KeepAspectRatio = False
-          MinHeight = 0
-          MinWidth = 0
-          OnCropAreaAdded = ImportImageCropAreaAdded
         end
       end
     end
     object LibraryTabSheet: TTabSheet
       Caption = 'Local Library'
-      ClientHeight = 406
-      ClientWidth = 547
+      ClientHeight = 398
+      ClientWidth = 551
       object LibraryButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -345,8 +256,8 @@ object frmMain: TfrmMain
         Width = 185
         Align = alLeft
         Caption = 'Local libraries'
-        ClientHeight = 354
-        ClientWidth = 183
+        ClientHeight = 352
+        ClientWidth = 181
         TabOrder = 1
         object Label1: TLabel
           Left = 26
@@ -397,7 +308,6 @@ object frmMain: TfrmMain
           Top = 0
           Width = 90
           AutoSize = True
-          OnDblClick = LibImageDblClick
         end
       end
     end
@@ -407,8 +317,8 @@ object frmMain: TfrmMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 18
-    Top = 436
+    Height = 21
+    Top = 433
     Width = 557
     Panels = <    
       item
@@ -449,7 +359,6 @@ object frmMain: TfrmMain
       object FileLoadSpritesheetMenuItem: TMenuItem
         Caption = 'Import Spritesheet'
         Hint = 'You can import image or spritesheet file'#10'and add it to the library'
-        OnClick = FileLoadSpritesheetMenuItemClick
       end
       object SelectSpriteLibMenuItem: TMenuItem
         Caption = 'Select Sprite Library'

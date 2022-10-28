@@ -60,16 +60,13 @@ type
     BitBtnNewFrame: TBitBtn;
     FrameFlowPanel: TFlowPanel;
     ProjectSheet: TBGRAImageManipulation;
-    ImportImage: TBGRAImageManipulation;
     ButtonsImageList: TBGRAImageList;
-    Label2: TLabel;
     LibImage: TImage;
     LibraryComboBox: TComboBox;
     FrameEditorTabSheet: TTabSheet;
     GroupBox1: TGroupBox;
     Label1: TLabel;
     LibraryItemsListBox: TListBox;
-    ListBox1: TListBox;
     MainMenu1: TMainMenu;
     FileMenuItem: TMenuItem;
     EditMenuItem: TMenuItem;
@@ -89,8 +86,6 @@ type
     ActionsButtonsPanel: TPanel;
     LibraryButtonsPanel: TPanel;
     ScrollBox1: TScrollBox;
-    ScrollBox2: TScrollBox;
-    ScrollBox3: TScrollBox;
     ScrollBox4: TScrollBox;
     SpeedButton1: TSpeedButton;
     SpeedButtonAutoSelect: TSpeedButton;
@@ -113,7 +108,6 @@ type
     PaintToolPanelVisibleMenuItem: TMenuItem;
     N2: TMenuItem;
     OpenPictureDialog1: TOpenPictureDialog;
-    SrcImageFramesOptsValueListEditor: TValueListEditor;
     ProjectProperties: TValueListEditor;
     ViewZoomResetMenuItem: TMenuItem;
     ViewZoomOutMenuItem: TMenuItem;
@@ -142,21 +136,13 @@ type
     procedure pbFrameDrawMouseWheelUp(Sender: TObject; Shift: TShiftState;
       MousePos: TPoint; var Handled: Boolean);
     procedure pbFrameDrawPaint(Sender: TObject);
-    procedure FileLoadSpritesheetMenuItemClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
-    procedure LibImageDblClick(Sender: TObject);
     procedure LibraryComboBoxChange(Sender: TObject);
     procedure LibraryItemsListBoxClick(Sender: TObject);
-    procedure ListBox1Click(Sender: TObject);
-    procedure ListBox1SelectionChange(Sender: TObject; User: boolean);
     procedure PreviewMenuItemClick(Sender: TObject);
     procedure ReferenseImageMenuItemClick(Sender: TObject);
     procedure SelectSpriteLibMenuItemClick(Sender: TObject);
     procedure SaveSpriteLibMenuItemClick(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
-    procedure SpeedButtonSaveToLibClick(Sender: TObject);
-    procedure SrcImageFramesOptsValueListEditorEditingDone(Sender: TObject);
     procedure SrcImageFramesOptsValueListEditorValidate(Sender: TObject; ACol, ARow: longint; const KeyName, KeyValue: string);
     procedure ViewZoomInMenuItemClick(Sender: TObject);
     procedure ViewZoomOutMenuItemClick(Sender: TObject);
@@ -469,20 +455,6 @@ begin
   StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);
 end;
 
-procedure TfrmMain.FileLoadSpritesheetMenuItemClick(Sender: TObject);
-begin
-  if OpenPictureDialog1.Execute then
-  begin
-    ImportImage.Bitmap.Bitmap.Clear;
-    ImportImage.Bitmap.LoadFromFile(OpenPictureDialog1.FileName);
-    ImportImage.Width := ImportImage.Bitmap.Bitmap.Width;
-    ImportImage.Height := ImportImage.Bitmap.Bitmap.Height;
-    ImportImage.AutoSize := True;
-    MainPageControl.ActivePage := SourceTabSheet;
-    SpeedButtonSaveToLib.Enabled := True;
-  end;
-end;
-
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   //if checked create and  show  splashscreen
@@ -532,22 +504,6 @@ begin
   MainPageControl.ActivePageIndex := 0;
   //create empty new frame with default params
   BitBtnNewFrameClick(Sender);
-
-
-end;
-
-procedure TfrmMain.ImportImageCropAreaAdded(AOwner: TBGRAImageManipulation; CropArea: TCropArea);
-begin
-  ListBox1.AddItem('Frame' + IntToStr(ListBox1.Count + 1), CropArea);
-end;
-
-procedure TfrmMain.LibImageDblClick(Sender: TObject);
-begin
-  ImportImage.Width := LibImage.Width;
-  ImportImage.Height := LibImage.Height;
-  ImportImage.Bitmap.LoadFromFile(libpath + DirectorySeparator + LibraryItemsListBox.GetSelectedText);
-  //todo: load frames description if exists
-  MainPageControl.ActivePage := SourceTabSheet;
 end;
 
 procedure TfrmMain.LibraryComboBoxChange(Sender: TObject);
@@ -561,24 +517,6 @@ end;
 procedure TfrmMain.LibraryItemsListBoxClick(Sender: TObject);
 begin
   LibImage.Picture.LoadFromFile(libpath + DirectorySeparator + LibraryItemsListBox.GetSelectedText);
-end;
-
-procedure TfrmMain.ListBox1Click(Sender: TObject);
-begin
-  ListBox1SelectionChange(Sender, True);
-end;
-
-procedure TfrmMain.ListBox1SelectionChange(Sender: TObject; User: boolean);
-begin
-  if ListBox1.Count = 0 then Exit;
-  with SrcImageFramesOptsValueListEditor do
-  begin
-    Values['npp'] := IntToStr(ListBox1.ItemIndex);
-    Values['x'] := IntToStr(ImportImage.CropAreas[ListBox1.ItemIndex].Area.Left);
-    Values['y'] := IntToStr(ImportImage.CropAreas[ListBox1.ItemIndex].Area.Top);
-    Values['width'] := IntToStr(ImportImage.CropAreas[ListBox1.ItemIndex].Area.Width);
-    Values['height'] := IntToStr(ImportImage.CropAreas[ListBox1.ItemIndex].Area.Height);
-  end;
 end;
 
 procedure TfrmMain.PreviewMenuItemClick(Sender: TObject);
@@ -619,50 +557,6 @@ begin
   if Trim(CurrentLibName) = '' then
     CurrentLibName := InputBox('Please input new library name', CurrentLibName, 'default');
   libpath := SpriteLibPath + DirectorySeparator + CurrentLibName;
-end;
-
-procedure TfrmMain.SpeedButton1Click(Sender: TObject);
-begin
-  if ListBox1.Count = 0 then Exit;
-  ImportImage.delCropArea(ImportImage.CropAreas[ListBox1.ItemIndex]);
-  ListBox1.DeleteSelected;
-end;
-
-procedure TfrmMain.SpeedButtonSaveToLibClick(Sender: TObject);
-var
-  i: integer;
-begin
-  if MessageDlg('Warning!', 'Save this image to ' + QuotedStr(CurrentLibName) + ' library?', mtConfirmation, mbYesNo, '') = mrYes then
-  begin
-    //add this image to current lib
-    for i := 0 to LibraryItemsListBox.Items.Count do
-    begin
-      if not FileExists(libpath + DirectorySeparator + IntToStr(i) + '.png') then
-      begin
-        ImportImage.Bitmap.SaveToFile(libpath + DirectorySeparator + IntToStr(i) + '.png');
-        LibraryItemsListBox.Items.Add(IntToStr(i) + '.png');
-        SpeedButtonSaveToLib.Enabled := False;
-        Exit;
-      end;
-    end;
-  end;
-end;
-
-procedure TfrmMain.SrcImageFramesOptsValueListEditorEditingDone(Sender: TObject);
-var
-  Area: TCropArea;
-begin
-
-  with ImportImage do
-  begin
-    SelectedCropArea := CropAreas[ListBox1.ItemIndex];
-    Area := SelectedCropArea;
-    Area.Left := StrToInt(SrcImageFramesOptsValueListEditor.Values['x']);
-    Area.Top := StrToInt(SrcImageFramesOptsValueListEditor.Values['y']);
-    Area.Width := StrToInt(SrcImageFramesOptsValueListEditor.Values['width']);
-    Area.Height := StrToInt(SrcImageFramesOptsValueListEditor.Values['height']);
-    SelectedCropArea := Area;
-  end;
 end;
 
 procedure TfrmMain.SrcImageFramesOptsValueListEditorValidate(Sender: TObject; ACol, ARow: longint; const KeyName, KeyValue: string);

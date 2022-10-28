@@ -64,7 +64,7 @@ type
     FDrawTool: PSPDrawTool;
     procedure SetDrawTool(AValue: PSPDrawTool);
   public
-    property DrawTool : PSPDrawTool read FDrawTool write SetDrawTool ;
+    property DrawTool : PSPDrawTool read FDrawTool write SetDrawTool;
   end;
 
 var
