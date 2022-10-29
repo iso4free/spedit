@@ -29,7 +29,7 @@ unit udraw;
 interface
 
 uses
-  Classes, SysUtils, Graphics, uglobals, ustuff, BGRABitmap, BGRABitmapTypes;
+  Classes, SysUtils, Graphics, uglobals, BGRABitmap, BGRABitmapTypes;
 
 type
 
@@ -40,7 +40,6 @@ type
   PSPDrawTool = ^TSPDrawTool;
   TSPDrawTool = class
     protected
-      FParameters: TSTaticDic;
       fstartx,starty : Integer;  //coords from start drawing
       fX,fY          : Integer;  //current coords
       fBuffer : TBGRABitmap;
@@ -48,7 +47,6 @@ type
       FPenSize: Byte;
       FPrevPoint: TPoint;
       procedure SetColor(AValue: TColor);
-      procedure SetParameters(AValue: TSTaticDic);
       procedure SetPenSize(AValue: Byte);
       procedure SetPrevPoint(AValue: TPoint);
     public
@@ -59,7 +57,6 @@ type
       procedure StartDraw(x,y : Integer);virtual;//abstract;
       procedure MouseMove(x,y : Integer);virtual;//abstract;
       procedure Render(aBMP : TBGRABitmap);
-      property Parameters : TSTaticDic read FParameters write SetParameters;
   end;
 
 
@@ -110,11 +107,6 @@ begin
 
 end;
 
-procedure TSPDrawTool.SetParameters(AValue: TSTaticDic);
-begin
-  if FParameters=AValue then Exit;
-  FParameters:=AValue;
-end;
 
 procedure TSPDrawTool.SetPrevPoint(AValue: TPoint);
 begin

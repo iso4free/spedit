@@ -61,12 +61,7 @@ type
     FrameFlowPanel: TFlowPanel;
     ProjectSheet: TBGRAImageManipulation;
     ButtonsImageList: TBGRAImageList;
-    LibImage: TImage;
-    LibraryComboBox: TComboBox;
     FrameEditorTabSheet: TTabSheet;
-    GroupBox1: TGroupBox;
-    Label1: TLabel;
-    LibraryItemsListBox: TListBox;
     MainMenu1: TMainMenu;
     FileMenuItem: TMenuItem;
     EditMenuItem: TMenuItem;
@@ -84,24 +79,14 @@ type
     LayersToolVisibleMenuItem: TMenuItem;
     ProjectButtonsPanel: TPanel;
     ActionsButtonsPanel: TPanel;
-    LibraryButtonsPanel: TPanel;
-    ScrollBox1: TScrollBox;
     ScrollBox4: TScrollBox;
-    SpeedButton1: TSpeedButton;
-    SpeedButtonAutoSelect: TSpeedButton;
-    SpeedButtonLoadSpritesheet: TSpeedButton;
-    SpeedButtonSaveToLib: TSpeedButton;
-    SrcImageButtonsPanel: TPanel;
     SaveSpriteLibMenuItem: TMenuItem;
     SelectSpriteLibMenuItem: TMenuItem;
     MenuItem7: TMenuItem;
     N3: TMenuItem;
     MainPageControl: TPageControl;
-    SourceTabSheet: TTabSheet;
     ProjectTabSheet: TTabSheet;
-    LibraryTabSheet: TTabSheet;
     ActionsTabSheet: TTabSheet;
-    SettingsTabSheet: TTabSheet;
     StaticText1: TStaticText;
     StatusBar1: TStatusBar;
     FramesMenuItem: TMenuItem;
@@ -137,11 +122,8 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure pbFrameDrawPaint(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure LibraryComboBoxChange(Sender: TObject);
-    procedure LibraryItemsListBoxClick(Sender: TObject);
     procedure PreviewMenuItemClick(Sender: TObject);
     procedure ReferenseImageMenuItemClick(Sender: TObject);
-    procedure SelectSpriteLibMenuItemClick(Sender: TObject);
     procedure SaveSpriteLibMenuItemClick(Sender: TObject);
     procedure SrcImageFramesOptsValueListEditorValidate(Sender: TObject; ACol, ARow: longint; const KeyName, KeyValue: string);
     procedure ViewZoomInMenuItemClick(Sender: TObject);
@@ -159,29 +141,11 @@ var
 
 implementation
 
-uses uzastavka, udrawtools, uselsprlib, ulayers, uframes, upreview, ureferense;
+uses uzastavka, udrawtools, ulayers, uframes, upreview, ureferense;
 
 {$R *.frm}
 
 { TfrmMain }
-
-procedure LoadSpriteLib;
-var
-  i: integer;
-  libpath: utf8string;
-begin
-  if CurrentLibName <> '' then with frmMain do
-    begin
-      libpath := SpriteLibPath + DirectorySeparator + CurrentLibName + DirectorySeparator;
-      LibraryItemsListBox.Clear;
-      i := 0;
-      while FileExists(libpath + IntToStr(i) + '.png') do
-      begin
-        LibraryItemsListBox.Items.Add(IntToStr(i) + '.png');
-        Inc(i);
-      end;
-    end;
-end;
 
 procedure TfrmMain.AboutMenuItemClick(Sender: TObject);
 begin
@@ -496,27 +460,9 @@ begin
   if INI.ReadBool('FRMPREVIEW','VISIBLE',False) then PreviewMenuItemClick(Sender)
      else PreviewMenuItem.Checked:=False;
 
-  //load last sprite library if exists
-  LibraryComboBox.Clear;
-  LibraryComboBox.Items.Assign(SpriteLibNames);
-  LibraryComboBox.ItemIndex := LibraryComboBox.Items.IndexOf(INI.ReadString('INTERFACE', 'SPRITELIB', 'default'));
-  LoadSpriteLib;
   MainPageControl.ActivePageIndex := 0;
   //create empty new frame with default params
   BitBtnNewFrameClick(Sender);
-end;
-
-procedure TfrmMain.LibraryComboBoxChange(Sender: TObject);
-begin
-  LibraryItemsListBox.Clear;
-  LibImage.Picture.Clear;
-  CurrentLibName := LibraryComboBox.Text;
-  LoadSpriteLib;
-end;
-
-procedure TfrmMain.LibraryItemsListBoxClick(Sender: TObject);
-begin
-  LibImage.Picture.LoadFromFile(libpath + DirectorySeparator + LibraryItemsListBox.GetSelectedText);
 end;
 
 procedure TfrmMain.PreviewMenuItemClick(Sender: TObject);
@@ -544,12 +490,6 @@ begin
   frmReferense.Height:=INI.ReadInteger('FRMREFERENSE','HEIGHT',frmReferense.Height);
  end;
  frmReferense.Show;
-end;
-
-procedure TfrmMain.SelectSpriteLibMenuItemClick(Sender: TObject);
-begin
-  frmSelectSpriteLib.ShowModal;
-  LoadSpriteLib;
 end;
 
 procedure TfrmMain.SaveSpriteLibMenuItemClick(Sender: TObject);

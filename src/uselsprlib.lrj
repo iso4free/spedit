@@ -1,4 +1,0 @@
-{"version":1,"strings":[
-{"hash":157050613,"name":"tfrmselectspritelib.caption","sourcebytes":[83,101,108,101,99,116,32,108,105,98,114,97,114,121,32,110,97,109,101],"value":"Select library name"},
-{"hash":62113540,"name":"tfrmselectspritelib.listbox1.hint","sourcebytes":[68,111,117,98,108,101,32,99,108,105,99,107,32,111,110,32,105,116,101,109,32,116,111,32,115,101,108,101,99,116],"value":"Double click on item to select"}
-]}

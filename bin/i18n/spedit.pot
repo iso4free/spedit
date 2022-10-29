@@ -122,25 +122,13 @@ msgctxt "tfrmmain.framesmenuitem.caption"
 msgid "Frames"
 msgstr ""
 
-#: tfrmmain.groupbox1.caption
-msgid "Local libraries"
-msgstr ""
-
 #: tfrmmain.helpmenuitem.caption
 msgid "Help"
-msgstr ""
-
-#: tfrmmain.label1.caption
-msgid "Select library"
 msgstr ""
 
 #: tfrmmain.layerstoolvisiblemenuitem.caption
 msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
 msgid "Layers"
-msgstr ""
-
-#: tfrmmain.librarytabsheet.caption
-msgid "Local Library"
 msgstr ""
 
 #: tfrmmain.menuitem1.caption
@@ -205,26 +193,6 @@ msgstr ""
 
 #: tfrmmain.selectspritelibmenuitem.caption
 msgid "Select Sprite Library"
-msgstr ""
-
-#: tfrmmain.settingstabsheet.caption
-msgid "Settings"
-msgstr ""
-
-#: tfrmmain.sourcetabsheet.caption
-msgid "Source Image"
-msgstr ""
-
-#: tfrmmain.speedbuttonautoselect.hint
-msgid "Clear all previous frames and try autorecognize new"
-msgstr ""
-
-#: tfrmmain.speedbuttonloadspritesheet.hint
-msgid "Import Spritesheet image"
-msgstr ""
-
-#: tfrmmain.speedbuttonsavetolib.hint
-msgid "Save image to current spritelib"
 msgstr ""
 
 #: tfrmmain.statictext1.caption

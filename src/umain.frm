@@ -3,8 +3,8 @@ object frmMain: TfrmMain
   Height = 454
   Top = 270
   Width = 557
-  HorzScrollBar.Page = 115
-  VertScrollBar.Page = 86
+  HorzScrollBar.Page = 528
+  VertScrollBar.Page = 348
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
@@ -27,10 +27,10 @@ object frmMain: TfrmMain
     Height = 433
     Top = 0
     Width = 557
-    ActivePage = SourceTabSheet
+    ActivePage = ProjectTabSheet
     Align = alClient
     DockSite = True
-    TabIndex = 3
+    TabIndex = 2
     TabOrder = 0
     object FrameEditorTabSheet: TTabSheet
       Tag = 1
@@ -170,150 +170,6 @@ object frmMain: TfrmMain
         end
       end
     end
-    object SourceTabSheet: TTabSheet
-      Caption = 'Source Image'
-      ClientHeight = 398
-      ClientWidth = 551
-      object SrcImageButtonsPanel: TPanel
-        Left = 0
-        Height = 30
-        Top = 0
-        Width = 551
-        Align = alTop
-        AutoSize = True
-        ClientHeight = 30
-        ClientWidth = 551
-        TabOrder = 0
-        object SpeedButtonLoadSpritesheet: TSpeedButton
-          Left = 24
-          Height = 28
-          Hint = 'Import Spritesheet image'
-          Top = 1
-          Width = 28
-          Align = alLeft
-          AutoSize = True
-          Images = ButtonsImageList
-          ImageIndex = 5
-          ShowHint = True
-          ParentShowHint = False
-        end
-        object SpeedButtonSaveToLib: TSpeedButton
-          Left = 52
-          Height = 28
-          Hint = 'Save image to current spritelib'
-          Top = 1
-          Width = 28
-          Align = alLeft
-          AutoSize = True
-          Enabled = False
-          Images = ButtonsImageList
-          ImageIndex = 6
-          ShowHint = True
-          ParentShowHint = False
-        end
-        object SpeedButtonAutoSelect: TSpeedButton
-          Left = 1
-          Height = 28
-          Hint = 'Clear all previous frames and try autorecognize new'
-          Top = 1
-          Width = 23
-          Align = alLeft
-          Images = ButtonsImageList
-          ImageIndex = 4
-          ShowHint = True
-          ParentShowHint = False
-        end
-        object SpeedButton1: TSpeedButton
-          AnchorSideLeft.Control = SpeedButtonSaveToLib
-          AnchorSideLeft.Side = asrBottom
-          AnchorSideTop.Control = SpeedButtonLoadSpritesheet
-          Left = 80
-          Height = 28
-          Top = 1
-          Width = 28
-          AutoSize = True
-          Images = ButtonsImageList
-          ImageIndex = 7
-        end
-      end
-    end
-    object LibraryTabSheet: TTabSheet
-      Caption = 'Local Library'
-      ClientHeight = 398
-      ClientWidth = 551
-      object LibraryButtonsPanel: TPanel
-        Left = 0
-        Height = 50
-        Top = 0
-        Width = 647
-        Align = alTop
-        TabOrder = 0
-      end
-      object GroupBox1: TGroupBox
-        Left = 0
-        Height = 371
-        Top = 50
-        Width = 185
-        Align = alLeft
-        Caption = 'Local libraries'
-        ClientHeight = 352
-        ClientWidth = 181
-        TabOrder = 1
-        object Label1: TLabel
-          Left = 26
-          Height = 17
-          Top = 11
-          Width = 86
-          Caption = 'Select library'
-        end
-        object LibraryComboBox: TComboBox
-          Left = 4
-          Height = 31
-          Top = 42
-          Width = 156
-          ItemHeight = 0
-          OnChange = LibraryComboBoxChange
-          Style = csDropDownList
-          TabOrder = 0
-        end
-        object LibraryItemsListBox: TListBox
-          Left = 0
-          Height = 259
-          Top = 93
-          Width = 183
-          ItemHeight = 0
-          OnClick = LibraryItemsListBoxClick
-          ScrollWidth = 181
-          Sorted = True
-          TabOrder = 1
-          TopIndex = -1
-        end
-      end
-      object ScrollBox1: TScrollBox
-        Left = 185
-        Height = 371
-        Top = 50
-        Width = 462
-        HorzScrollBar.Page = 90
-        VertScrollBar.Page = 90
-        Align = alClient
-        ClientHeight = 367
-        ClientWidth = 458
-        TabOrder = 2
-        object LibImage: TImage
-          AnchorSideLeft.Control = ScrollBox1
-          AnchorSideTop.Control = ScrollBox1
-          Left = 0
-          Height = 90
-          Top = 0
-          Width = 90
-          AutoSize = True
-        end
-      end
-    end
-    object SettingsTabSheet: TTabSheet
-      Caption = 'Settings'
-    end
   end
   object StatusBar1: TStatusBar
     Left = 0
@@ -362,7 +218,6 @@ object frmMain: TfrmMain
       end
       object SelectSpriteLibMenuItem: TMenuItem
         Caption = 'Select Sprite Library'
-        OnClick = SelectSpriteLibMenuItemClick
       end
       object SaveSpriteLibMenuItem: TMenuItem
         Caption = 'Save Sprite Library'
