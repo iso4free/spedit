@@ -130,7 +130,7 @@ type
     procedure ViewZoomOutMenuItemClick(Sender: TObject);
     procedure ViewZoomResetMenuItemClick(Sender: TObject);
   private
-   DrawGridMode : TDrawGridMode;
+   fDrawGridMode : TDrawGridMode;
    dx,dy : Integer;             //offset to move grid
    startx,starty : Integer;     //start position to move
   end;
@@ -141,7 +141,7 @@ var
 
 implementation
 
-uses uzastavka, udrawtools, ulayers, uframes, upreview, ureferense;
+uses uzastavka, udrawtools, ulayers, uframes, upreview, ureferense, udraw;
 
 {$R *.frm}
 
@@ -342,21 +342,41 @@ end;
 
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
+ var p : TPoint;
 begin
   case Button of
     mbLeft:begin
         //todo: check wich tool selected for drawing
       {  (DrawTool as TSPPen).StartDraw(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y,spclForeColor);
         DrawGridMode:=dgmDraw;}
+     //todo: delete me after test
+
+     if (FrameGrid.HasCoords(Point(x,y))) then begin
+      fDrawGridMode:=dgmDraw;
+      p:=FrameGrid.Coords(x,y);
+      (frmDrawTools.DrawTool as TSPPen).PenSize:=2;
+      (frmDrawTools.DrawTool as TSPPen).StartDraw(p.X,p.Y,spclForeColor);
+      (frmDrawTools.DrawTool as TSPPen).Render(Layers[FrameGrid.ActiveLayer].Drawable);
         pbFrameDraw.Invalidate;
+     end;
     end;
     mbRight:begin
       //todo: check wich tool selected for drawing
       // (DrawTool as TSPPen).StartDraw(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y,spclBackColor);
-       DrawGridMode:=dgmDraw;
+       fDrawGridMode:=dgmDraw;
+        //todo: delete me after test
+
+     if (FrameGrid.HasCoords(Point(x,y))) then begin
+      fDrawGridMode:=dgmDraw;
+      p:=FrameGrid.Coords(x,y);
+      (frmDrawTools.DrawTool as TSPPen).PenSize:=1;
+      (frmDrawTools.DrawTool as TSPPen).StartDraw(p.X,p.Y,spclBackColor);
+      (frmDrawTools.DrawTool as TSPPen).Render(Layers[FrameGrid.ActiveLayer].Drawable);
+        pbFrameDraw.Invalidate;
+     end;
     end;
     mbMiddle: begin   //start grid drag
-      DrawGridMode:=dgmMove;
+      fDrawGridMode:=dgmMove;
       dx:=0;
       dy:=0;
       startx:=x;
@@ -367,19 +387,28 @@ end;
 
 procedure TfrmMain.pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
+  var p : TPoint;
 begin
    FrameGrid.CellCursor.Coords:=FrameGrid.Coords(x,y);
         StatusBar1.Panels[3].Text:='x='+IntToStr(FrameGrid.CellCursor.X)+'/y='+IntToStr(FrameGrid.CellCursor.y);
-   if DrawGridMode=dgmMove then begin //move grid inside paintbox
+   if fDrawGridMode=dgmMove then begin //move grid inside paintbox
      dx:=x-startx;
      dy:=y-starty;
      startx:=x;
      starty:=y;
      FrameGrid.Offset:=Point(dx,dy);
    end;
-   if DrawGridMode=dgmDraw then begin
+   if fDrawGridMode=dgmDraw then begin
     //todo: check which tool selected
     //(DrawTool as TSPPen).MouseMove(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y);
+    //todo: delete me after test
+    if FrameGrid.HasCoords(Point(X,Y)) then begin
+     p:=FrameGrid.Coords(X,Y);
+     (frmDrawTools.DrawTool as TSPPen).MouseMove(p.X,p.Y);
+     (frmDrawTools.DrawTool as TSPPen).Render(Layers[FrameGrid.ActiveLayer].Drawable);
+     pbFrameDraw.Invalidate;
+
+    end;
    end;
    StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
    pbFrameDraw.Invalidate;
@@ -388,7 +417,7 @@ end;
 procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  DrawGridMode:=dgmNone;
+  fDrawGridMode:=dgmNone;
   if Assigned(FrmPreview) then FrmPreview.FramePreview.Invalidate;
 end;
 

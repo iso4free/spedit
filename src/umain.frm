@@ -3,8 +3,8 @@ object frmMain: TfrmMain
   Height = 454
   Top = 270
   Width = 557
-  HorzScrollBar.Page = 528
-  VertScrollBar.Page = 348
+  HorzScrollBar.Page = 111
+  VertScrollBar.Page = 196
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
@@ -27,10 +27,10 @@ object frmMain: TfrmMain
     Height = 433
     Top = 0
     Width = 557
-    ActivePage = ProjectTabSheet
+    ActivePage = FrameEditorTabSheet
     Align = alClient
     DockSite = True
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 0
     object FrameEditorTabSheet: TTabSheet
       Tag = 1

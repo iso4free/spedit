@@ -13,6 +13,7 @@ object frmDrawTools: TfrmDrawTools
   FormStyle = fsStayOnTop
   OnClose = FormClose
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   Position = poDefault
   ShowInTaskBar = stNever
   LCLVersion = '7.9'
@@ -271,6 +272,7 @@ object frmDrawTools: TfrmDrawTools
       GroupIndex = 1
       Images = frmMain.ButtonsImageList
       ImageIndex = 28
+      OnClick = sbPenClick
     end
     object sbPipette: TSpeedButton
       AnchorSideTop.Side = asrBottom

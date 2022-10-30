@@ -56,15 +56,17 @@ type
     procedure BgColorPaint(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure PaletteGridMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure PaletteGridRenderControl(Sender: TObject; Bitmap: TBGRABitmap;
       r: TRect; n, x, y: integer);
+    procedure sbPenClick(Sender: TObject);
   private
-    FDrawTool: PSPDrawTool;
-    procedure SetDrawTool(AValue: PSPDrawTool);
+    FDrawTool: TSPDrawTool;
+    procedure SetDrawTool(AValue: TSPDrawTool);
   public
-    property DrawTool : PSPDrawTool read FDrawTool write SetDrawTool;
+    property DrawTool : TSPDrawTool read FDrawTool write SetDrawTool;
   end;
 
 var
@@ -81,8 +83,13 @@ implementation
   BgColor.ShowHint:=true;
   FgColor.ShowHint:=true;
   //TODO: create draw tools
-
+  FDrawTool:=TSPPen.Create();
  end;
+
+procedure TfrmDrawTools.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(FDrawTool);
+end;
 
 procedure TfrmDrawTools.BgColorMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
@@ -167,7 +174,12 @@ begin
   Bitmap.Rectangle(r,b,c,dmSet);
 end;
 
-procedure TfrmDrawTools.SetDrawTool(AValue: PSPDrawTool);
+procedure TfrmDrawTools.sbPenClick(Sender: TObject);
+begin
+
+end;
+
+procedure TfrmDrawTools.SetDrawTool(AValue: TSPDrawTool);
 begin
   if FDrawTool=AValue then Exit;
   FDrawTool:=AValue;

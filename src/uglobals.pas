@@ -186,7 +186,7 @@ type
 
     constructor Create(aW: Integer = 32; aH : Integer = 32; aSize : Word = 10);
     destructor Destroy; override;
-
+    function HasCoords(aPoint : TPoint) : Boolean; //check if frame has point
     procedure RenderAndDraw(Canvas : TCanvas);  //draw background and all layers data to canvas
     procedure RenderPicture(Canvas : TCanvas);
     procedure ExpotPng(aFilename : TFileName);  //export frame to file
@@ -217,8 +217,8 @@ var
   BufferLayer      : TLayer;    //for temporary drawing
 
   //Drawing colors
-  spclForeColor : TColor;  //foreground color - left mouse button drawing
-  spclBackColor : TColor; //background color - right mouse button drawing
+  spclForeColor : TBGRAPixel;  //foreground color - left mouse button drawing
+  spclBackColor : TBGRAPixel; //background color - right mouse button drawing
   //Work palette
   Palette       : TPalette;
 
@@ -397,7 +397,7 @@ end;
 
 constructor TLayer.Create(aName: String; aWidth: Integer; aHeight: Integer);
 begin
-  fLayerImg := TBGRABitmap.Create(aWidth,aHeight,ColorToBGRA(clFuchsia,0));
+  fLayerImg := TBGRABitmap.Create(aWidth,aHeight,ColorToBGRA(clNone,0));
   fVisible:=True;
   FLocked:=False;
   FFrames := TStringList.Create;
@@ -491,6 +491,11 @@ begin
   FreeAndNil(fPreview);
   FreeAndNil(FCellCursor);
   inherited Destroy;
+end;
+
+function TFrameGrid.HasCoords(aPoint: TPoint): Boolean;
+begin
+  result := fRect.Contains(aPoint);
 end;
 
 procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas);
