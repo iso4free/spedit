@@ -341,7 +341,7 @@ end;
 
 procedure TCellCursor.SetCells(AValue: Byte);
 begin
-  if (AValue<1) or (AValue>3) then Exit;
+  //if (AValue<1) or (AValue>3) then Exit;
   FCells:=AValue;
 end;
 
@@ -401,7 +401,7 @@ end;
 
 constructor TLayer.Create(aName: String; aWidth: Integer; aHeight: Integer);
 begin
-  fLayerImg := TBGRABitmap.Create(aWidth,aHeight,ColorToBGRA(clNone,0));
+  fLayerImg := TBGRABitmap.Create(aWidth,aHeight);
   fVisible:=True;
   FLocked:=False;
   FFrames := TStringList.Create;
@@ -480,7 +480,7 @@ begin
   FCheckersSize:=INI.ReadInteger('INTERFACE','CHECKERS SIZE',32);
   fFrameZoom:=0;
   CalcGridRect;
-  fPreview:=TBGRABitmap.Create(aW,aH,ColorToBGRA(clWhite));
+  fPreview:=TBGRABitmap.Create(aW,aH);
   FCellCursor := TCellCursor.Create;
   FCellCursor.Cells:=1;
   {$IFDEF DEBUG}

@@ -1,15 +1,15 @@
 object frmDrawTools: TfrmDrawTools
   Left = 256
-  Height = 315
+  Height = 339
   Top = 171
-  Width = 189
+  Width = 169
   Align = alClient
   AutoSize = True
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSizeToolWin
   Caption = 'Tools'
-  ClientHeight = 315
-  ClientWidth = 189
+  ClientHeight = 339
+  ClientWidth = 169
   FormStyle = fsStayOnTop
   OnClose = FormClose
   OnCreate = FormCreate
@@ -20,8 +20,8 @@ object frmDrawTools: TfrmDrawTools
   object ColorsFlowPanel: TFlowPanel
     Left = 0
     Height = 50
-    Top = 265
-    Width = 189
+    Top = 289
+    Width = 169
     Align = alBottom
     ControlList = <    
       item
@@ -226,7 +226,7 @@ object frmDrawTools: TfrmDrawTools
     Left = 0
     Height = 31
     Top = 0
-    Width = 189
+    Width = 169
     Align = alTop
     Anchors = []
     AutoSize = True
@@ -237,21 +237,26 @@ object frmDrawTools: TfrmDrawTools
         Index = 0
       end    
       item
-        Control = sbEracer
+        Control = sbLine
         WrapAfter = waAuto
         Index = 1
       end    
       item
-        Control = sbPipette
+        Control = sbEracer
         WrapAfter = waAuto
         Index = 2
+      end    
+      item
+        Control = sbPipette
+        WrapAfter = waAuto
+        Index = 3
       end>
     FlowLayout = tlTop
     FlowStyle = fsLeftRightTopBottom
     TabOrder = 1
     object sbEracer: TSpeedButton
       AnchorSideTop.Side = asrBottom
-      Left = 29
+      Left = 57
       Height = 28
       Top = 1
       Width = 28
@@ -262,6 +267,7 @@ object frmDrawTools: TfrmDrawTools
       ImageIndex = 24
     end
     object sbPen: TSpeedButton
+      Tag = 1
       Left = 1
       Height = 28
       Top = 1
@@ -276,7 +282,7 @@ object frmDrawTools: TfrmDrawTools
     end
     object sbPipette: TSpeedButton
       AnchorSideTop.Side = asrBottom
-      Left = 57
+      Left = 85
       Height = 28
       Top = 1
       Width = 28
@@ -286,28 +292,40 @@ object frmDrawTools: TfrmDrawTools
       Images = frmMain.ButtonsImageList
       ImageIndex = 29
     end
+    object sbLine: TSpeedButton
+      Tag = 2
+      Left = 29
+      Height = 28
+      Hint = 'Line tool'
+      Top = 1
+      Width = 28
+      Anchors = []
+      AutoSize = True
+      GroupIndex = 1
+      Images = frmMain.ButtonsImageList
+      ImageIndex = 36
+    end
   end
   object gbPalette: TGroupBox
     AnchorSideBottom.Control = ColorsFlowPanel
-    Left = 1
-    Height = 100
-    Top = 165
-    Width = 189
+    Left = 16
+    Height = 121
+    Top = 168
+    Width = 146
     Anchors = [akLeft, akBottom]
     Caption = 'Palette'
-    ClientHeight = 81
-    ClientWidth = 185
+    ClientHeight = 102
+    ClientWidth = 142
     TabOrder = 2
     object ScrollBox5: TScrollBox
       Left = 0
-      Height = 81
+      Height = 80
       Top = 0
-      Width = 185
-      HorzScrollBar.Page = 140
-      VertScrollBar.Page = 77
-      Align = alClient
-      ClientHeight = 77
-      ClientWidth = 178
+      Width = 130
+      HorzScrollBar.Page = 114
+      VertScrollBar.Page = 64
+      ClientHeight = 64
+      ClientWidth = 114
       TabOrder = 0
       object PaletteGrid: TBCGameGrid
         AnchorSideLeft.Control = ScrollBox5
@@ -333,14 +351,42 @@ object frmDrawTools: TfrmDrawTools
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = gbPalette
     Left = 0
-    Height = 134
+    Height = 137
     Top = 31
-    Width = 189
+    Width = 169
     Anchors = [akTop, akLeft, akRight, akBottom]
-    ControlList = <>
+    AutoSize = True
+    ControlList = <    
+      item
+        Control = grpbPenSize
+        WrapAfter = waAuto
+        Index = 0
+      end>
     FlowLayout = tlTop
     FlowStyle = fsLeftRightTopBottom
     TabOrder = 3
+    object grpbPenSize: TGroupBox
+      Left = 1
+      Height = 56
+      Top = 1
+      Width = 104
+      Anchors = []
+      AutoSize = True
+      Caption = 'Pen size'
+      ClientHeight = 37
+      ClientWidth = 100
+      TabOrder = 0
+      object trkbrPenSize: TTrackBar
+        Left = 0
+        Height = 37
+        Top = 0
+        Width = 100
+        Min = 1
+        OnChange = trkbrPenSizeChange
+        Position = 1
+        TabOrder = 0
+      end
+    end
   end
   object ColorDialog1: TColorDialog
     Color = clBlack

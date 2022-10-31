@@ -36,6 +36,14 @@ msgctxt "tfrmdrawtools.gbpalette.caption"
 msgid "Palette"
 msgstr ""
 
+#: tfrmdrawtools.grpbpensize.caption
+msgid "Pen size"
+msgstr ""
+
+#: tfrmdrawtools.sbline.hint
+msgid "Line tool"
+msgstr ""
+
 #: tfrmframes.caption
 msgctxt "tfrmframes.caption"
 msgid "Frames"

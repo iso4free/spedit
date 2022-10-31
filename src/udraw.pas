@@ -44,24 +44,22 @@ type
     fColor: TBGRAPixel;
     procedure SetColor(AValue: TBGRAPixel);
     protected
-      fstartx,starty : Integer;  //coords from start drawing
+      fstartx,fstarty : Integer;  //coords from start drawing
       fX,fY          : Integer;  //current coords
       fBuffer : TBGRABitmap;
       FMouseDown: Boolean;
       FPenSize: Byte;
       FPrevPoint: TPoint;
-      procedure SetColor(AValue: TColor);
       procedure SetPenSize(AValue: Byte);
       procedure SetPrevPoint(AValue: TPoint);
     public
       constructor Create(Width : Integer = 32; Height : Integer = 32);
       destructor Destroy; override;
+      procedure StartDraw(x,y : Integer; aColor : TBGRAPixel);virtual;
+      procedure MouseMove(x,y : Integer); virtual;
       property PrevPoint : TPoint read FPrevPoint write SetPrevPoint;
       property PenSize : Byte read FPenSize write SetPenSize;
-      procedure StartDraw(x,y : Integer);virtual;//abstract;
-      procedure MouseMove(x,y : Integer);virtual;//abstract;
       property Color : TBGRAPixel read fColor write SetColor;
-      procedure MouseUp(x,y : Integer);virtual;
       procedure Render(aBMP : TBGRABitmap);
   end;
 
@@ -70,27 +68,53 @@ type
 
   TSPPen = class(TSPDrawTool)
      prevx, prevy : Integer;
-     procedure StartDraw(x, y: Integer; aColor : TColor);//override;
+     procedure StartDraw(x, y: Integer; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
   end;
 
 
-  TSPLine = class(TSPDrawTool)
+  { TSPLine - draw simple line}
 
+  TSPLine = class(TSPDrawTool)
+     prevx, prevy : Integer;
+     procedure StartDraw(x, y: Integer; aColor : TBGRAPixel);override;
+     procedure MouseMove(x,y : Integer); override;
   end;
 
 
 implementation
 
+{ TSPLine }
+
+procedure TSPLine.StartDraw(x, y: Integer; aColor: TBGRAPixel);
+begin
+  Color:=aColor;
+  //fBuffer.EraseRect(fBuffer.ClipRect,0);
+  fstartx:=x;
+  fstarty:=y;
+  prevx:=x;
+  prevy:=y;
+  fBuffer.Canvas.FillRect(x,y,x+PenSize-1,y+PenSize-1);
+end;
+
+procedure TSPLine.MouseMove(x, y: Integer);
+begin
+  fBuffer.EraseLine(fstartx,fstarty,PrevX,PrevY,0,True);
+  prevx:=x;
+  prevy:=y;
+  fBuffer.DrawLine(fstartx,fstarty,PrevX,PrevY,fColor,True);
+end;
+
 { TSPPen }
 
-procedure TSPPen.StartDraw(x, y: Integer; aColor: TColor);
+procedure TSPPen.StartDraw(x, y: Integer; aColor: TBGRAPixel);
 begin
   fColor:=aColor;
   fBuffer.Canvas.Pen.Color:=fColor;
   fBuffer.Canvas.Pen.Width:=FPenSize;
   prevx := x;
   prevy := y;
+  fBuffer.Canvas.FillRect(x,y,x+PenSize-1,y+PenSize-1);
 end;
 
 procedure TSPPen.MouseMove(x, y: Integer);
@@ -106,8 +130,7 @@ end;
 
 procedure TSPDrawTool.SetPenSize(AValue: Byte);
 begin
-  if FPenSize=AValue then Exit;
-  if (AValue>1) and (AValue<4) then FPenSize:=AValue;
+  FPenSize:=AValue;
 end;
 
 procedure TSPDrawTool.SetColor(AValue: TBGRAPixel);
@@ -115,12 +138,6 @@ begin
   if fColor=AValue then Exit;
   fColor:=AValue;
 end;
-
-procedure TSPDrawTool.SetColor(AValue: TColor);
-begin
-  fColor:=AValue;
-end;
-
 
 procedure TSPDrawTool.SetPrevPoint(AValue: TPoint);
 begin
@@ -130,7 +147,7 @@ end;
 
 constructor TSPDrawTool.Create(Width: Integer; Height: Integer);
 begin
-  fBuffer:=TBGRABitmap.Create(Width,Height,ColorToBGRA(clNone,0));
+  fBuffer:=TBGRABitmap.Create(Width,Height);
   FPenSize:=1; //default 1px
 end;
 
@@ -140,19 +157,14 @@ begin
   inherited Destroy;
 end;
 
-procedure TSPDrawTool.StartDraw(x, y: Integer);
+procedure TSPDrawTool.StartDraw(x, y: Integer; aColor: TBGRAPixel);
 begin
-
+ Exception.Create('You must override StartDraw() method!');
 end;
 
 procedure TSPDrawTool.MouseMove(x, y: Integer);
 begin
-
-end;
-
-procedure TSPDrawTool.MouseUp(x, y: Integer);
-begin
-
+ Exception.Create('You must override MouseMove() method!');
 end;
 
 procedure TSPDrawTool.Render(aBMP: TBGRABitmap);

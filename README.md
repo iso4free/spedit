@@ -19,7 +19,21 @@ You can sponsor me throught https://www.buymeacoffee.com/iso4free if You wanna g
 
 SHORT DOCUMENTATION
 ===================
-For now, use arrow keys for moving on-grid cursor, Space and Enter keys to draw use selected colors (primary and secondary), Del key to clear pixel.
+For now, use arrow keys for moving on-grid cursor, Space and Enter keys to draw use selected colors (primary and secondary), Del key to clear pixel (DOS version style). Or just use the mouse like in any image editor.
+
+In Tools window select primary and secondary color, select tool for mouse drawing and change pen size.
+
+You can select primary and secondary colors click on any color in palette with left (primary) or right (secondary) mouse buttons.
+
+Also You can select any color just clickin' on primary or secondary colors with left button or set it to transparent clickin' by right mouse button.
+
+To swap colors, press X key or click on middle button (with red and green circled arrows) between primary and secondary colors.
+
+To manage palette, You can import it from palette file in HEX format (more formats will be added in future) or import from image file. For now, palette limited 256 indexed colors only, but in future this limits may be cancelled.
+
+To reset palette to default colors just use menu 'Palette>Reset palette'.
+
+You can export palette in HEX format to use it for any purpose.
 
 Hold Ctrl and use mouse scroll up/down to scale grid size.
 
@@ -34,18 +48,6 @@ Click to 'Preview' image for export in PNG file format.
 For show referense image check menu 'View>Tool panels>Referense'.
 
 Click to 'Referense' window to open any image used as reference.
-
-You can select primary and secondary colors click on any color in palette with left (primary) or right (secondary) mouse buttons.
-
-Also You can select any color just clickin' on primary or secondary colors with left button or set it to transparent clickin' by right mouse button.
-
-To swap colors, press X key or click on middle button (with red and green circled arrows) between primary and secondary colors.
-
-To manage palette, You can import it from palette file in HEX format (more formats will be added in future) or import from image file. For now, palette limited 256 indexed colors only, but in future this limits may be cancelled.
-
-To reset palette to default colors just use menu 'Palette>Reset palette'.
-
-You can export palette in HEX format to use it for any purpose.
 
 THE FUTURE
 ==========
@@ -195,3 +197,11 @@ DEV.LOG
 =
 - [+] Added template window for frames
 - [*] Some minor fixes and changes
+
+31.10.2022
+=
+- [+] Added pen size change
+- [+] Added line draw tool
+- [+] Added mouse draw (pen tool)
+- [*] Changed logging through LazLogger instead of console WriteLN
+- [!] Fixed transparent background while mouse draw

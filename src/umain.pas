@@ -168,6 +168,7 @@ begin
   end;
   FrameGrid.ActiveFrame:=Frames.Keys[0];
   FrameGrid.ActiveLayer:=Layers.Keys[0];
+  if Assigned(frmDrawTools.trkbrPenSize) then frmDrawTools.trkbrPenSize.Max:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -355,10 +356,10 @@ begin
      if (FrameGrid.HasCoords(Point(x,y))) then begin
       fDrawGridMode:=dgmDraw;
       p:=FrameGrid.Coords(x,y);
-      (frmDrawTools.DrawTool as TSPPen).PenSize:=2;
-      (frmDrawTools.DrawTool as TSPPen).StartDraw(p.X,p.Y,spclForeColor);
-      (frmDrawTools.DrawTool as TSPPen).Render(Layers[FrameGrid.ActiveLayer].Drawable);
-        pbFrameDraw.Invalidate;
+      frmDrawTools.DrawTool.PenSize:=frmDrawTools.trkbrPenSize.Position;
+      frmDrawTools.DrawTool.StartDraw(p.X,p.Y,spclForeColor);
+      frmDrawTools.DrawTool.Render(Layers[FrameGrid.ActiveLayer].Drawable);
+      pbFrameDraw.Invalidate;
      end;
     end;
     mbRight:begin
@@ -405,8 +406,8 @@ begin
     //todo: delete me after test
     if FrameGrid.HasCoords(Point(X,Y)) then begin
      p:=FrameGrid.Coords(X,Y);
-     (frmDrawTools.DrawTool as TSPPen).MouseMove(p.X,p.Y);
-     (frmDrawTools.DrawTool as TSPPen).Render(Layers[FrameGrid.ActiveLayer].Drawable);
+     frmDrawTools.DrawTool.MouseMove(p.X,p.Y);
+     frmDrawTools.DrawTool.Render(Layers[FrameGrid.ActiveLayer].Drawable);
      pbFrameDraw.Invalidate;
 
     end;

@@ -31,7 +31,8 @@ interface
 uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls, BGRAGraphicControl, BCGameGrid, uglobals, udraw, Types, BGRABitmap, BGRABitmapTypes;
+  StdCtrls, ComCtrls, BGRAGraphicControl, BCGameGrid, uglobals, udraw,
+  Types, BGRABitmap, BGRABitmapTypes;
 
 type
 
@@ -46,11 +47,14 @@ type
     ColorsFlowPanel: TFlowPanel;
     flpnlToolOptions: TFlowPanel;
     gbPalette: TGroupBox;
+    grpbPenSize: TGroupBox;
     PaletteGrid: TBCGameGrid;
     sbEracer: TSpeedButton;
     sbPen: TSpeedButton;
     sbPipette: TSpeedButton;
     ScrollBox5: TScrollBox;
+    sbLine: TSpeedButton;
+    trkbrPenSize: TTrackBar;
     procedure bbtnSwapColorsClick(Sender: TObject);
     procedure BgColorMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -63,11 +67,11 @@ type
     procedure PaletteGridRenderControl(Sender: TObject; Bitmap: TBGRABitmap;
       r: TRect; n, x, y: integer);
     procedure sbPenClick(Sender: TObject);
+    procedure trkbrPenSizeChange(Sender: TObject);
   private
     FDrawTool: TSPDrawTool;
-    procedure SetDrawTool(AValue: TSPDrawTool);
   public
-    property DrawTool : TSPDrawTool read FDrawTool write SetDrawTool;
+    property DrawTool : TSPDrawTool read FDrawTool;
   end;
 
 var
@@ -127,7 +131,7 @@ begin
   if cl=clNone then begin
    (Sender as TBGRAGraphicControl).Bitmap.DrawCheckers(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),
                                               ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),4,4);
-   (Sender as TBGRAGraphicControl).Bitmap.Rectangle(Rect(0,0,(Sender as TBGRAGraphicControl).Width,(Sender as TBGRAGraphicControl).Height),ColorToBGRA(clBlack));
+   (Sender as TBGRAGraphicControl).Bitmap.Rectangle(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(clBlack));
   end
     else (Sender as TBGRAGraphicControl).Bitmap.FillRect(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(cl));
   (Sender as TBGRAGraphicControl).Invalidate;
@@ -177,13 +181,18 @@ end;
 
 procedure TfrmDrawTools.sbPenClick(Sender: TObject);
 begin
+  FreeAndNil(FDrawTool);
+  case (Sender as TSpeedButton).Tag of
+ 1:FDrawTool:=TSPPen.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+ 2:FDrawTool:=TSPLine.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+  end;
 
 end;
 
-procedure TfrmDrawTools.SetDrawTool(AValue: TSPDrawTool);
+procedure TfrmDrawTools.trkbrPenSizeChange(Sender: TObject);
 begin
-  if FDrawTool=AValue then Exit;
-  FDrawTool:=AValue;
+  FrameGrid.CellCursor.Cells:=trkbrPenSize.Position;
+  frmMain.pbFrameDraw.Invalidate;
 end;
 
 end.

@@ -5,5 +5,7 @@
 {"hash":246661597,"name":"tfrmdrawtools.bbtnswapcolors.hint","sourcebytes":[83,119,97,112,32,99,111,108,111,114,115,32,91,88,93],"value":"Swap colors [X]"},
 {"hash":254950754,"name":"tfrmdrawtools.bgcolor.hint","sourcebytes":[76,101,102,116,32,99,108,105,99,107,32,116,111,32,115,101,108,101,99,116,32,99,111,108,111,114,10,82,105,103,104,116,32,99,108,105,99,107,32,116,111,32,115,101,116,32,116,114,97,110,115,112,97,114,101,110,116,32,99,111,108,111,114],"value":"Left click to select color\nRight click to set transparent color"},
 {"hash":1127,"name":"tfrmdrawtools.bgcolor.caption","sourcebytes":[66,71],"value":"BG"},
-{"hash":109235189,"name":"tfrmdrawtools.gbpalette.caption","sourcebytes":[80,97,108,101,116,116,101],"value":"Palette"}
+{"hash":74975068,"name":"tfrmdrawtools.sbline.hint","sourcebytes":[76,105,110,101,32,116,111,111,108],"value":"Line tool"},
+{"hash":109235189,"name":"tfrmdrawtools.gbpalette.caption","sourcebytes":[80,97,108,101,116,116,101],"value":"Palette"},
+{"hash":201827941,"name":"tfrmdrawtools.grpbpensize.caption","sourcebytes":[80,101,110,32,115,105,122,101],"value":"Pen size"}
 ]}
