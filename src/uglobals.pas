@@ -26,11 +26,13 @@ unit uglobals;
 
 {$mode objfpc}{$H+}
 {$modeswitch advancedrecords}
- {$DEFINE DEBUG}
+
 
 interface
 
-uses Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson, BGRABitmap, BGRABitmapTypes, fgl;
+uses
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
+  Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson, BGRABitmap, BGRABitmapTypes, fgl;
 
 const
       //MAX_FRAMES = 50;           //it will be enought for one animation?
@@ -298,8 +300,10 @@ begin
  Layers['Layer']:=TLayer.Create();
  Layers['Layer'].AddToFrame('Frame');
  Frames['Frame'].AddLayer('Layer');
- WriteLN('Layers in frame:',Frames['Frame'].LayersList.Text);
- WriteLN('Frames in layer:',Layers['Layer'].FramesList.Text);
+ {$IFDEF DEBUG}
+ DebugLn('Layers in frame:',Frames['Frame'].LayersList.Text);
+ DebugLn('Frames in layer:',Layers['Layer'].FramesList.Text);
+ {$ENDIF}
 end;
 
 procedure ClearFramesAndLayers;
@@ -423,7 +427,7 @@ procedure TFrameGrid.SetOffset(AValue: TPoint);
 begin
   FOffset.Offset(AValue);
   {$IFDEF DEBUG}
-   WriteLN('Offset: x=',fOffset.X,', y=',fOffset.Y);
+   DebugLn('Offset: x=',IntToStr(fOffset.X),', y=',IntToStr(fOffset.Y));
   {$ENDIF}
   CalcGridRect;
 end;
@@ -464,7 +468,7 @@ begin
   fRect.Create(fOffset, fFrameWidth*(fFrameGridSize+fFrameZoom), fFrameHeight*(
     fFrameGridSize+fFrameZoom));
   {$IFDEF DEBUG}
-    WriteLN('Grid pos: x=',fRect.Left,', y=',fRect.Top);
+    DebugLn('Grid pos: x=',IntToStr(fRect.Left),', y=',IntToStr(fRect.Top));
   {$ENDIF}
 end;
 
@@ -479,7 +483,9 @@ begin
   fPreview:=TBGRABitmap.Create(aW,aH,ColorToBGRA(clWhite));
   FCellCursor := TCellCursor.Create;
   FCellCursor.Cells:=1;
-  WriteLN('Layers count ',Layers.Count);
+  {$IFDEF DEBUG}
+  DebugLn('Layers count ',IntToStr(Layers.Count));
+  {$ENDIF}
   FActiveLayer:=Layers.Keys[0];
   fActiveFrame:=Frames.Keys[0];
 end;
@@ -508,9 +514,9 @@ var fBuffer : TBGRABitmap;
   begin
     xsize := (x2-x1) div size;
     ysize := (y2-y1) div size;
-    {$IFDEF DEBUG}
-     WriteLN('x1=',x1,'; y1=',y1,'; x2=',x2,'; y2=',y2,'; xsize=',xsize,'; ysize=',ysize,' in: DrawGrid');
-    {$ENDIF}
+    //{$IFDEF DEBUG}
+    // DebugLn('x1=',x1,'; y1=',y1,'; x2=',x2,'; y2=',y2,'; xsize=',xsize,'; ysize=',ysize,' in: DrawGrid');
+    //{$ENDIF}
     For i := 1 to ysize do fBuffer.DrawLine(x1,y1+i*size,x2,y1+i*size,ColorToBGRA(clNavy),False);
     For i := 1 to xsize do fBuffer.DrawLine(x1+i*size,y1,x1+i*size,y2,ColorToBGRA(clNavy),False);
     fBuffer.Rectangle(x1,y1,x2,y2,ColorToBGRA(clNavy));
@@ -544,7 +550,9 @@ begin
 
 
   //draw all layers to fBuffer per pixel
-  WriteLN('Active frame: ',ActiveFrame);
+  {$IFDEF DEBUG}
+  DebugLn('Active frame: ',ActiveFrame);
+  {$ENDIF}
   for i:=0 to Frames[ActiveFrame].LayersList.Count-1 do
    InternalDrawLayer(Layers[Frames[ActiveFrame].LayersList.Strings[i]]);
 

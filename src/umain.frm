@@ -98,8 +98,8 @@ object frmMain: TfrmMain
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 398
-      ClientWidth = 551
+      ClientHeight = 429
+      ClientWidth = 553
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -111,16 +111,16 @@ object frmMain: TfrmMain
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 398
-      ClientWidth = 551
+      ClientHeight = 429
+      ClientWidth = 553
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
         Width = 551
         Align = alTop
-        ClientHeight = 50
-        ClientWidth = 551
+        ClientHeight = 46
+        ClientWidth = 547
         TabOrder = 0
         object StaticText1: TStaticText
           Left = 344
@@ -142,7 +142,7 @@ object frmMain: TfrmMain
         TabOrder = 1
         ColWidths = (
           64
-          134
+          132
         )
       end
       object ScrollBox4: TScrollBox
@@ -153,8 +153,8 @@ object frmMain: TfrmMain
         HorzScrollBar.Page = 320
         VertScrollBar.Page = 240
         Align = alClient
-        ClientHeight = 346
-        ClientWidth = 349
+        ClientHeight = 344
+        ClientWidth = 347
         TabOrder = 2
         object ProjectSheet: TBGRAImageManipulation
           AnchorSideLeft.Control = ScrollBox4

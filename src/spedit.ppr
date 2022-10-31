@@ -23,13 +23,15 @@
 
 
 program spedit;
-{$IFDEF MSWINDOWS} {$APPTYPE CONSOLE} {$ENDIF}
 {$mode objfpc}{$H+}
 
 uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
   {$ENDIF}{$ENDIF}
+  {$IFDEF DEBUG}
+  LazLogger,
+  {$ENDIF}
   Forms, Interfaces, umain,
   { you can add units after this }
   ulayers, upreview, ureferense, uframes;
@@ -37,6 +39,9 @@ uses
 {$R *.res}
 
 begin
+  {$IFDEF DEBUG}
+  DebugLogger.ParamForLogFileName:='--debug-log';
+  {$ENDIF}
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;

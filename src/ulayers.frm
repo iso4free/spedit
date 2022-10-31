@@ -16,14 +16,14 @@ object frmLayers: TfrmLayers
     Width = 320
     Align = alClient
     Caption = 'Layers'
-    ClientHeight = 223
-    ClientWidth = 318
+    ClientHeight = 221
+    ClientWidth = 316
     TabOrder = 0
     object LayersFlowPanel: TFlowPanel
       Left = 0
-      Height = 41
-      Top = 182
-      Width = 318
+      Height = 35
+      Top = 186
+      Width = 316
       Align = alBottom
       AutoSize = True
       ControlList = <      
@@ -52,10 +52,10 @@ object frmLayers: TfrmLayers
       TabOrder = 0
       object bbtnAddLayer: TBitBtn
         Left = 1
-        Height = 38
+        Height = 32
         Hint = 'Add new layer'
         Top = 1
-        Width = 38
+        Width = 32
         Anchors = []
         AutoSize = True
         Images = frmMain.ButtonsImageList
@@ -65,11 +65,11 @@ object frmLayers: TfrmLayers
         TabOrder = 0
       end
       object bbtnDeleteLayer: TBitBtn
-        Left = 39
-        Height = 38
+        Left = 33
+        Height = 32
         Hint = 'Delete selected layer'
         Top = 1
-        Width = 38
+        Width = 32
         Anchors = []
         AutoSize = True
         Images = frmMain.ButtonsImageList
@@ -79,11 +79,11 @@ object frmLayers: TfrmLayers
         TabOrder = 1
       end
       object bbtnCopyLayer: TBitBtn
-        Left = 77
-        Height = 38
+        Left = 65
+        Height = 32
         Hint = 'Copy selected layer'
         Top = 1
-        Width = 38
+        Width = 32
         Anchors = []
         AutoSize = True
         Images = frmMain.ButtonsImageList
@@ -93,11 +93,11 @@ object frmLayers: TfrmLayers
         TabOrder = 2
       end
       object bbtnMergeLayers: TBitBtn
-        Left = 115
-        Height = 38
+        Left = 97
+        Height = 32
         Hint = 'Merge with previous layer'
         Top = 1
-        Width = 38
+        Width = 32
         Anchors = []
         AutoSize = True
         Images = frmMain.ButtonsImageList

@@ -29,6 +29,7 @@ unit umain;
 interface
 
 uses
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
   Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit,
   BGRAImageList, BGRAImageManipulation, BGRABitmapTypes, BGRABitmap,

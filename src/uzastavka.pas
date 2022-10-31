@@ -1,4 +1,28 @@
-//'About' form of Spedit4
+{***************************************************************************}
+{*     This file is a part of                                              *}
+{*                                                                         *}
+{* @@@@@@  @@@@@@@  @@@@@@@@ @@@@@@@  @@@ @@@@@@@   @@@  @@@         @@@   *}
+{*@@@@@@@  @@@@@@@@ @@@@@@@@ @@@@@@@@ @@@ @@@@@@@   @@@  @@@        @@@@   *}
+{*!@@      @@!  @@@ @@!      @@!  @@@ @@!   @@!     @@!  @@@       @@!@!   *}
+{*!@!      !@!  @!@ !@!      !@!  @!@ !@!   !@!     !@!  @!@      !@!!@!   *}
+{*!!@@!!   @!@@!@!  @!!!:!   @!@  !@! !!@   @!!     @!@  !@!     @!! @!!   *}
+{* !!@!!!  !!@!!!   !!!!!:   !@!  !!! !!!   !!!     !@!  !!!    !!!  !@!   *}
+{*     !:! !!:      !!:      !!:  !!! !!:   !!:     :!:  !!:    :!!:!:!!:  *}
+{*    !:!  :!:      :!:      :!:  !:! :!:   :!:      ::!!:! :!: !:::!!:::  *}
+{*:::: ::   ::       :: ::::  :::: ::  ::    ::       ::::  :::      :::   *}
+{*:: : :    :       : :: ::  :: :  :  :      :         :    :::      :::   *}
+{*                                                                         *}
+{***************************************************************************}
+{*    Sprite Editor 4.0                                                    *}
+{*    Copyright (c) 2000-2022 by Vadim Vitomsky                            *}
+{*                                                                         *}
+{*    See the file LICENSE, included in this distribution, for details.    *}
+{*                                                                         *}
+{*    This program is distributed in the hope that it will be useful,      *}
+{*    but WITHOUT ANY WARRANTY; without even the implied warranty of       *}
+{*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                 *}
+{***************************************************************************}
+
 unit uzastavka;
 
 {$mode objfpc}{$H+}
@@ -6,6 +30,7 @@ unit uzastavka;
 interface
 
 uses
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
   SysUtils, Forms, Graphics, ExtCtrls, StdCtrls, BGRASpriteAnimation,
   BGRALabelFX, Classes;
 
@@ -113,7 +138,7 @@ procedure TfrmZastavka.Star(x, y: Integer; Size: Integer; Colour: TColor);
 begin
   BgImage.Canvas.Pen.Color:= Colour;
   BgImage.Canvas.Brush.Color:= Colour;
-  // Рисуем звезду, используя переданные координаты и размер
+  // drawing star uses coords and size
   BgImage.Canvas.Polygon( [Point(x, y-size),
   Point(x-size div 4, y-size div 4), Point(x-size, y),
   Point(x-size div 4, y+size div 4), Point(x, y+size),
@@ -124,7 +149,7 @@ end;
 function TfrmZastavka.GetRandomColor(A: Integer): TColor;
 begin
  if A > 255 then A := 255;
- // Получение случайного цвета, в зависимости от значения A
+ // take random color value
  Result := RGBToColor(Random(256-A)+A, Random(256-A)+A, Random(256-A)+A);
 end;
 

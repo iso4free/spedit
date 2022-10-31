@@ -304,10 +304,10 @@ object frmDrawTools: TfrmDrawTools
       Top = 0
       Width = 185
       HorzScrollBar.Page = 140
-      VertScrollBar.Page = 79
+      VertScrollBar.Page = 77
       Align = alClient
-      ClientHeight = 79
-      ClientWidth = 169
+      ClientHeight = 77
+      ClientWidth = 178
       TabOrder = 0
       object PaletteGrid: TBCGameGrid
         AnchorSideLeft.Control = ScrollBox5

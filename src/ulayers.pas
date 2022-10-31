@@ -29,6 +29,7 @@ unit ulayers;
 interface
 
 uses
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
   StdCtrls;
 
