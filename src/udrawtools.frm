@@ -255,6 +255,7 @@ object frmDrawTools: TfrmDrawTools
     FlowStyle = fsLeftRightTopBottom
     TabOrder = 1
     object sbEracer: TSpeedButton
+      Tag = 3
       AnchorSideTop.Side = asrBottom
       Left = 57
       Height = 28
@@ -265,6 +266,7 @@ object frmDrawTools: TfrmDrawTools
       GroupIndex = 1
       Images = frmMain.ButtonsImageList
       ImageIndex = 24
+      OnClick = sbPenClick
     end
     object sbPen: TSpeedButton
       Tag = 1
@@ -281,6 +283,7 @@ object frmDrawTools: TfrmDrawTools
       OnClick = sbPenClick
     end
     object sbPipette: TSpeedButton
+      Tag = 4
       AnchorSideTop.Side = asrBottom
       Left = 85
       Height = 28
@@ -291,6 +294,7 @@ object frmDrawTools: TfrmDrawTools
       GroupIndex = 1
       Images = frmMain.ButtonsImageList
       ImageIndex = 29
+      OnClick = sbPenClick
     end
     object sbLine: TSpeedButton
       Tag = 2
@@ -304,6 +308,7 @@ object frmDrawTools: TfrmDrawTools
       GroupIndex = 1
       Images = frmMain.ButtonsImageList
       ImageIndex = 36
+      OnClick = sbPenClick
     end
   end
   object gbPalette: TGroupBox

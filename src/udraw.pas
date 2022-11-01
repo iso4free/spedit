@@ -38,7 +38,7 @@ type
 
   { TSPDrawTool }
 
-  PSPDrawTool = ^TSPDrawTool;
+ // PSPDrawTool = ^TSPDrawTool;
   TSPDrawTool = class
   private
     fColor: TBGRAPixel;
@@ -46,6 +46,7 @@ type
     protected
       fstartx,fstarty : Integer;  //coords from start drawing
       fX,fY          : Integer;  //current coords
+      prevx, prevy : Integer;    //previous coords
       fBuffer : TBGRABitmap;
       FMouseDown: Boolean;
       FPenSize: Byte;
@@ -67,7 +68,6 @@ type
   { TSPPen - simple pen tool}
 
   TSPPen = class(TSPDrawTool)
-     prevx, prevy : Integer;
      procedure StartDraw(x, y: Integer; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
   end;
@@ -76,33 +76,62 @@ type
   { TSPLine - draw simple line}
 
   TSPLine = class(TSPDrawTool)
-     prevx, prevy : Integer;
      procedure StartDraw(x, y: Integer; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
   end;
 
+  { TSPEraser }
+
+  TSPEraser = class(TSPDrawTool)
+     procedure StartDraw(x, y: Integer; aColor : TBGRAPixel);override;
+     procedure MouseMove(x,y : Integer); override;
+  end;
 
 implementation
+
+{ TSPEraser }
+
+procedure TSPEraser.StartDraw(x, y: Integer; aColor: TBGRAPixel);
+begin
+  inherited StartDraw(x, y, aColor);
+
+end;
+
+procedure TSPEraser.MouseMove(x, y: Integer);
+begin
+  inherited MouseMove(x, y);
+end;
 
 { TSPLine }
 
 procedure TSPLine.StartDraw(x, y: Integer; aColor: TBGRAPixel);
 begin
   Color:=aColor;
-  //fBuffer.EraseRect(fBuffer.ClipRect,0);
+  fBuffer.Canvas.Pen.Color:=Color;
   fstartx:=x;
   fstarty:=y;
   prevx:=x;
   prevy:=y;
-  fBuffer.Canvas.FillRect(x,y,x+PenSize-1,y+PenSize-1);
+
+  Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Pen.Color:=Color;
+  if FPenSize=1 then fBuffer.SetPixel(x,y,Color) else
+     fBuffer.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
 end;
 
 procedure TSPLine.MouseMove(x, y: Integer);
+var oldPenMode : TPenMode;
 begin
-  fBuffer.EraseLine(fstartx,fstarty,PrevX,PrevY,0,True);
+  oldPenMode:=fBuffer.Canvas.Pen.Mode;
+  Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Pen.Mode:=pmXor;
+  Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Line(fstartx,fstarty,PrevX,PrevY);
+  fBuffer.Canvas.Pen.Mode:=pmXor;
+  fBuffer.Canvas.Line(fstartx,fstarty,PrevX,PrevY);
+
   prevx:=x;
   prevy:=y;
-  fBuffer.DrawLine(fstartx,fstarty,PrevX,PrevY,fColor,True);
+   Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Pen.Mode:=oldPenMode;
+  fBuffer.Canvas.Pen.Mode:=oldPenMode;
+  fBuffer.Canvas.Line(fstartx,fstarty,PrevX,PrevY);
 end;
 
 { TSPPen }
@@ -114,7 +143,8 @@ begin
   fBuffer.Canvas.Pen.Width:=FPenSize;
   prevx := x;
   prevy := y;
-  fBuffer.Canvas.FillRect(x,y,x+PenSize-1,y+PenSize-1);
+  if FPenSize=1 then fBuffer.SetPixel(x,y,Color) else
+     fBuffer.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
 end;
 
 procedure TSPPen.MouseMove(x, y: Integer);
@@ -159,25 +189,17 @@ end;
 
 procedure TSPDrawTool.StartDraw(x, y: Integer; aColor: TBGRAPixel);
 begin
- Exception.Create('You must override StartDraw() method!');
+ Assert(False,'You must override StartDraw method!');
 end;
 
 procedure TSPDrawTool.MouseMove(x, y: Integer);
 begin
- Exception.Create('You must override MouseMove() method!');
+ Assert(False,'You must override MouseMove() method!');
 end;
 
 procedure TSPDrawTool.Render(aBMP: TBGRABitmap);
-var ImagePos: TPoint;
-  w,h : Integer;
-  tmppix : TBGRAPixel;
 begin
- //draw all layers to canvas
-   for w:=0 to fBuffer.Width-1 do
-     for h:=0 to fBuffer.Height-1 do begin
-       tmppix := fBuffer.GetPixel(w,h);
-       if tmppix.alpha<>0 then aBMP.SetPixel(w,h,tmpPix);
-     end;
+ aBMP.PutImage(0,0,fBuffer,dmDrawWithTransparency);
 end;
 
 

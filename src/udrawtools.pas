@@ -185,8 +185,12 @@ begin
   case (Sender as TSpeedButton).Tag of
  1:FDrawTool:=TSPPen.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
  2:FDrawTool:=TSPLine.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+ 3:FDrawTool:=TSPEraser.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+ else begin
+      ShowMessage('This tool will be realised soon, sorry');
+      FDrawTool:=TSPPen.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
   end;
-
+ end;
 end;
 
 procedure TfrmDrawTools.trkbrPenSizeChange(Sender: TObject);

@@ -24,8 +24,8 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="345"/>
-        <CursorPos X="3" Y="349"/>
+        <TopLine Value="405"/>
+        <CursorPos Y="396"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -36,9 +36,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="108"/>
-        <CursorPos X="42" Y="117"/>
-        <UsageCount Value="133"/>
+        <TopLine Value="107"/>
+        <CursorPos X="34" Y="110"/>
+        <UsageCount Value="135"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -50,9 +50,9 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="178"/>
-        <CursorPos X="22" Y="187"/>
-        <UsageCount Value="72"/>
+        <TopLine Value="181"/>
+        <CursorPos X="24" Y="188"/>
+        <UsageCount Value="74"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -63,11 +63,11 @@
         <ComponentName Value="frmLayers"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="10"/>
         <WindowIndex Value="0"/>
         <TopLine Value="19"/>
         <CursorPos X="39" Y="32"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="45"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -82,7 +82,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="24"/>
         <CursorPos X="39" Y="32"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="45"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -97,7 +97,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="21"/>
         <CursorPos X="39" Y="32"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="uframes.pas"/>
@@ -110,7 +110,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="24"/>
         <CursorPos X="39" Y="32"/>
-        <UsageCount Value="31"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -119,7 +119,7 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="146"/>
+        <TopLine Value="293"/>
         <CursorPos X="3" Y="143"/>
         <UsageCount Value="100"/>
         <Loaded Value="True"/>
@@ -192,7 +192,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="110"/>
         <CursorPos X="7" Y="119"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="45"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -209,11 +209,12 @@
         <Filename Value="/usr/local/codetyphon/typhon/lcl/graphics.pp"/>
         <FRMtype Value="0"/>
         <UnitName Value="Graphics"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="9"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="679"/>
-        <CursorPos X="14" Y="686"/>
+        <TopLine Value="124"/>
+        <CursorPos X="3" Y="183"/>
         <UsageCount Value="11"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/lcl/include/picture.inc"/>
@@ -332,8 +333,8 @@
         <UnitName Value="FPCanvas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="141"/>
-        <CursorPos X="15" Y="141"/>
+        <TopLine Value="101"/>
+        <CursorPos X="17" Y="113"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
@@ -576,9 +577,9 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="2912"/>
-        <CursorPos Y="2928"/>
-        <UsageCount Value="5"/>
+        <TopLine Value="741"/>
+        <CursorPos X="21" Y="749"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/lcl/include/custompage.inc"/>
@@ -695,130 +696,132 @@
         <CursorPos X="3" Y="24"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_BGRAbitmap/source/unibitmapgeneric.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="8"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="671"/>
+        <CursorPos X="3" Y="678"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="DEBUG"/>
     </OtherDefines>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="27">
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="87" Column="3" TopLine="85"/>
+        <Caret Line="56" Column="26" TopLine="49"/>
       </Position>
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="87" Column="3" TopLine="85"/>
+        <Caret Line="153" Column="24" TopLine="146"/>
       </Position>
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="51" Column="7" TopLine="50"/>
+        <Caret Line="81" Column="20" TopLine="68"/>
       </Position>
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="53" Column="17" TopLine="50"/>
+        <Caret Line="103" Column="81" TopLine="94"/>
+      </Position>
+      <Position>
+        <Filename Value="udrawtools.pas"/>
+        <Caret Line="91" Column="28" TopLine="82"/>
+      </Position>
+      <Position>
+        <Filename Value="udraw.pas"/>
+        <Caret Line="103" Column="31" TopLine="94"/>
+      </Position>
+      <Position>
+        <Filename Value="udraw.pas"/>
+        <Caret Line="103" Column="28" TopLine="94"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/graphics.pp"/>
+        <Caret Line="1176" Column="14" TopLine="1166"/>
+      </Position>
+      <Position>
+        <Filename Value="udraw.pas"/>
+        <Caret Line="103" Column="28" TopLine="94"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/graphics.pp"/>
+        <Caret Line="684" Column="14" TopLine="677"/>
+      </Position>
+      <Position>
+        <Filename Value="udraw.pas"/>
+        <Caret Line="105" Column="30" TopLine="94"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/graphics.pp"/>
+        <Caret Line="183" Column="3" TopLine="163"/>
+      </Position>
+      <Position>
+        <Filename Value="udraw.pas"/>
+        <Caret Line="112" Column="38" TopLine="97"/>
+      </Position>
+      <Position>
+        <Filename Value="udraw.pas"/>
+        <Caret Line="105" Column="92" TopLine="97"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="362" Column="7" TopLine="345"/>
+        <Caret Line="351" Column="9" TopLine="347"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="410" Column="27" TopLine="400"/>
+        <Filename Value="udraw.pas"/>
+        <Caret Line="105" Column="25" TopLine="94"/>
+      </Position>
+      <Position>
+        <Filename Value="udraw.pas"/>
+        <Caret Line="86" Column="6" TopLine="72"/>
       </Position>
       <Position>
         <Filename Value="udrawtools.pas"/>
-        <Caret Line="190" Column="33" TopLine="66"/>
-      </Position>
-      <Position>
-        <Filename Value="udrawtools.pas"/>
-        <Caret Line="184" Column="26" TopLine="176"/>
-      </Position>
-      <Position>
-        <Filename Value="udrawtools.pas"/>
-        <Caret Line="89" Column="27" TopLine="83"/>
+        <Caret Line="192" TopLine="181"/>
       </Position>
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="80" Column="20" TopLine="67"/>
+        <Caret Line="97" Column="3" TopLine="115"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_BGRAbitmap/source/unibitmapgeneric.inc"/>
+        <Caret Line="67" Column="15" TopLine="60"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_BGRAbitmap/source/unibitmapgeneric.inc"/>
+        <Caret Line="678" Column="3" TopLine="671"/>
       </Position>
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="91" Column="3" TopLine="89"/>
+        <Caret Line="79" Column="20" TopLine="73"/>
       </Position>
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="80" Column="22" TopLine="71"/>
+        <Caret Line="57" Column="22" TopLine="48"/>
       </Position>
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="58" Column="22" TopLine="53"/>
+        <Caret Line="181" TopLine="176"/>
       </Position>
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="152" Column="2" TopLine="149"/>
+        <Caret Line="57" Column="19" TopLine="49"/>
       </Position>
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="71" Column="21" TopLine="64"/>
+        <Caret Line="45" Column="15" TopLine="36"/>
       </Position>
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="92" Column="3" TopLine="83"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="422" Column="3" TopLine="418"/>
+        <Caret Line="167" Column="3" TopLine="165"/>
       </Position>
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="80" Column="20" TopLine="65"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="95" Column="34" TopLine="83"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="47" Column="16" TopLine="45"/>
-      </Position>
-      <Position>
-        <Filename Value="udrawtools.pas"/>
-        <Caret Line="185" Column="69" TopLine="182"/>
-      </Position>
-      <Position>
-        <Filename Value="udrawtools.pas"/>
-        <Caret Line="186" Column="69" TopLine="183"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="97" Column="42" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="105" Column="42" TopLine="93"/>
-      </Position>
-      <Position>
-        <Filename Value="udrawtools.pas"/>
-        <Caret Line="73" Column="21" TopLine="63"/>
-      </Position>
-      <Position>
-        <Filename Value="udrawtools.pas"/>
-        <Caret Line="193" TopLine="177"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="344" Column="5" TopLine="340"/>
-      </Position>
-      <Position>
-        <Filename Value="udrawtools.pas"/>
-        <Caret Line="185" Column="4" TopLine="163"/>
-      </Position>
-      <Position>
-        <Filename Value="udrawtools.pas"/>
-        <Caret Line="187" Column="22" TopLine="178"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="97" Column="42" TopLine="88"/>
+        <Caret Line="79" Column="19" TopLine="63"/>
       </Position>
     </JumpHistory>
     <RunParams>

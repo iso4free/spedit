@@ -348,10 +348,6 @@ procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
 begin
   case Button of
     mbLeft:begin
-        //todo: check wich tool selected for drawing
-      {  (DrawTool as TSPPen).StartDraw(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y,spclForeColor);
-        DrawGridMode:=dgmDraw;}
-     //todo: delete me after test
 
      if (FrameGrid.HasCoords(Point(x,y))) then begin
       fDrawGridMode:=dgmDraw;
@@ -363,18 +359,14 @@ begin
      end;
     end;
     mbRight:begin
-      //todo: check wich tool selected for drawing
-      // (DrawTool as TSPPen).StartDraw(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y,spclBackColor);
-       fDrawGridMode:=dgmDraw;
-        //todo: delete me after test
 
      if (FrameGrid.HasCoords(Point(x,y))) then begin
       fDrawGridMode:=dgmDraw;
       p:=FrameGrid.Coords(x,y);
-      (frmDrawTools.DrawTool as TSPPen).PenSize:=1;
-      (frmDrawTools.DrawTool as TSPPen).StartDraw(p.X,p.Y,spclBackColor);
-      (frmDrawTools.DrawTool as TSPPen).Render(Layers[FrameGrid.ActiveLayer].Drawable);
-        pbFrameDraw.Invalidate;
+      frmDrawTools.DrawTool.PenSize:=frmDrawTools.trkbrPenSize.Position;
+      frmDrawTools.DrawTool.StartDraw(p.X,p.Y,spclBackColor);
+      frmDrawTools.DrawTool.Render(Layers[FrameGrid.ActiveLayer].Drawable);
+      pbFrameDraw.Invalidate;
      end;
     end;
     mbMiddle: begin   //start grid drag
@@ -401,9 +393,7 @@ begin
      FrameGrid.Offset:=Point(dx,dy);
    end;
    if fDrawGridMode=dgmDraw then begin
-    //todo: check which tool selected
-    //(DrawTool as TSPPen).MouseMove(FrameGrid.CellCursor.X,FrameGrid.CellCursor.Y);
-    //todo: delete me after test
+
     if FrameGrid.HasCoords(Point(X,Y)) then begin
      p:=FrameGrid.Coords(X,Y);
      frmDrawTools.DrawTool.MouseMove(p.X,p.Y);
