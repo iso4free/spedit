@@ -1,6 +1,10 @@
 {"version":1,"strings":[
 {"hash":86572179,"name":"tfrmlayers.caption","sourcebytes":[76,97,121,101,114,115],"value":"Layers"},
 {"hash":86572179,"name":"tfrmlayers.layersgroupbox.caption","sourcebytes":[76,97,121,101,114,115],"value":"Layers"},
+{"hash":218757493,"name":"tfrmlayers.drwgrdlayers.columns[0].title.caption","sourcebytes":[86,105,115,105,98,108,101],"value":"Visible"},
+{"hash":87400884,"name":"tfrmlayers.drwgrdlayers.columns[1].title.caption","sourcebytes":[76,111,99,107,101,100],"value":"Locked"},
+{"hash":346165,"name":"tfrmlayers.drwgrdlayers.columns[2].title.caption","sourcebytes":[78,97,109,101],"value":"Name"},
+{"hash":5257173,"name":"tfrmlayers.drwgrdlayers.columns[3].title.caption","sourcebytes":[73,109,97,103,101],"value":"Image"},
 {"hash":248838978,"name":"tfrmlayers.bbtnaddlayer.hint","sourcebytes":[65,100,100,32,110,101,119,32,108,97,121,101,114],"value":"Add new layer"},
 {"hash":210966562,"name":"tfrmlayers.bbtndeletelayer.hint","sourcebytes":[68,101,108,101,116,101,32,115,101,108,101,99,116,101,100,32,108,97,121,101,114],"value":"Delete selected layer"},
 {"hash":71209634,"name":"tfrmlayers.bbtncopylayer.hint","sourcebytes":[67,111,112,121,32,115,101,108,101,99,116,101,100,32,108,97,121,101,114],"value":"Copy selected layer"},

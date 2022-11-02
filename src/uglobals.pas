@@ -92,6 +92,7 @@ type
     FHeight: Integer;
     FLocked: Boolean;
     fName: String;
+    fTemporary: Boolean;
     fVisible : Boolean;
     fLayerImg : TBGRABitmap; //layer image
     FWidth: Integer;
@@ -100,6 +101,7 @@ type
     property LayerName : String read fName write fName; //text to layers list identify
     property Visible : Boolean read fVisible write fVisible default True; //is drawable
     property Locked : Boolean read FLocked write FLocked default False; //can be changed
+    property Temporary : Boolean read fTemporary write fTemporary default False; //temporary created - not visible in layers form
     property Height : Integer read FHeight;
     property Width : Integer read FWidth;
     property Drawable : TBGRABitmap read fLayerImg;  //BGRABitmap for drawing
@@ -300,10 +302,10 @@ begin
  Layers['Layer']:=TLayer.Create();
  Layers['Layer'].AddToFrame('Frame');
  Frames['Frame'].AddLayer('Layer');
- {$IFDEF DEBUG}
+{ {$IFDEF DEBUG}
  DebugLn('Layers in frame:',Frames['Frame'].LayersList.Text);
  DebugLn('Frames in layer:',Layers['Layer'].FramesList.Text);
- {$ENDIF}
+ {$ENDIF} }
 end;
 
 procedure ClearFramesAndLayers;
@@ -553,8 +555,12 @@ begin
   {$IFDEF DEBUG}
   DebugLn('Active frame: ',ActiveFrame);
   {$ENDIF}
-  for i:=0 to Frames[ActiveFrame].LayersList.Count-1 do
+  for i:=0 to Frames[ActiveFrame].LayersList.Count-1 do begin
+    {$IFDEF DEBUG}
+    DebugLn('In: InternalDrawLayer(); Layer name:',Frames[ActiveFrame].LayersList.Strings[i]);
+    {$ENDIF}
    InternalDrawLayer(Layers[Frames[ActiveFrame].LayersList.Strings[i]]);
+  end;
 
   //draw highlited cell cursor over the grid
   fBuffer.Rectangle(CellCursor.X*(fFrameGridSize+fFrameZoom),

@@ -87,8 +87,6 @@ implementation
  begin
   BgColor.ShowHint:=true;
   FgColor.ShowHint:=true;
-  //TODO: create draw tools
-  FDrawTool:=TSPPen.Create();
  end;
 
 procedure TfrmDrawTools.FormDestroy(Sender: TObject);

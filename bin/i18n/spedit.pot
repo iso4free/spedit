@@ -70,6 +70,22 @@ msgctxt "tfrmlayers.caption"
 msgid "Layers"
 msgstr ""
 
+#: tfrmlayers.drwgrdlayers.columns[0].title.caption
+msgid "Visible"
+msgstr ""
+
+#: tfrmlayers.drwgrdlayers.columns[1].title.caption
+msgid "Locked"
+msgstr ""
+
+#: tfrmlayers.drwgrdlayers.columns[2].title.caption
+msgid "Name"
+msgstr ""
+
+#: tfrmlayers.drwgrdlayers.columns[3].title.caption
+msgid "Image"
+msgstr ""
+
 #: tfrmlayers.layersgroupbox.caption
 msgctxt "tfrmlayers.layersgroupbox.caption"
 msgid "Layers"

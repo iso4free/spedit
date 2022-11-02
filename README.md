@@ -65,10 +65,8 @@ In future will be avaliable:
 
 TROUBLESHOOTING
 ===============
-- [ ] In Windows some troubles with terminal output. Temporarily added APPTYPE console.
-
 - [ ] In Windows keys won't work. Will be fixed soon.
-
+- [ ] In Windows works very slow
 
 COPYRIGHT
 =========
@@ -205,3 +203,8 @@ DEV.LOG
 - [+] Added mouse draw (pen tool)
 - [*] Changed logging through LazLogger instead of console WriteLN
 - [!] Fixed transparent background while mouse draw
+
+02.11.2022
+=
+- [*] Changed internal drawing tools work but app crush when close
+- [+] Added template for Erase tool

@@ -111,6 +111,7 @@ type
     procedure miPaletteLoadFromFileClick(Sender: TObject);
     procedure miPaletteSaveToFileClick(Sender: TObject);
     procedure PaintToolPanelVisibleMenuItemClick(Sender: TObject);
+    procedure pbFrameDrawDblClick(Sender: TObject);
     procedure pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -155,10 +156,12 @@ begin
 end;
 
 procedure TfrmMain.BitBtnNewFrameClick(Sender: TObject);
+var
+  i: Integer;
 begin
   //todo: show dialog to create new frame with default parameters
   FreeAndNil(FrameGrid);
-  FrameGrid:=TFrameGrid.Create(32,32);
+  FrameGrid:=TFrameGrid.Create(48,32);
   FrameGrid.Offset:=Point(0,0);
   dx:=0;
   dy:=0;
@@ -166,6 +169,7 @@ begin
    FrmPreview.FramePreview.Width:=FrameGrid.FrameWidth;
    FrmPreview.FramePreview.Height:=FrameGrid.FrameHeight;
   end;
+  for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
   FrameGrid.ActiveFrame:=Frames.Keys[0];
   FrameGrid.ActiveLayer:=Layers.Keys[0];
   if Assigned(frmDrawTools.trkbrPenSize) then frmDrawTools.trkbrPenSize.Max:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
@@ -342,33 +346,32 @@ begin
   frmDrawTools.Visible:= not frmDrawTools.Visible;
 end;
 
+procedure TfrmMain.pbFrameDrawDblClick(Sender: TObject);
+begin
+
+end;
+
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
  var p : TPoint;
 begin
   case Button of
-    mbLeft:begin
-
-     if (FrameGrid.HasCoords(Point(x,y))) then begin
+    mbLeft,mbRight:begin
+     if Assigned(frmDrawTools.DrawTool) and (FrameGrid.HasCoords(Point(x,y))) then begin
       fDrawGridMode:=dgmDraw;
       p:=FrameGrid.Coords(x,y);
-      frmDrawTools.DrawTool.PenSize:=frmDrawTools.trkbrPenSize.Position;
-      frmDrawTools.DrawTool.StartDraw(p.X,p.Y,spclForeColor);
-      frmDrawTools.DrawTool.Render(Layers[FrameGrid.ActiveLayer].Drawable);
-      pbFrameDraw.Invalidate;
+       frmDrawTools.DrawTool.PenSize:=frmDrawTools.trkbrPenSize.Position;
+       if Button=mbLeft then
+          frmDrawTools.DrawTool.StartDraw(p.X,p.Y,spclForeColor)
+       else
+          frmDrawTools.DrawTool.StartDraw(p.X,p.Y,spclBackColor);
+       {$IFDEF DEBUG}
+       DebugLn('Layers in active frame: ',Frames[FrameGrid.ActiveFrame].LayersList.Text,' in: pbFrameDrawMouseDown();');
+       {$ENDIF}
+       pbFrameDraw.Invalidate;
      end;
     end;
-    mbRight:begin
 
-     if (FrameGrid.HasCoords(Point(x,y))) then begin
-      fDrawGridMode:=dgmDraw;
-      p:=FrameGrid.Coords(x,y);
-      frmDrawTools.DrawTool.PenSize:=frmDrawTools.trkbrPenSize.Position;
-      frmDrawTools.DrawTool.StartDraw(p.X,p.Y,spclBackColor);
-      frmDrawTools.DrawTool.Render(Layers[FrameGrid.ActiveLayer].Drawable);
-      pbFrameDraw.Invalidate;
-     end;
-    end;
     mbMiddle: begin   //start grid drag
       fDrawGridMode:=dgmMove;
       dx:=0;
@@ -394,10 +397,9 @@ begin
    end;
    if fDrawGridMode=dgmDraw then begin
 
-    if FrameGrid.HasCoords(Point(X,Y)) then begin
+    if Assigned(frmDrawTools.DrawTool) and ( FrameGrid.HasCoords(Point(X,Y))) then begin
      p:=FrameGrid.Coords(X,Y);
      frmDrawTools.DrawTool.MouseMove(p.X,p.Y);
-     frmDrawTools.DrawTool.Render(Layers[FrameGrid.ActiveLayer].Drawable);
      pbFrameDraw.Invalidate;
 
     end;
@@ -410,6 +412,7 @@ procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   fDrawGridMode:=dgmNone;
+  if Assigned(frmDrawTools.DrawTool) then frmDrawTools.DrawTool.FinishDraw;
   if Assigned(FrmPreview) then FrmPreview.FramePreview.Invalidate;
 end;
 

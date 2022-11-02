@@ -88,6 +88,7 @@ object frmMain: TfrmMain
         Top = 35
         Width = 551
         Align = alClient
+        OnDblClick = pbFrameDrawDblClick
         OnMouseDown = pbFrameDrawMouseDown
         OnMouseMove = pbFrameDrawMouseMove
         OnMouseUp = pbFrameDrawMouseUp

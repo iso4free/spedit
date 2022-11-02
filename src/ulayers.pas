@@ -31,7 +31,7 @@ interface
 uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls;
+  StdCtrls, Grids, Types;
 
 type
 
@@ -42,8 +42,11 @@ type
     bbtnCopyLayer: TBitBtn;
     bbtnDeleteLayer: TBitBtn;
     bbtnMergeLayers: TBitBtn;
+    drwgrdLayers: TDrawGrid;
     LayersFlowPanel: TFlowPanel;
     LayersGroupBox: TGroupBox;
+    procedure drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
+      aRect: TRect; aState: TGridDrawState);
   private
 
   public
@@ -57,6 +60,14 @@ implementation
 
 uses uglobals, umain;
 {$R *.frm}
+
+{ TfrmLayers }
+
+procedure TfrmLayers.drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
+  aRect: TRect; aState: TGridDrawState);
+begin
+  //todo: draw headers and layers data
+end;
 
 end.
 
