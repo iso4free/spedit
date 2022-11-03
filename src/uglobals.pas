@@ -105,11 +105,11 @@ type
     property Height : Integer read FHeight;
     property Width : Integer read FWidth;
     property Drawable : TBGRABitmap read fLayerImg;  //BGRABitmap for drawing
-    property FramesList : TStringList read FFrames; //frame names list containing current layer
+    //property FramesList : TStringList read FFrames; //frame names list containing current layer
     procedure Resize(newWidth, NewHeight: Integer; Stretched: Boolean=False); //resize layer
     procedure AddToFrame(FrameName : String); //add layer to frame
-
-    constructor Create(aName : String = 'Layer'; aWidth : Integer = 32; aHeight : Integer = 32);
+    function DeleteFromFrame(aFrameName : String) : Boolean; //remove frame name from internal list of frames where layer belongs
+    constructor Create(aName : String; aWidth : Integer = 32; aHeight : Integer = 32);
     destructor Destroy; override;
 
     procedure Clear;
@@ -132,12 +132,13 @@ type
     destructor Destroy; override;
 
     property FrameName : String read fFrameName;//unique frame name for correct managing in mapped list
-    property LayersList : TStringList read fLayers;  //layers mapped list
+    //property LayersList : TStringList read fLayers;  //layers mapped list
     property Index : Integer read FIndex write SetIndex;
 
     property Width : Integer read FWidth;
     property Height : Integer read FHeight;
     function AddLayer(LayerName : String): Boolean; //add new layer and return it`s index or -1 if error
+    function DeleteLayer(aLayerName : String): Boolean;      //remove layer from frame
   end;
 
   { TCellCursor - for drawing red rectangle followed by mouse cursor or moved by arrow keys}
@@ -237,6 +238,7 @@ var
   function ConvertHtmlHexToTColor(HexColor: String):TColor;
   function CheckHexForHash(col: string):string;
   function ConvertTColorToHTML(aColor: TColor) : String;
+  function CheckLayerName(aName : String) : String; //check layer name if exists return aName+'1' on aName if not
 
 implementation
 
@@ -296,10 +298,22 @@ begin
    Result := '#'+IntToHex(Blue(aColor))+IntToHex(Green(aColor))+IntToHex(Red(aColor));
 end;
 
+function CheckLayerName(aName: String): String;
+var i : Integer;
+begin
+  Result:=aName;
+  for i:=0 to Layers.Count-1 do begin
+    if Layers.Keys[i]=aName then begin
+       Result:=aName+'1';
+       Break;
+    end;
+  end;
+end;
+
 procedure CreateFirstFrameAndLayer;
 begin
  Frames['Frame']:=TFrame.Create('Frame');
- Layers['Layer']:=TLayer.Create();
+ Layers['Layer']:=TLayer.Create('Layer');
  Layers['Layer'].AddToFrame('Frame');
  Frames['Frame'].AddLayer('Layer');
 { {$IFDEF DEBUG}
@@ -379,9 +393,20 @@ end;
 function TFrame.AddLayer(LayerName: String): Boolean;
 begin
   result := False;
-  if LayersList.IndexOf(LayerName)<>-1 then Exit;
-  LayersList.Add(LayerName);
+  if fLayers.IndexOf(LayerName)<>-1 then Exit;
+  fLayers.Add(LayerName);
   Result:=True;
+end;
+
+function TFrame.DeleteLayer(aLayerName: String): Boolean;
+ var i : Integer;
+begin
+  Result:=False;
+  i:=fLayers.IndexOf(aLayerName);
+  if i>0 then begin
+    fLayers.Delete(i);
+    Result:=True;
+  end;
 end;
 
 { TLayer }
@@ -398,7 +423,18 @@ end;
 
 procedure TLayer.AddToFrame(FrameName: String);
 begin
-  FramesList.Add(FrameName);
+  FFrames.Add(FrameName);
+end;
+
+function TLayer.DeleteFromFrame(aFrameName: String): Boolean;
+var i : Integer;
+begin
+ Result:=False;
+ i:=FFrames.IndexOf(aFrameName);
+ if i>0 then begin
+   FFrames.Delete(i);
+   Result:=True;
+ end;
 end;
 
 constructor TLayer.Create(aName: String; aWidth: Integer; aHeight: Integer);
@@ -544,22 +580,29 @@ var fBuffer : TBGRABitmap;
   end;
 
 begin
-  fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),fFrameHeight*(fFrameGridSize+fFrameZoom));
+  fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),
+                              fFrameHeight*(fFrameGridSize+fFrameZoom));
+  {$IFDEF DEBUG}
+  DebugLn('In: RenderAndDraw(); fBuffer.Width=',IntToStr(fBuffer.Width),' fBuffer.Height=',IntToStr(fBuffer.Height));
+  {$ENDIF}
   ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
-  fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width-1,fBuffer.Height-1),ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),FCheckersSize,FCheckersSize);
+  fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width-1,fBuffer.Height-1),
+                       ColorToBGRA($BFBFBF),
+                       ColorToBGRA($FFFFFF),
+                       FCheckersSize,FCheckersSize);
 
   if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
 
 
   //draw all layers to fBuffer per pixel
   {$IFDEF DEBUG}
-  DebugLn('Active frame: ',ActiveFrame);
+  DebugLn('In: RenderAndDraw(); Active frame: ',ActiveFrame);
   {$ENDIF}
-  for i:=0 to Frames[ActiveFrame].LayersList.Count-1 do begin
+  for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do begin
     {$IFDEF DEBUG}
-    DebugLn('In: InternalDrawLayer(); Layer name:',Frames[ActiveFrame].LayersList.Strings[i]);
+    DebugLn('In: RenderAndDraw(); Layer name:',Frames[ActiveFrame].fLayers.Strings[i]);
     {$ENDIF}
-   InternalDrawLayer(Layers[Frames[ActiveFrame].LayersList.Strings[i]]);
+   InternalDrawLayer(Layers[Frames[ActiveFrame].fLayers.Strings[i]]);
   end;
 
   //draw highlited cell cursor over the grid
@@ -582,16 +625,14 @@ begin
                         4,
                         4);
   //draw all layers to canvas
-  for i:=0 to Frames[ActiveFrame].LayersList.Count-1 do
-    for w:=0 to FrameWidth-1 do
+  for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do
+    fPreview.PutImage(0,0,Layers[Frames[ActiveFrame].fLayers.Strings[i]].Drawable,dmDrawWithTransparency);
+    {for w:=0 to FrameWidth-1 do
       for h:=0 to FrameHeight-1 do begin
-        tmppix := Layers[Frames[ActiveFrame].LayersList.Strings[i]].Drawable.GetPixel(w,h);
+        tmppix := Layers[Frames[ActiveFrame].fLayers.Strings[i]].Drawable.GetPixel(w,h);
         if tmppix.alpha>0 then fPreview.SetPixel(w,h,tmpPix);
-      end;
-  {ImagePos:=Point((Canvas.Width-fPreview.Width) div 2,
-                  (Canvas.Height-fPreview.Height) div 2);
-  if ImagePos.X<0 then ImagePos.X:=0;
-  if ImagePos.Y<0 then ImagePos.Y:=0; }
+      end;}
+
 
   fPreview.Draw(Canvas,{ImagePos.X,ImagePos.Y,}0,0,true);
 end;

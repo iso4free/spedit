@@ -161,7 +161,7 @@ var
 begin
   //todo: show dialog to create new frame with default parameters
   FreeAndNil(FrameGrid);
-  FrameGrid:=TFrameGrid.Create(48,32);
+  FrameGrid:=TFrameGrid.Create(48,48);
   FrameGrid.Offset:=Point(0,0);
   dx:=0;
   dy:=0;
@@ -365,9 +365,11 @@ begin
           frmDrawTools.DrawTool.StartDraw(p.X,p.Y,spclForeColor)
        else
           frmDrawTools.DrawTool.StartDraw(p.X,p.Y,spclBackColor);
-       {$IFDEF DEBUG}
-       DebugLn('Layers in active frame: ',Frames[FrameGrid.ActiveFrame].LayersList.Text,' in: pbFrameDrawMouseDown();');
-       {$ENDIF}
+       {
+        {$IFDEF DEBUG}
+        DebugLn('Layers in active frame: ',Frames[FrameGrid.ActiveFrame].FLayersList.Text,' in: pbFrameDrawMouseDown();');
+        {$ENDIF}
+       }
        pbFrameDraw.Invalidate;
      end;
     end;

@@ -140,17 +140,7 @@ end;
 
 procedure TSPPen.StartDraw(x, y: Integer; aColor: TBGRAPixel);
 begin
-  fColor:=aColor;
-  //create temporary layer
-  fLayerName:='Pen layer';
-  Layers[fLayerName]:=TLayer.Create(fLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
-  Layers[fLayerName].Temporary:=True;
-  Layers[fLayerName].AddToFrame(FrameGrid.ActiveFrame);
-  Frames[FrameGrid.ActiveFrame].AddLayer(fLayerName);
-  Layers[fLayerName].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[fLayerName].Drawable.Canvas.Pen.Width:=FPenSize;
-  prevx := x;
-  prevy := y;
+  inherited StartDraw(x,y,aColor);
   if FPenSize=1 then Layers[fLayerName].Drawable.SetPixel(x,y,Color) else
      Layers[fLayerName].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
 end;
@@ -166,8 +156,7 @@ end;
 
 procedure TSPPen.FinishDraw;
 begin
- //todo: draw from temporary created layer to active layer and free temporary layer
-  Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[fLayerName].Drawable,dmDrawWithTransparency);
+
 end;
 
 { TSPDrawTool }
@@ -203,7 +192,17 @@ end;
 
 procedure TSPDrawTool.StartDraw(x, y: Integer; aColor: TBGRAPixel);
 begin
- Assert(False,'You must override StartDraw method! Class name: '+Self.ClassName);
+   fColor:=aColor;
+  //create temporary layer
+  fLayerName:='Pen layer';
+  Layers[fLayerName]:=TLayer.Create(fLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+  Layers[fLayerName].Temporary:=True;
+  Layers[fLayerName].AddToFrame(FrameGrid.ActiveFrame);
+  Frames[FrameGrid.ActiveFrame].AddLayer(fLayerName);
+  Layers[fLayerName].Drawable.Canvas.Pen.Color:=fColor;
+  Layers[fLayerName].Drawable.Canvas.Pen.Width:=FPenSize;
+  prevx := x;
+  prevy := y;
 end;
 
 procedure TSPDrawTool.MouseMove(x, y: Integer);
@@ -218,7 +217,10 @@ end;
 
 procedure TSPDrawTool.FinishDraw;
 begin
- Assert(False,'You must override FinishDraw() method! Class name: '+Self.ClassName);
+  Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[fLayerName].Drawable,dmDrawWithTransparency);
+  Frames[FrameGrid.ActiveFrame].DeleteLayer(fLayerName);
+  Layers[fLayerName].DeleteFromFrame(FrameGrid.ActiveFrame);
+  Layers.Remove(fLayerName);
 end;
 
 

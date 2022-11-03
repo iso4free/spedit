@@ -8,6 +8,7 @@ object frmLayers: TfrmLayers
   ClientHeight = 240
   ClientWidth = 269
   FormStyle = fsStayOnTop
+  OnCreate = FormCreate
   LCLVersion = '7.9'
   object LayersGroupBox: TGroupBox
     Left = 0
@@ -46,8 +47,10 @@ object frmLayers: TfrmLayers
         end>
       ExtendedSelect = False
       FixedCols = 0
-      RowCount = 1
+      RowCount = 2
       TabOrder = 0
+      TitleImageList = frmMain.ButtonsImageList
+      UseXORFeatures = True
       OnDrawCell = drwgrdLayersDrawCell
       ColWidths = (
         66
@@ -98,6 +101,7 @@ object frmLayers: TfrmLayers
       AutoSize = True
       Images = frmMain.ButtonsImageList
       ImageIndex = 31
+      OnClick = bbtnAddLayerClick
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
@@ -144,5 +148,21 @@ object frmLayers: TfrmLayers
       ShowHint = True
       TabOrder = 3
     end
+  end
+  object BGRAImageList1: TBGRAImageList
+    Left = 212
+    Top = 121
+    Bitmap = {
+      4C7A040000001000000010000000180100000000000078DAED95B10DC3201045
+      695CB972E586CE9507B0C4220C728B30088B78100621601DD1293A30E02A095F
+      FA8A82780693FF83107FAF33D834320A99C8EA601F6C71FC4E719E4356E21890
+      715FF079B38EC2FDE42CC7CF3D9491C48CBC73A894A2D9B398532E47807DD098
+      411759E79C0780C403C9A7C1EF828C27F9B4F607EF91A5594FBDA132F4191FDD
+      914C174DE67D4EE41CB3463A2F433E21739E5C5781595791FDE4FA6B2AFE67E4
+      E8FFD0178BE69CBA26BF5098A76FEE79A8BCBF4DE6F9B6E1FD74279B9B6F1BED
+      18DE37BAC86FDB76795DD72E7EDF777F1C4737BF2CCBC5F7EE7F9EE76BFFBD7C
+      E3F9FD9214933755CB4ED3648265C57DC9AD0B9165787A5F97F827FD170FFA2F
+      1EF61F46FF47FF7BF4024619125F
+    }
   end
 end

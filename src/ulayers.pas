@@ -29,7 +29,7 @@ unit ulayers;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
+  {$IFDEF DEBUG}LazLoggerBase, BGRAImageList,{$ENDIF}
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
   StdCtrls, Grids, Types;
 
@@ -42,11 +42,14 @@ type
     bbtnCopyLayer: TBitBtn;
     bbtnDeleteLayer: TBitBtn;
     bbtnMergeLayers: TBitBtn;
+    BGRAImageList1: TBGRAImageList;
     drwgrdLayers: TDrawGrid;
     LayersFlowPanel: TFlowPanel;
     LayersGroupBox: TGroupBox;
+    procedure bbtnAddLayerClick(Sender: TObject);
     procedure drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -67,6 +70,27 @@ procedure TfrmLayers.drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
   aRect: TRect; aState: TGridDrawState);
 begin
   //todo: draw headers and layers data
+  if aRow=0 then begin //draw header
+    case aCol of
+  0:
+    end;
+  end;
+
+end;
+
+procedure TfrmLayers.FormCreate(Sender: TObject);
+begin
+  drwgrdLayers.RowCount:=Layers.Count;
+end;
+
+procedure TfrmLayers.bbtnAddLayerClick(Sender: TObject);
+var
+  aLayerName: String;
+begin
+  aLayerName := InputBox('Layer name','Input new layer name:','');
+  if (Trim(aLayerName)='') then aLayerName:=CheckLayerName('Layer');
+  Layers[aLayerName]:=TLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+  drwgrdLayers.RowCount:=Layers.Count;
 end;
 
 end.
