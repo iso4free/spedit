@@ -143,7 +143,7 @@ var
 
 implementation
 
-uses uzastavka, udrawtools, ulayers, uframes, upreview, ureferense, udraw;
+uses uzastavka, uframedlg, udrawtools, ulayers, uframes, upreview, ureferense, udraw;
 
 {$R *.frm}
 
@@ -160,19 +160,33 @@ var
   i: Integer;
 begin
   //todo: show dialog to create new frame with default parameters
-  FreeAndNil(FrameGrid);
-  FrameGrid:=TFrameGrid.Create(48,48);
-  FrameGrid.Offset:=Point(0,0);
-  dx:=0;
-  dy:=0;
-  if Assigned(FrmPreview) then begin
-   FrmPreview.FramePreview.Width:=FrameGrid.FrameWidth;
-   FrmPreview.FramePreview.Height:=FrameGrid.FrameHeight;
+  frmFrameDlg:=TfrmFrameDlg.Create(Self);
+  if Assigned(FrameGrid) then begin
+   frmFrameDlg.spnedtHeight.Value:=FrameGrid.FrameHeight;
+   frmFrameDlg.spnedtWidth.Value:=FrameGrid.FrameWidth;
+   frmFrameDlg.edtFrameName.Text:=FrameGrid.ActiveFrame;
   end;
-  for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
-  FrameGrid.ActiveFrame:=Frames.Keys[0];
-  FrameGrid.ActiveLayer:=Layers.Keys[0];
-  if Assigned(frmDrawTools.trkbrPenSize) then frmDrawTools.trkbrPenSize.Max:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
+  if frmFrameDlg.Execute then begin
+   FreeAndNil(FrameGrid);
+   FrameGrid:=TFrameGrid.Create(frmFrameDlg.spnedtWidth.Value,frmFrameDlg.spnedtHeight.Value);
+   FrameGrid.Offset:=Point(0,0);
+   dx:=0;
+   dy:=0;
+   if Assigned(FrmPreview) then begin
+    FrmPreview.FramePreview.Width:=FrameGrid.FrameWidth;
+    FrmPreview.FramePreview.Height:=FrameGrid.FrameHeight;
+   end;
+   Frames[frmFrameDlg.edtFrameName.Text]:=TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
+                                                          FrmPreview.FramePreview.Width,
+                                                          FrmPreview.FramePreview.Height);
+   //todo: copy all layers to new frame if option checked
+   for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+   FrameGrid.ActiveFrame:=Frames.Keys[0];
+   FrameGrid.ActiveLayer:=Layers.Keys[0];
+   if Assigned(frmDrawTools.trkbrPenSize) then frmDrawTools.trkbrPenSize.Max:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
+   pbFrameDraw.Invalidate;
+  end;
+  FreeAndNil(frmFrameDlg);
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -355,6 +369,7 @@ procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
  var p : TPoint;
 begin
+  if not Assigned(FrameGrid) then Exit;
   case Button of
     mbLeft,mbRight:begin
      if Assigned(frmDrawTools.DrawTool) and (FrameGrid.HasCoords(Point(x,y))) then begin
@@ -388,7 +403,8 @@ procedure TfrmMain.pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
   var p : TPoint;
 begin
-   FrameGrid.CellCursor.Coords:=FrameGrid.Coords(x,y);
+  if not Assigned(FrameGrid) then Exit;
+  FrameGrid.CellCursor.Coords:=FrameGrid.Coords(x,y);
         StatusBar1.Panels[3].Text:='x='+IntToStr(FrameGrid.CellCursor.X)+'/y='+IntToStr(FrameGrid.CellCursor.y);
    if fDrawGridMode=dgmMove then begin //move grid inside paintbox
      dx:=x-startx;
@@ -413,6 +429,7 @@ end;
 procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
+  if not Assigned(FrameGrid) then Exit;
   fDrawGridMode:=dgmNone;
   if Assigned(frmDrawTools.DrawTool) then frmDrawTools.DrawTool.FinishDraw;
   if Assigned(FrmPreview) then FrmPreview.FramePreview.Invalidate;
@@ -421,6 +438,7 @@ end;
 procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;
   Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
 begin
+  if not Assigned(FrameGrid) then Exit;
   if (ssCtrl in Shift) then ViewZoomOutMenuItemClick(Sender);
   if (ssAlt in Shift) then FrameGrid.CheckersSize:=FrameGrid.CheckersSize-1;
   pbFrameDraw.Invalidate;
@@ -429,6 +447,7 @@ end;
 procedure TfrmMain.pbFrameDrawMouseWheelUp(Sender: TObject; Shift: TShiftState;
   MousePos: TPoint; var Handled: Boolean);
 begin
+  if not Assigned(FrameGrid) then Exit;
   if (ssCtrl in Shift) then ViewZoomInMenuItemClick(Sender);
   if (ssAlt in Shift) then FrameGrid.CheckersSize:=FrameGrid.CheckersSize+1;
   pbFrameDraw.Invalidate;
@@ -488,7 +507,7 @@ begin
 
   MainPageControl.ActivePageIndex := 0;
   //create empty new frame with default params
-  BitBtnNewFrameClick(Sender);
+  //BitBtnNewFrameClick(Sender);
 end;
 
 procedure TfrmMain.PreviewMenuItemClick(Sender: TObject);

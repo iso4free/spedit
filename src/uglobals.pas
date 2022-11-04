@@ -82,12 +82,12 @@ type
   PFrame = ^TFrame; }
 
 
-  { TLayer }
+  { TSPLayer }
   {Uses for layers in every frame.
   }
 
 
-  TLayer = class
+  TSPLayer = class
    private
     FHeight: Integer;
     FLocked: Boolean;
@@ -104,7 +104,7 @@ type
     property Temporary : Boolean read fTemporary write fTemporary default False; //temporary created - not visible in layers form
     property Height : Integer read FHeight;
     property Width : Integer read FWidth;
-    property Drawable : TBGRABitmap read fLayerImg;  //BGRABitmap for drawing
+    property Drawable : TBGRABitmap read fLayerImg write fLayerImg;  //BGRABitmap for drawing
     //property FramesList : TStringList read FFrames; //frame names list containing current layer
     procedure Resize(newWidth, NewHeight: Integer; Stretched: Boolean=False); //resize layer
     procedure AddToFrame(FrameName : String); //add layer to frame
@@ -116,9 +116,9 @@ type
   end;
 
 
-  { TFrame }
+  { TSPFrame }
 
-  TFrame = class
+  TSPFrame = class
    private
     FCount : Byte;
     fFrameName: String;
@@ -207,8 +207,8 @@ type
   end;
 
 
-  TLayers = specialize TFPGMapObject<String,TLayer>;  //mapped layers list
-  TFrames = specialize TFPGMapObject<String,TFrame>;  //mapped frames list
+  TLayers = specialize TFPGMapObject<String,TSPLayer>;  //mapped layers list
+  TFrames = specialize TFPGMapObject<String,TSPFrame>;  //mapped frames list
 
 var
 
@@ -219,7 +219,7 @@ var
   SpriteLibNames   : TStringList;
   CurrentLibName   : UTF8String;//selected library name
   libpath          : UTF8String;//selected library full path
-  BufferLayer      : TLayer;    //for temporary drawing
+  BufferLayer      : TSPLayer;    //for temporary drawing
 
   //Drawing colors
   spclForeColor : TBGRAPixel;  //foreground color - left mouse button drawing
@@ -312,8 +312,8 @@ end;
 
 procedure CreateFirstFrameAndLayer;
 begin
- Frames['Frame']:=TFrame.Create('Frame');
- Layers['Layer']:=TLayer.Create('Layer');
+ Frames['Frame']:=TSPFrame.Create('Frame');
+ Layers['Layer']:=TSPLayer.Create('Layer');
  Layers['Layer'].AddToFrame('Frame');
  Frames['Frame'].AddLayer('Layer');
 { {$IFDEF DEBUG}
@@ -366,15 +366,15 @@ begin
   Result := Point(X,Y);
 end;
 
-{ TFrame }
+{ TSPFrame }
 
-procedure TFrame.SetIndex(AValue: Integer);
+procedure TSPFrame.SetIndex(AValue: Integer);
 begin
   if (FIndex=AValue) or (AValue>FCount) then Exit;
   FIndex:=AValue;
 end;
 
-constructor TFrame.Create(aName: String; w: Integer; h: integer);
+constructor TSPFrame.Create(aName: String; w: Integer; h: integer);
 begin
  //create an empty frame without layers
  fFrameName:=aName;
@@ -383,14 +383,14 @@ begin
  fLayers:=TStringList.Create;
 end;
 
-destructor TFrame.Destroy;
+destructor TSPFrame.Destroy;
 begin
   fLayers.Clear;
   FreeAndNil(fLayers);
   inherited Destroy;
 end;
 
-function TFrame.AddLayer(LayerName: String): Boolean;
+function TSPFrame.AddLayer(LayerName: String): Boolean;
 begin
   result := False;
   if fLayers.IndexOf(LayerName)<>-1 then Exit;
@@ -398,7 +398,7 @@ begin
   Result:=True;
 end;
 
-function TFrame.DeleteLayer(aLayerName: String): Boolean;
+function TSPFrame.DeleteLayer(aLayerName: String): Boolean;
  var i : Integer;
 begin
   Result:=False;
@@ -409,9 +409,9 @@ begin
   end;
 end;
 
-{ TLayer }
+{ TSPLayer }
 
-procedure TLayer.Resize(newWidth, NewHeight: Integer; Stretched: Boolean);
+procedure TSPLayer.Resize(newWidth, NewHeight: Integer; Stretched: Boolean);
 begin
   if Stretched then begin
     fLayerImg:=fLayerImg.Resample(newWidth,NewHeight);
@@ -421,12 +421,12 @@ begin
 
 end;
 
-procedure TLayer.AddToFrame(FrameName: String);
+procedure TSPLayer.AddToFrame(FrameName: String);
 begin
   FFrames.Add(FrameName);
 end;
 
-function TLayer.DeleteFromFrame(aFrameName: String): Boolean;
+function TSPLayer.DeleteFromFrame(aFrameName: String): Boolean;
 var i : Integer;
 begin
  Result:=False;
@@ -437,7 +437,7 @@ begin
  end;
 end;
 
-constructor TLayer.Create(aName: String; aWidth: Integer; aHeight: Integer);
+constructor TSPLayer.Create(aName: String; aWidth: Integer; aHeight: Integer);
 begin
   fLayerImg := TBGRABitmap.Create(aWidth,aHeight);
   fVisible:=True;
@@ -446,7 +446,7 @@ begin
   FFrames.CaseSensitive:=false;
 end;
 
-destructor TLayer.Destroy;
+destructor TSPLayer.Destroy;
 begin
   FFrames.Clear;
   FreeAndNil(FFrames);
@@ -454,7 +454,7 @@ begin
   inherited Destroy;
 end;
 
-procedure TLayer.Clear;
+procedure TSPLayer.Clear;
 begin
  fLayerImg.EraseRect(0,0,fLayerImg.Width,fLayerImg.Height,255);
 end;
@@ -560,7 +560,7 @@ var fBuffer : TBGRABitmap;
     fBuffer.Rectangle(x1,y1,x2,y2,ColorToBGRA(clNavy));
   end;
 
-  procedure InternalDrawLayer(const aLayer : TLayer);
+  procedure InternalDrawLayer(const aLayer : TSPLayer);
   var
     x,y: Integer;
     tmpPix : TBGRAPixel;

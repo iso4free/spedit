@@ -41,6 +41,7 @@ type
     Panel1: TPanel;
     sdExportFrameSaveDialog: TSaveDialog;
     procedure FramePreviewClick(Sender: TObject);
+    procedure FramePreviewPaint(Sender: TObject);
   private
 
   public
@@ -65,6 +66,12 @@ implementation
     FrameGrid.ExpotPng(sdExportFrameSaveDialog.FileName);
   end;
  end;
+
+procedure TFrmPreview.FramePreviewPaint(Sender: TObject);
+begin
+ if Assigned(FrameGrid) then
+  FrameGrid.RenderPicture(FramePreview.Canvas);
+end;
 
 end.
 

@@ -32,9 +32,9 @@ uses
   {$IFDEF DEBUG}
   LazLogger,
   {$ENDIF}
-  Forms, Interfaces, umain,
+  Forms, Interfaces, umain
   { you can add units after this }
-  ulayers, upreview, ureferense, uframes;
+  ;
 
 {$R *.res}
 

@@ -42,7 +42,7 @@ type
     bbtnCopyLayer: TBitBtn;
     bbtnDeleteLayer: TBitBtn;
     bbtnMergeLayers: TBitBtn;
-    BGRAImageList1: TBGRAImageList;
+    BGRAImageList24x24: TBGRAImageList;
     drwgrdLayers: TDrawGrid;
     LayersFlowPanel: TFlowPanel;
     LayersGroupBox: TGroupBox;
@@ -70,7 +70,7 @@ procedure TfrmLayers.drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
   aRect: TRect; aState: TGridDrawState);
 begin
   //todo: draw headers and layers data
-  if aRow=0 then begin //draw header
+  if aRow<>0 then begin //draw header
     case aCol of
   0:
     end;
@@ -89,7 +89,7 @@ var
 begin
   aLayerName := InputBox('Layer name','Input new layer name:','');
   if (Trim(aLayerName)='') then aLayerName:=CheckLayerName('Layer');
-  Layers[aLayerName]:=TLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+  Layers[aLayerName]:=TSPLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
   drwgrdLayers.RowCount:=Layers.Count;
 end;
 

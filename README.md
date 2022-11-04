@@ -208,3 +208,8 @@ DEV.LOG
 =
 - [*] Changed internal drawing tools work but app crush when close
 - [+] Added template for Erase tool
+
+04.11.2022
+=
+- [+] Added New frame dialog
+- [!] Fixed memory leak

@@ -31,6 +31,7 @@ object FrmPreview: TFrmPreview
     ParentShowHint = False
     ShowHint = True
     OnClick = FramePreviewClick
+    OnPaint = FramePreviewPaint
   end
   object sdExportFrameSaveDialog: TSaveDialog
     DefaultExt = '.png'
