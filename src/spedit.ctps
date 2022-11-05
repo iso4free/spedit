@@ -8,7 +8,6 @@
         <Filename Value="spedit.ppr"/>
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="34"/>
@@ -23,9 +22,10 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="158"/>
+        <TopLine Value="149"/>
         <CursorPos X="21" Y="169"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -115,6 +115,21 @@
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
+        <Filename Value="uframedlg.pas"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmFrameDlg"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="50"/>
+        <CursorPos X="26" Y="64"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
         <Filename Value="uglobals.pas"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="7"/>
@@ -142,7 +157,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="535"/>
         <CursorPos X="3" Y="537"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/components/BaseUtils/laztracer.pas"/>
@@ -183,9 +198,9 @@
         <UsageCount Value="7"/>
       </Unit>
       <Unit>
-        <Filename Value="uzastavka.pas"/>
+        <Filename Value="uabout.pas"/>
         <FRMtype Value="0"/>
-        <ComponentName Value="frmZastavka"/>
+        <ComponentName Value="frmAbout"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="3"/>
@@ -249,7 +264,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="89"/>
         <CursorPos X="24" Y="100"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/systemh.inc"/>
@@ -258,7 +273,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="398"/>
         <CursorPos X="3" Y="407"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/components/pl_BGRAcontrols/source/bgraimagemanipulation.pas"/>
@@ -285,7 +300,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="185"/>
         <CursorPos X="3" Y="120"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/sysutils/sysstrh.inc"/>
@@ -294,7 +309,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="104"/>
         <CursorPos X="10" Y="115"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_BGRAcontrols/source/bgraimagemanipulation.pas"/>
@@ -314,7 +329,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="432"/>
         <CursorPos Y="446"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/components/BaseUtils/graphtype.pp"/>
@@ -337,12 +352,12 @@
         <UsageCount Value="8"/>
       </Unit>
       <Unit>
-        <Filename Value="uzastavka.frm"/>
+        <Filename Value="uabout.frm"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="43"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="FRM"/>
       </Unit>
       <Unit>
@@ -713,20 +728,6 @@
         <TopLine Value="127"/>
         <CursorPos X="3" Y="136"/>
         <UsageCount Value="9"/>
-      </Unit>
-      <Unit>
-        <Filename Value="uframedlg.pas"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmFrameDlg"/>
-        <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="50"/>
-        <CursorPos X="26" Y="64"/>
-        <UsageCount Value="26"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
     </Units>
     <OtherDefines Count="1">

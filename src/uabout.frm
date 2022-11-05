@@ -1,4 +1,4 @@
-object frmZastavka: TfrmZastavka
+object frmAbout: TfrmAbout
   Left = 556
   Height = 350
   Top = 340

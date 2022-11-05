@@ -143,7 +143,7 @@ var
 
 implementation
 
-uses uzastavka, uframedlg, udrawtools, ulayers, uframes, upreview, ureferense, udraw;
+uses uabout, uframedlg, udrawtools, ulayers, uframes, upreview, ureferense, udraw;
 
 {$R *.frm}
 
@@ -151,8 +151,8 @@ uses uzastavka, uframedlg, udrawtools, ulayers, uframes, upreview, ureferense, u
 
 procedure TfrmMain.AboutMenuItemClick(Sender: TObject);
 begin
-  if not Assigned(frmZastavka) then frmZastavka:= TfrmZastavka.Create(Application);
-     frmZastavka.ShowModal;
+  if not Assigned(frmAbout) then frmAbout:= TfrmAbout.Create(Application);
+     frmAbout.ShowModal;
 end;
 
 procedure TfrmMain.BitBtnNewFrameClick(Sender: TObject);
@@ -238,7 +238,7 @@ begin
    FreeAndNil(frmReferense);
   end;
 
-  if Assigned(frmZastavka) then FreeAndNil(frmZastavka);
+  if Assigned(frmAbout) then FreeAndNil(frmAbout);
 
   FreeAndNil(FrameGrid);
 end;
@@ -468,8 +468,8 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   //if checked create and  show  splashscreen
    if INI.ReadBool('INTERFACE', 'SHOWSPLASH', true) then begin
-     frmZastavka:= TfrmZastavka.Create(Application);
-     frmZastavka.Show;
+     frmAbout:= TfrmAbout.Create(Application);
+     frmAbout.Show;
    end;
 
   //load form size and position from settings

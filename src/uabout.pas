@@ -23,7 +23,7 @@
 {*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                 *}
 {***************************************************************************}
 
-unit uzastavka;
+unit uabout;
 
 {$mode objfpc}{$H+}
 
@@ -36,9 +36,9 @@ uses
 
 type
 
-  { TfrmZastavka }
+  { TfrmAbout }
 
-  TfrmZastavka = class(TForm)
+  TfrmAbout = class(TForm)
     BGRASpriteAnimation1: TBGRASpriteAnimation;
     SkyImage: TImage;
     BgImage : TImage;
@@ -65,7 +65,7 @@ type
   end;
 
 var
-  frmZastavka: TfrmZastavka;
+  frmAbout: TfrmAbout;
 
 implementation
 
@@ -73,16 +73,16 @@ implementation
 
 uses uglobals;
 
-{ TfrmZastavka }
+{ TfrmAbout }
 
-procedure TfrmZastavka.FormActivate(Sender: TObject);
+procedure TfrmAbout.FormActivate(Sender: TObject);
 begin
   ShowSplashCheckBox.Checked:=INI.ReadBool('INTERFACE','SHOWSPLASH',false);
   Timer1.Enabled:=true;
   Timer2.Enabled:=true;
 end;
 
-procedure TfrmZastavka.FormClick(Sender: TObject);
+procedure TfrmAbout.FormClick(Sender: TObject);
 begin
   Timer1.Enabled:=false;
   Timer2.Enabled:=false;
@@ -90,12 +90,12 @@ begin
   Close;
 end;
 
-procedure TfrmZastavka.FormCreate(Sender: TObject);
+procedure TfrmAbout.FormCreate(Sender: TObject);
 var
   i: Integer;
 begin
   Randomize;
-  BgImage:=TImage.Create(frmZastavka);
+  BgImage:=TImage.Create(frmAbout);
   BgImage.Width:=SkyImage.Width;
   BgImage.Height:=SkyImage.Height;
   for i:= 0 to 300 do  Star(Random(Width),Random(Height),Random(5),GetRandomColor(100));
@@ -103,28 +103,28 @@ begin
   increment:=1;
 end;
 
-procedure TfrmZastavka.FormDestroy(Sender: TObject);
+procedure TfrmAbout.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(BgImage);
 end;
 
-procedure TfrmZastavka.FormKeyPress(Sender: TObject; var Key: char);
+procedure TfrmAbout.FormKeyPress(Sender: TObject; var Key: char);
 begin
   Timer1.Enabled:=false;
   Timer2.Enabled:=false;
 end;
 
-procedure TfrmZastavka.ShowSplashCheckBoxChange(Sender: TObject);
+procedure TfrmAbout.ShowSplashCheckBoxChange(Sender: TObject);
 begin
   INI.WriteBool('INTERFACE','SHOWSPLASH',ShowSplashCheckBox.Checked);
 end;
 
-procedure TfrmZastavka.Timer1Timer(Sender: TObject);
+procedure TfrmAbout.Timer1Timer(Sender: TObject);
 begin
   Label3.Visible:=not Label3.Visible;
 end;
 
-procedure TfrmZastavka.Timer2Timer(Sender: TObject);
+procedure TfrmAbout.Timer2Timer(Sender: TObject);
 begin
   SkyImage.Canvas.CopyRect(SkyImage.ClientRect,BgImage.Canvas,BgImage.ClientRect);
   Label1.Font.Size:=fntsize;
@@ -134,7 +134,7 @@ begin
      if fntsize=8 then increment:=1;
 end;
 
-procedure TfrmZastavka.Star(x, y: Integer; Size: Integer; Colour: TColor);
+procedure TfrmAbout.Star(x, y: Integer; Size: Integer; Colour: TColor);
 begin
   BgImage.Canvas.Pen.Color:= Colour;
   BgImage.Canvas.Brush.Color:= Colour;
@@ -146,7 +146,7 @@ begin
   Point(x+size div 4, y-size div 4), Point(x, y-size)]);
 end;
 
-function TfrmZastavka.GetRandomColor(A: Integer): TColor;
+function TfrmAbout.GetRandomColor(A: Integer): TColor;
 begin
  if A > 255 then A := 255;
  // take random color value
