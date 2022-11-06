@@ -102,12 +102,18 @@ begin
                 if (Sender as TBGRAGraphicControl).Tag=1 then spclBackColor:=ColorDialog1.Color
                 else spclForeColor:=ColorDialog1.Color;
                 Palette.AddColor(ColorDialog1.Color);
+                if Assigned(DrawTool) then DrawTool.Color:=ColorDialog1.Color;
                 frmMain.StatusBar1.Panels[0].Text:='Colors: '+IntToStr(Palette.Count);
                 PaletteGrid.RenderAndDrawControl;
               end;
-    mbRight:if (Sender as TBGRAGraphicControl).Tag=1 then spclBackColor:=clNone
+    mbRight:begin
+             if (Sender as TBGRAGraphicControl).Tag=1 then spclBackColor:=clNone
                 else spclForeColor:=clNone;
+               if Assigned(DrawTool) then DrawTool.Color:=clNone;
+
+    end;
   end;
+
   BgColorPaint(Sender);
 end;
 
@@ -161,6 +167,7 @@ begin
      BgColor.Invalidate;
     end;
   end;
+  if Assigned(DrawTool) then DrawTool.Color:=Palette.SelectedColor;
 end;
 
 procedure TfrmDrawTools.PaletteGridRenderControl(Sender: TObject;

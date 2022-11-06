@@ -22,7 +22,6 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="149"/>
@@ -34,7 +33,7 @@
       <Unit>
         <Filename Value="udraw.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <WindowIndex Value="0"/>
         <TopLine Value="209"/>
         <CursorPos X="39" Y="222"/>
@@ -48,10 +47,11 @@
         <ComponentName Value="frmDrawTools"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="61"/>
-        <CursorPos X="21" Y="72"/>
+        <TopLine Value="66"/>
+        <CursorPos X="65" Y="112"/>
         <UsageCount Value="92"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -63,7 +63,7 @@
         <ComponentName Value="frmLayers"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="10"/>
         <WindowIndex Value="0"/>
         <TopLine Value="66"/>
         <CursorPos X="5" Y="75"/>
@@ -132,7 +132,7 @@
       <Unit>
         <Filename Value="uglobals.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
         <TopLine Value="616"/>
         <CursorPos X="8" Y="622"/>
@@ -589,11 +589,12 @@
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_BGRAbitmap/source/unibitmap.inc"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1722"/>
         <CursorPos Y="1732"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/lcl/include/custompage.inc"/>
@@ -735,18 +736,6 @@
     </OtherDefines>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="uframedlg.pas"/>
-        <Caret Line="53" Column="18" TopLine="40"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="175" Column="37" TopLine="168"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="179" Column="43" TopLine="171"/>
-      </Position>
-      <Position>
         <Filename Value="uglobals.pas"/>
         <Caret Line="232" Column="3" TopLine="224"/>
       </Position>
@@ -853,6 +842,18 @@
       <Position>
         <Filename Value="udraw.pas"/>
         <Caret Line="222" Column="39" TopLine="209"/>
+      </Position>
+      <Position>
+        <Filename Value="udrawtools.pas"/>
+        <Caret Line="72" Column="21" TopLine="61"/>
+      </Position>
+      <Position>
+        <Filename Value="udrawtools.pas"/>
+        <Caret Line="164" Column="3" TopLine="154"/>
+      </Position>
+      <Position>
+        <Filename Value="udrawtools.pas"/>
+        <Caret Line="112" Column="65" TopLine="100"/>
       </Position>
     </JumpHistory>
     <RunParams>
