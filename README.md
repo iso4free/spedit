@@ -91,10 +91,13 @@ Feel free to contact me if you have commercial compression requirements or inter
 HISTORY
 =======
 ![SPEDit v.2.0 splash screen](doc/spedit2_logo.png)
-![SPEDit v.2.0 UI](doc/spedit2-ui.png)
+
+
 In early 2000 when I just done my first steps in programming with Turbo Pascal i want to make games.
 For this time I did haven't acces to Internet, I even haven't PC!
 But I wanted to become a professional programmer and continued to study programming from a book.
+
+![SPEDit v.2.0 UI](doc/spedit2-ui.png)
 
 All games use some images and I decide make my own image editor at first just 'for fun' and programming practice.
 First, I thought about what functionality I could implement based on the knowledge I had at the time.
@@ -114,10 +117,23 @@ enlarged form. Only 16 colors were used in the palette. A custom file format was
  There was some changes in UI and support 256 colors palette but no mouse support.
  Interface language was changed from Russian to English. So it still was useless.
  Sources also avaliasble in the 'archive/spedit 3.0' directory.
+
 ![SPEDit v.3.0 UI](doc/spedit3.png)
 
 For now I decided to create a new version of SPEDit from scratch using CodeTyphon IDE with lot of functionality.
 This version get number 4.
+
+![SPEDit v.2.0 FPC edition](doc/spedit2-fp_logo.png)
+
+But I was curious to port old Turbo Pascal code and run it on modern Lunux and Windows and decide try to do it.
+To my surprise it not was hard - i just replace units CRT and GRAPH with ptccrt and ptcgraph and also make some minor code changes.
+Voila! Now it compiled and run! So now you can run the native version under your operating system and try to draw pixel art using only the keyboard and 16 colors, just like the DOS days.
+I created simple sprite format (text-based) in ported version, You can explore old Spedit sources for description.
+
+![SPEDit v.2.0 FPC edition in work](doc/spedit2-worked.png)
+
+Of course there is old and ugly code but it works! And it was my first serious application i made. So don't judge me too harshly, I was just learning the basics of programming at the time.
+But if You run this old SPEdit remember that You MUST specify sprite file name in the command line (with any extension or without)
 
 DEV.LOG
 =======

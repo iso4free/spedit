@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="12"/>
+    <BuildModes Active="Release"/>
+    <Units>
+      <Unit>
+        <Filename Value="spedit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="772"/>
+        <CursorPos X="42" Y="777"/>
+        <UsageCount Value="32"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="image.pas"/>
+        <UnitName Value="Image"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="13"/>
+        <CursorPos X="44" Y="25"/>
+        <UsageCount Value="13"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cs_graph.pas"/>
+        <UnitName Value="CS_graph"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="25"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="tgpcx.pas"/>
+        <UnitName Value="TGPCX"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="188"/>
+        <CursorPos X="10" Y="203"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="global/grmode.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="11"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="menu/filework.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="13"/>
+      </Unit>
+      <Unit>
+        <Filename Value="global/setcolo.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="16"/>
+        <CursorPos X="5" Y="37"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="before.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="13"/>
+        <CursorPos X="51" Y="18"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="init.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="menu/mainmenu.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="global/grad.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="11" Y="2"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="global/casecolo.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="5" Y="11"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="run.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="5" Y="20"/>
+        <UsageCount Value="14"/>
+      </Unit>
+      <Unit>
+        <Filename Value="global/movebar.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="121"/>
+        <CursorPos X="5" Y="141"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="done.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="5" Y="5"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="edit.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="130"/>
+        <CursorPos X="5" Y="151"/>
+        <UsageCount Value="13"/>
+      </Unit>
+      <Unit>
+        <Filename Value="global/fillgrid.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="5" Y="40"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="menu/colormenu.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="5" Y="13"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="global/changeco.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="5" Y="7"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="global/view.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="5" Y="22"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="editsize.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="23"/>
+        <CursorPos X="5" Y="43"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="menu/sizemenu.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="5" Y="12"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../fpcupdeluxe/fpcsrc/packages/graph/src/inc/graphh.inc"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="780"/>
+        <CursorPos X="12" Y="791"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../fpcupdeluxe/fpcsrc/rtl/unix/classes.pp"/>
+        <UnitName Value="Classes"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="11"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="menu/filemenu.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="global/sky.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../fpcupdeluxe/fpcsrc/packages/graph/src/inc/graph.inc"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1073"/>
+        <CursorPos X="3" Y="1073"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../fpcupdeluxe/fpcsrc/packages/rtl-console/src/unix/mouse.pp"/>
+        <UnitName Value="Mouse"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="16"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../fpcupdeluxe/fpcsrc/packages/rtl-console/src/inc/mouseh.inc"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="87"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../fpcupdeluxe/fpcsrc/packages/graph/src/inc/gtext.inc"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="56"/>
+        <CursorPos X="7" Y="58"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/packages/graph/src/inc/graphh.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="527"/>
+        <CursorPos X="8" Y="536"/>
+        <UsageCount Value="10"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="27">
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="709" TopLine="698"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="221" TopLine="210"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="222" TopLine="210"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="223" TopLine="210"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="224" TopLine="210"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="225" TopLine="210"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="226" TopLine="210"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="228" TopLine="210"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="229" TopLine="211"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="230" TopLine="212"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="225" Column="12" TopLine="212"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="709" TopLine="698"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="365" TopLine="354"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="716" Column="9" TopLine="703"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="411" Column="20" TopLine="401"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="571" Column="37" TopLine="560"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="453" Column="15" TopLine="441"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="445" Column="78" TopLine="418"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="15" Column="10" TopLine="3"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="39" Column="32" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="63" Column="6" TopLine="46"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="493" Column="22" TopLine="485"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="74" Column="6" TopLine="57"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="28" TopLine="19"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="27" Column="5" TopLine="18"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="782" Column="7" TopLine="771"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="760" Column="40" TopLine="747"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.pas"/>
+        <Caret Line="744" Column="95" TopLine="735"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode="default">
+        <Mode Name="default">
+          <local>
+            <CommandLineParams Value="test.spr"/>
+          </local>
+        </Mode>
+      </Modes>
+    </RunParams>
+    <HistoryLists>
+      <List Name="LaunchingApplication" Type="File" Count="7">
+        <Item1 Value="/usr/bin/xterm -T &apos;Typhon Run Output&apos; -e $(TargetCmdLine)"/>
+        <Item2 Value="/usr/bin/xterm -T &apos;Lazarus Run Output&apos; -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+        <Item3 Value="/usr/bin/gnome-terminal -t &apos;Lazarus Run Output&apos; -e &apos;$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)&apos;"/>
+        <Item4 Value="${CmdExe} ${TargetCmdLine}"/>
+        <Item5 Value="&quot;$(Pas2JSBrowser)&quot; &quot;$(Pas2JSProjectURL)&quot;"/>
+        <Item6 Value="$(Pas2JSBrowser) &quot;$(Pas2JSProjectURL)&quot;"/>
+        <Item7 Value="/usr/bin/gnome-terminal -t &apos;Typhon Run Output&apos; -e &apos;$(TargetCmdLine)&apos;"/>
+      </List>
+      <List Name="CommandLineParameters" Count="1">
+        <Item1 Value="test.spr"/>
+      </List>
+    </HistoryLists>
+  </ProjectSession>
+</CONFIG>
