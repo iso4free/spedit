@@ -40,6 +40,7 @@ const
       MAX_PIXELS = 512*512;      //max pixels array (sprite size 512x512 pixels)
       //MAX_LAYERS = 10;           //max layers count in one frame
 
+      cINTERNALLAYERANDFRAME = 'spedit v.4';
 
 
 type
@@ -171,6 +172,7 @@ type
      fActiveFrame: String;
      FActiveLayer: String;
     FCellCursor: TCellCursor;
+    fCheckers: Boolean;
     FCheckersSize  : Byte;
     fPreview       : TBGRABitmap; //for draw image preview
     fFrameGridSize : Word;   //current grid size
@@ -191,6 +193,7 @@ type
 
     constructor Create(aW: Integer = 32; aH : Integer = 32; aSize : Word = 10);
     destructor Destroy; override;
+
     function HasCoords(aPoint : TPoint) : Boolean; //check if frame has point
     procedure RenderAndDraw(Canvas : TCanvas);  //draw background and all layers data to canvas
     procedure RenderPicture(Canvas : TCanvas);
@@ -204,6 +207,7 @@ type
     property ActiveFrame : String read fActiveFrame write fActiveFrame; //work frame name to access through mapped list
     property ActiveLayer : String read FActiveLayer write FActiveLayer; //current layer to draw
     property CellCursor : TCellCursor read FCellCursor; //just red frame to show where draw in grid
+    property DrawBackground : Boolean read fCheckers write fCheckers default true;
   end;
 
 
@@ -312,14 +316,10 @@ end;
 
 procedure CreateFirstFrameAndLayer;
 begin
- Frames['Frame']:=TSPFrame.Create('Frame');
- Layers['Layer']:=TSPLayer.Create('Layer');
- Layers['Layer'].AddToFrame('Frame');
- Frames['Frame'].AddLayer('Layer');
-{ {$IFDEF DEBUG}
- DebugLn('Layers in frame:',Frames['Frame'].LayersList.Text);
- DebugLn('Frames in layer:',Layers['Layer'].FramesList.Text);
- {$ENDIF} }
+ Frames[cINTERNALLAYERANDFRAME]:=TSPFrame.Create(cINTERNALLAYERANDFRAME);
+ Layers[cINTERNALLAYERANDFRAME]:=TSPLayer.Create(cINTERNALLAYERANDFRAME);
+ Layers[cINTERNALLAYERANDFRAME].AddToFrame(cINTERNALLAYERANDFRAME);
+ Frames[cINTERNALLAYERANDFRAME].AddLayer(cINTERNALLAYERANDFRAME);
 end;
 
 procedure ClearFramesAndLayers;
@@ -545,7 +545,7 @@ end;
 procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas);
 
 var fBuffer : TBGRABitmap;
-  i: Integer;
+  i, _i: Integer;
 
   procedure DrawGrid(x1,y1,x2,y2 : Integer; size : Integer);
    var i, xsize, ysize : Integer;
@@ -568,6 +568,9 @@ var fBuffer : TBGRABitmap;
      for x := 0 to aLayer.Drawable.Width-1 do
     for y:= 0 to aLayer.Drawable.Height-1 do begin
       tmpPix := aLayer.Drawable.GetPixel(x,y);
+      {$IFDEF DEBUG}
+      // DebugLn('in: InternalDrawLayer() x=',IntToStr(x),' y=',IntToStr(y),' pixel.alpha: ',IntToStr(tmpPix.alpha));
+      {$ENDIF}
       if tmpPix.alpha>0 then begin
         //draw filled rectangle
          fBuffer.Rectangle(X*(fFrameGridSize+fFrameZoom)+1,
@@ -583,7 +586,7 @@ begin
   fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),
                               fFrameHeight*(fFrameGridSize+fFrameZoom));
   {$IFDEF DEBUG}
-  DebugLn('In: RenderAndDraw(); fBuffer.Width=',IntToStr(fBuffer.Width),' fBuffer.Height=',IntToStr(fBuffer.Height));
+  //DebugLn('In: RenderAndDraw(); fBuffer.Width=',IntToStr(fBuffer.Width),' fBuffer.Height=',IntToStr(fBuffer.Height));
   {$ENDIF}
   ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
   fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width-1,fBuffer.Height-1),
@@ -596,11 +599,13 @@ begin
 
   //draw all layers to fBuffer per pixel
   {$IFDEF DEBUG}
-  DebugLn('In: RenderAndDraw(); Active frame: ',ActiveFrame);
+  DebugLn('In: RenderAndDraw(); Active frame: ',ActiveFrame,' layers: ',Frames[ActiveFrame].fLayers.Text);
   {$ENDIF}
   for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do begin
     {$IFDEF DEBUG}
     DebugLn('In: RenderAndDraw(); Layer name:',Frames[ActiveFrame].fLayers.Strings[i]);
+    DebugLn('In: RenderAndDraw(); all layers:',IntToStr(Layers.Count));
+    for _i := 0 to Layers.Count-1 do DebugLn('Layer:',Layers.Keys[_i]);
     {$ENDIF}
    InternalDrawLayer(Layers[Frames[ActiveFrame].fLayers.Strings[i]]);
   end;
@@ -615,31 +620,33 @@ begin
 end;
 
 procedure TFrameGrid.RenderPicture(Canvas: TCanvas);
- var ImagePos: TPoint;
-   i,w,h : Integer;
-   tmppix : TBGRAPixel;
+ var
+   i : Integer;
 begin
-  fPreview.DrawCheckers(Rect(0,0,fPreview.Width,fPreview.Height),
+  if fCheckers then
+    fPreview.DrawCheckers(Rect(0,0,fPreview.Width,fPreview.Height),
                         ColorToBGRA($BFBFBF),
                         ColorToBGRA($FFFFFF),
                         4,
                         4);
   //draw all layers to canvas
+  {$IFDEF DEBUG}
+  DebugLn('In: RenderPicture(); Active frame: ',ActiveFrame,' layers: ',Frames[ActiveFrame].fLayers.Text);
+  {$ENDIF}
   for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do
     fPreview.PutImage(0,0,Layers[Frames[ActiveFrame].fLayers.Strings[i]].Drawable,dmDrawWithTransparency);
-    {for w:=0 to FrameWidth-1 do
-      for h:=0 to FrameHeight-1 do begin
-        tmppix := Layers[Frames[ActiveFrame].fLayers.Strings[i]].Drawable.GetPixel(w,h);
-        if tmppix.alpha>0 then fPreview.SetPixel(w,h,tmpPix);
-      end;}
 
-
-  fPreview.Draw(Canvas,{ImagePos.X,ImagePos.Y,}0,0,true);
+  if Assigned(Canvas) then fPreview.Draw(Canvas,0,0,true);
 end;
 
 procedure TFrameGrid.ExpotPng(aFilename: TFileName);
 begin
-  if aFilename<>'' then fPreview.SaveToFileUTF8(aFilename);
+  if aFilename<>'' then begin
+   DrawBackground:=false;
+   RenderPicture(nil);
+   fPreview.SaveToFileUTF8(aFilename);
+   DrawBackground:=true;
+  end;
 end;
 
 { TPalette }

@@ -159,7 +159,7 @@ procedure TfrmMain.BitBtnNewFrameClick(Sender: TObject);
 var
   i: Integer;
 begin
-  //todo: show dialog to create new frame with default parameters
+  //show dialog to create new frame with default parameters
   frmFrameDlg:=TfrmFrameDlg.Create(Self);
   if Assigned(FrameGrid) then begin
    frmFrameDlg.spnedtHeight.Value:=FrameGrid.FrameHeight;
@@ -179,10 +179,12 @@ begin
    Frames[frmFrameDlg.edtFrameName.Text]:=TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
                                                           FrmPreview.FramePreview.Width,
                                                           FrmPreview.FramePreview.Height);
+   Frames[frmFrameDlg.edtFrameName.Text].AddLayer(cINTERNALLAYERANDFRAME);
+   Layers[cINTERNALLAYERANDFRAME].AddToFrame(frmFrameDlg.edtFrameName.Text);
    //todo: copy all layers to new frame if option checked
    for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
-   FrameGrid.ActiveFrame:=Frames.Keys[0];
-   FrameGrid.ActiveLayer:=Layers.Keys[0];
+   FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
+   FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;
    if Assigned(frmDrawTools.trkbrPenSize) then frmDrawTools.trkbrPenSize.Max:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
    pbFrameDraw.Invalidate;
   end;
@@ -362,7 +364,7 @@ end;
 
 procedure TfrmMain.pbFrameDrawDblClick(Sender: TObject);
 begin
-
+  if Assigned(frmDrawTools.DrawTool) then frmDrawTools.DrawTool.FinishDraw;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
@@ -378,13 +380,8 @@ begin
        frmDrawTools.DrawTool.PenSize:=frmDrawTools.trkbrPenSize.Position;
        if Button=mbLeft then
           frmDrawTools.DrawTool.StartDraw(p.X,p.Y,spclForeColor)
-       else
+       else if Button=mbRight then
           frmDrawTools.DrawTool.StartDraw(p.X,p.Y,spclBackColor);
-       {
-        {$IFDEF DEBUG}
-        DebugLn('Layers in active frame: ',Frames[FrameGrid.ActiveFrame].FLayersList.Text,' in: pbFrameDrawMouseDown();');
-        {$ENDIF}
-       }
        pbFrameDraw.Invalidate;
      end;
     end;
@@ -431,7 +428,7 @@ procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
 begin
   if not Assigned(FrameGrid) then Exit;
   fDrawGridMode:=dgmNone;
-  if Assigned(frmDrawTools.DrawTool) then frmDrawTools.DrawTool.FinishDraw;
+  if Assigned(frmDrawTools.DrawTool) then frmDrawTools.DrawTool.MouseUp(x,y);
   if Assigned(FrmPreview) then FrmPreview.FramePreview.Invalidate;
 end;
 

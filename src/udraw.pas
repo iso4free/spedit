@@ -71,6 +71,7 @@ type
   TSPPen = class(TSPDrawTool)
      procedure StartDraw(x, y: Integer; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
+     procedure MouseUp(x, y: Integer); override;
   end;
 
 
@@ -140,8 +141,11 @@ end;
 procedure TSPPen.StartDraw(x, y: Integer; aColor: TBGRAPixel);
 begin
   inherited StartDraw(x,y,aColor);
-  if FPenSize=1 then Layers[fLayerName].Drawable.SetPixel(x,y,Color) else
+  if FPenSize=1 then Layers[fLayerName].Drawable.SetPixel(x,y,Color) else begin
+     Layers[fLayerName].Drawable.Canvas.Brush.Color:=Color;
      Layers[fLayerName].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
+
+  end;
 end;
 
 procedure TSPPen.MouseMove(x, y: Integer);
@@ -152,6 +156,12 @@ begin
   prevx:=x;
   prevy:=y;
 end;
+
+procedure TSPPen.MouseUp(x, y: Integer);
+begin
+  //inherited MouseUp(x, y);
+end;
+
 
 
 { TSPDrawTool }
@@ -181,7 +191,10 @@ end;
 
 destructor TSPDrawTool.Destroy;
 begin
+  FinishDraw;
   if Layers.IndexOf(fLayerName)<>-1 then begin
+   // Layers[fLayerName].Free;
+   // Layers[fLayerName] := nil;
     Layers.Remove(fLayerName);
   end;
   FreeAndNil(fBuffer);
@@ -216,10 +229,10 @@ end;
 procedure TSPDrawTool.FinishDraw;
 begin
   Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[fLayerName].Drawable,dmDrawWithTransparency);
-  Frames[FrameGrid.ActiveFrame].DeleteLayer(fLayerName);
-  Layers[fLayerName].DeleteFromFrame(FrameGrid.ActiveFrame);
+  //Frames[FrameGrid.ActiveFrame].DeleteLayer(fLayerName);
+  //Layers[fLayerName].DeleteFromFrame(FrameGrid.ActiveFrame);
   //todo: fix draw to active layer and clear tool layer
-  Layers[fLayerName].Drawable:=fBuffer;
+  //Layers[fLayerName].Drawable:=fBuffer;
 end;
 
 

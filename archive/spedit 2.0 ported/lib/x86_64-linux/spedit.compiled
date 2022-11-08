@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="/usr/local/codetyphon/fpc/fpc64/bin/x86_64-linux/fpc" Date="1665400069"/>
-  <Params Value=" -MObjFPC -Scghi -CX -Cg -O3 -XX -l -vewnhibq &quot;-Fi/home/vadim/development/pascal/github/spedit/archive/spedit 2.0 ported/lib/x86_64-linux&quot; &quot;-Fu/home/vadim/development/pascal/github/spedit/archive/spedit 2.0 ported/&quot; &quot;-FU/home/vadim/development/pascal/github/spedit/archive/spedit 2.0 ported/lib/x86_64-linux/&quot; &quot;-FE/home/vadim/development/pascal/github/spedit/archive/spedit 2.0 ported/bin/&quot; &quot;-o/home/vadim/development/pascal/github/spedit/archive/spedit 2.0 ported/bin/spedit-(TargetCPU)-linux&quot; spedit.pas"/>
-</CONFIG>
