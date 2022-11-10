@@ -13,7 +13,7 @@ Um Editor de Sprites e Biblioteca local de sprites para jogos 2D em Pixel Art si
 TRABALHO EM PROGRESSO
 =============
 Continua em desenvolvimento, novos recursos seão adicionados quando eu tiver tempo e motivação suficiente.
-Você pode me patrocinar através do https://www.buymeacoffee.com/iso4free se quiser que algun recursos sejam priorizados.
+Você pode me patrocinar através do https://www.buymeacoffee.com/iso4free se quiser que alguns recursos sejam priorizados.
 
 ![main window screenshot](doc/spedit.png)
 
@@ -21,19 +21,19 @@ BREVE DOCUMENTAÇÃO
 ===================
 Por enquanto, use use as setas do teclado para mover o cursor na grelha, as teclas Espaço e Enter para desenhar usando as cores selecionadas (primária e secundária), a tecla Del para limpar um pixel (no estilo da versão DOS). Ou use o mouse como qualquer editor de imagens.
 
-Na janela Ferramentas selicione as cores primária e secundária, selecione a ferramenta para desenhar com o mouse e mude o tamanho do lápis.
+Na janela Ferramentas selecione as cores primária e secundária, selecione a ferramenta para desenhar com o mouse e mude o tamanho do lápis.
 
-Você pode selecionar as cores primária e secundária clicando em uma cor na paleta com os botões esquerdo (primária)ou direito (secundária) do mouse.
+Você pode selecionar as cores primária e secundária clicando em uma cor na paleta com os botões esquerdo (primária) ou direito (secundária) do mouse.
 
-Você também pode selecionar qualquer cor clicando nas cores primária e secundária com o botão esquerdo do mouse ou definí-la xomo transparente clicando com o botão direito do mouse.
+Você também pode selecionar qualquer cor clicando nas cores primária e secundária com o botão esquerdo do mouse ou definí-la como transparente clicando com o botão direito do mouse.
 
-Para trocar as cores tecle 'X' ou clique no botão entre as cores primária e secundária (as setas em arco verde e vermelha) .
+Para trocar as cores tecle 'X' ou clique no botão entre as cores primária e secundária (as setas verde e vermelho em arco ).
 
-Para administrar as paletas, você pode importá-la no formato HEX (serão adicionados mais formatos no futuro) ou importar de um arquivo de imagem. Por enquanto,  a paleta é limitada a somente 256 cores indexadas, Mas no futuro esses limites poderão ser cancelados.
+Para administrar as paletas, você pode importá-la no formato HEX (serão adicionados mais formatos no futuro) ou importar de um arquivo de imagem. Por enquanto, a paleta é limitada a somente 256 cores indexadas, Mas no futuro esses limites poderão ser cancelados.
 
 Para redefinir a paleta para as cores padrão use o menu 'Paleta>Redefinir paleta'.
 
-Você pode exportar a paleta no formato HEX para usá-la para qualque propósito.
+Você pode exportar a paleta no formato HEX para usá-la para qualquer propósito.
 
 Segure Ctrl e use a rolagem do mouse (pra cima e pra baixo) para mudar o tamanho da grade.
 
@@ -41,11 +41,11 @@ Segure Alt e use a rolagem do mouse para mudar o tamanho do padrão em xadres do
 
 Segure a rolagem do mouse para arrastar a área de desenho.
 
-Para revelar/ocultar a janela de previsualização pressione F7 ou verifique o menu 'Visualizar>Painel de Ferramentas>Previsualização'
+Para revelar/ocultar a janela de previsualização pressione F7 ou selecione o menu 'Visualizar>Painel de Ferramentas>Previsualização'
 
 Clique em 'Previsualizar' a imagem para exportar no formato PNG.
 
-Para exibir uma imagem de referência verifique o menu 'Visualizar>Pinel de Ferramentas>Referência'.
+Para exibir uma imagem de referência selecione o menu 'Visualizar>Pinel de Ferramentas>Referência'.
 
 Clique na janela 'Referência' para abrir qualquer imagem de referência.
 
@@ -65,7 +65,7 @@ No futuro estarão disponíveis:
 
 SOLUÇÃO DE PROBLEMAS
 ===============
-- [ ] No Windous as teclas não vão funcionar. Será consertado em breve.
+- [ ] No Windows as teclas não vão funcionar. Será consertado em breve.
 - [ ] Roda muito lentamente no Windows.
 
 DIREITO AUTORAL
@@ -85,7 +85,7 @@ Compartilhe e divirta-se!
    Vadim Vitomsky
    iso4free@gmail.com
 
-Sinta-se à vontade para entrar em contato comigo se tiver requisitos de compactação comercial ou ofertas de trabalho interessantes.
+Sinta-se a vontade para entrar em contato comigo se tiver requisitos de compactação comercial ou ofertas de trabalho interessantes.
 
 HISTÓRIA
 =======
@@ -100,32 +100,32 @@ Mas eu queria me tornar um programador profissional e continuei estudando progra
 
 Todos os jogos usam algum tipo de imagem e eu decidi fazer meu proprio editor de imagens a princípio 'por diversão' e praticar programação.
 Primeiro eu pensei em qual funcionalidade eu poderia implementar baseado no conhecimento que eu tinha na época.
-Depos disso eu pensei no conceito da interfáce gráfica do usuário, que eu desenhei esquemáticamente em um caderno comum
+Depos disso eu pensei no conceito da interfáce gráfica do usuário que eu desenhei esquemáticamente em um caderno comum
 e, no mesmo caderno, eu começei a escrever o código com uma caneta para a implementação de fragmentos individuais do futuro editor.
 Já que as imagens dos personagens nos jogos se chamam 'sprites', o nome do editor foi determinado como Sprite Editor ou Spedit.
 De acordo com suas capacidades, ele podia fazer muito pouco - editar um fragmento da imagem principal pixel por pixel em uma
 forma ampliada. Só 16 cores eram usadas na paleta. Um formato customizado foi usado para armazenar as sprites.
  Ao iniciar, você tinha que digitar o nome do arquivo a ser editardo na linha de comando, depois disso uma tela de apresentação
- aparecia com o nome do programa e no fundo um céu noturno estrelado. Após pressiona qualquer tecla, a interface
+ aparecia com o nome do programa e no fundo um céu noturno estrelado. Após pressionar qualquer tecla, a interface
  de usuário aparecia. Era feia e inútil, mas funcionava! E agora, infelizmente, o código fonte está perdido.
 
  A próxima versão foi feita um ano depois. A diferença com a versão anterior foi o suporte ao formato PCX.
  Ainda era inútil. O código e os executáveis podem ser encontrados no diretório 'archive/spedit 2.0'.
 
  Dois anos depois eu tentei portar o SPEDit do Turbo Pascal para Free Pascal Compiler e compilar para Windows.
- Tiveram algumas mudanças no UI e suporte a paleta de 256 cores, mas sem suporte ao mouse.
- O idioma da interface foi mudado do Russo para o Inglês. E ainda era inútil.
+ Tiveram algumas alterações no UI e suporte a paleta de 256 cores, mas sem suporte ao mouse.
+ O idioma da interface foi alterado do Russo para o Inglês. E ainda era inútil.
  O código tambem está disponível do diretório 'archive/spedit 3.0'.
 
 ![SPEDit v.3.0 UI](doc/spedit3.png)
 
-Aqui eu decidi criar uma versão nova do SPEDit do zero usando CodeTyphon IDE com muitas funcionalidades.
+Daqui eu decidi criar uma versão nova do SPEDit do zero usando CodeTyphon IDE com muitas funcionalidades.
 Essa versão recebe o número 4.
 
 ![SPEDit v.2.0 FPC edition](doc/spedit2-fp_logo.png)
 
 Mas eu estava curioso para portar o antigo código Turbo Pascal e rodá-lo no Linux e Windows modernos e decidi portá-lo.
-Para a minha surpresa não foi difícil - só substituí as unidades CRT e GRAPH com ptccrt e ptcgraph e pequenas mudanças no código.
+Para a minha surpresa não foi difícil - só substituí as unidades CRT e GRAPH por ptccrt e ptcgraph e pequenas mudanças no código.
 Voila! Agora ele compilava e rodava! Agora você pode rodar a versão nativa no seu sistema operacional e tentar desenhar pixel art usando somente o teclado e uma paleta de 16 cores, como nos tempos do MS-DOS.
 Eu criei um formato de sprite simples (baseado em texto) na versão portada, Você pode explorar o código do antigo Spedit para a descrição.
 
