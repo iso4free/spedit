@@ -1,0 +1,283 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tfrmdrawtools.bbtnswapcolors.hint
+msgid "Trocar cores [X]"
+msgstr ""
+
+#: tfrmdrawtools.bgcolor.caption
+msgid "Segundo Plano"
+msgstr ""
+
+#: tfrmdrawtools.bgcolor.hint
+msgctxt "tfrmdrawtools.bgcolor.hint"
+msgid ""
+"Clique esquerdo para selecionar cor\n"
+"Clique direito para definir a cor transparente"
+msgstr ""
+
+#: tfrmdrawtools.caption
+msgid "Ferramentas"
+msgstr ""
+
+#: tfrmdrawtools.fgcolor.caption
+msgid "Primeiro Plano"
+msgstr ""
+
+#: tfrmdrawtools.fgcolor.hint
+msgctxt "tfrmdrawtools.fgcolor.hint"
+msgid ""
+"Clique esquerdo para selecionar cor\n"
+"Clique direito para definir a cor transparente"
+msgstr ""
+
+#: tfrmdrawtools.gbpalette.caption
+msgctxt "tfrmdrawtools.gbpalette.caption"
+msgid "Paleta"
+msgstr ""
+
+#: tfrmdrawtools.grpbpensize.caption
+msgid "Tamanho do lápis"
+msgstr ""
+
+#: tfrmdrawtools.sbline.hint
+msgid "Ferramenta linha"
+msgstr ""
+
+#: tfrmframedlg.caption
+msgid "Novo quadro"
+msgstr ""
+
+#: tfrmframedlg.checkbox1.caption
+msgid "Copiar todas as camadas"
+msgstr ""
+
+#: tfrmframedlg.edtframename.text
+msgid "Quadro"
+msgstr ""
+
+#: tfrmframedlg.frmframewidth.caption
+msgid "Largura do quadro"
+msgstr ""
+
+#: tfrmframedlg.lblframeheight.caption
+msgid "Altura do quadro"
+msgstr ""
+
+#: tfrmframedlg.lblframename.caption
+msgid "Nome do quadro"
+msgstr ""
+
+#: tfrmframes.caption
+msgctxt "tfrmframes.caption"
+msgid "Quadros"
+msgstr ""
+
+#: tfrmlayers.bbtnaddlayer.hint
+msgid "Adicionar uma nova camada"
+msgstr ""
+
+#: tfrmlayers.bbtncopylayer.hint
+msgid "Copiar a camada selecionada"
+msgstr ""
+
+#: tfrmlayers.bbtndeletelayer.hint
+msgid "Deletar a camada selecionada"
+msgstr ""
+
+#: tfrmlayers.bbtnmergelayers.hint
+msgid "Mesclar com a camada inferior"
+msgstr ""
+
+#: tfrmlayers.caption
+msgctxt "tfrmlayers.caption"
+msgid "Camadas"
+msgstr ""
+
+#: tfrmlayers.drwgrdlayers.columns[0].title.caption
+msgid "Visível"
+msgstr ""
+
+#: tfrmlayers.drwgrdlayers.columns[1].title.caption
+msgid "Bloqueado"
+msgstr ""
+
+#: tfrmlayers.drwgrdlayers.columns[2].title.caption
+msgid "Nome"
+msgstr ""
+
+#: tfrmlayers.drwgrdlayers.columns[3].title.caption
+msgid "Imagem"
+msgstr ""
+
+#: tfrmlayers.layersgroupbox.caption
+msgctxt "tfrmlayers.layersgroupbox.caption"
+msgid "Camadas"
+msgstr ""
+
+#: tfrmmain.aboutmenuitem.caption
+msgid "Sobre"
+msgstr ""
+
+#: tfrmmain.actionstabsheet.caption
+msgid "Ações"
+msgstr ""
+
+#: tfrmmain.caption
+msgid "Editor de Sprites"
+msgstr ""
+
+#: tfrmmain.editmenuitem.caption
+msgid "Editar"
+msgstr ""
+
+#: tfrmmain.fileexitmenuitem.caption
+msgid "Sair"
+msgstr ""
+
+#: tfrmmain.fileloadspritesheetmenuitem.caption
+msgid "Importar Folha de sprites"
+msgstr ""
+
+#: tfrmmain.fileloadspritesheetmenuitem.hint
+msgid ""
+"Você pode importar arquivos de imagen ou folhas de sprite\n"
+"e adicionar à biblioteca"
+msgstr ""
+
+#: tfrmmain.filemenuitem.caption
+msgid "Arquivo"
+msgstr ""
+
+#: tfrmmain.filenewspritemenuitem.caption
+msgid "Novo Projeto de Sprite"
+msgstr ""
+
+#: tfrmmain.filesaveasmenuitem.caption
+msgid "Salvar Projeto de Sprites como..."
+msgstr ""
+
+#: tfrmmain.filesavespritemenuitem.caption
+msgid "Salvar Projeto de Sprites"
+msgstr ""
+
+#: tfrmmain.frameeditortabsheet.caption
+msgid "Editor de Quadros"
+msgstr ""
+
+#: tfrmmain.framesmenuitem.caption
+msgctxt "tfrmmain.framesmenuitem.caption"
+msgid "Quadros"
+msgstr ""
+
+#: tfrmmain.helpmenuitem.caption
+msgid "Ajuda"
+msgstr ""
+
+#: tfrmmain.layerstoolvisiblemenuitem.caption
+msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
+msgid "Camadas"
+msgstr ""
+
+#: tfrmmain.menuitem1.caption
+msgid "Sprite"
+msgstr ""
+
+#: tfrmmain.menuitem2.caption
+msgctxt "tfrmmain.menuitem2.caption"
+msgid "Camadas"
+msgstr ""
+
+#: tfrmmain.menuitem3.caption
+msgctxt "tfrmmain.menuitem3.caption"
+msgid "Paleta"
+msgstr ""
+
+#: tfrmmain.menuitem4.caption
+msgid "Painéis de ferramenta"
+msgstr ""
+
+#: tfrmmain.menuitem7.caption
+msgid "Nova Biblioteca de Sprites"
+msgstr ""
+
+#: tfrmmain.mipaletteclear.caption
+msgid "Redefinir paleta"
+msgstr ""
+
+#: tfrmmain.mipaletteimportfromfile.caption
+msgid "Importar de um arquivo de imagem"
+msgstr ""
+
+#: tfrmmain.mipaletteloadfromfile.caption
+msgid "Carregar de um arquivo"
+msgstr ""
+
+#: tfrmmain.mipalettesavetofile.caption
+msgid "Salvar para um arquivo"
+msgstr ""
+
+#: tfrmmain.painttoolpanelvisiblemenuitem.caption
+msgid "Ferramentas de desenho"
+msgstr ""
+
+#: tfrmmain.previewmenuitem.caption
+msgctxt "tfrmmain.previewmenuitem.caption"
+msgid "Previsualizar"
+msgstr ""
+
+#: tfrmmain.projecttabsheet.caption
+msgid "Informação do projeto"
+msgstr ""
+
+#: tfrmmain.referenseimagemenuitem.caption
+msgctxt "tfrmmain.referenseimagemenuitem.caption"
+msgid "Referência"
+msgstr ""
+
+#: tfrmmain.savespritelibmenuitem.caption
+msgid "Salvar Biblioteca de Sprites"
+msgstr ""
+
+#: tfrmmain.selectspritelibmenuitem.caption
+msgid "Selecionar Biblioteca de Sprites"
+msgstr ""
+
+#: tfrmmain.statictext1.caption
+msgid "StaticText1"
+msgstr ""
+
+#: tfrmmain.viewmenuitem.caption
+msgid "Visualizar"
+msgstr ""
+
+#: tfrmmain.viewzoominmenuitem.caption
+msgid "Zoom++"
+msgstr ""
+
+#: tfrmmain.viewzoomoutmenuitem.caption
+msgid "Zoom--"
+msgstr ""
+
+#: tfrmmain.viewzoomresetmenuitem.caption
+msgid "Redefinir zoom"
+msgstr ""
+
+#: tfrmpreview.caption
+msgctxt "tfrmpreview.caption"
+msgid "Previsualizar"
+msgstr ""
+
+#: tfrmpreview.framepreview.hint
+msgid "Clique para exportar PNG"
+msgstr ""
+
+#: tfrmreferense.caption
+msgctxt "tfrmreferense.caption"
+msgid "Referência"
+msgstr ""
+
+#: tfrmreferense.hint
+msgid "Clique para abrir qualquer imagem de referência"
+msgstr ""
+
