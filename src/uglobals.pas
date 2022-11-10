@@ -34,6 +34,17 @@ uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
   Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson, BGRABitmap, BGRABitmapTypes, fgl;
 
+resourcestring
+  rsColors = 'Colors: ';
+  rsFG = 'FG: ';
+  rsBG = ' / BG: ';
+  rsWarning = 'Warning!';
+  rsPaletteWillB = 'Palette will be resetted to default colors! Are You shure?';
+  rsImageHasTooM = 'Image has too many colors!';
+  rsPleaseInputN = 'Please input new library name';
+  rsHasNonIntege = ' has non-integer value!';
+
+
 const
       //MAX_FRAMES = 50;           //it will be enought for one animation?
       MAX_PALETTE_COLORS = 255;  //max colors count in palette

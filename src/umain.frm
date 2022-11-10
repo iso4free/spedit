@@ -284,6 +284,13 @@ object frmMain: TfrmMain
         Caption = 'Reset zoom'
         OnClick = ViewZoomResetMenuItemClick
       end
+      object Separator2: TMenuItem
+        Caption = '-'
+      end
+      object LanguageMenuItem: TMenuItem
+        Caption = 'Language'
+        OnClick = LanguageMenuItemClick
+      end
     end
     object MenuItem1: TMenuItem
       Caption = 'Sprite'

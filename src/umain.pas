@@ -33,7 +33,7 @@ uses
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
   Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit,
   BGRAImageList, BGRAImageManipulation, BGRABitmapTypes, BGRABitmap,
-  LCLType;
+  LCLType,LCLTranslator;
 
 type
 
@@ -44,6 +44,8 @@ type
     Button2: TButton;
     Button3: TButton;
     DrawToolsFlowPanel: TFlowPanel;
+    Separator2: TMenuItem;
+    LanguageMenuItem: TMenuItem;
     ReferenseImageMenuItem: TMenuItem;
     PreviewMenuItem: TMenuItem;
     pbFrameDraw: TPaintBox;
@@ -105,6 +107,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FramesMenuItemClick(Sender: TObject);
+    procedure LanguageMenuItemClick(Sender: TObject);
     procedure LayersToolVisibleMenuItemClick(Sender: TObject);
     procedure miPaletteClearClick(Sender: TObject);
     procedure miPaletteImportFromFileClick(Sender: TObject);
@@ -255,6 +258,7 @@ begin
       VK_LEFT : begin
         if FrameGrid.CellCursor.X=0 then FrameGrid.CellCursor.X:=FrameGrid.FrameWidth-1 else
            FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X-1;
+        Key:=0;
       end;
       VK_RIGHT : begin
         if FrameGrid.CellCursor.X=(FrameGrid.FrameWidth-1) then FrameGrid.CellCursor.X:=0 else
@@ -265,28 +269,34 @@ begin
       VK_UP : begin
         if FrameGrid.CellCursor.Y=0 then FrameGrid.CellCursor.Y:=FrameGrid.FrameHeight-1 else
            FrameGrid.CellCursor.y:=FrameGrid.CellCursor.y-1;
+        Key:=0;
       end;
       VK_DOWN : begin
         if FrameGrid.CellCursor.Y=(FrameGrid.FrameHeight-1) then FrameGrid.CellCursor.Y:=0 else
         FrameGrid.CellCursor.Y:=FrameGrid.CellCursor.Y+1;
+        Key:=0;
       end;
       //next keys can be used to drawing
        VK_SPACE : begin
       //draw pixels depends on selected cursor size - first color
         Layers[FrameGrid.ActiveLayer].Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,ColorToBGRA(spclForeColor,255));
-      end;
+        Key:=0;
+       end;
        VK_RETURN : begin
       //draw pixels depends on selected cursor size - second color
         Layers[FrameGrid.ActiveLayer].Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,ColorToBGRA(spclBackColor,255));
-      end;
+        Key:=0;
+       end;
        //just set pixel to background by setting opacity to 0
        VK_DELETE : begin
       //erace pixel to transparent
         Layers[FrameGrid.ActiveLayer].Drawable.ErasePixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,255);
-     end;
+        Key:=0;
+       end;
      //swap colors
      VK_X: begin
        frmDrawTools.bbtnSwapColorsClick(Sender);
+       Key:=0;
       end;
      //show/hide preview window
        VK_F7: begin
@@ -306,6 +316,12 @@ begin
  frmFrames.Show;
 end;
 
+procedure TfrmMain.LanguageMenuItemClick(Sender: TObject);
+begin
+  //todo: show lang dlg
+ SetDefaultLang('uk_UA');
+end;
+
 procedure TfrmMain.LayersToolVisibleMenuItemClick(Sender: TObject);
 begin
  frmLayers.Show;
@@ -313,7 +329,8 @@ end;
 
 procedure TfrmMain.miPaletteClearClick(Sender: TObject);
 begin
-  if MessageDlg('Warning!','Palette will be resetted to default colors! Are You shure?',mtWarning,mbYesNo,'')=mrYes then Palette.Reset;
+  if MessageDlg(rsWarning, rsPaletteWillB, mtWarning, mbYesNo, '')=mrYes
+    then Palette.Reset;
   frmDrawTools.PaletteGrid.RenderAndDrawControl;
 end;
 
@@ -331,7 +348,7 @@ begin
    for i :=0 to w do
      for j:=0 to h do begin
        if Palette.AddColor(FPColorToTColor(img.Colors[i,j]))=-1 then begin
-        ShowMessage('Image has too many colors!');
+        ShowMessage(rsImageHasTooM);
         Palette.Reset;
         goto stop;
        end;
@@ -503,8 +520,6 @@ begin
      else PreviewMenuItem.Checked:=False;
 
   MainPageControl.ActivePageIndex := 0;
-  //create empty new frame with default params
-  //BitBtnNewFrameClick(Sender);
 end;
 
 procedure TfrmMain.PreviewMenuItemClick(Sender: TObject);
@@ -537,7 +552,7 @@ end;
 procedure TfrmMain.SaveSpriteLibMenuItemClick(Sender: TObject);
 begin
   if Trim(CurrentLibName) = '' then
-    CurrentLibName := InputBox('Please input new library name', CurrentLibName, 'default');
+    CurrentLibName := InputBox(rsPleaseInputN, CurrentLibName, 'default');
   libpath := SpriteLibPath + DirectorySeparator + CurrentLibName;
 end;
 
@@ -546,7 +561,7 @@ begin
   if KeyValue <> '' then
     if not IsDigits(KeyValue) then
     begin
-      ShowMessage(QuotedStr(KeyName) + ' has non-integer value!');
+      ShowMessage(QuotedStr(KeyName) + rsHasNonIntege);
     end;
 end;
 

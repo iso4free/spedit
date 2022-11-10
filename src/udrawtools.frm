@@ -206,10 +206,10 @@ object frmDrawTools: TfrmDrawTools
     end
     object BgColor: TBGRAGraphicControl
       Tag = 1
-      Left = 115
+      Left = 1
       Height = 50
       Hint = 'Left click to select color'#10'Right click to set transparent color'
-      Top = 1
+      Top = 51
       Width = 50
       Anchors = []
       BorderWidth = 1
@@ -327,10 +327,10 @@ object frmDrawTools: TfrmDrawTools
       Height = 80
       Top = 0
       Width = 130
-      HorzScrollBar.Page = 114
-      VertScrollBar.Page = 64
-      ClientHeight = 64
-      ClientWidth = 114
+      HorzScrollBar.Page = 123
+      VertScrollBar.Page = 73
+      ClientHeight = 73
+      ClientWidth = 123
       TabOrder = 0
       object PaletteGrid: TBCGameGrid
         AnchorSideLeft.Control = ScrollBox5

@@ -1,7 +1,7 @@
 object frmReferense: TfrmReferense
   Left = 256
   Height = 240
-  Hint = 'Click to oprn any referense image'
+  Hint = 'Click to open any referense image'
   Top = 171
   Width = 320
   BorderIcons = [biSystemMenu]

@@ -103,7 +103,7 @@ begin
                 else spclForeColor:=ColorDialog1.Color;
                 Palette.AddColor(ColorDialog1.Color);
                 if Assigned(DrawTool) then DrawTool.Color:=ColorDialog1.Color;
-                frmMain.StatusBar1.Panels[0].Text:='Colors: '+IntToStr(Palette.Count);
+                frmMain.StatusBar1.Panels[0].Text:=rsColors+IntToStr(Palette.Count);
                 PaletteGrid.RenderAndDrawControl;
               end;
     mbRight:begin
@@ -139,7 +139,8 @@ begin
   end
     else (Sender as TBGRAGraphicControl).Bitmap.FillRect(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(cl));
   (Sender as TBGRAGraphicControl).Invalidate;
-  frmMain.StatusBar1.Panels[1].Text:='FG: '+IntToHex(spclForeColor)+' / BG: '+IntToHex(spclBackColor);
+  frmMain.StatusBar1.Panels[1].Text:=rsFG+IntToHex(spclForeColor)+rsBG+
+    IntToHex(spclBackColor);
 end;
 
 procedure TfrmDrawTools.FormClose(Sender: TObject; var CloseAction: TCloseAction

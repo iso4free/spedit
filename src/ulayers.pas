@@ -72,7 +72,7 @@ begin
   //todo: draw headers and layers data
   if aRow<>0 then begin //draw header
     case aCol of
-  0:
+  0:;
     end;
   end;
 
