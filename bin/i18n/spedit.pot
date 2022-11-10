@@ -278,6 +278,6 @@ msgid "Referense"
 msgstr ""
 
 #: tfrmreferense.hint
-msgid "Click to oprn any referense image"
+msgid "Click to open any referense image"
 msgstr ""
 
