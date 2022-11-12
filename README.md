@@ -11,7 +11,7 @@ Welcome to Spedit 4.0, free and open source pixel-art editor and Sprite Library 
 
 INTRODUCTION
 ============
-Program written with CodeTyphon IDE/Free Pascal Compiler.
+Program written with Lazarus IDE/Free Pascal Compiler.
 Simple but (maybe) powerful Sprite Editor and local sprite library for pixel-art based 2D games.
 
 

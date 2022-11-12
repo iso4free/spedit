@@ -31,8 +31,9 @@ unit uglobals;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
-  Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson, BGRABitmap, BGRABitmapTypes, fgl;
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LResources,
+  Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson,
+  BGRABitmap, BGRABitmapTypes, fgl, Forms, LCLTranslator, Translations,LazUTF8;
 
 resourcestring
   rsColors = 'Colors: ';
@@ -43,6 +44,7 @@ resourcestring
   rsImageHasTooM = 'Image has too many colors!';
   rsPleaseInputN = 'Please input new library name';
   rsHasNonIntege = ' has non-integer value!';
+  rsYouNeedToRes = 'You need to restart app to change intarface language!';
 
 
 const
@@ -255,6 +257,7 @@ var
   function ConvertTColorToHTML(aColor: TColor) : String;
   function CheckLayerName(aName : String) : String; //check layer name if exists return aName+'1' on aName if not
 
+  function TranslateLCL : Boolean;
 implementation
 
 procedure LoadSpriteLibDirs;
@@ -323,6 +326,37 @@ begin
        Break;
     end;
   end;
+end;
+
+function TranslateLCL : Boolean;
+var
+  ii: Integer;
+  pofilename : TFileName;
+  POFile: TPOFile;
+  LocalTranslator, LRSTranslator: TUpdateTranslator;
+begin
+  Result:= false;
+  pofilename:=INI.ReadString('INTERFACE','L10n file','');
+  if not FileExists(pofilename) then Exit;
+  {$IFDEF DEBUG}
+   DebugLn('in: TranslateLCL() ', 'pofilename=',pofilename);
+  {$ENDIF}
+  POFile:=TPOFile.Create(pofilename,False);  //if Full=True then you can get a crash (Issue #0026021)
+  try
+    Result:= Translations.TranslateResourceStrings(POFile);
+    if not Result then EXIT;
+
+    LocalTranslator := TPOTranslator.Create(POFile);
+
+    LRSTranslator := LocalTranslator;
+    for ii := 0 to Screen.CustomFormCount-1
+      do LocalTranslator.UpdateTranslation(Screen.CustomForms[ii]);
+    for ii := 0 to Screen.DataModuleCount-1
+      do LocalTranslator.UpdateTranslation(Screen.DataModules[ii]);
+    LRSTranslator:= nil;
+    LocalTranslator.Destroy;
+    //POFile.Destroy; //DONT! Already done in LocalTranslator.Destroy
+  finally end;
 end;
 
 procedure CreateFirstFrameAndLayer;
@@ -792,14 +826,22 @@ begin
 end;
 
 
+function GetAppName : String;
+begin
+  Result := 'spedit';
+end;
+
+
 initialization
 
+ OnGetApplicationName := @GetAppName;
  // get app settings path and file
  UserSettingsPath:=GetAppConfigDir(false);
  AppSettingsFile:=GetAppConfigFile(false);
- SpriteLibPath:=UserSettingsPath+'spritelib';
+ SpriteLibPath:=GetUserDir+DirectorySeparator+'spedit 4 spritelib';
 
  INI:= TIniFile.Create(AppSettingsFile,[]);
+
 
  //load sprite library names from spedit usersettings path
  //Every library stored in own directory

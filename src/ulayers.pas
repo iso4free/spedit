@@ -29,9 +29,9 @@ unit ulayers;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase, BGRAImageList,{$ENDIF}
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} BGRAImageList, LResources,
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls, Grids, Types;
+  StdCtrls, Grids, Types, LCLTranslator;
 
 type
 
@@ -62,7 +62,7 @@ var
 implementation
 
 uses uglobals, umain;
-{$R *.frm}
+{$R *.lfm}
 
 { TfrmLayers }
 

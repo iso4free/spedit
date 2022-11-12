@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="12"/>
+    <BuildModes Active="Debug"/>
+    <Units>
+      <Unit>
+        <Filename Value="spedit.lpr"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="39"/>
+        <CursorPos X="84" Y="49"/>
+        <UsageCount Value="201"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="umain.pas"/>
+        <FRMtype Value="200"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="28"/>
+        <CursorPos X="51" Y="32"/>
+        <UsageCount Value="201"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="udraw.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="12"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="22"/>
+        <CursorPos X="51" Y="32"/>
+        <UsageCount Value="169"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="udrawtools.pas"/>
+        <FRMtype Value="200"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmDrawTools"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="5"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="7"/>
+        <CursorPos X="78" Y="24"/>
+        <UsageCount Value="108"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ulayers.pas"/>
+        <FRMtype Value="200"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmLayers"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="13"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="19"/>
+        <CursorPos X="66" Y="32"/>
+        <UsageCount Value="79"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="upreview.pas"/>
+        <FRMtype Value="200"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrmPreview"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="25"/>
+        <CursorPos X="51" Y="32"/>
+        <UsageCount Value="79"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ureferense.pas"/>
+        <FRMtype Value="200"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmReferense"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="25"/>
+        <CursorPos X="51" Y="32"/>
+        <UsageCount Value="75"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uframes.pas"/>
+        <FRMtype Value="200"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmFrames"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="19"/>
+        <CursorPos X="51" Y="32"/>
+        <UsageCount Value="67"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uframedlg.pas"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmFrameDlg"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="6"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="6"/>
+        <CursorPos X="78" Y="24"/>
+        <UsageCount Value="42"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uglobals.pas"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="8"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="829"/>
+        <CursorPos X="51" Y="34"/>
+        <UsageCount Value="100"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/colorbox.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="ColorBox"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="156"/>
+        <CursorPos X="3" Y="165"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/stdctrls.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="StdCtrls"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="535"/>
+        <CursorPos X="3" Y="537"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/BaseUtils/laztracer.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="LazTracer"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="40"/>
+        <CursorPos Y="50"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/bgracontrols/source/bcgamegrid.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="BCGameGrid"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="65"/>
+        <CursorPos X="3" Y="68"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/typshrdh.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="60"/>
+        <CursorPos X="3" Y="62"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/bgrabitmappack/source/bgrapixel.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="174"/>
+        <CursorPos X="5" Y="174"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uabout.pas"/>
+        <FRMtype Value="0"/>
+        <ComponentName Value="frmAbout"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="7"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="49"/>
+        <CursorPos X="51" Y="33"/>
+        <UsageCount Value="60"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/controls.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="Controls"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="184"/>
+        <CursorPos X="44" Y="197"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/graphics.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="Graphics"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="165"/>
+        <CursorPos X="3" Y="183"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/picture.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="614"/>
+        <CursorPos X="3" Y="619"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/sysutils/sysutilh.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="33"/>
+        <CursorPos X="24" Y="41"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/sysutils/sysutils.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="154"/>
+        <CursorPos X="9" Y="158"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/heaph.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="89"/>
+        <CursorPos X="24" Y="100"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/systemh.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="398"/>
+        <CursorPos X="3" Y="407"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/bgracontrols/source/bgraimagemanipulation.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="BGRAImageManipulation"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="186"/>
+        <CursorPos X="22" Y="186"/>
+        <UsageCount Value="1"/>
+      </Unit>
+      <Unit>
+        <Filename Value="utimeline.pas"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="20"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/valedit.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="ValEdit"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="185"/>
+        <CursorPos X="3" Y="120"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/sysutils/sysstrh.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="104"/>
+        <CursorPos X="10" Y="115"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgracontrols/source/bgraimagemanipulation.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="BGRAImageManipulation"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1840"/>
+        <CursorPos X="29" Y="1852"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgrabitmappack/source/bgralclbitmap.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="BGRALCLBitmap"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="432"/>
+        <CursorPos Y="446"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/BaseUtils/graphtype.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="GraphType"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="31"/>
+        <CursorPos X="3" Y="42"/>
+        <UsageCount Value="2"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/packages/fcl-image/src/fpcanvas.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="FPCanvas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="101"/>
+        <CursorPos X="17" Y="113"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uabout.frm"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="43"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="FRM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgracontrols/source/bgragraphiccontrol.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="BGRAGraphicControl"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="216"/>
+        <CursorPos X="3" Y="217"/>
+        <UsageCount Value="4"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/winapih.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="105"/>
+        <CursorPos X="19" Y="116"/>
+        <UsageCount Value="2"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/winapi.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="337"/>
+        <CursorPos X="3" Y="350"/>
+        <UsageCount Value="2"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/classes/classesh.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="94"/>
+        <CursorPos X="3" Y="101"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/packages/rtl-objpas/src/inc/system.uitypes.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="System.UITypes"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="5" Y="22"/>
+        <UsageCount Value="2"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgracontrols/source/bcgamegrid.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="BCGameGrid"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="24"/>
+        <CursorPos X="5" Y="35"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uselsprlib.pas"/>
+        <FRMtype Value="0"/>
+        <ComponentName Value="frmSelectSpriteLib"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="7"/>
+        <CursorPos X="78" Y="24"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgrabitmappack/source/bgrabitmap.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="BGRABitmap"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="172"/>
+        <CursorPos X="5" Y="162"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/pl_BGRAshapes/source/TBGRAShapesUnit.pas"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="42"/>
+        <CursorPos X="15" Y="52"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/canvas.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="40"/>
+        <CursorPos X="3" Y="45"/>
+        <UsageCount Value="4"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/mbcolorliblaz/source/TplColorPaletteUnit.pas"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="16"/>
+        <CursorPos X="3" Y="58"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/packages/fcl-image/src/fpimage.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="FPImage"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="53"/>
+        <CursorPos X="3" Y="71"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgrabitmappack/source/bgradefaultbitmap.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="BGRADefaultBitmap"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="163"/>
+        <CursorPos X="14" Y="171"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/heap.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="322"/>
+        <CursorPos X="10" Y="334"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/objpash.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="211"/>
+        <CursorPos X="21" Y="217"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/objpas.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="323"/>
+        <CursorPos X="12" Y="334"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/graphiccontrol.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="86"/>
+        <CursorPos X="3" Y="95"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/control.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2300"/>
+        <CursorPos Y="2318"/>
+        <UsageCount Value="4"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgrabitmappack/source/geometrytypes.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="3" Y="11"/>
+        <UsageCount Value="4"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgrabitmappack/source/bgraclasses.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="BGRAClasses"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="33"/>
+        <CursorPos X="3" Y="44"/>
+        <UsageCount Value="4"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/objpas.pp"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="24"/>
+        <CursorPos X="8" Y="35"/>
+        <UsageCount Value="4"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/typshrd.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="117"/>
+        <CursorPos X="2" Y="119"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/types.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="Types"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="340"/>
+        <CursorPos X="10" Y="351"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgrabitmappack/source/bgragtkbitmap.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="BGRAGtkBitmap"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="22"/>
+        <CursorPos X="15" Y="37"/>
+        <UsageCount Value="4"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgrabitmappack/source/unibitmap.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1722"/>
+        <CursorPos Y="1732"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/custompage.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="219"/>
+        <CursorPos Y="234"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/lcltype.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="LCLType"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1659"/>
+        <CursorPos X="3" Y="1668"/>
+        <UsageCount Value="4"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/wincontrol.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="7214"/>
+        <CursorPos Y="7230"/>
+        <UsageCount Value="4"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgrabitmappack/source/bgrapixel.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="592"/>
+        <CursorPos Y="611"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/fgl.pp"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1752"/>
+        <CursorPos Y="1760"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/customnotebook.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="778"/>
+        <CursorPos Y="793"/>
+        <UsageCount Value="4"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgrabitmappack/source/bgracanvas2d.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="BGRACanvas2D"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="96"/>
+        <CursorPos X="3" Y="96"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgrabitmappack/source/bgracustombitmap.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="40"/>
+        <CursorPos X="43" Y="45"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgrabitmappack/source/bgrabitmaptypes.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="BGRABitmapTypes"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="477"/>
+        <CursorPos X="3" Y="477"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/eccontrols/source/ecaccordion.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="ECAccordion"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="umain.frm"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="6"/>
+        <DefaultSyntaxHighlighter Value="FRM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ustuff.pas"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/packages/fcl-image/src/fppen.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="3" Y="24"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/packages_pl/bgrabitmappack/source/unibitmapgeneric.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="576"/>
+        <CursorPos X="3" Y="583"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/grids.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="Grids"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="127"/>
+        <CursorPos X="3" Y="136"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/components/BaseUtils/translations.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="Translations"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="625"/>
+        <CursorPos Y="635"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/sysutils/osutilsh.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="9"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="35"/>
+        <CursorPos X="10" Y="44"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/sysutils/osutil.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="11"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="98"/>
+        <CursorPos X="10" Y="107"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/unix/sysutils.pp"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="10"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1705"/>
+        <CursorPos X="3" Y="1708"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+    </Units>
+    <OtherDefines Count="1">
+      <Define0 Value="DEBUG"/>
+    </OtherDefines>
+    <JumpHistory HistoryIndex="25">
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="333" Column="11" TopLine="328"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="339" Column="13" TopLine="328"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="335" Column="26" TopLine="331"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="343" TopLine="343"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="331" Column="15" TopLine="323"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="260" Column="25" TopLine="260"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="331" TopLine="322"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="260" Column="35" TopLine="254"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="333" TopLine="325"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="36" Column="51" TopLine="34"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="347" Column="10" TopLine="330"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="260" Column="18" TopLine="253"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="344" Column="63" TopLine="333"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="836" Column="31" TopLine="834"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="833" Column="26" TopLine="828"/>
+      </Position>
+      <Position>
+        <Filename Value="uabout.pas"/>
+        <Caret Line="35" Column="38" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.lpr"/>
+        <Caret Line="47" Column="5" TopLine="32"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.lpr"/>
+        <Caret Line="35" Column="31" TopLine="33"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="34" Column="51" TopLine="829"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/sysutils/osutilsh.inc"/>
+        <Caret Line="44" Column="10" TopLine="35"/>
+      </Position>
+      <Position>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/unix/sysutils.pp"/>
+        <Caret Line="1708" Column="3" TopLine="1705"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.lpr"/>
+        <Caret Line="48" Column="70" TopLine="33"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.lpr"/>
+        <Caret Line="49" Column="71" TopLine="39"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.lpr"/>
+        <Caret Line="53" Column="16" TopLine="39"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.lpr"/>
+        <Caret Line="42" Column="98" TopLine="39"/>
+      </Position>
+      <Position>
+        <Filename Value="spedit.lpr"/>
+        <Caret Line="49" Column="83" TopLine="39"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode="default">
+        <Mode Name="default">
+          <local>
+            <CommandLineParams Value="--debug-log=spedit.log"/>
+          </local>
+        </Mode>
+      </Modes>
+    </RunParams>
+    <HistoryLists>
+      <List Name="LaunchingApplication" Type="File" Count="6">
+        <Item1 Value="/usr/bin/xterm -T &apos;Typhon Run Output&apos; -e $(TargetCmdLine)"/>
+        <Item2 Value="${CmdExe} ${TargetCmdLine}"/>
+        <Item3 Value="&quot;$(Pas2JSBrowser)&quot; &quot;$(Pas2JSProjectURL)&quot;"/>
+        <Item4 Value="/usr/bin/gnome-terminal -t &apos;Typhon Run Output&apos; -e &apos;$(TargetCmdLine)&apos;"/>
+        <Item5 Value="/usr/bin/konsole -T &apos;Typhon Run Output&apos; -e $(TargetCmdLine)"/>
+        <Item6 Value="$(Pas2JSBrowser) &quot;$(Pas2JSProjectURL)&quot;"/>
+      </List>
+      <List Name="CommandLineParameters" Count="1">
+        <Item1 Value="--debug-log=spedit.log"/>
+      </List>
+    </HistoryLists>
+  </ProjectSession>
+</CONFIG>

@@ -95,4 +95,7 @@ DEV.LOG
 
 12.11.2022
 =
-- [+] Added Brazilian-Portuguese
+- [+] Added Brazilian-Portuguese translation
+- [+] Added Ukrainian translation
+- [*] Fixed some typos in docs
+- [*] Migrated whole projet to Lazarus

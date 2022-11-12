@@ -29,10 +29,10 @@ unit udrawtools;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LResources,
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
   StdCtrls, ComCtrls, BGRAGraphicControl, BCGameGrid, uglobals, udraw,
-  Types, BGRABitmap, BGRABitmapTypes;
+  Types, BGRABitmap, BGRABitmapTypes, LCLTranslator;
 
 type
 
@@ -79,7 +79,7 @@ var
 
 implementation
  uses umain;
- {$R *.frm}
+ {$R *.lfm}
 
  { TfrmDrawTools }
 

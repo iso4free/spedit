@@ -29,8 +29,8 @@ unit upreview;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls;
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LResources,
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, LCLTranslator;
 
 type
 
@@ -53,7 +53,7 @@ var
 
 implementation
  uses uglobals;
-{$R *.frm}
+{$R *.lfm}
 
  { TFrmPreview }
 

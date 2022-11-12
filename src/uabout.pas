@@ -30,9 +30,9 @@ unit uabout;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LResources,
   SysUtils, Forms, Graphics, ExtCtrls, StdCtrls, BGRASpriteAnimation,
-  BGRALabelFX, Classes;
+  Classes, LCLTranslator;
 
 type
 
@@ -40,12 +40,12 @@ type
 
   TfrmAbout = class(TForm)
     BGRASpriteAnimation1: TBGRASpriteAnimation;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
     SkyImage: TImage;
     BgImage : TImage;
-    Label1: TBGRALabelFX;
     ShowSplashCheckBox: TCheckBox;
-    Label2: TBGRALabelFX;
-    Label3: TBGRALabelFX;
     Timer1: TTimer;
     Timer2: TTimer;
     procedure FormActivate(Sender: TObject);
@@ -69,7 +69,7 @@ var
 
 implementation
 
-{$R *.frm}
+{$R *.lfm}
 
 uses uglobals;
 

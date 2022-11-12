@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spedit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-11-10 23:30+0200\n"
+"PO-Revision-Date: 2022-11-12 23:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -198,6 +198,14 @@ msgstr "Фрейми"
 msgid "Help"
 msgstr "Довідка"
 
+#: tfrmmain.languagemenuitem.caption
+msgid "Language"
+msgstr "Мова"
+
+#: tfrmmain.languagemenuitem.hint
+msgid "Change interface language (need restart)"
+msgstr "Змінити мову інтерфейсу (потрібен перезапуск)"
+
 #: tfrmmain.layerstoolvisiblemenuitem.caption
 msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
 msgid "Layers"
@@ -274,6 +282,10 @@ msgstr ""
 #: tfrmmain.viewmenuitem.caption
 msgid "View"
 msgstr "Вид"
+
+#: tfrmmain.viewsettingsmenuitem.caption
+msgid "Settings"
+msgstr "Налаштування"
 
 #: tfrmmain.viewzoominmenuitem.caption
 msgid "Zoom++"

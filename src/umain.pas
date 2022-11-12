@@ -29,7 +29,7 @@ unit umain;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LResources,
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
   Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit,
   BGRAImageList, BGRAImageManipulation, BGRABitmapTypes, BGRABitmap,
@@ -44,6 +44,8 @@ type
     Button2: TButton;
     Button3: TButton;
     DrawToolsFlowPanel: TFlowPanel;
+    opndlgLocalization: TOpenDialog;
+    ViewSettingsMenuItem: TMenuItem;
     Separator2: TMenuItem;
     LanguageMenuItem: TMenuItem;
     ReferenseImageMenuItem: TMenuItem;
@@ -131,6 +133,7 @@ type
     procedure ReferenseImageMenuItemClick(Sender: TObject);
     procedure SaveSpriteLibMenuItemClick(Sender: TObject);
     procedure SrcImageFramesOptsValueListEditorValidate(Sender: TObject; ACol, ARow: longint; const KeyName, KeyValue: string);
+    procedure ViewSettingsMenuItemClick(Sender: TObject);
     procedure ViewZoomInMenuItemClick(Sender: TObject);
     procedure ViewZoomOutMenuItemClick(Sender: TObject);
     procedure ViewZoomResetMenuItemClick(Sender: TObject);
@@ -146,9 +149,10 @@ var
 
 implementation
 
-uses uabout, uframedlg, udrawtools, ulayers, uframes, upreview, ureferense, udraw;
+uses uabout, uframedlg, udrawtools, ulayers, uframes, upreview,
+  ureferense, udraw;
 
-{$R *.frm}
+{$R *.lfm}
 
 { TfrmMain }
 
@@ -319,7 +323,11 @@ end;
 procedure TfrmMain.LanguageMenuItemClick(Sender: TObject);
 begin
   //todo: show lang dlg
- SetDefaultLang('uk_UA');
+  opndlgLocalization.InitialDir:=INI.ReadString('INTERFACE','LOCALES','');
+  if opndlgLocalization.Execute then begin
+    INI.WriteString('INTERFACE','L10n file',opndlgLocalization.FileName);
+    ShowMessage(rsYouNeedToRes);
+  end;
 end;
 
 procedure TfrmMain.LayersToolVisibleMenuItemClick(Sender: TObject);
@@ -563,6 +571,11 @@ begin
     begin
       ShowMessage(QuotedStr(KeyName) + rsHasNonIntege);
     end;
+end;
+
+procedure TfrmMain.ViewSettingsMenuItemClick(Sender: TObject);
+begin
+
 end;
 
 procedure TfrmMain.ViewZoomInMenuItemClick(Sender: TObject);

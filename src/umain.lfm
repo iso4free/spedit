@@ -99,8 +99,8 @@ object frmMain: TfrmMain
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 398
-      ClientWidth = 551
+      ClientHeight = 429
+      ClientWidth = 553
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
@@ -112,16 +112,16 @@ object frmMain: TfrmMain
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 398
-      ClientWidth = 551
+      ClientHeight = 429
+      ClientWidth = 553
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
         Width = 551
         Align = alTop
-        ClientHeight = 50
-        ClientWidth = 551
+        ClientHeight = 46
+        ClientWidth = 547
         TabOrder = 0
         object StaticText1: TStaticText
           Left = 344
@@ -234,6 +234,10 @@ object frmMain: TfrmMain
     end
     object EditMenuItem: TMenuItem
       Caption = 'Edit'
+      object ViewSettingsMenuItem: TMenuItem
+        Caption = 'Settings'
+        OnClick = ViewSettingsMenuItemClick
+      end
     end
     object ViewMenuItem: TMenuItem
       Caption = 'View'
@@ -289,6 +293,7 @@ object frmMain: TfrmMain
       end
       object LanguageMenuItem: TMenuItem
         Caption = 'Language'
+        Hint = 'Change interface language (need restart)'
         OnClick = LanguageMenuItemClick
       end
     end
@@ -1139,5 +1144,11 @@ object frmMain: TfrmMain
     FileName = 'default'
     Left = 344
     Top = 276
+  end
+  object opndlgLocalization: TOpenDialog
+    DefaultExt = '.po'
+    Filter = 'Interface translations|*.po; *.PO|All files|*.*'
+    Left = 160
+    Top = 39
   end
 end

@@ -3,6 +3,9 @@
   <ProjectOptions>
     <Version Value="12"/>
     <General>
+      <Flags>
+        <AlwaysBuild Value="True"/>
+      </Flags>
       <SessionStorage Value="InProjectDir"/>
       <Title Value="spedit"/>
       <Scaled Value="True"/>
@@ -15,7 +18,7 @@
     </General>
     <i18n>
       <EnableI18N Value="True"/>
-      <OutDir Value="../bin/i18n"/>
+      <OutDir Value="../bin/language"/>
     </i18n>
     <BuildModes>
       <Item Name="Default" Default="True"/>
@@ -170,15 +173,15 @@
     </RunParams>
     <RequiredPackages>
       <Item>
-        <PackageName Value="pl_BGRAcontrols"/>
+        <PackageName Value="bgracontrols"/>
       </Item>
       <Item>
-        <PackageName Value="adLCL"/>
+        <PackageName Value="LCL"/>
       </Item>
     </RequiredPackages>
     <Units>
       <Unit>
-        <Filename Value="spedit.ppr"/>
+        <Filename Value="spedit.lpr"/>
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
       </Unit>

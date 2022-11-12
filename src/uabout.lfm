@@ -1,7 +1,7 @@
 object frmAbout: TfrmAbout
-  Left = 556
+  Left = 555
   Height = 350
-  Top = 340
+  Top = 341
   Width = 640
   AlphaBlend = True
   BorderIcons = []
@@ -21,7 +21,7 @@ object frmAbout: TfrmAbout
   ParentDoubleBuffered = False
   Position = poScreenCenter
   ShowInTaskBar = stNever
-  LCLVersion = '7.7'
+  LCLVersion = '7.9'
   object SkyImage: TImage
     Left = 0
     Height = 350
@@ -32,68 +32,15 @@ object frmAbout: TfrmAbout
     OnClick = FormClick
     Proportional = True
   end
-  object Label2: TBGRALabelFX
-    AnchorSideLeft.Control = SkyImage
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideTop.Side = asrBottom
-    AnchorSideBottom.Control = Label3
-    Left = 23
-    Height = 29
-    Top = 210
-    Width = 594
-    AutoSize = True
-    Caption = 'Free and Open source Sprite Editor V.4.0'
-    Font.Color = clLime
-    Font.Height = 18
-    Font.Name = '04b'
-    Outline.Alpha = 255
-    Outline.Color = clWhite
-    Outline.OffsetX = 0
-    Outline.OffsetY = 0
-    Outline.Visible = True
-    Shadow.Alpha = 255
-    Shadow.Color = clBlack
-    Shadow.OffsetX = 0
-    Shadow.OffsetY = 0
-    Shadow.Visible = True
-    Shadow.Radius = 5
-  end
-  object Label3: TBGRALabelFX
-    AnchorSideLeft.Control = SkyImage
-    AnchorSideLeft.Side = asrCenter
-    AnchorSideTop.Control = Label2
-    AnchorSideTop.Side = asrBottom
-    AnchorSideBottom.Control = Owner
-    Left = 118
-    Height = 23
-    Top = 239
-    Width = 404
-    AutoSize = True
-    Caption = 'Created by (c) Vadim Vitomsky, 2000-2022'
-    Font.Color = clRed
-    Font.Height = 12
-    Font.Name = '04b'
-    Outline.Alpha = 255
-    Outline.Color = clWhite
-    Outline.OffsetX = 0
-    Outline.OffsetY = 0
-    Outline.Visible = True
-    Shadow.Alpha = 255
-    Shadow.Color = clBlack
-    Shadow.OffsetX = 0
-    Shadow.OffsetY = 0
-    Shadow.Visible = True
-    Shadow.Radius = 5
-  end
   object ShowSplashCheckBox: TCheckBox
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 511
+    Left = 504
     Height = 22
     Top = 318
-    Width = 119
+    Width = 126
     Alignment = taLeftJustify
     Anchors = [akRight, akBottom]
     BidiMode = bdRightToLeft
@@ -112,7 +59,6 @@ object frmAbout: TfrmAbout
   object BGRASpriteAnimation1: TBGRASpriteAnimation
     AnchorSideLeft.Control = Owner
     AnchorSideLeft.Side = asrCenter
-    AnchorSideBottom.Control = Label1
     AnchorSideBottom.Side = asrBottom
     Left = 256
     Height = 128
@@ -2190,31 +2136,49 @@ object frmAbout: TfrmAbout
     Anchors = [akLeft, akBottom]
     Color = clNone
   end
-  object Label1: TBGRALabelFX
+  object Label1: TLabel
     AnchorSideLeft.Control = Owner
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Owner
     AnchorSideTop.Side = asrCenter
-    Left = 283
-    Height = 24
-    Top = 163
-    Width = 74
-    AutoSize = True
+    Left = 288
+    Height = 14
+    Top = 168
+    Width = 64
     Caption = 'SPEdit'
     Font.Color = clYellow
     Font.Height = -13
     Font.Name = '04b'
-    Outline.Alpha = 255
-    Outline.Color = clWhite
-    Outline.OffsetX = 0
-    Outline.OffsetY = 0
-    Outline.Visible = True
-    Shadow.Alpha = 255
-    Shadow.Color = clBlack
-    Shadow.OffsetX = 0
-    Shadow.OffsetY = 0
-    Shadow.Visible = True
-    Shadow.Radius = 5
+    ParentFont = False
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Control = SkyImage
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Side = asrBottom
+    Left = 28
+    Height = 19
+    Top = 210
+    Width = 584
+    Caption = 'Free and Open source Sprite Editor V.4.0'
+    Font.Color = clLime
+    Font.Height = 18
+    Font.Name = '04b'
+    ParentFont = False
+  end
+  object Label3: TLabel
+    AnchorSideLeft.Control = SkyImage
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    Left = 123
+    Height = 13
+    Top = 239
+    Width = 394
+    Caption = 'Created by (c) Vadim Vitomsky, 2000-2022'
+    Font.Color = clRed
+    Font.Height = 12
+    Font.Name = '04b'
+    ParentFont = False
   end
   object Timer1: TTimer
     Enabled = False
