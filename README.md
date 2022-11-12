@@ -1,3 +1,8 @@
+THIS DOCUMENT IN OTHER LANGUAGES
+================================
+![Українська](/doc/README%20uk_UA.md)
+![Brazilian Portuguese](/doc/README%20%20pt-BR.md)
+
 WELCOME
 =======
 Welcome to Spedit 4.0, free and open source pixel-art editor and Sprite Library Manager for Windows/Linux (maybe MacOS X too - can't test it because i haven't Mac)
@@ -86,7 +91,7 @@ Share and enjoy!
    Vadim Vitomsky
    iso4free@gmail.com
 
-Feel free to contact me if you have commercial compression requirements or interesting job offers.
+Feel free to contact me if you have commercial offers or interesting job offers.
 
 HISTORY
 =======
@@ -108,14 +113,14 @@ According to his capabilities, he could very little - edit a fragment of the mai
 enlarged form. Only 16 colors were used in the palette. A custom file format was used to store the sprites.
  When starting, you had to enter the name of the file to be edited in the command line, after that a splash screen
  appeared with the name of the program on the background of the starry sky. After pressing any key, the user
- interface appeared. It was ugly and useless but working! For now, unfortunately, source code was lost.
+ interface appeared. It was ugly and impractical but working! For now, unfortunately, source code was lost.
 
- Nex version was made a year after. Differense with previous version was PCX file format support.
+ Next version 2.0 was made a year after. Differense with previous version was PCX file format support.
  It was still useless. Sources and executable can be found in 'archive/spedit 2.0' directory.
 
  Two years later I tried to port SPEDit from Turbo Pascal to Free Pascal Compiler and compile for Windows.
  There was some changes in UI and support 256 colors palette but no mouse support.
- Interface language was changed from Russian to English. So it still was useless.
+ Interface language was changed from Russian to English. So it still was impractical.
  Sources also avaliasble in the 'archive/spedit 3.0' directory.
 
 ![SPEDit v.3.0 UI](doc/spedit3.png)
@@ -125,107 +130,15 @@ This version get number 4.
 
 ![SPEDit v.2.0 FPC edition](doc/spedit2-fp_logo.png)
 
-But I was curious to port old Turbo Pascal code and run it on modern Lunux and Windows and decide try to do it.
+But I was curious to port old Turbo Pascal code and run it on modern Linux and Windows and decide try to do it.
 To my surprise it not was hard - i just replace units CRT and GRAPH with ptccrt and ptcgraph and also make some minor code changes.
 Voila! Now it compiled and run! So now you can run the native version under your operating system and try to draw pixel art using only the keyboard and 16 colors, just like the DOS days.
 I created simple sprite format (text-based) in ported version, You can explore old Spedit sources for description.
 
 ![SPEDit v.2.0 FPC edition in work](doc/spedit2-worked.png)
 
-Of course there is old and ugly code but it works! And it was my first serious application i made. So don't judge me too harshly, I was just learning the basics of programming at the time.
-But if You run this old SPEdit remember that You MUST specify sprite file name in the command line (with any extension or without)
+Sure, it's old and ugly code, but it works! And this was my first serious program. So don't judge me harshly, I was just learning the basics of programming at the time. But if you run this old SPEdit, remember that you MUST specify the sprite file name on the command line (with or without any extension). If it is not specified, the file name "test.spr" will be used by default.
 
 DEV.LOG
 =======
-
-#Description
-- [*] Some changes
-- [!] Some error or bugs fixes
-- [+] Added something new
-- [-] Removed unused features
-
-2000-2001
-=
-- [+] Firs version for MSD-DOS (sources was lost)
-
-2002
-=
-- [+] Second version with PCX file format support (in archive)
-
-2004
-=
-- [+] Third version - ported to FPC for Windows, used 256 colors palette (in archive)
-
-16.04.2021
-=
-- [*] Completly redesigned work process
-
-- [+] Implemented Local Sprite Library to store imported images in PNG format separated by categories
-
-26.04.2022
-=
-
-- [+] On tab 'Source Image' added work with frames (frames list, frame properties, deleting selected frames)
-
-07.05.2022
-=
-- [*] Changed 'About' splash screen (optimized drawing, replaced animation)
-
-22.05.2022
-=
-- [+] Implemented palette and colors selection
-
-08.06.2022
-=
-- [+] Added interface to layers work
-- [!] Fixed grid drawing bug
-- [*] Changed preview (centered and with checkers as transparent BG)
-- [*] Some other minor changes
-
-09.06.2022
-=
-- [*] Some interface changes (Draw tools now has properties)
-- [+] Started try draw (not work well now - needs to be fixed)
-
-25.10.2022
-=
-- [*] A lot of changes for all the time (12.10-25.10):
-- [+] Implemented cell highlitning while mouse moves over grid
-- [+] Added arrow keys to move cell cursor
-- [+] Added basic layer class and frame class
-- [+] Added layers/frames mapped lists
-- [!] Fixed memory leak
-- [+] Added Export frame to PNG
-- [!] Fixed cursor control by key
-- [+] Added drawing by secondary color (Enter key), deleting pixel by Del key
-
-27.10.2022
-=
-- [*] Created separate windows for preview, referense, layers
-- [*] Code refactoring and optimization
-- [*] Get rid of some unneedful components
-- [*] Some changes in project organization
-- [*] Updated this file
-
-28.10.2022
-=
-- [+] Added template window for frames
-- [*] Some minor fixes and changes
-
-31.10.2022
-=
-- [+] Added pen size change
-- [+] Added line draw tool
-- [+] Added mouse draw (pen tool)
-- [*] Changed logging through LazLogger instead of console WriteLN
-- [!] Fixed transparent background while mouse draw
-
-02.11.2022
-=
-- [*] Changed internal drawing tools work but app crush when close
-- [+] Added template for Erase tool
-
-04.11.2022
-=
-- [+] Added New frame dialog
-- [!] Fixed memory leak
+![dev.log](/doc/devlog.md)
