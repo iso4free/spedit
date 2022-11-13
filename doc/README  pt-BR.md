@@ -142,4 +142,4 @@ Mas se você for rodar o SPEdit antigo lembre-se de que você DEVE especificar o
 
 REGISTRO DE DESENVOLVIMENTO
 =======
-![Registro de Desenvolvimento](/doc/devlog pt-BR.md)
+![Registro de Desenvolvimento](/doc/devlog_pt-BR.md)
