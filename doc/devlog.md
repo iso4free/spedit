@@ -100,3 +100,7 @@ DEV.LOG
 - [*] Fixed some typos in docs
 - [*] Migrated whole projet to Lazarus
 - [+] Added autoload current locale when translation file exists 
+
+13.11.2022
+=
+- [+] Added manual locale selection from file and save selected locale in settings

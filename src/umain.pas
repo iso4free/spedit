@@ -322,15 +322,11 @@ end;
 
 procedure TfrmMain.LanguageMenuItemClick(Sender: TObject);
 begin
- ShowMessage('Sorry, dynamic language change willl be implemented soon');
- Exit;
- //todo: show lang dlg
   opndlgLocalization.InitialDir:=INI.ReadString('INTERFACE','LOCALES','');
   if opndlgLocalization.Execute then begin
     INI.WriteString('INTERFACE','LOCALES',ExtractFilePath(opndlgLocalization.FileName));
     INI.WriteString('INTERFACE','L10n file',opndlgLocalization.FileName);
-    Translations.TranslateResourceStrings(opndlgLocalization.FileName);
-    ShowMessage(rsYouNeedToRes);
+    INI.WriteString('INTERFACE','LANGUAGE',DetectPOLanguage(opndlgLocalization.FileName));
   end;
 end;
 
@@ -492,6 +488,7 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  DetectPOLanguage(INI.ReadString('INTERFACE','L10n file',''));
   //if checked create and  show  splashscreen
    if INI.ReadBool('INTERFACE', 'SHOWSPLASH', true) then begin
      frmAbout:= TfrmAbout.Create(Application);

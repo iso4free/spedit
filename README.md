@@ -1,7 +1,8 @@
 THIS DOCUMENT IN OTHER LANGUAGES
 ================================
-![Українська](/doc/README%20uk_UA.md)
-![Brazilian Portuguese](/doc/README%20%20pt-BR.md)
+[Українська](/doc/README%20uk.md)
+
+[Brazilian Portuguese](/doc/README%20%20pt-BR.md)
 
 WELCOME
 =======
@@ -20,7 +21,11 @@ WORK PROGRESS
 Still development, new features will be added when i have enought time and motivation.
 You can sponsor me throught https://www.buymeacoffee.com/iso4free if You wanna get some features done faster.
 
-If you want to see SPEdit localized to your language, you can contribute to the translation at https://crwd.in/spedit
+LOCALIZATION
+============
+SPEdit support interface localixzation to different languages.Translation files has standard po file format (Portable Object) and must be named like spedit.xx.po or spedit.xx_XX.po, where xx or xx_XX - common language code (i.e. spedit.pt_BR.po for Brazilian Portuguese). After locale file selection localization starts immediatly without restart and will be applied automatically after next run. 
+
+If you want to see SPEdit localized to your language, you can contribute to the translation [here](https://crwd.in/spedit).
 
 ![main window screenshot](doc/spedit.png)
 
@@ -68,12 +73,12 @@ In future will be avaliable:
 - export in own JSON file format
 - manage local sprite library with some useful search by hashtags
 - other features that will be needed
-- interface localization to other languages
+- interface localization to other languages (done)
 
 TROUBLESHOOTING
 ===============
-- [ ] In Windows keys won't work. Will be fixed soon.
-- [ ] In Windows works very slow
+- [x] In Windows keys won't work. Will be fixed soon.
+- [x] In Windows works very slow
 
 COPYRIGHT
 =========

@@ -2,7 +2,7 @@ BOAS-VINDAS
 =======
 Boas-vindas ao Spedit 4.0, um Editor de Pixel Art e Gerenciador de Biblioteca de Sprites gratuíto e de código aberto para Windows/Linux (talvez MacOS X também - não disponho de um Mac para teste)
 
-![about screenshot](doc/about.png)
+![about screenshot](about.png)
 
 INTRODUÇÃO
 ============
@@ -15,7 +15,7 @@ TRABALHO EM PROGRESSO
 Continua em desenvolvimento, novos recursos seão adicionados quando eu tiver tempo e motivação suficiente.
 Você pode me patrocinar através do https://www.buymeacoffee.com/iso4free se quiser que alguns recursos sejam priorizados.
 
-![main window screenshot](doc/spedit.png)
+![main window screenshot](spedit.png)
 
 BREVE DOCUMENTAÇÃO
 ===================
@@ -89,14 +89,14 @@ Sinta-se a vontade para entrar em contato comigo se tiver requisitos de compacta
 
 HISTÓRIA
 =======
-![SPEDit v.2.0 splash screen](doc/spedit2_logo.png)
+![SPEDit v.2.0 splash screen](spedit2_logo.png)
 
 
 No início dos anos 2000, quando eu acabava de dar meus primeiros passos na programação com Turbo Pascal, eu queria fazer jogos.
 Nessa época eu não tinha acesso à Internet, nem sequer tinha um PC!
 Mas eu queria me tornar um programador profissional e continuei estudando programação de um livro.
 
-![SPEDit v.2.0 UI](doc/spedit2-ui.png)
+![SPEDit v.2.0 UI](spedit2-ui.png)
 
 Todos os jogos usam algum tipo de imagem e eu decidi fazer meu proprio editor de imagens a princípio 'por diversão' e praticar programação.
 Primeiro eu pensei em qual funcionalidade eu poderia implementar baseado no conhecimento que eu tinha na época.
@@ -117,19 +117,19 @@ forma ampliada. Só 16 cores eram usadas na paleta. Um formato customizado foi u
  O idioma da interface foi alterado do Russo para o Inglês. E ainda era inútil.
  O código tambem está disponível do diretório 'archive/spedit 3.0'.
 
-![SPEDit v.3.0 UI](doc/spedit3.png)
+![SPEDit v.3.0 UI](spedit3.png)
 
 Daqui eu decidi criar uma versão nova do SPEDit do zero usando CodeTyphon IDE com muitas funcionalidades.
 Essa versão recebe o número 4.
 
-![SPEDit v.2.0 FPC edition](doc/spedit2-fp_logo.png)
+![SPEDit v.2.0 FPC edition](spedit2-fp_logo.png)
 
 Mas eu estava curioso para portar o antigo código Turbo Pascal e rodá-lo no Linux e Windows modernos e decidi portá-lo.
 Para a minha surpresa não foi difícil - só substituí as unidades CRT e GRAPH por ptccrt e ptcgraph e pequenas mudanças no código.
 Voila! Agora ele compilava e rodava! Agora você pode rodar a versão nativa no seu sistema operacional e tentar desenhar pixel art usando somente o teclado e uma paleta de 16 cores, como nos tempos do MS-DOS.
 Eu criei um formato de sprite simples (baseado em texto) na versão portada, Você pode explorar o código do antigo Spedit para a descrição.
 
-![SPEDit v.2.0 FPC edition in work](doc/spedit2-worked.png)
+![SPEDit v.2.0 FPC edition in work](spedit2-worked.png)
 
 É claro que tem codigo antigo e feio, mas funciona! E esse foi o primeiro aplicativo que eu fiz a sério. Então não me julgue tão duramente, Eu só estava aprendendo o básico de programação na época.
 Mas se você for rodar o SPEdit antigo lembre-se de que você DEVE especificar o nome do arquivo de sprite na linha de comando (com ou sem qualquer extensão)

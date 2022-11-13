@@ -31,7 +31,7 @@ unit uglobals;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LCLTranslator,
   Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson,
   BGRABitmap, BGRABitmapTypes, fgl;
 
@@ -44,7 +44,6 @@ resourcestring
   rsImageHasTooM = 'Image has too many colors!';
   rsPleaseInputN = 'Please input new library name';
   rsHasNonIntege = ' has non-integer value!';
-  rsYouNeedToRes = 'You need to restart app to change intarface language!';
 
 
 const
@@ -256,7 +255,7 @@ var
   function CheckHexForHash(col: string):string;
   function ConvertTColorToHTML(aColor: TColor) : String;
   function CheckLayerName(aName : String) : String; //check layer name if exists return aName+'1' on aName if not
-
+  function DetectPOLanguage(pofile : TFileName) : String;  //return language code for localization
 
 implementation
 
@@ -811,6 +810,22 @@ begin
   Result := 'spedit';
 end;
 
+function DetectPOLanguage(pofile : TFileName) : String;
+var s : String;
+  strl : TStringList;
+begin
+   result := '';
+   if pofile='' then Exit;
+   strl:=TStringList.Create;
+   strl.LoadFromFile(pofile);
+   s:=strl.Text;
+   Delete(s,1,Pos('Language:',s)+Length('Language:'));
+   Delete(s,Pos('\n"',s),Length(s));
+   s:=Trim(s);
+   FreeAndNil(strl);
+   SetDefaultLang(s,ExtractFileDir(pofile));
+   Result:=s;
+ end;
 
 initialization
 
