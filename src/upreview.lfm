@@ -1,7 +1,7 @@
 object FrmPreview: TFrmPreview
-  Left = 256
+  Left = 271
   Height = 240
-  Top = 156
+  Top = 178
   Width = 320
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSizeToolWin
@@ -11,7 +11,7 @@ object FrmPreview: TFrmPreview
   DoubleBuffered = True
   FormStyle = fsStayOnTop
   ParentDoubleBuffered = False
-  LCLVersion = '7.9'
+  LCLVersion = '2.2.4.0'
   object Panel1: TPanel
     Left = 0
     Height = 50

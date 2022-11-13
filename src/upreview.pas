@@ -29,8 +29,8 @@ unit upreview;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LResources,
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, LCLTranslator;
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls;
 
 type
 

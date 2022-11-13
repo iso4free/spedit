@@ -29,10 +29,10 @@ unit udrawtools;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LResources,
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
   StdCtrls, ComCtrls, BGRAGraphicControl, BCGameGrid, uglobals, udraw,
-  Types, BGRABitmap, BGRABitmapTypes, LCLTranslator;
+  Types, BGRABitmap, BGRABitmapTypes;
 
 type
 

@@ -18,7 +18,7 @@
     </General>
     <i18n>
       <EnableI18N Value="True"/>
-      <OutDir Value="../bin/language"/>
+      <OutDir Value="../bin/languages"/>
     </i18n>
     <BuildModes>
       <Item Name="Default" Default="True"/>
@@ -75,7 +75,7 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="../bin/spedit-$(TargetCPU)-$(TargetOS)"/>
+            <Filename Value="../bin/spedit"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -90,6 +90,7 @@
           <Linking>
             <Debugging>
               <GenerateDebugInfo Value="False"/>
+              <DebugInfoType Value="dsDwarf2Set"/>
             </Debugging>
             <LinkSmart Value="True"/>
             <Options>
@@ -104,7 +105,7 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="../bin/spedit-$(TargetCPU)-$(TargetOS)"/>
+            <Filename Value="../bin/spedit"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -136,7 +137,7 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="../bin/spedit-$(TargetCPU)-$(TargetOS)"/>
+            <Filename Value="../bin/spedit"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -182,12 +183,10 @@
     <Units>
       <Unit>
         <Filename Value="spedit.lpr"/>
-        <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="umain.pas"/>
-        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
@@ -199,7 +198,6 @@
       </Unit>
       <Unit>
         <Filename Value="udrawtools.pas"/>
-        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmDrawTools"/>
         <HasResources Value="True"/>
@@ -207,7 +205,6 @@
       </Unit>
       <Unit>
         <Filename Value="ulayers.pas"/>
-        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmLayers"/>
         <HasResources Value="True"/>
@@ -215,7 +212,6 @@
       </Unit>
       <Unit>
         <Filename Value="upreview.pas"/>
-        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FrmPreview"/>
         <HasResources Value="True"/>
@@ -223,7 +219,6 @@
       </Unit>
       <Unit>
         <Filename Value="ureferense.pas"/>
-        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmReferense"/>
         <HasResources Value="True"/>
@@ -231,7 +226,6 @@
       </Unit>
       <Unit>
         <Filename Value="uframes.pas"/>
-        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmFrames"/>
         <HasResources Value="True"/>
@@ -239,7 +233,6 @@
       </Unit>
       <Unit>
         <Filename Value="uframedlg.pas"/>
-        <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmFrameDlg"/>
         <HasResources Value="True"/>
@@ -250,7 +243,7 @@
   <CompilerOptions>
     <Version Value="11"/>
     <Target>
-      <Filename Value="../bin/spedit-$(TargetCPU)-$(TargetOS)"/>
+      <Filename Value="../bin/spedit"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>

@@ -29,11 +29,11 @@ unit umain;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LResources,
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
   Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit,
   BGRAImageList, BGRAImageManipulation, BGRABitmapTypes, BGRABitmap,
-  LCLType,LCLTranslator;
+  LCLType, DefaultTranslator, gettext, Translations;
 
 type
 
@@ -150,7 +150,7 @@ var
 implementation
 
 uses uabout, uframedlg, udrawtools, ulayers, uframes, upreview,
-  ureferense, udraw;
+  ureferense;
 
 {$R *.lfm}
 
@@ -322,10 +322,14 @@ end;
 
 procedure TfrmMain.LanguageMenuItemClick(Sender: TObject);
 begin
-  //todo: show lang dlg
+ ShowMessage('Sorry, dynamic language change willl be implemented soon');
+ Exit;
+ //todo: show lang dlg
   opndlgLocalization.InitialDir:=INI.ReadString('INTERFACE','LOCALES','');
   if opndlgLocalization.Execute then begin
+    INI.WriteString('INTERFACE','LOCALES',ExtractFilePath(opndlgLocalization.FileName));
     INI.WriteString('INTERFACE','L10n file',opndlgLocalization.FileName);
+    Translations.TranslateResourceStrings(opndlgLocalization.FileName);
     ShowMessage(rsYouNeedToRes);
   end;
 end;

@@ -1,8 +1,8 @@
 object frmReferense: TfrmReferense
-  Left = 256
+  Left = 270
   Height = 240
   Hint = 'Click to open any referense image'
-  Top = 171
+  Top = 194
   Width = 320
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSizeToolWin
@@ -14,7 +14,7 @@ object frmReferense: TfrmReferense
   OnClick = FormClick
   ParentDoubleBuffered = False
   ShowHint = True
-  LCLVersion = '7.9'
+  LCLVersion = '2.2.4.0'
   object ReferenceImage: TImage
     Left = 0
     Height = 240

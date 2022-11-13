@@ -32,25 +32,12 @@ uses
   {$IFDEF DEBUG}
   LazLogger,
   {$ENDIF}
-  Forms, Interfaces, sysutils, LazUTF8, uglobals, umain, Translations;
+  Forms, Interfaces, sysutils, uglobals,
+  umain, uabout, ureferense, upreview, uframedlg, uframes, udraw, ulayers;
 
 {$R *.res}
 
-procedure TranslateLCL;
-var poDidectory, lang, fallbacklang : String;
 begin
-  poDidectory:=ExtractFilePath(ApplicationName)+DirectorySeparator+'languages'+DirectorySeparator;
-  {$IFDEF DEBUG}
-  DebugLn('Application name: ',ApplicationName);
-  {$ENDIF}
-  lang:='';
-  fallbacklang:='';
-  LazGetLanguageIDs(lang,fallbacklang);
-  translations.TranslateUnitResourceStrings('umain',poDidectory+ApplicationName+'.%%.po',lang,fallbacklang);
-end;
-
-begin
-  TranslateLCL;
   {$IFDEF DEBUG}
   DebugLogger.ParamForLogFileName:='--debug-log';
   {$ENDIF}

@@ -1,7 +1,7 @@
 object frmFrameDlg: TfrmFrameDlg
-  Left = 256
+  Left = 251
   Height = 240
-  Top = 171
+  Top = 200
   Width = 320
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -13,7 +13,7 @@ object frmFrameDlg: TfrmFrameDlg
   OnShow = FormCreate
   Position = poScreenCenter
   ShowInTaskBar = stNever
-  LCLVersion = '7.9'
+  LCLVersion = '2.2.4.0'
   object Panel1: TPanel
     Left = 0
     Height = 50
@@ -65,6 +65,7 @@ object frmFrameDlg: TfrmFrameDlg
       Top = 17
       Width = 82
       Caption = 'Frame name'
+      ParentColor = False
     end
     object edtFrameName: TEdit
       Left = 107
@@ -80,6 +81,7 @@ object frmFrameDlg: TfrmFrameDlg
       Top = 48
       Width = 81
       Caption = 'Frame width'
+      ParentColor = False
     end
     object spnedtWidth: TSpinEdit
       Left = 107
@@ -97,6 +99,7 @@ object frmFrameDlg: TfrmFrameDlg
       Top = 80
       Width = 86
       Caption = 'Frame height'
+      ParentColor = False
     end
     object spnedtHeight: TSpinEdit
       Left = 107

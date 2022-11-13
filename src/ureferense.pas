@@ -29,9 +29,8 @@ unit ureferense;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LResources,
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtDlgs, ExtCtrls,
-  LCLTranslator;
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtDlgs, ExtCtrls;
 
 type
 

@@ -29,8 +29,8 @@ unit udraw;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LResources,
-  Classes, SysUtils, Graphics, uglobals, BGRABitmap, BGRABitmapTypes, LCLTranslator;
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
+  Classes, SysUtils, Graphics, uglobals, BGRABitmap, BGRABitmapTypes;
 
 type
 

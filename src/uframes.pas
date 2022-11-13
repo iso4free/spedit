@@ -29,8 +29,8 @@ unit uframes;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LResources,
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, LCLTranslator;
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs;
 
 type
   TfrmFrames = class(TForm)

@@ -30,7 +30,7 @@ interface
 
 uses
   LResources, Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Spin, Buttons, LCLTranslator;
+  Spin, Buttons;
 
 type
 

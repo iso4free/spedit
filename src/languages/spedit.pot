@@ -1,31 +1,13 @@
 msgid ""
-msgstr ""
-"Project-Id-Version: spedit\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-11-12 23:16+0200\n"
-"Last-Translator: \n"
-"Language-Team: Ukrainian\n"
-"Language: uk_UA\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 "
-"&& n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 "
-"&& n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
-"X-Crowdin-Project: spedit\n"
-"X-Crowdin-Project-ID: 548623\n"
-"X-Crowdin-Language: uk\n"
-"X-Crowdin-File: spedit.pot\n"
-"X-Crowdin-File-ID: 1\n"
-"X-Generator: Poedit 3.0.1\n"
+msgstr "Content-Type: text/plain; charset=UTF-8"
 
 #: tfrmdrawtools.bbtnswapcolors.hint
 msgid "Swap colors [X]"
-msgstr "Поміняти кольори [X]"
+msgstr ""
 
 #: tfrmdrawtools.bgcolor.caption
 msgid "BG"
-msgstr "ФК"
+msgstr ""
 
 #: tfrmdrawtools.bgcolor.hint
 msgctxt "tfrmdrawtools.bgcolor.hint"
@@ -33,16 +15,14 @@ msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
 msgstr ""
-"Натисніть ліву кнопку миші щоб вибрати колір\n"
-"Права кнопка миші щоб встановити прозорий колір"
 
 #: tfrmdrawtools.caption
 msgid "Tools"
-msgstr "Інструменти"
+msgstr ""
 
 #: tfrmdrawtools.fgcolor.caption
 msgid "FG"
-msgstr "ПК"
+msgstr ""
 
 #: tfrmdrawtools.fgcolor.hint
 msgctxt "tfrmdrawtools.fgcolor.hint"
@@ -50,230 +30,226 @@ msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
 msgstr ""
-"Натисніть ліву кнопку миші щоб вибрати колір\n"
-"Права кнопка миші щоб встановити прозорий колір"
 
 #: tfrmdrawtools.gbpalette.caption
 msgctxt "tfrmdrawtools.gbpalette.caption"
 msgid "Palette"
-msgstr "Палітра"
+msgstr ""
 
 #: tfrmdrawtools.grpbpensize.caption
 msgid "Pen size"
-msgstr "Розмір олівця"
+msgstr ""
 
 #: tfrmdrawtools.sbline.hint
 msgid "Line tool"
-msgstr "Інструмент Лінія"
+msgstr ""
 
 #: tfrmframedlg.caption
 msgid "New frame"
-msgstr "Новий фрейм"
+msgstr ""
 
 #: tfrmframedlg.checkbox1.caption
 msgid "Copy all layers"
-msgstr "Копіювати всі шари"
+msgstr ""
 
 #: tfrmframedlg.edtframename.text
 msgid "Frame"
-msgstr "Фрейм"
+msgstr ""
 
 #: tfrmframedlg.frmframewidth.caption
 msgid "Frame width"
-msgstr "Ширина фрейма"
+msgstr ""
 
 #: tfrmframedlg.lblframeheight.caption
 msgid "Frame height"
-msgstr "Висота фрейму"
+msgstr ""
 
 #: tfrmframedlg.lblframename.caption
 msgid "Frame name"
-msgstr "Назва фрейму"
+msgstr ""
 
 #: tfrmframes.caption
 msgctxt "tfrmframes.caption"
 msgid "Frames"
-msgstr "Фрейми"
+msgstr ""
 
 #: tfrmlayers.bbtnaddlayer.hint
 msgid "Add new layer"
-msgstr "Додати новий шар"
+msgstr ""
 
 #: tfrmlayers.bbtncopylayer.hint
 msgid "Copy selected layer"
-msgstr "Копіювати вибраний шар"
+msgstr ""
 
 #: tfrmlayers.bbtndeletelayer.hint
 msgid "Delete selected layer"
-msgstr "Видалити вибраний шар"
+msgstr ""
 
 #: tfrmlayers.bbtnmergelayers.hint
 msgid "Merge with previous layer"
-msgstr "Об'єднати з попереднім шаром"
+msgstr ""
 
 #: tfrmlayers.caption
 msgctxt "tfrmlayers.caption"
 msgid "Layers"
-msgstr "Шари"
+msgstr ""
 
 #: tfrmlayers.drwgrdlayers.columns[0].title.caption
 msgid "Visible"
-msgstr "Видимий"
+msgstr ""
 
 #: tfrmlayers.drwgrdlayers.columns[1].title.caption
 msgid "Locked"
-msgstr "Заблоковано"
+msgstr ""
 
 #: tfrmlayers.drwgrdlayers.columns[2].title.caption
 msgid "Name"
-msgstr "Назва"
+msgstr ""
 
 #: tfrmlayers.drwgrdlayers.columns[3].title.caption
 msgid "Image"
-msgstr "Зображення"
+msgstr ""
 
 #: tfrmlayers.layersgroupbox.caption
 msgctxt "tfrmlayers.layersgroupbox.caption"
 msgid "Layers"
-msgstr "Шари"
+msgstr ""
 
 #: tfrmmain.aboutmenuitem.caption
 msgid "About"
-msgstr "Про"
+msgstr ""
 
 #: tfrmmain.actionstabsheet.caption
 msgid "Actions"
-msgstr "Дії"
+msgstr ""
 
 #: tfrmmain.caption
 msgid "Sprite Editor"
-msgstr "Редактор спрайтів"
+msgstr ""
 
 #: tfrmmain.editmenuitem.caption
 msgid "Edit"
-msgstr "Редагувати"
+msgstr ""
 
 #: tfrmmain.fileexitmenuitem.caption
 msgid "E&xit"
-msgstr "Вийти (&X)"
+msgstr ""
 
 #: tfrmmain.fileloadspritesheetmenuitem.caption
 msgid "Import Spritesheet"
-msgstr "Імпорт таблиці спрайтів"
+msgstr ""
 
 #: tfrmmain.fileloadspritesheetmenuitem.hint
 msgid ""
 "You can import image or spritesheet file\n"
 "and add it to the library"
 msgstr ""
-"Імпортувати зображення або файл spritesheet\n"
-"і додати його в бібліотеку"
 
 #: tfrmmain.filemenuitem.caption
 msgid "File"
-msgstr "Файл"
+msgstr ""
 
 #: tfrmmain.filenewspritemenuitem.caption
 msgid "New Sprite Project"
-msgstr "Новий проект спрайтів"
+msgstr ""
 
 #: tfrmmain.filesaveasmenuitem.caption
 msgid "Save Sprite Project As..."
-msgstr "Зберегти проект спрайтів як..."
+msgstr ""
 
 #: tfrmmain.filesavespritemenuitem.caption
 msgid "Save Sprite Project"
-msgstr "Зберегти проект спрайтів"
+msgstr ""
 
 #: tfrmmain.frameeditortabsheet.caption
 msgid "Frame Editor"
-msgstr "Редактор фрейму"
+msgstr ""
 
 #: tfrmmain.framesmenuitem.caption
 msgctxt "tfrmmain.framesmenuitem.caption"
 msgid "Frames"
-msgstr "Фрейми"
+msgstr ""
 
 #: tfrmmain.helpmenuitem.caption
 msgid "Help"
-msgstr "Довідка"
+msgstr ""
 
 #: tfrmmain.languagemenuitem.caption
 msgid "Language"
-msgstr "Мова"
+msgstr ""
 
 #: tfrmmain.languagemenuitem.hint
 msgid "Change interface language (need restart)"
-msgstr "Змінити мову інтерфейсу (потрібен перезапуск)"
+msgstr ""
 
 #: tfrmmain.layerstoolvisiblemenuitem.caption
 msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
 msgid "Layers"
-msgstr "Шари"
+msgstr ""
 
 #: tfrmmain.menuitem1.caption
 msgid "Sprite"
-msgstr "Спрайт"
+msgstr ""
 
 #: tfrmmain.menuitem2.caption
 msgctxt "tfrmmain.menuitem2.caption"
 msgid "Layers"
-msgstr "Шари"
+msgstr ""
 
 #: tfrmmain.menuitem3.caption
 msgctxt "tfrmmain.menuitem3.caption"
 msgid "Palette"
-msgstr "Палітра"
+msgstr ""
 
 #: tfrmmain.menuitem4.caption
 msgid "Tool panels"
-msgstr "Панелі інструментів"
+msgstr ""
 
 #: tfrmmain.menuitem7.caption
 msgid "New Sprite Library"
-msgstr "Нова бібліотека спрайтів"
+msgstr ""
 
 #: tfrmmain.mipaletteclear.caption
 msgid "Reset palette"
-msgstr "Скинути палітру"
+msgstr ""
 
 #: tfrmmain.mipaletteimportfromfile.caption
 msgid "Import from image file"
-msgstr "Імпортувати з файлу зображення"
+msgstr ""
 
 #: tfrmmain.mipaletteloadfromfile.caption
 msgid "Load from file"
-msgstr "Завантажити з файлу"
+msgstr ""
 
 #: tfrmmain.mipalettesavetofile.caption
 msgid "Save to file"
-msgstr "Зберегти до файлу"
+msgstr ""
 
 #: tfrmmain.painttoolpanelvisiblemenuitem.caption
 msgid "Drawing tools"
-msgstr "Інструменти малювання"
+msgstr ""
 
 #: tfrmmain.previewmenuitem.caption
 msgctxt "tfrmmain.previewmenuitem.caption"
 msgid "Preview"
-msgstr "Попередній перегляд"
+msgstr ""
 
 #: tfrmmain.projecttabsheet.caption
 msgid "Project info"
-msgstr "Інформація про проект"
+msgstr ""
 
 #: tfrmmain.referenseimagemenuitem.caption
 msgctxt "tfrmmain.referenseimagemenuitem.caption"
 msgid "Referense"
-msgstr "Референс"
+msgstr ""
 
 #: tfrmmain.savespritelibmenuitem.caption
 msgid "Save Sprite Library"
-msgstr "Зберегти бібліотеку спрайтів"
+msgstr ""
 
 #: tfrmmain.selectspritelibmenuitem.caption
 msgid "Select Sprite Library"
-msgstr "Обрати бібліотеку спрайтів"
+msgstr ""
 
 #: tfrmmain.statictext1.caption
 msgid "StaticText1"
@@ -281,38 +257,39 @@ msgstr ""
 
 #: tfrmmain.viewmenuitem.caption
 msgid "View"
-msgstr "Вид"
+msgstr ""
 
 #: tfrmmain.viewsettingsmenuitem.caption
 msgid "Settings"
-msgstr "Налаштування"
+msgstr ""
 
 #: tfrmmain.viewzoominmenuitem.caption
 msgid "Zoom++"
-msgstr "Масштаб++"
+msgstr ""
 
 #: tfrmmain.viewzoomoutmenuitem.caption
 msgid "Zoom--"
-msgstr "Масштаб--"
+msgstr ""
 
 #: tfrmmain.viewzoomresetmenuitem.caption
 msgid "Reset zoom"
-msgstr "Скинути масштаб"
+msgstr ""
 
 #: tfrmpreview.caption
 msgctxt "tfrmpreview.caption"
 msgid "Preview"
-msgstr "Попередній перегляд"
+msgstr ""
 
 #: tfrmpreview.framepreview.hint
 msgid "Click to export PNG"
-msgstr "Клацніть щоб зберегти PNG"
+msgstr ""
 
 #: tfrmreferense.caption
 msgctxt "tfrmreferense.caption"
 msgid "Referense"
-msgstr "Референс"
+msgstr ""
 
 #: tfrmreferense.hint
 msgid "Click to open any referense image"
-msgstr "Клацніть щоб завантажити будь-яке зображення для референса"
+msgstr ""
+

@@ -99,3 +99,4 @@ DEV.LOG
 - [+] Added Ukrainian translation
 - [*] Fixed some typos in docs
 - [*] Migrated whole projet to Lazarus
+- [+] Added autoload current locale when translation file exists 

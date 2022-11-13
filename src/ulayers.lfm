@@ -1,7 +1,7 @@
 object frmLayers: TfrmLayers
-  Left = 256
+  Left = 257
   Height = 240
-  Top = 171
+  Top = 193
   Width = 269
   BorderIcons = [biSystemMenu]
   Caption = 'Layers'
@@ -9,7 +9,7 @@ object frmLayers: TfrmLayers
   ClientWidth = 269
   FormStyle = fsStayOnTop
   OnCreate = FormCreate
-  LCLVersion = '7.9'
+  LCLVersion = '2.2.4.0'
   object LayersGroupBox: TGroupBox
     Left = 0
     Height = 205

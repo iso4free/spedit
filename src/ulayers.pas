@@ -29,9 +29,9 @@ unit ulayers;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} BGRAImageList, LResources,
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} BGRAImageList,
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls, Grids, Types, LCLTranslator;
+  StdCtrls, Grids, Types;
 
 type
 

@@ -20,6 +20,8 @@ WORK PROGRESS
 Still development, new features will be added when i have enought time and motivation.
 You can sponsor me throught https://www.buymeacoffee.com/iso4free if You wanna get some features done faster.
 
+If you want to see SPEdit localized to your language, you can contribute to the translation at https://crwd.in/spedit
+
 ![main window screenshot](doc/spedit.png)
 
 SHORT DOCUMENTATION
