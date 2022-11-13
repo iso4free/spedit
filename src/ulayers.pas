@@ -49,6 +49,7 @@ type
     procedure bbtnAddLayerClick(Sender: TObject);
     procedure drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
 
@@ -76,6 +77,12 @@ begin
     end;
   end;
 
+end;
+
+procedure TfrmLayers.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  frmMain.LayersToolVisibleMenuItem.Checked:=False;
+  frmMain.SetFocus;
 end;
 
 procedure TfrmLayers.FormCreate(Sender: TObject);

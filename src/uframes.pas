@@ -33,7 +33,11 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs;
 
 type
+
+  { TfrmFrames }
+
   TfrmFrames = class(TForm)
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   private
 
   public
@@ -44,8 +48,16 @@ var
   frmFrames: TfrmFrames;
 
 implementation
- uses uglobals;
+ uses uglobals, umain;
 {$R *.lfm}
+
+ { TfrmFrames }
+
+ procedure TfrmFrames.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+ begin
+   frmMain.FramesMenuItem.Checked:=False;
+   frmMain.SetFocus;
+ end;
 
 end.
 

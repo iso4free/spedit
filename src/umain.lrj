@@ -3,7 +3,6 @@
 {"hash":6523410,"name":"tfrmmain.frameeditortabsheet.caption","sourcebytes":[70,114,97,109,101,32,69,100,105,116,111,114],"value":"Frame Editor"},
 {"hash":128648723,"name":"tfrmmain.actionstabsheet.caption","sourcebytes":[65,99,116,105,111,110,115],"value":"Actions"},
 {"hash":253731967,"name":"tfrmmain.projecttabsheet.caption","sourcebytes":[80,114,111,106,101,99,116,32,105,110,102,111],"value":"Project info"},
-{"hash":265316305,"name":"tfrmmain.statictext1.caption","sourcebytes":[83,116,97,116,105,99,84,101,120,116,49],"value":"StaticText1"},
 {"hash":315429,"name":"tfrmmain.filemenuitem.caption","sourcebytes":[70,105,108,101],"value":"File"},
 {"hash":90847572,"name":"tfrmmain.filenewspritemenuitem.caption","sourcebytes":[78,101,119,32,83,112,114,105,116,101,32,80,114,111,106,101,99,116],"value":"New Sprite Project"},
 {"hash":162191620,"name":"tfrmmain.filesavespritemenuitem.caption","sourcebytes":[83,97,118,101,32,83,112,114,105,116,101,32,80,114,111,106,101,99,116],"value":"Save Sprite Project"},

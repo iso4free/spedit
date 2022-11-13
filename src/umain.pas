@@ -92,7 +92,6 @@ type
     MainPageControl: TPageControl;
     ProjectTabSheet: TTabSheet;
     ActionsTabSheet: TTabSheet;
-    StaticText1: TStaticText;
     StatusBar1: TStatusBar;
     FramesMenuItem: TMenuItem;
     PaintToolPanelVisibleMenuItem: TMenuItem;
@@ -254,9 +253,28 @@ end;
 
 procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
+
+ procedure DrawToCursor(aColor : TBGRAPixel; ErasePixels : Boolean = False);
+ //draw or erace pixels in CellCursor selected region
+ var
+   i, j: Integer;
+ begin
+  if FrameGrid.CellCursor.Cells=1 then begin
+     if ErasePixels then Layers[FrameGrid.ActiveLayer].Drawable.ErasePixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,255)
+                    else Layers[FrameGrid.ActiveLayer].Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,aColor);
+ end else begin
+  for i:= 0 to FrameGrid.CellCursor.Cells-1 do
+    for j:=0 to FrameGrid.CellCursor.Cells-1 do begin
+       if ErasePixels then Layers[FrameGrid.ActiveLayer].Drawable.ErasePixel(FrameGrid.CellCursor.Coords.X+i,FrameGrid.CellCursor.Coords.Y+j,255)
+                    else Layers[FrameGrid.ActiveLayer].Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X+i,FrameGrid.CellCursor.Coords.Y+j,aColor);
+    end;
+  end;
+ end;
+
 begin
   //if in Frame Editor mode
   if MainPageControl.ActivePage.Tag=1 then begin
+   if not Assigned(FrameGrid) then Exit;
     case Key of
      //when arrow keys pressed move cell cursor in drawing grid
       VK_LEFT : begin
@@ -283,18 +301,18 @@ begin
       //next keys can be used to drawing
        VK_SPACE : begin
       //draw pixels depends on selected cursor size - first color
-        Layers[FrameGrid.ActiveLayer].Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,ColorToBGRA(spclForeColor,255));
+        DrawToCursor(spclForeColor);
         Key:=0;
        end;
        VK_RETURN : begin
       //draw pixels depends on selected cursor size - second color
-        Layers[FrameGrid.ActiveLayer].Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,ColorToBGRA(spclBackColor,255));
+        DrawToCursor(spclBackColor);
         Key:=0;
        end;
        //just set pixel to background by setting opacity to 0
        VK_DELETE : begin
-      //erace pixel to transparent
-        Layers[FrameGrid.ActiveLayer].Drawable.ErasePixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,255);
+      //erace pixels to transparent
+        DrawToCursor(spclForeColor,True);
         Key:=0;
        end;
      //swap colors
@@ -555,6 +573,7 @@ begin
   frmReferense.Width:=INI.ReadInteger('FRMREFERENSE','WIDTH',frmReferense.Width);
   frmReferense.Height:=INI.ReadInteger('FRMREFERENSE','HEIGHT',frmReferense.Height);
  end;
+ ReferenseImageMenuItem.Checked:=True;
  frmReferense.Show;
 end;
 
@@ -581,18 +600,21 @@ end;
 
 procedure TfrmMain.ViewZoomInMenuItemClick(Sender: TObject);
 begin
+  if not Assigned(FrameGrid) then Exit;
   FrameGrid.FrameZoom:=FrameGrid.FrameZoom+1;
   pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.ViewZoomOutMenuItemClick(Sender: TObject);
 begin
+  if not Assigned(FrameGrid) then Exit;
   FrameGrid.FrameZoom:=FrameGrid.FrameZoom-1;
   pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.ViewZoomResetMenuItemClick(Sender: TObject);
 begin
+  if not Assigned(FrameGrid) then Exit;
   FrameGrid.FrameZoom:=0;
   pbFrameDraw.Invalidate;
 end;

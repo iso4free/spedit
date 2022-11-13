@@ -40,6 +40,7 @@ type
     OpenPictureDialog1: TOpenPictureDialog;
     ReferenceImage: TImage;
     procedure FormClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   private
 
   public
@@ -51,6 +52,8 @@ var
 
 implementation
 
+uses umain;
+
 {$R *.lfm}
 
 { TfrmReferense }
@@ -61,6 +64,13 @@ begin
    ReferenceImage.Picture.Clear;
    ReferenceImage.Picture.LoadFromFile(OpenPictureDialog1.FileName);
   end;
+end;
+
+procedure TfrmReferense.FormClose(Sender: TObject; var CloseAction: TCloseAction
+  );
+begin
+  frmMain.ReferenseImageMenuItem.Checked:=false;
+  frmMain.SetFocus;
 end;
 
 end.

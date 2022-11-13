@@ -7,5 +7,6 @@ object frmFrames: TfrmFrames
   BorderStyle = bsSizeToolWin
   Caption = 'Frames'
   FormStyle = fsStayOnTop
+  OnClose = FormClose
   LCLVersion = '2.2.4.0'
 end

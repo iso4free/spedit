@@ -8,6 +8,7 @@ object frmLayers: TfrmLayers
   ClientHeight = 240
   ClientWidth = 269
   FormStyle = fsStayOnTop
+  OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '2.2.4.0'
   object LayersGroupBox: TGroupBox

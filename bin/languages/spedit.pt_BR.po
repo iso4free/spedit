@@ -268,10 +268,6 @@ msgstr "Salvar Biblioteca de Sprites"
 msgid "Select Sprite Library"
 msgstr "Selecionar Biblioteca de Sprites"
 
-#: tfrmmain.statictext1.caption
-msgid "StaticText1"
-msgstr "StaticText1"
-
 #: tfrmmain.viewmenuitem.caption
 msgid "View"
 msgstr "Visualizar"

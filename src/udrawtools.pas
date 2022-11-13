@@ -115,6 +115,7 @@ begin
   end;
 
   BgColorPaint(Sender);
+  frmMain.SetFocus;
 end;
 
 procedure TfrmDrawTools.bbtnSwapColorsClick(Sender: TObject);
@@ -147,6 +148,7 @@ procedure TfrmDrawTools.FormClose(Sender: TObject; var CloseAction: TCloseAction
   );
 begin
   frmMain.PaintToolPanelVisibleMenuItem.Checked:=False;
+  frmMain.SetFocus;
 end;
 
 procedure TfrmDrawTools.PaletteGridMouseUp(Sender: TObject;
@@ -169,6 +171,7 @@ begin
     end;
   end;
   if Assigned(DrawTool) then DrawTool.Color:=Palette.SelectedColor;
+  frmMain.SetFocus;
 end;
 
 procedure TfrmDrawTools.PaletteGridRenderControl(Sender: TObject;
@@ -197,6 +200,7 @@ begin
       FDrawTool:=TSPPen.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
   end;
  end;
+  frmMain.SetFocus;
 end;
 
 procedure TfrmDrawTools.trkbrPenSizeChange(Sender: TObject);

@@ -40,6 +40,7 @@ type
     FramePreview: TPaintBox;
     Panel1: TPanel;
     sdExportFrameSaveDialog: TSaveDialog;
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FramePreviewClick(Sender: TObject);
     procedure FramePreviewPaint(Sender: TObject);
   private
@@ -52,10 +53,16 @@ var
   FrmPreview: TFrmPreview;
 
 implementation
- uses uglobals;
+ uses uglobals, umain;
 {$R *.lfm}
 
  { TFrmPreview }
+
+procedure TFrmPreview.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  frmMain.PreviewMenuItem.Checked:=False;
+  frmMain.SetFocus;
+end;
 
  procedure TFrmPreview.FramePreviewClick(Sender: TObject);
  begin

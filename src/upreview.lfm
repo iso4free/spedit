@@ -10,6 +10,7 @@ object FrmPreview: TFrmPreview
   ClientWidth = 320
   DoubleBuffered = True
   FormStyle = fsStayOnTop
+  OnClose = FormClose
   ParentDoubleBuffered = False
   LCLVersion = '2.2.4.0'
   object Panel1: TPanel

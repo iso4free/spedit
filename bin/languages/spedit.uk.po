@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spedit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-11-13 17:55+0200\n"
+"PO-Revision-Date: 2022-11-13 21:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -196,6 +196,14 @@ msgstr "Фрейми"
 msgid "Help"
 msgstr "Довідка"
 
+#: tfrmmain.languagemenuitem.caption
+msgid "Language"
+msgstr "Мова"
+
+#: tfrmmain.languagemenuitem.hint
+msgid "Change interface language (need restart)"
+msgstr "Змінити мову інтерфейсу"
+
 #: tfrmmain.layerstoolvisiblemenuitem.caption
 msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
 msgid "Layers"
@@ -265,13 +273,13 @@ msgstr "Зберегти бібліотеку спрайтів"
 msgid "Select Sprite Library"
 msgstr "Обрати бібліотеку спрайтів"
 
-#: tfrmmain.statictext1.caption
-msgid "StaticText1"
-msgstr ""
-
 #: tfrmmain.viewmenuitem.caption
 msgid "View"
 msgstr "Вид"
+
+#: tfrmmain.viewsettingsmenuitem.caption
+msgid "Settings"
+msgstr "Установки"
 
 #: tfrmmain.viewzoominmenuitem.caption
 msgid "Zoom++"
@@ -302,3 +310,4 @@ msgstr "Референс"
 #: tfrmreferense.hint
 msgid "Click to open any referense image"
 msgstr "Клацніть щоб завантажити будь-яке зображення для референса"
+

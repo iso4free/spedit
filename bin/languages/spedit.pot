@@ -251,10 +251,6 @@ msgstr ""
 msgid "Select Sprite Library"
 msgstr ""
 
-#: tfrmmain.statictext1.caption
-msgid "StaticText1"
-msgstr ""
-
 #: tfrmmain.viewmenuitem.caption
 msgid "View"
 msgstr ""
