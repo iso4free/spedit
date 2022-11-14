@@ -148,4 +148,4 @@ Sure, it's old and ugly code, but it works! And this was my first serious progra
 
 DEV.LOG
 =======
-![dev.log](/doc/devlog.md)
+[dev.log](/doc/devlog.md)

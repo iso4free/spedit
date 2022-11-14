@@ -132,7 +132,6 @@ type
     procedure ReferenseImageMenuItemClick(Sender: TObject);
     procedure SaveSpriteLibMenuItemClick(Sender: TObject);
     procedure SrcImageFramesOptsValueListEditorValidate(Sender: TObject; ACol, ARow: longint; const KeyName, KeyValue: string);
-    procedure ViewSettingsMenuItemClick(Sender: TObject);
     procedure ViewZoomInMenuItemClick(Sender: TObject);
     procedure ViewZoomOutMenuItemClick(Sender: TObject);
     procedure ViewZoomResetMenuItemClick(Sender: TObject);
@@ -140,6 +139,8 @@ type
    fDrawGridMode : TDrawGridMode;
    dx,dy : Integer;             //offset to move grid
    startx,starty : Integer;     //start position to move
+   procedure HideWindows;
+   procedure ShowWindows;
   end;
 
 var
@@ -166,13 +167,16 @@ var
   i: Integer;
 begin
   //show dialog to create new frame with default parameters
-  frmFrameDlg:=TfrmFrameDlg.Create(Self);
+  frmFrameDlg:=TfrmFrameDlg.Create(nil);
   if Assigned(FrameGrid) then begin
    frmFrameDlg.spnedtHeight.Value:=FrameGrid.FrameHeight;
    frmFrameDlg.spnedtWidth.Value:=FrameGrid.FrameWidth;
    frmFrameDlg.edtFrameName.Text:=FrameGrid.ActiveFrame;
   end;
-  if frmFrameDlg.Execute then begin
+  HideWindows;
+  frmFrameDlg.ShowModal;
+  ShowWindows;
+  if frmFrameDlg.ModalResult=mrOK then begin
    FreeAndNil(FrameGrid);
    FrameGrid:=TFrameGrid.Create(frmFrameDlg.spnedtWidth.Value,frmFrameDlg.spnedtHeight.Value);
    FrameGrid.Offset:=Point(0,0);
@@ -205,50 +209,11 @@ begin
   INI.WriteInteger('FRMMAIN','WIDTH',frmMain.Width);
   INI.WriteInteger('FRMMAIN','HEIGHT',frmMain.Height);
 
-  if Assigned(frmDrawTools) then begin
-   INI.WriteInteger('FRMDRAWTOOLS','TOP',frmDrawTools.Top);
-   INI.WriteInteger('FRMDRAWTOOLS','LEFT',frmDrawTools.Left);
-   INI.WriteInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
-   INI.WriteInteger('FRMDRAWTOOLS','HEIGHT',frmDrawTools.Height);
-   FreeAndNil(frmDrawTools);
-  end;
-
-  if Assigned(frmFrames) then begin
-   INI.WriteInteger('FRMFRAMES','TOP',frmFrames.Top);
-   INI.WriteInteger('FRMFRAMES','LEFT',frmFrames.Left);
-   INI.WriteInteger('FRMFRAMES','WIDTH',frmFrames.Width);
-   INI.WriteInteger('FRMFRAMES','HEIGHT',frmFrames.Height);
-   FreeAndNil(frmFrames);
-  end;
-
-  if Assigned(frmLayers) then begin
-   INI.WriteInteger('FRMLAYERS','TOP',frmLayers.Top);
-   INI.WriteInteger('FRMLAYERS','LEFT',frmLayers.Left);
-   INI.WriteInteger('FRMLAYERS','WIDTH',frmLayers.Width);
-   INI.WriteInteger('FRMLAYERS','HEIGHT',frmLayers.Height);
-   FreeAndNil(frmLayers);
-  end;
-
-  if Assigned(FrmPreview) then begin
-   INI.WriteInteger('FRMPREVIEW','TOP',FrmPreview.Top);
-   INI.WriteInteger('FRMPREVIEW','LEFT',FrmPreview.Left);
-   INI.WriteInteger('FRMPREVIEW','WIDTH',FrmPreview.Width);
-   INI.WriteInteger('FRMPREVIEW','HEIGHT',FrmPreview.Height);
-   INI.WriteBool('FRMPREVIEW','VISIBLE',PreviewMenuItem.Checked);
-   FreeAndNil(FrmPreview);
-  end;
-
-  if Assigned(frmReferense) then begin
-   INI.WriteInteger('FRMREFERENSE','TOP',frmReferense.Top);
-   INI.WriteInteger('FRMREFERENSE','LEFT',frmReferense.Left);
-   INI.WriteInteger('FRMREFERENSE','WIDTH',frmReferense.Width);
-   INI.WriteInteger('FRMREFERENSE','HEIGHT',frmReferense.Height);
-   FreeAndNil(frmReferense);
-  end;
+  INI.WriteBool('FRMPREVIEW','VISIBLE',PreviewMenuItem.Checked);
 
   if Assigned(frmAbout) then FreeAndNil(frmAbout);
 
-  FreeAndNil(FrameGrid);
+  if Assigned(FrameGrid) then FreeAndNil(FrameGrid);
 end;
 
 procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
@@ -338,14 +303,25 @@ begin
  frmFrames.Show;
 end;
 
+procedure TfrmMain.HideWindows;
+begin
+  frmDrawTools.Hide;
+  FrmPreview.Hide;
+  frmFrames.Hide;
+  frmLayers.Hide;
+  if Assigned(frmReferense) then frmReferense.Hide;
+end;
+
 procedure TfrmMain.LanguageMenuItemClick(Sender: TObject);
 begin
   opndlgLocalization.InitialDir:=INI.ReadString('INTERFACE','LOCALES','');
+  HideWindows;
   if opndlgLocalization.Execute then begin
     INI.WriteString('INTERFACE','LOCALES',ExtractFilePath(opndlgLocalization.FileName));
     INI.WriteString('INTERFACE','L10n file',opndlgLocalization.FileName);
     INI.WriteString('INTERFACE','LANGUAGE',DetectPOLanguage(opndlgLocalization.FileName));
   end;
+  ShowWindows;
 end;
 
 procedure TfrmMain.LayersToolVisibleMenuItemClick(Sender: TObject);
@@ -471,7 +447,10 @@ procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
 begin
   if not Assigned(FrameGrid) then Exit;
   fDrawGridMode:=dgmNone;
-  if Assigned(frmDrawTools.DrawTool) then frmDrawTools.DrawTool.MouseUp(x,y);
+  if Assigned(frmDrawTools.DrawTool) then begin
+   frmDrawTools.DrawTool.MouseUp(x,y);
+   frmDrawTools.DrawTool.FinishDraw;
+  end;
   if Assigned(FrmPreview) then FrmPreview.FramePreview.Invalidate;
 end;
 
@@ -519,30 +498,7 @@ begin
   frmMain.Width:=INI.ReadInteger('FRMMAIN','WIDTH',frmMain.Width);
   frmMain.Height:=INI.ReadInteger('FRMMAIN','HEIGHT',frmMain.Height);
 
-  //create tools floating window and set size and position
-  frmDrawTools:=TfrmDrawTools.Create(Self);
-  frmDrawTools.Top:=INI.ReadInteger('FRMDRAWTOOLS','TOP',frmDrawTools.Top);
-  frmDrawTools.Left:=INI.ReadInteger('FRMDRAWTOOLS','LEFT',frmDrawTools.Left);
-  frmDrawTools.Width:=INI.ReadInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
-  frmDrawTools.Height:=INI.ReadInteger('FRMDRAWTOOLS','HEIGHT',frmDrawTools.Height);
-  frmDrawTools.Show;
-
-  //frames floating window
-  frmFrames:=TfrmFrames.Create(Self);
-  frmFrames.Top:=INI.ReadInteger('FRMFRAMES','TOP',frmFrames.Top);
-  frmFrames.Left:=INI.ReadInteger('FRMFRAMES','LEFT',frmFrames.Left);
-  frmFrames.Width:=INI.ReadInteger('FRMFRAMES','WIDTH',frmFrames.Width);
-  frmFrames.Height:=INI.ReadInteger('FRMFRAMES','HEIGHT',frmFrames.Height);
-  frmFrames.Show;
-
-  //create Layers floating window and set size and position
-  frmLayers:=TfrmLayers.Create(Self);
-  frmLayers.Top:=INI.ReadInteger('FRMLAYERS','TOP',frmLayers.Top);
-  frmLayers.Left:=INI.ReadInteger('FRMLAYERS','LEFT',frmLayers.Left);
-  frmLayers.Width:=INI.ReadInteger('FRMLAYERS','WIDTH',frmLayers.Width);
-  frmLayers.Height:=INI.ReadInteger('FRMLAYERS','HEIGHT',frmLayers.Height);
-  frmLayers.Show;
-
+   //preview form
   if INI.ReadBool('FRMPREVIEW','VISIBLE',False) then PreviewMenuItemClick(Sender)
      else PreviewMenuItem.Checked:=False;
 
@@ -552,13 +508,7 @@ end;
 procedure TfrmMain.PreviewMenuItemClick(Sender: TObject);
 begin
   //preview form
- if not Assigned(FrmPreview) then begin
-  FrmPreview:=TFrmPreview.Create(frmMain);
-  FrmPreview.Top:=INI.ReadInteger('FRMPREVIEW','TOP',FrmPreview.Top);
-  FrmPreview.Left:=INI.ReadInteger('FRMPREVIEW','LEFT',FrmPreview.Left);
-  FrmPreview.Width:=INI.ReadInteger('FRMPREVIEW','WIDTH',FrmPreview.Width);
-  FrmPreview.Height:=INI.ReadInteger('FRMPREVIEW','HEIGHT',FrmPreview.Height);
- end;
+ if not Assigned(FrmPreview) then Exit;
  FrmPreview.Visible:=not FrmPreview.Visible;
  PreviewMenuItem.Checked:=FrmPreview.Visible;
 end;
@@ -567,7 +517,7 @@ procedure TfrmMain.ReferenseImageMenuItemClick(Sender: TObject);
 begin
  if not Assigned(frmReferense) then begin
   //referense image form
-  frmReferense:=TfrmReferense.Create(frmMain);
+  frmReferense:=TfrmReferense.Create(self);
   frmReferense.Top:=INI.ReadInteger('FRMREFERENSE','TOP',frmReferense.Top);
   frmReferense.Left:=INI.ReadInteger('FRMREFERENSE','LEFT',frmReferense.Left);
   frmReferense.Width:=INI.ReadInteger('FRMREFERENSE','WIDTH',frmReferense.Width);
@@ -584,6 +534,15 @@ begin
   libpath := SpriteLibPath + DirectorySeparator + CurrentLibName;
 end;
 
+procedure TfrmMain.ShowWindows;
+begin
+  if PaintToolPanelVisibleMenuItem.Checked then frmDrawTools.Show;
+  if PreviewMenuItem.Checked then FrmPreview.Show;
+  if FramesMenuItem.Checked then frmFrames.Show;
+  if LayersToolVisibleMenuItem.Checked then frmLayers.Show;
+  if ReferenseImageMenuItem.Checked then frmReferense.Show;
+end;
+
 procedure TfrmMain.SrcImageFramesOptsValueListEditorValidate(Sender: TObject; ACol, ARow: longint; const KeyName, KeyValue: string);
 begin
   if KeyValue <> '' then
@@ -591,11 +550,6 @@ begin
     begin
       ShowMessage(QuotedStr(KeyName) + rsHasNonIntege);
     end;
-end;
-
-procedure TfrmMain.ViewSettingsMenuItemClick(Sender: TObject);
-begin
-
 end;
 
 procedure TfrmMain.ViewZoomInMenuItemClick(Sender: TObject);

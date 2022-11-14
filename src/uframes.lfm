@@ -8,5 +8,8 @@ object frmFrames: TfrmFrames
   Caption = 'Frames'
   FormStyle = fsStayOnTop
   OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   LCLVersion = '2.2.4.0'
+  Visible = True
 end

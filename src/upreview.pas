@@ -41,6 +41,8 @@ type
     Panel1: TPanel;
     sdExportFrameSaveDialog: TSaveDialog;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FramePreviewClick(Sender: TObject);
     procedure FramePreviewPaint(Sender: TObject);
   private
@@ -62,6 +64,22 @@ procedure TFrmPreview.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   frmMain.PreviewMenuItem.Checked:=False;
   frmMain.SetFocus;
+end;
+
+procedure TFrmPreview.FormCreate(Sender: TObject);
+begin
+  FrmPreview.Top:=INI.ReadInteger('FRMPREVIEW','TOP',FrmPreview.Top);
+  FrmPreview.Left:=INI.ReadInteger('FRMPREVIEW','LEFT',FrmPreview.Left);
+  FrmPreview.Width:=INI.ReadInteger('FRMPREVIEW','WIDTH',FrmPreview.Width);
+  FrmPreview.Height:=INI.ReadInteger('FRMPREVIEW','HEIGHT',FrmPreview.Height);
+end;
+
+procedure TFrmPreview.FormDestroy(Sender: TObject);
+begin
+  INI.WriteInteger('FRMPREVIEW','TOP',FrmPreview.Top);
+  INI.WriteInteger('FRMPREVIEW','LEFT',FrmPreview.Left);
+  INI.WriteInteger('FRMPREVIEW','WIDTH',FrmPreview.Width);
+  INI.WriteInteger('FRMPREVIEW','HEIGHT',FrmPreview.Height);
 end;
 
  procedure TFrmPreview.FramePreviewClick(Sender: TObject);

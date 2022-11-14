@@ -1,92 +1,109 @@
 object frmFrameDlg: TfrmFrameDlg
-  Left = 251
+  Left = 390
   Height = 240
-  Top = 200
+  Top = 212
   Width = 320
+  AutoSize = True
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'New frame'
   ClientHeight = 240
   ClientWidth = 320
-  FormStyle = fsStayOnTop
   OnCreate = FormCreate
   OnShow = FormCreate
-  Position = poScreenCenter
   ShowInTaskBar = stNever
   LCLVersion = '2.2.4.0'
   object Panel1: TPanel
     Left = 0
-    Height = 50
-    Top = 190
+    Height = 40
+    Top = 200
     Width = 320
     Align = alBottom
-    ClientHeight = 50
+    AutoSize = True
+    ClientHeight = 40
     ClientWidth = 320
     TabOrder = 0
-    object BitBtn1: TBitBtn
-      Left = 28
+    object BitBtnOk: TBitBtn
+      AnchorSideLeft.Control = Panel1
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      Left = 6
       Height = 28
-      Top = 8
+      Top = 6
       Width = 51
       AutoSize = True
+      BorderSpacing.Around = 5
       Default = True
       DefaultCaption = True
       Kind = bkOK
       ModalResult = 1
-      OnClick = BitBtn1Click
       TabOrder = 0
     end
-    object BitBtn2: TBitBtn
-      Left = 168
+    object BitBtnCancel: TBitBtn
+      AnchorSideLeft.Control = BitBtnOk
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Panel1
+      AnchorSideTop.Side = asrCenter
+      Left = 62
       Height = 30
-      Top = 11
+      Top = 5
       Width = 107
       AutoSize = True
       Cancel = True
       DefaultCaption = True
       Kind = bkCancel
       ModalResult = 2
-      OnClick = BitBtn2Click
       TabOrder = 1
     end
   end
   object Panel2: TPanel
     Left = 0
-    Height = 190
+    Height = 200
     Top = 0
     Width = 320
     Align = alClient
-    ClientHeight = 190
+    AutoSize = True
+    ClientHeight = 200
     ClientWidth = 320
     TabOrder = 1
     object lblFrameName: TLabel
-      Left = 15
+      AnchorSideLeft.Control = Panel2
+      AnchorSideTop.Control = edtFrameName
+      AnchorSideTop.Side = asrCenter
+      Left = 6
       Height = 17
-      Top = 17
+      Top = 6
       Width = 82
+      BorderSpacing.Around = 5
       Caption = 'Frame name'
       ParentColor = False
     end
     object edtFrameName: TEdit
-      Left = 107
+      AnchorSideLeft.Control = CheckBox1
+      AnchorSideLeft.Side = asrBottom
+      Left = 127
       Height = 25
-      Top = 9
+      Top = 2
       Width = 165
       TabOrder = 0
       Text = 'Frame'
     end
     object frmFrameWidth: TLabel
-      Left = 16
+      AnchorSideLeft.Control = lblFrameName
+      AnchorSideTop.Control = spnedtWidth
+      AnchorSideTop.Side = asrCenter
+      Left = 6
       Height = 17
-      Top = 48
+      Top = 38
       Width = 81
       Caption = 'Frame width'
       ParentColor = False
     end
     object spnedtWidth: TSpinEdit
-      Left = 107
+      AnchorSideLeft.Control = edtFrameName
+      Left = 127
       Height = 27
-      Top = 40
+      Top = 33
       Width = 93
       MaxValue = 1024
       MinValue = 1
@@ -94,17 +111,21 @@ object frmFrameDlg: TfrmFrameDlg
       Value = 32
     end
     object lblFrameHeight: TLabel
-      Left = 16
+      AnchorSideLeft.Control = lblFrameName
+      AnchorSideTop.Control = spnedtHeight
+      AnchorSideTop.Side = asrCenter
+      Left = 6
       Height = 17
-      Top = 80
+      Top = 70
       Width = 86
       Caption = 'Frame height'
       ParentColor = False
     end
     object spnedtHeight: TSpinEdit
-      Left = 107
+      AnchorSideLeft.Control = edtFrameName
+      Left = 127
       Height = 27
-      Top = 72
+      Top = 65
       Width = 93
       MaxValue = 1024
       MinValue = 1
@@ -112,9 +133,10 @@ object frmFrameDlg: TfrmFrameDlg
       Value = 32
     end
     object CheckBox1: TCheckBox
-      Left = 20
+      AnchorSideLeft.Control = lblFrameName
+      Left = 6
       Height = 22
-      Top = 115
+      Top = 108
       Width = 121
       Caption = 'Copy all layers'
       TabOrder = 3

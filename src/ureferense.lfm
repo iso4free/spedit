@@ -13,6 +13,7 @@ object frmReferense: TfrmReferense
   FormStyle = fsStayOnTop
   OnClick = FormClick
   OnClose = FormClose
+  OnDestroy = FormDestroy
   ParentDoubleBuffered = False
   ShowHint = True
   LCLVersion = '2.2.4.0'

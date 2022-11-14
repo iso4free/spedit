@@ -1,10 +1,10 @@
 object frmMain: TfrmMain
-  Left = 330
+  Left = 253
   Height = 454
-  Top = 157
+  Top = 187
   Width = 557
-  HorzScrollBar.Page = 528
-  VertScrollBar.Page = 348
+  HorzScrollBar.Page = 111
+  VertScrollBar.Page = 196
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
@@ -19,7 +19,6 @@ object frmMain: TfrmMain
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   ParentDoubleBuffered = False
-  Position = poDefault
   LCLVersion = '2.2.4.0'
   Visible = True
   object MainPageControl: TPageControl
@@ -133,7 +132,7 @@ object frmMain: TfrmMain
         TabOrder = 1
         ColWidths = (
           64
-          134
+          132
         )
       end
       object ScrollBox4: TScrollBox
@@ -144,8 +143,8 @@ object frmMain: TfrmMain
         HorzScrollBar.Page = 320
         VertScrollBar.Page = 240
         Align = alClient
-        ClientHeight = 323
-        ClientWidth = 349
+        ClientHeight = 321
+        ClientWidth = 347
         TabOrder = 2
         object ProjectSheet: TBGRAImageManipulation
           AnchorSideLeft.Control = ScrollBox4
@@ -226,7 +225,6 @@ object frmMain: TfrmMain
       Caption = 'Edit'
       object ViewSettingsMenuItem: TMenuItem
         Caption = 'Settings'
-        OnClick = ViewSettingsMenuItemClick
       end
     end
     object ViewMenuItem: TMenuItem
@@ -1138,6 +1136,7 @@ object frmMain: TfrmMain
   object opndlgLocalization: TOpenDialog
     DefaultExt = '.po'
     Filter = 'Interface translations|*.po; *.PO|All files|*.*'
+    Options = [ofFileMustExist, ofEnableSizing, ofViewDetail]
     Left = 160
     Top = 39
   end

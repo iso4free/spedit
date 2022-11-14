@@ -81,12 +81,20 @@ end;
 
 procedure TfrmLayers.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  INI.WriteInteger('FRMLAYERS','TOP',frmLayers.Top);
+  INI.WriteInteger('FRMLAYERS','LEFT',frmLayers.Left);
+  INI.WriteInteger('FRMLAYERS','WIDTH',frmLayers.Width);
+  INI.WriteInteger('FRMLAYERS','HEIGHT',frmLayers.Height);
   frmMain.LayersToolVisibleMenuItem.Checked:=False;
   frmMain.SetFocus;
 end;
 
 procedure TfrmLayers.FormCreate(Sender: TObject);
 begin
+  frmLayers.Top:=INI.ReadInteger('FRMLAYERS','TOP',frmLayers.Top);
+  frmLayers.Left:=INI.ReadInteger('FRMLAYERS','LEFT',frmLayers.Left);
+  frmLayers.Width:=INI.ReadInteger('FRMLAYERS','WIDTH',frmLayers.Width);
+  frmLayers.Height:=INI.ReadInteger('FRMLAYERS','HEIGHT',frmLayers.Height);
   drwgrdLayers.RowCount:=Layers.Count;
 end;
 

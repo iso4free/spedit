@@ -33,7 +33,7 @@ uses
   LazLogger,
   {$ENDIF}
   Forms, Interfaces, sysutils, uglobals,
-  umain, uabout, ureferense, upreview, uframedlg, uframes, udraw, ulayers;
+  umain, udrawtools, uframes, ulayers, uframedlg, upreview;
 
 {$R *.res}
 
@@ -45,6 +45,11 @@ begin
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmDrawTools, frmDrawTools);
+  Application.CreateForm(TfrmFrames, frmFrames);
+  Application.CreateForm(TfrmLayers, frmLayers);
+  Application.CreateForm(TfrmFrameDlg, frmFrameDlg);
+  Application.CreateForm(TFrmPreview, FrmPreview);
   Application.Run;
 end.
 

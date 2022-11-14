@@ -195,7 +195,7 @@ begin
   if Layers.IndexOf(fLayerName)<>-1 then begin
    // Layers[fLayerName].Free;
    // Layers[fLayerName] := nil;
-    Layers.Remove(fLayerName);
+    //Layers.Remove(fLayerName);
   end;
   FreeAndNil(fBuffer);
   inherited Destroy;
@@ -227,12 +227,23 @@ begin
 end;
 
 procedure TSPDrawTool.FinishDraw;
+var
+  i,j : Integer;
+  p : TBGRAPixel;
 begin
-  Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[fLayerName].Drawable,dmDrawWithTransparency);
+  //Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[fLayerName].Drawable,dmDrawWithTransparency);
   //Frames[FrameGrid.ActiveFrame].DeleteLayer(fLayerName);
   //Layers[fLayerName].DeleteFromFrame(FrameGrid.ActiveFrame);
   //todo: fix draw to active layer and clear tool layer
   //Layers[fLayerName].Drawable:=fBuffer;
+  for i:=0 to Layers[fLayerName].Width-1 do
+      for j:=0 to Layers[FrameGrid.ActiveLayer].Height do begin
+        p:= Layers[fLayerName].Drawable.GetPixel(i,j);
+        if p.alpha>0 then begin
+          Layers[fLayerName].Drawable.ErasePixel(i,j,255);
+          Layers[FrameGrid.ActiveLayer].Drawable.SetPixel(i,j,p);
+        end;
+      end;
 end;
 
 

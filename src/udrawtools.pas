@@ -31,7 +31,7 @@ interface
 uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
-  StdCtrls, ComCtrls, BGRAGraphicControl, BCGameGrid, uglobals, udraw,
+  StdCtrls, ComCtrls, BGRAGraphicControl, BCGameGrid, udraw,
   Types, BGRABitmap, BGRABitmapTypes;
 
 type
@@ -78,20 +78,28 @@ var
   frmDrawTools: TfrmDrawTools;
 
 implementation
- uses umain;
+ uses uglobals, umain;
  {$R *.lfm}
 
  { TfrmDrawTools }
 
  procedure TfrmDrawTools.FormCreate(Sender: TObject);
  begin
-  BgColor.ShowHint:=true;
-  FgColor.ShowHint:=true;
+   frmDrawTools.Top:=INI.ReadInteger('FRMDRAWTOOLS','TOP',frmDrawTools.Top);
+   frmDrawTools.Left:=INI.ReadInteger('FRMDRAWTOOLS','LEFT',frmDrawTools.Left);
+   frmDrawTools.Width:=INI.ReadInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
+   frmDrawTools.Height:=INI.ReadInteger('FRMDRAWTOOLS','HEIGHT',frmDrawTools.Height);
+   BgColor.ShowHint:=true;
+   FgColor.ShowHint:=true;
  end;
 
 procedure TfrmDrawTools.FormDestroy(Sender: TObject);
 begin
-  FreeAndNil(FDrawTool);
+   INI.WriteInteger('FRMDRAWTOOLS','TOP',frmDrawTools.Top);
+   INI.WriteInteger('FRMDRAWTOOLS','LEFT',frmDrawTools.Left);
+   INI.WriteInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
+   INI.WriteInteger('FRMDRAWTOOLS','HEIGHT',frmDrawTools.Height);
+   FreeAndNil(FDrawTool);
 end;
 
 procedure TfrmDrawTools.BgColorMouseUp(Sender: TObject; Button: TMouseButton;
@@ -124,8 +132,9 @@ begin
    cl := spclBackColor;
    spclBackColor:=spclForeColor;
    spclForeColor:=cl;
-   FgColor.Invalidate;
-   BgColor.Invalidate;
+   //FgColor.Invalidate;
+   //BgColor.Invalidate;
+   Invalidate;
 end;
 
 procedure TfrmDrawTools.BgColorPaint(Sender: TObject);
@@ -139,16 +148,17 @@ begin
    (Sender as TBGRAGraphicControl).Bitmap.Rectangle(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(clBlack));
   end
     else (Sender as TBGRAGraphicControl).Bitmap.FillRect(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(cl));
-  (Sender as TBGRAGraphicControl).Invalidate;
+  //(Sender as TBGRAGraphicControl).Invalidate;
   frmMain.StatusBar1.Panels[1].Text:=rsFG+IntToHex(spclForeColor)+rsBG+
     IntToHex(spclBackColor);
+  Invalidate;
 end;
 
 procedure TfrmDrawTools.FormClose(Sender: TObject; var CloseAction: TCloseAction
   );
 begin
-  frmMain.PaintToolPanelVisibleMenuItem.Checked:=False;
-  frmMain.SetFocus;
+   frmMain.PaintToolPanelVisibleMenuItem.Checked:=False;
+   frmMain.SetFocus;
 end;
 
 procedure TfrmDrawTools.PaletteGridMouseUp(Sender: TObject;
@@ -190,6 +200,7 @@ end;
 
 procedure TfrmDrawTools.sbPenClick(Sender: TObject);
 begin
+  if not Assigned(FrameGrid) then Exit;
   FreeAndNil(FDrawTool);
   case (Sender as TSpeedButton).Tag of
  1:FDrawTool:=TSPPen.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);

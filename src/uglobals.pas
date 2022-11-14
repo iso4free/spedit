@@ -181,8 +181,8 @@ type
 
   TFrameGrid = class
    private
-     fActiveFrame: String;
-     FActiveLayer: String;
+    fActiveFrame: String;
+    FActiveLayer: String;
     FCellCursor: TCellCursor;
     fCheckers: Boolean;
     FCheckersSize  : Byte;
@@ -488,9 +488,6 @@ end;
 procedure TFrameGrid.SetOffset(AValue: TPoint);
 begin
   FOffset.Offset(AValue);
-  {$IFDEF DEBUG}
-   DebugLn('Offset: x=',IntToStr(fOffset.X),', y=',IntToStr(fOffset.Y));
-  {$ENDIF}
   CalcGridRect;
 end;
 
@@ -529,9 +526,6 @@ procedure TFrameGrid.CalcGridRect;
 begin
   fRect.Create(fOffset, fFrameWidth*(fFrameGridSize+fFrameZoom), fFrameHeight*(
     fFrameGridSize+fFrameZoom));
-  {$IFDEF DEBUG}
-    DebugLn('Grid pos: x=',IntToStr(fRect.Left),', y=',IntToStr(fRect.Top));
-  {$ENDIF}
 end;
 
 constructor TFrameGrid.Create(aW: Integer; aH: Integer; aSize: Word);
@@ -546,7 +540,7 @@ begin
   FCellCursor := TCellCursor.Create;
   FCellCursor.Cells:=1;
   {$IFDEF DEBUG}
-  DebugLn('Layers count ',IntToStr(Layers.Count));
+  DebugLn(DateTimeToStr(Now), ': In  TFrameGrid.Create() Layers count ',IntToStr(Layers.Count));
   {$ENDIF}
   FActiveLayer:=Layers.Keys[0];
   fActiveFrame:=Frames.Keys[0];
@@ -576,9 +570,6 @@ var fBuffer : TBGRABitmap;
   begin
     xsize := (x2-x1) div size;
     ysize := (y2-y1) div size;
-    //{$IFDEF DEBUG}
-    // DebugLn('x1=',x1,'; y1=',y1,'; x2=',x2,'; y2=',y2,'; xsize=',xsize,'; ysize=',ysize,' in: DrawGrid');
-    //{$ENDIF}
     For i := 1 to ysize do fBuffer.DrawLine(x1,y1+i*size,x2,y1+i*size,ColorToBGRA(clNavy),False);
     For i := 1 to xsize do fBuffer.DrawLine(x1+i*size,y1,x1+i*size,y2,ColorToBGRA(clNavy),False);
     fBuffer.Rectangle(x1,y1,x2,y2,ColorToBGRA(clNavy));
@@ -592,9 +583,6 @@ var fBuffer : TBGRABitmap;
      for x := 0 to aLayer.Drawable.Width-1 do
     for y:= 0 to aLayer.Drawable.Height-1 do begin
       tmpPix := aLayer.Drawable.GetPixel(x,y);
-      {$IFDEF DEBUG}
-      // DebugLn('in: InternalDrawLayer() x=',IntToStr(x),' y=',IntToStr(y),' pixel.alpha: ',IntToStr(tmpPix.alpha));
-      {$ENDIF}
       if tmpPix.alpha>0 then begin
         //draw filled rectangle
          fBuffer.Rectangle(X*(fFrameGridSize+fFrameZoom)+1,
@@ -609,9 +597,7 @@ var fBuffer : TBGRABitmap;
 begin
   fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),
                               fFrameHeight*(fFrameGridSize+fFrameZoom));
-  {$IFDEF DEBUG}
-  //DebugLn('In: RenderAndDraw(); fBuffer.Width=',IntToStr(fBuffer.Width),' fBuffer.Height=',IntToStr(fBuffer.Height));
-  {$ENDIF}
+
   ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
   fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width-1,fBuffer.Height-1),
                        ColorToBGRA($BFBFBF),
@@ -623,13 +609,15 @@ begin
 
   //draw all layers to fBuffer per pixel
   {$IFDEF DEBUG}
-  DebugLn('In: RenderAndDraw(); Active frame: ',ActiveFrame,' layers: ',Frames[ActiveFrame].fLayers.Text);
+  DebugLn(DateTimeToStr(Now), ' In: RenderAndDraw(); Active frame: ',ActiveFrame,' layers: ',Frames[ActiveFrame].fLayers.Text);
+  DebugLn(DateTimeToStr(Now), ' In: RenderAndDraw(); Layer names:',IntToStr(Frames[ActiveFrame].fLayers.Count));
   {$ENDIF}
   for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do begin
     {$IFDEF DEBUG}
-    DebugLn('In: RenderAndDraw(); Layer name:',Frames[ActiveFrame].fLayers.Strings[i]);
-    DebugLn('In: RenderAndDraw(); all layers:',IntToStr(Layers.Count));
-    for _i := 0 to Layers.Count-1 do DebugLn('Layer:',Layers.Keys[_i]);
+    DebugLn(DateTimeToStr(Now), ' In: TFrameGrid.RenderAndDraw(); Layer name:',Frames[ActiveFrame].fLayers.Strings[i]);
+
+    DebugLn(DateTimeToStr(Now), ' In: TFrameGrid.RenderAndDraw(); all layers:',IntToStr(Layers.Count));
+    for _i := 0 to Layers.Count-1 do DebugLn(DateTimeToStr(Now), ' In: TFrameGrid.RenderAndDrawLayer:',Layers.Keys[_i]);
     {$ENDIF}
    InternalDrawLayer(Layers[Frames[ActiveFrame].fLayers.Strings[i]]);
   end;
@@ -647,7 +635,7 @@ procedure TFrameGrid.RenderPicture(Canvas: TCanvas);
  var
    i : Integer;
 begin
-  if fCheckers then
+  //if fCheckers then
     fPreview.DrawCheckers(Rect(0,0,fPreview.Width,fPreview.Height),
                         ColorToBGRA($BFBFBF),
                         ColorToBGRA($FFFFFF),
@@ -655,7 +643,7 @@ begin
                         4);
   //draw all layers to canvas
   {$IFDEF DEBUG}
-  DebugLn('In: RenderPicture(); Active frame: ',ActiveFrame,' layers: ',Frames[ActiveFrame].fLayers.Text);
+  DebugLn(DateTimeToStr(Now), ' In: RenderPicture(); Active frame: ',ActiveFrame,' layers: ',Frames[ActiveFrame].fLayers.Text);
   {$ENDIF}
   for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do
     fPreview.PutImage(0,0,Layers[Frames[ActiveFrame].fLayers.Strings[i]].Drawable,dmDrawWithTransparency);

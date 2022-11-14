@@ -41,6 +41,7 @@ type
     ReferenceImage: TImage;
     procedure FormClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormDestroy(Sender: TObject);
   private
 
   public
@@ -52,7 +53,7 @@ var
 
 implementation
 
-uses umain;
+uses uglobals, umain;
 
 {$R *.lfm}
 
@@ -71,6 +72,14 @@ procedure TfrmReferense.FormClose(Sender: TObject; var CloseAction: TCloseAction
 begin
   frmMain.ReferenseImageMenuItem.Checked:=false;
   frmMain.SetFocus;
+end;
+
+procedure TfrmReferense.FormDestroy(Sender: TObject);
+begin
+  INI.WriteInteger('FRMREFERENSE','TOP',frmReferense.Top);
+  INI.WriteInteger('FRMREFERENSE','LEFT',frmReferense.Left);
+  INI.WriteInteger('FRMREFERENSE','WIDTH',frmReferense.Width);
+  INI.WriteInteger('FRMREFERENSE','HEIGHT',frmReferense.Height);
 end;
 
 end.

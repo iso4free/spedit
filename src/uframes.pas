@@ -38,6 +38,8 @@ type
 
   TfrmFrames = class(TForm)
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
 
   public
@@ -58,6 +60,22 @@ implementation
    frmMain.FramesMenuItem.Checked:=False;
    frmMain.SetFocus;
  end;
+
+procedure TfrmFrames.FormCreate(Sender: TObject);
+begin
+  frmFrames.Top:=INI.ReadInteger('FRMFRAMES','TOP',frmFrames.Top);
+  frmFrames.Left:=INI.ReadInteger('FRMFRAMES','LEFT',frmFrames.Left);
+  frmFrames.Width:=INI.ReadInteger('FRMFRAMES','WIDTH',frmFrames.Width);
+  frmFrames.Height:=INI.ReadInteger('FRMFRAMES','HEIGHT',frmFrames.Height);
+end;
+
+procedure TfrmFrames.FormDestroy(Sender: TObject);
+begin
+   INI.WriteInteger('FRMFRAMES','TOP',frmFrames.Top);
+   INI.WriteInteger('FRMFRAMES','LEFT',frmFrames.Left);
+   INI.WriteInteger('FRMFRAMES','WIDTH',frmFrames.Width);
+   INI.WriteInteger('FRMFRAMES','HEIGHT',frmFrames.Height);
+end;
 
 end.
 
