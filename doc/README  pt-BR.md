@@ -6,7 +6,7 @@ Boas-vindas ao Spedit 4.0, um Editor de Pixel Art e Gerenciador de Biblioteca de
 
 INTRODUÇÃO
 ============
-Programa escrito com CodeTyphon IDE/Free Pascal Compiler.
+Programa escrito com Lazarus IDE/Free Pascal Compiler.
 Um Editor de Sprites e Biblioteca local de sprites para jogos 2D em Pixel Art simples, mas poderoso.
 
 
@@ -14,6 +14,12 @@ TRABALHO EM PROGRESSO
 =============
 Continua em desenvolvimento, novos recursos seão adicionados quando eu tiver tempo e motivação suficiente.
 Você pode me patrocinar através do https://www.buymeacoffee.com/iso4free se quiser que alguns recursos sejam priorizados.
+
+LOCALIZAÇÃO
+============
+SPEdit suporta a localização de sua interface para outros idiomas. Os arquivos de tradução de interface possuem o formato padrão PO (Portable Object) e devem posuir nomes no formato 'spedit.xx.po' ou 'spedit.xx_XX.po', onde 'xx' ou 'xx_XX' é o identificador de linguagem comum (ex: spedit.pt_BR.po para Português Brasileiro). Após selecionar o arquivo de tradução de interface, a localização ocorre imediatamente sem reiniciar o programa e será ativado automaticamente ao reabrir o programa.
+
+Se voce quer que o SPEdit seja localizado para o seu idioma, você pode contribuir com a tradução [aqui](https://crwd.in/spedit).
 
 ![main window screenshot](spedit.png)
 
@@ -61,12 +67,12 @@ No futuro estarão disponíveis:
 - exportar no seu próprio formato de arquivo JSON
 - gerenciar a biblioteca local de sprites com busca por hashtags
 - outros recursos que serão necessários
-- localização da interface para outros idiomas
+- localização da interface para outros idiomas (implementado)
 
 SOLUÇÃO DE PROBLEMAS
 ===============
-- [ ] No Windows as teclas não vão funcionar. Será consertado em breve.
-- [ ] Roda muito lentamente no Windows.
+- [x] No Windows as teclas não vão funcionar. Será consertado em breve.
+- [x] Roda muito lentamente no Windows.
 
 DIREITO AUTORAL
 =========
@@ -132,99 +138,8 @@ Eu criei um formato de sprite simples (baseado em texto) na versão portada, Voc
 ![SPEDit v.2.0 FPC edition in work](spedit2-worked.png)
 
 É claro que tem codigo antigo e feio, mas funciona! E esse foi o primeiro aplicativo que eu fiz a sério. Então não me julgue tão duramente, Eu só estava aprendendo o básico de programação na época.
-Mas se você for rodar o SPEdit antigo lembre-se de que você DEVE especificar o nome do arquivo de sprite na linha de comando (com ou sem qualquer extensão)
+Mas se você for rodar o SPEdit antigo lembre-se de que você DEVE especificar o nome do arquivo de sprite na linha de comando (com ou sem qualquer extensão). Se um nome não for inserido, o arquivo será nomeado de 'test.spr' por padrão.
 
-REGISTRO DE DESENVOLVIMENTO	
+REGISTRO DE DESENVOLVIMENTO
 =======
-
-#Descrição
-- [*] Algumas alterações
-- [!] Conserto de alguns erros ou bugs
-- [+] Adição de algo novo
-- [-] Remoção de recursos sem uso
-
-2000-2001
-=
-- [+] Primeira versão para MS-DOS (o código foi perdido)
-
-2002
-=
-- [+] Segunda versão com o suporte ao formato PCX (no arquivo)
-
-2004
-=
-- [+] Terceira versão - portada para FPC para o Windows, usava paleta de 256 cores (no arquivo)
-
-16.04.2021
-=
-- [*] Processo de trabalho completamente redesenhado
-
-- [+] Implementeda uma Biblioteca Local de Sprites para armazenar imagens importadas no formato PNG separado por categorias
-
-26.04.2022
-=
-
-- [+] Na aba 'Imagem de Origem' foi adicionado funcionalidades de trabalho com quadros (lista de quadros, propriedades de quadro,  deletar quadros selecionados)
-
-07.05.2022
-=
-- [*] A tela de 'Sobre' foi modificada (traçado otimizado, animação trocada)
-
-22.05.2022
-=
-- [+] Implementação de paleta e seleção de cor
-
-08.06.2022
-=
-- [+] Adição da interface de trabalho com camadas
-- [!] Conserto de um bug com o traçado da grade
-- [*] Alteração da previsualização (centralizada e com padrão em xadres como fundo transparente)
-- [*] Algumas pequenas alterações
-
-09.06.2022
-=
-- [*] Algumas alterações na interface (Ferramentas de desenho agora possuem propriedades)
-- [+] Inicia-se a tentativa de desenho (ainda não funciona bem - precisa de conserto)
-
-25.10.2022
-=
-- [*] Muitas mudanças durante todo o período (12.10-25.10):
-- [+] Implementação do destaque das células ao mover o mouse sobre a grade
-- [+] Adição de teclas direcionais para mover o cursor da célula
-- [+] Adição de classes básicas de camada e quadro
-- [+] Adição de listas mapeadas de camadas/quadros
-- [!] Conserto do vazamento de memória
-- [+] Adição da opção de Exportar quadro para PNG
-- [!] Conserto do controle do cursor usando as teclas
-- [+] Adição do desenho com a cor secundária (tecla Enter), deletar pixel com a tecla Del
-
-27.10.2022
-=
-- [*] Criação de janelas separadas para previsualização, referência, camadas
-- [*] Reestruturação e otimização do código
-- [*] Remoção de componentes desnecessários
-- [*] Algumas alterações na organização de projeto
-- [*] Este arquivo foi atualizado
-
-28.10.2022
-=
-- [+] Adição de janela de modelo para os quadros
-- [*] Algumas correções e alterações
-
-31.10.2022
-=
-- [+] Adição de mudança no tamanho do lápis
-- [+] Adiçao da ferramenta de desenho com linha
-- [+] Adição do desenho com mouse(ferramenta lápis)
-- [*] ALteração para conexão via LazLogger ao invés do console WriteLN
-- [!] Conserto do fundo transparente ao desenhar com mouse
-
-02.11.2022
-=
-- [*] ALteração da funcionalidade interna das ferramentas de desenho, mas o app falha ao fechar
-- [+] Adição de modelo para a Ferramenta Borracha
-
-04.11.2022
-=
-- [+] Adição do diálogo Novo Quadro
-- [!] Conserto de vazamento de memória
+![Registro de Desenvolvimento](/doc/devlog_pt-BR.md)
