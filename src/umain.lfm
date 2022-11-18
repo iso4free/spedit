@@ -3,8 +3,8 @@ object frmMain: TfrmMain
   Height = 454
   Top = 187
   Width = 557
-  HorzScrollBar.Page = 111
-  VertScrollBar.Page = 196
+  HorzScrollBar.Page = 530
+  VertScrollBar.Page = 350
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
@@ -87,7 +87,6 @@ object frmMain: TfrmMain
         Top = 35
         Width = 551
         Align = alClient
-        OnDblClick = pbFrameDrawDblClick
         OnMouseDown = pbFrameDrawMouseDown
         OnMouseMove = pbFrameDrawMouseMove
         OnMouseUp = pbFrameDrawMouseUp

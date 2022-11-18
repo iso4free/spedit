@@ -201,6 +201,7 @@ end;
 procedure TfrmDrawTools.sbPenClick(Sender: TObject);
 begin
   if not Assigned(FrameGrid) then Exit;
+
   FreeAndNil(FDrawTool);
   case (Sender as TSpeedButton).Tag of
  1:FDrawTool:=TSPPen.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);

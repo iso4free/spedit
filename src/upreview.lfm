@@ -9,6 +9,7 @@ object FrmPreview: TFrmPreview
   ClientHeight = 240
   ClientWidth = 320
   DoubleBuffered = True
+  FormStyle = fsStayOnTop
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy

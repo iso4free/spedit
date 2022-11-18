@@ -115,7 +115,6 @@ type
     procedure miPaletteLoadFromFileClick(Sender: TObject);
     procedure miPaletteSaveToFileClick(Sender: TObject);
     procedure PaintToolPanelVisibleMenuItemClick(Sender: TObject);
-    procedure pbFrameDrawDblClick(Sender: TObject);
     procedure pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -135,12 +134,13 @@ type
     procedure ViewZoomInMenuItemClick(Sender: TObject);
     procedure ViewZoomOutMenuItemClick(Sender: TObject);
     procedure ViewZoomResetMenuItemClick(Sender: TObject);
+    procedure HideWindows;
+    procedure ShowWindows;
   private
    fDrawGridMode : TDrawGridMode;
    dx,dy : Integer;             //offset to move grid
    startx,starty : Integer;     //start position to move
-   procedure HideWindows;
-   procedure ShowWindows;
+
   end;
 
 var
@@ -381,11 +381,6 @@ begin
   frmDrawTools.Visible:= not frmDrawTools.Visible;
 end;
 
-procedure TfrmMain.pbFrameDrawDblClick(Sender: TObject);
-begin
-  if Assigned(frmDrawTools.DrawTool) then frmDrawTools.DrawTool.FinishDraw;
-end;
-
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
  var p : TPoint;
@@ -398,9 +393,9 @@ begin
       p:=FrameGrid.Coords(x,y);
        frmDrawTools.DrawTool.PenSize:=frmDrawTools.trkbrPenSize.Position;
        if Button=mbLeft then
-          frmDrawTools.DrawTool.StartDraw(p.X,p.Y,spclForeColor)
+          frmDrawTools.DrawTool.StartDraw(p.X,p.Y,Shift,spclForeColor)
        else if Button=mbRight then
-          frmDrawTools.DrawTool.StartDraw(p.X,p.Y,spclBackColor);
+          frmDrawTools.DrawTool.StartDraw(p.X,p.Y,Shift,spclBackColor);
        pbFrameDraw.Invalidate;
      end;
     end;
@@ -448,8 +443,7 @@ begin
   if not Assigned(FrameGrid) then Exit;
   fDrawGridMode:=dgmNone;
   if Assigned(frmDrawTools.DrawTool) then begin
-   frmDrawTools.DrawTool.MouseUp(x,y);
-   frmDrawTools.DrawTool.FinishDraw;
+   frmDrawTools.DrawTool.MouseUp(x,y,Shift);
   end;
   if Assigned(FrmPreview) then FrmPreview.FramePreview.Invalidate;
 end;

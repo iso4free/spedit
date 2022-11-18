@@ -56,9 +56,9 @@ type
     public
       constructor Create(Width : Integer = 32; Height : Integer = 32);
       destructor Destroy; override;
-      procedure StartDraw(x,y : Integer; aColor : TBGRAPixel);virtual;
+      procedure StartDraw(x,y : Integer; Shift: TShiftState; aColor : TBGRAPixel);virtual;
       procedure MouseMove(x,y : Integer); virtual;
-      procedure MouseUp(x,y : Integer); virtual;
+      procedure MouseUp(x,y : Integer; Shift: TShiftState); virtual;
       procedure FinishDraw;virtual;
       property PrevPoint : TPoint read FPrevPoint write SetPrevPoint;
       property PenSize : Byte read FPenSize write SetPenSize;
@@ -69,23 +69,23 @@ type
   { TSPPen - simple pen tool}
 
   TSPPen = class(TSPDrawTool)
-     procedure StartDraw(x, y: Integer; aColor : TBGRAPixel);override;
+     procedure StartDraw(x, y: Integer;Shift: TShiftState; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
-     procedure MouseUp(x, y: Integer); override;
+     procedure MouseUp(x, y: Integer;Shift: TShiftState); override;
   end;
 
 
   { TSPLine - draw simple line}
 
   TSPLine = class(TSPDrawTool)
-     procedure StartDraw(x, y: Integer; aColor : TBGRAPixel);override;
+     procedure StartDraw(x, y: Integer; Shift : TShiftState; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
   end;
 
   { TSPEraser }
 
   TSPEraser = class(TSPDrawTool)
-     procedure StartDraw(x, y: Integer; aColor : TBGRAPixel);override;
+     procedure StartDraw(x, y: Integer; Shift : TShiftState; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
   end;
 
@@ -93,9 +93,10 @@ implementation
 
 { TSPEraser }
 
-procedure TSPEraser.StartDraw(x, y: Integer; aColor: TBGRAPixel);
+procedure TSPEraser.StartDraw(x, y: Integer; Shift: TShiftState;
+  aColor: TBGRAPixel);
 begin
-  inherited StartDraw(x, y, aColor);
+  inherited StartDraw(x, y, Shift, aColor);
 
 end;
 
@@ -106,7 +107,8 @@ end;
 
 { TSPLine }
 
-procedure TSPLine.StartDraw(x, y: Integer; aColor: TBGRAPixel);
+procedure TSPLine.StartDraw(x, y: Integer; Shift: TShiftState;
+  aColor: TBGRAPixel);
 begin
   Color:=aColor;
   fBuffer.Canvas.Pen.Color:=Color;
@@ -138,9 +140,10 @@ end;
 
 { TSPPen }
 
-procedure TSPPen.StartDraw(x, y: Integer; aColor: TBGRAPixel);
+procedure TSPPen.StartDraw(x, y: Integer; Shift: TShiftState; aColor: TBGRAPixel
+  );
 begin
-  inherited StartDraw(x,y,aColor);
+  inherited StartDraw(x,y,Shift,aColor);
   if FPenSize=1 then Layers[fLayerName].Drawable.SetPixel(x,y,Color) else begin
      Layers[fLayerName].Drawable.Canvas.Brush.Color:=Color;
      Layers[fLayerName].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
@@ -157,9 +160,10 @@ begin
   prevy:=y;
 end;
 
-procedure TSPPen.MouseUp(x, y: Integer);
+procedure TSPPen.MouseUp(x, y: Integer; Shift: TShiftState);
 begin
-  //inherited MouseUp(x, y);
+  inherited MouseUp(x, y,Shift);
+
 end;
 
 
@@ -187,6 +191,8 @@ constructor TSPDrawTool.Create(Width: Integer; Height: Integer);
 begin
   fBuffer:=TBGRABitmap.Create(Width,Height);
   FPenSize:=1; //default 1px
+  fLayerName:='Draw layer';
+  Layers[fLayerName]:=TSPLayer.Create(fLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
 end;
 
 destructor TSPDrawTool.Destroy;
@@ -201,12 +207,11 @@ begin
   inherited Destroy;
 end;
 
-procedure TSPDrawTool.StartDraw(x, y: Integer; aColor: TBGRAPixel);
+procedure TSPDrawTool.StartDraw(x, y: Integer; Shift: TShiftState;
+  aColor: TBGRAPixel);
 begin
    fColor:=aColor;
   //create temporary layer
-  fLayerName:='Pen layer';
-  Layers[fLayerName]:=TSPLayer.Create(fLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
   Layers[fLayerName].Temporary:=True;
   Layers[fLayerName].AddToFrame(FrameGrid.ActiveFrame);
   Frames[FrameGrid.ActiveFrame].AddLayer(fLayerName);
@@ -221,29 +226,19 @@ begin
  Assert(False,'You must override MouseMove() method! Class name: '+Self.ClassName);
 end;
 
-procedure TSPDrawTool.MouseUp(x, y: Integer);
+procedure TSPDrawTool.MouseUp(x, y: Integer; Shift: TShiftState);
 begin
+ {$IFDEF DEBUG}
+ DebugLn(DateTimeToStr(Now),' In: TSPDrawTool.MouseUp()','Class name=',Self.ClassName);
+ {$ENDIF}
+ if Self.ClassName='TSPDrawTool' then
  Assert(False,'You must override MouseUp() method! Class name: '+Self.ClassName);
+   if not (ssCtrl in Shift) then FinishDraw;
 end;
 
 procedure TSPDrawTool.FinishDraw;
-var
-  i,j : Integer;
-  p : TBGRAPixel;
 begin
-  //Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[fLayerName].Drawable,dmDrawWithTransparency);
-  //Frames[FrameGrid.ActiveFrame].DeleteLayer(fLayerName);
-  //Layers[fLayerName].DeleteFromFrame(FrameGrid.ActiveFrame);
-  //todo: fix draw to active layer and clear tool layer
-  //Layers[fLayerName].Drawable:=fBuffer;
-  for i:=0 to Layers[fLayerName].Width-1 do
-      for j:=0 to Layers[FrameGrid.ActiveLayer].Height do begin
-        p:= Layers[fLayerName].Drawable.GetPixel(i,j);
-        if p.alpha>0 then begin
-          Layers[fLayerName].Drawable.ErasePixel(i,j,255);
-          Layers[FrameGrid.ActiveLayer].Drawable.SetPixel(i,j,p);
-        end;
-      end;
+  Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[fLayerName].Drawable,dmSet);
 end;
 
 

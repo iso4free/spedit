@@ -86,10 +86,12 @@ end;
  begin
    sdExportFrameSaveDialog.InitialDir:=GetUserDir;
   sdExportFrameSaveDialog.FileName:=FrameGrid.ActiveFrame;
+  frmMain.HideWindows;
   if sdExportFrameSaveDialog.Execute then begin
     //save current frame to PNG file by default to user dir and with frame name
     FrameGrid.ExpotPng(sdExportFrameSaveDialog.FileName);
   end;
+  frmMain.ShowWindows;
  end;
 
 procedure TFrmPreview.FramePreviewPaint(Sender: TObject);

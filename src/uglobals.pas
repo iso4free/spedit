@@ -184,7 +184,7 @@ type
     fActiveFrame: String;
     FActiveLayer: String;
     FCellCursor: TCellCursor;
-    fCheckers: Boolean;
+    FBackground: Boolean;
     FCheckersSize  : Byte;
     fPreview       : TBGRABitmap; //for draw image preview
     fFrameGridSize : Word;   //current grid size
@@ -196,6 +196,7 @@ type
     fShowGrid      : Boolean;//if true grid will be draw
     fOffset        : TPoint; //offset to draw frame on canvas
     procedure CalcGridRect;
+    procedure RedrawCheckers;
     procedure SetCheckersSize(AValue: Byte);
     procedure SetFrameZoom(AValue: Integer);
     procedure SetOffset(AValue: TPoint);
@@ -219,7 +220,7 @@ type
     property ActiveFrame : String read fActiveFrame write fActiveFrame; //work frame name to access through mapped list
     property ActiveLayer : String read FActiveLayer write FActiveLayer; //current layer to draw
     property CellCursor : TCellCursor read FCellCursor; //just red frame to show where draw in grid
-    property DrawBackground : Boolean read fCheckers write fCheckers default true;
+    property DrawBackground : Boolean read FBackground write FBackground default true;
   end;
 
 
@@ -509,11 +510,17 @@ begin
     Result := y*fFrameWidth+x;
 end;
 
+procedure TFrameGrid.RedrawCheckers;
+begin
+
+end;
+
 procedure TFrameGrid.SetFrameZoom(AValue: Integer);
 begin
   if fFrameZoom=AValue then Exit;
   fFrameZoom:=AValue;
   CalcGridRect;
+  RedrawCheckers;
 end;
 
 procedure TFrameGrid.SetCheckersSize(AValue: Byte);
@@ -549,7 +556,6 @@ end;
 destructor TFrameGrid.Destroy;
 begin
   INI.WriteInteger('INTERFACE','CHECKERS SIZE',FCheckersSize);
-
   FreeAndNil(fPreview);
   FreeAndNil(FCellCursor);
   inherited Destroy;
@@ -599,10 +605,11 @@ begin
                               fFrameHeight*(fFrameGridSize+fFrameZoom));
 
   ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
-  fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width-1,fBuffer.Height-1),
+  fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),
                        ColorToBGRA($BFBFBF),
                        ColorToBGRA($FFFFFF),
-                       FCheckersSize,FCheckersSize);
+                       FCheckersSize,
+                       FCheckersSize);;
 
   if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
 
