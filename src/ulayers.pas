@@ -69,11 +69,32 @@ uses uglobals, umain;
 
 procedure TfrmLayers.drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
   aRect: TRect; aState: TGridDrawState);
+var aKey : String;
 begin
   //todo: draw headers and layers data
   if aRow<>0 then begin //draw header
+    if aRow>Layers.Count then Exit;
+    aKey:=Layers.Keys[aRow-1];
     case aCol of
-  0:;
+  0:begin
+      //draw layer visibility icon
+      if Layers[aKey].Visible then BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,0)
+         else BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,1);
+    end;
+  1:begin
+      //draw layer protection icon
+      if Layers[aKey].Locked then BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,2)
+         else BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,3);
+    end;
+  2:begin
+      //draw layer name
+      drwgrdLayers.Canvas.Font.Color:=clWindowText;
+      drwgrdLayers.Canvas.TextRect(aRect,aRect.Left,aRect.Top,aKey);
+    end;
+  3:begin
+      //draw layer image
+      Layers[aKey].Drawable.Draw(drwgrdLayers.Canvas,aRect);
+    end;
     end;
   end;
 

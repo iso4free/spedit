@@ -104,3 +104,8 @@ DEV.LOG
 13.11.2022
 =
 - [+] Added manual locale selection from file and save selected locale in settings
+
+20.11.2022
+=
+- [+] Implemented layers list draw content in grid
+- [!] SIGSEGV error fixed

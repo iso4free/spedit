@@ -48,7 +48,6 @@ type
       fX,fY           : Integer;    //current coords
       prevx, prevy    : Integer;    //previous coords
       fLayerName      : String;     //temporary created layer name
-      fBuffer         : TBGRABitmap;
       FPenSize        : Byte;
       FPrevPoint      : TPoint;
       procedure SetPenSize(AValue: Byte);
@@ -111,22 +110,21 @@ procedure TSPLine.StartDraw(x, y: Integer; Shift: TShiftState;
   aColor: TBGRAPixel);
 begin
   Color:=aColor;
-  fBuffer.Canvas.Pen.Color:=Color;
   fstartx:=x;
   fstarty:=y;
   prevx:=x;
   prevy:=y;
 
   Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Pen.Color:=Color;
-  if FPenSize=1 then fBuffer.SetPixel(x,y,Color) else
-     fBuffer.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
+  if FPenSize=1 then Layers[fLayerName].Drawable.SetPixel(x,y,Color) else
+     Layers[fLayerName].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
 end;
 
 procedure TSPLine.MouseMove(x, y: Integer);
 //var oldPenMode : TPenMode;
 begin
   //oldPenMode:=fBuffer.Canvas.Pen.Mode;
-  Layers[FrameGrid.ActiveLayer].Drawable.EraseRect(fBuffer.ClipRect,255);
+  Layers[FrameGrid.ActiveLayer].Drawable.EraseRect(Rect(0,0,FrameGrid.FrameWidth-1,FrameGrid.FrameHeight-1),255);
   Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Line(fstartx,fstarty,PrevX,PrevY);
   //fBuffer.Canvas.Pen.Mode:=pmXor;
   //fBuffer.Canvas.Line(fstartx,fstarty,PrevX,PrevY);
@@ -135,7 +133,7 @@ begin
   prevy:=y;
  //  Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Pen.Mode:=oldPenMode;
  // fBuffer.Canvas.Pen.Mode:=oldPenMode;
-  fBuffer.Canvas.Line(fstartx,fstarty,PrevX,PrevY);
+  Layers[fLayerName].Drawable.Canvas.Line(fstartx,fstarty,PrevX,PrevY);
 end;
 
 { TSPPen }
@@ -189,7 +187,6 @@ end;
 
 constructor TSPDrawTool.Create(Width: Integer; Height: Integer);
 begin
-  fBuffer:=TBGRABitmap.Create(Width,Height);
   FPenSize:=1; //default 1px
   fLayerName:='Draw layer';
   Layers[fLayerName]:=TSPLayer.Create(fLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
@@ -199,11 +196,9 @@ destructor TSPDrawTool.Destroy;
 begin
   FinishDraw;
   if Layers.IndexOf(fLayerName)<>-1 then begin
-   // Layers[fLayerName].Free;
-   // Layers[fLayerName] := nil;
-    //Layers.Remove(fLayerName);
+     Layers.Delete(Layers.IndexOf(fLayerName));
+     Layers.Remove(fLayerName);
   end;
-  FreeAndNil(fBuffer);
   inherited Destroy;
 end;
 
@@ -228,9 +223,6 @@ end;
 
 procedure TSPDrawTool.MouseUp(x, y: Integer; Shift: TShiftState);
 begin
- {$IFDEF DEBUG}
- DebugLn(DateTimeToStr(Now),' In: TSPDrawTool.MouseUp()','Class name=',Self.ClassName);
- {$ENDIF}
  if Self.ClassName='TSPDrawTool' then
  Assert(False,'You must override MouseUp() method! Class name: '+Self.ClassName);
    if not (ssCtrl in Shift) then FinishDraw;
@@ -239,6 +231,7 @@ end;
 procedure TSPDrawTool.FinishDraw;
 begin
   Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[fLayerName].Drawable,dmSet);
+  Layers[fLayerName].Drawable.EraseRect(0,0,FrameGrid.FrameWidth-1,FrameGrid.FrameHeight-1,0);
 end;
 
 

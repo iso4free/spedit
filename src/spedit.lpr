@@ -39,6 +39,7 @@ uses
 
 begin
   {$IFDEF DEBUG}
+  if FileExists(ChangeFileExt(Application.ExeName,'.log')) then DeleteFile(ChangeFileExt(Application.ExeName,'.log'));
   DebugLogger.ParamForLogFileName:='--debug-log';
   {$ENDIF}
   RequireDerivedFormResource:=True;

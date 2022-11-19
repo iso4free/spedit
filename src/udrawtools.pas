@@ -99,7 +99,6 @@ begin
    INI.WriteInteger('FRMDRAWTOOLS','LEFT',frmDrawTools.Left);
    INI.WriteInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
    INI.WriteInteger('FRMDRAWTOOLS','HEIGHT',frmDrawTools.Height);
-   FreeAndNil(FDrawTool);
 end;
 
 procedure TfrmDrawTools.BgColorMouseUp(Sender: TObject; Button: TMouseButton;

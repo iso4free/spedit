@@ -196,7 +196,6 @@ type
     fShowGrid      : Boolean;//if true grid will be draw
     fOffset        : TPoint; //offset to draw frame on canvas
     procedure CalcGridRect;
-    procedure RedrawCheckers;
     procedure SetCheckersSize(AValue: Byte);
     procedure SetFrameZoom(AValue: Integer);
     procedure SetOffset(AValue: TPoint);
@@ -350,17 +349,22 @@ end;
 procedure ClearFramesAndLayers;
 var
     f , l : Integer;
+    aKey : String;
 begin
   l:=Layers.Count-1;
   while l>0 do begin
-    Layers.Data[l].Free;
-    Layers.Data[l]:=nil;
+    aKey:=Layers.Keys[l];
+    Layers[aKey].Free;
+    Layers[aKey]:=nil;
+    Layers.Remove(aKey);
   end;
   Layers.Clear;
   f:=Frames.Count-1;
   while f>0 do begin
-    Frames.Data[f].Free;
-    Frames.Data[f]:=nil;
+    aKey:=Frames.Keys[f];
+    Frames[aKey].Free;
+    Frames[aKey]:=nil;
+    Frames.Remove(aKey);
   end;
   Frames.Clear;
 end;
@@ -510,17 +514,11 @@ begin
     Result := y*fFrameWidth+x;
 end;
 
-procedure TFrameGrid.RedrawCheckers;
-begin
-
-end;
-
 procedure TFrameGrid.SetFrameZoom(AValue: Integer);
 begin
   if fFrameZoom=AValue then Exit;
   fFrameZoom:=AValue;
   CalcGridRect;
-  RedrawCheckers;
 end;
 
 procedure TFrameGrid.SetCheckersSize(AValue: Byte);
@@ -854,7 +852,7 @@ initialization
 
  finalization
   INI.WriteString('INTERFACE','SPRITELIB',CurrentLibName);
-  ClearFramesAndLayers;
+  //ClearFramesAndLayers;
   FreeAndNil(Layers);
   FreeAndNil(Frames);
   FreeAndNil(SpriteLibNames);

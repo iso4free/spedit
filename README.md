@@ -77,8 +77,9 @@ In future will be avaliable:
 
 TROUBLESHOOTING
 ===============
-- [x] In Windows keys won't work. Will be fixed soon.
-- [x] In Windows works very slow
+- [ ] In Windows keys won't work. Will be fixed soon.
+- [ ] In Windows works very slow
+- [ ] Sometime memory leaks happens
 
 COPYRIGHT
 =========

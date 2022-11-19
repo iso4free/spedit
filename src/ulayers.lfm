@@ -42,7 +42,7 @@ object frmLayers: TfrmLayers
         end      
         item
           Title.Caption = 'Name'
-          Width = 66
+          Width = 100
         end      
         item
           Title.Caption = 'Image'
@@ -59,7 +59,7 @@ object frmLayers: TfrmLayers
       ColWidths = (
         24
         24
-        66
+        100
         65
       )
     end

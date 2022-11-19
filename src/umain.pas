@@ -473,6 +473,10 @@ begin
     FrameGrid.RenderAndDraw(pbFrameDraw.Canvas);
     if Assigned(FrmPreview) then
      FrameGrid.RenderPicture(FrmPreview.FramePreview.Canvas);
+   if Assigned(frmLayers) then begin
+    frmLayers.drwgrdLayers.RowCount:=Layers.Count+1;
+    frmLayers.Invalidate;
+   end;
   end;
   StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);
 end;
