@@ -47,8 +47,11 @@ type
     LayersFlowPanel: TFlowPanel;
     LayersGroupBox: TGroupBox;
     procedure bbtnAddLayerClick(Sender: TObject);
+    procedure bbtnDeleteLayerClick(Sender: TObject);
     procedure drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
+    procedure drwgrdLayersSelectCell(Sender: TObject; aCol, aRow: Integer;
+      var CanSelect: Boolean);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
@@ -88,7 +91,8 @@ begin
     end;
   2:begin
       //draw layer name
-      drwgrdLayers.Canvas.Font.Color:=clWindowText;
+      if aKey=FrameGrid.ActiveLayer then drwgrdLayers.Canvas.Font.Color:=clRed
+         else drwgrdLayers.Canvas.Font.Color:=clWindowText;
       drwgrdLayers.Canvas.TextRect(aRect,aRect.Left,aRect.Top,aKey);
     end;
   3:begin
@@ -98,6 +102,26 @@ begin
     end;
   end;
 
+end;
+
+procedure TfrmLayers.drwgrdLayersSelectCell(Sender: TObject; aCol,
+  aRow: Integer; var CanSelect: Boolean);
+var aKey : String;
+begin
+  if aRow=0 then Exit; //click on table header - do nothing
+  aKey:=Layers.Keys[aRow-1];
+  case aCol of
+0:begin //change layer visibility
+     Layers[aKey].Visible:=not Layers[aKey].Visible;
+    end;
+1:begin
+     Layers[aKey].Locked:=not Layers[aKey].Locked;
+    end;
+2,3:begin  //select active layer
+     FrameGrid.ActiveLayer:=aKey;
+    end;
+  end;
+  frmMain.Invalidate;
 end;
 
 procedure TfrmLayers.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -123,10 +147,24 @@ procedure TfrmLayers.bbtnAddLayerClick(Sender: TObject);
 var
   aLayerName: String;
 begin
+  frmMain.HideWindows;
   aLayerName := InputBox('Layer name','Input new layer name:','');
   if (Trim(aLayerName)='') then aLayerName:=CheckLayerName('Layer');
   Layers[aLayerName]:=TSPLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
   drwgrdLayers.RowCount:=Layers.Count;
+  FrameGrid.ActiveLayer:=aLayerName;
+  Frames[FrameGrid.ActiveFrame].AddLayer(aLayerName);
+  Layers[aLayerName].AddToFrame(FrameGrid.ActiveFrame);
+  frmMain.ShowWindows;
+  Invalidate;
+end;
+
+procedure TfrmLayers.bbtnDeleteLayerClick(Sender: TObject);
+begin
+  Layers.Delete(Layers.IndexOf(FrameGrid.ActiveLayer));
+  Layers.Remove(FrameGrid.ActiveLayer);
+  Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
+  FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;
 end;
 
 end.

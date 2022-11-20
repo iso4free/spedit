@@ -624,7 +624,8 @@ begin
     DebugLn(DateTimeToStr(Now), ' In: TFrameGrid.RenderAndDraw(); all layers:',IntToStr(Layers.Count));
     for _i := 0 to Layers.Count-1 do DebugLn(DateTimeToStr(Now), ' In: TFrameGrid.RenderAndDrawLayer:',Layers.Keys[_i]);
     {$ENDIF}
-   InternalDrawLayer(Layers[Frames[ActiveFrame].fLayers.Strings[i]]);
+    if Layers[Frames[ActiveFrame].fLayers.Strings[i]].Visible then
+       InternalDrawLayer(Layers[Frames[ActiveFrame].fLayers.Strings[i]]);
   end;
 
   //draw highlited cell cursor over the grid

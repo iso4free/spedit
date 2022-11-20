@@ -56,6 +56,7 @@ object frmLayers: TfrmLayers
       TitleImageListWidth = 24
       UseXORFeatures = True
       OnDrawCell = drwgrdLayersDrawCell
+      OnSelectCell = drwgrdLayersSelectCell
       ColWidths = (
         24
         24
@@ -120,6 +121,7 @@ object frmLayers: TfrmLayers
       AutoSize = True
       Images = frmMain.ButtonsImageList
       ImageIndex = 33
+      OnClick = bbtnDeleteLayerClick
       ParentShowHint = False
       ShowHint = True
       TabOrder = 1
