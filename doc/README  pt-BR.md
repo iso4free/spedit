@@ -71,8 +71,9 @@ No futuro estarão disponíveis:
 
 SOLUÇÃO DE PROBLEMAS
 ===============
-- [x] No Windows as teclas não vão funcionar. Será consertado em breve.
-- [x] Roda muito lentamente no Windows.
+- [_] No Windows as teclas não vão funcionar. Será consertado em breve.
+- [_] Roda muito lentamente no Windows.
+- [_] As vezes ocorrem vazamentos de memória
 
 DIREITO AUTORAL
 =========
