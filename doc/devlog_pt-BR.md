@@ -104,3 +104,8 @@ REGISTRO DE DESENVOLVIMENTO
 13.11.2022
 =
 - [+] Adição da seleção manual do idioma do arquivo e salvamento do idioma nas configurações
+
+20.11.2022
+=
+- [+] Implementação da lista de camadas do conteúdo desenhado na grade
+- [!] Conserto do erro SIGSEGV
