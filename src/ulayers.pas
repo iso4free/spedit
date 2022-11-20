@@ -121,7 +121,7 @@ begin
      FrameGrid.ActiveLayer:=aKey;
     end;
   end;
-  frmMain.Invalidate;
+  frmMain.SetFocus;
 end;
 
 procedure TfrmLayers.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -148,7 +148,7 @@ var
   aLayerName: String;
 begin
   frmMain.HideWindows;
-  aLayerName := InputBox('Layer name','Input new layer name:','');
+  aLayerName := InputBox(rsLayerName, rsInputNewLaye, 'Layer');
   if (Trim(aLayerName)='') then aLayerName:=CheckLayerName('Layer');
   Layers[aLayerName]:=TSPLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
   drwgrdLayers.RowCount:=Layers.Count;
@@ -156,12 +156,12 @@ begin
   Frames[FrameGrid.ActiveFrame].AddLayer(aLayerName);
   Layers[aLayerName].AddToFrame(FrameGrid.ActiveFrame);
   frmMain.ShowWindows;
+  frmMain.SetFocus;
   Invalidate;
 end;
 
 procedure TfrmLayers.bbtnDeleteLayerClick(Sender: TObject);
 begin
-  Layers.Delete(Layers.IndexOf(FrameGrid.ActiveLayer));
   Layers.Remove(FrameGrid.ActiveLayer);
   Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
   FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;

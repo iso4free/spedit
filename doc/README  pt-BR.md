@@ -21,7 +21,7 @@ SPEdit suporta a localização de sua interface para outros idiomas. Os arquivos
 
 Se voce quer que o SPEdit seja localizado para o seu idioma, você pode contribuir com a tradução [aqui](https://crwd.in/spedit).
 
-![main window screenshot](spedit.png)
+![main window screenshot](spedit_pt_BR.png)
 
 BREVE DOCUMENTAÇÃO
 ===================

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spedit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-11-13 21:37+0200\n"
+"PO-Revision-Date: 2022-11-20 21:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -31,8 +31,8 @@ msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
 msgstr ""
-"Натисніть ліву кнопку миші щоб вибрати колір\n"
-"Права кнопка миші щоб встановити прозорий колір"
+"Натисніть ліву кнопку миші для вибору кольору\n"
+"Права кнопка миші обрати прозорий колір"
 
 #: tfrmdrawtools.caption
 msgid "Tools"
@@ -48,8 +48,8 @@ msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
 msgstr ""
-"Натисніть ліву кнопку миші щоб вибрати колір\n"
-"Права кнопка миші щоб встановити прозорий колір"
+"Натисніть ліву кнопку миші для вибору кольору\n"
+"Права кнопка миші обрати прозорий колір"
 
 #: tfrmdrawtools.gbpalette.caption
 msgctxt "tfrmdrawtools.gbpalette.caption"
@@ -78,7 +78,7 @@ msgstr "Фрейм"
 
 #: tfrmframedlg.frmframewidth.caption
 msgid "Frame width"
-msgstr "Ширина фрейма"
+msgstr "Ширина фрейму"
 
 #: tfrmframedlg.lblframeheight.caption
 msgid "Frame height"
@@ -153,7 +153,7 @@ msgstr "Редагувати"
 
 #: tfrmmain.fileexitmenuitem.caption
 msgid "E&xit"
-msgstr "Вийти (&X)"
+msgstr "Вийти &X"
 
 #: tfrmmain.fileloadspritesheetmenuitem.caption
 msgid "Import Spritesheet"
@@ -173,15 +173,15 @@ msgstr "Файл"
 
 #: tfrmmain.filenewspritemenuitem.caption
 msgid "New Sprite Project"
-msgstr "Новий проект спрайтів"
+msgstr "Новий проєкт спрайтів"
 
 #: tfrmmain.filesaveasmenuitem.caption
 msgid "Save Sprite Project As..."
-msgstr "Зберегти проект спрайтів як..."
+msgstr "Зберегти проєкт спрайтів як..."
 
 #: tfrmmain.filesavespritemenuitem.caption
 msgid "Save Sprite Project"
-msgstr "Зберегти проект спрайтів"
+msgstr "Зберегти проєкт спрайтів"
 
 #: tfrmmain.frameeditortabsheet.caption
 msgid "Frame Editor"
@@ -195,14 +195,6 @@ msgstr "Фрейми"
 #: tfrmmain.helpmenuitem.caption
 msgid "Help"
 msgstr "Довідка"
-
-#: tfrmmain.languagemenuitem.caption
-msgid "Language"
-msgstr "Мова"
-
-#: tfrmmain.languagemenuitem.hint
-msgid "Change interface language (need restart)"
-msgstr "Змінити мову інтерфейсу"
 
 #: tfrmmain.layerstoolvisiblemenuitem.caption
 msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
@@ -258,7 +250,7 @@ msgstr "Попередній перегляд"
 
 #: tfrmmain.projecttabsheet.caption
 msgid "Project info"
-msgstr "Інформація про проект"
+msgstr "Інформація про проєкт"
 
 #: tfrmmain.referenseimagemenuitem.caption
 msgctxt "tfrmmain.referenseimagemenuitem.caption"
@@ -276,10 +268,6 @@ msgstr "Обрати бібліотеку спрайтів"
 #: tfrmmain.viewmenuitem.caption
 msgid "View"
 msgstr "Вид"
-
-#: tfrmmain.viewsettingsmenuitem.caption
-msgid "Settings"
-msgstr "Установки"
 
 #: tfrmmain.viewzoominmenuitem.caption
 msgid "Zoom++"
@@ -300,7 +288,7 @@ msgstr "Попередній перегляд"
 
 #: tfrmpreview.framepreview.hint
 msgid "Click to export PNG"
-msgstr "Клацніть щоб зберегти PNG"
+msgstr "Клацніть для збереження PNG"
 
 #: tfrmreferense.caption
 msgctxt "tfrmreferense.caption"
@@ -309,5 +297,4 @@ msgstr "Референс"
 
 #: tfrmreferense.hint
 msgid "Click to open any referense image"
-msgstr "Клацніть щоб завантажити будь-яке зображення для референса"
-
+msgstr "Клацніть для завантаження зображення для референсу"

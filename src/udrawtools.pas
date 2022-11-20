@@ -131,9 +131,6 @@ begin
    cl := spclBackColor;
    spclBackColor:=spclForeColor;
    spclForeColor:=cl;
-   //FgColor.Invalidate;
-   //BgColor.Invalidate;
-   Invalidate;
 end;
 
 procedure TfrmDrawTools.BgColorPaint(Sender: TObject);

@@ -44,6 +44,10 @@ resourcestring
   rsImageHasTooM = 'Image has too many colors!';
   rsPleaseInputN = 'Please input new library name';
   rsHasNonIntege = ' has non-integer value!';
+  rsLayerName = 'Layer name';
+  rsInputNewLaye = 'Input new layer name:';
+  rsYouMustOverr = 'You must override MouseUp() method! Class name: ';
+  rsYouMustOverr2 = 'You must override MouseMove() method! Class name: ';
 
 
 const

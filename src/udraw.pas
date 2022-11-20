@@ -189,14 +189,14 @@ constructor TSPDrawTool.Create(Width: Integer; Height: Integer);
 begin
   FPenSize:=1; //default 1px
   fLayerName:='Draw layer';
-  Layers[fLayerName]:=TSPLayer.Create(fLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+  Layers[fLayerName]:=TSPLayer.Create(fLayerName,Width,Height);
 end;
 
 destructor TSPDrawTool.Destroy;
 begin
   FinishDraw;
   if Layers.IndexOf(fLayerName)<>-1 then begin
-     Layers.Delete(Layers.IndexOf(fLayerName));
+     Layers[fLayerName].Free;
      Layers.Remove(fLayerName);
   end;
   inherited Destroy;
@@ -218,20 +218,21 @@ end;
 
 procedure TSPDrawTool.MouseMove(x, y: Integer);
 begin
- Assert(False,'You must override MouseMove() method! Class name: '+Self.ClassName);
+ Assert(False, rsYouMustOverr2+Self.ClassName);
 end;
 
 procedure TSPDrawTool.MouseUp(x, y: Integer; Shift: TShiftState);
 begin
  if Self.ClassName='TSPDrawTool' then
- Assert(False,'You must override MouseUp() method! Class name: '+Self.ClassName);
+ Assert(False, rsYouMustOverr+Self.ClassName);
    if not (ssCtrl in Shift) then FinishDraw;
 end;
 
 procedure TSPDrawTool.FinishDraw;
 begin
   Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[fLayerName].Drawable,dmSet);
-  Layers[fLayerName].Drawable.EraseRect(0,0,FrameGrid.FrameWidth-1,FrameGrid.FrameHeight-1,0);
+  //todo: fix clear
+  Layers[fLayerName].Drawable:=Layers[fLayerName].Drawable.NewBitmap(Layers[fLayerName].Width,Layers[fLayerName].Height);
 end;
 
 
