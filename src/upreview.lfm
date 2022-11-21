@@ -1,7 +1,7 @@
 object FrmPreview: TFrmPreview
-  Left = 271
+  Left = 272
   Height = 240
-  Top = 178
+  Top = 208
   Width = 320
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSizeToolWin

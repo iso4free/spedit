@@ -127,6 +127,7 @@ type
     procedure AddToFrame(FrameName : String); //add layer to frame
     function DeleteFromFrame(aFrameName : String) : Boolean; //remove frame name from internal list of frames where layer belongs
     constructor Create(aName : String; aWidth : Integer = 32; aHeight : Integer = 32);
+    procedure ClearDrawable; //clear BGRABitmap for new drawing
     destructor Destroy; override;
 
     procedure Clear;
@@ -261,6 +262,7 @@ var
   function CheckLayerName(aName : String) : String; //check layer name if exists return aName+'1' on aName if not
   function DetectPOLanguage(pofile : TFileName) : String;  //return language code for localization
 
+  procedure ClearBitmap(const aBmp : TBGRABitmap);//replase all pixels to BGRAPixelTransparent
 implementation
 
 procedure LoadSpriteLibDirs;
@@ -490,6 +492,11 @@ end;
 procedure TSPLayer.Clear;
 begin
  fLayerImg.EraseRect(0,0,fLayerImg.Width,fLayerImg.Height,255);
+end;
+
+procedure TSPLayer.ClearDrawable;
+begin
+  ClearBitmap(fLayerImg);
 end;
 
 { TFrameGrid }
@@ -825,6 +832,20 @@ begin
    Result:=s;
  end;
 
+procedure ClearBitmap(const aBmp: TBGRABitmap);
+var
+  p: PBGRAPixel;
+  n: integer;
+begin
+  p := aBmp.Data;
+  for n := aBmp.NbPixels - 1 downto 0 do
+  begin
+      p^ := BGRAPixelTransparent;
+    Inc(p);
+  end;
+  aBmp.InvalidateBitmap;
+end;
+
 initialization
 
  OnGetApplicationName := @GetAppName;
@@ -860,6 +881,7 @@ initialization
   //ClearFramesAndLayers;
   FreeAndNil(Layers);
   FreeAndNil(Frames);
+  FreeAndNil(FrameGrid);
   FreeAndNil(SpriteLibNames);
   FreeAndNil(INI);
 end.

@@ -1,8 +1,8 @@
 object frmReferense: TfrmReferense
-  Left = 270
+  Left = 271
   Height = 240
   Hint = 'Click to open any referense image'
-  Top = 194
+  Top = 224
   Width = 320
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSizeToolWin

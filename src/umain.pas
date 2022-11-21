@@ -167,7 +167,6 @@ var
   i: Integer;
 begin
   //show dialog to create new frame with default parameters
-  frmFrameDlg:=TfrmFrameDlg.Create(nil);
   if Assigned(FrameGrid) then begin
    frmFrameDlg.spnedtHeight.Value:=FrameGrid.FrameHeight;
    frmFrameDlg.spnedtWidth.Value:=FrameGrid.FrameWidth;
@@ -198,7 +197,6 @@ begin
    if Assigned(frmDrawTools.trkbrPenSize) then frmDrawTools.trkbrPenSize.Max:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
    pbFrameDraw.Invalidate;
   end;
-  FreeAndNil(frmFrameDlg);
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -212,8 +210,6 @@ begin
   INI.WriteBool('FRMPREVIEW','VISIBLE',PreviewMenuItem.Checked);
 
   if Assigned(frmAbout) then FreeAndNil(frmAbout);
-
-  if Assigned(FrameGrid) then FreeAndNil(FrameGrid);
 end;
 
 procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;

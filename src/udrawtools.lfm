@@ -1,7 +1,7 @@
 object frmDrawTools: TfrmDrawTools
-  Left = 214
+  Left = 215
   Height = 339
-  Top = 162
+  Top = 192
   Width = 169
   Align = alClient
   AutoSize = True

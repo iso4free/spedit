@@ -1,7 +1,7 @@
 object frmLayers: TfrmLayers
-  Left = 477
+  Left = 478
   Height = 240
-  Top = 354
+  Top = 384
   Width = 269
   BorderIcons = [biSystemMenu]
   Caption = 'Layers'

@@ -1,7 +1,7 @@
 object frmFrameDlg: TfrmFrameDlg
-  Left = 390
+  Left = 391
   Height = 240
-  Top = 212
+  Top = 242
   Width = 320
   AutoSize = True
   BorderIcons = [biSystemMenu]

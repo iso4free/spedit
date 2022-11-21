@@ -95,10 +95,11 @@ implementation
 
 procedure TfrmDrawTools.FormDestroy(Sender: TObject);
 begin
-   INI.WriteInteger('FRMDRAWTOOLS','TOP',frmDrawTools.Top);
-   INI.WriteInteger('FRMDRAWTOOLS','LEFT',frmDrawTools.Left);
-   INI.WriteInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
-   INI.WriteInteger('FRMDRAWTOOLS','HEIGHT',frmDrawTools.Height);
+  if Assigned(FDrawTool) then FreeAndNil(FDrawTool);
+  INI.WriteInteger('FRMDRAWTOOLS','TOP',frmDrawTools.Top);
+  INI.WriteInteger('FRMDRAWTOOLS','LEFT',frmDrawTools.Left);
+  INI.WriteInteger('FRMDRAWTOOLS','WIDTH',frmDrawTools.Width);
+  INI.WriteInteger('FRMDRAWTOOLS','HEIGHT',frmDrawTools.Height);
 end;
 
 procedure TfrmDrawTools.BgColorMouseUp(Sender: TObject; Button: TMouseButton;
@@ -198,7 +199,7 @@ procedure TfrmDrawTools.sbPenClick(Sender: TObject);
 begin
   if not Assigned(FrameGrid) then Exit;
 
-  FreeAndNil(FDrawTool);
+  if Assigned(FDrawTool) then FreeAndNil(FDrawTool);
   case (Sender as TSpeedButton).Tag of
  1:FDrawTool:=TSPPen.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
  2:FDrawTool:=TSPLine.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);

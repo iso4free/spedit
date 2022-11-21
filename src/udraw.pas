@@ -230,9 +230,8 @@ end;
 
 procedure TSPDrawTool.FinishDraw;
 begin
-  Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[fLayerName].Drawable,dmSet);
-  //todo: fix clear
-  Layers[fLayerName].Drawable:=Layers[fLayerName].Drawable.NewBitmap(Layers[fLayerName].Width,Layers[fLayerName].Height);
+  Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[fLayerName].Drawable,dmSetExceptTransparent);
+  Layers[fLayerName].ClearDrawable;
 end;
 
 
