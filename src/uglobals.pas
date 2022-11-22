@@ -56,7 +56,9 @@ const
       MAX_PIXELS = 512*512;      //max pixels array (sprite size 512x512 pixels)
       //MAX_LAYERS = 10;           //max layers count in one frame
 
-      cINTERNALLAYERANDFRAME = 'spedit v.4';
+      cINTERNALLAYERANDFRAME = 'spedit v.4'; //default frame name and background layer name
+      //background layer needed for merged image from all layers
+      csDRAWLAYER = 'Draw layer';  //layer name for drawing buffer
 
 
 type
@@ -192,6 +194,7 @@ type
     FBackground: Boolean;
     FCheckersSize  : Byte;
     fPreview       : TBGRABitmap; //for draw image preview
+    fBuffer        : TBGRABitmap; //for zoomed draw
     fFrameGridSize : Word;   //current grid size
     fFrameWidth,
     fFrameHeight   : Integer;   //frame size in pixels
@@ -344,10 +347,11 @@ begin
 end;
 
 
-procedure CreateFirstFrameAndLayer;
+procedure CreateInternalFrameAndLayer;
 begin
  Frames[cINTERNALLAYERANDFRAME]:=TSPFrame.Create(cINTERNALLAYERANDFRAME);
  Layers[cINTERNALLAYERANDFRAME]:=TSPLayer.Create(cINTERNALLAYERANDFRAME);
+ Layers[csDRAWLAYER]:=TSPLayer.Create(csDRAWLAYER);
  Layers[cINTERNALLAYERANDFRAME].AddToFrame(cINTERNALLAYERANDFRAME);
  Frames[cINTERNALLAYERANDFRAME].AddLayer(cINTERNALLAYERANDFRAME);
 end;
@@ -558,14 +562,17 @@ begin
   {$IFDEF DEBUG}
   DebugLn(DateTimeToStr(Now), ': In  TFrameGrid.Create() Layers count ',IntToStr(Layers.Count));
   {$ENDIF}
-  FActiveLayer:=Layers.Keys[0];
-  fActiveFrame:=Frames.Keys[0];
+  FActiveLayer:=cINTERNALLAYERANDFRAME;
+  fActiveFrame:=cINTERNALLAYERANDFRAME;
+  fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),
+                              fFrameHeight*(fFrameGridSize+fFrameZoom));
 end;
 
 destructor TFrameGrid.Destroy;
 begin
   INI.WriteInteger('INTERFACE','CHECKERS SIZE',FCheckersSize);
   FreeAndNil(fPreview);
+  FreeAndNil(fBuffer);
   FreeAndNil(FCellCursor);
   inherited Destroy;
 end;
@@ -576,8 +583,7 @@ begin
 end;
 
 procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas);
-
-var fBuffer : TBGRABitmap;
+var
   i, _i: Integer;
 
   procedure DrawGrid(x1,y1,x2,y2 : Integer; size : Integer);
@@ -595,6 +601,9 @@ var fBuffer : TBGRABitmap;
     x,y: Integer;
     tmpPix : TBGRAPixel;
   begin
+    {$IFDEF DEBUG}
+    Assert(Assigned(aLayer),'Layer not assigned!');
+    {$ENDIF}
      for x := 0 to aLayer.Drawable.Width-1 do
     for y:= 0 to aLayer.Drawable.Height-1 do begin
       tmpPix := aLayer.Drawable.GetPixel(x,y);
@@ -610,9 +619,6 @@ var fBuffer : TBGRABitmap;
   end;
 
 begin
-  fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),
-                              fFrameHeight*(fFrameGridSize+fFrameZoom));
-
   ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
   fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),
                        ColorToBGRA($BFBFBF),
@@ -628,15 +634,20 @@ begin
   DebugLn(DateTimeToStr(Now), ' In: RenderAndDraw(); Active frame: ',ActiveFrame,' layers: ',Frames[ActiveFrame].fLayers.Text);
   DebugLn(DateTimeToStr(Now), ' In: RenderAndDraw(); Layer names:',IntToStr(Frames[ActiveFrame].fLayers.Count));
   {$ENDIF}
+  //todo: delete me
+  Exit;
+  if Frames[ActiveFrame].fLayers.Count>0 then
   for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do begin
-    {$IFDEF DEBUG}
+
+    if Trim(Frames[ActiveFrame].fLayers.Strings[i])<>'' then
+       if Layers[Frames[ActiveFrame].fLayers.Strings[i]].Visible then
+          InternalDrawLayer(Layers[Frames[ActiveFrame].fLayers.Strings[i]]);
+      {$IFDEF DEBUG}
     DebugLn(DateTimeToStr(Now), ' In: TFrameGrid.RenderAndDraw(); Layer name:',Frames[ActiveFrame].fLayers.Strings[i]);
 
     DebugLn(DateTimeToStr(Now), ' In: TFrameGrid.RenderAndDraw(); all layers:',IntToStr(Layers.Count));
     for _i := 0 to Layers.Count-1 do DebugLn(DateTimeToStr(Now), ' In: TFrameGrid.RenderAndDrawLayer:',Layers.Keys[_i]);
     {$ENDIF}
-    if Layers[Frames[ActiveFrame].fLayers.Strings[i]].Visible then
-       InternalDrawLayer(Layers[Frames[ActiveFrame].fLayers.Strings[i]]);
   end;
 
   //draw highlited cell cursor over the grid
@@ -645,12 +656,12 @@ begin
                     CellCursor.X*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.Cells,
                     CellCursor.Y*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.Cells,clRed);
   fBuffer.Draw(Canvas,fOffset.X,fOffset.Y);
-  FreeAndNil(fBuffer);
 end;
 
 procedure TFrameGrid.RenderPicture(Canvas: TCanvas);
  var
    i : Integer;
+
 begin
   //if fCheckers then
     fPreview.DrawCheckers(Rect(0,0,fPreview.Width,fPreview.Height),
@@ -662,7 +673,10 @@ begin
   {$IFDEF DEBUG}
   DebugLn(DateTimeToStr(Now), ' In: RenderPicture(); Active frame: ',ActiveFrame,' layers: ',Frames[ActiveFrame].fLayers.Text);
   {$ENDIF}
+  //todo: delete me
+  Exit;
   for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do
+
     fPreview.PutImage(0,0,Layers[Frames[ActiveFrame].fLayers.Strings[i]].Drawable,dmDrawWithTransparency);
 
   if Assigned(Canvas) then fPreview.Draw(Canvas,0,0,true);
@@ -873,7 +887,7 @@ initialization
  //mapped lists of frames and layers
  Frames:=TFrames.Create;
  Layers :=TLayers.Create;
- CreateFirstFrameAndLayer;
+ CreateInternalFrameAndLayer;
 
 
  finalization

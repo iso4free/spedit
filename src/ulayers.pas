@@ -74,6 +74,7 @@ procedure TfrmLayers.drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
   aRect: TRect; aState: TGridDrawState);
 var aKey : String;
 begin
+  if not Assigned(FrameGrid) then Exit;
   //todo: draw headers and layers data
   if aRow<>0 then begin //draw header
     if aRow>Layers.Count then Exit;
@@ -110,6 +111,7 @@ var aKey : String;
 begin
   if aRow=0 then Exit; //click on table header - do nothing
   aKey:=Layers.Keys[aRow-1];
+  if aKey='' then Exit;
   case aCol of
 0:begin //change layer visibility
      Layers[aKey].Visible:=not Layers[aKey].Visible;
@@ -141,7 +143,8 @@ begin
   frmLayers.Left:=INI.ReadInteger('FRMLAYERS','LEFT',frmLayers.Left);
   frmLayers.Width:=INI.ReadInteger('FRMLAYERS','WIDTH',frmLayers.Width);
   frmLayers.Height:=INI.ReadInteger('FRMLAYERS','HEIGHT',frmLayers.Height);
-  drwgrdLayers.RowCount:=Layers.Count;
+  //todo: after tests change to active frame layers count
+  drwgrdLayers.RowCount:=Layers.Count+1;
 end;
 
 procedure TfrmLayers.bbtnAddLayerClick(Sender: TObject);

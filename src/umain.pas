@@ -188,7 +188,7 @@ begin
    Frames[frmFrameDlg.edtFrameName.Text]:=TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
                                                           FrmPreview.FramePreview.Width,
                                                           FrmPreview.FramePreview.Height);
-   Frames[frmFrameDlg.edtFrameName.Text].AddLayer(cINTERNALLAYERANDFRAME);
+   Frames[frmFrameDlg.edtFrameName.Text].AddLayer(frmFrameDlg.edtFrameName.Text);
    Layers[cINTERNALLAYERANDFRAME].AddToFrame(frmFrameDlg.edtFrameName.Text);
    //todo: copy all layers to new frame if option checked
    for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
@@ -470,6 +470,7 @@ begin
     if Assigned(FrmPreview) then
      FrameGrid.RenderPicture(FrmPreview.FramePreview.Canvas);
    if Assigned(frmLayers) then begin
+      //todo: after tests change to active frame layers count
     frmLayers.drwgrdLayers.RowCount:=Layers.Count+1;
     frmLayers.Invalidate;
    end;

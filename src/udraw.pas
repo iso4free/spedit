@@ -47,13 +47,12 @@ type
       fstartx,fstarty : Integer;    //coords from start drawing
       fX,fY           : Integer;    //current coords
       prevx, prevy    : Integer;    //previous coords
-      fLayerName      : String;     //temporary created layer name
       FPenSize        : Byte;
       FPrevPoint      : TPoint;
       procedure SetPenSize(AValue: Byte);
       procedure SetPrevPoint(AValue: TPoint);
     public
-      constructor Create(Width : Integer = 32; Height : Integer = 32);
+      constructor Create(aPenSize: Integer = 1);
       destructor Destroy; override;
       procedure StartDraw(x,y : Integer; Shift: TShiftState; aColor : TBGRAPixel);virtual;
       procedure MouseMove(x,y : Integer); virtual;
@@ -116,8 +115,8 @@ begin
   prevy:=y;
 
   Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Pen.Color:=Color;
-  if FPenSize=1 then Layers[fLayerName].Drawable.SetPixel(x,y,Color) else
-     Layers[fLayerName].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
+  if FPenSize=1 then Layers[csDRAWLAYER].Drawable.SetPixel(x,y,Color) else
+     Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
 end;
 
 procedure TSPLine.MouseMove(x, y: Integer);
@@ -133,7 +132,7 @@ begin
   prevy:=y;
  //  Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Pen.Mode:=oldPenMode;
  // fBuffer.Canvas.Pen.Mode:=oldPenMode;
-  Layers[fLayerName].Drawable.Canvas.Line(fstartx,fstarty,PrevX,PrevY);
+  Layers[csDRAWLAYER].Drawable.Canvas.Line(fstartx,fstarty,PrevX,PrevY);
 end;
 
 { TSPPen }
@@ -142,18 +141,18 @@ procedure TSPPen.StartDraw(x, y: Integer; Shift: TShiftState; aColor: TBGRAPixel
   );
 begin
   inherited StartDraw(x,y,Shift,aColor);
-  if FPenSize=1 then Layers[fLayerName].Drawable.SetPixel(x,y,Color) else begin
-     Layers[fLayerName].Drawable.Canvas.Brush.Color:=Color;
-     Layers[fLayerName].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
+  if FPenSize=1 then Layers[csDRAWLAYER].Drawable.SetPixel(x,y,Color) else begin
+     Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=Color;
+     Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
 
   end;
 end;
 
 procedure TSPPen.MouseMove(x, y: Integer);
 begin
-  Layers[fLayerName].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[fLayerName].Drawable.Canvas.Pen.Width:=FPenSize;
-  Layers[fLayerName].Drawable.Canvas.Line(prevx,prevy,x,y);
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  Layers[csDRAWLAYER].Drawable.Canvas.Line(prevx,prevy,x,y);
   prevx:=x;
   prevy:=y;
 end;
@@ -185,20 +184,14 @@ begin
   FPrevPoint:=AValue;
 end;
 
-constructor TSPDrawTool.Create(Width: Integer; Height: Integer);
+constructor TSPDrawTool.Create(aPenSize: Integer);
 begin
-  FPenSize:=1; //default 1px
-  fLayerName:='Draw layer';
-  Layers[fLayerName]:=TSPLayer.Create(fLayerName,Width,Height);
+  FPenSize:=aPenSize; //default 1px
 end;
 
 destructor TSPDrawTool.Destroy;
 begin
   FinishDraw;
-  if Layers.IndexOf(fLayerName)<>-1 then begin
-     Layers[fLayerName].Free;
-     Layers.Remove(fLayerName);
-  end;
   inherited Destroy;
 end;
 
@@ -207,11 +200,8 @@ procedure TSPDrawTool.StartDraw(x, y: Integer; Shift: TShiftState;
 begin
    fColor:=aColor;
   //create temporary layer
-  Layers[fLayerName].Temporary:=True;
-  Layers[fLayerName].AddToFrame(FrameGrid.ActiveFrame);
-  Frames[FrameGrid.ActiveFrame].AddLayer(fLayerName);
-  Layers[fLayerName].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[fLayerName].Drawable.Canvas.Pen.Width:=FPenSize;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
   prevx := x;
   prevy := y;
 end;
@@ -230,8 +220,8 @@ end;
 
 procedure TSPDrawTool.FinishDraw;
 begin
-  Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[fLayerName].Drawable,dmSetExceptTransparent);
-  Layers[fLayerName].ClearDrawable;
+  Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[csDRAWLAYER].Drawable,dmSetExceptTransparent);
+  Layers[csDRAWLAYER].ClearDrawable;
 end;
 
 

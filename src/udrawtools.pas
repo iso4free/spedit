@@ -91,6 +91,7 @@ implementation
    frmDrawTools.Height:=INI.ReadInteger('FRMDRAWTOOLS','HEIGHT',frmDrawTools.Height);
    BgColor.ShowHint:=true;
    FgColor.ShowHint:=true;
+   FDrawTool:=TSPPen.Create(trkbrPenSize.Position);
  end;
 
 procedure TfrmDrawTools.FormDestroy(Sender: TObject);
@@ -201,12 +202,12 @@ begin
 
   if Assigned(FDrawTool) then FreeAndNil(FDrawTool);
   case (Sender as TSpeedButton).Tag of
- 1:FDrawTool:=TSPPen.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
- 2:FDrawTool:=TSPLine.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
- 3:FDrawTool:=TSPEraser.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+ 1:FDrawTool:=TSPPen.Create(trkbrPenSize.Position);
+ 2:FDrawTool:=TSPLine.Create(trkbrPenSize.Position);
+ 3:FDrawTool:=TSPEraser.Create(trkbrPenSize.Position);
  else begin
       ShowMessage('This tool will be realised soon, sorry');
-      FDrawTool:=TSPPen.Create(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+      FDrawTool:=TSPPen.Create(trkbrPenSize.Position);
   end;
  end;
   frmMain.SetFocus;
