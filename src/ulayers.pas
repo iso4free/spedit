@@ -121,6 +121,7 @@ begin
      FrameGrid.ActiveLayer:=aKey;
     end;
   end;
+  frmMain.Invalidate;
   frmMain.SetFocus;
 end;
 
@@ -155,9 +156,10 @@ begin
   FrameGrid.ActiveLayer:=aLayerName;
   Frames[FrameGrid.ActiveFrame].AddLayer(aLayerName);
   Layers[aLayerName].AddToFrame(FrameGrid.ActiveFrame);
+  Layers[cINTERNALLAYERANDFRAME].Visible:=True;
   frmMain.ShowWindows;
   frmMain.SetFocus;
-  Invalidate;
+  frmMain.Invalidate;
 end;
 
 procedure TfrmLayers.bbtnDeleteLayerClick(Sender: TObject);
