@@ -61,6 +61,8 @@ For show referense image check menu 'View>Tool panels>Referense'.
 
 Click to 'Referense' window to open any image used as reference.
 
+You can add and remove layers in the layer window, the active layer name is highlighted in red. It is also possible to toggle the visibility of a layer by clicking on the eye icon opposite the layer name. The icon with a lock allows you to lock a layer from changes (will be used when sharing layers between different frames).
+
 THE FUTURE
 ==========
 In future will be avaliable:
@@ -77,9 +79,9 @@ In future will be avaliable:
 
 TROUBLESHOOTING
 ===============
-- [ ] In Windows keys won't work. Will be fixed soon.
-- [ ] In Windows works very slow
-- [ ] Sometime memory leaks happens
+- [+] In Windows keys won't work (fixed)
+- [+] In Windows works very slow (fixed)
+- [+] Sometime memory leaks happens (fixed)
 
 COPYRIGHT
 =========
@@ -90,7 +92,7 @@ This program may be used freely, and you are welcome to redistribute it under ce
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the Spedit License Agreement for more details.
 
-You should have received a copy of the GNU GENERAL PUBLIC LICENSE V.3 with this program; see the file LICENSE. If not, visit the Spedit
+You should have received a copy of the GNU GENERAL PUBLIC LICENSE V.3 with this program; see the file [LICENSE](LICENSE). If not, visit the Spedit
 home page.
 
 

@@ -109,3 +109,8 @@ DEV.LOG
 =
 - [+] Implemented layers list draw content in grid
 - [!] SIGSEGV error fixed
+
+23.11.2022
+=
+- [!] Fixed memory leaks and SIGSEGV when app closed
+- [!] Now works good both Linux and Windows (tested with latest Ubuntu x64 and Windows 11 x64)

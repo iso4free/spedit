@@ -71,9 +71,9 @@ No futuro estarão disponíveis:
 
 SOLUÇÃO DE PROBLEMAS
 ===============
-- [_] No Windows as teclas não vão funcionar. Será consertado em breve.
-- [_] Roda muito lentamente no Windows.
-- [_] As vezes ocorrem vazamentos de memória
+- [+] No Windows as teclas não vão funcionar. Será consertado em breve.
+- [+] Roda muito lentamente no Windows.
+- [+] As vezes ocorrem vazamentos de memória
 
 DIREITO AUTORAL
 =========
@@ -84,7 +84,7 @@ Este programa pode ser usado livremente e você pode distribuí-lo sob certas co
 
 Este programa é distribuído na esperança de que será útil, mas SEM GARANTIA; sem mesmo a garantia implícita de COMERCIALIZAÇÃO ou ADEQUAÇÃO A UM DETERMINADO FIM. Consulte o Contrato de Licença do Spedit para obter mais detalhes.
 
-Você deve ter recebido uma cópia GNU GENERAL PUBLIC LICENSE V.3 com este programa; veja o arquivo LICENSE. Se não, visite o site do Spedit.
+Você deve ter recebido uma cópia GNU GENERAL PUBLIC LICENSE V.3 com este programa; veja o arquivo [LICENSE](LICENSE). Se não, visite o site do Spedit.
 
 
 Compartilhe e divirta-se!
