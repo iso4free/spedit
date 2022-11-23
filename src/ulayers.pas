@@ -75,7 +75,7 @@ procedure TfrmLayers.drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
 var aKey : String;
 begin
   if not Assigned(FrameGrid) then Exit;
-  //todo: draw headers and layers data
+  //todo: change draw headers and layers data from active frame
   if aRow<>0 then begin //draw header
     if aRow>Layers.Count then Exit;
     aKey:=Layers.Keys[aRow-1];

@@ -108,12 +108,13 @@ end;
 procedure TSPLine.StartDraw(x, y: Integer; Shift: TShiftState;
   aColor: TBGRAPixel);
 begin
+  if (Layers.IndexOf(FrameGrid.ActiveLayer)=-1) then Exit;
+  if (Layers.IndexOf(csDRAWLAYER)=-1) then Exit;
   Color:=aColor;
   fstartx:=x;
   fstarty:=y;
   prevx:=x;
   prevy:=y;
-
   Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Pen.Color:=Color;
   if FPenSize=1 then Layers[csDRAWLAYER].Drawable.SetPixel(x,y,Color) else
      Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
@@ -123,6 +124,7 @@ procedure TSPLine.MouseMove(x, y: Integer);
 //var oldPenMode : TPenMode;
 begin
   //oldPenMode:=fBuffer.Canvas.Pen.Mode;
+
   Layers[FrameGrid.ActiveLayer].Drawable.EraseRect(Rect(0,0,FrameGrid.FrameWidth-1,FrameGrid.FrameHeight-1),255);
   Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Line(fstartx,fstarty,PrevX,PrevY);
   //fBuffer.Canvas.Pen.Mode:=pmXor;

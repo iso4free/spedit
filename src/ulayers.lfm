@@ -10,23 +10,23 @@ object frmLayers: TfrmLayers
   FormStyle = fsStayOnTop
   OnClose = FormClose
   OnCreate = FormCreate
-  LCLVersion = '2.2.4.0'
+  LCLVersion = '2.3.0.0'
   Visible = True
   object LayersGroupBox: TGroupBox
     Left = 0
-    Height = 205
+    Height = 199
     Top = 0
     Width = 269
     Align = alClient
     Caption = 'Layers'
-    ClientHeight = 186
-    ClientWidth = 265
+    ClientHeight = 182
+    ClientWidth = 267
     TabOrder = 0
     object drwgrdLayers: TDrawGrid
       Left = 0
-      Height = 186
+      Height = 182
       Top = 0
-      Width = 265
+      Width = 267
       Align = alClient
       ColCount = 4
       Columns = <      
@@ -67,8 +67,8 @@ object frmLayers: TfrmLayers
   end
   object LayersFlowPanel: TFlowPanel
     Left = 0
-    Height = 35
-    Top = 205
+    Height = 41
+    Top = 199
     Width = 269
     Align = alBottom
     AutoSize = True
@@ -98,10 +98,10 @@ object frmLayers: TfrmLayers
     TabOrder = 1
     object bbtnAddLayer: TBitBtn
       Left = 1
-      Height = 32
+      Height = 38
       Hint = 'Add new layer'
       Top = 1
-      Width = 32
+      Width = 38
       Anchors = []
       AutoSize = True
       Images = frmMain.ButtonsImageList
@@ -112,11 +112,11 @@ object frmLayers: TfrmLayers
       TabOrder = 0
     end
     object bbtnDeleteLayer: TBitBtn
-      Left = 33
-      Height = 32
+      Left = 39
+      Height = 38
       Hint = 'Delete selected layer'
       Top = 1
-      Width = 32
+      Width = 38
       Anchors = []
       AutoSize = True
       Images = frmMain.ButtonsImageList
@@ -127,11 +127,11 @@ object frmLayers: TfrmLayers
       TabOrder = 1
     end
     object bbtnCopyLayer: TBitBtn
-      Left = 65
-      Height = 32
+      Left = 77
+      Height = 38
       Hint = 'Copy selected layer'
       Top = 1
-      Width = 32
+      Width = 38
       Anchors = []
       AutoSize = True
       Images = frmMain.ButtonsImageList
@@ -141,11 +141,11 @@ object frmLayers: TfrmLayers
       TabOrder = 2
     end
     object bbtnMergeLayers: TBitBtn
-      Left = 97
-      Height = 32
+      Left = 115
+      Height = 38
       Hint = 'Merge with previous layer'
       Top = 1
-      Width = 32
+      Width = 38
       Anchors = []
       AutoSize = True
       Images = frmMain.ButtonsImageList

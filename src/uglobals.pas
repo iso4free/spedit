@@ -264,7 +264,7 @@ var
   function ConvertTColorToHTML(aColor: TColor) : String;
   function CheckLayerName(aName : String) : String; //check layer name if exists return aName+'1' on aName if not
   function DetectPOLanguage(pofile : TFileName) : String;  //return language code for localization
-
+  function LayerExists(aKey : String) : Boolean; inline; //check if layer key exists
   procedure ClearBitmap(const aBmp : TBGRABitmap);//replase all pixels to BGRAPixelTransparent
 implementation
 
@@ -359,24 +359,17 @@ end;
 procedure ClearFramesAndLayers;
 var
     f , l : Integer;
-    aKey : String;
+    aKey  : String;
 begin
-  l:=Layers.Count-1;
   while l>0 do begin
     aKey:=Layers.Keys[l];
-    Layers[aKey].Free;
-    Layers[aKey]:=nil;
     Layers.Remove(aKey);
   end;
-  Layers.Clear;
   f:=Frames.Count-1;
   while f>0 do begin
     aKey:=Frames.Keys[f];
-    Frames[aKey].Free;
-    Frames[aKey]:=nil;
     Frames.Remove(aKey);
   end;
-  Frames.Clear;
 end;
 
 { TCellCursor }
@@ -629,26 +622,22 @@ begin
   if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
 
 
-  //draw all layers to fBuffer per pixel
+  //draw all layers to fBuffer
   {$IFDEF DEBUG}
   DebugLn(DateTimeToStr(Now), ' In: RenderAndDraw(); Active frame: ',ActiveFrame,' layers: ',Frames[ActiveFrame].fLayers.Text);
   DebugLn(DateTimeToStr(Now), ' In: RenderAndDraw(); Layer names:',IntToStr(Frames[ActiveFrame].fLayers.Count));
   {$ENDIF}
-  //todo: delete me
-  Exit;
+
+  //first draw internal layer
+  if LayerExists(cINTERNALLAYERANDFRAME) then InternalDrawLayer(Layers[cINTERNALLAYERANDFRAME]);
   if Frames[ActiveFrame].fLayers.Count>0 then
   for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do begin
-
-    if Trim(Frames[ActiveFrame].fLayers.Strings[i])<>'' then
-       if Layers[Frames[ActiveFrame].fLayers.Strings[i]].Visible then
+     if LayerExists(Frames[ActiveFrame].fLayers.Strings[i]) and
+        Layers[Frames[ActiveFrame].fLayers.Strings[i]].Visible then
           InternalDrawLayer(Layers[Frames[ActiveFrame].fLayers.Strings[i]]);
-      {$IFDEF DEBUG}
-    DebugLn(DateTimeToStr(Now), ' In: TFrameGrid.RenderAndDraw(); Layer name:',Frames[ActiveFrame].fLayers.Strings[i]);
-
-    DebugLn(DateTimeToStr(Now), ' In: TFrameGrid.RenderAndDraw(); all layers:',IntToStr(Layers.Count));
-    for _i := 0 to Layers.Count-1 do DebugLn(DateTimeToStr(Now), ' In: TFrameGrid.RenderAndDrawLayer:',Layers.Keys[_i]);
-    {$ENDIF}
   end;
+  //last draw DRAWLAYER from drawing tool
+  if LayerExists(csDRAWLAYER) then InternalDrawLayer(Layers[csDRAWLAYER]);
 
   //draw highlited cell cursor over the grid
   fBuffer.Rectangle(CellCursor.X*(fFrameGridSize+fFrameZoom),
@@ -673,12 +662,11 @@ begin
   {$IFDEF DEBUG}
   DebugLn(DateTimeToStr(Now), ' In: RenderPicture(); Active frame: ',ActiveFrame,' layers: ',Frames[ActiveFrame].fLayers.Text);
   {$ENDIF}
-  //todo: delete me
-  Exit;
+  if LayerExists(cINTERNALLAYERANDFRAME) then fPreview.PutImage(0,0,Layers[cINTERNALLAYERANDFRAME].Drawable,dmDrawWithTransparency);
   for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do
-
-    fPreview.PutImage(0,0,Layers[Frames[ActiveFrame].fLayers.Strings[i]].Drawable,dmDrawWithTransparency);
-
+    if LayerExists(Frames[ActiveFrame].fLayers.Strings[i]) then
+      fPreview.PutImage(0,0,Layers[Frames[ActiveFrame].fLayers.Strings[i]].Drawable,dmDrawWithTransparency);
+  if LayerExists(csDRAWLAYER) then fPreview.PutImage(0,0,Layers[csDRAWLAYER].Drawable,dmDrawWithTransparency);
   if Assigned(Canvas) then fPreview.Draw(Canvas,0,0,true);
 end;
 
@@ -845,6 +833,11 @@ begin
    SetDefaultLang(s,ExtractFileDir(pofile));
    Result:=s;
  end;
+
+function LayerExists(aKey: String): Boolean;
+begin
+  result := (Layers.IndexOf(aKey)<>-1);
+end;
 
 procedure ClearBitmap(const aBmp: TBGRABitmap);
 var
