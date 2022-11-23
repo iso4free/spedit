@@ -55,6 +55,8 @@ Para exibir uma imagem de referência selecione o menu 'Visualizar>Pinel de Ferr
 
 Clique na janela 'Referência' para abrir qualquer imagem de referência.
 
+Você pode adicionar e remover camadas na janela 'camadas', a camada ativa é destacada em vermelho. Também é possível alternar a visibilidade de uma camada clicando no ícone de olho ao lado do nome da camada. O ícone com cadeado te permite bloquear uma camada contra mudanças (será usado quando se compartilha camadas entre quadros diferentes).
+
 O FUTURO
 ==========
 No futuro estarão disponíveis:
@@ -71,9 +73,9 @@ No futuro estarão disponíveis:
 
 SOLUÇÃO DE PROBLEMAS
 ===============
-- [+] No Windows as teclas não vão funcionar. Será consertado em breve.
-- [+] Roda muito lentamente no Windows.
-- [+] As vezes ocorrem vazamentos de memória
+- [+] No Windows as teclas não vão funcionar. Será consertado em breve.(consertado)
+- [+] Roda muito lentamente no Windows. (consertado)
+- [+] As vezes ocorrem vazamentos de memória. (consertado)
 
 DIREITO AUTORAL
 =========

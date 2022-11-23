@@ -109,3 +109,6 @@ REGISTRO DE DESENVOLVIMENTO
 =
 - [+] Implementação da lista de camadas do conteúdo desenhado na grade
 - [!] Conserto do erro SIGSEGV
+=
+- [!] Conserto de vazamento de memória e  quando o programa é fechado
+- [!] Agora funciona bem em ambos Linux e Windows (testado com as últimas versões Ubuntu x64 e Windows 11 x64)
