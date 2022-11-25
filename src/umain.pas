@@ -345,7 +345,7 @@ begin
    Palette.Clear;
    for i :=0 to w do
      for j:=0 to h do begin
-       if Palette.AddColor(FPColorToTColor(img.Colors[i,j]))=-1 then begin
+       if Palette.AddColor(FPColorToBGRA(img.Colors[i,j]))=-1 then begin
         ShowMessage(rsImageHasTooM);
         Palette.Reset;
         goto stop;

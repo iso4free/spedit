@@ -3,12 +3,12 @@ object frmMain: TfrmMain
   Height = 454
   Top = 247
   Width = 557
-  HorzScrollBar.Page = 111
-  VertScrollBar.Page = 196
+  HorzScrollBar.Page = 115
+  VertScrollBar.Page = 194
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
-  ClientHeight = 431
+  ClientHeight = 430
   ClientWidth = 557
   DockSite = True
   DoubleBuffered = True
@@ -20,11 +20,11 @@ object frmMain: TfrmMain
   OnKeyDown = FormKeyDown
   OnPaint = pbFrameDrawPaint
   ParentDoubleBuffered = False
-  LCLVersion = '2.2.4.0'
+  LCLVersion = '2.3.0.0'
   Visible = True
   object MainPageControl: TPageControl
     Left = 0
-    Height = 410
+    Height = 412
     Top = 0
     Width = 557
     ActivePage = FrameEditorTabSheet
@@ -35,13 +35,13 @@ object frmMain: TfrmMain
     object FrameEditorTabSheet: TTabSheet
       Tag = 1
       Caption = 'Frame Editor'
-      ClientHeight = 375
-      ClientWidth = 551
+      ClientHeight = 382
+      ClientWidth = 547
       object FrameFlowPanel: TFlowPanel
         Left = 0
-        Height = 35
+        Height = 41
         Top = 0
-        Width = 551
+        Width = 547
         Align = alTop
         AutoSize = True
         ControlList = <        
@@ -60,9 +60,9 @@ object frmMain: TfrmMain
         TabOrder = 0
         object BitBtnNewFrame: TBitBtn
           Left = 1
-          Height = 32
+          Height = 38
           Top = 1
-          Width = 32
+          Width = 38
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -71,10 +71,10 @@ object frmMain: TfrmMain
           TabOrder = 0
         end
         object BitBtnLayers: TBitBtn
-          Left = 33
-          Height = 32
+          Left = 39
+          Height = 38
           Top = 1
-          Width = 32
+          Width = 38
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -84,9 +84,9 @@ object frmMain: TfrmMain
       end
       object pbFrameDraw: TPaintBox
         Left = 0
-        Height = 340
-        Top = 35
-        Width = 551
+        Height = 341
+        Top = 41
+        Width = 547
         Align = alClient
         OnMouseDown = pbFrameDrawMouseDown
         OnMouseMove = pbFrameDrawMouseMove
@@ -98,32 +98,32 @@ object frmMain: TfrmMain
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 375
-      ClientWidth = 551
+      ClientHeight = 382
+      ClientWidth = 547
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 551
+        Width = 547
         Align = alTop
         TabOrder = 0
       end
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 375
-      ClientWidth = 551
+      ClientHeight = 382
+      ClientWidth = 547
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 551
+        Width = 547
         Align = alTop
         TabOrder = 0
       end
       object ProjectProperties: TValueListEditor
         Left = 0
-        Height = 325
+        Height = 332
         Top = 50
         Width = 200
         Align = alLeft
@@ -137,14 +137,14 @@ object frmMain: TfrmMain
       end
       object ScrollBox4: TScrollBox
         Left = 200
-        Height = 325
+        Height = 332
         Top = 50
-        Width = 351
+        Width = 347
         HorzScrollBar.Page = 320
         VertScrollBar.Page = 240
         Align = alClient
-        ClientHeight = 321
-        ClientWidth = 347
+        ClientHeight = 328
+        ClientWidth = 343
         TabOrder = 2
         object ProjectSheet: TBGRAImageManipulation
           AnchorSideLeft.Control = ScrollBox4
@@ -163,8 +163,8 @@ object frmMain: TfrmMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 21
-    Top = 410
+    Height = 18
+    Top = 412
     Width = 557
     Panels = <    
       item

@@ -107,18 +107,22 @@ procedure TfrmDrawTools.BgColorMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
     case Button of
-    mbLeft:  if ColorDialog1.Execute then begin
+    mbLeft: begin
+             frmMain.HideWindows;
+             if ColorDialog1.Execute then begin
                 if (Sender as TBGRAGraphicControl).Tag=1 then spclBackColor:=ColorDialog1.Color
                 else spclForeColor:=ColorDialog1.Color;
                 Palette.AddColor(ColorDialog1.Color);
                 if Assigned(DrawTool) then DrawTool.Color:=ColorDialog1.Color;
                 frmMain.StatusBar1.Panels[0].Text:=rsColors+IntToStr(Palette.Count);
                 PaletteGrid.RenderAndDrawControl;
-              end;
+             end;
+             frmMain.ShowWindows;
+            end;
     mbRight:begin
-             if (Sender as TBGRAGraphicControl).Tag=1 then spclBackColor:=clNone
+             if (Sender as TBGRAGraphicControl).Tag=1 then spclBackColor:=BGRAPixelTransparent
                 else spclForeColor:=clNone;
-               if Assigned(DrawTool) then DrawTool.Color:=clNone;
+               if Assigned(DrawTool) then DrawTool.Color:=BGRAPixelTransparent;
 
     end;
   end;
@@ -128,7 +132,7 @@ begin
 end;
 
 procedure TfrmDrawTools.bbtnSwapColorsClick(Sender: TObject);
-var cl : TColor;
+var cl : TBGRAPixel;
 begin
    cl := spclBackColor;
    spclBackColor:=spclForeColor;
@@ -136,17 +140,16 @@ begin
 end;
 
 procedure TfrmDrawTools.BgColorPaint(Sender: TObject);
-var cl : TColor;
+var cl : TBGRAPixel;
 begin
   if (Sender as TBGRAGraphicControl).Tag = 1 then cl := spclBackColor
     else cl:=spclForeColor;
-  if cl=clNone then begin
+  if cl=BGRAPixelTransparent then begin
    (Sender as TBGRAGraphicControl).Bitmap.DrawCheckers(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),
                                               ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),4,4);
-   (Sender as TBGRAGraphicControl).Bitmap.Rectangle(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(clBlack));
+   (Sender as TBGRAGraphicControl).Bitmap.Rectangle(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(clBlackOpaque));
   end
     else (Sender as TBGRAGraphicControl).Bitmap.FillRect(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(cl));
-  //(Sender as TBGRAGraphicControl).Invalidate;
   frmMain.StatusBar1.Panels[1].Text:=rsFG+IntToHex(spclForeColor)+rsBG+
     IntToHex(spclBackColor);
   Invalidate;
@@ -184,16 +187,14 @@ end;
 
 procedure TfrmDrawTools.PaletteGridRenderControl(Sender: TObject;
   Bitmap: TBGRABitmap; r: TRect; n, x, y: integer);
-var b, c : TBGRAPixel;
+var c : TBGRAPixel;
 begin
-  if (n=0) or (n>Palette.Count-1) then begin
-   c:=clNone;
-   b:=clNone;
+  if (n>Palette.Count-1) then begin
+   c:=BGRAPixelTransparent;
    end  else begin
-     c := ColorToBGRA(palette.Color[n]);
-     b:=ColorToBGRA(clBlack);
+     c := palette.Color[n];
    end;
-  Bitmap.Rectangle(r,b,c,dmSet);
+  Bitmap.Rectangle(r,c,c,dmSet);
 end;
 
 procedure TfrmDrawTools.sbPenClick(Sender: TObject);

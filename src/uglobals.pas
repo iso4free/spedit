@@ -67,7 +67,7 @@ type
 
   TDrawGridMode = (dgmNone,dgmMove,dgmDraw);
 
-  TColors = array[0..MAX_PALETTE_COLORS] of TColor;  //palette - array of colors
+  TColors = array[0..MAX_PALETTE_COLORS] of TBGRAPixel;  //palette - array of colors
   TPixels = array[0..MAX_PIXELS] of TBGRAPixel;      //array of pixels
 
   { TPalette }
@@ -77,24 +77,24 @@ type
   TPalette = record
     private
      fCount : Byte;   //colors in palette
-     fColors : TColors; //colors array
+     fColors : TPixels; //colors array
      fSelected : Byte;
-     FSelectedColor: TColor;
-     function GetColor(Index : Byte): TColor;
+     FSelectedColor: TBGRAPixel;
+     function GetColor(Index : Byte): TBGRAPixel;
     public
      property Count : Byte read fCount;
-     property SelectedColor : TColor read FSelectedColor;
+     property SelectedColor : TBGRAPixel read FSelectedColor;
      function isEmpty : Boolean; //check if palette is empty
      procedure Clear;
      procedure Reset; //reset palette to default 16 colors
      procedure SelectColor(Index : Byte);//Select active color
      procedure SaveToFile(aName : TFileName);//save palette to HEX file (with colors hex codes)
      function LoadFromFile(aName : TFileName) : Boolean;//load from HEX file
-     property Color[Index : Byte] : TColor read GetColor; //get color by index
-     function AddColor(aColor : TColor) : Integer;   //add new color to palette. Return index for new color or if color exists. If palette full returns -1
+     property Color[Index : Byte] : TBGRAPixel read GetColor; //get color by index
+     function AddColor(aColor : TBGRAPixel) : Integer;   //add new color to palette. Return index for new color or if color exists. If palette full returns -1
     private
      procedure Sort; //sort colors in palette
-     function ColorExists(aColor : TColor) : Integer; //check if color in palette before adding
+     function ColorExists(aColor : TBGRAPixel) : Integer; //check if color in palette before adding
   end;
 
  { PLayer = ^TLayer;
@@ -682,7 +682,7 @@ end;
 
 { TPalette }
 
-function TPalette.GetColor(Index : Byte): TColor;
+function TPalette.GetColor(Index: Byte): TBGRAPixel;
 begin
   if Index>fCount then Result:=clNone
    else Result:=fColors[Index];
@@ -706,7 +706,7 @@ end;
 procedure TPalette.Reset;
 begin
   Clear;
-  AddColor(clBlack);
+  AddColor(clBlackOpaque);
   AddColor(clMaroon);
   AddColor(clGreen);
   AddColor(clOlive);
@@ -738,7 +738,7 @@ var l : TStringList;
   i: Integer;
 begin
   l:=TStringList.Create;
-  for i := 1 to fCount-1 do l.Add(ConvertTColorToHTML(fColors[i]));
+  for i := 0 to fCount-1 do l.Add(ConvertTColorToHTML(fColors[i]));
   l.SaveToFile(aName);
   FreeAndNil(l);
 end;
@@ -751,7 +751,6 @@ begin
   Clear;
   l:=TStringList.Create;
   l.LoadFromFile(aName);
-  AddColor(clNone);
   for i:=0 to l.Count-1 do begin
     if l.Strings[i]<>'' then begin
       AddColor(ConvertHtmlHexToTColor(l.Strings[i]));
@@ -760,7 +759,7 @@ begin
   FreeAndNil(l);
 end;
 
-function TPalette.AddColor(aColor: TColor): Integer;
+function TPalette.AddColor(aColor: TBGRAPixel): Integer;
 begin
   if fCount=0 then begin
     fColors[fCount]:=aColor;
@@ -783,10 +782,11 @@ var  Temp: Integer;
   i: Integer;
   Changed: Boolean;
 begin
+  //todo: change sort algorithm
   repeat
     Changed:= False;
     for i:= 1 to fCount - 1 do
-      if fColors[i] > fColors[i + 1] then
+      if (fColors[i].ToColor > fColors[i + 1].ToColor) then
       begin
         Temp:= fColors[i];
         fColors[i]:= fColors[i + 1];
@@ -796,7 +796,7 @@ begin
   until not Changed;
 end;
 
-function TPalette.ColorExists(aColor: TColor): Integer;
+function TPalette.ColorExists(aColor: TBGRAPixel): Integer;
 var
   i: Integer;
 begin
@@ -873,7 +873,7 @@ initialization
  libpath:=SpriteLibPath+DirectorySeparator+CurrentLibName;
  //frame editor params
  spclBackColor:=INI.ReadInteger('FRAME EDITOR','BACKGROUND COLOR',clNone);
- spclForeColor:=INI.ReadInteger('FRAME EDITOR','FOREGROUND COLOR',clBlack);
+ spclForeColor:=INI.ReadInteger('FRAME EDITOR','FOREGROUND COLOR',clBlackOpaque);
  //palette with default colors
  Palette.Reset;
 

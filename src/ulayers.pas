@@ -152,8 +152,8 @@ var
   aLayerName: String;
 begin
   frmMain.HideWindows;
-  aLayerName := InputBox(rsLayerName, rsInputNewLaye, 'Layer');
-  if (Trim(aLayerName)='') then aLayerName:=CheckLayerName('Layer');
+  aLayerName:=CheckLayerName('Layer');
+  aLayerName := InputBox(rsLayerName, rsInputNewLaye, aLayerName);
   Layers[aLayerName]:=TSPLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
   drwgrdLayers.RowCount:=Layers.Count;
   FrameGrid.ActiveLayer:=aLayerName;
