@@ -143,6 +143,10 @@ msgstr "Про"
 msgid "Actions"
 msgstr "Дії"
 
+#: tfrmmain.bitbtnimportframe.hint
+msgid "Import frame from image file"
+msgstr ""
+
 #: tfrmmain.caption
 msgid "Sprite Editor"
 msgstr "Редактор спрайтів"
@@ -195,6 +199,14 @@ msgstr "Фрейми"
 #: tfrmmain.helpmenuitem.caption
 msgid "Help"
 msgstr "Довідка"
+
+#: tfrmmain.languagemenuitem.caption
+msgid "Language"
+msgstr ""
+
+#: tfrmmain.languagemenuitem.hint
+msgid "Change interface language (need restart)"
+msgstr ""
 
 #: tfrmmain.layerstoolvisiblemenuitem.caption
 msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
@@ -269,6 +281,10 @@ msgstr "Обрати бібліотеку спрайтів"
 msgid "View"
 msgstr "Вид"
 
+#: tfrmmain.viewsettingsmenuitem.caption
+msgid "Settings"
+msgstr ""
+
 #: tfrmmain.viewzoominmenuitem.caption
 msgid "Zoom++"
 msgstr "Масштаб++"
@@ -298,3 +314,4 @@ msgstr "Референс"
 #: tfrmreferense.hint
 msgid "Click to open any referense image"
 msgstr "Клацніть для завантаження зображення для референсу"
+

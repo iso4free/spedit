@@ -212,6 +212,7 @@ type
     function PixelPos(x,y : Integer) : Integer; //return pixel index in array
 
     constructor Create(aW: Integer = 32; aH : Integer = 32; aSize : Word = 10);
+    constructor Create(aImg : TFileName); //create frame from image file
     destructor Destroy; override;
 
     function HasCoords(aPoint : TPoint) : Boolean; //check if frame has point
@@ -266,6 +267,8 @@ var
   function DetectPOLanguage(pofile : TFileName) : String;  //return language code for localization
   function LayerExists(aKey : String) : Boolean; inline; //check if layer key exists
   procedure ClearBitmap(const aBmp : TBGRABitmap);//replase all pixels to BGRAPixelTransparent
+  procedure ResizeLayers(aW,aH : Integer); //resize al layers when change frame size
+
 implementation
 
 procedure LoadSpriteLibDirs;
@@ -559,6 +562,27 @@ begin
   fActiveFrame:=cINTERNALLAYERANDFRAME;
   fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),
                               fFrameHeight*(fFrameGridSize+fFrameZoom));
+  ResizeLayers(FrameWidth,FrameHeight);
+end;
+
+constructor TFrameGrid.Create(aImg: TFileName);
+var aBmp : TBGRABitmap;
+    aFrameName : String;
+    i: Integer;
+begin
+    aBmp:=TBGRABitmap.Create(aImg);
+    Create(aBmp.Width,aBmp.Height);
+    aFrameName:=ExtractFileName(aImg);
+    Frames[aFrameName]:=TSPFrame.Create(aFrameName, FrameWidth, FrameHeight);
+    Layers[aFrameName]:=TSPLayer.Create(aFrameName,FrameWidth,FrameHeight);
+    ActiveFrame:=aFrameName;
+
+    Frames[aFrameName].AddLayer(aFrameName);
+    Layers[cINTERNALLAYERANDFRAME].AddToFrame(aFrameName);
+    ClearBitmap(Layers[cINTERNALLAYERANDFRAME].Drawable);
+    ResizeLayers(FrameWidth,FrameHeight);
+    Layers[cINTERNALLAYERANDFRAME].Drawable.PutImage(0,0,aBmp,dmSetExceptTransparent);
+    FreeAndNil(aBmp);
 end;
 
 destructor TFrameGrid.Destroy;
@@ -613,6 +637,9 @@ var
 
 begin
   ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
+  {$IFDEF DEBUG}
+   DebugLn(DateTimeToStr(Now()),' In: TFrameGrid.RenderAndDraw(); FrameWidth=',IntToStr(fBuffer.Width),' FrameHeight=',IntToStr(fBuffer.Height));
+  {$ENDIF}
   fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),
                        ColorToBGRA($BFBFBF),
                        ColorToBGRA($FFFFFF),
@@ -851,6 +878,18 @@ begin
     Inc(p);
   end;
   aBmp.InvalidateBitmap;
+end;
+
+procedure ResizeLayers(aW, aH: Integer);
+var
+  i : Integer;
+  aKey : String;
+begin
+ for i:=0 to Layers.Count-1 do begin
+  aKey:=Layers.Keys[i];
+  Layers[aKey].Resize(aW,aH);
+  ClearBitmap(Layers[aKey].Drawable);
+ end;
 end;
 
 initialization

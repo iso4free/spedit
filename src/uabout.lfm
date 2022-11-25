@@ -21,7 +21,7 @@ object frmAbout: TfrmAbout
   ParentDoubleBuffered = False
   Position = poScreenCenter
   ShowInTaskBar = stNever
-  LCLVersion = '7.9'
+  LCLVersion = '2.2.4.0'
   object SkyImage: TImage
     Left = 0
     Height = 350
@@ -2141,14 +2141,15 @@ object frmAbout: TfrmAbout
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Owner
     AnchorSideTop.Side = asrCenter
-    Left = 288
-    Height = 14
-    Top = 168
-    Width = 64
+    Left = 221
+    Height = 41
+    Top = 155
+    Width = 199
     Caption = 'SPEdit'
     Font.Color = clYellow
-    Font.Height = -13
+    Font.Height = 40
     Font.Name = '04b'
+    ParentColor = False
     ParentFont = False
   end
   object Label2: TLabel
@@ -2163,6 +2164,7 @@ object frmAbout: TfrmAbout
     Font.Color = clLime
     Font.Height = 18
     Font.Name = '04b'
+    ParentColor = False
     ParentFont = False
   end
   object Label3: TLabel
@@ -2178,6 +2180,7 @@ object frmAbout: TfrmAbout
     Font.Color = clRed
     Font.Height = 12
     Font.Name = '04b'
+    ParentColor = False
     ParentFont = False
   end
   object Timer1: TTimer
@@ -2185,12 +2188,5 @@ object frmAbout: TfrmAbout
     OnTimer = Timer1Timer
     Left = 116
     Top = 59
-  end
-  object Timer2: TTimer
-    Enabled = False
-    Interval = 100
-    OnTimer = Timer2Timer
-    Left = 250
-    Top = 76
   end
 end

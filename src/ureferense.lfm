@@ -22,6 +22,7 @@ object frmReferense: TfrmReferense
     Height = 240
     Top = 0
     Width = 320
+    AntialiasingMode = amOff
     Align = alClient
     AutoSize = True
     Center = True
@@ -29,6 +30,8 @@ object frmReferense: TfrmReferense
     KeepOriginYWhenClipped = True
     OnClick = FormClick
     Proportional = True
+    Stretch = True
+    Transparent = True
   end
   object OpenPictureDialog1: TOpenPictureDialog
     Left = 125

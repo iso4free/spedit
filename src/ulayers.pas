@@ -98,7 +98,7 @@ begin
     end;
   3:begin
       //draw layer image
-      Layers[aKey].Drawable.Draw(drwgrdLayers.Canvas,aRect);
+      Layers[aKey].Drawable.Draw(drwgrdLayers.Canvas,aRect,False);
     end;
     end;
   end;

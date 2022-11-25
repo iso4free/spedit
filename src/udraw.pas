@@ -193,7 +193,7 @@ end;
 
 destructor TSPDrawTool.Destroy;
 begin
-  FinishDraw;
+  //FinishDraw;
   inherited Destroy;
 end;
 
@@ -222,6 +222,8 @@ end;
 
 procedure TSPDrawTool.FinishDraw;
 begin
+  if (not Assigned(FrameGrid)) or (not LayerExists(FrameGrid.ActiveLayer)) then Exit;
+
   Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[csDRAWLAYER].Drawable,dmSetExceptTransparent);
   Layers[csDRAWLAYER].ClearDrawable;
 end;

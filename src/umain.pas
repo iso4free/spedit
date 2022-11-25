@@ -40,6 +40,7 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    BitBtnImportFrame: TBitBtn;
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
@@ -104,6 +105,7 @@ type
     N1: TMenuItem;
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
+    procedure BitBtnImportFrameClick(Sender: TObject);
     procedure BitBtnNewFrameClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -159,7 +161,27 @@ uses uabout, uframedlg, udrawtools, ulayers, uframes, upreview,
 procedure TfrmMain.AboutMenuItemClick(Sender: TObject);
 begin
   if not Assigned(frmAbout) then frmAbout:= TfrmAbout.Create(Application);
-     frmAbout.ShowModal;
+  frmMain.HideWindows;
+     frmAbout.Show;
+  frmMain.ShowWindows;
+  FreeAndNil(frmAbout);
+end;
+
+procedure TfrmMain.BitBtnImportFrameClick(Sender: TObject);
+begin
+  HideWindows;
+  if OpenPictureDialog1.Execute then begin
+   FreeAndNil(FrameGrid);
+   FrameGrid:=TFrameGrid.Create(OpenPictureDialog1.FileName);
+   FrameGrid.Offset:=Point(0,0);
+   dx:=0;
+   dy:=0;
+   if Assigned(FrmPreview) then begin
+    FrmPreview.FramePreview.Width:=FrameGrid.FrameWidth;
+    FrmPreview.FramePreview.Height:=FrameGrid.FrameHeight;
+   end;
+  end;
+  ShowWindows;
 end;
 
 procedure TfrmMain.BitBtnNewFrameClick(Sender: TObject);

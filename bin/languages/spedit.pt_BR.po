@@ -138,6 +138,10 @@ msgstr "Sobre"
 msgid "Actions"
 msgstr "Ações"
 
+#: tfrmmain.bitbtnimportframe.hint
+msgid "Import frame from image file"
+msgstr ""
+
 #: tfrmmain.caption
 msgid "Sprite Editor"
 msgstr "Editor de Sprites"

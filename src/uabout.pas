@@ -47,7 +47,6 @@ type
     BgImage : TImage;
     ShowSplashCheckBox: TCheckBox;
     Timer1: TTimer;
-    Timer2: TTimer;
     procedure FormActivate(Sender: TObject);
     procedure FormClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -55,7 +54,6 @@ type
     procedure FormKeyPress(Sender: TObject; var Key: char);
     procedure ShowSplashCheckBoxChange(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
-    procedure Timer2Timer(Sender: TObject);
     procedure Star(x,y: Integer; Size: Integer; Colour: TColor);
     function GetRandomColor( A: Integer): TColor;
   private
@@ -79,13 +77,11 @@ procedure TfrmAbout.FormActivate(Sender: TObject);
 begin
   ShowSplashCheckBox.Checked:=INI.ReadBool('INTERFACE','SHOWSPLASH',false);
   Timer1.Enabled:=true;
-  Timer2.Enabled:=true;
 end;
 
 procedure TfrmAbout.FormClick(Sender: TObject);
 begin
   Timer1.Enabled:=false;
-  Timer2.Enabled:=false;
   INI.WriteBool('INTERFACE','SHOWSPLASH',ShowSplashCheckBox.Checked);
   Close;
 end;
@@ -111,7 +107,7 @@ end;
 procedure TfrmAbout.FormKeyPress(Sender: TObject; var Key: char);
 begin
   Timer1.Enabled:=false;
-  Timer2.Enabled:=false;
+  Close;
 end;
 
 procedure TfrmAbout.ShowSplashCheckBoxChange(Sender: TObject);
@@ -121,17 +117,8 @@ end;
 
 procedure TfrmAbout.Timer1Timer(Sender: TObject);
 begin
-  Label3.Visible:=not Label3.Visible;
-end;
-
-procedure TfrmAbout.Timer2Timer(Sender: TObject);
-begin
   SkyImage.Canvas.CopyRect(SkyImage.ClientRect,BgImage.Canvas,BgImage.ClientRect);
-  Label1.Font.Size:=fntsize;
-  fntsize:=fntsize+increment;
-  Application.ProcessMessages;
-  if fntsize=40 then increment:=-1 else
-     if fntsize=8 then increment:=1;
+  Label3.Visible:=not Label3.Visible;
 end;
 
 procedure TfrmAbout.Star(x, y: Integer; Size: Integer; Colour: TColor);
