@@ -114,3 +114,9 @@ DEV.LOG
 =
 - [!] Fixed memory leaks and SIGSEGV when app closed
 - [!] Now works good both Linux and Windows (tested with latest Ubuntu x64 and Windows 11 x64)
+
+26.11.2022
+- [+] Added Import frame image from any image file
+- [!] Fixed different frame sizes when new frame created
+- [+] Added Line drawing tool
+- [*] Changed docs (added 'How to get' section)
