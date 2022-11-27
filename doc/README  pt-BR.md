@@ -9,6 +9,13 @@ INTRODUÇÃO
 Programa escrito com Lazarus IDE/Free Pascal Compiler.
 Um Editor de Sprites e Biblioteca local de sprites para jogos 2D em Pixel Art simples, mas poderoso.
 
+COMO OBTER
+===========
+Quando o editor estiver pronto o suficiente para o uso (funções básicas implementadas, o programa funcionando com estabilidade), arquivos executáveis pré-compilados estarão disponíveis na área de 'Releases'.
+
+Se você quiser compilar o SPEdit a partir do código fonte, você deve ter o Lazarus IDE com o Free Pascal Compiler instalado em seu sistema operacional (é recomendado que você use a última versão estável). A última versão estável geralmente está disponível no [site oficial](https://lazarus-ide.org). Além disso, o pacote [BGRAControls](https://github.com/bgrabitmap/bgracontrols), do qual componentes individuais são usados, deve ser instalado adicionalmente no ambiente Lazarus.
+
+Vocẽ pode abrir o arquivo de projeto spedit.lpi no ambiente Lazarus, compilar e rodar (run) da maneira usual para esse ambiente..
 
 TRABALHO EM PROGRESSO
 =============
@@ -27,7 +34,8 @@ BREVE DOCUMENTAÇÃO
 ===================
 Por enquanto, use use as setas do teclado para mover o cursor na grelha, as teclas Espaço e Enter para desenhar usando as cores selecionadas (primária e secundária), a tecla Del para limpar um pixel (no estilo da versão DOS). Ou use o mouse como qualquer editor de imagens.
 
-Na janela Ferramentas selecione as cores primária e secundária, selecione a ferramenta para desenhar com o mouse e mude o tamanho do lápis.
+Na janela Ferramentas selecione as cores primária e secundária, selecione a ferramenta para desenhar com o mouse e mude o tamanho do lápis. As ferramentas Lápis e Linha estão disponíveis para desenho no momento.
+
 
 Você pode selecionar as cores primária e secundária clicando em uma cor na paleta com os botões esquerdo (primária) ou direito (secundária) do mouse.
 
