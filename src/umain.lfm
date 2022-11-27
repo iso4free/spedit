@@ -302,7 +302,7 @@ object frmMain: TfrmMain
       end
       object LanguageMenuItem: TMenuItem
         Caption = 'Language'
-        Hint = 'Change interface language (need restart)'
+        Hint = 'Change interface language'
         OnClick = LanguageMenuItemClick
       end
     end
