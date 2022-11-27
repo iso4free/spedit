@@ -200,8 +200,8 @@ msgid "Language"
 msgstr "Idioma"
 
 #: tfrmmain.languagemenuitem.hint
-msgid "Change interface language (need restart)"
-msgstr "Muda o idioma de interface (requer reinício)"
+msgid "Change interface language"
+msgstr "Muda o idioma de interface"
 
 #: tfrmmain.layerstoolvisiblemenuitem.caption
 msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
