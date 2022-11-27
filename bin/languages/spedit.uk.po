@@ -1,21 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: spedit\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-11-20 21:01+0200\n"
-"Last-Translator: \n"
-"Language-Team: Ukrainian\n"
-"Language: uk_UA\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: spedit\n"
 "X-Crowdin-Project-ID: 548623\n"
 "X-Crowdin-Language: uk\n"
 "X-Crowdin-File: spedit.pot\n"
 "X-Crowdin-File-ID: 1\n"
-"X-Generator: Poedit 3.0.1\n"
+"Project-Id-Version: spedit\n"
+"Language-Team: Ukrainian\n"
+"Language: uk_UA\n"
+"PO-Revision-Date: 2022-11-27 20:11\n"
 
 #: tfrmdrawtools.bbtnswapcolors.hint
 msgid "Swap colors [X]"
@@ -145,7 +140,7 @@ msgstr "Дії"
 
 #: tfrmmain.bitbtnimportframe.hint
 msgid "Import frame from image file"
-msgstr ""
+msgstr "Імпортувати фрейм з файлу зображення"
 
 #: tfrmmain.caption
 msgid "Sprite Editor"
@@ -202,11 +197,13 @@ msgstr "Довідка"
 
 #: tfrmmain.languagemenuitem.caption
 msgid "Language"
-msgstr ""
+msgstr "Мова"
 
 #: tfrmmain.languagemenuitem.hint
-msgid "Change interface language (need restart)"
-msgstr ""
+#, fuzzy
+#| msgid "Change interface language (need restart)"
+msgid "Change interface language"
+msgstr "Змінити мову інтерфейсу"
 
 #: tfrmmain.layerstoolvisiblemenuitem.caption
 msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
@@ -283,7 +280,7 @@ msgstr "Вид"
 
 #: tfrmmain.viewsettingsmenuitem.caption
 msgid "Settings"
-msgstr ""
+msgstr "Установки"
 
 #: tfrmmain.viewzoominmenuitem.caption
 msgid "Zoom++"

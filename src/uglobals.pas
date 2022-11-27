@@ -223,7 +223,6 @@ type
     fFrameHeight   : Integer;   //frame size in pixels
     fFrameZoom     : Integer;//zoom coeff for drawing grid (0 for normal size)
     fRect          : TRect;  //grid area on canvas
-    //fFrame         : PFrame; //pointer to frame record with all layers
     fShowGrid      : Boolean;//if true grid will be draw
     fOffset        : TPoint; //offset to draw frame on canvas
     procedure CalcGridRect;
@@ -251,7 +250,6 @@ type
     property ActiveFrame : String read fActiveFrame write fActiveFrame; //work frame name to access through mapped list
     property ActiveLayer : String read FActiveLayer write FActiveLayer; //current layer to draw
     property CellCursor : TCellCursor read FCellCursor; //just red frame to show where draw in grid
-    property DrawBackground : Boolean read FBackground write FBackground default true;
   end;
 
 
@@ -727,7 +725,8 @@ procedure TFrameGrid.RenderPicture(Canvas: TCanvas);
    i : Integer;
 
 begin
-  //if fCheckers then
+  ClearBitmap(fPreview);
+  if Canvas<>nil then
     fPreview.DrawCheckers(Rect(0,0,fPreview.Width,fPreview.Height),
                         ColorToBGRA($BFBFBF),
                         ColorToBGRA($FFFFFF),
@@ -748,10 +747,8 @@ end;
 procedure TFrameGrid.ExpotPng(aFilename: TFileName);
 begin
   if aFilename<>'' then begin
-   DrawBackground:=false;
    RenderPicture(nil);
    fPreview.SaveToFileUTF8(aFilename);
-   DrawBackground:=true;
   end;
 end;
 
