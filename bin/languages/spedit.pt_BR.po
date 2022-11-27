@@ -224,7 +224,7 @@ msgstr "Paleta"
 
 #: tfrmmain.menuitem4.caption
 msgid "Tool panels"
-msgstr "Painéis de ferramenta"
+msgstr "Painéis de Ferramentas"
 
 #: tfrmmain.menuitem7.caption
 msgid "New Sprite Library"
