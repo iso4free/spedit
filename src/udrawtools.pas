@@ -206,6 +206,7 @@ begin
  1:FDrawTool:=TSPPen.Create(trkbrPenSize.Position);
  2:FDrawTool:=TSPLine.Create(trkbrPenSize.Position);
  3:FDrawTool:=TSPEraser.Create(trkbrPenSize.Position);
+ 4:FDrawTool:=TSPPipette.Create(trkbrPenSize.Position)
  else begin
       ShowMessage('This tool will be realised soon, sorry');
       FDrawTool:=TSPPen.Create(trkbrPenSize.Position);

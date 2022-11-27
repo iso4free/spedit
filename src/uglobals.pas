@@ -97,6 +97,30 @@ type
      function ColorExists(aColor : TBGRAPixel) : Integer; //check if color in palette before adding
   end;
 
+  {class for undo/redo posibilities}
+
+  PSPUndoRec = ^TSPUndoRec;
+
+  { TSPUndoRec }
+
+  TSPUndoRec = class
+  private
+    FLayerName: String;
+    fFramename: String;
+    fLayerIdx : Integer;
+    fImg : TBGRABitmap;
+  public
+   constructor Create(aLayerName : String); //layer name where will be draw
+   destructor Destroy; override;
+   procedure Undo;   //undo drawing simple restore previous layer image
+  end;
+
+  TSPUndoRedoList = specialize TFPGObjectList<TSPUndoRec>; //for undo/redo mecanics
+
+  TSPUnoRedoManager=class(TSPUndoRedoList)
+
+  end;
+
  { PLayer = ^TLayer;
   PFrame = ^TFrame; }
 
@@ -152,9 +176,8 @@ type
     destructor Destroy; override;
 
     property FrameName : String read fFrameName;//unique frame name for correct managing in mapped list
-    //property LayersList : TStringList read fLayers;  //layers mapped list
+    property LayersList : TStringList read fLayers;  //layers mapped list
     property Index : Integer read FIndex write SetIndex;
-
     property Width : Integer read FWidth;
     property Height : Integer read FHeight;
     function AddLayer(LayerName : String): Boolean; //add new layer and return it`s index or -1 if error
@@ -373,6 +396,31 @@ begin
     aKey:=Frames.Keys[f];
     Frames.Remove(aKey);
   end;
+end;
+
+{ TSPUndoRec }
+
+constructor TSPUndoRec.Create(aLayerName: String);
+begin
+  FLayerName:=aLayerName;
+  fFramename:=FrameGrid.ActiveFrame;
+  //todo: get selected layer index from active frame layers list
+  //fLayerIdx:=Frames[fFramename].;
+  fImg:=TBGRABitmap.Create(Layers[FLayerName].Drawable);
+end;
+
+destructor TSPUndoRec.Destroy;
+begin
+  FreeAndNil(fImg);
+end;
+
+procedure TSPUndoRec.Undo;
+begin
+  if not LayerExists(FLayerName) then begin     //todo: restore deleted layer to frame with previous index
+   Layers[FLayerName]:=TSPLayer.Create(FLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+  end;
+  ClearBitmap(Layers[FLayerName].Drawable);
+  Layers[FLayerName].Drawable.PutImage(0,0,fImg,dmSetExceptTransparent);
 end;
 
 { TCellCursor }

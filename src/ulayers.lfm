@@ -52,6 +52,7 @@ object frmLayers: TfrmLayers
       FixedCols = 0
       RowCount = 2
       TabOrder = 0
+      TabStop = False
       TitleImageList = BGRAImageList24x24
       TitleImageListWidth = 24
       UseXORFeatures = True

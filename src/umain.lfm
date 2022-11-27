@@ -3,8 +3,8 @@ object frmMain: TfrmMain
   Height = 454
   Top = 247
   Width = 557
-  HorzScrollBar.Page = 530
-  VertScrollBar.Page = 350
+  HorzScrollBar.Page = 111
+  VertScrollBar.Page = 196
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'

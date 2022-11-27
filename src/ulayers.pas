@@ -119,8 +119,11 @@ begin
 1:begin
      Layers[aKey].Locked:=not Layers[aKey].Locked;
     end;
-2,3:begin  //select active layer
+2:begin  //select active layer
      FrameGrid.ActiveLayer:=aKey;
+    end;
+3:begin //todo: save current layer to BASE64 text
+
     end;
   end;
   frmMain.Invalidate;

@@ -411,9 +411,9 @@ begin
       p:=FrameGrid.Coords(x,y);
        frmDrawTools.DrawTool.PenSize:=frmDrawTools.trkbrPenSize.Position;
        if Button=mbLeft then
-          frmDrawTools.DrawTool.StartDraw(p.X,p.Y,Shift,spclForeColor)
+          frmDrawTools.DrawTool.StartDraw(p.X,p.Y,Shift,Button, spclForeColor)
        else if Button=mbRight then
-          frmDrawTools.DrawTool.StartDraw(p.X,p.Y,Shift,spclBackColor);
+          frmDrawTools.DrawTool.StartDraw(p.X,p.Y,Shift,Button,spclBackColor);
        pbFrameDraw.Invalidate;
      end;
     end;
@@ -464,6 +464,7 @@ begin
    frmDrawTools.DrawTool.MouseUp(x,y,Shift);
   end;
   if Assigned(FrmPreview) then FrmPreview.FramePreview.Invalidate;
+  if Assigned(frmLayers) then frmLayers.drwgrdLayers.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;
