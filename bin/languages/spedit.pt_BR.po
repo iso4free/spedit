@@ -140,7 +140,7 @@ msgstr "Ações"
 
 #: tfrmmain.bitbtnimportframe.hint
 msgid "Import frame from image file"
-msgstr ""
+msgstr "Importar quadro de um arquivo de imagem"
 
 #: tfrmmain.caption
 msgid "Sprite Editor"
@@ -197,11 +197,11 @@ msgstr "Ajuda"
 
 #: tfrmmain.languagemenuitem.caption
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: tfrmmain.languagemenuitem.hint
 msgid "Change interface language"
-msgstr ""
+msgstr "Muda o idioma de interface"
 
 #: tfrmmain.layerstoolvisiblemenuitem.caption
 msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
@@ -224,7 +224,7 @@ msgstr "Paleta"
 
 #: tfrmmain.menuitem4.caption
 msgid "Tool panels"
-msgstr "Painéis de ferramenta"
+msgstr "Painéis de Ferramentas"
 
 #: tfrmmain.menuitem7.caption
 msgid "New Sprite Library"
@@ -253,7 +253,7 @@ msgstr "Ferramentas de desenho"
 #: tfrmmain.previewmenuitem.caption
 msgctxt "tfrmmain.previewmenuitem.caption"
 msgid "Preview"
-msgstr "Previsualizar"
+msgstr "Previsualização"
 
 #: tfrmmain.projecttabsheet.caption
 msgid "Project info"
@@ -278,7 +278,7 @@ msgstr "Visualizar"
 
 #: tfrmmain.viewsettingsmenuitem.caption
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
 #: tfrmmain.viewzoominmenuitem.caption
 msgid "Zoom++"
@@ -295,7 +295,7 @@ msgstr "Redefinir zoom"
 #: tfrmpreview.caption
 msgctxt "tfrmpreview.caption"
 msgid "Preview"
-msgstr "Previsualizar"
+msgstr "Previsualização"
 
 #: tfrmpreview.framepreview.hint
 msgid "Click to export PNG"
