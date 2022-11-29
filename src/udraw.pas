@@ -135,10 +135,9 @@ procedure TSPEraser.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
   inherited StartDraw(x,y,Shift, aButton, BGRAPixelTransparent);
-  if FPenSize=1 then Layers[FrameGrid.ActiveLayer].Drawable.SetPixel(x,y,BGRAPixelTransparent) else begin
-     Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Brush.Color:=BGRAPixelTransparent;
-     Layers[FrameGrid.ActiveLayer].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
-  end;
+  //if FPenSize=1 then Layers[FrameGrid.ActiveLayer].Drawable.ErasePixel(x,y,0) else begin
+     Layers[FrameGrid.ActiveLayer].Drawable.FillRect(x,y,x+PenSize,y+PenSize,BGRAPixelTransparent);
+ // end;
 end;
 
 procedure TSPEraser.FinishDraw;
@@ -148,11 +147,9 @@ end;
 
 procedure TSPEraser.MouseMove(x, y: Integer);
 begin
-  Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Pen.Color:=BGRAPixelTransparent;
-  Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Pen.Width:=FPenSize;
-  Layers[FrameGrid.ActiveLayer].Drawable.Canvas.Line(prevx,prevy,x,y);
-  prevx:=x;
-  prevy:=y;
+ // if FPenSize=1 then Layers[FrameGrid.ActiveLayer].Drawable.ErasePixel(x,y,0) else begin
+     Layers[FrameGrid.ActiveLayer].Drawable.FillRect(x,y,x+PenSize,y+PenSize,BGRAPixelTransparent);
+  //end;
 end;
 
 procedure TSPEraser.MouseUp(x, y: Integer; Shift: TShiftState);
@@ -171,9 +168,8 @@ begin
   fstarty:=y;
   prevx:=x;
   prevy:=y;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=Color;
   if FPenSize=1 then Layers[csDRAWLAYER].Drawable.SetPixel(x,y,Color) else
-     Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
+     Layers[csDRAWLAYER].Drawable.FillRect(x,y,x+PenSize,y+PenSize,fColor);
 end;
 
 procedure TSPLine.MouseMove(x, y: Integer);
@@ -181,9 +177,7 @@ begin
   ClearBitmap(Layers[csDRAWLAYER].Drawable);
   prevx:=x;
   prevy:=y;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=Color;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
-  Layers[csDRAWLAYER].Drawable.Canvas.Line(fstartx,fstarty,PrevX,PrevY);
+  Layers[csDRAWLAYER].Drawable.DrawLineAntialias(fstartx,fstarty,PrevX,PrevY,fColor,FPenSize, True);
 end;
 
 { TSPPen }
@@ -193,16 +187,15 @@ procedure TSPPen.StartDraw(x, y: Integer; Shift: TShiftState;
 begin
   inherited StartDraw(x,y,Shift,aButton, aColor);
   if FPenSize=1 then Layers[csDRAWLAYER].Drawable.SetPixel(x,y,Color) else begin
-     Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=Color;
-     Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
+     Layers[csDRAWLAYER].Drawable.FillRect(x,y,x+PenSize,y+PenSize,fColor);
   end;
 end;
 
 procedure TSPPen.MouseMove(x, y: Integer);
 begin
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
-  Layers[csDRAWLAYER].Drawable.Canvas.Line(prevx,prevy,x,y);
+  //todo: how to change pen size?
+  if FPenSize=1 then Layers[csDRAWLAYER].Drawable.DrawLine(prevx,prevy,x,y,fColor,True); ;
+  Layers[csDRAWLAYER].Drawable.DrawLineAntialias(prevx,prevy,x,y,fColor,FPenSize, True);
   prevx:=x;
   prevy:=y;
 end;
