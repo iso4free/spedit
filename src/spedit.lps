@@ -19,8 +19,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="452"/>
-        <CursorPos X="13" Y="461"/>
+        <TopLine Value="577"/>
+        <CursorPos X="3" Y="579"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -28,7 +28,6 @@
       <Unit>
         <Filename Value="udraw.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <TopLine Value="115"/>
         <CursorPos X="32" Y="124"/>
@@ -42,8 +41,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="191"/>
-        <CursorPos X="22" Y="214"/>
+        <TopLine Value="196"/>
+        <CursorPos X="18" Y="196"/>
         <UsageCount Value="177"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -111,9 +110,10 @@
       </Unit>
       <Unit>
         <Filename Value="uglobals.pas"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="142"/>
-        <CursorPos X="14" Y="150"/>
+        <TopLine Value="582"/>
+        <CursorPos X="39" Y="590"/>
         <UsageCount Value="100"/>
         <Loaded Value="True"/>
       </Unit>
@@ -1089,54 +1089,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="99" Column="20" TopLine="82"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="129" Column="31" TopLine="120"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="97" Column="17" TopLine="88"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="129" Column="3" TopLine="126"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="98" Column="17" TopLine="88"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="115" Column="3" TopLine="113"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="99" Column="16" TopLine="89"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="122" Column="3" TopLine="120"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="100" Column="16" TopLine="90"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="109" Column="3" TopLine="107"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="99" Column="17" TopLine="91"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="122" TopLine="119"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
         <Caret Line="124" TopLine="119"/>
       </Position>
       <Position>
@@ -1206,6 +1158,54 @@
       <Position>
         <Filename Value="udraw.pas"/>
         <Caret Line="86" Column="20" TopLine="70"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="461" Column="13" TopLine="452"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="579" Column="3" TopLine="577"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="230" Column="23" TopLine="226"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="578" Column="11" TopLine="572"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="228" Column="15" TopLine="221"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="589" Column="3" TopLine="576"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="241" Column="19" TopLine="229"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="685" Column="3" TopLine="679"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="230" Column="18" TopLine="224"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="579" TopLine="572"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="228" Column="21" TopLine="221"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="591" Column="64" TopLine="582"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -586,8 +586,10 @@ end;
 
 procedure TFrameGrid.CalcGridRect;
 begin
-  fRect.Create(fOffset, fFrameWidth*(fFrameGridSize+fFrameZoom), fFrameHeight*(
-    fFrameGridSize+fFrameZoom));
+  fRect.Create(fOffset, fFrameWidth*(fFrameGridSize+fFrameZoom),
+                        fFrameHeight*(fFrameGridSize+fFrameZoom));
+  if Assigned(fBuffer) then
+     BGRAReplace(fBuffer,fBuffer.Resample(fRect.Width,fRect.Height));
 end;
 
 constructor TFrameGrid.Create(aW: Integer; aH: Integer; aSize: Word);

@@ -242,17 +242,17 @@ object frmDrawTools: TfrmDrawTools
         Index = 1
       end    
       item
-        Control = sbEracer
+        Control = sbRect
         WrapAfter = waAuto
         Index = 2
       end    
       item
-        Control = sbPipette
+        Control = sbEracer
         WrapAfter = waAuto
         Index = 3
       end    
       item
-        Control = sbRect
+        Control = sbPipette
         WrapAfter = waAuto
         Index = 4
       end>
@@ -262,7 +262,7 @@ object frmDrawTools: TfrmDrawTools
     object sbEracer: TSpeedButton
       Tag = 3
       AnchorSideTop.Side = asrBottom
-      Left = 57
+      Left = 85
       Height = 28
       Top = 1
       Width = 28
@@ -290,7 +290,7 @@ object frmDrawTools: TfrmDrawTools
     object sbPipette: TSpeedButton
       Tag = 4
       AnchorSideTop.Side = asrBottom
-      Left = 85
+      Left = 113
       Height = 28
       Top = 1
       Width = 28
@@ -317,7 +317,7 @@ object frmDrawTools: TfrmDrawTools
     end
     object sbRect: TSpeedButton
       Tag = 5
-      Left = 113
+      Left = 57
       Height = 28
       Top = 1
       Width = 28
@@ -325,7 +325,7 @@ object frmDrawTools: TfrmDrawTools
       AutoSize = True
       GroupIndex = 1
       Images = frmMain.ButtonsImageList
-      ImageIndex = 36
+      ImageIndex = 37
       OnClick = sbPenClick
     end
   end
