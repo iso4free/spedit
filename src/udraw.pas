@@ -119,8 +119,8 @@ end;
 
 procedure TSPPipette.MouseUp(x, y: Integer; Shift: TShiftState);
 begin
-  if fMainColor then spclForeColor:=Layers[FrameGrid.ActiveLayer].Drawable.GetPixel(fX,fY)
-     else spclBackColor:=Layers[FrameGrid.ActiveLayer].Drawable.GetPixel(fX,fY);
+  if fMainColor then spclForeColor:=Layers[FrameGrid.ActiveLayer].Drawable.GetPixel(x,y)
+     else spclBackColor:=Layers[FrameGrid.ActiveLayer].Drawable.GetPixel(x,y);
 end;
 
 procedure TSPPipette.StartDraw(x, y: Integer; Shift: TShiftState;
@@ -168,8 +168,10 @@ begin
   fstarty:=y;
   prevx:=x;
   prevy:=y;
-  if FPenSize=1 then Layers[csDRAWLAYER].Drawable.SetPixel(x,y,Color) else
-     Layers[csDRAWLAYER].Drawable.FillRect(x,y,x+PenSize,y+PenSize,fColor);
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
 end;
 
 procedure TSPLine.MouseMove(x, y: Integer);
@@ -177,7 +179,10 @@ begin
   ClearBitmap(Layers[csDRAWLAYER].Drawable);
   prevx:=x;
   prevy:=y;
-  Layers[csDRAWLAYER].Drawable.DrawLineAntialias(fstartx,fstarty,PrevX,PrevY,fColor,FPenSize, True);
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  Layers[csDRAWLAYER].Drawable.Canvas.Line(fstartx,fstarty,PrevX+1,PrevY+1);
 end;
 
 { TSPPen }
@@ -192,10 +197,16 @@ begin
 end;
 
 procedure TSPPen.MouseMove(x, y: Integer);
+var b : TUniversalBrush;
 begin
   //todo: how to change pen size?
-  if FPenSize=1 then Layers[csDRAWLAYER].Drawable.DrawLine(prevx,prevy,x,y,fColor,True); ;
-  Layers[csDRAWLAYER].Drawable.DrawLineAntialias(prevx,prevy,x,y,fColor,FPenSize, True);
+
+  if FPenSize=1 then Layers[csDRAWLAYER].Drawable.DrawLine(prevx,prevy,x,y,fColor,True,dmSet)
+   else begin
+    Layers[csDRAWLAYER].Drawable.SolidBrush(b,fColor,dmSet);
+    Layers[csDRAWLAYER].Drawable.DrawLineAntialias(prevx,prevy,x,y,b,FPenSize);
+
+   end;
   prevx:=x;
   prevy:=y;
 end;

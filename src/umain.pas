@@ -457,14 +457,18 @@ end;
 
 procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
+var
+    p : TPoint;
 begin
   if not Assigned(FrameGrid) then Exit;
   fDrawGridMode:=dgmNone;
   if Assigned(frmDrawTools.DrawTool) then begin
-   frmDrawTools.DrawTool.MouseUp(x,y,Shift);
+   p:=FrameGrid.Coords(X,Y);
+   frmDrawTools.DrawTool.MouseUp(p.x,p.y,Shift);
   end;
   if Assigned(FrmPreview) then FrmPreview.FramePreview.Invalidate;
   if Assigned(frmLayers) then frmLayers.drwgrdLayers.Invalidate;
+  Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;
