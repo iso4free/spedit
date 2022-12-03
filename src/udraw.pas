@@ -79,6 +79,13 @@ type
      procedure MouseMove(x,y : Integer); override;
   end;
 
+  { TSPRect }
+
+  TSPRect = class(TSPDrawTool)
+     procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
+     procedure MouseMove(x,y : Integer); override;
+  end;
+
   { TSPEraser }
 
   TSPEraser = class(TSPDrawTool)
@@ -102,6 +109,36 @@ type
 
 implementation
  uses udrawtools;
+
+{ TSPRect }
+
+procedure TSPRect.MouseMove(x, y: Integer);
+begin
+  ClearBitmap(Layers[csDRAWLAYER].Drawable);
+  prevx:=x;
+  prevy:=y;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=clNone;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  Layers[csDRAWLAYER].Drawable.Canvas.Rectangle(fstartx,fstarty,PrevX+1,PrevY+1);
+  //todo: internal empty rect S
+end;
+
+procedure TSPRect.StartDraw(x, y: Integer; Shift: TShiftState;
+  aButton: TMouseButton; aColor: TBGRAPixel);
+begin
+  if (not LayerExists(FrameGrid.ActiveLayer)) or (not LayerExists(csDRAWLAYER)) then Exit;
+  Color:=aColor;
+  fstartx:=x;
+  fstarty:=y;
+  prevx:=x;
+  prevy:=y;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
+end;
+
 { TSPPipette }
 
 procedure TSPPipette.FinishDraw;

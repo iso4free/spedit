@@ -250,6 +250,11 @@ object frmDrawTools: TfrmDrawTools
         Control = sbPipette
         WrapAfter = waAuto
         Index = 3
+      end    
+      item
+        Control = sbRect
+        WrapAfter = waAuto
+        Index = 4
       end>
     FlowLayout = tlTop
     FlowStyle = fsLeftRightTopBottom
@@ -301,6 +306,19 @@ object frmDrawTools: TfrmDrawTools
       Left = 29
       Height = 28
       Hint = 'Line tool'
+      Top = 1
+      Width = 28
+      Anchors = []
+      AutoSize = True
+      GroupIndex = 1
+      Images = frmMain.ButtonsImageList
+      ImageIndex = 36
+      OnClick = sbPenClick
+    end
+    object sbRect: TSpeedButton
+      Tag = 5
+      Left = 113
+      Height = 28
       Top = 1
       Width = 28
       Anchors = []
