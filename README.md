@@ -28,6 +28,8 @@ WORK PROGRESS
 Still development, new features will be added when i have enought time and motivation.
 You can sponsor me throught https://www.buymeacoffee.com/iso4free if You wanna get some features done faster.
 
+**Since our country is currently at war and Russia is destroying our critical infrastructure facilities, due to long blackouts I do not have the opportunity to devote enough time to development. Help stop the aggressor!**
+
 LOCALIZATION
 ============
 SPEdit supports localization of the interface to different languages. Interface translation files have the standard PO (Portable Object) format and must have names in the format spedit.xx.po or spedit.xx_XX.po, where xx or xx_XX is the common language identifier (e.g. spedit.pt_BR.po for Brazilian Portuguese). After selecting the interface translation file, localization occurs immediately without restarting the program and will be activated automatically at the next start.

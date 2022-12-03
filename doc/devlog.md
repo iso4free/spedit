@@ -125,3 +125,4 @@ DEV.LOG
 02.12.2022
 =
 - [!] Fixed Pipette tool
++ [+] Added Rectangle drawing tool
