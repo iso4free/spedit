@@ -120,3 +120,8 @@ REGISTRO DE DESENVOLVIMENTO
 - [!] Conserto de tamanhos diferentes de quadros quando um novo quadro é criado
 - [+] Adição da ferramente de desenho em linha
 - [*] Alteração do docs (adição da área 'Como obter')
+
+02.12.2022
+=
+- [!] Conserto da ferramenta Conta gotas
++ [+] Adição da ferramenta de desenho em Retângulo 
