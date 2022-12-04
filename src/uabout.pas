@@ -30,7 +30,7 @@ unit uabout;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LResources,
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LResources, LCLIntf,
   SysUtils, Forms, Graphics, ExtCtrls, StdCtrls, BGRASpriteAnimation,
   Classes, LCLTranslator;
 
@@ -52,6 +52,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: char);
+    procedure Label1Click(Sender: TObject);
     procedure ShowSplashCheckBoxChange(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Star(x,y: Integer; Size: Integer; Colour: TColor);
@@ -138,6 +139,11 @@ begin
  if A > 255 then A := 255;
  // take random color value
  Result := RGBToColor(Random(256-A)+A, Random(256-A)+A, Random(256-A)+A);
+end;
+
+procedure TfrmAbout.Label1Click(Sender: TObject);
+begin
+  OpenURL('https://github.com/iso4free/spedit');
 end;
 
 end.

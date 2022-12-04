@@ -6,15 +6,18 @@ object frmDrawTools: TfrmDrawTools
   Align = alClient
   AutoSize = True
   BorderIcons = [biSystemMenu]
-  BorderStyle = bsToolWindow
+  BorderStyle = bsSizeToolWin
   Caption = 'Tools'
   ClientHeight = 339
   ClientWidth = 169
-  FormStyle = fsStayOnTop
+  DefaultMonitor = dmMainForm
+  DockSite = True
+  FormStyle = fsSystemStayOnTop
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   ShowInTaskBar = stNever
+  UseDockManager = True
   LCLVersion = '2.2.4.0'
   Visible = True
   object ColorsFlowPanel: TFlowPanel

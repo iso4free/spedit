@@ -9,8 +9,9 @@ object frmReferense: TfrmReferense
   Caption = 'Referense'
   ClientHeight = 240
   ClientWidth = 320
+  DefaultMonitor = dmMainForm
   DoubleBuffered = True
-  FormStyle = fsStayOnTop
+  FormStyle = fsSystemStayOnTop
   OnClick = FormClick
   OnClose = FormClose
   OnDestroy = FormDestroy

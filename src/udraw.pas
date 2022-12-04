@@ -113,15 +113,21 @@ implementation
 { TSPRect }
 
 procedure TSPRect.MouseMove(x, y: Integer);
+var
+  i: Integer;
 begin
   ClearBitmap(Layers[csDRAWLAYER].Drawable);
-  prevx:=x;
-  prevy:=y;
+  prevx:=x+1;
+  prevy:=y+1;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
   Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=clNone;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
-  Layers[csDRAWLAYER].Drawable.Canvas.Rectangle(fstartx,fstarty,PrevX+1,PrevY+1);
-  //todo: internal empty rect S
+  //Layers[csDRAWLAYER].Drawable.Canvas.Rectangle(fstartx,fstarty,PrevX+PenSize,PrevY+PenSize);
+  if PenSize>1 then
+     for i:=0 to PenSize-1 do Layers[csDRAWLAYER].Drawable.Rectangle(fstartx+i,fstarty+i,prevx-i,prevy-i,Color,BGRAPixelTransparent)
+    // Layers[csDRAWLAYER].Drawable.FillRect(fstartx+1,fstarty+1,prevx,prevy,BGRAPixelTransparent)
+  else
+     Layers[csDRAWLAYER].Drawable.Rectangle(fstartx,fstarty,prevx,prevy,Color,BGRAPixelTransparent);
 end;
 
 procedure TSPRect.StartDraw(x, y: Integer; Shift: TShiftState;
@@ -208,7 +214,7 @@ begin
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
   Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
-  Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
+  Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize-1,y+PenSize-1);
 end;
 
 procedure TSPLine.MouseMove(x, y: Integer);
@@ -219,7 +225,7 @@ begin
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
   Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
-  Layers[csDRAWLAYER].Drawable.Canvas.Line(fstartx,fstarty,PrevX+1,PrevY+1);
+  Layers[csDRAWLAYER].Drawable.Canvas.Line(fstartx,fstarty,PrevX+PenSize-1,PrevY+PenSize-1);
 end;
 
 { TSPPen }

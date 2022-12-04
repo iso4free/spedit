@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 255
+  Left = 256
   Height = 454
-  Top = 247
+  Top = 277
   Width = 557
   HorzScrollBar.Page = 111
   VertScrollBar.Page = 196
@@ -10,8 +10,10 @@ object frmMain: TfrmMain
   Caption = 'Sprite Editor'
   ClientHeight = 431
   ClientWidth = 557
+  DefaultMonitor = dmDesktop
   DockSite = True
   DoubleBuffered = True
+  FormStyle = fsMDIForm
   KeyPreview = True
   Menu = MainMenu1
   OnCreate = FormCreate
@@ -19,6 +21,7 @@ object frmMain: TfrmMain
   OnKeyDown = FormKeyDown
   OnPaint = pbFrameDrawPaint
   ParentDoubleBuffered = False
+  UseDockManager = True
   LCLVersion = '2.2.4.0'
   Visible = True
   object MainPageControl: TPageControl

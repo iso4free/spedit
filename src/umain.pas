@@ -162,7 +162,7 @@ procedure TfrmMain.AboutMenuItemClick(Sender: TObject);
 begin
   if not Assigned(frmAbout) then frmAbout:= TfrmAbout.Create(Application);
   frmMain.HideWindows;
-     frmAbout.Show;
+     frmAbout.ShowModal;
   frmMain.ShowWindows;
   FreeAndNil(frmAbout);
 end;
@@ -318,7 +318,7 @@ end;
 
 procedure TfrmMain.FramesMenuItemClick(Sender: TObject);
 begin
- frmFrames.Show;
+ frmFrames.Visible:= not frmFrames.Visible;
 end;
 
 procedure TfrmMain.HideWindows;

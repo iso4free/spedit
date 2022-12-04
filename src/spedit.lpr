@@ -47,6 +47,7 @@ begin
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmDrawTools, frmDrawTools);
+  //frmDrawTools.ParentWindow:=frmMain.Handle;
   Application.CreateForm(TfrmFrames, frmFrames);
   Application.CreateForm(TfrmLayers, frmLayers);
   Application.CreateForm(TfrmFrameDlg, frmFrameDlg);

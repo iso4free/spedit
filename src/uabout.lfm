@@ -9,6 +9,7 @@ object frmAbout: TfrmAbout
   ClientHeight = 350
   ClientWidth = 640
   Color = clBlack
+  DefaultMonitor = dmMainForm
   DoubleBuffered = True
   FormStyle = fsSystemStayOnTop
   KeyPreview = True
@@ -2151,6 +2152,7 @@ object frmAbout: TfrmAbout
     Font.Name = '04b'
     ParentColor = False
     ParentFont = False
+    OnClick = Label1Click
   end
   object Label2: TLabel
     AnchorSideLeft.Control = SkyImage

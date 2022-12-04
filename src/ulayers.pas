@@ -54,6 +54,7 @@ type
       var CanSelect: Boolean);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
 
   public
@@ -132,10 +133,6 @@ end;
 
 procedure TfrmLayers.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  INI.WriteInteger('FRMLAYERS','TOP',frmLayers.Top);
-  INI.WriteInteger('FRMLAYERS','LEFT',frmLayers.Left);
-  INI.WriteInteger('FRMLAYERS','WIDTH',frmLayers.Width);
-  INI.WriteInteger('FRMLAYERS','HEIGHT',frmLayers.Height);
   frmMain.LayersToolVisibleMenuItem.Checked:=False;
   frmMain.SetFocus;
 end;
@@ -148,6 +145,14 @@ begin
   frmLayers.Height:=INI.ReadInteger('FRMLAYERS','HEIGHT',frmLayers.Height);
   //todo: after tests change to active frame layers count
   drwgrdLayers.RowCount:=Layers.Count+1;
+end;
+
+procedure TfrmLayers.FormDestroy(Sender: TObject);
+begin
+  INI.WriteInteger('FRMLAYERS','TOP',frmLayers.Top);
+  INI.WriteInteger('FRMLAYERS','LEFT',frmLayers.Left);
+  INI.WriteInteger('FRMLAYERS','WIDTH',frmLayers.Width);
+  INI.WriteInteger('FRMLAYERS','HEIGHT',frmLayers.Height);
 end;
 
 procedure TfrmLayers.bbtnAddLayerClick(Sender: TObject);

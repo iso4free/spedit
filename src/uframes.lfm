@@ -6,7 +6,8 @@ object frmFrames: TfrmFrames
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSizeToolWin
   Caption = 'Frames'
-  FormStyle = fsStayOnTop
+  DefaultMonitor = dmMainForm
+  FormStyle = fsSystemStayOnTop
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
