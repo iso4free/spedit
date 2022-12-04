@@ -1,8 +1,6 @@
-THIS DOCUMENT IN OTHER LANGUAGES
-================================
-[Українська](/doc/README%20uk.md)
-
-[Brazilian Portuguese](/doc/README%20%20pt-BR.md)
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/iso4free/spedit/blob/master/README.md)
+[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/iso4free/spedit/blob/master/README.pt-br.md)
+[![uk](https://img.shields.io/badge/lang-uk-blue)](https://github.com/iso4free/spedit/blob/master/README.uk.md)
 
 WELCOME
 =======
