@@ -304,3 +304,108 @@ msgstr ""
 msgid "Click to open any referense image"
 msgstr ""
 
+#: uglobals.rsactivetool
+msgid "Active tool: "
+msgstr ""
+
+#: uglobals.rsbg
+msgid " / BG: "
+msgstr ""
+
+#: uglobals.rscircle
+msgid "Circle"
+msgstr ""
+
+#: uglobals.rscolors
+msgid "Colors: "
+msgstr ""
+
+#: uglobals.rscopyof
+msgid "Copy of "
+msgstr ""
+
+#: uglobals.rseraser
+msgid "Eraser"
+msgstr ""
+
+#: uglobals.rsfg
+msgid "FG: "
+msgstr ""
+
+#: uglobals.rsfilledrectan
+msgid "Filled rectangle"
+msgstr ""
+
+#: uglobals.rsgenerictool
+msgid "Generic tool"
+msgstr ""
+
+#: uglobals.rshasnonintege
+msgid " has non-integer value!"
+msgstr ""
+
+#: uglobals.rsimagehastoom
+msgid "Image has too many colors!"
+msgstr ""
+
+#: uglobals.rsinputnewlaye
+msgid "Input new layer name:"
+msgstr ""
+
+#: uglobals.rslayername
+msgid "Layer name"
+msgstr ""
+
+#: uglobals.rslayersislock
+#, object-pascal-format
+msgid "Layer %s is locked for changes!!"
+msgstr ""
+
+#: uglobals.rsline
+msgid "Line"
+msgstr ""
+
+#: uglobals.rspalettewillb
+msgid "Palette will be resetted to default colors! Are You shure?"
+msgstr ""
+
+#: uglobals.rspen
+msgid "Pen"
+msgstr ""
+
+#: uglobals.rspipette
+msgid "Pipette"
+msgstr ""
+
+#: uglobals.rspleaseinputn
+msgid "Please input new library name"
+msgstr ""
+
+#: uglobals.rsrectangle
+msgid "Rectangle"
+msgstr ""
+
+#: uglobals.rsthislayercan
+msgid "This layer can't be renamed!"
+msgstr ""
+
+#: uglobals.rsthislayercan2
+msgid "This layer can't be deleted!"
+msgstr ""
+
+#: uglobals.rsthistoolwill
+msgid "This tool will be realised soon, sorry"
+msgstr ""
+
+#: uglobals.rswarning
+msgid "Warning!"
+msgstr ""
+
+#: uglobals.rsyoumustoverr
+msgid "You must override MouseUp() method! Class name: "
+msgstr ""
+
+#: uglobals.rsyoumustoverr2
+msgid "You must override MouseMove() method! Class name: "
+msgstr ""
+

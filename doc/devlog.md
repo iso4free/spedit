@@ -134,3 +134,10 @@ DEV.LOG
 - [+] Added posibilities for 'Layer Copy' and 'Rename Layer'
 - [+] Extends layer with BASE64 encode/decode (used when copy or rename layer)
 - [*] Updated docs
+- [!] Fixed Delete Layer
+- [!] Block drawing if layer locked
+- [*] Update Ukrainian UI translation
+- [*] Change Layers order (newest shows in top, older in bottom)
+- [*] Now shows layers belongs to current frame only
+- [+] Added Circle tool 
+- [+] Last two button images was made with SPedit!

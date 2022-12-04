@@ -49,6 +49,19 @@ resourcestring
   rsYouMustOverr = 'You must override MouseUp() method! Class name: ';
   rsYouMustOverr2 = 'You must override MouseMove() method! Class name: ';
   rsCopyOf = 'Copy of ';
+  rsActiveTool = 'Active tool: ';
+  rsThisToolWill = 'This tool will be realised soon, sorry';
+  rsFilledRectan = 'Filled rectangle';
+  rsRectangle = 'Rectangle';
+  rsPipette = 'Pipette';
+  rsEraser = 'Eraser';
+  rsLine = 'Line';
+  rsPen = 'Pen';
+  rsGenericTool = 'Generic tool';
+  rsCircle = 'Circle';
+  rsThisLayerCan = 'This layer can''t be renamed!';
+  rsThisLayerCan2 = 'This layer can''t be deleted!';
+  rsLayerSIsLock = 'Layer %s is locked for changes!!';
 
 
 const

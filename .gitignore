@@ -2,3 +2,4 @@ bin/spedit*
 lib/**
 debug/**
 src/backup/**
+*.mo

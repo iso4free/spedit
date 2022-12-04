@@ -106,6 +106,7 @@ type
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
     procedure BitBtnImportFrameClick(Sender: TObject);
+    procedure BitBtnLayersClick(Sender: TObject);
     procedure BitBtnNewFrameClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -184,6 +185,11 @@ begin
   ShowWindows;
 end;
 
+procedure TfrmMain.BitBtnLayersClick(Sender: TObject);
+begin
+  frmLayers.Visible:=not frmLayers.Visible;
+end;
+
 procedure TfrmMain.BitBtnNewFrameClick(Sender: TObject);
 var
   i: Integer;
@@ -196,7 +202,6 @@ begin
   end;
   HideWindows;
   frmFrameDlg.ShowModal;
-  ShowWindows;
   if frmFrameDlg.ModalResult=mrOK then begin
    FreeAndNil(FrameGrid);
    FrameGrid:=TFrameGrid.Create(frmFrameDlg.spnedtWidth.Value,frmFrameDlg.spnedtHeight.Value);
@@ -210,7 +215,7 @@ begin
    Frames[frmFrameDlg.edtFrameName.Text]:=TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
                                                           FrmPreview.FramePreview.Width,
                                                           FrmPreview.FramePreview.Height);
-   Frames[frmFrameDlg.edtFrameName.Text].AddLayer(frmFrameDlg.edtFrameName.Text);
+   Frames[frmFrameDlg.edtFrameName.Text].AddLayer(cINTERNALLAYERANDFRAME);
    Layers[cINTERNALLAYERANDFRAME].AddToFrame(frmFrameDlg.edtFrameName.Text);
    //todo: copy all layers to new frame if option checked
    for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
@@ -219,6 +224,7 @@ begin
    if Assigned(frmDrawTools.trkbrPenSize) then frmDrawTools.trkbrPenSize.Max:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
    pbFrameDraw.Invalidate;
   end;
+  if Assigned(FrameGrid) then ShowWindows;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -360,6 +366,7 @@ var
     img : TBGRABitmap;
     w,h , i, j: Integer;
 begin
+  HideWindows;
   if OpenPictureDialog1.Execute then begin
    img:=TBGRABitmap.Create(OpenPictureDialog1.FileName);
    w:=img.Width-1;
@@ -377,6 +384,7 @@ stop:
    FreeAndNil(img);
   frmDrawTools.PaletteGrid.RenderAndDrawControl;
   end;
+  ShowWindows;
 end;
 
 procedure TfrmMain.miPaletteLoadFromFileClick(Sender: TObject);
@@ -406,6 +414,9 @@ begin
   if not Assigned(FrameGrid) then Exit;
   case Button of
     mbLeft,mbRight:begin
+     if Layers[FrameGrid.ActiveLayer].Locked then begin
+      ShowMessage(Format(rsLayerSIsLock, [FrameGrid.ActiveLayer]))
+     end;
      if Assigned(frmDrawTools.DrawTool) and (FrameGrid.HasCoords(Point(x,y))) then begin
       fDrawGridMode:=dgmDraw;
       p:=FrameGrid.Coords(x,y);
@@ -442,9 +453,9 @@ begin
      starty:=y;
      FrameGrid.Offset:=Point(dx,dy);
    end;
-   if fDrawGridMode=dgmDraw then begin
-
+   if fDrawGridMode=dgmDraw then begin //draw if layer not locked
     if Assigned(frmDrawTools.DrawTool) and ( FrameGrid.HasCoords(Point(X,Y))) then begin
+     if Layers[FrameGrid.ActiveLayer].Locked then Exit;
      p:=FrameGrid.Coords(X,Y);
      frmDrawTools.DrawTool.MouseMove(p.X,p.Y);
      pbFrameDraw.Invalidate;
@@ -462,6 +473,7 @@ var
 begin
   if not Assigned(FrameGrid) then Exit;
   fDrawGridMode:=dgmNone;
+  if Layers[FrameGrid.ActiveLayer].Locked then Exit;
   if Assigned(frmDrawTools.DrawTool) then begin
    p:=FrameGrid.Coords(X,Y);
    frmDrawTools.DrawTool.MouseUp(p.x,p.y,Shift);
@@ -498,7 +510,7 @@ begin
      FrameGrid.RenderPicture(FrmPreview.FramePreview.Canvas);
    if Assigned(frmLayers) then begin
       //todo: after tests change to active frame layers count
-    frmLayers.drwgrdLayers.RowCount:=Layers.Count+1;
+    frmLayers.drwgrdLayers.RowCount:=Frames[FrameGrid.ActiveFrame].LayersList.Count+1;
     frmLayers.Invalidate;
    end;
   end;
@@ -507,6 +519,9 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  //because sometimes this property resets to fsStayOnTop and main window shown over the tools windows
+  FormStyle:=fsNormal;
+
   DetectPOLanguage(INI.ReadString('INTERFACE','L10n file',''));
   //if checked create and  show  splashscreen
    if INI.ReadBool('INTERFACE', 'SHOWSPLASH', true) then begin
@@ -563,6 +578,7 @@ begin
   if FramesMenuItem.Checked then frmFrames.Show;
   if LayersToolVisibleMenuItem.Checked then frmLayers.Show;
   if ReferenseImageMenuItem.Checked then frmReferense.Show;
+  Invalidate;
 end;
 
 procedure TfrmMain.SrcImageFramesOptsValueListEditorValidate(Sender: TObject; ACol, ARow: longint; const KeyName, KeyValue: string);
@@ -584,7 +600,7 @@ end;
 procedure TfrmMain.ViewZoomOutMenuItemClick(Sender: TObject);
 begin
   if not Assigned(FrameGrid) then Exit;
-  FrameGrid.FrameZoom:=FrameGrid.FrameZoom-1;
+  if FrameGrid.FrameZoom>0 then FrameGrid.FrameZoom:=FrameGrid.FrameZoom-1;
   pbFrameDraw.Invalidate;
 end;
 

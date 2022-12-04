@@ -42,7 +42,7 @@ SHORT DOCUMENTATION
 ===================
 For now, use arrow keys for moving on-grid cursor, Space and Enter keys to draw use selected colors (primary and secondary), Del key to clear pixel (DOS version style). Or just use the mouse like in any image editor.
 
-In Tools window select primary and secondary color, select tool for mouse drawing and change pen size. Pencil, Line, Rectangle, Filled Rectangle, Eraser and Pipette are currently available for drawing.
+In Tools window select primary and secondary color, select tool for mouse drawing and change pen size. Pencil, Line, Rectangle, Filled Rectangle, Circle, Eraser and Pipette are currently available for drawing.
 
 You can select primary and secondary colors click on any color in palette with left (primary) or right (secondary) mouse buttons.
 

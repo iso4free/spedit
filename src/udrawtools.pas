@@ -56,6 +56,7 @@ type
     sbLine: TSpeedButton;
     sbRect: TSpeedButton;
     sbFilledRect: TSpeedButton;
+    sbCircle: TSpeedButton;
     trkbrPenSize: TTrackBar;
     procedure bbtnSwapColorsClick(Sender: TObject);
     procedure BgColorMouseUp(Sender: TObject; Button: TMouseButton;
@@ -94,6 +95,7 @@ implementation
    BgColor.ShowHint:=true;
    FgColor.ShowHint:=true;
    FDrawTool:=TSPPen.Create(trkbrPenSize.Position);
+   frmMain.StatusBar1.Panels[4].Text:=rsActiveTool+FDrawTool.ToolName;
  end;
 
 procedure TfrmDrawTools.FormDestroy(Sender: TObject);
@@ -213,12 +215,14 @@ begin
       trkbrPenSize.Position:=1;
  end;
  5:FDrawTool:=TSPRect.Create(trkbrPenSize.Position);
- 6:FDrawTool:=TSPFilledRect.Create(trkbrPenSize.Position)
+ 6:FDrawTool:=TSPFilledRect.Create(trkbrPenSize.Position);
+ 7:FDrawTool:=TSPCircle.Create(trkbrPenSize.Position)
  else begin
-      ShowMessage('This tool will be realised soon, sorry');
+      ShowMessage(rsThisToolWill);
       FDrawTool:=TSPPen.Create(trkbrPenSize.Position);
   end;
  end;
+  frmMain.StatusBar1.Panels[4].Text:=rsActiveTool+FDrawTool.ToolName;
   frmMain.SetFocus;
 end;
 

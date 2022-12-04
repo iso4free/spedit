@@ -76,12 +76,15 @@ uses uglobals, umain;
 procedure TfrmLayers.drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
   aRect: TRect; aState: TGridDrawState);
 var aKey : String;
+    cnt  : Integer;
 begin
   if not Assigned(FrameGrid) then Exit;
   //todo: change draw headers and layers data from active frame
+  cnt:=Frames[FrameGrid.ActiveFrame].LayersList.Count;
   if aRow<>0 then begin //draw header
-    if aRow>Layers.Count then Exit;
-    aKey:=Layers.Keys[aRow-1];
+    if aRow>cnt then Exit;
+    aKey:=Frames[FrameGrid.ActiveFrame].LayersList.Strings[Cnt-aRow];
+    if not LayerExists(aKey) then Exit;
     case aCol of
   0:begin
       //draw layer visibility icon
@@ -90,8 +93,8 @@ begin
     end;
   1:begin
       //draw layer protection icon
-      if Layers[aKey].Locked then BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,2)
-         else BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,3);
+      if Layers[aKey].Locked then BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,3)
+         else BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,2);
     end;
   2:begin
       //draw layer name
@@ -105,17 +108,20 @@ begin
     end;
     end;
   end;
-
+  Invalidate;
 end;
 
 procedure TfrmLayers.drwgrdLayersSelectCell(Sender: TObject; aCol,
   aRow: Integer; var CanSelect: Boolean);
 var aKey : String;
+    cnt  : Integer;
 begin
   if not Assigned(FrameGrid) then Exit;
   if aRow=0 then Exit; //click on table header - do nothing
-  aKey:=Layers.Keys[aRow-1];
+  cnt:=Frames[FrameGrid.ActiveFrame].LayersList.Count;
+  aKey:=Frames[FrameGrid.ActiveFrame].LayersList.Strings[Cnt-aRow];
   if aKey='' then Exit;
+
   case aCol of
 0:begin //change layer visibility
      Layers[aKey].Visible:=not Layers[aKey].Visible;
@@ -189,9 +195,15 @@ end;
 
 procedure TfrmLayers.bbtnDeleteLayerClick(Sender: TObject);
 begin
+  if FrameGrid.ActiveLayer=cINTERNALLAYERANDFRAME then begin
+    ShowMessage(rsThisLayerCan2);
+    Exit;
+  end;
   Layers.Remove(FrameGrid.ActiveLayer);
   Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
   FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;
+  Invalidate;
+  frmMain.Invalidate;
 end;
 
 procedure TfrmLayers.drwgrdLayersDblClick(Sender: TObject);
@@ -201,6 +213,10 @@ var
 begin
   //todo: rename layer
   aName:=FrameGrid.ActiveLayer;
+  if aName=cINTERNALLAYERANDFRAME then begin
+    ShowMessage(rsThisLayerCan);
+    Exit;
+  end;
   frmMain.HideWindows;
   aNewName:=InputBox(rsInputNewLaye,rsLayerName,aName);
   frmMain.ShowWindows;

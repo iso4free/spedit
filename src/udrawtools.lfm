@@ -2,14 +2,14 @@ object frmDrawTools: TfrmDrawTools
   Left = 437
   Height = 339
   Top = 188
-  Width = 169
+  Width = 167
   Align = alClient
   AutoSize = True
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSizeToolWin
   Caption = 'Tools'
   ClientHeight = 339
-  ClientWidth = 169
+  ClientWidth = 167
   DefaultMonitor = dmMainForm
   DockSite = True
   FormStyle = fsSystemStayOnTop
@@ -24,7 +24,7 @@ object frmDrawTools: TfrmDrawTools
     Left = 0
     Height = 50
     Top = 289
-    Width = 169
+    Width = 167
     Align = alBottom
     ControlList = <    
       item
@@ -227,9 +227,9 @@ object frmDrawTools: TfrmDrawTools
   end
   object DrawToolsFlowPanel: TFlowPanel
     Left = 0
-    Height = 31
+    Height = 59
     Top = 0
-    Width = 169
+    Width = 167
     Align = alTop
     Anchors = []
     AutoSize = True
@@ -255,14 +255,19 @@ object frmDrawTools: TfrmDrawTools
         Index = 3
       end    
       item
-        Control = sbEracer
+        Control = sbCircle
         WrapAfter = waAuto
         Index = 4
       end    
       item
-        Control = sbPipette
+        Control = sbEracer
         WrapAfter = waAuto
         Index = 5
+      end    
+      item
+        Control = sbPipette
+        WrapAfter = waAuto
+        Index = 6
       end>
     FlowLayout = tlTop
     FlowStyle = fsLeftRightTopBottom
@@ -270,7 +275,7 @@ object frmDrawTools: TfrmDrawTools
     object sbEracer: TSpeedButton
       Tag = 3
       AnchorSideTop.Side = asrBottom
-      Left = 108
+      Left = 131
       Height = 28
       Top = 1
       Width = 28
@@ -298,9 +303,9 @@ object frmDrawTools: TfrmDrawTools
     object sbPipette: TSpeedButton
       Tag = 4
       AnchorSideTop.Side = asrBottom
-      Left = 136
+      Left = 1
       Height = 28
-      Top = 1
+      Top = 29
       Width = 28
       Anchors = []
       AutoSize = True
@@ -346,6 +351,18 @@ object frmDrawTools: TfrmDrawTools
       GroupIndex = 1
       Images = frmMain.ButtonsImageList
       ImageIndex = 38
+      OnClick = sbPenClick
+    end
+    object sbCircle: TSpeedButton
+      Tag = 7
+      Left = 108
+      Height = 22
+      Top = 1
+      Width = 23
+      Anchors = []
+      GroupIndex = 1
+      Images = frmMain.ButtonsImageList
+      ImageIndex = 39
       OnClick = sbPenClick
     end
   end
@@ -394,9 +411,9 @@ object frmDrawTools: TfrmDrawTools
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = gbPalette
     Left = 0
-    Height = 137
-    Top = 31
-    Width = 169
+    Height = 109
+    Top = 59
+    Width = 167
     Anchors = [akTop, akLeft, akRight, akBottom]
     AutoSize = True
     ControlList = <    

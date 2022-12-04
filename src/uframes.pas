@@ -30,13 +30,18 @@ interface
 
 uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
+  BGRAImageList;
 
 type
 
   { TfrmFrames }
 
   TfrmFrames = class(TForm)
+    FramesListPreview: TBGRAImageList;
+    flpnlFrames: TFlowPanel;
+    lvFrames: TListView;
+    Panel1: TPanel;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
