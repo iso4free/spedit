@@ -86,6 +86,13 @@ type
      procedure MouseMove(x,y : Integer); override;
   end;
 
+  { TSPFilledRect }
+
+  TSPFilledRect = class(TSPDrawTool)
+     procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
+     procedure MouseMove(x,y : Integer); override;
+  end;
+
   { TSPEraser }
 
   TSPEraser = class(TSPDrawTool)
@@ -110,6 +117,34 @@ type
 implementation
  uses udrawtools;
 
+{ TSPFilledRect }
+
+procedure TSPFilledRect.MouseMove(x, y: Integer);
+begin
+  ClearBitmap(Layers[csDRAWLAYER].Drawable);
+  prevx:=x+1;
+  prevy:=y+1;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  Layers[csDRAWLAYER].Drawable.Canvas.FillRect(fstartx,fstarty,x,y);
+end;
+
+procedure TSPFilledRect.StartDraw(x, y: Integer; Shift: TShiftState;
+  aButton: TMouseButton; aColor: TBGRAPixel);
+begin
+  if (not LayerExists(FrameGrid.ActiveLayer)) or (not LayerExists(csDRAWLAYER)) then Exit;
+  Color:=aColor;
+  fstartx:=x;
+  fstarty:=y;
+  prevx:=x;
+  prevy:=y;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
+end;
+
 { TSPRect }
 
 procedure TSPRect.MouseMove(x, y: Integer);
@@ -120,7 +155,6 @@ begin
   prevx:=x+1;
   prevy:=y+1;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=clNone;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
   //Layers[csDRAWLAYER].Drawable.Canvas.Rectangle(fstartx,fstarty,PrevX+PenSize,PrevY+PenSize);
   if PenSize>1 then
@@ -242,8 +276,6 @@ end;
 procedure TSPPen.MouseMove(x, y: Integer);
 var b : TUniversalBrush;
 begin
-  //todo: how to change pen size?
-
   if FPenSize=1 then Layers[csDRAWLAYER].Drawable.DrawLine(prevx,prevy,x,y,fColor,True,dmSet)
    else begin
     Layers[csDRAWLAYER].Drawable.SolidBrush(b,fColor,dmSet);

@@ -126,3 +126,11 @@ DEV.LOG
 =
 - [!] Fixed Pipette tool
 + [+] Added Rectangle drawing tool
+
+04.12.2022
+=
+- [!] Fixed Issue 'Tool windows disappear with fullscreen canvas'
+- [+] Added Filled Rectangle drawing tool
+- [+] Added posibilities for 'Layer Copy' and 'Rename Layer'
+- [+] Extends layer with BASE64 encode/decode (used when copy or rename layer)
+- [*] Updated docs

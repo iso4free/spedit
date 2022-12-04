@@ -51,12 +51,14 @@ object frmLayers: TfrmLayers
         end>
       ExtendedSelect = False
       FixedCols = 0
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRowSelect, goSmoothScroll]
       RowCount = 2
       TabOrder = 0
       TabStop = False
       TitleImageList = BGRAImageList24x24
       TitleImageListWidth = 24
       UseXORFeatures = True
+      OnDblClick = drwgrdLayersDblClick
       OnDrawCell = drwgrdLayersDrawCell
       OnSelectCell = drwgrdLayersSelectCell
       ColWidths = (
@@ -138,6 +140,7 @@ object frmLayers: TfrmLayers
       AutoSize = True
       Images = frmMain.ButtonsImageList
       ImageIndex = 32
+      OnClick = bbtnCopyLayerClick
       ParentShowHint = False
       ShowHint = True
       TabOrder = 2

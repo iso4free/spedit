@@ -1,7 +1,7 @@
 object frmDrawTools: TfrmDrawTools
-  Left = 215
+  Left = 437
   Height = 339
-  Top = 192
+  Top = 188
   Width = 169
   Align = alClient
   AutoSize = True
@@ -250,14 +250,19 @@ object frmDrawTools: TfrmDrawTools
         Index = 2
       end    
       item
-        Control = sbEracer
+        Control = sbFilledRect
         WrapAfter = waAuto
         Index = 3
       end    
       item
-        Control = sbPipette
+        Control = sbEracer
         WrapAfter = waAuto
         Index = 4
+      end    
+      item
+        Control = sbPipette
+        WrapAfter = waAuto
+        Index = 5
       end>
     FlowLayout = tlTop
     FlowStyle = fsLeftRightTopBottom
@@ -265,7 +270,7 @@ object frmDrawTools: TfrmDrawTools
     object sbEracer: TSpeedButton
       Tag = 3
       AnchorSideTop.Side = asrBottom
-      Left = 85
+      Left = 108
       Height = 28
       Top = 1
       Width = 28
@@ -293,7 +298,7 @@ object frmDrawTools: TfrmDrawTools
     object sbPipette: TSpeedButton
       Tag = 4
       AnchorSideTop.Side = asrBottom
-      Left = 113
+      Left = 136
       Height = 28
       Top = 1
       Width = 28
@@ -329,6 +334,18 @@ object frmDrawTools: TfrmDrawTools
       GroupIndex = 1
       Images = frmMain.ButtonsImageList
       ImageIndex = 37
+      OnClick = sbPenClick
+    end
+    object sbFilledRect: TSpeedButton
+      Tag = 6
+      Left = 85
+      Height = 22
+      Top = 1
+      Width = 23
+      Anchors = []
+      GroupIndex = 1
+      Images = frmMain.ButtonsImageList
+      ImageIndex = 38
       OnClick = sbPenClick
     end
   end

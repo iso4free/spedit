@@ -47,7 +47,9 @@ type
     LayersFlowPanel: TFlowPanel;
     LayersGroupBox: TGroupBox;
     procedure bbtnAddLayerClick(Sender: TObject);
+    procedure bbtnCopyLayerClick(Sender: TObject);
     procedure bbtnDeleteLayerClick(Sender: TObject);
+    procedure drwgrdLayersDblClick(Sender: TObject);
     procedure drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
     procedure drwgrdLayersSelectCell(Sender: TObject; aCol, aRow: Integer;
@@ -110,6 +112,7 @@ procedure TfrmLayers.drwgrdLayersSelectCell(Sender: TObject; aCol,
   aRow: Integer; var CanSelect: Boolean);
 var aKey : String;
 begin
+  if not Assigned(FrameGrid) then Exit;
   if aRow=0 then Exit; //click on table header - do nothing
   aKey:=Layers.Keys[aRow-1];
   if aKey='' then Exit;
@@ -120,11 +123,8 @@ begin
 1:begin
      Layers[aKey].Locked:=not Layers[aKey].Locked;
     end;
-2:begin  //select active layer
+2,3:begin  //select active layer
      FrameGrid.ActiveLayer:=aKey;
-    end;
-3:begin //todo: save current layer to BASE64 text
-
     end;
   end;
   frmMain.Invalidate;
@@ -160,7 +160,7 @@ var
   aLayerName: String;
 begin
   frmMain.HideWindows;
-  aLayerName:=CheckLayerName('Layer');
+  aLayerName:=CheckLayerName('Layer'+IntToStr(Layers.Count-1));
   aLayerName := InputBox(rsLayerName, rsInputNewLaye, aLayerName);
   Layers[aLayerName]:=TSPLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
   drwgrdLayers.RowCount:=Layers.Count;
@@ -173,11 +173,44 @@ begin
   frmMain.Invalidate;
 end;
 
+procedure TfrmLayers.bbtnCopyLayerClick(Sender: TObject);
+ var
+   aName : String;
+   aData : String;
+begin
+  aName:=rsCopyOf + FrameGrid.ActiveLayer;
+  aData:=Layers[FrameGrid.ActiveLayer].ToBASE64String;
+  Layers[aName]:=TSPLayer.Create(aName,aData);
+  Frames[FrameGrid.ActiveFrame].AddLayer(aName);
+  Layers[aName].AddToFrame(FrameGrid.ActiveFrame);
+  FrameGrid.ActiveLayer:=aName;
+  Invalidate;
+end;
+
 procedure TfrmLayers.bbtnDeleteLayerClick(Sender: TObject);
 begin
   Layers.Remove(FrameGrid.ActiveLayer);
   Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
   FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;
+end;
+
+procedure TfrmLayers.drwgrdLayersDblClick(Sender: TObject);
+var
+  aName : String;
+  aNewName : String;
+begin
+  //todo: rename layer
+  aName:=FrameGrid.ActiveLayer;
+  frmMain.HideWindows;
+  aNewName:=InputBox(rsInputNewLaye,rsLayerName,aName);
+  frmMain.ShowWindows;
+  if aNewName=aName then Exit;
+  Layers[aNewName]:=TSPLayer.Create(aNewName,Layers[aName].ToBASE64String);
+  Layers[aNewName].AddToFrame(FrameGrid.ActiveFrame);
+  Frames[FrameGrid.ActiveFrame].DeleteLayer(aName);
+  Frames[FrameGrid.ActiveFrame].AddLayer(aNewName);
+  Layers.Remove(aName);
+  Invalidate;
 end;
 
 end.

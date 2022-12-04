@@ -55,6 +55,7 @@ type
     ScrollBox5: TScrollBox;
     sbLine: TSpeedButton;
     sbRect: TSpeedButton;
+    sbFilledRect: TSpeedButton;
     trkbrPenSize: TTrackBar;
     procedure bbtnSwapColorsClick(Sender: TObject);
     procedure BgColorMouseUp(Sender: TObject; Button: TMouseButton;
@@ -212,6 +213,7 @@ begin
       trkbrPenSize.Position:=1;
  end;
  5:FDrawTool:=TSPRect.Create(trkbrPenSize.Position);
+ 6:FDrawTool:=TSPFilledRect.Create(trkbrPenSize.Position)
  else begin
       ShowMessage('This tool will be realised soon, sorry');
       FDrawTool:=TSPPen.Create(trkbrPenSize.Position);

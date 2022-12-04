@@ -33,7 +33,7 @@ interface
 uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LCLTranslator,
   Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson,
-  BGRABitmap, BGRABitmapTypes, fgl;
+  BGRABitmap, BGRABitmapTypes, fgl, base64;
 
 resourcestring
   rsColors = 'Colors: ';
@@ -48,6 +48,7 @@ resourcestring
   rsInputNewLaye = 'Input new layer name:';
   rsYouMustOverr = 'You must override MouseUp() method! Class name: ';
   rsYouMustOverr2 = 'You must override MouseMove() method! Class name: ';
+  rsCopyOf = 'Copy of ';
 
 
 const
@@ -152,8 +153,12 @@ type
     procedure Resize(newWidth, NewHeight: Integer; Stretched: Boolean=False); //resize layer
     procedure AddToFrame(FrameName : String); //add layer to frame
     function DeleteFromFrame(aFrameName : String) : Boolean; //remove frame name from internal list of frames where layer belongs
-    constructor Create(aName : String; aWidth : Integer = 32; aHeight : Integer = 32);
+
     procedure ClearDrawable; //clear BGRABitmap for new drawing
+    function ToBASE64String : String; //encode layer image to BASE64
+
+    constructor Create(aName : String; aWidth : Integer = 32; aHeight : Integer = 32);
+    constructor Create(aName, aData : String); //create layer image from BASE64 encoded string
     destructor Destroy; override;
 
     procedure Clear;
@@ -289,8 +294,53 @@ var
   function LayerExists(aKey : String) : Boolean; inline; //check if layer key exists
   procedure ClearBitmap(const aBmp : TBGRABitmap);//replase all pixels to BGRAPixelTransparent
   procedure ResizeLayers(aW,aH : Integer); //resize al layers when change frame size
+  function StreamToBase64(const AStream: TMemoryStream; out Base64: String): Boolean;
+  function Base64ToStream(const ABase64: String; var AStream: TMemoryStream): Boolean;
 
 implementation
+
+//for image encode/decode BASE64
+function Base64ToStream(const ABase64: String; var AStream: TMemoryStream): Boolean;
+var
+  Str: TStringStream;
+begin
+  Result := False;
+  if Length(Trim(ABase64)) = 0 then
+    Exit;
+  try
+    Str := TStringStream.Create(DecodeStringBase64(ABase64));
+    try
+      AStream.CopyFrom(Str, Str.Size);
+      AStream.Position := 0;
+    finally
+      Str.Free;
+    end;
+    Result := True;
+  except
+    on E: Exception do
+      //todo: fix ShowMessage(E.Message);
+  end;
+end;
+
+function StreamToBase64(const AStream: TMemoryStream; out Base64: String): Boolean;
+var
+  Str: String = '';
+begin
+  Result := False;
+  if AStream.Size = 0 then
+    Exit;
+  AStream.Position := 0;
+  try
+    SetLength(Str, AStream.Size div SizeOf(Char));
+    AStream.ReadBuffer(Pointer(Str)^, AStream.Size div SizeOf(Char));
+    Base64 := EncodeStringBase64(Str);
+    Result := True;
+  except
+    {on E: Exception do
+      ShowMessage(E.Message);}
+  end;
+end;
+
 
 procedure LoadSpriteLibDirs;
 var
@@ -502,6 +552,19 @@ begin
 
 end;
 
+function TSPLayer.ToBASE64String: String;
+var
+    aStream : TMemoryStream;
+begin
+  aStream:=TMemoryStream.Create;
+  Drawable.SaveToStreamAsPng(aStream);
+  if not StreamToBase64(aStream,Result) then Result:='';
+  {$IFDEF DEBUG}
+  DebugLn(DateTimeToStr(Now()),' In: TSPLayer.ToBASE64String() data: ', Result);
+  {$ENDIF}
+  FreeAndNil(aStream);
+end;
+
 procedure TSPLayer.AddToFrame(FrameName: String);
 begin
   FFrames.Add(FrameName);
@@ -516,6 +579,18 @@ begin
    FFrames.Delete(i);
    Result:=True;
  end;
+end;
+
+constructor TSPLayer.Create(aName, aData: String);
+var
+    aStream : TMemoryStream;
+begin
+  aStream:=TMemoryStream.Create;
+  Create(aName);
+  if Base64ToStream(aData,aStream) then begin
+    fLayerImg.LoadFromStream(aStream);
+  end;
+  FreeAndNil(aStream);
 end;
 
 constructor TSPLayer.Create(aName: String; aWidth: Integer; aHeight: Integer);
