@@ -1,3 +1,5 @@
+SPEdit
+=======
 [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/iso4free/spedit/blob/master/README.md)
 
 BOAS-VINDAS
@@ -24,7 +26,7 @@ TRABALHO EM PROGRESSO
 Continua em desenvolvimento, novos recursos seão adicionados quando eu tiver tempo e motivação suficiente.
 Você pode me patrocinar através do https://www.buymeacoffee.com/iso4free se quiser que alguns recursos sejam priorizados.
 
-**Já que o País (do criador do Spedit -Ucrânia-) está em guerra e a Rússia está destruindo as instalações críticas de infraestrutura, vem ocorrendo vários e longos apagões não tenho a oportunidade de dedicar tempo suficiente ao desenvolvimento. Ajude a parar o agressor!**
+**Já que o País (do criador do Spedit -Ucrânia-) está em guerra e a Rússia está destruindo as instalações críticas de infraestrutura, vem ocorrendo vários e longos apagões, portanto eu não tenho a oportunidade de dedicar tempo suficiente ao desenvolvimento. Ajude a parar o agressor!**
 
 LOCALIZAÇÃO
 ============
@@ -38,7 +40,7 @@ BREVE DOCUMENTAÇÃO
 ===================
 Por enquanto, use use as setas do teclado para mover o cursor na grelha, as teclas Espaço e Enter para desenhar usando as cores selecionadas (primária e secundária), a tecla Del para limpar um pixel (no estilo da versão DOS). Ou use o mouse como qualquer editor de imagens.
 
-Na janela Ferramentas selecione as cores primária e secundária, selecione a ferramenta para desenhar com o mouse e mude o tamanho do lápis. As ferramentas Lápis e Linha estão disponíveis para desenho no momento.
+Na janela Ferramentas selecione as cores primária e secundária, selecione a ferramenta para desenhar com o mouse e mude o tamanho do lápis. As ferramentas Lápis, Linha, Retângulo, Retângulo Preenchido, Círculo, Borracha e Pipeta estão disponíveis para desenho no momento.
 
 
 Você pode selecionar as cores primária e secundária clicando em uma cor na paleta com os botões esquerdo (primária) ou direito (secundária) do mouse.

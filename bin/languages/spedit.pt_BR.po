@@ -312,100 +312,100 @@ msgstr "Clique para abrir qualquer imagem de referência"
 
 #: uglobals.rsactivetool
 msgid "Active tool: "
-msgstr ""
+msgstr "Ferramenta ativa"
 
 #: uglobals.rsbg
 msgid " / BG: "
-msgstr ""
+msgstr " / PF"
 
 #: uglobals.rscircle
 msgid "Circle"
-msgstr ""
+msgstr "Círculo"
 
 #: uglobals.rscolors
 msgid "Colors: "
-msgstr ""
+msgstr "Cores"
 
 #: uglobals.rscopyof
 msgid "Copy of "
-msgstr ""
+msgstr "Cópia de"
 
 #: uglobals.rseraser
 msgid "Eraser"
-msgstr ""
+msgstr "Borracha"
 
 #: uglobals.rsfg
 msgid "FG: "
-msgstr ""
+msgstr "PP"
 
 #: uglobals.rsfilledrectan
 msgid "Filled rectangle"
-msgstr ""
+msgstr "Retângulo preenchido"
 
 #: uglobals.rsgenerictool
 msgid "Generic tool"
-msgstr ""
+msgstr "Ferramenta genérica"
 
 #: uglobals.rshasnonintege
 msgid " has non-integer value!"
-msgstr ""
+msgstr "tem valor não inteiro!"
 
 #: uglobals.rsimagehastoom
 msgid "Image has too many colors!"
-msgstr ""
+msgstr "A imagem tem muitas cores!"
 
 #: uglobals.rsinputnewlaye
 msgid "Input new layer name:"
-msgstr ""
+msgstr "Insira o nome da nova camada:"
 
 #: uglobals.rslayername
 msgid "Layer name"
-msgstr ""
+msgstr "Nome da camada"
 
 #: uglobals.rslayersislock
 #, object-pascal-format
 msgid "Layer %s is locked for changes!!"
-msgstr ""
+msgstr "A camada %s está bloqueada para alterações!!"
 
 #: uglobals.rsline
 msgid "Line"
-msgstr ""
+msgstr "Linha"
 
 #: uglobals.rspalettewillb
 msgid "Palette will be resetted to default colors! Are You shure?"
-msgstr ""
+msgstr "A paleta vai ser reiniciada para as cores padrão! Você tem certeza?"
 
 #: uglobals.rspen
 msgid "Pen"
-msgstr ""
+msgstr "Caneta"
 
 #: uglobals.rspipette
 msgid "Pipette"
-msgstr ""
+msgstr "Pipeta"
 
 #: uglobals.rspleaseinputn
 msgid "Please input new library name"
-msgstr ""
+msgstr "Por favor, insira o nome da nova biblioteca"
 
 #: uglobals.rsrectangle
 msgid "Rectangle"
-msgstr ""
+msgstr "Retângulo"
 
 #: uglobals.rsthislayercan
 msgid "This layer can't be renamed!"
-msgstr ""
+msgstr "Essa camada não pode se renomeada!"
 
 #: uglobals.rsthislayercan2
 msgid "This layer can't be deleted!"
-msgstr ""
+msgstr "Essa camada não pode ser deletada!"
 
 #: uglobals.rsthistoolwill
 msgid "This tool will be realised soon, sorry"
-msgstr ""
+msgstr "Essa ferramenta será lançada em breve"
 
 #: uglobals.rswarning
 msgid "Warning!"
-msgstr ""
+msgstr "Aviso1"
 
 #: uglobals.rsyoumustoverr
 msgid "You must override MouseUp() method! Class name: "
