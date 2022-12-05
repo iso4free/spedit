@@ -123,5 +123,20 @@ REGISTRO DE DESENVOLVIMENTO
 
 02.12.2022
 =
-- [!] Conserto da ferramenta Conta gotas
+- [!] Conserto da ferramenta Pipeta
 + [+] Adição da ferramenta de desenho em Retângulo 
+
+04.12.2022
+=
+- [!] Conserto do erro em que as ferramentas desapareciam ao usar a tela de desenho maximizada
+- [+] Adição da ferramenta Retângulo Preenchido
+- [+] Adição das possibilidades de 'Copiar Camada' e 'Renomear Camada'
+- [+] Estende a camada com codificação/decodificação BASE64 (usado ao copiar ou renomear a camada)
+- [*] Atualização dos Documentos
+- [!] Conserto de 'Deletar Camada'
+- [!] Impedir a modificação camada quando bloqueado
+- [*] Update da tradução Ucraniana da Interface do Usiário
+- [*] Mudança da ordem das camadas (mais nova em cima, mais velha em baixo)
+- [*] Agora mostra que as camadas pertencem apenas ao quadro atual
+- [+] Adição da ferramenta Círculo
+- [+] Os últimos botões da interface foram feitos no SPedit!
