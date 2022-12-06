@@ -317,6 +317,12 @@ begin
       VK_F: begin
        if (ssShift in Shift) then FramesMenuItemClick(Sender);
       end;
+      VK_Z:begin
+       if (ssCtrl in Shift) then
+           if (ssShift in Shift)
+             then UndoRedoManager.RestoreState
+             else UndoRedoManager.SaveState;
+      end;
     end;
     pbFrameDraw.Invalidate;
   end;

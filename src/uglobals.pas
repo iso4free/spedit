@@ -33,7 +33,7 @@ interface
 uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LCLTranslator,
   Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson,
-  BGRABitmap, BGRABitmapTypes, fgl, base64;
+  BGRABitmap, BGRABitmapTypes, fgl, base64, Contnrs;
 
 resourcestring
   rsColors = 'Colors: ';
@@ -114,6 +114,35 @@ type
   {class for undo/redo posibilities}
 
   PSPUndoRec = ^TSPUndoRec;
+  //todo: change to class
+  TSPUndoRec = record
+    fLayerName : String;
+    fLayerData : String;   //BASE64 encoded image
+    fLayerFrames : String[200]; //frames list contained layer
+  end;
+
+  { TUndoRedoManager }
+
+  TUndoRedoManager = class
+   private
+     fUndoList : TStack;
+     fRedoList : TStack;
+     function InternalCanRestore: boolean; inline;
+     function InternalGetStatesCount : Integer; inline;
+     procedure InternalRestoreData(aData : PSPUndoRec);
+     {$IFDEF DEBUG}
+     procedure DumpDataToLog(aData : PSPUndoRec);
+     {$ENDIF}
+     procedure InternalClearStack(aStack : TStack);
+   public
+    constructor Create;
+    destructor Destroy;override;
+    procedure SaveState;
+    procedure RestoreState;
+
+    property CanRestore : boolean read InternalCanRestore;
+    property SavedStatesCount : Integer read InternalGetStatesCount;
+  end;
 
 
   { TSPLayer }
@@ -142,7 +171,7 @@ type
     procedure Resize(newWidth, NewHeight: Integer; Stretched: Boolean=False); //resize layer
     procedure AddToFrame(FrameName : String); //add layer to frame
     function DeleteFromFrame(aFrameName : String) : Boolean; //remove frame name from internal list of frames where layer belongs
-
+    procedure RestoreFromString(aBASE64 : String); //restore layer data from BASE64 encoded string
     procedure ClearDrawable; //clear BGRABitmap for new drawing
     function ToBASE64String : String; //encode layer image to BASE64
 
@@ -270,6 +299,7 @@ var
   FrameGrid     : TFrameGrid;
   Layers        : TLayers;
   Frames        : TFrames;
+  UndoRedoManager : TUndoRedoManager;
 
   //**********************************************************************
   function IsDigits(s : String) : Boolean;
@@ -435,7 +465,97 @@ begin
   end;
 end;
 
-{ TSPUndoRec }
+{ TUndoRedoManager }
+function TUndoRedoManager.InternalCanRestore: boolean;
+begin
+  result := fUndoList.Count<>0;
+end;
+
+function TUndoRedoManager.InternalGetStatesCount: Integer;
+begin
+  result := fUndoList.Count;
+end;
+
+procedure TUndoRedoManager.InternalRestoreData(aData: PSPUndoRec);
+begin
+  {$IFDEF DEBUG}
+   DumpDataToLog(aData);
+  {$ENDIF}
+  if not LayerExists(aData^.fLayerName) then begin
+   //restore deleted layer
+   Layers[aData^.fLayerName]:=TSPLayer.Create(aData^.fLayerName,aData^.fLayerData);
+   Layers[aData^.fLayerName].FFrames.Text:=aData^.fLayerFrames;
+  end else begin
+    Layers[aData^.fLayerName].RestoreFromString(aData^.fLayerData);
+  end;
+  FreeMemAndNil(aData);
+end;
+
+{$IFDEF DEBUG}
+procedure TUndoRedoManager.DumpDataToLog(aData: PSPUndoRec);
+begin
+ Assert(aData=nil,'No data to dump!');
+ DebugLn(DateTimeToStr(Now()),' In: TUndoRedoManager.DumpDataToLog()');
+ DebugLn(#7,'Layer name: ',aData^.fLayerName);
+ DebugLn(#7,'Layer data: ',aData^.fLayerData);
+ DebugLn(#7,'Layer frames: ',aData^.fLayerFrames);
+end;
+{$ENDIF}
+
+procedure TUndoRedoManager.InternalClearStack(aStack: TStack);
+ var
+     cnt , i: Integer;
+     aData : PSPUndoRec;
+begin
+   cnt:=aStack.Count;
+   if cnt=0 then Exit;
+   for i:=0 to cnt-1 do begin
+     aData:=aStack.Pop;
+     FreeMemAndNil(aData);
+   end;
+end;
+
+constructor TUndoRedoManager.Create;
+begin
+  fUndoList:=TStack.Create;
+  fRedoList:=TStack.Create;
+end;
+
+destructor TUndoRedoManager.Destroy;
+begin
+ InternalClearStack(fRedoList);
+ FreeAndNil(fRedoList);
+ InternalClearStack(fUndoList);
+ FreeAndNil(fUndoList);
+end;
+
+procedure TUndoRedoManager.SaveState;
+ var aData : PSPUndoRec;
+begin
+  Exit;
+  Getmem(aData,SizeOf(TSPUndoRec));
+  aData^.fLayerName:=FrameGrid.ActiveLayer;
+  aData^.fLayerData:=PChar(Layers[FrameGrid.ActiveLayer].ToBASE64String);
+  aData^.fLayerFrames:=Layers[FrameGrid.ActiveLayer].FFrames.Text;
+  {$IFDEF DEBUG}
+  DumpDataToLog(aData);
+  {$ENDIF}
+  fUndoList.Push(aData);
+  //clear all redo records if new undo record pushed
+  InternalClearStack(fRedoList);
+end;
+
+procedure TUndoRedoManager.RestoreState;
+var
+  aData : PSPUndoRec;
+begin
+  Exit;
+  if CanRestore then begin
+     aData:=fUndoList.Pop;
+     InternalRestoreData(aData);
+  end;
+end;
+
 
 { TCellCursor }
 
@@ -443,7 +563,6 @@ procedure TCellCursor.SetCoords(AValue: TPoint);
 begin
   if ((AValue.X<0) or (AValue.Y<0) or(AValue.X>FrameGrid.FrameWidth-1) or (AValue.Y>FrameGrid.FrameHeight-1)) then Exit;
   X:=AValue.X;
-
   Y:=AValue.Y;
 end;
 
@@ -547,16 +666,21 @@ begin
  end;
 end;
 
-constructor TSPLayer.Create(aName, aData: String);
+procedure TSPLayer.RestoreFromString(aBASE64: String);
 var
     aStream : TMemoryStream;
 begin
   aStream:=TMemoryStream.Create;
-  Create(aName);
-  if Base64ToStream(aData,aStream) then begin
+  if Base64ToStream(aBASE64,aStream) then begin
     fLayerImg.LoadFromStream(aStream);
   end;
   FreeAndNil(aStream);
+end;
+
+constructor TSPLayer.Create(aName, aData: String);
+begin
+  RestoreFromString(aData);
+  Create(aName);
 end;
 
 constructor TSPLayer.Create(aName: String; aWidth: Integer; aHeight: Integer);
@@ -1008,11 +1132,13 @@ initialization
  Frames:=TFrames.Create;
  Layers :=TLayers.Create;
  CreateInternalFrameAndLayer;
+ UndoRedoManager:=TUndoRedoManager.Create;
 
 
  finalization
   INI.WriteString('INTERFACE','SPRITELIB',CurrentLibName);
   //ClearFramesAndLayers;
+  FreeAndNil(UndoRedoManager);
   FreeAndNil(Layers);
   FreeAndNil(Frames);
   FreeAndNil(FrameGrid);

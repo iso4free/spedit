@@ -320,6 +320,7 @@ begin
   fstarty:=y;
   prevx:=x;
   prevy:=y;
+  UndoRedoManager.SaveState;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
   Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
@@ -407,6 +408,7 @@ end;
 procedure TSPDrawTool.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
+  UndoRedoManager.SaveState;
   fColor:=aColor;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
