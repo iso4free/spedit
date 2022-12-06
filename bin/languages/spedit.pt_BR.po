@@ -246,6 +246,14 @@ msgstr "Carregar de um arquivo"
 msgid "Save to file"
 msgstr "Salvar para um arquivo"
 
+#: tfrmmain.miredo.caption
+msgid "Redo"
+msgstr ""
+
+#: tfrmmain.miundo.caption
+msgid "Undo"
+msgstr ""
+
 #: tfrmmain.painttoolpanelvisiblemenuitem.caption
 msgid "Drawing tools"
 msgstr "Ferramentas de desenho"

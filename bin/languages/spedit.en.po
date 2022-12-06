@@ -240,6 +240,14 @@ msgstr ""
 msgid "Save to file"
 msgstr ""
 
+#: tfrmmain.miredo.caption
+msgid "Redo"
+msgstr ""
+
+#: tfrmmain.miundo.caption
+msgid "Undo"
+msgstr ""
+
 #: tfrmmain.painttoolpanelvisiblemenuitem.caption
 msgid "Drawing tools"
 msgstr ""

@@ -15,6 +15,8 @@
 {"hash":216357465,"name":"tfrmmain.savespritelibmenuitem.caption","sourcebytes":[83,97,118,101,32,83,112,114,105,116,101,32,76,105,98,114,97,114,121],"value":"Save Sprite Library"},
 {"hash":4710148,"name":"tfrmmain.fileexitmenuitem.caption","sourcebytes":[69,38,120,105,116],"value":"E&xit"},
 {"hash":310020,"name":"tfrmmain.editmenuitem.caption","sourcebytes":[69,100,105,116],"value":"Edit"},
+{"hash":378031,"name":"tfrmmain.miundo.caption","sourcebytes":[85,110,100,111],"value":"Undo"},
+{"hash":363439,"name":"tfrmmain.miredo.caption","sourcebytes":[82,101,100,111],"value":"Redo"},
 {"hash":213582195,"name":"tfrmmain.viewsettingsmenuitem.caption","sourcebytes":[83,101,116,116,105,110,103,115],"value":"Settings"},
 {"hash":380871,"name":"tfrmmain.viewmenuitem.caption","sourcebytes":[86,105,101,119],"value":"View"},
 {"hash":121450451,"name":"tfrmmain.menuitem4.caption","sourcebytes":[84,111,111,108,32,112,97,110,101,108,115],"value":"Tool panels"},

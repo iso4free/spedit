@@ -199,6 +199,7 @@ begin
     ShowMessage(rsThisLayerCan2);
     Exit;
   end;
+  UndoRedoManager.SaveState;
   Layers.Remove(FrameGrid.ActiveLayer);
   Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
   FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;

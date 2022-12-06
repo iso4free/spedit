@@ -161,15 +161,7 @@ end;
 procedure TSPCircle.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
-  if (not LayerExists(FrameGrid.ActiveLayer)) or (not LayerExists(csDRAWLAYER)) then Exit;
-  Color:=aColor;
-  fstartx:=x;
-  fstarty:=y;
-  prevx:=x;
-  prevy:=y;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  inherited StartDraw(x,y,Shift,aButton, aColor);
   Layers[csDRAWLAYER].Drawable.Canvas.Ellipse(x,y,x+PenSize,y+PenSize);
 end;
 
@@ -195,15 +187,7 @@ end;
 procedure TSPFilledRect.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
-  if (not LayerExists(FrameGrid.ActiveLayer)) or (not LayerExists(csDRAWLAYER)) then Exit;
-  Color:=aColor;
-  fstartx:=x;
-  fstarty:=y;
-  prevx:=x;
-  prevy:=y;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+ inherited StartDraw(x,y,Shift,aButton, aColor);
   Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
 end;
 
@@ -235,15 +219,7 @@ end;
 procedure TSPRect.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
-  if (not LayerExists(FrameGrid.ActiveLayer)) or (not LayerExists(csDRAWLAYER)) then Exit;
-  Color:=aColor;
-  fstartx:=x;
-  fstarty:=y;
-  prevx:=x;
-  prevy:=y;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  inherited StartDraw(x,y,Shift,aButton, aColor);
   Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
 end;
 
@@ -314,16 +290,7 @@ end;
 procedure TSPLine.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
-  if (not LayerExists(FrameGrid.ActiveLayer)) or (not LayerExists(csDRAWLAYER)) then Exit;
-  Color:=aColor;
-  fstartx:=x;
-  fstarty:=y;
-  prevx:=x;
-  prevy:=y;
-  UndoRedoManager.SaveState;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  inherited StartDraw(x,y,Shift,aButton, aColor);
   Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize-1,y+PenSize-1);
 end;
 
@@ -408,10 +375,14 @@ end;
 procedure TSPDrawTool.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
+  if (not LayerExists(FrameGrid.ActiveLayer)) or (not LayerExists(csDRAWLAYER)) then Exit;
   UndoRedoManager.SaveState;
   fColor:=aColor;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  fstartx:=x;
+  fstarty:=y;
   prevx := x;
   prevy := y;
 end;

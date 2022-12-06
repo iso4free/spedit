@@ -45,7 +45,10 @@ type
     Button2: TButton;
     Button3: TButton;
     DrawToolsFlowPanel: TFlowPanel;
+    miRedo: TMenuItem;
+    miUndo: TMenuItem;
     opndlgLocalization: TOpenDialog;
+    Separator3: TMenuItem;
     ViewSettingsMenuItem: TMenuItem;
     Separator2: TMenuItem;
     LanguageMenuItem: TMenuItem;
@@ -117,6 +120,8 @@ type
     procedure miPaletteImportFromFileClick(Sender: TObject);
     procedure miPaletteLoadFromFileClick(Sender: TObject);
     procedure miPaletteSaveToFileClick(Sender: TObject);
+    procedure miRedoClick(Sender: TObject);
+    procedure miUndoClick(Sender: TObject);
     procedure PaintToolPanelVisibleMenuItemClick(Sender: TObject);
     procedure pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -134,6 +139,7 @@ type
     procedure ReferenseImageMenuItemClick(Sender: TObject);
     procedure SaveSpriteLibMenuItemClick(Sender: TObject);
     procedure SrcImageFramesOptsValueListEditorValidate(Sender: TObject; ACol, ARow: longint; const KeyName, KeyValue: string);
+    procedure ViewSettingsMenuItemClick(Sender: TObject);
     procedure ViewZoomInMenuItemClick(Sender: TObject);
     procedure ViewZoomOutMenuItemClick(Sender: TObject);
     procedure ViewZoomResetMenuItemClick(Sender: TObject);
@@ -317,12 +323,6 @@ begin
       VK_F: begin
        if (ssShift in Shift) then FramesMenuItemClick(Sender);
       end;
-      VK_Z:begin
-       if (ssCtrl in Shift) then
-           if (ssShift in Shift)
-             then UndoRedoManager.RestoreState
-             else UndoRedoManager.SaveState;
-      end;
     end;
     pbFrameDraw.Invalidate;
   end;
@@ -406,6 +406,18 @@ begin
   if SavePaletteDialog.Execute then begin
     Palette.SaveToFile(SavePaletteDialog.FileName);
   end;
+end;
+
+procedure TfrmMain.miRedoClick(Sender: TObject);
+begin
+ UndoRedoManager.Redo;
+ Invalidate;
+end;
+
+procedure TfrmMain.miUndoClick(Sender: TObject);
+begin
+  UndoRedoManager.Undo;
+  Invalidate;
 end;
 
 procedure TfrmMain.PaintToolPanelVisibleMenuItemClick(Sender: TObject);
@@ -594,6 +606,11 @@ begin
     begin
       ShowMessage(QuotedStr(KeyName) + rsHasNonIntege);
     end;
+end;
+
+procedure TfrmMain.ViewSettingsMenuItemClick(Sender: TObject);
+begin
+
 end;
 
 procedure TfrmMain.ViewZoomInMenuItemClick(Sender: TObject);
