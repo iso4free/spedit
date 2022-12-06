@@ -115,33 +115,9 @@ type
 
   PSPUndoRec = ^TSPUndoRec;
 
-  { TSPUndoRec }
-
-  TSPUndoRec = class
-  private
-    FLayerName: String;
-    fFramename: String;
-    fLayerIdx : Integer;
-    fImg : TBGRABitmap;
-  public
-   constructor Create(aLayerName : String); //layer name where will be draw
-   destructor Destroy; override;
-   procedure Undo;   //undo drawing simple restore previous layer image
-  end;
-
-  TSPUndoRedoList = specialize TFPGObjectList<TSPUndoRec>; //for undo/redo mecanics
-
-  TSPUnoRedoManager=class(TSPUndoRedoList)
-
-  end;
-
- { PLayer = ^TLayer;
-  PFrame = ^TFrame; }
-
 
   { TSPLayer }
-  {Uses for layers in every frame.
-  }
+  {Uses for layers in every frame.}
 
 
   TSPLayer = class
@@ -460,29 +436,6 @@ begin
 end;
 
 { TSPUndoRec }
-
-constructor TSPUndoRec.Create(aLayerName: String);
-begin
-  FLayerName:=aLayerName;
-  fFramename:=FrameGrid.ActiveFrame;
-  //todo: get selected layer index from active frame layers list
-  //fLayerIdx:=Frames[fFramename].;
-  fImg:=TBGRABitmap.Create(Layers[FLayerName].Drawable);
-end;
-
-destructor TSPUndoRec.Destroy;
-begin
-  FreeAndNil(fImg);
-end;
-
-procedure TSPUndoRec.Undo;
-begin
-  if not LayerExists(FLayerName) then begin     //todo: restore deleted layer to frame with previous index
-   Layers[FLayerName]:=TSPLayer.Create(FLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
-  end;
-  ClearBitmap(Layers[FLayerName].Drawable);
-  Layers[FLayerName].Drawable.PutImage(0,0,fImg,dmSetExceptTransparent);
-end;
 
 { TCellCursor }
 

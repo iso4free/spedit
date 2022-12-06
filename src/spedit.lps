@@ -40,7 +40,6 @@
         <ComponentName Value="frmDrawTools"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <TopLine Value="211"/>
         <CursorPos X="53" Y="219"/>
@@ -112,9 +111,10 @@
       <Unit>
         <Filename Value="uglobals.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="57"/>
-        <CursorPos X="14" Y="48"/>
+        <TopLine Value="117"/>
+        <CursorPos X="15" Y="128"/>
         <UsageCount Value="104"/>
         <Loaded Value="True"/>
       </Unit>
@@ -1115,18 +1115,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="udraw.pas"/>
-        <Caret Line="90" Column="22" TopLine="87"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="220" Column="31" TopLine="214"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
-        <Caret Line="106" Column="21" TopLine="95"/>
-      </Position>
-      <Position>
-        <Filename Value="udraw.pas"/>
         <Caret Line="161" Column="47" TopLine="149"/>
       </Position>
       <Position>
@@ -1232,6 +1220,18 @@
       <Position>
         <Filename Value="ulayers.pas"/>
         <Caret Line="199" Column="34" TopLine="93"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="48" Column="14" TopLine="57"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="333" Column="27" TopLine="326"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="475" Column="22" TopLine="471"/>
       </Position>
     </JumpHistory>
     <RunParams>
