@@ -36,32 +36,31 @@ type
 
   //basic drawing class
 
+  TDrawOptions = record
+    PenSize : Byte; //pen width
+    Color   : TBGRAPixel;
+  end;
+
   { TSPDrawTool }
 
  // PSPDrawTool = ^TSPDrawTool;
   TSPDrawTool = class
   private
-    fColor: TBGRAPixel;
     FToolName: String;
-    procedure SetColor(AValue: TBGRAPixel);
     protected
       fstartx,fstarty : Integer;    //coords from start drawing
       fX,fY           : Integer;    //current coords
       prevx, prevy    : Integer;    //previous coords
-      FPenSize        : Byte;
       FPrevPoint      : TPoint;
-      procedure SetPenSize(AValue: Byte);
       procedure SetPrevPoint(AValue: TPoint);
     public
-      constructor Create(aPenSize : Integer = 1);
+      constructor Create;
       destructor Destroy; override;
       procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);virtual;
       procedure MouseMove(x,y : Integer); virtual;
       procedure MouseUp(x,y : Integer; Shift: TShiftState); virtual;
       procedure FinishDraw;virtual;
       property PrevPoint : TPoint read FPrevPoint write SetPrevPoint;
-      property PenSize : Byte read FPenSize write SetPenSize;
-      property Color : TBGRAPixel read fColor write SetColor;
       property ToolName : String read FToolName;
   end;
 
@@ -69,7 +68,7 @@ type
   { TSPPen - simple pen tool}
 
   TSPPen = class(TSPDrawTool)
-     constructor Create(aPenSize : Integer = 1);
+     constructor Create;
      procedure StartDraw(x, y: Integer;Shift: TShiftState;aButton: TMouseButton; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
   end;
@@ -78,7 +77,7 @@ type
   { TSPLine - draw simple line}
 
   TSPLine = class(TSPDrawTool)
-    constructor Create(aPenSize : Integer = 1);
+    constructor Create;
      procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
   end;
@@ -86,7 +85,7 @@ type
   { TSPRect }
 
   TSPRect = class(TSPDrawTool)
-     constructor Create(aPenSize : Integer = 1);
+     constructor Create;
      procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
   end;
@@ -94,7 +93,7 @@ type
   { TSPFilledRect }
 
   TSPFilledRect = class(TSPDrawTool)
-     constructor Create(aPenSize : Integer = 1);
+     constructor Create;
      procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
   end;
@@ -102,7 +101,7 @@ type
   { TSPCircle }
 
   TSPCircle = class(TSPDrawTool)
-   constructor Create(aPenSize : Integer = 1);
+   constructor Create;
    procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
    procedure MouseMove(x,y : Integer); override;
   end;
@@ -110,7 +109,7 @@ type
   { TSPEraser }
 
   TSPEraser = class(TSPDrawTool)
-     constructor Create(aPenSize : Integer = 1);
+     constructor Create;
      procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
      procedure MouseUp(x,y : Integer; Shift: TShiftState);override;
@@ -123,21 +122,23 @@ type
    private
     fMainColor : Boolean;
    public
-     constructor Create(aPenSize : Integer = 1);
+     constructor Create;
      procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
      procedure MouseUp(x,y : Integer; Shift: TShiftState);override;
      procedure FinishDraw; override;
   end;
 
+  var
+        DrawTool : TSPDrawTool;
+        ToolOptions : TDrawOptions;
+
 implementation
- uses udrawtools;
 
 { TSPCircle }
 
-constructor TSPCircle.Create(aPenSize: Integer);
+constructor TSPCircle.Create;
 begin
-  FPenSize:=aPenSize;
   FToolName:=rsCircle;
 end;
 
@@ -148,28 +149,27 @@ begin
   ClearBitmap(Layers[csDRAWLAYER].Drawable);
   prevx:=x+1;
   prevy:=y+1;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
-  if PenSize>1 then
-     for i:=0 to PenSize-1 do Layers[csDRAWLAYER].Drawable.EllipseInRect(Rect(fstartx+i,fstarty+i,prevx-i,prevy-i),
-                                                                        Color,BGRAPixelTransparent)
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=ToolOptions.Color;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=ToolOptions.PenSize;
+  if ToolOptions.PenSize>1 then
+     for i:=0 to ToolOptions.PenSize-1 do Layers[csDRAWLAYER].Drawable.EllipseInRect(Rect(fstartx+i,fstarty+i,prevx-i,prevy-i),
+                                                              ToolOptions.Color,BGRAPixelTransparent)
   else
      Layers[csDRAWLAYER].Drawable.EllipseInRect(Rect(fstartx,fstarty,prevx,prevy),
-                                                                        Color,BGRAPixelTransparent);
+                                                ToolOptions.Color,BGRAPixelTransparent);
 end;
 
 procedure TSPCircle.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
   inherited StartDraw(x,y,Shift,aButton, aColor);
-  Layers[csDRAWLAYER].Drawable.Canvas.Ellipse(x,y,x+PenSize,y+PenSize);
+  Layers[csDRAWLAYER].Drawable.Canvas.Ellipse(x,y,x+ToolOptions.PenSize,y+ToolOptions.PenSize);
 end;
 
 { TSPFilledRect }
 
-constructor TSPFilledRect.Create(aPenSize: Integer);
+constructor TSPFilledRect.Create;
 begin
-  FPenSize:=aPenSize;
   FToolName:=rsFilledRectan;
 end;
 
@@ -178,9 +178,9 @@ begin
   ClearBitmap(Layers[csDRAWLAYER].Drawable);
   prevx:=x+1;
   prevy:=y+1;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=ToolOptions.Color;
+  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=ToolOptions.Color;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=ToolOptions.PenSize;
   Layers[csDRAWLAYER].Drawable.Canvas.FillRect(fstartx,fstarty,x,y);
 end;
 
@@ -188,14 +188,13 @@ procedure TSPFilledRect.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
  inherited StartDraw(x,y,Shift,aButton, aColor);
-  Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
+  Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+ToolOptions.PenSize,y+ToolOptions.PenSize);
 end;
 
 { TSPRect }
 
-constructor TSPRect.Create(aPenSize: Integer);
+constructor TSPRect.Create;
 begin
-  FPenSize:=aPenSize;
   FToolName:=rsRectangle;
 end;
 
@@ -206,35 +205,33 @@ begin
   ClearBitmap(Layers[csDRAWLAYER].Drawable);
   prevx:=x+1;
   prevy:=y+1;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=ToolOptions.Color;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=ToolOptions.PenSize;
   //Layers[csDRAWLAYER].Drawable.Canvas.Rectangle(fstartx,fstarty,PrevX+PenSize,PrevY+PenSize);
-  if PenSize>1 then
-     for i:=0 to PenSize-1 do Layers[csDRAWLAYER].Drawable.Rectangle(fstartx+i,fstarty+i,prevx-i,prevy-i,Color,BGRAPixelTransparent)
+  if ToolOptions.PenSize>1 then
+     for i:=0 to ToolOptions.PenSize-1 do Layers[csDRAWLAYER].Drawable.Rectangle(fstartx+i,fstarty+i,prevx-i,prevy-i,ToolOptions.Color,BGRAPixelTransparent)
     // Layers[csDRAWLAYER].Drawable.FillRect(fstartx+1,fstarty+1,prevx,prevy,BGRAPixelTransparent)
   else
-     Layers[csDRAWLAYER].Drawable.Rectangle(fstartx,fstarty,prevx,prevy,Color,BGRAPixelTransparent);
+     Layers[csDRAWLAYER].Drawable.Rectangle(fstartx,fstarty,prevx,prevy,ToolOptions.Color,BGRAPixelTransparent);
 end;
 
 procedure TSPRect.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
   inherited StartDraw(x,y,Shift,aButton, aColor);
-  Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize,y+PenSize);
+  Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+ToolOptions.PenSize,y+ToolOptions.PenSize);
 end;
 
 { TSPPipette }
 
-constructor TSPPipette.Create(aPenSize: Integer);
+constructor TSPPipette.Create;
 begin
-  FPenSize:=aPenSize;
   FToolName:=rsPipette;
 end;
 
 procedure TSPPipette.FinishDraw;
 begin
   //inherited FinishDraw;
-  frmDrawTools.Invalidate;
 end;
 
 procedure TSPPipette.MouseMove(x, y: Integer);
@@ -261,12 +258,11 @@ procedure TSPEraser.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
   inherited StartDraw(x,y,Shift, aButton, BGRAPixelTransparent);
-     Layers[FrameGrid.ActiveLayer].Drawable.FillRect(x,y,x+PenSize,y+PenSize,BGRAPixelTransparent);
+     Layers[FrameGrid.ActiveLayer].Drawable.FillRect(x,y,x+ToolOptions.PenSize,y+ToolOptions.PenSize,BGRAPixelTransparent);
 end;
 
-constructor TSPEraser.Create(aPenSize: Integer);
+constructor TSPEraser.Create;
 begin
-  FPenSize:=aPenSize;
   FToolName:=rsEraser;
 end;
 
@@ -277,7 +273,7 @@ end;
 
 procedure TSPEraser.MouseMove(x, y: Integer);
 begin
-     Layers[FrameGrid.ActiveLayer].Drawable.FillRect(x,y,x+PenSize,y+PenSize,BGRAPixelTransparent);
+     Layers[FrameGrid.ActiveLayer].Drawable.FillRect(x,y,x+ToolOptions.PenSize,y+ToolOptions.PenSize,BGRAPixelTransparent);
 end;
 
 procedure TSPEraser.MouseUp(x, y: Integer; Shift: TShiftState);
@@ -291,12 +287,11 @@ procedure TSPLine.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
   inherited StartDraw(x,y,Shift,aButton, aColor);
-  Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+PenSize-1,y+PenSize-1);
+  Layers[csDRAWLAYER].Drawable.Canvas.FillRect(x,y,x+ToolOptions.PenSize-1,y+ToolOptions.PenSize-1);
 end;
 
-constructor TSPLine.Create(aPenSize: Integer);
+constructor TSPLine.Create;
 begin
-  FPenSize:=aPenSize;
   FToolName:=rsLine;
 end;
 
@@ -305,10 +300,10 @@ begin
   ClearBitmap(Layers[csDRAWLAYER].Drawable);
   prevx:=x;
   prevy:=y;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
-  Layers[csDRAWLAYER].Drawable.Canvas.Line(fstartx,fstarty,PrevX+PenSize-1,PrevY+PenSize-1);
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=ToolOptions.Color;
+  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=ToolOptions.Color;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=ToolOptions.PenSize;
+  Layers[csDRAWLAYER].Drawable.Canvas.Line(fstartx,fstarty,PrevX+ToolOptions.PenSize-1,PrevY+ToolOptions.PenSize-1);
 end;
 
 { TSPPen }
@@ -317,24 +312,23 @@ procedure TSPPen.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
   inherited StartDraw(x,y,Shift,aButton, aColor);
-  if FPenSize=1 then Layers[csDRAWLAYER].Drawable.SetPixel(x,y,Color) else begin
-     Layers[csDRAWLAYER].Drawable.FillRect(x,y,x+PenSize,y+PenSize,fColor);
+  if ToolOptions.PenSize=1 then Layers[csDRAWLAYER].Drawable.SetPixel(x,y,ToolOptions.Color) else begin
+     Layers[csDRAWLAYER].Drawable.FillRect(x,y,x+ToolOptions.PenSize,y+ToolOptions.PenSize,ToolOptions.Color);
   end;
 end;
 
-constructor TSPPen.Create(aPenSize: Integer);
+constructor TSPPen.Create;
 begin
-  FPenSize:=aPenSize;
   FToolName:=rsPen;
 end;
 
 procedure TSPPen.MouseMove(x, y: Integer);
 var b : TUniversalBrush;
 begin
-  if FPenSize=1 then Layers[csDRAWLAYER].Drawable.DrawLine(prevx,prevy,x,y,fColor,True,dmSet)
+  if ToolOptions.PenSize=1 then Layers[csDRAWLAYER].Drawable.DrawLine(prevx,prevy,x,y,ToolOptions.Color,True,dmSet)
    else begin
-    Layers[csDRAWLAYER].Drawable.SolidBrush(b,fColor,dmSet);
-    Layers[csDRAWLAYER].Drawable.DrawLineAntialias(prevx,prevy,x,y,b,FPenSize);
+    Layers[csDRAWLAYER].Drawable.SolidBrush(b,ToolOptions.Color,dmSet);
+    Layers[csDRAWLAYER].Drawable.DrawLineAntialias(prevx,prevy,x,y,b,ToolOptions.PenSize);
 
    end;
   prevx:=x;
@@ -343,26 +337,14 @@ end;
 
 { TSPDrawTool }
 
-procedure TSPDrawTool.SetPenSize(AValue: Byte);
-begin
-  FPenSize:=AValue;
-end;
-
-procedure TSPDrawTool.SetColor(AValue: TBGRAPixel);
-begin
-  if fColor=AValue then Exit;
-  fColor:=AValue;
-end;
-
 procedure TSPDrawTool.SetPrevPoint(AValue: TPoint);
 begin
   if FPrevPoint=AValue then Exit;
   FPrevPoint:=AValue;
 end;
 
-constructor TSPDrawTool.Create(aPenSize: Integer);
+constructor TSPDrawTool.Create;
 begin
-  FPenSize:=aPenSize; //default 1px
   FToolName:=rsGenericTool;
 end;
 
@@ -377,10 +359,10 @@ procedure TSPDrawTool.StartDraw(x, y: Integer; Shift: TShiftState;
 begin
   if (not LayerExists(FrameGrid.ActiveLayer)) or (not LayerExists(csDRAWLAYER)) then Exit;
   UndoRedoManager.SaveState;
-  fColor:=aColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=fColor;
-  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=FPenSize;
+  ToolOptions.Color:=aColor;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=ToolOptions.Color;
+  Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=ToolOptions.Color;
+  Layers[csDRAWLAYER].Drawable.Canvas.Pen.Width:=ToolOptions.PenSize;
   fstartx:=x;
   fstarty:=y;
   prevx := x;
@@ -406,6 +388,7 @@ begin
   Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[csDRAWLAYER].Drawable,dmSetExceptTransparent);
   Layers[csDRAWLAYER].ClearDrawable;
 end;
+
 
 
 end.

@@ -1,0 +1,23 @@
+object FrPalette: TFrPalette
+  Left = 0
+  Height = 240
+  Top = 0
+  Width = 320
+  ClientHeight = 240
+  ClientWidth = 320
+  TabOrder = 0
+  DesignLeft = 240
+  DesignTop = 145
+  object PaletteGrid: TBCGameGrid
+    Left = 0
+    Height = 400
+    Top = 0
+    Width = 140
+    GridWidth = 14
+    GridHeight = 40
+    BlockWidth = 10
+    BlockHeight = 10
+    OnRenderControl = PaletteGridRenderControl
+    OnMouseUp = PaletteGridMouseUp
+  end
+end

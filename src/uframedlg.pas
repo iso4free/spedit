@@ -48,6 +48,8 @@ type
     Panel2: TPanel;
     spnedtHeight: TSpinEdit;
     spnedtWidth: TSpinEdit;
+    procedure BitBtnCancelClick(Sender: TObject);
+    procedure BitBtnOkClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
 
   end;
@@ -63,6 +65,18 @@ implementation
 procedure TfrmFrameDlg.FormCreate(Sender: TObject);
 begin
   ModalResult:=mrNone;
+end;
+
+procedure TfrmFrameDlg.BitBtnOkClick(Sender: TObject);
+begin
+  ModalResult:=mrOK;
+  Close;
+end;
+
+procedure TfrmFrameDlg.BitBtnCancelClick(Sender: TObject);
+begin
+  ModalResult:=mrCancel;
+  Close;
 end;
 
 

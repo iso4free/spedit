@@ -7,8 +7,8 @@
       <Unit>
         <Filename Value="spedit.lpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="24"/>
-        <CursorPos X="22" Y="55"/>
+        <TopLine Value="22"/>
+        <CursorPos X="49" Y="35"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
       </Unit>
@@ -18,9 +18,10 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="410"/>
-        <CursorPos X="2" Y="413"/>
+        <TopLine Value="208"/>
+        <CursorPos X="24" Y="219"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -28,9 +29,9 @@
       <Unit>
         <Filename Value="udraw.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="114"/>
-        <CursorPos X="16" Y="114"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="218"/>
+        <CursorPos X="26" Y="234"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit>
@@ -40,11 +41,10 @@
         <ComponentName Value="frmDrawTools"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="211"/>
-        <CursorPos X="53" Y="219"/>
-        <UsageCount Value="199"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="17"/>
+        <CursorPos X="53" Y="34"/>
+        <UsageCount Value="200"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
@@ -53,10 +53,10 @@
         <ComponentName Value="frmLayers"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="196"/>
-        <CursorPos X="28" Y="202"/>
-        <UsageCount Value="170"/>
+        <CursorPos X="3" Y="198"/>
+        <UsageCount Value="175"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -69,7 +69,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="68"/>
         <CursorPos Y="71"/>
-        <UsageCount Value="170"/>
+        <UsageCount Value="175"/>
       </Unit>
       <Unit>
         <Filename Value="ureferense.pas"/>
@@ -77,10 +77,10 @@
         <ComponentName Value="frmReferense"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="63"/>
         <CursorPos X="91" Y="81"/>
-        <UsageCount Value="166"/>
+        <UsageCount Value="171"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -90,10 +90,10 @@
         <ComponentName Value="frmFrames"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="66"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="51"/>
         <CursorPos Y="71"/>
-        <UsageCount Value="158"/>
+        <UsageCount Value="163"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -104,18 +104,17 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="52"/>
-        <CursorPos X="3" Y="39"/>
-        <UsageCount Value="133"/>
+        <TopLine Value="54"/>
+        <CursorPos X="9" Y="79"/>
+        <UsageCount Value="138"/>
       </Unit>
       <Unit>
         <Filename Value="uglobals.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="494"/>
-        <CursorPos Y="502"/>
-        <UsageCount Value="111"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="905"/>
+        <CursorPos X="111" Y="921"/>
+        <UsageCount Value="116"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -127,7 +126,175 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="30"/>
         <CursorPos X="60" Y="33"/>
-        <UsageCount Value="74"/>
+        <UsageCount Value="79"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ftools.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frTools"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="67"/>
+        <CursorPos X="26" Y="87"/>
+        <UsageCount Value="25"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ftoolopions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrToolOptions"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="57" Y="31"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="umain.lfm"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="15"/>
+        <CursorPos X="18" Y="15"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ftoolopions.lfm"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ftools.lfm"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="spedit.lps"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="XML"/>
+      </Unit>
+      <Unit>
+        <Filename Value="spedit.res"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uabout.lfm"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="udrawtools.lfm"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uframedlg.lfm"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uframes.lfm"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ulayers.lfm"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="upreview.lfm"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ureferense.lfm"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
+      <Unit>
+        <Filename Value="fcolors.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frColors"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="80"/>
+        <CursorPos X="14" Y="110"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="fpalette.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FrPalette"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="35"/>
+        <CursorPos X="44" Y="66"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/codetyphon/typhon/lcl/colorbox.pas"/>
@@ -665,13 +832,6 @@
         <UsageCount Value="8"/>
       </Unit>
       <Unit>
-        <Filename Value="umain.lfm"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="18" Y="15"/>
-        <UsageCount Value="9"/>
-        <DefaultSyntaxHighlighter Value="LFM"/>
-      </Unit>
-      <Unit>
         <Filename Value="../../../../../fpcupdeluxe/lazarus/lcl/include/wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="4345"/>
@@ -1123,11 +1283,10 @@
       </Unit>
       <Unit>
         <Filename Value="../../../../../fpcupdeluxe/lazarus/lcl/include/menuitem.inc"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="77"/>
         <CursorPos Y="85"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../fpcupdeluxe/lazarus/components/lazutils/laz_avl_tree.pp"/>
@@ -1135,6 +1294,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1134"/>
         <CursorPos Y="1143"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../lazarus/lazarus/components/anchordocking/anchordocking.pas"/>
+        <UnitName Value="AnchorDocking"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="3138"/>
+        <CursorPos Y="3153"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../fpcups/lazarus/lcl/include/customform.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2286"/>
+        <CursorPos Y="2304"/>
         <UsageCount Value="10"/>
       </Unit>
     </Units>
@@ -1146,124 +1320,122 @@
     </OtherDefines>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="1110" TopLine="1100"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="507" TopLine="500"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="509" TopLine="500"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="518" TopLine="509"/>
-      </Position>
-      <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="520" TopLine="509"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="601" TopLine="585"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="414" TopLine="410"/>
+        <Caret Line="602" TopLine="585"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="415" TopLine="410"/>
+        <Caret Line="603" TopLine="585"/>
       </Position>
       <Position>
-        <Filename Value="../../../../../fpcupdeluxe/lazarus/lcl/include/menuitem.inc"/>
-        <Caret Line="85" TopLine="77"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="604" TopLine="585"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="580" TopLine="572"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="605" TopLine="585"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="522" Column="25" TopLine="507"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="606" TopLine="585"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="519" Column="27" TopLine="507"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="607" TopLine="585"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="147" Column="15" TopLine="141"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="218" Column="42" TopLine="215"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="575" Column="13" TopLine="563"/>
+        <Filename Value="fpalette.pas"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="146" Column="15" TopLine="139"/>
+        <Filename Value="fpalette.pas"/>
       </Position>
       <Position>
-        <Filename Value="ulayers.pas"/>
-        <Caret Line="214" Column="3" TopLine="204"/>
+        <Filename Value="fpalette.pas"/>
+        <Caret Line="48" Column="5" TopLine="16"/>
       </Position>
       <Position>
-        <Filename Value="ulayers.pas"/>
-        <Caret Line="202" Column="28" TopLine="196"/>
+        <Filename Value="fpalette.pas"/>
+        <Caret Line="9" Column="3"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="708" Column="33" TopLine="702"/>
+        <Filename Value="fpalette.pas"/>
+        <Caret Line="8" Column="39"/>
       </Position>
       <Position>
-        <Filename Value="ulayers.pas"/>
-        <Caret Line="202" Column="28" TopLine="196"/>
+        <Filename Value="fpalette.pas"/>
+        <Caret Line="9" Column="42"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="147" Column="16" TopLine="137"/>
+        <Filename Value="fpalette.pas"/>
+        <Caret Line="28" Column="21" TopLine="15"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="584" Column="3" TopLine="578"/>
+        <Filename Value="spedit.lpr"/>
+        <Caret Line="35" Column="49" TopLine="22"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="138" Column="16" TopLine="130"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="218" Column="42" TopLine="215"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="502" Column="14" TopLine="497"/>
+        <Filename Value="udraw.pas"/>
+        <Caret Line="137" TopLine="119"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="138" Column="16" TopLine="130"/>
+        <Filename Value="udraw.pas"/>
+        <Caret Line="234" Column="26" TopLine="218"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="499" Column="3" TopLine="497"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="168" Column="25" TopLine="152"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="502" TopLine="497"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="346" TopLine="330"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="1112" TopLine="1104"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="373" Column="3" TopLine="357"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="1113" TopLine="1104"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="374" Column="3" TopLine="358"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="1114" TopLine="1104"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="375" Column="3" TopLine="359"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="504" TopLine="496"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="37" Column="41" TopLine="28"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="717" Column="3" TopLine="708"/>
+        <Filename Value="umain.pas"/>
+        <Caret Line="375" Column="13" TopLine="359"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="400" Column="13" TopLine="385"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="410" Column="12" TopLine="394"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="434" Column="38" TopLine="418"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="603" Column="63" TopLine="587"/>
       </Position>
     </JumpHistory>
     <RunParams>

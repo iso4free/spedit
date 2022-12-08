@@ -235,7 +235,7 @@ type
     property PrevCoords : TPoint read GetPrevCoords; //prevoius coords for correct moving
     property PrevX : Integer read FPrevX default 0;
     property PrevY : Integer read FPrevY default 0;
-    property Cells : Byte read FCells write SetCells default 1; //cursor size in cells i.e. 2x2, 4x4 etc.
+    property CursorSize : Byte read FCells write SetCells default 1; //cursor size in cells i.e. 2x2, 4x4 etc.
   end;
 
   { TFrameGrid }
@@ -802,7 +802,7 @@ begin
   CalcGridRect;
   fPreview:=TBGRABitmap.Create(aW,aH);
   FCellCursor := TCellCursor.Create;
-  FCellCursor.Cells:=1;
+  FCellCursor.CursorSize:=1;
   {$IFDEF DEBUG}
   DebugLn(DateTimeToStr(Now), ': In  TFrameGrid.Create() Layers count ',IntToStr(Layers.Count));
   {$ENDIF}
@@ -917,8 +917,8 @@ begin
   //draw highlited cell cursor over the grid
   fBuffer.Rectangle(CellCursor.X*(fFrameGridSize+fFrameZoom),
                     CellCursor.Y*(fFrameGridSize+fFrameZoom),
-                    CellCursor.X*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.Cells,
-                    CellCursor.Y*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.Cells,clRed);
+                    CellCursor.X*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.CursorSize,
+                    CellCursor.Y*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.CursorSize,clRed);
   fBuffer.Draw(Canvas,fOffset.X,fOffset.Y);
 end;
 

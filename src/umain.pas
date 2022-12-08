@@ -33,22 +33,31 @@ uses
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
   Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit,
   BGRAImageList, BGRAImageManipulation, BGRABitmapTypes, BGRABitmap,
-  LCLType, DefaultTranslator, gettext, Translations;
+  LCLType, DefaultTranslator, gettext, Translations,
+  ftools, ftoolopions, fcolors, fpalette;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    FrPalette1: TFrPalette;
+    pnlPalette: TPanel;
+    pnlDrawTools: TPanel;
     BitBtnImportFrame: TBitBtn;
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
     DrawToolsFlowPanel: TFlowPanel;
+    FlowPanel1: TFlowPanel;
+    frColors1: TfrColors;
+    FrToolOptions1: TFrToolOptions;
+    frTools1: TfrTools;
     miRedo: TMenuItem;
     miUndo: TMenuItem;
     opndlgLocalization: TOpenDialog;
     Separator3: TMenuItem;
+    Splitter1: TSplitter;
     ViewSettingsMenuItem: TMenuItem;
     Separator2: TMenuItem;
     LanguageMenuItem: TMenuItem;
@@ -158,8 +167,8 @@ var
 
 implementation
 
-uses uabout, uframedlg, udrawtools, ulayers, uframes, upreview,
-  ureferense;
+uses uabout, uframedlg, ulayers, uframes, upreview,
+  ureferense, udraw;
 
 {$R *.lfm}
 
@@ -207,7 +216,7 @@ begin
    frmFrameDlg.edtFrameName.Text:=FrameGrid.ActiveFrame;
   end;
   HideWindows;
-  frmFrameDlg.ShowModal;
+  frmFrameDlg.ShowOnTop;
   if frmFrameDlg.ModalResult=mrOK then begin
    FreeAndNil(FrameGrid);
    FrameGrid:=TFrameGrid.Create(frmFrameDlg.spnedtWidth.Value,frmFrameDlg.spnedtHeight.Value);
@@ -227,10 +236,11 @@ begin
    for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
    FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
    FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;
-   if Assigned(frmDrawTools.trkbrPenSize) then frmDrawTools.trkbrPenSize.Max:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
+   FrToolOptions1.trkbrPenSize.Max:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
    pbFrameDraw.Invalidate;
   end;
   if Assigned(FrameGrid) then ShowWindows;
+  Invalidate;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -254,12 +264,12 @@ procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
  var
    i, j: Integer;
  begin
-  if FrameGrid.CellCursor.Cells=1 then begin
+  if FrameGrid.CellCursor.CursorSize=1 then begin
      if ErasePixels then Layers[FrameGrid.ActiveLayer].Drawable.ErasePixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,255)
                     else Layers[FrameGrid.ActiveLayer].Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X,FrameGrid.CellCursor.Coords.Y,aColor);
  end else begin
-  for i:= 0 to FrameGrid.CellCursor.Cells-1 do
-    for j:=0 to FrameGrid.CellCursor.Cells-1 do begin
+  for i:= 0 to FrameGrid.CellCursor.CursorSize-1 do
+    for j:=0 to FrameGrid.CellCursor.CursorSize-1 do begin
        if ErasePixels then Layers[FrameGrid.ActiveLayer].Drawable.ErasePixel(FrameGrid.CellCursor.Coords.X+i,FrameGrid.CellCursor.Coords.Y+j,255)
                     else Layers[FrameGrid.ActiveLayer].Drawable.DrawPixel(FrameGrid.CellCursor.Coords.X+i,FrameGrid.CellCursor.Coords.Y+j,aColor);
     end;
@@ -312,7 +322,7 @@ begin
        end;
      //swap colors
      VK_X: begin
-       frmDrawTools.bbtnSwapColorsClick(Sender);
+       frColors1.bbtnSwapColorsClick(Sender);
        Key:=0;
       end;
      //show/hide preview window
@@ -335,7 +345,6 @@ end;
 
 procedure TfrmMain.HideWindows;
 begin
-  frmDrawTools.Hide;
   FrmPreview.Hide;
   frmFrames.Hide;
   frmLayers.Hide;
@@ -363,7 +372,7 @@ procedure TfrmMain.miPaletteClearClick(Sender: TObject);
 begin
   if MessageDlg(rsWarning, rsPaletteWillB, mtWarning, mbYesNo, '')=mrYes
     then Palette.Reset;
-  frmDrawTools.PaletteGrid.RenderAndDrawControl;
+  FrPalette1.PaletteGrid.RenderAndDrawControl;
 end;
 
 procedure TfrmMain.miPaletteImportFromFileClick(Sender: TObject);
@@ -388,7 +397,7 @@ begin
      end;
 stop:
    FreeAndNil(img);
-  frmDrawTools.PaletteGrid.RenderAndDrawControl;
+  FrPalette1.PaletteGrid.RenderAndDrawControl;
   end;
   ShowWindows;
 end;
@@ -398,7 +407,7 @@ begin
   if OpenPaletteDialog.Execute then begin
     Palette.LoadFromFile(OpenPaletteDialog.FileName);
   end;
- frmDrawTools.PaletteGrid.RenderAndDrawControl;
+ FrPalette1.PaletteGrid.RenderAndDrawControl;
 end;
 
 procedure TfrmMain.miPaletteSaveToFileClick(Sender: TObject);
@@ -422,7 +431,7 @@ end;
 
 procedure TfrmMain.PaintToolPanelVisibleMenuItemClick(Sender: TObject);
 begin
-  frmDrawTools.Visible:= not frmDrawTools.Visible;
+  pnlPalette.Visible:= not pnlPalette.Visible;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
@@ -435,14 +444,14 @@ begin
      if Layers[FrameGrid.ActiveLayer].Locked then begin
       ShowMessage(Format(rsLayerSIsLock, [FrameGrid.ActiveLayer]))
      end;
-     if Assigned(frmDrawTools.DrawTool) and (FrameGrid.HasCoords(Point(x,y))) then begin
+     if Assigned(DrawTool) and (FrameGrid.HasCoords(Point(x,y))) then begin
       fDrawGridMode:=dgmDraw;
       p:=FrameGrid.Coords(x,y);
-       frmDrawTools.DrawTool.PenSize:=frmDrawTools.trkbrPenSize.Position;
+       ToolOptions.PenSize:=FrToolOptions1.trkbrPenSize.Position;
        if Button=mbLeft then
-          frmDrawTools.DrawTool.StartDraw(p.X,p.Y,Shift,Button, spclForeColor)
+          DrawTool.StartDraw(p.X,p.Y,Shift,Button, spclForeColor)
        else if Button=mbRight then
-          frmDrawTools.DrawTool.StartDraw(p.X,p.Y,Shift,Button,spclBackColor);
+          DrawTool.StartDraw(p.X,p.Y,Shift,Button,spclBackColor);
        pbFrameDraw.Invalidate;
      end;
     end;
@@ -472,10 +481,10 @@ begin
      FrameGrid.Offset:=Point(dx,dy);
    end;
    if fDrawGridMode=dgmDraw then begin //draw if layer not locked
-    if Assigned(frmDrawTools.DrawTool) and ( FrameGrid.HasCoords(Point(X,Y))) then begin
+    if Assigned(DrawTool) and ( FrameGrid.HasCoords(Point(X,Y))) then begin
      if Layers[FrameGrid.ActiveLayer].Locked then Exit;
      p:=FrameGrid.Coords(X,Y);
-     frmDrawTools.DrawTool.MouseMove(p.X,p.Y);
+     DrawTool.MouseMove(p.X,p.Y);
      pbFrameDraw.Invalidate;
 
     end;
@@ -492,9 +501,9 @@ begin
   if not Assigned(FrameGrid) then Exit;
   fDrawGridMode:=dgmNone;
   if Layers[FrameGrid.ActiveLayer].Locked then Exit;
-  if Assigned(frmDrawTools.DrawTool) then begin
+  if Assigned(DrawTool) then begin
    p:=FrameGrid.Coords(X,Y);
-   frmDrawTools.DrawTool.MouseUp(p.x,p.y,Shift);
+   DrawTool.MouseUp(p.x,p.y,Shift);
   end;
   if Assigned(FrmPreview) then FrmPreview.FramePreview.Invalidate;
   if Assigned(frmLayers) then frmLayers.drwgrdLayers.Invalidate;
@@ -591,7 +600,7 @@ end;
 
 procedure TfrmMain.ShowWindows;
 begin
-  if PaintToolPanelVisibleMenuItem.Checked then frmDrawTools.Show;
+  pnlDrawTools.Visible:=PaintToolPanelVisibleMenuItem.Checked;
   if PreviewMenuItem.Checked then FrmPreview.Show;
   if FramesMenuItem.Checked then frmFrames.Show;
   if LayersToolVisibleMenuItem.Checked then frmLayers.Show;

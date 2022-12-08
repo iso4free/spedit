@@ -9,9 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 "
-"&& n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 "
-"&& n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: spedit\n"
 "X-Crowdin-Project-ID: 548623\n"
 "X-Crowdin-Language: uk\n"
@@ -19,16 +17,21 @@ msgstr ""
 "X-Crowdin-File-ID: 1\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: tfrmdrawtools.bbtnswapcolors.hint
+#: tfrcolors.bbtnswapcolors.hint
+#, fuzzy
+msgctxt "tfrcolors.bbtnswapcolors.hint"
 msgid "Swap colors [X]"
 msgstr "Поміняти місцями [X]"
 
-#: tfrmdrawtools.bgcolor.caption
+#: tfrcolors.bgcolor.caption
+#, fuzzy
+msgctxt "tfrcolors.bgcolor.caption"
 msgid "BG"
 msgstr "ФК"
 
-#: tfrmdrawtools.bgcolor.hint
-msgctxt "tfrmdrawtools.bgcolor.hint"
+#: tfrcolors.bgcolor.hint
+#, fuzzy
+msgctxt "tfrcolors.bgcolor.hint"
 msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
@@ -36,35 +39,21 @@ msgstr ""
 "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
-#: tfrmdrawtools.caption
-msgid "Tools"
-msgstr "Інструменти"
-
-#: tfrmdrawtools.fgcolor.caption
+#: tfrcolors.fgcolor.caption
+#, fuzzy
+msgctxt "tfrcolors.fgcolor.caption"
 msgid "FG"
 msgstr "ПК"
 
-#: tfrmdrawtools.fgcolor.hint
-msgctxt "tfrmdrawtools.fgcolor.hint"
+#: tfrcolors.fgcolor.hint
+#, fuzzy
+msgctxt "tfrcolors.fgcolor.hint"
 msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
 msgstr ""
 "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
-
-#: tfrmdrawtools.gbpalette.caption
-msgctxt "tfrmdrawtools.gbpalette.caption"
-msgid "Palette"
-msgstr "Палітра"
-
-#: tfrmdrawtools.grpbpensize.caption
-msgid "Pen size"
-msgstr "Розмір олівця"
-
-#: tfrmdrawtools.sbline.hint
-msgid "Line tool"
-msgstr "Інструмент Лінія"
 
 #: tfrmframedlg.caption
 msgid "New frame"
@@ -267,6 +256,10 @@ msgstr "Скасувати"
 msgid "Drawing tools"
 msgstr "Інструменти малювання"
 
+#: tfrmmain.pnldrawtools.caption
+msgid "pnlDrawTools"
+msgstr ""
+
 #: tfrmmain.previewmenuitem.caption
 msgctxt "tfrmmain.previewmenuitem.caption"
 msgid "Preview"
@@ -326,6 +319,17 @@ msgstr "Референс"
 #: tfrmreferense.hint
 msgid "Click to open any referense image"
 msgstr "Клацніть для завантаження зображення для референсу"
+
+#: tfrtooloptions.grpbpensize.caption
+msgctxt "tfrtooloptions.grpbpensize.caption"
+msgid "Pen size"
+msgstr ""
+
+#: tfrtools.sbline.hint
+#, fuzzy
+msgctxt "tfrtools.sbline.hint"
+msgid "Line tool"
+msgstr "Інструмент Лінія"
 
 #: uglobals.rsactivetool
 #, fuzzy
@@ -435,3 +439,4 @@ msgstr "Вам потрібно переназначити метод MouseUp()!
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
 msgstr "Вам потрібно переназначити метод MouseMove() !Назва класу: "
+

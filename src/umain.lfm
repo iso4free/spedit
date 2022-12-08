@@ -1,14 +1,14 @@
 object frmMain: TfrmMain
-  Left = 256
+  Left = 324
   Height = 454
-  Top = 262
+  Top = 260
   Width = 557
-  HorzScrollBar.Page = 111
-  VertScrollBar.Page = 196
+  HorzScrollBar.Page = 534
+  VertScrollBar.Page = 384
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
-  ClientHeight = 431
+  ClientHeight = 454
   ClientWidth = 557
   DefaultMonitor = dmDesktop
   DockSite = True
@@ -22,11 +22,10 @@ object frmMain: TfrmMain
   OnPaint = pbFrameDrawPaint
   ParentDoubleBuffered = False
   UseDockManager = True
-  LCLVersion = '2.2.4.0'
   Visible = True
   object MainPageControl: TPageControl
     Left = 0
-    Height = 410
+    Height = 436
     Top = 0
     Width = 557
     ActivePage = FrameEditorTabSheet
@@ -37,13 +36,13 @@ object frmMain: TfrmMain
     object FrameEditorTabSheet: TTabSheet
       Tag = 1
       Caption = 'Frame Editor'
-      ClientHeight = 375
-      ClientWidth = 551
+      ClientHeight = 406
+      ClientWidth = 547
       object FrameFlowPanel: TFlowPanel
         Left = 0
-        Height = 35
+        Height = 41
         Top = 0
-        Width = 551
+        Width = 547
         Align = alTop
         AutoSize = True
         ControlList = <        
@@ -67,9 +66,9 @@ object frmMain: TfrmMain
         TabOrder = 0
         object BitBtnNewFrame: TBitBtn
           Left = 1
-          Height = 32
+          Height = 38
           Top = 1
-          Width = 32
+          Width = 38
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -78,10 +77,10 @@ object frmMain: TfrmMain
           TabOrder = 0
         end
         object BitBtnLayers: TBitBtn
-          Left = 33
-          Height = 32
+          Left = 39
+          Height = 38
           Top = 1
-          Width = 32
+          Width = 38
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -90,11 +89,11 @@ object frmMain: TfrmMain
           TabOrder = 1
         end
         object BitBtnImportFrame: TBitBtn
-          Left = 65
-          Height = 32
+          Left = 77
+          Height = 38
           Hint = 'Import frame from image file'
           Top = 1
-          Width = 32
+          Width = 38
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -107,9 +106,9 @@ object frmMain: TfrmMain
       end
       object pbFrameDraw: TPaintBox
         Left = 0
-        Height = 340
-        Top = 35
-        Width = 551
+        Height = 315
+        Top = 91
+        Width = 474
         Align = alClient
         OnMouseDown = pbFrameDrawMouseDown
         OnMouseMove = pbFrameDrawMouseMove
@@ -118,35 +117,172 @@ object frmMain: TfrmMain
         OnMouseWheelUp = pbFrameDrawMouseWheelUp
         OnPaint = pbFrameDrawPaint
       end
+      object pnlDrawTools: TPanel
+        Left = 479
+        Height = 315
+        Top = 91
+        Width = 68
+        Align = alRight
+        AutoSize = True
+        BevelInner = bvSpace
+        Caption = 'pnlDrawTools'
+        ClientHeight = 315
+        ClientWidth = 68
+        TabOrder = 1
+        inline frTools1: TfrTools
+          Left = 2
+          Height = 7
+          Top = 2
+          Width = 64
+          HorzScrollBar.Page = 4
+          VertScrollBar.Page = 7
+          Align = alTop
+          ClientHeight = 7
+          ClientWidth = 64
+          inherited DrawToolsFlowPanel: TFlowPanel
+            Height = 7
+            Width = 64
+            inherited sbEracer: TSpeedButton
+              Left = 21
+              Height = 4
+              Top = 1
+              Width = 4
+              Images = nil
+            end
+            inherited sbPen: TSpeedButton
+              Height = 4
+              Width = 4
+              Images = nil
+            end
+            inherited sbPipette: TSpeedButton
+              Left = 25
+              Height = 4
+              Top = 1
+              Width = 4
+              Images = nil
+            end
+            inherited sbLine: TSpeedButton
+              Left = 5
+              Height = 4
+              Width = 4
+              Images = nil
+            end
+            inherited sbRect: TSpeedButton
+              Left = 9
+              Height = 4
+              Width = 4
+              Images = nil
+            end
+            inherited sbFilledRect: TSpeedButton
+              Left = 13
+              Height = 4
+              Top = 1
+              Width = 4
+              Images = nil
+            end
+            inherited sbCircle: TSpeedButton
+              Left = 17
+              Height = 4
+              Top = 1
+              Width = 4
+              Images = nil
+            end
+          end
+        end
+        inline frColors1: TfrColors
+          Left = 2
+          Height = 149
+          Top = 9
+          Width = 64
+          Align = alTop
+          ClientHeight = 149
+          ClientWidth = 64
+          TabOrder = 1
+          inherited ColorsFlowPanel: TFlowPanel
+            Height = 149
+            inherited BgColor: TBGRAGraphicControl
+              OnPaint = nil
+            end
+          end
+        end
+      end
+      object Splitter1: TSplitter
+        Left = 474
+        Height = 315
+        Top = 91
+        Width = 5
+        Align = alRight
+        ResizeAnchor = akRight
+      end
+      object FlowPanel1: TFlowPanel
+        Left = 0
+        Height = 50
+        Top = 41
+        Width = 547
+        Align = alTop
+        ControlList = <        
+          item
+            Control = FrToolOptions1
+            WrapAfter = waAuto
+            Index = 0
+          end>
+        FlowLayout = tlTop
+        FlowStyle = fsLeftRightTopBottom
+        TabOrder = 3
+        inline FrToolOptions1: TFrToolOptions
+          Left = 1
+          Top = 1
+          Anchors = []
+        end
+      end
+      object pnlPalette: TPanel
+        Left = 184
+        Height = 184
+        Top = 152
+        Width = 170
+        ClientHeight = 184
+        ClientWidth = 170
+        TabOrder = 4
+        Visible = False
+        inline FrPalette1: TFrPalette
+          Left = 1
+          Height = 182
+          Top = 1
+          Width = 168
+          Align = alClient
+          ClientHeight = 182
+          ClientWidth = 168
+        end
+      end
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 375
-      ClientWidth = 551
+      ClientHeight = 406
+      ClientWidth = 547
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 551
+        Width = 547
         Align = alTop
         TabOrder = 0
       end
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 375
-      ClientWidth = 551
+      ClientHeight = 406
+      ClientWidth = 547
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 551
+        Width = 547
         Align = alTop
         TabOrder = 0
       end
       object ProjectProperties: TValueListEditor
         Left = 0
-        Height = 325
+        Height = 356
         Top = 50
         Width = 200
         Align = alLeft
@@ -160,14 +296,14 @@ object frmMain: TfrmMain
       end
       object ScrollBox4: TScrollBox
         Left = 200
-        Height = 325
+        Height = 356
         Top = 50
-        Width = 351
+        Width = 347
         HorzScrollBar.Page = 320
         VertScrollBar.Page = 240
         Align = alClient
-        ClientHeight = 321
-        ClientWidth = 347
+        ClientHeight = 352
+        ClientWidth = 343
         TabOrder = 2
         object ProjectSheet: TBGRAImageManipulation
           AnchorSideLeft.Control = ScrollBox4
@@ -186,8 +322,8 @@ object frmMain: TfrmMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 21
-    Top = 410
+    Height = 18
+    Top = 436
     Width = 557
     Panels = <    
       item

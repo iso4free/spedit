@@ -1,4 +1,6 @@
 {***************************************************************************}
+{*     This file is a part of                                              *}
+{*                                                                         *}
 {* @@@@@@  @@@@@@@  @@@@@@@@ @@@@@@@  @@@ @@@@@@@   @@@  @@@         @@@   *}
 {*@@@@@@@  @@@@@@@@ @@@@@@@@ @@@@@@@@ @@@ @@@@@@@   @@@  @@@        @@@@   *}
 {*!@@      @@!  @@@ @@!      @@!  @@@ @@!   @@!     @@!  @@@       @@!@!   *}
@@ -20,37 +22,77 @@
 {*    but WITHOUT ANY WARRANTY; without even the implied warranty of       *}
 {*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                 *}
 {***************************************************************************}
+unit ftools;
 
+{$mode ObjFPC}{$H+}
 
-program spedit;
-{$mode objfpc}{$H+}
+interface
 
 uses
-  {$IFDEF UNIX}{$IFDEF UseCThreads}
-  cthreads,
-  {$ENDIF}{$ENDIF}
-  {$IFDEF DEBUG}
-  LazLogger,
-  {$ENDIF}
-  Forms, Interfaces, sysutils, uglobals, umain, uframes, ulayers,
-  uframedlg, upreview, uabout, ftools, ftoolopions, fcolors, fpalette;
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} udraw,
+  Classes, SysUtils, Forms, Controls, StdCtrls,
+  ExtCtrls, Buttons, Dialogs;
 
-{$R *.res}
+type
 
+  { TfrTools }
+
+  TfrTools = class(TFrame)
+    DrawToolsFlowPanel: TFlowPanel;
+    sbCircle: TSpeedButton;
+    sbEracer: TSpeedButton;
+    sbFilledRect: TSpeedButton;
+    sbLine: TSpeedButton;
+    sbPen: TSpeedButton;
+    sbPipette: TSpeedButton;
+    sbRect: TSpeedButton;
+    procedure sbPenClick(Sender: TObject);
+   public
+    constructor Create(TheOwner : TComponent);override;
+    destructor Destroy;override;
+  end;
+
+implementation
+uses uglobals, umain;
+{$R *.lfm}
+
+{ TfrTools }
+
+procedure TfrTools.sbPenClick(Sender: TObject);
 begin
-  {$IFDEF DEBUG}
-  if FileExists(ChangeFileExt(Application.ExeName,'.log')) then DeleteFile(ChangeFileExt(Application.ExeName,'.log'));
-  DebugLogger.ParamForLogFileName:='--debug-log';
-  {$ENDIF}
-  RequireDerivedFormResource:=True;
-  Application.Scaled:=True;
-  Application.Initialize;
-  Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TfrmFrames, frmFrames);
-  Application.CreateForm(TfrmLayers, frmLayers);
-  Application.CreateForm(TfrmFrameDlg, frmFrameDlg);
-  Application.CreateForm(TFrmPreview, FrmPreview);
-  frmMain.HideWindows;
-  Application.Run;
+  if not Assigned(FrameGrid) then Exit;
+
+  if Assigned(DrawTool) then FreeAndNil(DrawTool);
+  case (Sender as TSpeedButton).Tag of
+ 1:DrawTool:=TSPPen.Create;
+ 2:DrawTool:=TSPLine.Create;
+ 3:DrawTool:=TSPEraser.Create;
+ 4:begin
+      DrawTool:=TSPPipette.Create;
+ end;
+ 5:DrawTool:=TSPRect.Create;
+ 6:DrawTool:=TSPFilledRect.Create;
+ 7:DrawTool:=TSPCircle.Create
+ else begin
+      ShowMessage(rsThisToolWill);
+      DrawTool:=TSPPen.Create;
+  end;
+ end;
+  frmMain.StatusBar1.Panels[4].Text:=rsActiveTool+DrawTool.ToolName;
+end;
+
+constructor TfrTools.Create(TheOwner: TComponent);
+begin
+  inherited Create(TheOwner);
+  DrawTool:=TSPPen.Create;
+ // frmMain.StatusBar1.Panels[4].Text:=rsActiveTool+DrawTool.ToolName;
+end;
+
+destructor TfrTools.Destroy;
+begin
+  if Assigned(DrawTool) then FreeAndNil(DrawTool);
+  inherited Destroy;
+end;
+
 end.
 

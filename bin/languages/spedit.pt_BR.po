@@ -12,16 +12,21 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: tfrmdrawtools.bbtnswapcolors.hint
+#: tfrcolors.bbtnswapcolors.hint
+#, fuzzy
+msgctxt "tfrcolors.bbtnswapcolors.hint"
 msgid "Swap colors [X]"
 msgstr "Trocar cores [X]"
 
-#: tfrmdrawtools.bgcolor.caption
+#: tfrcolors.bgcolor.caption
+#, fuzzy
+msgctxt "tfrcolors.bgcolor.caption"
 msgid "BG"
 msgstr "SP"
 
-#: tfrmdrawtools.bgcolor.hint
-msgctxt "tfrmdrawtools.bgcolor.hint"
+#: tfrcolors.bgcolor.hint
+#, fuzzy
+msgctxt "tfrcolors.bgcolor.hint"
 msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
@@ -29,35 +34,21 @@ msgstr ""
 "Clique esquerdo para selecionar cor\n"
 "Clique direito para definir a cor transparente"
 
-#: tfrmdrawtools.caption
-msgid "Tools"
-msgstr "Ferramentas"
-
-#: tfrmdrawtools.fgcolor.caption
+#: tfrcolors.fgcolor.caption
+#, fuzzy
+msgctxt "tfrcolors.fgcolor.caption"
 msgid "FG"
 msgstr "PP"
 
-#: tfrmdrawtools.fgcolor.hint
-msgctxt "tfrmdrawtools.fgcolor.hint"
+#: tfrcolors.fgcolor.hint
+#, fuzzy
+msgctxt "tfrcolors.fgcolor.hint"
 msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
 msgstr ""
 "Clique esquerdo para selecionar cor\n"
 "Clique direito para definir a cor transparente"
-
-#: tfrmdrawtools.gbpalette.caption
-msgctxt "tfrmdrawtools.gbpalette.caption"
-msgid "Palette"
-msgstr "Paleta"
-
-#: tfrmdrawtools.grpbpensize.caption
-msgid "Pen size"
-msgstr "Tamanho do lápis"
-
-#: tfrmdrawtools.sbline.hint
-msgid "Line tool"
-msgstr "Ferramenta linha"
 
 #: tfrmframedlg.caption
 msgid "New frame"
@@ -258,6 +249,10 @@ msgstr ""
 msgid "Drawing tools"
 msgstr "Ferramentas de desenho"
 
+#: tfrmmain.pnldrawtools.caption
+msgid "pnlDrawTools"
+msgstr ""
+
 #: tfrmmain.previewmenuitem.caption
 msgctxt "tfrmmain.previewmenuitem.caption"
 msgid "Preview"
@@ -317,6 +312,17 @@ msgstr "Referência"
 #: tfrmreferense.hint
 msgid "Click to open any referense image"
 msgstr "Clique para abrir qualquer imagem de referência"
+
+#: tfrtooloptions.grpbpensize.caption
+msgctxt "tfrtooloptions.grpbpensize.caption"
+msgid "Pen size"
+msgstr ""
+
+#: tfrtools.sbline.hint
+#, fuzzy
+msgctxt "tfrtools.sbline.hint"
+msgid "Line tool"
+msgstr "Ferramenta linha"
 
 #: uglobals.rsactivetool
 msgid "Active tool: "

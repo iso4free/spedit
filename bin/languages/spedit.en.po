@@ -12,47 +12,33 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: tfrmdrawtools.bbtnswapcolors.hint
+#: tfrcolors.bbtnswapcolors.hint
+msgctxt "tfrcolors.bbtnswapcolors.hint"
 msgid "Swap colors [X]"
 msgstr ""
 
-#: tfrmdrawtools.bgcolor.caption
+#: tfrcolors.bgcolor.caption
+msgctxt "tfrcolors.bgcolor.caption"
 msgid "BG"
 msgstr ""
 
-#: tfrmdrawtools.bgcolor.hint
-msgctxt "tfrmdrawtools.bgcolor.hint"
+#: tfrcolors.bgcolor.hint
+msgctxt "tfrcolors.bgcolor.hint"
 msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
 msgstr ""
 
-#: tfrmdrawtools.caption
-msgid "Tools"
-msgstr ""
-
-#: tfrmdrawtools.fgcolor.caption
+#: tfrcolors.fgcolor.caption
+msgctxt "tfrcolors.fgcolor.caption"
 msgid "FG"
 msgstr ""
 
-#: tfrmdrawtools.fgcolor.hint
-msgctxt "tfrmdrawtools.fgcolor.hint"
+#: tfrcolors.fgcolor.hint
+msgctxt "tfrcolors.fgcolor.hint"
 msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-
-#: tfrmdrawtools.gbpalette.caption
-msgctxt "tfrmdrawtools.gbpalette.caption"
-msgid "Palette"
-msgstr ""
-
-#: tfrmdrawtools.grpbpensize.caption
-msgid "Pen size"
-msgstr ""
-
-#: tfrmdrawtools.sbline.hint
-msgid "Line tool"
 msgstr ""
 
 #: tfrmframedlg.caption
@@ -252,6 +238,10 @@ msgstr ""
 msgid "Drawing tools"
 msgstr ""
 
+#: tfrmmain.pnldrawtools.caption
+msgid "pnlDrawTools"
+msgstr ""
+
 #: tfrmmain.previewmenuitem.caption
 msgctxt "tfrmmain.previewmenuitem.caption"
 msgid "Preview"
@@ -310,6 +300,16 @@ msgstr ""
 
 #: tfrmreferense.hint
 msgid "Click to open any referense image"
+msgstr ""
+
+#: tfrtooloptions.grpbpensize.caption
+msgctxt "tfrtooloptions.grpbpensize.caption"
+msgid "Pen size"
+msgstr ""
+
+#: tfrtools.sbline.hint
+msgctxt "tfrtools.sbline.hint"
+msgid "Line tool"
 msgstr ""
 
 #: uglobals.rsactivetool

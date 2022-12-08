@@ -2,6 +2,7 @@
 {"hash":247726402,"name":"tfrmmain.caption","sourcebytes":[83,112,114,105,116,101,32,69,100,105,116,111,114],"value":"Sprite Editor"},
 {"hash":6523410,"name":"tfrmmain.frameeditortabsheet.caption","sourcebytes":[70,114,97,109,101,32,69,100,105,116,111,114],"value":"Frame Editor"},
 {"hash":170248661,"name":"tfrmmain.bitbtnimportframe.hint","sourcebytes":[73,109,112,111,114,116,32,102,114,97,109,101,32,102,114,111,109,32,105,109,97,103,101,32,102,105,108,101],"value":"Import frame from image file"},
+{"hash":264269747,"name":"tfrmmain.pnldrawtools.caption","sourcebytes":[112,110,108,68,114,97,119,84,111,111,108,115],"value":"pnlDrawTools"},
 {"hash":128648723,"name":"tfrmmain.actionstabsheet.caption","sourcebytes":[65,99,116,105,111,110,115],"value":"Actions"},
 {"hash":253731967,"name":"tfrmmain.projecttabsheet.caption","sourcebytes":[80,114,111,106,101,99,116,32,105,110,102,111],"value":"Project info"},
 {"hash":315429,"name":"tfrmmain.filemenuitem.caption","sourcebytes":[70,105,108,101],"value":"File"},
