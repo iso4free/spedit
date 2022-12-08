@@ -221,6 +221,10 @@ msgstr "Painéis de Ferramentas"
 msgid "New Sprite Library"
 msgstr "Nova Biblioteca de Sprites"
 
+#: tfrmmain.mifullscreen.caption
+msgid "Full screen"
+msgstr ""
+
 #: tfrmmain.mipaletteclear.caption
 msgid "Reset palette"
 msgstr "Redefinir paleta"
@@ -248,10 +252,6 @@ msgstr ""
 #: tfrmmain.painttoolpanelvisiblemenuitem.caption
 msgid "Drawing tools"
 msgstr "Ferramentas de desenho"
-
-#: tfrmmain.pnldrawtools.caption
-msgid "pnlDrawTools"
-msgstr ""
 
 #: tfrmmain.previewmenuitem.caption
 msgctxt "tfrmmain.previewmenuitem.caption"

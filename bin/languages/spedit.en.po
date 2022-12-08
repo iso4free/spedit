@@ -210,6 +210,10 @@ msgstr ""
 msgid "New Sprite Library"
 msgstr ""
 
+#: tfrmmain.mifullscreen.caption
+msgid "Full screen"
+msgstr ""
+
 #: tfrmmain.mipaletteclear.caption
 msgid "Reset palette"
 msgstr ""
@@ -236,10 +240,6 @@ msgstr ""
 
 #: tfrmmain.painttoolpanelvisiblemenuitem.caption
 msgid "Drawing tools"
-msgstr ""
-
-#: tfrmmain.pnldrawtools.caption
-msgid "pnlDrawTools"
 msgstr ""
 
 #: tfrmmain.previewmenuitem.caption

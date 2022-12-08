@@ -37,12 +37,15 @@ object frColors: TfrColors
     TabOrder = 0
     object FgColor: TBGRAGraphicControl
       Tag = 2
+      AnchorSideLeft.Control = ColorsFlowPanel
+      AnchorSideRight.Control = bbtnSwapColors
+      AnchorSideRight.Side = asrBottom
       Left = 1
-      Height = 50
+      Height = 40
       Hint = 'Left click to select color'#10'Right click to set transparent color'
       Top = 1
-      Width = 50
-      Anchors = []
+      Width = 40
+      Anchors = [akLeft, akRight]
       BorderWidth = 1
       BevelInner = bvRaised
       BevelOuter = bvLowered
@@ -54,10 +57,10 @@ object frColors: TfrColors
     end
     object bbtnSwapColors: TBitBtn
       Left = 1
-      Height = 46
+      Height = 40
       Hint = 'Swap colors [X]'
-      Top = 51
-      Width = 46
+      Top = 41
+      Width = 40
       Anchors = []
       AutoSize = True
       Glyph.Data = {
@@ -200,10 +203,10 @@ object frColors: TfrColors
     object BgColor: TBGRAGraphicControl
       Tag = 1
       Left = 1
-      Height = 50
+      Height = 40
       Hint = 'Left click to select color'#10'Right click to set transparent color'
-      Top = 97
-      Width = 50
+      Top = 81
+      Width = 40
       Anchors = []
       BorderWidth = 1
       BevelInner = bvLowered

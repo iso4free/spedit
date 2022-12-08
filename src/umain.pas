@@ -42,6 +42,7 @@ type
 
   TfrmMain = class(TForm)
     FrPalette1: TFrPalette;
+    miFullScreen: TMenuItem;
     pnlPalette: TPanel;
     pnlDrawTools: TPanel;
     BitBtnImportFrame: TBitBtn;
@@ -57,6 +58,7 @@ type
     miUndo: TMenuItem;
     opndlgLocalization: TOpenDialog;
     Separator3: TMenuItem;
+    Separator4: TMenuItem;
     Splitter1: TSplitter;
     ViewSettingsMenuItem: TMenuItem;
     Separator2: TMenuItem;
@@ -120,11 +122,13 @@ type
     procedure BitBtnImportFrameClick(Sender: TObject);
     procedure BitBtnLayersClick(Sender: TObject);
     procedure BitBtnNewFrameClick(Sender: TObject);
+    procedure FgColorClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FramesMenuItemClick(Sender: TObject);
     procedure LanguageMenuItemClick(Sender: TObject);
     procedure LayersToolVisibleMenuItemClick(Sender: TObject);
+    procedure miFullScreenClick(Sender: TObject);
     procedure miPaletteClearClick(Sender: TObject);
     procedure miPaletteImportFromFileClick(Sender: TObject);
     procedure miPaletteLoadFromFileClick(Sender: TObject);
@@ -144,11 +148,11 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure pbFrameDrawPaint(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure pnlPaletteMouseLeave(Sender: TObject);
     procedure PreviewMenuItemClick(Sender: TObject);
     procedure ReferenseImageMenuItemClick(Sender: TObject);
     procedure SaveSpriteLibMenuItemClick(Sender: TObject);
     procedure SrcImageFramesOptsValueListEditorValidate(Sender: TObject; ACol, ARow: longint; const KeyName, KeyValue: string);
-    procedure ViewSettingsMenuItemClick(Sender: TObject);
     procedure ViewZoomInMenuItemClick(Sender: TObject);
     procedure ViewZoomOutMenuItemClick(Sender: TObject);
     procedure ViewZoomResetMenuItemClick(Sender: TObject);
@@ -241,6 +245,11 @@ begin
   end;
   if Assigned(FrameGrid) then ShowWindows;
   Invalidate;
+end;
+
+procedure TfrmMain.FgColorClick(Sender: TObject);
+begin
+  pnlPalette.Visible:=True;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -368,6 +377,12 @@ begin
  frmLayers.Show;
 end;
 
+procedure TfrmMain.miFullScreenClick(Sender: TObject);
+begin
+  if WindowState<>wsFullScreen then WindowState:=wsFullScreen
+     else WindowState:=wsMaximized;
+end;
+
 procedure TfrmMain.miPaletteClearClick(Sender: TObject);
 begin
   if MessageDlg(rsWarning, rsPaletteWillB, mtWarning, mbYesNo, '')=mrYes
@@ -485,12 +500,13 @@ begin
      if Layers[FrameGrid.ActiveLayer].Locked then Exit;
      p:=FrameGrid.Coords(X,Y);
      DrawTool.MouseMove(p.X,p.Y);
-     pbFrameDraw.Invalidate;
+     Invalidate;
 
     end;
    end;
    StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
-   pbFrameDraw.Invalidate;
+   Invalidate;
+
 end;
 
 procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
@@ -542,6 +558,11 @@ begin
    end;
   end;
   StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);
+end;
+
+procedure TfrmMain.pnlPaletteMouseLeave(Sender: TObject);
+begin
+  pnlPalette.Visible:=False;
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
@@ -615,11 +636,6 @@ begin
     begin
       ShowMessage(QuotedStr(KeyName) + rsHasNonIntege);
     end;
-end;
-
-procedure TfrmMain.ViewSettingsMenuItemClick(Sender: TObject);
-begin
-
 end;
 
 procedure TfrmMain.ViewZoomInMenuItemClick(Sender: TObject);

@@ -16,7 +16,9 @@ object FrToolOptions: TFrToolOptions
     Width = 100
     Min = 1
     OnChange = trkbrPenSizeChange
+    PageSize = 1
     Position = 1
+    ScalePos = trRight
     Anchors = []
     TabOrder = 0
   end

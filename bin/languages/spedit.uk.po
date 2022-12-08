@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spedit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-12-06 23:20+0200\n"
+"PO-Revision-Date: 2022-12-08 20:40+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -228,6 +228,10 @@ msgstr "Панелі інструментів"
 msgid "New Sprite Library"
 msgstr "Нова бібліотека спрайтів"
 
+#: tfrmmain.mifullscreen.caption
+msgid "Full screen"
+msgstr ""
+
 #: tfrmmain.mipaletteclear.caption
 msgid "Reset palette"
 msgstr "Скинути палітру"
@@ -255,10 +259,6 @@ msgstr "Скасувати"
 #: tfrmmain.painttoolpanelvisiblemenuitem.caption
 msgid "Drawing tools"
 msgstr "Інструменти малювання"
-
-#: tfrmmain.pnldrawtools.caption
-msgid "pnlDrawTools"
-msgstr ""
 
 #: tfrmmain.previewmenuitem.caption
 msgctxt "tfrmmain.previewmenuitem.caption"
@@ -323,7 +323,7 @@ msgstr "Клацніть для завантаження зображення д
 #: tfrtooloptions.grpbpensize.caption
 msgctxt "tfrtooloptions.grpbpensize.caption"
 msgid "Pen size"
-msgstr ""
+msgstr "Розмір олівця"
 
 #: tfrtools.sbline.hint
 #, fuzzy
@@ -332,10 +332,8 @@ msgid "Line tool"
 msgstr "Інструмент Лінія"
 
 #: uglobals.rsactivetool
-#, fuzzy
-#| msgid "Line tool"
 msgid "Active tool: "
-msgstr "Інструмент Лінія"
+msgstr "Ативний інструмент:"
 
 #: uglobals.rsbg
 msgid " / BG: "
@@ -366,10 +364,8 @@ msgid "Filled rectangle"
 msgstr "Заповнений прямокутник"
 
 #: uglobals.rsgenerictool
-#, fuzzy
-#| msgid "Line tool"
 msgid "Generic tool"
-msgstr "Інструмент Лінія"
+msgstr "Базовий інструмент"
 
 #: uglobals.rshasnonintege
 msgid " has non-integer value!"
