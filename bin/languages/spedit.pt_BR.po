@@ -223,7 +223,7 @@ msgstr "Nova Biblioteca de Sprites"
 
 #: tfrmmain.mifullscreen.caption
 msgid "Full screen"
-msgstr ""
+msgstr "Tela cheia"
 
 #: tfrmmain.mipaletteclear.caption
 msgid "Reset palette"
@@ -243,11 +243,11 @@ msgstr "Salvar para um arquivo"
 
 #: tfrmmain.miredo.caption
 msgid "Redo"
-msgstr ""
+msgstr "Refazer"
 
 #: tfrmmain.miundo.caption
 msgid "Undo"
-msgstr ""
+msgstr "Desfazer"
 
 #: tfrmmain.painttoolpanelvisiblemenuitem.caption
 msgid "Drawing tools"
@@ -316,7 +316,7 @@ msgstr "Clique para abrir qualquer imagem de referência"
 #: tfrtooloptions.grpbpensize.caption
 msgctxt "tfrtooloptions.grpbpensize.caption"
 msgid "Pen size"
-msgstr ""
+msgstr "Tamanho da caneta"
 
 #: tfrtools.sbline.hint
 #, fuzzy
@@ -419,13 +419,13 @@ msgstr "Essa ferramenta será lançada em breve"
 
 #: uglobals.rswarning
 msgid "Warning!"
-msgstr "Aviso1"
+msgstr "Aviso!"
 
 #: uglobals.rsyoumustoverr
 msgid "You must override MouseUp() method! Class name: "
-msgstr ""
+msgstr "Você deve substituir o método MouseUp()! Nome da classe: "
 
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
-msgstr ""
+msgstr "Você deve substituir o método MouseMove()! Nome da classe: "
 
