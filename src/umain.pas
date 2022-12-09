@@ -32,34 +32,44 @@ uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
   uglobals, SysUtils, Classes, Forms, Controls, Menus, ExtDlgs, ComCtrls,
   Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit,
-  BGRAImageList, BGRAImageManipulation, BGRABitmapTypes, BGRABitmap,
-  LCLType, DefaultTranslator, gettext, Translations,
-  ftools, ftoolopions, fcolors, fpalette;
+  BGRAGraphicControl,BGRAImageList, BGRAImageManipulation, BGRABitmapTypes,
+  BGRABitmap, LCLType, DefaultTranslator, gettext, Translations,
+  fpalette;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    bbtnSwapColors: TBitBtn;
+    BgColor: TBGRAGraphicControl;
+    ColorDialog1: TColorDialog;
+    ColorsFlowPanel: TPanel;
+    DrawToolsFlowPanel: TFlowPanel;
+    FgColor: TBGRAGraphicControl;
     FrPalette1: TFrPalette;
     miFullScreen: TMenuItem;
-    pnlPalette: TPanel;
     pnlDrawTools: TPanel;
+    pnlPalette: TPanel;
     BitBtnImportFrame: TBitBtn;
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
-    DrawToolsFlowPanel: TFlowPanel;
     FlowPanel1: TFlowPanel;
-    frColors1: TfrColors;
-    FrToolOptions1: TFrToolOptions;
-    frTools1: TfrTools;
     miRedo: TMenuItem;
     miUndo: TMenuItem;
     opndlgLocalization: TOpenDialog;
+    sbCircle: TSpeedButton;
+    sbEracer: TSpeedButton;
+    sbFilledRect: TSpeedButton;
+    sbLine: TSpeedButton;
+    sbPen: TSpeedButton;
+    sbPipette: TSpeedButton;
+    sbRect: TSpeedButton;
     Separator3: TMenuItem;
     Separator4: TMenuItem;
     Splitter1: TSplitter;
+    trkbrPenSize: TTrackBar;
     ViewSettingsMenuItem: TMenuItem;
     Separator2: TMenuItem;
     LanguageMenuItem: TMenuItem;
@@ -74,9 +84,6 @@ type
     miPaletteSaveToFile: TMenuItem;
     miPaletteLoadFromFile: TMenuItem;
     OpenPaletteDialog: TOpenDialog;
-    sbEracer: TSpeedButton;
-    sbPen: TSpeedButton;
-    sbPipette: TSpeedButton;
     BitBtnNewFrame: TBitBtn;
     FrameFlowPanel: TFlowPanel;
     ProjectSheet: TBGRAImageManipulation;
@@ -119,10 +126,13 @@ type
     N1: TMenuItem;
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
+    procedure bbtnSwapColorsClick(Sender: TObject);
     procedure BitBtnImportFrameClick(Sender: TObject);
     procedure BitBtnLayersClick(Sender: TObject);
     procedure BitBtnNewFrameClick(Sender: TObject);
-    procedure FgColorClick(Sender: TObject);
+    procedure FgColorMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure FgColorPaint(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FramesMenuItemClick(Sender: TObject);
@@ -152,7 +162,9 @@ type
     procedure PreviewMenuItemClick(Sender: TObject);
     procedure ReferenseImageMenuItemClick(Sender: TObject);
     procedure SaveSpriteLibMenuItemClick(Sender: TObject);
+    procedure sbPenClick(Sender: TObject);
     procedure SrcImageFramesOptsValueListEditorValidate(Sender: TObject; ACol, ARow: longint; const KeyName, KeyValue: string);
+    procedure trkbrPenSizeChange(Sender: TObject);
     procedure ViewZoomInMenuItemClick(Sender: TObject);
     procedure ViewZoomOutMenuItemClick(Sender: TObject);
     procedure ViewZoomResetMenuItemClick(Sender: TObject);
@@ -185,6 +197,14 @@ begin
      frmAbout.ShowModal;
   frmMain.ShowWindows;
   FreeAndNil(frmAbout);
+end;
+
+procedure TfrmMain.bbtnSwapColorsClick(Sender: TObject);
+var cl : TBGRAPixel;
+begin
+   cl := spclBackColor;
+   spclBackColor:=spclForeColor;
+   spclForeColor:=cl;
 end;
 
 procedure TfrmMain.BitBtnImportFrameClick(Sender: TObject);
@@ -220,8 +240,9 @@ begin
    frmFrameDlg.edtFrameName.Text:=FrameGrid.ActiveFrame;
   end;
   HideWindows;
-  frmFrameDlg.ShowOnTop;
-  if frmFrameDlg.ModalResult=mrOK then begin
+  frmFrameDlg.isOk:=False;
+  frmFrameDlg.Show;
+  if frmFrameDlg.isOk then begin
    FreeAndNil(FrameGrid);
    FrameGrid:=TFrameGrid.Create(frmFrameDlg.spnedtWidth.Value,frmFrameDlg.spnedtHeight.Value);
    FrameGrid.Offset:=Point(0,0);
@@ -240,20 +261,60 @@ begin
    for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
    FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
    FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;
-   FrToolOptions1.trkbrPenSize.Max:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
+   trkbrPenSize.Max:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
    pbFrameDraw.Invalidate;
   end;
   if Assigned(FrameGrid) then ShowWindows;
   Invalidate;
 end;
 
-procedure TfrmMain.FgColorClick(Sender: TObject);
+procedure TfrmMain.FgColorMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
 begin
-  pnlPalette.Visible:=True;
+  case Button of
+  mbLeft: begin
+           frmMain.HideWindows;
+           if ColorDialog1.Execute then begin
+              if (Sender as TBGRAGraphicControl).Tag=1 then spclBackColor:=ColorDialog1.Color
+              else spclForeColor:=ColorDialog1.Color;
+              Palette.AddColor(ColorDialog1.Color);
+              ToolOptions.Color:=ColorDialog1.Color;
+              frmMain.StatusBar1.Panels[0].Text:=rsColors+IntToStr(Palette.Count);
+              //PaletteGrid.RenderAndDrawControl;
+           end;
+           frmMain.ShowWindows;
+          end;
+  mbRight:begin
+           if (Sender as TBGRAGraphicControl).Tag=1 then spclBackColor:=BGRAPixelTransparent
+              else spclForeColor:=BGRAPixelTransparent;
+             ToolOptions.Color:=BGRAPixelTransparent;
+
+  end;
+end;
+  FgColorPaint(Sender);
+end;
+
+procedure TfrmMain.FgColorPaint(Sender: TObject);
+var cl : TBGRAPixel;
+begin
+  if (Sender as TBGRAGraphicControl).Tag = 1 then cl := spclBackColor
+    else cl:=spclForeColor;
+  if cl=BGRAPixelTransparent then begin
+   (Sender as TBGRAGraphicControl).Bitmap.DrawCheckers(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),
+                                              ColorToBGRA($BFBFBF),ColorToBGRA($FFFFFF),4,4);
+   (Sender as TBGRAGraphicControl).Bitmap.Rectangle(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(clBlackOpaque));
+  end
+    else (Sender as TBGRAGraphicControl).Bitmap.FillRect(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(cl));
+  frmMain.StatusBar1.Panels[1].Text:=rsFG+IntToHex(spclForeColor)+rsBG+
+    IntToHex(spclBackColor);
+  Invalidate;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
+
+  FreeAndNil(DrawTool);
+
   //save forms size and position
   INI.WriteInteger('FRMMAIN','TOP',frmMain.Top);
   INI.WriteInteger('FRMMAIN','LEFT',frmMain.Left);
@@ -331,7 +392,7 @@ begin
        end;
      //swap colors
      VK_X: begin
-       frColors1.bbtnSwapColorsClick(Sender);
+       bbtnSwapColorsClick(Sender);
        Key:=0;
       end;
      //show/hide preview window
@@ -462,7 +523,7 @@ begin
      if Assigned(DrawTool) and (FrameGrid.HasCoords(Point(x,y))) then begin
       fDrawGridMode:=dgmDraw;
       p:=FrameGrid.Coords(x,y);
-       ToolOptions.PenSize:=FrToolOptions1.trkbrPenSize.Position;
+       ToolOptions.PenSize:=trkbrPenSize.Position;
        if Button=mbLeft then
           DrawTool.StartDraw(p.X,p.Y,Shift,Button, spclForeColor)
        else if Button=mbRight then
@@ -588,6 +649,11 @@ begin
      else PreviewMenuItem.Checked:=False;
 
   MainPageControl.ActivePageIndex := 0;
+
+  //default draw tool - pen
+  DrawTool:=TSPPen.Create;
+  StatusBar1.Panels[4].Text:=rsActiveTool+DrawTool.ToolName;
+
 end;
 
 procedure TfrmMain.PreviewMenuItemClick(Sender: TObject);
@@ -619,6 +685,32 @@ begin
   libpath := SpriteLibPath + DirectorySeparator + CurrentLibName;
 end;
 
+procedure TfrmMain.sbPenClick(Sender: TObject);
+begin
+  if not Assigned(FrameGrid) then begin
+   sbPen.Down:=True;
+   Exit;
+  end;
+  if Assigned(DrawTool) then FreeAndNil(DrawTool);
+  case (Sender as TSpeedButton).Tag of
+ 1:DrawTool:=TSPPen.Create;
+ 2:DrawTool:=TSPLine.Create;
+ 3:DrawTool:=TSPEraser.Create;
+ 4:begin
+      DrawTool:=TSPPipette.Create;
+ end;
+ 5:DrawTool:=TSPRect.Create;
+ 6:DrawTool:=TSPFilledRect.Create;
+ 7:DrawTool:=TSPCircle.Create
+ else begin
+      ShowMessage(rsThisToolWill);
+      DrawTool:=TSPPen.Create;
+      sbPen.Down:=True;
+  end;
+ end;
+ StatusBar1.Panels[4].Text:=rsActiveTool+DrawTool.ToolName;
+end;
+
 procedure TfrmMain.ShowWindows;
 begin
   pnlDrawTools.Visible:=PaintToolPanelVisibleMenuItem.Checked;
@@ -636,6 +728,11 @@ begin
     begin
       ShowMessage(QuotedStr(KeyName) + rsHasNonIntege);
     end;
+end;
+
+procedure TfrmMain.trkbrPenSizeChange(Sender: TObject);
+begin
+  FrameGrid.CellCursor.CursorSize:=trkbrPenSize.Position;
 end;
 
 procedure TfrmMain.ViewZoomInMenuItemClick(Sender: TObject);

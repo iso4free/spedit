@@ -33,7 +33,7 @@ uses
   LazLogger,
   {$ENDIF}
   Forms, Interfaces, sysutils, uglobals, umain, uframes, ulayers,
-  uframedlg, upreview, uabout, ftools, ftoolopions, fcolors, fpalette;
+  uframedlg, upreview, uabout, fpalette;
 
 {$R *.res}
 
@@ -50,7 +50,7 @@ begin
   Application.CreateForm(TfrmLayers, frmLayers);
   Application.CreateForm(TfrmFrameDlg, frmFrameDlg);
   Application.CreateForm(TFrmPreview, FrmPreview);
-  frmMain.HideWindows;
+  //frmMain.HideWindows;
   Application.Run;
 end.
 

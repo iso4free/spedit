@@ -12,35 +12,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: tfrcolors.bbtnswapcolors.hint
-msgctxt "tfrcolors.bbtnswapcolors.hint"
-msgid "Swap colors [X]"
-msgstr ""
-
-#: tfrcolors.bgcolor.caption
-msgctxt "tfrcolors.bgcolor.caption"
-msgid "BG"
-msgstr ""
-
-#: tfrcolors.bgcolor.hint
-msgctxt "tfrcolors.bgcolor.hint"
-msgid ""
-"Left click to select color\n"
-"Right click to set transparent color"
-msgstr ""
-
-#: tfrcolors.fgcolor.caption
-msgctxt "tfrcolors.fgcolor.caption"
-msgid "FG"
-msgstr ""
-
-#: tfrcolors.fgcolor.hint
-msgctxt "tfrcolors.fgcolor.hint"
-msgid ""
-"Left click to select color\n"
-"Right click to set transparent color"
-msgstr ""
-
 #: tfrmframedlg.caption
 msgid "New frame"
 msgstr ""
@@ -120,6 +91,23 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
+#: tfrmmain.bbtnswapcolors.hint
+msgctxt "tfrmmain.bbtnswapcolors.hint"
+msgid "Swap colors [X]"
+msgstr ""
+
+#: tfrmmain.bgcolor.caption
+msgctxt "tfrmmain.bgcolor.caption"
+msgid "BG"
+msgstr ""
+
+#: tfrmmain.bgcolor.hint
+msgctxt "tfrmmain.bgcolor.hint"
+msgid ""
+"Left click to select color\n"
+"Right click to set transparent color"
+msgstr ""
+
 #: tfrmmain.bitbtnimportframe.hint
 msgid "Import frame from image file"
 msgstr ""
@@ -130,6 +118,18 @@ msgstr ""
 
 #: tfrmmain.editmenuitem.caption
 msgid "Edit"
+msgstr ""
+
+#: tfrmmain.fgcolor.caption
+msgctxt "tfrmmain.fgcolor.caption"
+msgid "FG"
+msgstr ""
+
+#: tfrmmain.fgcolor.hint
+msgctxt "tfrmmain.fgcolor.hint"
+msgid ""
+"Left click to select color\n"
+"Right click to set transparent color"
 msgstr ""
 
 #: tfrmmain.fileexitmenuitem.caption
@@ -260,6 +260,11 @@ msgstr ""
 msgid "Save Sprite Library"
 msgstr ""
 
+#: tfrmmain.sbline.hint
+msgctxt "tfrmmain.sbline.hint"
+msgid "Line tool"
+msgstr ""
+
 #: tfrmmain.selectspritelibmenuitem.caption
 msgid "Select Sprite Library"
 msgstr ""
@@ -300,16 +305,6 @@ msgstr ""
 
 #: tfrmreferense.hint
 msgid "Click to open any referense image"
-msgstr ""
-
-#: tfrtooloptions.grpbpensize.caption
-msgctxt "tfrtooloptions.grpbpensize.caption"
-msgid "Pen size"
-msgstr ""
-
-#: tfrtools.sbline.hint
-msgctxt "tfrtools.sbline.hint"
-msgid "Line tool"
 msgstr ""
 
 #: uglobals.rsactivetool

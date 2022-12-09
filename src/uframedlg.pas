@@ -37,6 +37,10 @@ type
   { TfrmFrameDlg }
 
   TfrmFrameDlg = class(TForm)
+  private
+    FisOk: Boolean;
+    procedure SetisOk(AValue: Boolean);
+  published
     BitBtnOk: TBitBtn;
     BitBtnCancel: TBitBtn;
     CheckBox1: TCheckBox;
@@ -48,10 +52,8 @@ type
     Panel2: TPanel;
     spnedtHeight: TSpinEdit;
     spnedtWidth: TSpinEdit;
-    procedure BitBtnCancelClick(Sender: TObject);
     procedure BitBtnOkClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-
+    property isOk : Boolean read FisOk write SetisOk;
   end;
 
 var
@@ -62,23 +64,17 @@ implementation
 
 { TfrmFrameDlg }
 
-procedure TfrmFrameDlg.FormCreate(Sender: TObject);
+procedure TfrmFrameDlg.SetisOk(AValue: Boolean);
 begin
-  ModalResult:=mrNone;
+  if FisOk=AValue then Exit;
+  FisOk:=AValue;
 end;
 
 procedure TfrmFrameDlg.BitBtnOkClick(Sender: TObject);
 begin
-  ModalResult:=mrOK;
+  isOk:=True;
   Close;
 end;
-
-procedure TfrmFrameDlg.BitBtnCancelClick(Sender: TObject);
-begin
-  ModalResult:=mrCancel;
-  Close;
-end;
-
 
 end.
 

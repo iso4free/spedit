@@ -1,7 +1,0 @@
-{"version":1,"strings":[
-{"hash":254950754,"name":"tfrcolors.fgcolor.hint","sourcebytes":[76,101,102,116,32,99,108,105,99,107,32,116,111,32,115,101,108,101,99,116,32,99,111,108,111,114,10,82,105,103,104,116,32,99,108,105,99,107,32,116,111,32,115,101,116,32,116,114,97,110,115,112,97,114,101,110,116,32,99,111,108,111,114],"value":"Left click to select color\nRight click to set transparent color"},
-{"hash":1191,"name":"tfrcolors.fgcolor.caption","sourcebytes":[70,71],"value":"FG"},
-{"hash":246661597,"name":"tfrcolors.bbtnswapcolors.hint","sourcebytes":[83,119,97,112,32,99,111,108,111,114,115,32,91,88,93],"value":"Swap colors [X]"},
-{"hash":254950754,"name":"tfrcolors.bgcolor.hint","sourcebytes":[76,101,102,116,32,99,108,105,99,107,32,116,111,32,115,101,108,101,99,116,32,99,111,108,111,114,10,82,105,103,104,116,32,99,108,105,99,107,32,116,111,32,115,101,116,32,116,114,97,110,115,112,97,114,101,110,116,32,99,111,108,111,114],"value":"Left click to select color\nRight click to set transparent color"},
-{"hash":1127,"name":"tfrcolors.bgcolor.caption","sourcebytes":[66,71],"value":"BG"}
-]}

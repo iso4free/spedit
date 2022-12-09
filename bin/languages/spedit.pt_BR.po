@@ -12,44 +12,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: tfrcolors.bbtnswapcolors.hint
-#, fuzzy
-msgctxt "tfrcolors.bbtnswapcolors.hint"
-msgid "Swap colors [X]"
-msgstr "Trocar cores [X]"
-
-#: tfrcolors.bgcolor.caption
-#, fuzzy
-msgctxt "tfrcolors.bgcolor.caption"
-msgid "BG"
-msgstr "SP"
-
-#: tfrcolors.bgcolor.hint
-#, fuzzy
-msgctxt "tfrcolors.bgcolor.hint"
-msgid ""
-"Left click to select color\n"
-"Right click to set transparent color"
-msgstr ""
-"Clique esquerdo para selecionar cor\n"
-"Clique direito para definir a cor transparente"
-
-#: tfrcolors.fgcolor.caption
-#, fuzzy
-msgctxt "tfrcolors.fgcolor.caption"
-msgid "FG"
-msgstr "PP"
-
-#: tfrcolors.fgcolor.hint
-#, fuzzy
-msgctxt "tfrcolors.fgcolor.hint"
-msgid ""
-"Left click to select color\n"
-"Right click to set transparent color"
-msgstr ""
-"Clique esquerdo para selecionar cor\n"
-"Clique direito para definir a cor transparente"
-
 #: tfrmframedlg.caption
 msgid "New frame"
 msgstr "Novo quadro"
@@ -129,6 +91,23 @@ msgstr "Sobre"
 msgid "Actions"
 msgstr "Ações"
 
+#: tfrmmain.bbtnswapcolors.hint
+msgctxt "tfrmmain.bbtnswapcolors.hint"
+msgid "Swap colors [X]"
+msgstr ""
+
+#: tfrmmain.bgcolor.caption
+msgctxt "tfrmmain.bgcolor.caption"
+msgid "BG"
+msgstr ""
+
+#: tfrmmain.bgcolor.hint
+msgctxt "tfrmmain.bgcolor.hint"
+msgid ""
+"Left click to select color\n"
+"Right click to set transparent color"
+msgstr ""
+
 #: tfrmmain.bitbtnimportframe.hint
 msgid "Import frame from image file"
 msgstr "Importar quadro de um arquivo de imagem"
@@ -140,6 +119,18 @@ msgstr "Editor de Sprites"
 #: tfrmmain.editmenuitem.caption
 msgid "Edit"
 msgstr "Editar"
+
+#: tfrmmain.fgcolor.caption
+msgctxt "tfrmmain.fgcolor.caption"
+msgid "FG"
+msgstr ""
+
+#: tfrmmain.fgcolor.hint
+msgctxt "tfrmmain.fgcolor.hint"
+msgid ""
+"Left click to select color\n"
+"Right click to set transparent color"
+msgstr ""
 
 #: tfrmmain.fileexitmenuitem.caption
 msgid "E&xit"
@@ -271,6 +262,11 @@ msgstr "Referência"
 msgid "Save Sprite Library"
 msgstr "Salvar Biblioteca de Sprites"
 
+#: tfrmmain.sbline.hint
+msgctxt "tfrmmain.sbline.hint"
+msgid "Line tool"
+msgstr ""
+
 #: tfrmmain.selectspritelibmenuitem.caption
 msgid "Select Sprite Library"
 msgstr "Selecionar Biblioteca de Sprites"
@@ -312,17 +308,6 @@ msgstr "Referência"
 #: tfrmreferense.hint
 msgid "Click to open any referense image"
 msgstr "Clique para abrir qualquer imagem de referência"
-
-#: tfrtooloptions.grpbpensize.caption
-msgctxt "tfrtooloptions.grpbpensize.caption"
-msgid "Pen size"
-msgstr "Tamanho da caneta"
-
-#: tfrtools.sbline.hint
-#, fuzzy
-msgctxt "tfrtools.sbline.hint"
-msgid "Line tool"
-msgstr "Ferramenta linha"
 
 #: uglobals.rsactivetool
 msgid "Active tool: "

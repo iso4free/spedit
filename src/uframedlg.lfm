@@ -1,27 +1,24 @@
 object frmFrameDlg: TfrmFrameDlg
   Left = 391
-  Height = 240
+  Height = 173
   Top = 242
-  Width = 320
+  Width = 286
   AutoSize = True
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'New frame'
-  ClientHeight = 240
-  ClientWidth = 320
-  OnCreate = FormCreate
-  OnShow = FormCreate
+  ClientHeight = 173
+  ClientWidth = 286
   ShowInTaskBar = stNever
-  LCLVersion = '2.3.0.0'
   object Panel1: TPanel
     Left = 0
     Height = 42
-    Top = 198
-    Width = 320
+    Top = 131
+    Width = 286
     Align = alBottom
     AutoSize = True
     ClientHeight = 42
-    ClientWidth = 320
+    ClientWidth = 286
     TabOrder = 0
     object BitBtnOk: TBitBtn
       AnchorSideLeft.Control = Panel1
@@ -54,19 +51,18 @@ object frmFrameDlg: TfrmFrameDlg
       DefaultCaption = True
       Kind = bkCancel
       ModalResult = 2
-      OnClick = BitBtnCancelClick
       TabOrder = 1
     end
   end
   object Panel2: TPanel
     Left = 0
-    Height = 198
+    Height = 131
     Top = 0
-    Width = 320
+    Width = 286
     Align = alClient
     AutoSize = True
-    ClientHeight = 198
-    ClientWidth = 320
+    ClientHeight = 131
+    ClientWidth = 286
     TabOrder = 1
     object lblFrameName: TLabel
       AnchorSideLeft.Control = Panel2
@@ -80,6 +76,7 @@ object frmFrameDlg: TfrmFrameDlg
       Caption = 'Frame name'
       Color = clDefault
       ParentColor = False
+      Transparent = False
     end
     object edtFrameName: TEdit
       AnchorSideLeft.Control = CheckBox1
@@ -102,6 +99,7 @@ object frmFrameDlg: TfrmFrameDlg
       Caption = 'Frame width'
       Color = clDefault
       ParentColor = False
+      Transparent = False
     end
     object spnedtWidth: TSpinEdit
       AnchorSideLeft.Control = edtFrameName
@@ -125,6 +123,7 @@ object frmFrameDlg: TfrmFrameDlg
       Caption = 'Frame height'
       Color = clDefault
       ParentColor = False
+      Transparent = False
     end
     object spnedtHeight: TSpinEdit
       AnchorSideLeft.Control = edtFrameName

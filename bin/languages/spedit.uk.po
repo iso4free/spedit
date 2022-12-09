@@ -17,44 +17,6 @@ msgstr ""
 "X-Crowdin-File-ID: 1\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: tfrcolors.bbtnswapcolors.hint
-#, fuzzy
-msgctxt "tfrcolors.bbtnswapcolors.hint"
-msgid "Swap colors [X]"
-msgstr "Поміняти місцями [X]"
-
-#: tfrcolors.bgcolor.caption
-#, fuzzy
-msgctxt "tfrcolors.bgcolor.caption"
-msgid "BG"
-msgstr "ФК"
-
-#: tfrcolors.bgcolor.hint
-#, fuzzy
-msgctxt "tfrcolors.bgcolor.hint"
-msgid ""
-"Left click to select color\n"
-"Right click to set transparent color"
-msgstr ""
-"Натисніть ліву кнопку миші для вибору кольору\n"
-"Права кнопка миші обрати прозорий колір"
-
-#: tfrcolors.fgcolor.caption
-#, fuzzy
-msgctxt "tfrcolors.fgcolor.caption"
-msgid "FG"
-msgstr "ПК"
-
-#: tfrcolors.fgcolor.hint
-#, fuzzy
-msgctxt "tfrcolors.fgcolor.hint"
-msgid ""
-"Left click to select color\n"
-"Right click to set transparent color"
-msgstr ""
-"Натисніть ліву кнопку миші для вибору кольору\n"
-"Права кнопка миші обрати прозорий колір"
-
 #: tfrmframedlg.caption
 msgid "New frame"
 msgstr "Новий фрейм"
@@ -134,6 +96,23 @@ msgstr "Про"
 msgid "Actions"
 msgstr "Дії"
 
+#: tfrmmain.bbtnswapcolors.hint
+msgctxt "tfrmmain.bbtnswapcolors.hint"
+msgid "Swap colors [X]"
+msgstr ""
+
+#: tfrmmain.bgcolor.caption
+msgctxt "tfrmmain.bgcolor.caption"
+msgid "BG"
+msgstr ""
+
+#: tfrmmain.bgcolor.hint
+msgctxt "tfrmmain.bgcolor.hint"
+msgid ""
+"Left click to select color\n"
+"Right click to set transparent color"
+msgstr ""
+
 #: tfrmmain.bitbtnimportframe.hint
 msgid "Import frame from image file"
 msgstr "Імпортувати фрейм з файлу зображення"
@@ -145,6 +124,18 @@ msgstr "Редактор спрайтів"
 #: tfrmmain.editmenuitem.caption
 msgid "Edit"
 msgstr "Редагувати"
+
+#: tfrmmain.fgcolor.caption
+msgctxt "tfrmmain.fgcolor.caption"
+msgid "FG"
+msgstr ""
+
+#: tfrmmain.fgcolor.hint
+msgctxt "tfrmmain.fgcolor.hint"
+msgid ""
+"Left click to select color\n"
+"Right click to set transparent color"
+msgstr ""
 
 #: tfrmmain.fileexitmenuitem.caption
 msgid "E&xit"
@@ -278,6 +269,11 @@ msgstr "Референс"
 msgid "Save Sprite Library"
 msgstr "Зберегти бібліотеку спрайтів"
 
+#: tfrmmain.sbline.hint
+msgctxt "tfrmmain.sbline.hint"
+msgid "Line tool"
+msgstr ""
+
 #: tfrmmain.selectspritelibmenuitem.caption
 msgid "Select Sprite Library"
 msgstr "Обрати бібліотеку спрайтів"
@@ -319,17 +315,6 @@ msgstr "Референс"
 #: tfrmreferense.hint
 msgid "Click to open any referense image"
 msgstr "Клацніть для завантаження зображення для референсу"
-
-#: tfrtooloptions.grpbpensize.caption
-msgctxt "tfrtooloptions.grpbpensize.caption"
-msgid "Pen size"
-msgstr "Розмір олівця"
-
-#: tfrtools.sbline.hint
-#, fuzzy
-msgctxt "tfrtools.sbline.hint"
-msgid "Line tool"
-msgstr "Інструмент Лінія"
 
 #: uglobals.rsactivetool
 msgid "Active tool: "
