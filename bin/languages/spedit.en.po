@@ -36,59 +36,32 @@ msgstr ""
 msgid "Frame name"
 msgstr ""
 
-#: tfrmframes.caption
-msgctxt "tfrmframes.caption"
-msgid "Frames"
-msgstr ""
-
-#: tfrmlayers.bbtnaddlayer.hint
-msgid "Add new layer"
-msgstr ""
-
-#: tfrmlayers.bbtncopylayer.hint
-msgid "Copy selected layer"
-msgstr ""
-
-#: tfrmlayers.bbtndeletelayer.hint
-msgid "Delete selected layer"
-msgstr ""
-
-#: tfrmlayers.bbtnmergelayers.hint
-msgid "Merge with previous layer"
-msgstr ""
-
-#: tfrmlayers.caption
-msgctxt "tfrmlayers.caption"
-msgid "Layers"
-msgstr ""
-
-#: tfrmlayers.drwgrdlayers.columns[0].title.caption
-msgid "Visible"
-msgstr ""
-
-#: tfrmlayers.drwgrdlayers.columns[1].title.caption
-msgid "Locked"
-msgstr ""
-
-#: tfrmlayers.drwgrdlayers.columns[2].title.caption
-msgid "Name"
-msgstr ""
-
-#: tfrmlayers.drwgrdlayers.columns[3].title.caption
-msgid "Image"
-msgstr ""
-
-#: tfrmlayers.layersgroupbox.caption
-msgctxt "tfrmlayers.layersgroupbox.caption"
-msgid "Layers"
-msgstr ""
-
 #: tfrmmain.aboutmenuitem.caption
 msgid "About"
 msgstr ""
 
 #: tfrmmain.actionstabsheet.caption
 msgid "Actions"
+msgstr ""
+
+#: tfrmmain.bbtnaddlayer.hint
+msgctxt "tfrmmain.bbtnaddlayer.hint"
+msgid "Add new layer"
+msgstr ""
+
+#: tfrmmain.bbtncopylayer.hint
+msgctxt "tfrmmain.bbtncopylayer.hint"
+msgid "Copy selected layer"
+msgstr ""
+
+#: tfrmmain.bbtndeletelayer.hint
+msgctxt "tfrmmain.bbtndeletelayer.hint"
+msgid "Delete selected layer"
+msgstr ""
+
+#: tfrmmain.bbtnmergelayers.hint
+msgctxt "tfrmmain.bbtnmergelayers.hint"
+msgid "Merge with previous layer"
 msgstr ""
 
 #: tfrmmain.bbtnswapcolors.hint
@@ -114,6 +87,26 @@ msgstr ""
 
 #: tfrmmain.caption
 msgid "Sprite Editor"
+msgstr ""
+
+#: tfrmmain.drwgrdlayers.columns[0].title.caption
+msgctxt "tfrmmain.drwgrdlayers.columns[0].title.caption"
+msgid "Visible"
+msgstr ""
+
+#: tfrmmain.drwgrdlayers.columns[1].title.caption
+msgctxt "tfrmmain.drwgrdlayers.columns[1].title.caption"
+msgid "Locked"
+msgstr ""
+
+#: tfrmmain.drwgrdlayers.columns[2].title.caption
+msgctxt "tfrmmain.drwgrdlayers.columns[2].title.caption"
+msgid "Name"
+msgstr ""
+
+#: tfrmmain.drwgrdlayers.columns[3].title.caption
+msgctxt "tfrmmain.drwgrdlayers.columns[3].title.caption"
+msgid "Image"
 msgstr ""
 
 #: tfrmmain.editmenuitem.caption
@@ -183,6 +176,11 @@ msgstr ""
 msgid "Change interface language"
 msgstr ""
 
+#: tfrmmain.layersgroupbox.caption
+msgctxt "tfrmmain.layersgroupbox.caption"
+msgid "Layers"
+msgstr ""
+
 #: tfrmmain.layerstoolvisiblemenuitem.caption
 msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
 msgid "Layers"
@@ -240,6 +238,14 @@ msgstr ""
 
 #: tfrmmain.painttoolpanelvisiblemenuitem.caption
 msgid "Drawing tools"
+msgstr ""
+
+#: tfrmmain.pnlframes.caption
+msgid "pnlFrames"
+msgstr ""
+
+#: tfrmmain.pnllayers.caption
+msgid "pnlLayers"
 msgstr ""
 
 #: tfrmmain.previewmenuitem.caption

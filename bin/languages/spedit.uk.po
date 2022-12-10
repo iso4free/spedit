@@ -41,53 +41,6 @@ msgstr "Висота фрейму"
 msgid "Frame name"
 msgstr "Назва фрейму"
 
-#: tfrmframes.caption
-msgctxt "tfrmframes.caption"
-msgid "Frames"
-msgstr "Фрейми"
-
-#: tfrmlayers.bbtnaddlayer.hint
-msgid "Add new layer"
-msgstr "Додати новий шар"
-
-#: tfrmlayers.bbtncopylayer.hint
-msgid "Copy selected layer"
-msgstr "Копіювати вибраний шар"
-
-#: tfrmlayers.bbtndeletelayer.hint
-msgid "Delete selected layer"
-msgstr "Видалити вибраний шар"
-
-#: tfrmlayers.bbtnmergelayers.hint
-msgid "Merge with previous layer"
-msgstr "Об'єднати з попереднім шаром"
-
-#: tfrmlayers.caption
-msgctxt "tfrmlayers.caption"
-msgid "Layers"
-msgstr "Шари"
-
-#: tfrmlayers.drwgrdlayers.columns[0].title.caption
-msgid "Visible"
-msgstr "Видимий"
-
-#: tfrmlayers.drwgrdlayers.columns[1].title.caption
-msgid "Locked"
-msgstr "Заблоковано"
-
-#: tfrmlayers.drwgrdlayers.columns[2].title.caption
-msgid "Name"
-msgstr "Назва"
-
-#: tfrmlayers.drwgrdlayers.columns[3].title.caption
-msgid "Image"
-msgstr "Зображення"
-
-#: tfrmlayers.layersgroupbox.caption
-msgctxt "tfrmlayers.layersgroupbox.caption"
-msgid "Layers"
-msgstr "Шари"
-
 #: tfrmmain.aboutmenuitem.caption
 msgid "About"
 msgstr "Про"
@@ -95,6 +48,30 @@ msgstr "Про"
 #: tfrmmain.actionstabsheet.caption
 msgid "Actions"
 msgstr "Дії"
+
+#: tfrmmain.bbtnaddlayer.hint
+#, fuzzy
+msgctxt "tfrmmain.bbtnaddlayer.hint"
+msgid "Add new layer"
+msgstr "Додати новий шар"
+
+#: tfrmmain.bbtncopylayer.hint
+#, fuzzy
+msgctxt "tfrmmain.bbtncopylayer.hint"
+msgid "Copy selected layer"
+msgstr "Копіювати вибраний шар"
+
+#: tfrmmain.bbtndeletelayer.hint
+#, fuzzy
+msgctxt "tfrmmain.bbtndeletelayer.hint"
+msgid "Delete selected layer"
+msgstr "Видалити вибраний шар"
+
+#: tfrmmain.bbtnmergelayers.hint
+#, fuzzy
+msgctxt "tfrmmain.bbtnmergelayers.hint"
+msgid "Merge with previous layer"
+msgstr "Об'єднати з попереднім шаром"
 
 #: tfrmmain.bbtnswapcolors.hint
 msgctxt "tfrmmain.bbtnswapcolors.hint"
@@ -120,6 +97,30 @@ msgstr "Імпортувати фрейм з файлу зображення"
 #: tfrmmain.caption
 msgid "Sprite Editor"
 msgstr "Редактор спрайтів"
+
+#: tfrmmain.drwgrdlayers.columns[0].title.caption
+#, fuzzy
+msgctxt "tfrmmain.drwgrdlayers.columns[0].title.caption"
+msgid "Visible"
+msgstr "Видимий"
+
+#: tfrmmain.drwgrdlayers.columns[1].title.caption
+#, fuzzy
+msgctxt "tfrmmain.drwgrdlayers.columns[1].title.caption"
+msgid "Locked"
+msgstr "Заблоковано"
+
+#: tfrmmain.drwgrdlayers.columns[2].title.caption
+#, fuzzy
+msgctxt "tfrmmain.drwgrdlayers.columns[2].title.caption"
+msgid "Name"
+msgstr "Назва"
+
+#: tfrmmain.drwgrdlayers.columns[3].title.caption
+#, fuzzy
+msgctxt "tfrmmain.drwgrdlayers.columns[3].title.caption"
+msgid "Image"
+msgstr "Зображення"
 
 #: tfrmmain.editmenuitem.caption
 msgid "Edit"
@@ -192,6 +193,12 @@ msgstr "Мова"
 msgid "Change interface language"
 msgstr "Змінити мову інтерфейсу"
 
+#: tfrmmain.layersgroupbox.caption
+#, fuzzy
+msgctxt "tfrmmain.layersgroupbox.caption"
+msgid "Layers"
+msgstr "Шари"
+
 #: tfrmmain.layerstoolvisiblemenuitem.caption
 msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
 msgid "Layers"
@@ -250,6 +257,14 @@ msgstr "Скасувати"
 #: tfrmmain.painttoolpanelvisiblemenuitem.caption
 msgid "Drawing tools"
 msgstr "Інструменти малювання"
+
+#: tfrmmain.pnlframes.caption
+msgid "pnlFrames"
+msgstr ""
+
+#: tfrmmain.pnllayers.caption
+msgid "pnlLayers"
+msgstr ""
 
 #: tfrmmain.previewmenuitem.caption
 msgctxt "tfrmmain.previewmenuitem.caption"

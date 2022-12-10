@@ -34,28 +34,37 @@ uses
   Dialogs, ExtCtrls, Types, Graphics, StdCtrls, Buttons, ValEdit,
   BGRAGraphicControl,BGRAImageList, BGRAImageManipulation, BGRABitmapTypes,
   BGRABitmap, LCLType, DefaultTranslator, gettext, Translations,
-  fpalette;
+  BCGameGrid, Grids;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    bbtnAddLayer: TBitBtn;
+    bbtnCopyLayer: TBitBtn;
+    bbtnDeleteLayer: TBitBtn;
+    bbtnMergeLayers: TBitBtn;
     bbtnSwapColors: TBitBtn;
     BgColor: TBGRAGraphicControl;
+    BGRAImageList24x24: TBGRAImageList;
     ColorDialog1: TColorDialog;
-    ColorsFlowPanel: TPanel;
     DrawToolsFlowPanel: TFlowPanel;
+    drwgrdLayers: TDrawGrid;
     FgColor: TBGRAGraphicControl;
-    FrPalette1: TFrPalette;
+    LayersFlowPanel: TFlowPanel;
+    LayersGroupBox: TGroupBox;
+    lbFrames: TListBox;
     miFullScreen: TMenuItem;
+    PaletteGrid: TBCGameGrid;
+    pnlLayers: TPanel;
+    pnlFrames: TPanel;
     pnlDrawTools: TPanel;
     pnlPalette: TPanel;
     BitBtnImportFrame: TBitBtn;
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
-    FlowPanel1: TFlowPanel;
     miRedo: TMenuItem;
     miUndo: TMenuItem;
     opndlgLocalization: TOpenDialog;
@@ -66,6 +75,7 @@ type
     sbPen: TSpeedButton;
     sbPipette: TSpeedButton;
     sbRect: TSpeedButton;
+    sbFrames: TScrollBox;
     Separator3: TMenuItem;
     Separator4: TMenuItem;
     Splitter1: TSplitter;
@@ -126,18 +136,27 @@ type
     N1: TMenuItem;
     ViewMenuItem: TMenuItem;
     procedure AboutMenuItemClick(Sender: TObject);
+    procedure bbtnAddLayerClick(Sender: TObject);
+    procedure bbtnCopyLayerClick(Sender: TObject);
+    procedure bbtnDeleteLayerClick(Sender: TObject);
     procedure bbtnSwapColorsClick(Sender: TObject);
     procedure BitBtnImportFrameClick(Sender: TObject);
     procedure BitBtnLayersClick(Sender: TObject);
     procedure BitBtnNewFrameClick(Sender: TObject);
+    procedure drwgrdLayersDblClick(Sender: TObject);
+    procedure drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
+      aRect: TRect; aState: TGridDrawState);
+    procedure drwgrdLayersSelectCell(Sender: TObject; aCol, aRow: Integer;
+      var CanSelect: Boolean);
     procedure FgColorMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure FgColorPaint(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure FormPaint(Sender: TObject);
     procedure FramesMenuItemClick(Sender: TObject);
     procedure LanguageMenuItemClick(Sender: TObject);
-    procedure LayersToolVisibleMenuItemClick(Sender: TObject);
     procedure miFullScreenClick(Sender: TObject);
     procedure miPaletteClearClick(Sender: TObject);
     procedure miPaletteImportFromFileClick(Sender: TObject);
@@ -146,6 +165,10 @@ type
     procedure miRedoClick(Sender: TObject);
     procedure miUndoClick(Sender: TObject);
     procedure PaintToolPanelVisibleMenuItemClick(Sender: TObject);
+    procedure PaletteGridMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure PaletteGridRenderControl(Sender: TObject; Bitmap: TBGRABitmap;
+      r: TRect; n, x, y: integer);
     procedure pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -183,7 +206,7 @@ var
 
 implementation
 
-uses uabout, uframedlg, ulayers, uframes, upreview,
+uses uabout, uframedlg, upreview,
   ureferense, udraw;
 
 {$R *.lfm}
@@ -197,6 +220,52 @@ begin
      frmAbout.ShowModal;
   frmMain.ShowWindows;
   FreeAndNil(frmAbout);
+end;
+
+procedure TfrmMain.bbtnAddLayerClick(Sender: TObject);
+var
+  aLayerName: String;
+begin
+  frmMain.HideWindows;
+  aLayerName:=CheckLayerName('Layer'+IntToStr(Layers.Count-1));
+  aLayerName := InputBox(rsLayerName, rsInputNewLaye, aLayerName);
+  Layers[aLayerName]:=TSPLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+  drwgrdLayers.RowCount:=Layers.Count;
+  FrameGrid.ActiveLayer:=aLayerName;
+  Frames[FrameGrid.ActiveFrame].AddLayer(aLayerName);
+  Layers[aLayerName].AddToFrame(FrameGrid.ActiveFrame);
+  Layers[cINTERNALLAYERANDFRAME].Visible:=True;
+  frmMain.ShowWindows;
+  frmMain.SetFocus;
+  frmMain.Invalidate;
+end;
+
+procedure TfrmMain.bbtnCopyLayerClick(Sender: TObject);
+var
+  aName : String;
+  aData : String;
+begin
+ aName:=rsCopyOf + FrameGrid.ActiveLayer;
+ aData:=Layers[FrameGrid.ActiveLayer].ToBASE64String;
+ Layers[aName]:=TSPLayer.Create(aName,aData);
+ Frames[FrameGrid.ActiveFrame].AddLayer(aName);
+ Layers[aName].AddToFrame(FrameGrid.ActiveFrame);
+ FrameGrid.ActiveLayer:=aName;
+ Invalidate;
+end;
+
+procedure TfrmMain.bbtnDeleteLayerClick(Sender: TObject);
+begin
+  if FrameGrid.ActiveLayer=cINTERNALLAYERANDFRAME then begin
+    ShowMessage(rsThisLayerCan2);
+    Exit;
+  end;
+  UndoRedoManager.SaveState;
+  Layers.Remove(FrameGrid.ActiveLayer);
+  Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
+  FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;
+  Invalidate;
+  frmMain.Invalidate;
 end;
 
 procedure TfrmMain.bbtnSwapColorsClick(Sender: TObject);
@@ -226,7 +295,7 @@ end;
 
 procedure TfrmMain.BitBtnLayersClick(Sender: TObject);
 begin
-  frmLayers.Visible:=not frmLayers.Visible;
+  pnlLayers.Visible:=not pnlLayers.Visible;
 end;
 
 procedure TfrmMain.BitBtnNewFrameClick(Sender: TObject);
@@ -241,7 +310,7 @@ begin
   end;
   HideWindows;
   frmFrameDlg.isOk:=False;
-  frmFrameDlg.Show;
+  frmFrameDlg.ShowModal;
   if frmFrameDlg.isOk then begin
    FreeAndNil(FrameGrid);
    FrameGrid:=TFrameGrid.Create(frmFrameDlg.spnedtWidth.Value,frmFrameDlg.spnedtHeight.Value);
@@ -262,10 +331,96 @@ begin
    FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
    FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;
    trkbrPenSize.Max:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
-   pbFrameDraw.Invalidate;
+   if Assigned(FrameGrid) then ShowWindows;
   end;
-  if Assigned(FrameGrid) then ShowWindows;
   Invalidate;
+end;
+
+procedure TfrmMain.drwgrdLayersDblClick(Sender: TObject);
+var
+  aName : String;
+  aNewName : String;
+begin
+  //todo: rename layer
+  aName:=FrameGrid.ActiveLayer;
+  if aName=cINTERNALLAYERANDFRAME then begin
+    ShowMessage(rsThisLayerCan);
+    Exit;
+  end;
+  frmMain.HideWindows;
+  aNewName:=InputBox(rsInputNewLaye,rsLayerName,aName);
+  frmMain.ShowWindows;
+  if aNewName=aName then Exit;
+  Layers[aNewName]:=TSPLayer.Create(aNewName,Layers[aName].ToBASE64String);
+  Layers[aNewName].AddToFrame(FrameGrid.ActiveFrame);
+  Frames[FrameGrid.ActiveFrame].DeleteLayer(aName);
+  Frames[FrameGrid.ActiveFrame].AddLayer(aNewName);
+  Layers.Remove(aName);
+  Invalidate;
+end;
+
+procedure TfrmMain.drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
+  aRect: TRect; aState: TGridDrawState);
+var aKey : String;
+    cnt  : Integer;
+begin
+  if not Assigned(FrameGrid) then Exit;
+  //todo: change draw headers and layers data from active frame
+  cnt:=Frames[FrameGrid.ActiveFrame].LayersList.Count;
+  if aRow<>0 then begin //draw header
+    if aRow>cnt then Exit;
+    aKey:=Frames[FrameGrid.ActiveFrame].LayersList.Strings[Cnt-aRow];
+    if not LayerExists(aKey) then Exit;
+    case aCol of
+  0:begin
+      //draw layer visibility icon
+      if Layers[aKey].Visible then BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,0)
+         else BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,1);
+    end;
+  1:begin
+      //draw layer protection icon
+      if Layers[aKey].Locked then BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,3)
+         else BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,2);
+    end;
+  2:begin
+      //draw layer name
+      if aKey=FrameGrid.ActiveLayer then drwgrdLayers.Canvas.Font.Color:=clRed
+         else drwgrdLayers.Canvas.Font.Color:=clWindowText;
+      drwgrdLayers.Canvas.TextRect(aRect,aRect.Left,aRect.Top,aKey);
+    end;
+  3:begin
+      //draw layer image
+      Layers[aKey].Drawable.Draw(drwgrdLayers.Canvas,aRect,False);
+    end;
+    end;
+  end;
+  Invalidate;
+end;
+
+procedure TfrmMain.drwgrdLayersSelectCell(Sender: TObject; aCol, aRow: Integer;
+  var CanSelect: Boolean);
+var aKey : String;
+    cnt  : Integer;
+begin
+  if not Assigned(FrameGrid) then Exit;
+  if aRow=0 then Exit; //click on table header - do nothing
+  cnt:=Frames[FrameGrid.ActiveFrame].LayersList.Count;
+  aKey:=Frames[FrameGrid.ActiveFrame].LayersList.Strings[Cnt-aRow];
+  if aKey='' then Exit;
+
+  case aCol of
+0:begin //change layer visibility
+     Layers[aKey].Visible:=not Layers[aKey].Visible;
+    end;
+1:begin
+     Layers[aKey].Locked:=not Layers[aKey].Locked;
+    end;
+2,3:begin  //select active layer
+     FrameGrid.ActiveLayer:=aKey;
+    end;
+  end;
+  frmMain.Invalidate;
+  frmMain.SetFocus;
 end;
 
 procedure TfrmMain.FgColorMouseUp(Sender: TObject; Button: TMouseButton;
@@ -408,16 +563,26 @@ begin
   end;
 end;
 
+procedure TfrmMain.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+  Invalidate;
+end;
+
+procedure TfrmMain.FormPaint(Sender: TObject);
+begin
+  pbFrameDraw.Invalidate;
+end;
+
 procedure TfrmMain.FramesMenuItemClick(Sender: TObject);
 begin
- frmFrames.Visible:= not frmFrames.Visible;
+ pnlFrames.Visible:= not pnlFrames.Visible;
+ FramesMenuItem.Checked:=pnlFrames.Visible;
 end;
 
 procedure TfrmMain.HideWindows;
 begin
   FrmPreview.Hide;
-  frmFrames.Hide;
-  frmLayers.Hide;
   if Assigned(frmReferense) then frmReferense.Hide;
 end;
 
@@ -433,11 +598,6 @@ begin
   ShowWindows;
 end;
 
-procedure TfrmMain.LayersToolVisibleMenuItemClick(Sender: TObject);
-begin
- frmLayers.Show;
-end;
-
 procedure TfrmMain.miFullScreenClick(Sender: TObject);
 begin
   if WindowState<>wsFullScreen then WindowState:=wsFullScreen
@@ -448,7 +608,7 @@ procedure TfrmMain.miPaletteClearClick(Sender: TObject);
 begin
   if MessageDlg(rsWarning, rsPaletteWillB, mtWarning, mbYesNo, '')=mrYes
     then Palette.Reset;
-  FrPalette1.PaletteGrid.RenderAndDrawControl;
+  PaletteGrid.RenderAndDrawControl;
 end;
 
 procedure TfrmMain.miPaletteImportFromFileClick(Sender: TObject);
@@ -473,7 +633,7 @@ begin
      end;
 stop:
    FreeAndNil(img);
-  FrPalette1.PaletteGrid.RenderAndDrawControl;
+  PaletteGrid.RenderAndDrawControl;
   end;
   ShowWindows;
 end;
@@ -483,7 +643,7 @@ begin
   if OpenPaletteDialog.Execute then begin
     Palette.LoadFromFile(OpenPaletteDialog.FileName);
   end;
- FrPalette1.PaletteGrid.RenderAndDrawControl;
+ PaletteGrid.RenderAndDrawControl;
 end;
 
 procedure TfrmMain.miPaletteSaveToFileClick(Sender: TObject);
@@ -508,6 +668,42 @@ end;
 procedure TfrmMain.PaintToolPanelVisibleMenuItemClick(Sender: TObject);
 begin
   pnlPalette.Visible:= not pnlPalette.Visible;
+end;
+
+procedure TfrmMain.PaletteGridMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var xx,yy,n : Integer;
+begin
+  xx:=x div PaletteGrid.BlockWidth+1;
+  yy:=y div PaletteGrid.BlockHeight+1;
+  n := xx-PaletteGrid.GridWidth+yy*PaletteGrid.GridWidth-1;
+  if n>Palette.Count then Exit;
+  Palette.SelectColor(n);
+  case Button of
+    mbLeft:begin
+     spclForeColor:=Palette.SelectedColor;
+     //todo: fix when refactored
+     //FgColor.Invalidate;
+    end;
+    mbRight:begin
+     spclBackColor:=Palette.SelectedColor;
+     //todo: fix when refactored
+     //BgColor.Invalidate;
+    end;
+  end;
+  ToolOptions.Color:=Palette.SelectedColor;
+end;
+
+procedure TfrmMain.PaletteGridRenderControl(Sender: TObject;
+  Bitmap: TBGRABitmap; r: TRect; n, x, y: integer);
+var c : TBGRAPixel;
+begin
+  if (n>Palette.Count-1) then begin
+   c:=BGRAPixelTransparent;
+   end  else begin
+     c := palette.Color[n];
+   end;
+  Bitmap.Rectangle(r,c,c,dmSet);
 end;
 
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
@@ -561,13 +757,10 @@ begin
      if Layers[FrameGrid.ActiveLayer].Locked then Exit;
      p:=FrameGrid.Coords(X,Y);
      DrawTool.MouseMove(p.X,p.Y);
-     Invalidate;
-
     end;
    end;
    StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
    Invalidate;
-
 end;
 
 procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
@@ -583,7 +776,6 @@ begin
    DrawTool.MouseUp(p.x,p.y,Shift);
   end;
   if Assigned(FrmPreview) then FrmPreview.FramePreview.Invalidate;
-  if Assigned(frmLayers) then frmLayers.drwgrdLayers.Invalidate;
   Invalidate;
 end;
 
@@ -612,11 +804,6 @@ begin
     FrameGrid.RenderAndDraw(pbFrameDraw.Canvas);
     if Assigned(FrmPreview) then
      FrameGrid.RenderPicture(FrmPreview.FramePreview.Canvas);
-   if Assigned(frmLayers) then begin
-      //todo: after tests change to active frame layers count
-    frmLayers.drwgrdLayers.RowCount:=Frames[FrameGrid.ActiveFrame].LayersList.Count+1;
-    frmLayers.Invalidate;
-   end;
   end;
   StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);
 end;
@@ -713,10 +900,7 @@ end;
 
 procedure TfrmMain.ShowWindows;
 begin
-  pnlDrawTools.Visible:=PaintToolPanelVisibleMenuItem.Checked;
   if PreviewMenuItem.Checked then FrmPreview.Show;
-  if FramesMenuItem.Checked then frmFrames.Show;
-  if LayersToolVisibleMenuItem.Checked then frmLayers.Show;
   if ReferenseImageMenuItem.Checked then frmReferense.Show;
   Invalidate;
 end;

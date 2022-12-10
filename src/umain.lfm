@@ -1,15 +1,15 @@
 object frmMain: TfrmMain
-  Left = 324
-  Height = 546
-  Top = 260
-  Width = 603
-  HorzScrollBar.Page = 534
-  VertScrollBar.Page = 384
+  Left = 514
+  Height = 606
+  Top = 131
+  Width = 648
+  HorzScrollBar.Page = 555
+  VertScrollBar.Page = 501
   AllowDropFiles = True
   AutoScroll = True
   Caption = 'Sprite Editor'
-  ClientHeight = 546
-  ClientWidth = 603
+  ClientHeight = 583
+  ClientWidth = 648
   DefaultMonitor = dmDesktop
   DockSite = True
   DoubleBuffered = True
@@ -19,16 +19,18 @@ object frmMain: TfrmMain
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
-  OnPaint = pbFrameDrawPaint
+  OnMouseMove = FormMouseMove
+  OnPaint = FormPaint
   ParentDoubleBuffered = False
   UseDockManager = True
+  LCLVersion = '2.2.4.0'
   Visible = True
   WindowState = wsMaximized
   object MainPageControl: TPageControl
     Left = 0
-    Height = 528
+    Height = 562
     Top = 0
-    Width = 603
+    Width = 648
     ActivePage = FrameEditorTabSheet
     Align = alClient
     DockSite = True
@@ -37,16 +39,15 @@ object frmMain: TfrmMain
     object FrameEditorTabSheet: TTabSheet
       Tag = 1
       Caption = 'Frame Editor'
-      ClientHeight = 498
-      ClientWidth = 593
+      ClientHeight = 527
+      ClientWidth = 642
       object FrameFlowPanel: TFlowPanel
         Left = 0
         Height = 43
         Top = 0
-        Width = 593
+        Width = 642
         Align = alTop
         AutoSize = True
-        AutoWrap = False
         ControlList = <        
           item
             Control = BitBtnNewFrame
@@ -64,23 +65,33 @@ object frmMain: TfrmMain
             Index = 2
           end        
           item
-            Control = FlowPanel1
+            Control = trkbrPenSize
             WrapAfter = waAuto
             Index = 3
           end        
           item
-            Control = ColorsFlowPanel
+            Control = FgColor
             WrapAfter = waAuto
             Index = 4
+          end        
+          item
+            Control = bbtnSwapColors
+            WrapAfter = waAuto
+            Index = 5
+          end        
+          item
+            Control = BgColor
+            WrapAfter = waAuto
+            Index = 6
           end>
         FlowLayout = tlTop
         FlowStyle = fsLeftRightTopBottom
         TabOrder = 0
         object BitBtnNewFrame: TBitBtn
           Left = 1
-          Height = 38
+          Height = 32
           Top = 1
-          Width = 38
+          Width = 32
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -89,10 +100,10 @@ object frmMain: TfrmMain
           TabOrder = 0
         end
         object BitBtnLayers: TBitBtn
-          Left = 39
-          Height = 38
+          Left = 33
+          Height = 32
           Top = 1
-          Width = 38
+          Width = 32
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -101,11 +112,11 @@ object frmMain: TfrmMain
           TabOrder = 1
         end
         object BitBtnImportFrame: TBitBtn
-          Left = 77
-          Height = 38
+          Left = 65
+          Height = 32
           Hint = 'Import frame from image file'
           Top = 1
-          Width = 38
+          Width = 32
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -115,236 +126,206 @@ object frmMain: TfrmMain
           ShowHint = True
           TabOrder = 2
         end
-        object FlowPanel1: TFlowPanel
-          Left = 115
-          Height = 40
+        object trkbrPenSize: TTrackBar
+          Left = 97
+          Height = 37
           Top = 1
           Width = 100
-          Align = alRight
-          AutoSize = True
-          ControlList = <          
-            item
-              Control = trkbrPenSize
-              WrapAfter = waAuto
-              Index = 0
-            end>
-          FlowLayout = tlTop
-          FlowStyle = fsLeftRightTopBottom
+          Min = 1
+          OnChange = trkbrPenSizeChange
+          PageSize = 1
+          Position = 1
+          ScalePos = trRight
+          Anchors = []
           TabOrder = 3
-          object trkbrPenSize: TTrackBar
-            Left = 1
-            Height = 37
-            Top = 1
-            Width = 100
-            Min = 1
-            OnChange = trkbrPenSizeChange
-            PageSize = 1
-            Position = 1
-            ScalePos = trRight
-            Anchors = []
-            TabOrder = 0
-          end
         end
-        object ColorsFlowPanel: TPanel
-          Left = 215
-          Height = 1
+        object FgColor: TBGRAGraphicControl
+          Tag = 2
+          AnchorSideRight.Side = asrBottom
+          Left = 197
+          Height = 40
+          Hint = 'Left click to select color'#10'Right click to set transparent color'
           Top = 1
-          Width = 129
-          Align = alBottom
+          Width = 40
+          Anchors = []
+          BorderWidth = 1
+          BevelInner = bvRaised
+          BevelOuter = bvLowered
+          Color = clWhite
+          ColorOpacity = 128
+          Alignment = taCenter
+          OnMouseUp = FgColorMouseUp
+          OnPaint = FgColorPaint
+          Caption = 'FG'
+        end
+        object bbtnSwapColors: TBitBtn
+          Left = 237
+          Height = 40
+          Hint = 'Swap colors [X]'
+          Top = 1
+          Width = 40
+          Anchors = []
           AutoSize = True
-          ClientHeight = 1
-          ClientWidth = 129
+          Glyph.Data = {
+            36100000424D3610000000000000360000002800000020000000200000000100
+            2000000000000010000064000000640000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FF000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00FF000000FF000000FF009957FF009957FF009957FF009957FF009957FF0099
+            57FF009957FF009957FF009957FF000000FF000000FF000000FF000000000000
+            000000000000000000FF000000FF000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000FF000000FF0099
+            57FF009957FF009957FF009957FF009957FF009957FF009957FF009957FF0099
+            57FF009957FF009957FF009957FF009957FF009957FF009957FF000000FF0000
+            00FF000000FF009957FF009957FF000000FF0000000000000000000000000000
+            000000000000000000000000000000000000000000FF009957FF009957FF0099
+            57FF009957FF009957FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FF009957FF009957FF009957FF009957FF0099
+            57FF000000FF009957FF009957FF000000FF0000000000000000000000000000
+            0000000000000000000000000000000000FF009957FF009957FF009957FF0099
+            57FF000000FF000000FF00000000000000000000000000000000000000000000
+            0000000000000000000000000000000000FF000000FF009957FF009957FF0099
+            57FF009957FF00A860FF00A860FF000000FF0000000000000000000000000000
+            00000000000000000000000000FF009957FF009957FF009957FF000000FF0000
+            00FF000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000FF000000FF0099
+            57FF00A860FF00B769FF00A860FF000000FF0000000000000000000000000000
+            000000000000000000FF009957FF009957FF009957FF000000FF000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000FF009957FF009957FF00A8
+            60FF00B769FF00B769FF00A860FF000000FF0000000000000000000000000000
+            000000000000000000FF009957FF009957FF000000FF00000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000FF009957FF009957FF00A8
+            60FF00A860FF00A860FF00A860FF000000FF0000000000000000000000000000
+            0000000000FF008A4EFF008A4EFF000000FF0000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000FF000000FF0000
+            00FF000000FF000000FF000000FF000000FF0000000000000000000000000000
+            0000000000FF008A4EFF008A4EFF000000FF0000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000FF000000FF000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000FF000000FF0000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000FF00008AFF00008AFF000000FF00000000000000000000
+            000000000000000000FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000FF00008AFF00008AFF000000FF00000000000000000000
+            000000000000000000FF0000B7FF0000C6FF0000A8FF000099FF000099FF0000
+            99FF000000FF0000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000FF000099FF000099FF000000FF0000000000000000000000000000
+            000000000000000000FF0000C6FF0000D5FF0000A8FF000099FF000099FF0000
+            99FF000000FF0000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00FF000099FF000099FF000099FF000000FF0000000000000000000000000000
+            000000000000000000FF0000A8FF0000A8FF000099FF000099FF000000FF0000
+            00FF000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000FF000000FF0000
+            99FF000099FF000099FF000000FF000000000000000000000000000000000000
+            000000000000000000FF000099FF000099FF000099FF000099FF000099FF0000
+            99FF000000FF000000FF00000000000000000000000000000000000000000000
+            0000000000000000000000000000000000FF000000FF000099FF000099FF0000
+            99FF000099FF000000FF00000000000000000000000000000000000000000000
+            000000000000000000FF000099FF000099FF000000FF000099FF000099FF0000
+            99FF000099FF000099FF000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FF000099FF000099FF000099FF000099FF0000
+            99FF000000FF0000000000000000000000000000000000000000000000000000
+            000000000000000000FF000099FF000099FF000000FF000000FF000000FF0000
+            99FF000099FF000099FF000099FF000099FF000099FF000099FF000099FF0000
+            99FF000099FF000099FF000099FF000099FF000099FF000099FF000000FF0000
+            00FF000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000FF000000FF0000000000000000000000000000
+            00FF000000FF000000FF000099FF000099FF000099FF000099FF000099FF0000
+            99FF000099FF000099FF000099FF000000FF000000FF000000FF000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000FF000000FF000000FF000000FF000000FF0000
+            00FF000000FF000000FF000000FF000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000
+          }
+          OnClick = bbtnSwapColorsClick
+          ParentShowHint = False
+          ShowHint = True
           TabOrder = 4
-          object FgColor: TBGRAGraphicControl
-            Tag = 2
-            AnchorSideLeft.Control = ColorsFlowPanel
-            AnchorSideRight.Control = bbtnSwapColors
-            AnchorSideRight.Side = asrBottom
-            Left = 1
-            Height = 40
-            Hint = 'Left click to select color'#10'Right click to set transparent color'
-            Top = -20
-            Width = 86
-            Anchors = [akLeft, akRight]
-            BorderWidth = 1
-            BevelInner = bvRaised
-            BevelOuter = bvLowered
-            Color = clWhite
-            ColorOpacity = 128
-            Alignment = taCenter
-            OnMouseUp = FgColorMouseUp
-            OnPaint = FgColorPaint
-            Caption = 'FG'
-          end
-          object bbtnSwapColors: TBitBtn
-            Left = 41
-            Height = 46
-            Hint = 'Swap colors [X]'
-            Top = -22
-            Width = 46
-            Anchors = []
-            AutoSize = True
-            Glyph.Data = {
-              36100000424D3610000000000000360000002800000020000000200000000100
-              2000000000000010000064000000640000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000FF000000FF000000FF000000FF000000FF0000
-              00FF000000FF000000FF000000FF000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00FF000000FF000000FF009957FF009957FF009957FF009957FF009957FF0099
-              57FF009957FF009957FF009957FF000000FF000000FF000000FF000000000000
-              000000000000000000FF000000FF000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000FF000000FF0099
-              57FF009957FF009957FF009957FF009957FF009957FF009957FF009957FF0099
-              57FF009957FF009957FF009957FF009957FF009957FF009957FF000000FF0000
-              00FF000000FF009957FF009957FF000000FF0000000000000000000000000000
-              000000000000000000000000000000000000000000FF009957FF009957FF0099
-              57FF009957FF009957FF000000FF000000FF000000FF000000FF000000FF0000
-              00FF000000FF000000FF000000FF009957FF009957FF009957FF009957FF0099
-              57FF000000FF009957FF009957FF000000FF0000000000000000000000000000
-              0000000000000000000000000000000000FF009957FF009957FF009957FF0099
-              57FF000000FF000000FF00000000000000000000000000000000000000000000
-              0000000000000000000000000000000000FF000000FF009957FF009957FF0099
-              57FF009957FF00A860FF00A860FF000000FF0000000000000000000000000000
-              00000000000000000000000000FF009957FF009957FF009957FF000000FF0000
-              00FF000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000FF000000FF0099
-              57FF00A860FF00B769FF00A860FF000000FF0000000000000000000000000000
-              000000000000000000FF009957FF009957FF009957FF000000FF000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000FF009957FF009957FF00A8
-              60FF00B769FF00B769FF00A860FF000000FF0000000000000000000000000000
-              000000000000000000FF009957FF009957FF000000FF00000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000FF009957FF009957FF00A8
-              60FF00A860FF00A860FF00A860FF000000FF0000000000000000000000000000
-              0000000000FF008A4EFF008A4EFF000000FF0000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000FF000000FF0000
-              00FF000000FF000000FF000000FF000000FF0000000000000000000000000000
-              0000000000FF008A4EFF008A4EFF000000FF0000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000FF000000FF000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000FF000000FF0000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000FF00008AFF00008AFF000000FF00000000000000000000
-              000000000000000000FF000000FF000000FF000000FF000000FF000000FF0000
-              00FF000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000FF00008AFF00008AFF000000FF00000000000000000000
-              000000000000000000FF0000B7FF0000C6FF0000A8FF000099FF000099FF0000
-              99FF000000FF0000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000FF000099FF000099FF000000FF0000000000000000000000000000
-              000000000000000000FF0000C6FF0000D5FF0000A8FF000099FF000099FF0000
-              99FF000000FF0000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00FF000099FF000099FF000099FF000000FF0000000000000000000000000000
-              000000000000000000FF0000A8FF0000A8FF000099FF000099FF000000FF0000
-              00FF000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000FF000000FF0000
-              99FF000099FF000099FF000000FF000000000000000000000000000000000000
-              000000000000000000FF000099FF000099FF000099FF000099FF000099FF0000
-              99FF000000FF000000FF00000000000000000000000000000000000000000000
-              0000000000000000000000000000000000FF000000FF000099FF000099FF0000
-              99FF000099FF000000FF00000000000000000000000000000000000000000000
-              000000000000000000FF000099FF000099FF000000FF000099FF000099FF0000
-              99FF000099FF000099FF000000FF000000FF000000FF000000FF000000FF0000
-              00FF000000FF000000FF000000FF000099FF000099FF000099FF000099FF0000
-              99FF000000FF0000000000000000000000000000000000000000000000000000
-              000000000000000000FF000099FF000099FF000000FF000000FF000000FF0000
-              99FF000099FF000099FF000099FF000099FF000099FF000099FF000099FF0000
-              99FF000099FF000099FF000099FF000099FF000099FF000099FF000000FF0000
-              00FF000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000FF000000FF0000000000000000000000000000
-              00FF000000FF000000FF000099FF000099FF000099FF000099FF000099FF0000
-              99FF000099FF000099FF000099FF000000FF000000FF000000FF000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000FF000000FF000000FF000000FF000000FF0000
-              00FF000000FF000000FF000000FF000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000
-            }
-            OnClick = bbtnSwapColorsClick
-            ParentShowHint = False
-            ShowHint = True
-            TabOrder = 0
-          end
-          object BgColor: TBGRAGraphicControl
-            Tag = 1
-            Left = 87
-            Height = 40
-            Hint = 'Left click to select color'#10'Right click to set transparent color'
-            Top = -20
-            Width = 40
-            Anchors = []
-            BorderWidth = 1
-            BevelInner = bvLowered
-            Color = clWhite
-            ColorOpacity = 128
-            Alignment = taCenter
-            OnMouseUp = FgColorMouseUp
-            OnPaint = FgColorPaint
-            Caption = 'BG'
-          end
+        end
+        object BgColor: TBGRAGraphicControl
+          Tag = 1
+          Left = 277
+          Height = 40
+          Hint = 'Left click to select color'#10'Right click to set transparent color'
+          Top = 1
+          Width = 40
+          Anchors = []
+          BorderWidth = 1
+          BevelInner = bvLowered
+          Color = clWhite
+          ColorOpacity = 128
+          Alignment = taCenter
+          OnMouseUp = FgColorMouseUp
+          OnPaint = FgColorPaint
+          Caption = 'BG'
         end
       end
       object pbFrameDraw: TPaintBox
-        Left = 0
-        Height = 455
+        Left = 170
+        Height = 484
         Top = 43
-        Width = 551
+        Width = 198
         Align = alClient
         OnMouseDown = pbFrameDrawMouseDown
         OnMouseMove = pbFrameDrawMouseMove
@@ -354,51 +335,53 @@ object frmMain: TfrmMain
         OnPaint = pbFrameDrawPaint
       end
       object Splitter1: TSplitter
-        Left = 551
-        Height = 455
+        Left = 600
+        Height = 484
         Top = 43
         Width = 10
         Align = alRight
         ResizeAnchor = akRight
       end
       object pnlPalette: TPanel
-        Left = 184
-        Height = 184
-        Top = 152
-        Width = 170
-        ClientHeight = 184
-        ClientWidth = 170
+        Left = 368
+        Height = 484
+        Top = 43
+        Width = 142
+        Align = alRight
+        AutoSize = True
+        ClientHeight = 484
+        ClientWidth = 142
         TabOrder = 2
         Visible = False
         OnMouseLeave = pnlPaletteMouseLeave
-        inline FrPalette1: TFrPalette
+        object PaletteGrid: TBCGameGrid
           Left = 1
-          Height = 182
+          Height = 400
           Top = 1
-          Width = 168
-          Align = alClient
-          ClientHeight = 182
-          ClientWidth = 168
-          inherited PaletteGrid: TBCGameGrid
-            OnMouseUp = nil
-          end
+          Width = 140
+          GridWidth = 14
+          GridHeight = 40
+          BlockWidth = 10
+          BlockHeight = 10
+          OnRenderControl = PaletteGridRenderControl
+          OnMouseUp = PaletteGridMouseUp
         end
       end
       object pnlDrawTools: TPanel
-        Left = 561
-        Height = 455
+        Left = 610
+        Height = 484
         Top = 43
         Width = 32
         Align = alRight
         Alignment = taLeftJustify
         AutoSize = True
         BevelInner = bvSpace
-        ClientHeight = 455
+        ClientHeight = 484
         ClientWidth = 32
         TabOrder = 3
         object DrawToolsFlowPanel: TFlowPanel
           Left = 2
-          Height = 451
+          Height = 480
           Top = 2
           Width = 28
           Align = alRight
@@ -534,35 +517,223 @@ object frmMain: TfrmMain
           end
         end
       end
+      object pnlFrames: TPanel
+        Left = 510
+        Height = 484
+        Top = 43
+        Width = 90
+        Align = alRight
+        Caption = 'pnlFrames'
+        ClientHeight = 484
+        ClientWidth = 90
+        TabOrder = 4
+        object sbFrames: TScrollBox
+          Left = 1
+          Height = 482
+          Top = 1
+          Width = 88
+          HorzScrollBar.Page = 86
+          Align = alClient
+          ClientHeight = 466
+          ClientWidth = 86
+          TabOrder = 0
+          object lbFrames: TListBox
+            Left = 0
+            Height = 466
+            Top = 0
+            Width = 100
+            Align = alClient
+            ItemHeight = 0
+            TabOrder = 0
+            TopIndex = -1
+          end
+        end
+      end
+      object pnlLayers: TPanel
+        Left = 0
+        Height = 484
+        Top = 43
+        Width = 170
+        Align = alLeft
+        Caption = 'pnlLayers'
+        ClientHeight = 484
+        ClientWidth = 170
+        TabOrder = 5
+        object LayersGroupBox: TGroupBox
+          Left = 1
+          Height = 447
+          Top = 1
+          Width = 168
+          Align = alClient
+          Caption = 'Layers'
+          ClientHeight = 428
+          ClientWidth = 164
+          TabOrder = 0
+          object drwgrdLayers: TDrawGrid
+            Left = 0
+            Height = 428
+            Top = 0
+            Width = 164
+            Align = alClient
+            ColCount = 4
+            Columns = <            
+              item
+                Title.ImageIndex = 0
+                Title.Caption = 'Visible'
+                Width = 24
+              end            
+              item
+                Title.ImageIndex = 3
+                Title.Caption = 'Locked'
+                Width = 24
+              end            
+              item
+                Title.Caption = 'Name'
+                Width = 100
+              end            
+              item
+                Title.Caption = 'Image'
+                Width = 65
+              end>
+            ExtendedSelect = False
+            FixedCols = 0
+            RowCount = 2
+            TabOrder = 0
+            TabStop = False
+            TitleImageList = BGRAImageList24x24
+            TitleImageListWidth = 24
+            OnDblClick = drwgrdLayersDblClick
+            OnDrawCell = drwgrdLayersDrawCell
+            OnSelectCell = drwgrdLayersSelectCell
+            ColWidths = (
+              24
+              24
+              100
+              65
+            )
+          end
+        end
+        object LayersFlowPanel: TFlowPanel
+          Left = 1
+          Height = 35
+          Top = 448
+          Width = 168
+          Align = alBottom
+          AutoSize = True
+          ControlList = <          
+            item
+              Control = bbtnAddLayer
+              WrapAfter = waAuto
+              Index = 0
+            end          
+            item
+              Control = bbtnDeleteLayer
+              WrapAfter = waAuto
+              Index = 1
+            end          
+            item
+              Control = bbtnCopyLayer
+              WrapAfter = waAuto
+              Index = 2
+            end          
+            item
+              Control = bbtnMergeLayers
+              WrapAfter = waAuto
+              Index = 3
+            end>
+          FlowLayout = tlTop
+          FlowStyle = fsLeftRightTopBottom
+          TabOrder = 1
+          object bbtnAddLayer: TBitBtn
+            Left = 1
+            Height = 32
+            Hint = 'Add new layer'
+            Top = 1
+            Width = 32
+            Anchors = []
+            AutoSize = True
+            Images = ButtonsImageList
+            ImageIndex = 31
+            OnClick = bbtnAddLayerClick
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 0
+          end
+          object bbtnDeleteLayer: TBitBtn
+            Left = 33
+            Height = 32
+            Hint = 'Delete selected layer'
+            Top = 1
+            Width = 32
+            Anchors = []
+            AutoSize = True
+            Images = ButtonsImageList
+            ImageIndex = 33
+            OnClick = bbtnDeleteLayerClick
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 1
+          end
+          object bbtnCopyLayer: TBitBtn
+            Left = 65
+            Height = 32
+            Hint = 'Copy selected layer'
+            Top = 1
+            Width = 32
+            Anchors = []
+            AutoSize = True
+            Images = ButtonsImageList
+            ImageIndex = 32
+            OnClick = bbtnCopyLayerClick
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 2
+          end
+          object bbtnMergeLayers: TBitBtn
+            Left = 97
+            Height = 32
+            Hint = 'Merge with previous layer'
+            Top = 1
+            Width = 32
+            Anchors = []
+            AutoSize = True
+            Images = ButtonsImageList
+            ImageIndex = 20
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 3
+          end
+        end
+      end
     end
     object ActionsTabSheet: TTabSheet
       Caption = 'Actions'
-      ClientHeight = 498
-      ClientWidth = 593
+      ClientHeight = 527
+      ClientWidth = 642
       object ActionsButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 593
+        Width = 642
         Align = alTop
         TabOrder = 0
       end
     end
     object ProjectTabSheet: TTabSheet
       Caption = 'Project info'
-      ClientHeight = 498
-      ClientWidth = 593
+      ClientHeight = 527
+      ClientWidth = 642
       object ProjectButtonsPanel: TPanel
         Left = 0
         Height = 50
         Top = 0
-        Width = 593
+        Width = 642
         Align = alTop
         TabOrder = 0
       end
       object ProjectProperties: TValueListEditor
         Left = 0
-        Height = 448
+        Height = 477
         Top = 50
         Width = 200
         Align = alLeft
@@ -576,14 +747,14 @@ object frmMain: TfrmMain
       end
       object ScrollBox4: TScrollBox
         Left = 200
-        Height = 448
+        Height = 477
         Top = 50
-        Width = 393
+        Width = 442
         HorzScrollBar.Page = 320
         VertScrollBar.Page = 240
         Align = alClient
-        ClientHeight = 444
-        ClientWidth = 389
+        ClientHeight = 473
+        ClientWidth = 438
         TabOrder = 2
         object ProjectSheet: TBGRAImageManipulation
           AnchorSideLeft.Control = ScrollBox4
@@ -602,9 +773,9 @@ object frmMain: TfrmMain
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 18
-    Top = 528
-    Width = 603
+    Height = 21
+    Top = 562
+    Width = 648
     Panels = <    
       item
         Width = 200
@@ -696,7 +867,6 @@ object frmMain: TfrmMain
           Caption = 'Layers'
           Checked = True
           ShortCut = 8268
-          OnClick = LayersToolVisibleMenuItemClick
         end
         object FramesMenuItem: TMenuItem
           Caption = 'Frames'
@@ -1617,8 +1787,8 @@ object frmMain: TfrmMain
     DefaultExt = '.po'
     Filter = 'Interface translations|*.po; *.PO|All files|*.*'
     Options = [ofFileMustExist, ofEnableSizing, ofViewDetail]
-    Left = 160
-    Top = 39
+    Left = 168
+    Top = 88
   end
   object ColorDialog1: TColorDialog
     Color = clBlack
@@ -1646,5 +1816,23 @@ object frmMain: TfrmMain
     )
     Left = 351
     Top = 374
+  end
+  object BGRAImageList24x24: TBGRAImageList
+    Left = 240
+    Top = 149
+    Bitmap = {
+      4C7A0400000010000000100000004D0100000000000078DAED9541AE85200C45
+      DFC49123474E74E4C8059874232CA41B61216C8485B0103E3525E92795A798BC
+      114D6E4CB0072A72CBE7D383634932492E2924450088F464D13872CE52B0346E
+      F91D104F6C08212262E691DF19CE45C182982BE6B50B3E329B039875452D56CE
+      2158AFD4ED385FFB1ECF5C50D6C8FB65C5132FF6131416957541D4632E643907
+      6EFC474D4B3FE63DB418866199A6C96CDBE6AE34CF33520EE54A96C6D775B5F4
+      AEB6C6388E4039944B4C6669FC69BDC4104B75B57E33B39E7DF5248019CFBE8A
+      377C297B4E28FA11CABE5B91FFB20E54BCDFFDFF9BC87D5CEAEEF986E42D5BFA
+      EBE2BED0D64562155EDE5735FE4E9DF6E53932C53DDE124ED91FF74041992F3E
+      54954FBDE554EA514DFCBEEFF1388E663EF5D9936FAD3FF5D7B3FE56FEE1FEF5
+      F8EF0FAB9CD93BFD1B2B79E68BFFF1A5FFDD0BFFBB97FE77DDFFDDFF2DF107F5
+      8F24E3
+    }
   end
 end

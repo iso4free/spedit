@@ -10,14 +10,15 @@ object frmFrameDlg: TfrmFrameDlg
   ClientHeight = 173
   ClientWidth = 286
   ShowInTaskBar = stNever
+  LCLVersion = '2.2.4.0'
   object Panel1: TPanel
     Left = 0
-    Height = 42
-    Top = 131
+    Height = 40
+    Top = 133
     Width = 286
     Align = alBottom
     AutoSize = True
-    ClientHeight = 42
+    ClientHeight = 40
     ClientWidth = 286
     TabOrder = 0
     object BitBtnOk: TBitBtn
@@ -25,9 +26,9 @@ object frmFrameDlg: TfrmFrameDlg
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       Left = 6
-      Height = 30
+      Height = 28
       Top = 6
-      Width = 52
+      Width = 51
       AutoSize = True
       BorderSpacing.Around = 5
       Default = True
@@ -42,10 +43,10 @@ object frmFrameDlg: TfrmFrameDlg
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 63
+      Left = 62
       Height = 30
-      Top = 6
-      Width = 97
+      Top = 5
+      Width = 107
       AutoSize = True
       Cancel = True
       DefaultCaption = True
@@ -56,12 +57,12 @@ object frmFrameDlg: TfrmFrameDlg
   end
   object Panel2: TPanel
     Left = 0
-    Height = 131
+    Height = 133
     Top = 0
     Width = 286
     Align = alClient
     AutoSize = True
-    ClientHeight = 131
+    ClientHeight = 133
     ClientWidth = 286
     TabOrder = 1
     object lblFrameName: TLabel
@@ -69,9 +70,9 @@ object frmFrameDlg: TfrmFrameDlg
       AnchorSideTop.Control = edtFrameName
       AnchorSideTop.Side = asrCenter
       Left = 6
-      Height = 16
-      Top = 7
-      Width = 73
+      Height = 17
+      Top = 6
+      Width = 82
       BorderSpacing.Around = 5
       Caption = 'Frame name'
       Color = clDefault
@@ -81,9 +82,9 @@ object frmFrameDlg: TfrmFrameDlg
     object edtFrameName: TEdit
       AnchorSideLeft.Control = CheckBox1
       AnchorSideLeft.Side = asrBottom
-      Left = 120
-      Height = 28
-      Top = 1
+      Left = 127
+      Height = 25
+      Top = 2
       Width = 165
       TabOrder = 0
       Text = 'Frame'
@@ -93,9 +94,9 @@ object frmFrameDlg: TfrmFrameDlg
       AnchorSideTop.Control = spnedtWidth
       AnchorSideTop.Side = asrCenter
       Left = 6
-      Height = 16
+      Height = 17
       Top = 38
-      Width = 74
+      Width = 81
       Caption = 'Frame width'
       Color = clDefault
       ParentColor = False
@@ -103,9 +104,9 @@ object frmFrameDlg: TfrmFrameDlg
     end
     object spnedtWidth: TSpinEdit
       AnchorSideLeft.Control = edtFrameName
-      Left = 120
-      Height = 28
-      Top = 32
+      Left = 127
+      Height = 27
+      Top = 33
       Width = 93
       MaxValue = 1024
       MinValue = 1
@@ -117,9 +118,9 @@ object frmFrameDlg: TfrmFrameDlg
       AnchorSideTop.Control = spnedtHeight
       AnchorSideTop.Side = asrCenter
       Left = 6
-      Height = 16
+      Height = 17
       Top = 70
-      Width = 79
+      Width = 86
       Caption = 'Frame height'
       Color = clDefault
       ParentColor = False
@@ -127,9 +128,9 @@ object frmFrameDlg: TfrmFrameDlg
     end
     object spnedtHeight: TSpinEdit
       AnchorSideLeft.Control = edtFrameName
-      Left = 120
-      Height = 28
-      Top = 64
+      Left = 127
+      Height = 27
+      Top = 65
       Width = 93
       MaxValue = 1024
       MinValue = 1
@@ -139,9 +140,9 @@ object frmFrameDlg: TfrmFrameDlg
     object CheckBox1: TCheckBox
       AnchorSideLeft.Control = lblFrameName
       Left = 6
-      Height = 23
-      Top = 107
-      Width = 114
+      Height = 22
+      Top = 108
+      Width = 121
       Caption = 'Copy all layers'
       TabOrder = 3
     end

@@ -39,7 +39,6 @@ type
   TfrmFrameDlg = class(TForm)
   private
     FisOk: Boolean;
-    procedure SetisOk(AValue: Boolean);
   published
     BitBtnOk: TBitBtn;
     BitBtnCancel: TBitBtn;
@@ -53,7 +52,7 @@ type
     spnedtHeight: TSpinEdit;
     spnedtWidth: TSpinEdit;
     procedure BitBtnOkClick(Sender: TObject);
-    property isOk : Boolean read FisOk write SetisOk;
+    property isOk : Boolean read FisOk write FisOk;
   end;
 
 var
@@ -63,12 +62,6 @@ implementation
 {$R *.lfm}
 
 { TfrmFrameDlg }
-
-procedure TfrmFrameDlg.SetisOk(AValue: Boolean);
-begin
-  if FisOk=AValue then Exit;
-  FisOk:=AValue;
-end;
 
 procedure TfrmFrameDlg.BitBtnOkClick(Sender: TObject);
 begin

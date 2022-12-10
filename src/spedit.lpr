@@ -32,8 +32,8 @@ uses
   {$IFDEF DEBUG}
   LazLogger,
   {$ENDIF}
-  Forms, Interfaces, sysutils, uglobals, umain, uframes, ulayers,
-  uframedlg, upreview, uabout, fpalette;
+  Forms, Interfaces, sysutils, uglobals, umain,
+  uframedlg, upreview, uabout, Controls;
 
 {$R *.res}
 
@@ -44,13 +44,14 @@ begin
   {$ENDIF}
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
+  Application.DoubleBuffered:=adbTrue;
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TfrmFrames, frmFrames);
-  Application.CreateForm(TfrmLayers, frmLayers);
+  frmMain.FormStyle:=fsNormal;
   Application.CreateForm(TfrmFrameDlg, frmFrameDlg);
+  frmFrameDlg.FormStyle:=fsNormal;
   Application.CreateForm(TFrmPreview, FrmPreview);
-  //frmMain.HideWindows;
+  FrmPreview.FormStyle:=fsNormal;
   Application.Run;
 end.
 

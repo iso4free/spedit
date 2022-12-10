@@ -36,53 +36,6 @@ msgstr "Altura do quadro"
 msgid "Frame name"
 msgstr "Nome do quadro"
 
-#: tfrmframes.caption
-msgctxt "tfrmframes.caption"
-msgid "Frames"
-msgstr "Quadros"
-
-#: tfrmlayers.bbtnaddlayer.hint
-msgid "Add new layer"
-msgstr "Adicionar uma nova camada"
-
-#: tfrmlayers.bbtncopylayer.hint
-msgid "Copy selected layer"
-msgstr "Copiar a camada selecionada"
-
-#: tfrmlayers.bbtndeletelayer.hint
-msgid "Delete selected layer"
-msgstr "Deletar a camada selecionada"
-
-#: tfrmlayers.bbtnmergelayers.hint
-msgid "Merge with previous layer"
-msgstr "Mesclar com a camada inferior"
-
-#: tfrmlayers.caption
-msgctxt "tfrmlayers.caption"
-msgid "Layers"
-msgstr "Camadas"
-
-#: tfrmlayers.drwgrdlayers.columns[0].title.caption
-msgid "Visible"
-msgstr "Visível"
-
-#: tfrmlayers.drwgrdlayers.columns[1].title.caption
-msgid "Locked"
-msgstr "Bloqueado"
-
-#: tfrmlayers.drwgrdlayers.columns[2].title.caption
-msgid "Name"
-msgstr "Nome"
-
-#: tfrmlayers.drwgrdlayers.columns[3].title.caption
-msgid "Image"
-msgstr "Imagem"
-
-#: tfrmlayers.layersgroupbox.caption
-msgctxt "tfrmlayers.layersgroupbox.caption"
-msgid "Layers"
-msgstr "Camadas"
-
 #: tfrmmain.aboutmenuitem.caption
 msgid "About"
 msgstr "Sobre"
@@ -90,6 +43,30 @@ msgstr "Sobre"
 #: tfrmmain.actionstabsheet.caption
 msgid "Actions"
 msgstr "Ações"
+
+#: tfrmmain.bbtnaddlayer.hint
+#, fuzzy
+msgctxt "tfrmmain.bbtnaddlayer.hint"
+msgid "Add new layer"
+msgstr "Adicionar uma nova camada"
+
+#: tfrmmain.bbtncopylayer.hint
+#, fuzzy
+msgctxt "tfrmmain.bbtncopylayer.hint"
+msgid "Copy selected layer"
+msgstr "Copiar a camada selecionada"
+
+#: tfrmmain.bbtndeletelayer.hint
+#, fuzzy
+msgctxt "tfrmmain.bbtndeletelayer.hint"
+msgid "Delete selected layer"
+msgstr "Deletar a camada selecionada"
+
+#: tfrmmain.bbtnmergelayers.hint
+#, fuzzy
+msgctxt "tfrmmain.bbtnmergelayers.hint"
+msgid "Merge with previous layer"
+msgstr "Mesclar com a camada inferior"
 
 #: tfrmmain.bbtnswapcolors.hint
 msgctxt "tfrmmain.bbtnswapcolors.hint"
@@ -115,6 +92,30 @@ msgstr "Importar quadro de um arquivo de imagem"
 #: tfrmmain.caption
 msgid "Sprite Editor"
 msgstr "Editor de Sprites"
+
+#: tfrmmain.drwgrdlayers.columns[0].title.caption
+#, fuzzy
+msgctxt "tfrmmain.drwgrdlayers.columns[0].title.caption"
+msgid "Visible"
+msgstr "Visível"
+
+#: tfrmmain.drwgrdlayers.columns[1].title.caption
+#, fuzzy
+msgctxt "tfrmmain.drwgrdlayers.columns[1].title.caption"
+msgid "Locked"
+msgstr "Bloqueado"
+
+#: tfrmmain.drwgrdlayers.columns[2].title.caption
+#, fuzzy
+msgctxt "tfrmmain.drwgrdlayers.columns[2].title.caption"
+msgid "Name"
+msgstr "Nome"
+
+#: tfrmmain.drwgrdlayers.columns[3].title.caption
+#, fuzzy
+msgctxt "tfrmmain.drwgrdlayers.columns[3].title.caption"
+msgid "Image"
+msgstr "Imagem"
 
 #: tfrmmain.editmenuitem.caption
 msgid "Edit"
@@ -185,6 +186,12 @@ msgstr "Idioma"
 msgid "Change interface language"
 msgstr "Muda o idioma de interface"
 
+#: tfrmmain.layersgroupbox.caption
+#, fuzzy
+msgctxt "tfrmmain.layersgroupbox.caption"
+msgid "Layers"
+msgstr "Camadas"
+
 #: tfrmmain.layerstoolvisiblemenuitem.caption
 msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
 msgid "Layers"
@@ -243,6 +250,14 @@ msgstr "Desfazer"
 #: tfrmmain.painttoolpanelvisiblemenuitem.caption
 msgid "Drawing tools"
 msgstr "Ferramentas de desenho"
+
+#: tfrmmain.pnlframes.caption
+msgid "pnlFrames"
+msgstr ""
+
+#: tfrmmain.pnllayers.caption
+msgid "pnlLayers"
+msgstr ""
 
 #: tfrmmain.previewmenuitem.caption
 msgctxt "tfrmmain.previewmenuitem.caption"
