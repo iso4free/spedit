@@ -71,19 +71,20 @@ msgstr "Mesclar com a camada inferior"
 #: tfrmmain.bbtnswapcolors.hint
 msgctxt "tfrmmain.bbtnswapcolors.hint"
 msgid "Swap colors [X]"
-msgstr ""
+msgstr "Trocar cores [X]"
 
 #: tfrmmain.bgcolor.caption
 msgctxt "tfrmmain.bgcolor.caption"
 msgid "BG"
-msgstr ""
+msgstr "PF"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
 msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
+msgstr "Clique esquedo para selecionar a cor\n"
+"Clique direito para deixar a cor transparente"
 
 #: tfrmmain.bitbtnimportframe.hint
 msgid "Import frame from image file"
@@ -124,7 +125,7 @@ msgstr "Editar"
 #: tfrmmain.fgcolor.caption
 msgctxt "tfrmmain.fgcolor.caption"
 msgid "FG"
-msgstr ""
+msgstr "PP"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
@@ -253,11 +254,11 @@ msgstr "Ferramentas de desenho"
 
 #: tfrmmain.pnlframes.caption
 msgid "pnlFrames"
-msgstr ""
+msgstr "pnlQuadros"
 
 #: tfrmmain.pnllayers.caption
 msgid "pnlLayers"
-msgstr ""
+msgstr "pnlCamadas"
 
 #: tfrmmain.previewmenuitem.caption
 msgctxt "tfrmmain.previewmenuitem.caption"
@@ -280,7 +281,7 @@ msgstr "Salvar Biblioteca de Sprites"
 #: tfrmmain.sbline.hint
 msgctxt "tfrmmain.sbline.hint"
 msgid "Line tool"
-msgstr ""
+msgstr "Ferramenta linha"
 
 #: tfrmmain.selectspritelibmenuitem.caption
 msgid "Select Sprite Library"
