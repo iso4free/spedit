@@ -6,9 +6,9 @@ interface
 
 uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} uglobals,
-  Classes, SysUtils, Forms, Controls,
-  Graphics, Dialogs, Menus, ComCtrls, ExtCtrls, Buttons, ActnList, Grids,
-  JSONPropStorage, ExtDlgs, StdCtrls, StdActns,  Types,
+  Classes, SysUtils, Forms, Controls, Graphics, Types,
+  Dialogs, Menus, ComCtrls, ExtCtrls, Buttons, ActnList, Grids,
+  JSONPropStorage, ExtDlgs, StdCtrls, StdActns, LCLType,
   BGRAImageList, BGRAGraphicControl, BCGameGrid, BGRABitmapTypes, BGRABitmap;
 
 type
@@ -172,6 +172,7 @@ type
     procedure FgColorPaint(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FramePreviewClick(Sender: TObject);
     procedure FramePreviewPaint(Sender: TObject);
     procedure miAboutClick(Sender: TObject);
@@ -202,9 +203,33 @@ type
 var
   frmMain: TfrmMain;
 
+procedure GetPaletteFromImage(aImg : TFilename);
+
 implementation
 
 uses udraw, uabout, uframedlg, ureferense;
+
+procedure GetPaletteFromImage(aImg: TFilename);
+label stop;
+var
+  j,i, h, w: Integer;
+  img: TBGRABitmap;
+begin
+     img:=TBGRABitmap.Create(aImg);
+     w:=img.Width-1;
+     h:=img.Height-1;
+     Palette.Clear;
+     for i :=0 to w do
+       for j:=0 to h do begin
+         if Palette.AddColor(FPColorToBGRA(img.Colors[i,j]))=-1 then begin
+          ShowMessage(rsImageHasTooM);
+          Palette.Reset;
+          goto stop;
+         end;
+       end;
+  stop:
+     FreeAndNil(img);
+end;
 
 {$R *.lfm}
 
@@ -220,6 +245,8 @@ begin
   dy:=0;
   FramePreview.Width:=FrameGrid.FrameWidth;
   FramePreview.Height:=FrameGrid.FrameHeight;
+  GetPaletteFromImage(OpenPictureDialog1.FileName);
+  PaletteGrid.RenderAndDrawControl;
  end;
 end;
 
@@ -325,25 +352,9 @@ end;
 
 procedure TfrmMain.actPaletteImportExecute(Sender: TObject);
 label stop;
-var
-    img : TBGRABitmap;
-    w,h , i, j: Integer;
 begin
   if OpenPictureDialog1.Execute then begin
-   img:=TBGRABitmap.Create(OpenPictureDialog1.FileName);
-   w:=img.Width-1;
-   h:=img.Height-1;
-   Palette.Clear;
-   for i :=0 to w do
-     for j:=0 to h do begin
-       if Palette.AddColor(FPColorToBGRA(img.Colors[i,j]))=-1 then begin
-        ShowMessage(rsImageHasTooM);
-        Palette.Reset;
-        goto stop;
-       end;
-     end;
-stop:
-   FreeAndNil(img);
+   GetPaletteFromImage(OpenPictureDialog1.FileName);
   PaletteGrid.RenderAndDrawControl;
   end;
 end;
@@ -615,6 +626,47 @@ begin
      JSONPropStorage1.Save;
      FreeAndNil(DrawTool);
      if Assigned(frmAbout) then FreeAndNil(frmAbout);
+end;
+
+procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+ if not Assigned(FrameGrid) then Exit;
+  case Key of
+VK_LEFT: begin
+    if ssShift in Shift then begin
+   FrameGrid.Offset.Add(Point(-10,0));
+    end
+    else if Shift=[] then begin
+     FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X-1;
+    end;
+  end;
+VK_RIGHT: begin
+    if ssShift in Shift then begin
+   FrameGrid.Offset.Add(Point(10,0));
+    end
+    else if Shift=[] then begin
+     FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X+1;
+    end;
+  end;
+VK_UP: begin
+    if ssShift in Shift then begin
+   FrameGrid.Offset.Add(Point(0,-10));
+    end
+    else if Shift=[] then begin
+     FrameGrid.CellCursor.Y:=FrameGrid.CellCursor.Y-1;
+    end;
+  end;
+VK_DOWN: begin
+    if ssShift in Shift then begin
+   FrameGrid.Offset.Add(Point(0,10));
+    end
+    else if Shift=[] then begin
+     FrameGrid.CellCursor.y:=FrameGrid.CellCursor.y+1;
+    end;
+  end;
+  end;
+  Invalidate;
 end;
 
 procedure TfrmMain.FramePreviewClick(Sender: TObject);

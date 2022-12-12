@@ -51,12 +51,8 @@ msgstr ""
 msgid "&Exit"
 msgstr ""
 
-#: tfrmmain.actexit.hint
-msgid "Вихід"
-msgstr ""
-
 #: tfrmmain.actframestoggle.caption
-msgid "actFramesToggle"
+msgid "Toggle frames"
 msgstr ""
 
 #: tfrmmain.actlanguageselect.caption
@@ -100,7 +96,7 @@ msgid "Save palette to file"
 msgstr ""
 
 #: tfrmmain.actpalettetoggle.caption
-msgid "actPaletteToggle"
+msgid "Toggle palette"
 msgstr ""
 
 #: tfrmmain.actredo.caption
@@ -115,10 +111,6 @@ msgstr ""
 
 #: tfrmmain.actundo.caption
 msgid "&Undo"
-msgstr ""
-
-#: tfrmmain.actundo.hint
-msgid "Повернути"
 msgstr ""
 
 #: tfrmmain.actzoomin.caption
@@ -270,6 +262,10 @@ msgctxt "tfrmmain.mifilesaveproject.caption"
 msgid "Save Sprite Project"
 msgstr "Salvar Projeto de Sprites"
 
+#: tfrmmain.miframes.caption
+msgid "Frames"
+msgstr ""
+
 #: tfrmmain.mihelp.caption
 #, fuzzy
 msgctxt "tfrmmain.mihelp.caption"
@@ -297,6 +293,11 @@ msgstr ""
 msgctxt "tfrmmain.milayers.caption"
 msgid "Layers"
 msgstr "Camadas"
+
+#: tfrmmain.milayerspanel.caption
+msgctxt "tfrmmain.milayerspanel.caption"
+msgid "Layers"
+msgstr ""
 
 #: tfrmmain.minewlibrary.caption
 #, fuzzy
@@ -363,14 +364,6 @@ msgstr "Painéis de Ferramentas"
 msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr "Visualizar"
-
-#: tfrmmain.pnlframes.caption
-msgid "pnlFrames"
-msgstr "pnlQuadros"
-
-#: tfrmmain.pnlpalette.caption
-msgid "pnlPalette"
-msgstr ""
 
 #: tfrmmain.sbline.hint
 msgctxt "tfrmmain.sbline.hint"

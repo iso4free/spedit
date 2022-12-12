@@ -1,16 +1,21 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: spedit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2022-12-12 20:44+0200\n"
+"Last-Translator: \n"
+"Language-Team: Ukrainian\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: spedit\n"
 "X-Crowdin-Project-ID: 548623\n"
 "X-Crowdin-Language: uk\n"
 "X-Crowdin-File: spedit.pot\n"
 "X-Crowdin-File-ID: 1\n"
-"Project-Id-Version: spedit\n"
-"Language-Team: Ukrainian\n"
-"Language: uk_UA\n"
-"PO-Revision-Date: 2022-12-12 13:40\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: tfrmabout.label1.caption
 msgid "SPEdit"
@@ -21,9 +26,11 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Вільний і відкритий редактор спрайтів V.4.0"
 
 #: tfrmabout.label3.caption
-msgid "Created by (c) Vadim Vitomsky, 2000-2022\n"
+msgid ""
+"Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos (translation to pt-br, Mascot)"
-msgstr "Створено (c) Вадимом Вітомським, 2000-2022\n"
+msgstr ""
+"Створено (c) Вадимом Вітомським, 2000-2022\n"
 "Залучений Едді Маттос (переклад до pt-br, Талісман)"
 
 #: tfrmabout.showsplashcheckbox.caption
@@ -51,13 +58,9 @@ msgstr "Видалити шар"
 msgid "&Exit"
 msgstr "&Вихід"
 
-#: tfrmmain.actexit.hint
-msgid "Вихід"
-msgstr "Вихід"
-
 #: tfrmmain.actframestoggle.caption
-msgid "actFramesToggle"
-msgstr "Переключити фрейми"
+msgid "Toggle frames"
+msgstr "Показати/приховати фрейми"
 
 #: tfrmmain.actlanguageselect.caption
 msgctxt "tfrmmain.actlanguageselect.caption"
@@ -70,7 +73,7 @@ msgstr "Показати Шари"
 
 #: tfrmmain.actmergelayers.caption
 msgid "Merge layers"
-msgstr "Об'єднання шарів"
+msgstr "Об'єднати з попереднім шаром"
 
 #: tfrmmain.actnewframe.caption
 msgctxt "tfrmmain.actnewframe.caption"
@@ -96,8 +99,8 @@ msgid "Save palette to file"
 msgstr "Зберегти палітру в файл"
 
 #: tfrmmain.actpalettetoggle.caption
-msgid "actPaletteToggle"
-msgstr "Переключити палітру"
+msgid "Toggle palette"
+msgstr "Показати/приховати палітру"
 
 #: tfrmmain.actredo.caption
 msgctxt "tfrmmain.actredo.caption"
@@ -111,10 +114,6 @@ msgstr "Повний екран"
 #: tfrmmain.actundo.caption
 msgid "&Undo"
 msgstr "Скасувати (&U)"
-
-#: tfrmmain.actundo.hint
-msgid "Повернути"
-msgstr ""
 
 #: tfrmmain.actzoomin.caption
 msgid "Zoom ++"
@@ -166,9 +165,11 @@ msgstr "ФК"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
-msgid "Left click to select color\n"
+msgid ""
+"Left click to select color\n"
 "Right click to set transparent color"
-msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr ""
+"Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.caption
@@ -202,9 +203,11 @@ msgstr "ПК"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
-msgid "Left click to select color\n"
+msgid ""
+"Left click to select color\n"
 "Right click to set transparent color"
-msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr ""
+"Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.framepreview.hint
@@ -247,6 +250,10 @@ msgctxt "tfrmmain.mifilesaveproject.caption"
 msgid "Save Sprite Project"
 msgstr "Зберегти проєкт спрайтів"
 
+#: tfrmmain.miframes.caption
+msgid "Frames"
+msgstr "Фрейми"
+
 #: tfrmmain.mihelp.caption
 msgctxt "tfrmmain.mihelp.caption"
 msgid "Help"
@@ -259,189 +266,189 @@ msgstr "Імпорт таблиці спрайтів"
 
 #: tfrmmain.miimportspritesheet.hint
 msgctxt "tfrmmain.miimportspritesheet.hint"
-msgid "You can import image or spritesheet file\n"
+msgid ""
+"You can import image or spritesheet file\n"
 "and add it to the library"
 msgstr ""
+"Імпортувати зображення або файл таблиці спрайтів\n"
+"і додати його в бібліотеку"
 
 #: tfrmmain.milayers.caption
 msgctxt "tfrmmain.milayers.caption"
 msgid "Layers"
 msgstr "Шари"
 
+#: tfrmmain.milayerspanel.caption
+msgctxt "tfrmmain.milayerspanel.caption"
+msgid "Layers"
+msgstr "Шари"
+
 #: tfrmmain.minewlibrary.caption
 msgctxt "tfrmmain.minewlibrary.caption"
 msgid "New Sprite Library"
-msgstr ""
+msgstr "Нова бібліотека спрайтів"
 
 #: tfrmmain.mipalette.caption
 msgctxt "tfrmmain.mipalette.caption"
 msgid "Palette"
-msgstr ""
+msgstr "Палітра"
 
 #: tfrmmain.mipreview.caption
 msgctxt "tfrmmain.mipreview.caption"
 msgid "Preview"
-msgstr ""
+msgstr "Попередній перегляд"
 
 #: tfrmmain.mireferense.caption
 msgctxt "tfrmmain.mireferense.caption"
 msgid "Referense"
-msgstr ""
+msgstr "Референс"
 
 #: tfrmmain.misavelibrary.caption
 msgctxt "tfrmmain.misavelibrary.caption"
 msgid "Save Sprite Library"
-msgstr ""
+msgstr "Зберегти бібліотеку спрайтів"
 
 #: tfrmmain.misaveprojectas.caption
 msgctxt "tfrmmain.misaveprojectas.caption"
 msgid "Save Sprite Project As..."
-msgstr ""
+msgstr "Зберегти проєкт спрайтів як..."
 
 #: tfrmmain.miselectlibrary.caption
 msgctxt "tfrmmain.miselectlibrary.caption"
 msgid "Select Sprite Library"
-msgstr ""
+msgstr "Обрати бібліотеку спрайтів"
 
 #: tfrmmain.misettings.caption
 msgctxt "tfrmmain.misettings.caption"
 msgid "Settings"
-msgstr ""
+msgstr "Установки"
 
 #: tfrmmain.misprite.caption
 msgctxt "tfrmmain.misprite.caption"
 msgid "Sprite"
-msgstr ""
+msgstr "Спрайт"
 
 #: tfrmmain.mitioolpanels.caption
 msgctxt "tfrmmain.mitioolpanels.caption"
 msgid "Tool panels"
-msgstr ""
+msgstr "Панелі інструментів"
 
 #: tfrmmain.miview.caption
 msgctxt "tfrmmain.miview.caption"
 msgid "View"
-msgstr ""
-
-#: tfrmmain.pnlframes.caption
-msgid "pnlFrames"
-msgstr ""
-
-#: tfrmmain.pnlpalette.caption
-msgid "pnlPalette"
-msgstr ""
+msgstr "Вид"
 
 #: tfrmmain.sbline.hint
 msgctxt "tfrmmain.sbline.hint"
 msgid "Line tool"
-msgstr ""
+msgstr "Інструмент Лінія"
 
 #: uglobals.rsactivetool
 msgid "Active tool: "
-msgstr ""
+msgstr "Ативний інструмент: "
 
 #: uglobals.rsbg
 msgid " / BG: "
-msgstr ""
+msgstr "/ ФК: "
 
 #: uglobals.rscircle
 msgid "Circle"
-msgstr ""
+msgstr "Кільце"
 
 #: uglobals.rscolors
 msgid "Colors: "
-msgstr ""
+msgstr "Кольори:"
 
 #: uglobals.rscopyof
 msgid "Copy of "
-msgstr ""
+msgstr "Копія "
 
 #: uglobals.rseraser
 msgid "Eraser"
-msgstr ""
+msgstr "Витирачка"
 
 #: uglobals.rsfg
 msgid "FG: "
-msgstr ""
+msgstr "ПК: "
 
 #: uglobals.rsfilledrectan
 msgid "Filled rectangle"
-msgstr ""
+msgstr "Заповнений прямокутник"
 
 #: uglobals.rsgenerictool
 msgid "Generic tool"
-msgstr ""
+msgstr "Базовий інструмент"
 
 #: uglobals.rshasnonintege
 msgid " has non-integer value!"
-msgstr ""
+msgstr " має не цілочисельне значення!"
 
 #: uglobals.rsimagehastoom
 msgid "Image has too many colors!"
-msgstr ""
+msgstr "Зображення має надто багато кольорів!"
 
 #: uglobals.rsinputnewlaye
 msgid "Input new layer name:"
-msgstr ""
+msgstr "Введіть назву нового шару:"
 
 #: uglobals.rslayername
 msgid "Layer name"
-msgstr ""
+msgstr "Назва шару"
 
 #: uglobals.rslayersislock
 #, object-pascal-format
 msgid "Layer %s is locked for changes!!"
-msgstr ""
+msgstr "Шар %s заблокований для змін!"
 
 #: uglobals.rsline
 msgid "Line"
-msgstr ""
+msgstr "Лінія"
 
 #: uglobals.rspalettewillb
 msgid "Palette will be resetted to default colors! Are You shure?"
-msgstr ""
+msgstr "Палітру буде перестворено з кольорами по замовчуванню! Ви впевнені?"
 
 #: uglobals.rspen
 msgid "Pen"
-msgstr ""
+msgstr "Олівець"
 
 #: uglobals.rspipette
 msgid "Pipette"
-msgstr ""
+msgstr "Піпетка"
 
 #: uglobals.rspleaseinputn
 msgid "Please input new library name"
-msgstr ""
+msgstr "Будь ласка введіть назву нової бібліотеки"
 
 #: uglobals.rsrectangle
 msgid "Rectangle"
-msgstr ""
+msgstr "Прямокутник"
 
 #: uglobals.rssorry
 msgid "Sorry, will be implemented soon!"
-msgstr ""
+msgstr "Вибачте, буде реалізовано пізніше!"
 
 #: uglobals.rsthislayercan
 msgid "This layer can't be renamed!"
-msgstr ""
+msgstr "Цей шар не можна переіменувати!"
 
 #: uglobals.rsthislayercan2
 msgid "This layer can't be deleted!"
-msgstr ""
+msgstr "Цей шар не можна видалити!"
 
 #: uglobals.rsthistoolwill
 msgid "This tool will be realised soon, sorry"
-msgstr ""
+msgstr "Вибачте, цей інструмент буде реалізовано пізніше!"
 
 #: uglobals.rswarning
 msgid "Warning!"
-msgstr ""
+msgstr "Попередження!"
 
 #: uglobals.rsyoumustoverr
 msgid "You must override MouseUp() method! Class name: "
-msgstr ""
+msgstr "Вам потрібно переназначити метод MouseUp()! Назва класу: "
 
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
-msgstr ""
+msgstr "Вам потрібно переназначити метод MouseMove() !Назва класу: "
 

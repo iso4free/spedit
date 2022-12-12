@@ -28,6 +28,10 @@ WORK PROGRESS
 Still development, new features will be added when i have enought time and motivation.
 You can sponsor me throught https://www.buymeacoffee.com/iso4free if You wanna get some features done faster.
 
+You can also join the project discussion in [Telegram](https://t.me/+UrD_O1LO8MNlOTEy)
+
+![Telegram](/doc/QR.png)
+
 **Since our country is currently at war and Russia is destroying our critical infrastructure facilities, due to long blackouts I do not have the opportunity to devote enough time to development. Help stop the aggressor!**
 
 LOCALIZATION
@@ -40,7 +44,7 @@ If you want to see SPEdit localized to your language, you can contribute to the 
 
 SHORT DOCUMENTATION
 ===================
-For now, use arrow keys for moving on-grid cursor, Space and Enter keys to draw use selected colors (primary and secondary), Del key to clear pixel (DOS version style). Or just use the mouse like in any image editor.
+~~For now, use arrow keys for moving on-grid cursor, Space and Enter keys to draw use selected colors (primary and secondary), Del key to clear pixel (DOS version style).~~ Just use the mouse like in any image editor.
 
 In Tools window select primary and secondary color, select tool for mouse drawing and change pen size. Pencil, Line, Rectangle, Filled Rectangle, Circle, Eraser and Pipette are currently available for drawing.
 
@@ -64,15 +68,13 @@ Hold Alt and use mouse scroll to change background checkers size.
 
 Hold mouse scroll to drag drawable area.
 
-For show/hide preview window press F7 or check menu 'View>Tool panels>Preview'
-
 Click to 'Preview' image for export in PNG file format.
 
 For show referense image check menu 'View>Tool panels>Referense'.
 
 Click to 'Referense' window to open any image used as reference.
 
-You can add and remove layers in the layer window, the active layer name is highlighted in red. It is also possible to toggle the visibility of a layer by clicking on the eye icon opposite the layer name. The icon with a lock allows you to lock a layer from changes (will be used when sharing layers between different frames).
+You can add, copy and remove layers in the layer panel, the active layer name is highlighted in red. It is also possible to toggle the visibility of a layer by clicking on the eye icon opposite the layer name. The icon with a lock allows you to lock a layer from changes (will be used when sharing layers between different frames). Double-click the layer name with the left mouse button to change the layer name.
 
 THE FUTURE
 ==========

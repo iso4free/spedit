@@ -141,3 +141,11 @@ DEV.LOG
 - [*] Now shows layers belongs to current frame only
 - [+] Added Circle tool 
 - [+] Last two button images was made with SPedit!
+
+12.12.2022
+=
+- [*] Completly redesigned UI, a lot of code refactored (few days work between blackouts)
+- [*] Changed SPEDit's Mascot (program icon and animation in 'About' screen) - thanks to @EddieMattos
+- [+] Added Fullscreen mode
+- [!] Fixed some flickering and freeze when modal windows shown
+- [-] Cutted oldstyle DOS mode drawing with keys (very awkward way)

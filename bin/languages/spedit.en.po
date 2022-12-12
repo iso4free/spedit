@@ -51,12 +51,8 @@ msgstr ""
 msgid "&Exit"
 msgstr ""
 
-#: tfrmmain.actexit.hint
-msgid "Вихід"
-msgstr ""
-
 #: tfrmmain.actframestoggle.caption
-msgid "actFramesToggle"
+msgid "Toggle frames"
 msgstr ""
 
 #: tfrmmain.actlanguageselect.caption
@@ -96,7 +92,7 @@ msgid "Save palette to file"
 msgstr ""
 
 #: tfrmmain.actpalettetoggle.caption
-msgid "actPaletteToggle"
+msgid "Toggle palette"
 msgstr ""
 
 #: tfrmmain.actredo.caption
@@ -110,10 +106,6 @@ msgstr ""
 
 #: tfrmmain.actundo.caption
 msgid "&Undo"
-msgstr ""
-
-#: tfrmmain.actundo.hint
-msgid "Повернути"
 msgstr ""
 
 #: tfrmmain.actzoomin.caption
@@ -247,6 +239,10 @@ msgctxt "tfrmmain.mifilesaveproject.caption"
 msgid "Save Sprite Project"
 msgstr ""
 
+#: tfrmmain.miframes.caption
+msgid "Frames"
+msgstr ""
+
 #: tfrmmain.mihelp.caption
 msgctxt "tfrmmain.mihelp.caption"
 msgid "Help"
@@ -266,6 +262,11 @@ msgstr ""
 
 #: tfrmmain.milayers.caption
 msgctxt "tfrmmain.milayers.caption"
+msgid "Layers"
+msgstr ""
+
+#: tfrmmain.milayerspanel.caption
+msgctxt "tfrmmain.milayerspanel.caption"
 msgid "Layers"
 msgstr ""
 
@@ -322,14 +323,6 @@ msgstr ""
 #: tfrmmain.miview.caption
 msgctxt "tfrmmain.miview.caption"
 msgid "View"
-msgstr ""
-
-#: tfrmmain.pnlframes.caption
-msgid "pnlFrames"
-msgstr ""
-
-#: tfrmmain.pnlpalette.caption
-msgid "pnlPalette"
 msgstr ""
 
 #: tfrmmain.sbline.hint
