@@ -1,39 +1,22 @@
-{***************************************************************************}
-{* @@@@@@  @@@@@@@  @@@@@@@@ @@@@@@@  @@@ @@@@@@@   @@@  @@@         @@@   *}
-{*@@@@@@@  @@@@@@@@ @@@@@@@@ @@@@@@@@ @@@ @@@@@@@   @@@  @@@        @@@@   *}
-{*!@@      @@!  @@@ @@!      @@!  @@@ @@!   @@!     @@!  @@@       @@!@!   *}
-{*!@!      !@!  @!@ !@!      !@!  @!@ !@!   !@!     !@!  @!@      !@!!@!   *}
-{*!!@@!!   @!@@!@!  @!!!:!   @!@  !@! !!@   @!!     @!@  !@!     @!! @!!   *}
-{* !!@!!!  !!@!!!   !!!!!:   !@!  !!! !!!   !!!     !@!  !!!    !!!  !@!   *}
-{*     !:! !!:      !!:      !!:  !!! !!:   !!:     :!:  !!:    :!!:!:!!:  *}
-{*    !:!  :!:      :!:      :!:  !:! :!:   :!:      ::!!:! :!: !:::!!:::  *}
-{*:::: ::   ::       :: ::::  :::: ::  ::    ::       ::::  :::      :::   *}
-{*:: : :    :       : :: ::  :: :  :  :      :         :    :::      :::   *}
-{*                                                                         *}
-{***************************************************************************}
-{*    Sprite Editor 4.0                                                    *}
-{*    Copyright (c) 2000-2022 by Vadim Vitomsky                            *}
-{*                                                                         *}
-{*    See the file LICENSE, included in this distribution, for details.    *}
-{*                                                                         *}
-{*    This program is distributed in the hope that it will be useful,      *}
-{*    but WITHOUT ANY WARRANTY; without even the implied warranty of       *}
-{*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                 *}
-{***************************************************************************}
-
-
 program spedit;
+
 {$mode objfpc}{$H+}
 
 uses
-  {$IFDEF UNIX}{$IFDEF UseCThreads}
+  {$IFDEF UNIX}
   cthreads,
-  {$ENDIF}{$ENDIF}
+  {$ENDIF}
+  {$IFDEF HASAMIGA}
+  athreads,
+  {$ENDIF}
   {$IFDEF DEBUG}
   LazLogger,
   {$ENDIF}
-  Forms, Interfaces, sysutils, uglobals, umain,
-  uframedlg, upreview, uabout, Controls;
+  Interfaces, // this includes the LCL widgetset
+  Forms, umain, udraw, uglobals, uabout, ureferense,
+  uframedlg
+  { you can add units after this },
+  sysutils;
 
 {$R *.res}
 
@@ -47,11 +30,8 @@ begin
   Application.DoubleBuffered:=adbTrue;
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
-  frmMain.FormStyle:=fsNormal;
+  Application.CreateForm(TfrmReferense, frmReferense);
   Application.CreateForm(TfrmFrameDlg, frmFrameDlg);
-  frmFrameDlg.FormStyle:=fsNormal;
-  Application.CreateForm(TFrmPreview, FrmPreview);
-  FrmPreview.FormStyle:=fsNormal;
   Application.Run;
 end.
 

@@ -61,18 +61,18 @@ uses uglobals, umain;
 
 procedure TfrmReferense.FormClick(Sender: TObject);
 begin
-  frmMain.HideWindows;
+  //frmMain.HideWindows;
     if OpenPictureDialog1.Execute then begin
    ReferenceImage.Picture.Clear;
    ReferenceImage.Picture.LoadFromFile(OpenPictureDialog1.FileName);
   end;
-  frmMain.ShowWindows;
+  //frmMain.ShowWindows;
 end;
 
 procedure TfrmReferense.FormClose(Sender: TObject; var CloseAction: TCloseAction
   );
 begin
-  frmMain.ReferenseImageMenuItem.Checked:=false;
+  frmMain.miReferense.Checked:=false;
   frmMain.SetFocus;
 end;
 

@@ -12,66 +12,158 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: tfrmframedlg.caption
+#: tfrmabout.label1.caption
+msgid "SPEdit"
+msgstr ""
+
+#: tfrmabout.label2.caption
+msgid "Free and Open source Sprite Editor V.4.0"
+msgstr ""
+
+#: tfrmabout.label3.caption
+msgid ""
+"Created by (c) Vadim Vitomsky, 2000-2022\n"
+"Contributed by Eddie Mattos (translation to pt-br, Mascot)"
+msgstr ""
+
+#: tfrmabout.showsplashcheckbox.caption
+msgid "Show at startup"
+msgstr ""
+
+#: tfrmmain.acimportframe.caption
+msgctxt "tfrmmain.acimportframe.caption"
+msgid "Import frame"
+msgstr ""
+
+#: tfrmmain.actaddlayer.caption
+msgid "Add layer"
+msgstr ""
+
+#: tfrmmain.actcopylayer.caption
+msgid "Copy layer"
+msgstr ""
+
+#: tfrmmain.actdeletelayer.caption
+msgid "Delete layer"
+msgstr ""
+
+#: tfrmmain.actexit.caption
+msgid "&Exit"
+msgstr ""
+
+#: tfrmmain.actexit.hint
+msgid "Вихід"
+msgstr ""
+
+#: tfrmmain.actframestoggle.caption
+msgid "actFramesToggle"
+msgstr ""
+
+#: tfrmmain.actlanguageselect.caption
+#, fuzzy
+msgctxt "tfrmmain.actlanguageselect.caption"
+msgid "Language"
+msgstr "Idioma"
+
+#: tfrmmain.actlayerstoggle.caption
+msgid "Show layers"
+msgstr ""
+
+#: tfrmmain.actmergelayers.caption
+msgid "Merge layers"
+msgstr ""
+
+#: tfrmmain.actnewframe.caption
+#, fuzzy
+msgctxt "tfrmmain.actnewframe.caption"
 msgid "New frame"
 msgstr "Novo quadro"
 
-#: tfrmframedlg.checkbox1.caption
-msgid "Copy all layers"
-msgstr "Copiar todas as camadas"
-
-#: tfrmframedlg.edtframename.text
-msgid "Frame"
-msgstr "Quadro"
-
-#: tfrmframedlg.frmframewidth.caption
-msgid "Frame width"
-msgstr "Largura do quadro"
-
-#: tfrmframedlg.lblframeheight.caption
-msgid "Frame height"
-msgstr "Altura do quadro"
-
-#: tfrmframedlg.lblframename.caption
-msgid "Frame name"
-msgstr "Nome do quadro"
-
-#: tfrmmain.aboutmenuitem.caption
-msgid "About"
-msgstr "Sobre"
-
-#: tfrmmain.actionstabsheet.caption
-msgid "Actions"
-msgstr "Ações"
-
-#: tfrmmain.bbtnaddlayer.hint
+#: tfrmmain.actpaletteimport.caption
 #, fuzzy
-msgctxt "tfrmmain.bbtnaddlayer.hint"
-msgid "Add new layer"
-msgstr "Adicionar uma nova camada"
+msgctxt "tfrmmain.actpaletteimport.caption"
+msgid "Import from image file"
+msgstr "Importar de um arquivo de imagem"
 
-#: tfrmmain.bbtncopylayer.hint
-#, fuzzy
-msgctxt "tfrmmain.bbtncopylayer.hint"
-msgid "Copy selected layer"
-msgstr "Copiar a camada selecionada"
+#: tfrmmain.actpaletteload.caption
+msgid "Load palette from file"
+msgstr ""
 
-#: tfrmmain.bbtndeletelayer.hint
+#: tfrmmain.actpalettereset.caption
 #, fuzzy
-msgctxt "tfrmmain.bbtndeletelayer.hint"
-msgid "Delete selected layer"
-msgstr "Deletar a camada selecionada"
+msgctxt "tfrmmain.actpalettereset.caption"
+msgid "Reset palette"
+msgstr "Redefinir paleta"
 
-#: tfrmmain.bbtnmergelayers.hint
+#: tfrmmain.actpalettesave.caption
+msgid "Save palette to file"
+msgstr ""
+
+#: tfrmmain.actpalettetoggle.caption
+msgid "actPaletteToggle"
+msgstr ""
+
+#: tfrmmain.actredo.caption
 #, fuzzy
-msgctxt "tfrmmain.bbtnmergelayers.hint"
-msgid "Merge with previous layer"
-msgstr "Mesclar com a camada inferior"
+msgctxt "tfrmmain.actredo.caption"
+msgid "Redo"
+msgstr "Refazer"
+
+#: tfrmmain.acttogglefullscreen.caption
+msgid "Full Screen"
+msgstr ""
+
+#: tfrmmain.actundo.caption
+msgid "&Undo"
+msgstr ""
+
+#: tfrmmain.actundo.hint
+msgid "Повернути"
+msgstr ""
+
+#: tfrmmain.actzoomin.caption
+msgid "Zoom ++"
+msgstr ""
+
+#: tfrmmain.actzoomout.caption
+msgid "Zoom --"
+msgstr ""
+
+#: tfrmmain.actzoomreset.caption
+#, fuzzy
+msgctxt "tfrmmain.actzoomreset.caption"
+msgid "Reset zoom"
+msgstr "Redefinir zoom"
+
+#: tfrmmain.bbtnimportframe.hint
+msgctxt "tfrmmain.bbtnimportframe.hint"
+msgid "Import frame"
+msgstr ""
+
+#: tfrmmain.bbtnnewframe.hint
+msgid "Create new frame"
+msgstr ""
+
+#: tfrmmain.bbtnshowlayers.hint
+msgid "Show/hide layers"
+msgstr ""
+
+#: tfrmmain.bbtnshowpalette.hint
+msgid "Show/hide palette"
+msgstr ""
 
 #: tfrmmain.bbtnswapcolors.hint
 msgctxt "tfrmmain.bbtnswapcolors.hint"
 msgid "Swap colors [X]"
 msgstr "Trocar cores [X]"
+
+#: tfrmmain.bbtntoggleframes.hint
+msgid "Show/hide frames"
+msgstr ""
+
+#: tfrmmain.bbtntogglepreview.hint
+msgid "Show/hide preview window"
+msgstr ""
 
 #: tfrmmain.bgcolor.caption
 msgctxt "tfrmmain.bgcolor.caption"
@@ -83,12 +175,9 @@ msgctxt "tfrmmain.bgcolor.hint"
 msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
-msgstr "Clique esquedo para selecionar a cor\n"
+msgstr ""
+"Clique esquedo para selecionar a cor\n"
 "Clique direito para deixar a cor transparente"
-
-#: tfrmmain.bitbtnimportframe.hint
-msgid "Import frame from image file"
-msgstr "Importar quadro de um arquivo de imagem"
 
 #: tfrmmain.caption
 msgid "Sprite Editor"
@@ -118,74 +207,26 @@ msgctxt "tfrmmain.drwgrdlayers.columns[3].title.caption"
 msgid "Image"
 msgstr "Imagem"
 
-#: tfrmmain.editmenuitem.caption
-msgid "Edit"
-msgstr "Editar"
-
 #: tfrmmain.fgcolor.caption
 msgctxt "tfrmmain.fgcolor.caption"
 msgid "FG"
 msgstr "PP"
 
 #: tfrmmain.fgcolor.hint
+#, fuzzy
 msgctxt "tfrmmain.fgcolor.hint"
 msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
 msgstr ""
+"Clique esquedo para selecionar a cor\n"
+"Clique direito para deixar a cor transparente"
 
-#: tfrmmain.fileexitmenuitem.caption
-msgid "E&xit"
-msgstr "Sair"
-
-#: tfrmmain.fileloadspritesheetmenuitem.caption
-msgid "Import Spritesheet"
-msgstr "Importar Folha de sprites"
-
-#: tfrmmain.fileloadspritesheetmenuitem.hint
-msgid ""
-"You can import image or spritesheet file\n"
-"and add it to the library"
-msgstr ""
-"Você pode importar arquivos de imagen ou folhas de sprite\n"
-"e adicionar à biblioteca"
-
-#: tfrmmain.filemenuitem.caption
-msgid "File"
-msgstr "Arquivo"
-
-#: tfrmmain.filenewspritemenuitem.caption
-msgid "New Sprite Project"
-msgstr "Novo Projeto de Sprite"
-
-#: tfrmmain.filesaveasmenuitem.caption
-msgid "Save Sprite Project As..."
-msgstr "Salvar Projeto de Sprites como..."
-
-#: tfrmmain.filesavespritemenuitem.caption
-msgid "Save Sprite Project"
-msgstr "Salvar Projeto de Sprites"
-
-#: tfrmmain.frameeditortabsheet.caption
-msgid "Frame Editor"
-msgstr "Editor de Quadros"
-
-#: tfrmmain.framesmenuitem.caption
-msgctxt "tfrmmain.framesmenuitem.caption"
-msgid "Frames"
-msgstr "Quadros"
-
-#: tfrmmain.helpmenuitem.caption
-msgid "Help"
-msgstr "Ajuda"
-
-#: tfrmmain.languagemenuitem.caption
-msgid "Language"
-msgstr "Idioma"
-
-#: tfrmmain.languagemenuitem.hint
-msgid "Change interface language"
-msgstr "Muda o idioma de interface"
+#: tfrmmain.framepreview.hint
+#, fuzzy
+msgctxt "tfrmmain.framepreview.hint"
+msgid "Click to export PNG"
+msgstr "Clique para exportar PNG"
 
 #: tfrmmain.layersgroupbox.caption
 #, fuzzy
@@ -193,137 +234,148 @@ msgctxt "tfrmmain.layersgroupbox.caption"
 msgid "Layers"
 msgstr "Camadas"
 
-#: tfrmmain.layerstoolvisiblemenuitem.caption
-msgctxt "tfrmmain.layerstoolvisiblemenuitem.caption"
+#: tfrmmain.miabout.caption
+#, fuzzy
+msgctxt "tfrmmain.miabout.caption"
+msgid "About"
+msgstr "Sobre"
+
+#: tfrmmain.midrawingtools.caption
+#, fuzzy
+msgctxt "tfrmmain.midrawingtools.caption"
+msgid "Drawing tools"
+msgstr "Ferramentas de desenho"
+
+#: tfrmmain.miedit.caption
+#, fuzzy
+msgctxt "tfrmmain.miedit.caption"
+msgid "Edit"
+msgstr "Editar"
+
+#: tfrmmain.mifilemenu.caption
+#, fuzzy
+msgctxt "tfrmmain.mifilemenu.caption"
+msgid "File"
+msgstr "Arquivo"
+
+#: tfrmmain.mifilenewpoject.caption
+#, fuzzy
+msgctxt "tfrmmain.mifilenewpoject.caption"
+msgid "New Sprite Project"
+msgstr "Novo Projeto de Sprite"
+
+#: tfrmmain.mifilesaveproject.caption
+#, fuzzy
+msgctxt "tfrmmain.mifilesaveproject.caption"
+msgid "Save Sprite Project"
+msgstr "Salvar Projeto de Sprites"
+
+#: tfrmmain.mihelp.caption
+#, fuzzy
+msgctxt "tfrmmain.mihelp.caption"
+msgid "Help"
+msgstr "Ajuda"
+
+#: tfrmmain.miimportspritesheet.caption
+#, fuzzy
+msgctxt "tfrmmain.miimportspritesheet.caption"
+msgid "Import Spritesheet"
+msgstr "Importar Folha de sprites"
+
+#: tfrmmain.miimportspritesheet.hint
+#, fuzzy
+msgctxt "tfrmmain.miimportspritesheet.hint"
+msgid ""
+"You can import image or spritesheet file\n"
+"and add it to the library"
+msgstr ""
+"Você pode importar arquivos de imagen ou folhas de sprite\n"
+"e adicionar à biblioteca"
+
+#: tfrmmain.milayers.caption
+#, fuzzy
+msgctxt "tfrmmain.milayers.caption"
 msgid "Layers"
 msgstr "Camadas"
 
-#: tfrmmain.menuitem1.caption
-msgid "Sprite"
-msgstr "Sprite"
-
-#: tfrmmain.menuitem2.caption
-msgctxt "tfrmmain.menuitem2.caption"
-msgid "Layers"
-msgstr "Camadas"
-
-#: tfrmmain.menuitem3.caption
-msgctxt "tfrmmain.menuitem3.caption"
-msgid "Palette"
-msgstr "Paleta"
-
-#: tfrmmain.menuitem4.caption
-msgid "Tool panels"
-msgstr "Painéis de Ferramentas"
-
-#: tfrmmain.menuitem7.caption
+#: tfrmmain.minewlibrary.caption
+#, fuzzy
+msgctxt "tfrmmain.minewlibrary.caption"
 msgid "New Sprite Library"
 msgstr "Nova Biblioteca de Sprites"
 
-#: tfrmmain.mifullscreen.caption
-msgid "Full screen"
-msgstr "Tela cheia"
+#: tfrmmain.mipalette.caption
+#, fuzzy
+msgctxt "tfrmmain.mipalette.caption"
+msgid "Palette"
+msgstr "Paleta"
 
-#: tfrmmain.mipaletteclear.caption
-msgid "Reset palette"
-msgstr "Redefinir paleta"
+#: tfrmmain.mipreview.caption
+#, fuzzy
+msgctxt "tfrmmain.mipreview.caption"
+msgid "Preview"
+msgstr "Previsualização"
 
-#: tfrmmain.mipaletteimportfromfile.caption
-msgid "Import from image file"
-msgstr "Importar de um arquivo de imagem"
+#: tfrmmain.mireferense.caption
+#, fuzzy
+msgctxt "tfrmmain.mireferense.caption"
+msgid "Referense"
+msgstr "Referência"
 
-#: tfrmmain.mipaletteloadfromfile.caption
-msgid "Load from file"
-msgstr "Carregar de um arquivo"
+#: tfrmmain.misavelibrary.caption
+#, fuzzy
+msgctxt "tfrmmain.misavelibrary.caption"
+msgid "Save Sprite Library"
+msgstr "Salvar Biblioteca de Sprites"
 
-#: tfrmmain.mipalettesavetofile.caption
-msgid "Save to file"
-msgstr "Salvar para um arquivo"
+#: tfrmmain.misaveprojectas.caption
+#, fuzzy
+msgctxt "tfrmmain.misaveprojectas.caption"
+msgid "Save Sprite Project As..."
+msgstr "Salvar Projeto de Sprites como..."
 
-#: tfrmmain.miredo.caption
-msgid "Redo"
-msgstr "Refazer"
+#: tfrmmain.miselectlibrary.caption
+#, fuzzy
+msgctxt "tfrmmain.miselectlibrary.caption"
+msgid "Select Sprite Library"
+msgstr "Selecionar Biblioteca de Sprites"
 
-#: tfrmmain.miundo.caption
-msgid "Undo"
-msgstr "Desfazer"
+#: tfrmmain.misettings.caption
+#, fuzzy
+msgctxt "tfrmmain.misettings.caption"
+msgid "Settings"
+msgstr "Configurações"
 
-#: tfrmmain.painttoolpanelvisiblemenuitem.caption
-msgid "Drawing tools"
-msgstr "Ferramentas de desenho"
+#: tfrmmain.misprite.caption
+#, fuzzy
+msgctxt "tfrmmain.misprite.caption"
+msgid "Sprite"
+msgstr "Sprite"
+
+#: tfrmmain.mitioolpanels.caption
+#, fuzzy
+msgctxt "tfrmmain.mitioolpanels.caption"
+msgid "Tool panels"
+msgstr "Painéis de Ferramentas"
+
+#: tfrmmain.miview.caption
+#, fuzzy
+msgctxt "tfrmmain.miview.caption"
+msgid "View"
+msgstr "Visualizar"
 
 #: tfrmmain.pnlframes.caption
 msgid "pnlFrames"
 msgstr "pnlQuadros"
 
-#: tfrmmain.pnllayers.caption
-msgid "pnlLayers"
-msgstr "pnlCamadas"
-
-#: tfrmmain.previewmenuitem.caption
-msgctxt "tfrmmain.previewmenuitem.caption"
-msgid "Preview"
-msgstr "Previsualização"
-
-#: tfrmmain.projecttabsheet.caption
-msgid "Project info"
-msgstr "Informação do projeto"
-
-#: tfrmmain.referenseimagemenuitem.caption
-msgctxt "tfrmmain.referenseimagemenuitem.caption"
-msgid "Referense"
-msgstr "Referência"
-
-#: tfrmmain.savespritelibmenuitem.caption
-msgid "Save Sprite Library"
-msgstr "Salvar Biblioteca de Sprites"
+#: tfrmmain.pnlpalette.caption
+msgid "pnlPalette"
+msgstr ""
 
 #: tfrmmain.sbline.hint
 msgctxt "tfrmmain.sbline.hint"
 msgid "Line tool"
 msgstr "Ferramenta linha"
-
-#: tfrmmain.selectspritelibmenuitem.caption
-msgid "Select Sprite Library"
-msgstr "Selecionar Biblioteca de Sprites"
-
-#: tfrmmain.viewmenuitem.caption
-msgid "View"
-msgstr "Visualizar"
-
-#: tfrmmain.viewsettingsmenuitem.caption
-msgid "Settings"
-msgstr "Configurações"
-
-#: tfrmmain.viewzoominmenuitem.caption
-msgid "Zoom++"
-msgstr "Zoom++"
-
-#: tfrmmain.viewzoomoutmenuitem.caption
-msgid "Zoom--"
-msgstr "Zoom--"
-
-#: tfrmmain.viewzoomresetmenuitem.caption
-msgid "Reset zoom"
-msgstr "Redefinir zoom"
-
-#: tfrmpreview.caption
-msgctxt "tfrmpreview.caption"
-msgid "Preview"
-msgstr "Previsualização"
-
-#: tfrmpreview.framepreview.hint
-msgid "Click to export PNG"
-msgstr "Clique para exportar PNG"
-
-#: tfrmreferense.caption
-msgctxt "tfrmreferense.caption"
-msgid "Referense"
-msgstr "Referência"
-
-#: tfrmreferense.hint
-msgid "Click to open any referense image"
-msgstr "Clique para abrir qualquer imagem de referência"
 
 #: uglobals.rsactivetool
 msgid "Active tool: "
@@ -405,6 +457,10 @@ msgstr "Por favor, insira o nome da nova biblioteca"
 #: uglobals.rsrectangle
 msgid "Rectangle"
 msgstr "Retângulo"
+
+#: uglobals.rssorry
+msgid "Sorry, will be implemented soon!"
+msgstr ""
 
 #: uglobals.rsthislayercan
 msgid "This layer can't be renamed!"

@@ -62,6 +62,7 @@ resourcestring
   rsThisLayerCan = 'This layer can''t be renamed!';
   rsThisLayerCan2 = 'This layer can''t be deleted!';
   rsLayerSIsLock = 'Layer %s is locked for changes!!';
+  rsSorry = 'Sorry, will be implemented soon!';
 
 
 const
@@ -919,6 +920,7 @@ begin
                     CellCursor.Y*(fFrameGridSize+fFrameZoom),
                     CellCursor.X*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.CursorSize,
                     CellCursor.Y*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.CursorSize,clRed);
+  Canvas.Clear;
   fBuffer.Draw(Canvas,fOffset.X,fOffset.Y);
 end;
 
@@ -1146,7 +1148,7 @@ initialization
  UserSettingsPath:=GetAppConfigDir(false);
  AppSettingsFile:=GetAppConfigFile(false);
  SpriteLibPath:=GetUserDir+DirectorySeparator+'spedit 4 spritelib';
-
+ ForceDirectories(UserSettingsPath);
  INI:= TIniFile.Create(AppSettingsFile,[]);
 
  //load sprite library names from spedit usersettings path
