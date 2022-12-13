@@ -9,7 +9,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="10" Y="16"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="umain.pas"/>
@@ -19,19 +19,19 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="648"/>
-        <CursorPos X="6" Y="663"/>
-        <UsageCount Value="40"/>
+        <TopLine Value="622"/>
+        <CursorPos X="48" Y="638"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="udraw.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="311"/>
         <CursorPos X="50" Y="322"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -40,10 +40,10 @@
         <ComponentName Value="frmReferense"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="34"/>
         <CursorPos X="15" Y="57"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -56,14 +56,14 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="uglobals.pas"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="108"/>
+        <TopLine Value="101"/>
         <CursorPos X="15" Y="107"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -75,7 +75,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="50"/>
         <CursorPos X="3" Y="67"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="upreview.pas"/>
@@ -144,47 +144,42 @@
         <CursorPos X="3" Y="69"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="../../../../fpcups/fpcsrc/rtl/objpas/classes/classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="91"/>
+        <CursorPos X="3" Y="101"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../fpcups/lazarus/lcl/include/wincontrol.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="5719"/>
+        <CursorPos Y="5737"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../fpcups/fpcsrc/rtl/objpas/types.pp"/>
+        <UnitName Value="Types"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="317"/>
+        <CursorPos X="10" Y="333"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../fpcups/fpcsrc/rtl/inc/typshrdh.inc"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="46"/>
+        <CursorPos X="3" Y="62"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="DEBUG"/>
     </OtherDefines>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="604" TopLine="593"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="202" Column="32" TopLine="189"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="217" Column="3" TopLine="200"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="300" Column="4" TopLine="284"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="303" Column="59" TopLine="286"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="729" Column="3" TopLine="712"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="728" TopLine="715"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="761" Column="29" TopLine="745"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="445" Column="7" TopLine="445"/>
-      </Position>
       <Position>
         <Filename Value="umain.pas"/>
         <Caret Line="454" Column="3" TopLine="444"/>
@@ -268,6 +263,42 @@
       <Position>
         <Filename Value="umain.pas"/>
         <Caret Line="668" Column="14" TopLine="654"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="663" Column="6" TopLine="623"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="635" TopLine="626"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="645" TopLine="626"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="646" TopLine="626"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="669" TopLine="653"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="670" TopLine="653"/>
+      </Position>
+      <Position>
+        <Filename Value="uglobals.pas"/>
+        <Caret Line="107" Column="15" TopLine="101"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="638" Column="43" TopLine="626"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../../fpcups/fpcsrc/rtl/objpas/types.pp"/>
+        <Caret Line="333" Column="10" TopLine="317"/>
       </Position>
     </JumpHistory>
     <RunParams>

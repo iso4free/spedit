@@ -6,7 +6,7 @@ BOAS-VINDAS
 =======
 Boas-vindas ao Spedit 4.0, um Editor de Pixel Art e Gerenciador de Biblioteca de Sprites gratuíto e de código aberto para Windows/Linux (talvez MacOS X também - não disponho de um Mac para teste)
 
-![about screenshot](doc/about.png)
+![about screenshot](doc/about.gif)
 
 INTRODUÇÃO
 ============

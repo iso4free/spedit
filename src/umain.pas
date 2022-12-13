@@ -172,7 +172,7 @@ type
     procedure FgColorPaint(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FramePreviewClick(Sender: TObject);
     procedure FramePreviewPaint(Sender: TObject);
     procedure miAboutClick(Sender: TObject);
@@ -628,45 +628,45 @@ begin
      if Assigned(frmAbout) then FreeAndNil(frmAbout);
 end;
 
-procedure TfrmMain.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TfrmMain.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
+  );
 begin
- if not Assigned(FrameGrid) then Exit;
-  case Key of
-VK_LEFT: begin
-    if ssShift in Shift then begin
-   FrameGrid.Offset.Add(Point(-10,0));
-    end
-    else if Shift=[] then begin
-     FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X-1;
-    end;
-  end;
-VK_RIGHT: begin
-    if ssShift in Shift then begin
-   FrameGrid.Offset.Add(Point(10,0));
-    end
-    else if Shift=[] then begin
-     FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X+1;
-    end;
-  end;
-VK_UP: begin
-    if ssShift in Shift then begin
-   FrameGrid.Offset.Add(Point(0,-10));
-    end
-    else if Shift=[] then begin
-     FrameGrid.CellCursor.Y:=FrameGrid.CellCursor.Y-1;
-    end;
-  end;
-VK_DOWN: begin
-    if ssShift in Shift then begin
-   FrameGrid.Offset.Add(Point(0,10));
-    end
-    else if Shift=[] then begin
-     FrameGrid.CellCursor.y:=FrameGrid.CellCursor.y+1;
-    end;
-  end;
-  end;
-  Invalidate;
+     if not Assigned(FrameGrid) then Exit;
+      case Key of
+    VK_LEFT: begin
+        if ssShift in Shift then begin
+         FrameGrid.Offset:=FrameGrid.Offset.Add(Point(-10,0));
+        end
+        else if Shift=[] then begin
+         FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X-1;
+        end;
+      end;
+    VK_RIGHT: begin
+        if ssShift in Shift then begin
+         FrameGrid.Offset:=FrameGrid.Offset.Add(Point(10,0));
+        end
+        else if Shift=[] then begin
+         FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X+1;
+        end;
+      end;
+    VK_UP: begin
+        if ssShift in Shift then begin
+         FrameGrid.Offset:=FrameGrid.Offset.Add(Point(0,-10));
+        end
+        else if Shift=[] then begin
+         FrameGrid.CellCursor.Y:=FrameGrid.CellCursor.Y-1;
+        end;
+      end;
+    VK_DOWN: begin
+        if ssShift in Shift then begin
+          FrameGrid.Offset:=FrameGrid.Offset.Add(Point(0,10));
+        end
+        else if Shift=[] then begin
+         FrameGrid.CellCursor.y:=FrameGrid.CellCursor.y+1;
+        end;
+      end;
+      end;
+      Invalidate;
 end;
 
 procedure TfrmMain.FramePreviewClick(Sender: TObject);

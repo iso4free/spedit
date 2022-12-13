@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spedit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-12-12 20:44+0200\n"
+"PO-Revision-Date: 2022-12-13 09:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -451,4 +451,3 @@ msgstr "Вам потрібно переназначити метод MouseUp()!
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
 msgstr "Вам потрібно переназначити метод MouseMove() !Назва класу: "
-
