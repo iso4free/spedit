@@ -38,7 +38,7 @@ Se voce quer que o SPEdit seja localizado para o seu idioma, você pode contribu
 
 BREVE DOCUMENTAÇÃO
 ===================
-Por enquanto, use use as setas do teclado para mover o cursor na grelha, as teclas Espaço e Enter para desenhar usando as cores selecionadas (primária e secundária), a tecla Del para limpar um pixel (no estilo da versão DOS). Ou use o mouse como qualquer editor de imagens.
+~~Por enquanto, use use as setas do teclado para mover o cursor na grelha, as teclas Espaço e Enter para desenhar usando as cores selecionadas (primária e secundária), a tecla Del para limpar um pixel (no estilo da versão DOS).~~ Use o mouse como qualquer editor de imagens.
 
 Na janela Ferramentas selecione as cores primária e secundária, selecione a ferramenta para desenhar com o mouse e mude o tamanho do lápis. As ferramentas Lápis, Linha, Retângulo, Retângulo Preenchido, Círculo, Borracha e Pipeta estão disponíveis para desenho no momento.
 
@@ -61,15 +61,13 @@ Segure Alt e use a rolagem do mouse para mudar o tamanho do padrão em xadres do
 
 Segure a rolagem do mouse para arrastar a área de desenho.
 
-Para revelar/ocultar a janela de previsualização pressione F7 ou selecione o menu 'Visualizar>Painel de Ferramentas>Previsualização'
-
-Clique em 'Previsualizar' a imagem para exportar no formato PNG.
+Clique em 'Previsualização' para exportar a imagem no formato PNG.
 
 Para exibir uma imagem de referência selecione o menu 'Visualizar>Pinel de Ferramentas>Referência'.
 
 Clique na janela 'Referência' para abrir qualquer imagem de referência.
 
-Você pode adicionar e remover camadas na janela 'camadas', a camada ativa é destacada em vermelho. Também é possível alternar a visibilidade de uma camada clicando no ícone de olho ao lado do nome da camada. O ícone com cadeado te permite bloquear uma camada contra mudanças (será usado quando se compartilha camadas entre quadros diferentes).
+Você pode adicionar, copiar e remover camadas no painel 'camadas', a camada ativa é destacada em vermelho. Também é possível alternar a visibilidade de uma camada clicando no ícone de olho ao lado do nome da camada. O ícone com cadeado te permite bloquear uma camada contra mudanças (será usado quando se compartilha camadas entre quadros diferentes). Você pode mudar o nome da camada com um clique duplo sobre o nome antigo.
 
 O FUTURO
 ==========
