@@ -140,3 +140,11 @@ REGISTRO DE DESENVOLVIMENTO
 - [*] Agora mostra que as camadas pertencem apenas ao quadro atual
 - [+] Adição da ferramenta Círculo
 - [+] Os últimos botões da interface foram feitos no SPedit!
+
+12.12.2022
+=
+- [*] Redesign completo da IU, muito código foi retrabalhado (alguns dias de trabalho entre apagões de energia)
+- [*] Redesign do mascote do SPEDit (ícone e animação na tela de 'Sobre') - graças ao @EddieMattos
+- [+] Adição de um modo em Tela Cheia
+- [!] Correção de oscilações e congelamento quando as janelas modais são exibidas
+- [-] Remoção do estilo DOS antigo de desenhar com as teclas (era um método estranho)

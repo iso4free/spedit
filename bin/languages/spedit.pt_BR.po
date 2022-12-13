@@ -14,46 +14,48 @@ msgstr ""
 
 #: tfrmabout.label1.caption
 msgid "SPEdit"
-msgstr ""
+msgstr "SPEdit"
 
 #: tfrmabout.label2.caption
 msgid "Free and Open source Sprite Editor V.4.0"
-msgstr ""
+msgstr "Um Editor de Sprites Gratuíto e de Código Aberto - V.4.0"
 
 #: tfrmabout.label3.caption
 msgid ""
 "Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos (translation to pt-br, Mascot)"
-msgstr ""
+msgstr "Criado por (c) Vadim Vitomsky, 2000-2022\n"
+"Contribuições de:"
+"EddieMattos - Tradução para o pt-BR e redesign do mascote"
 
 #: tfrmabout.showsplashcheckbox.caption
 msgid "Show at startup"
-msgstr ""
+msgstr "Exibir ao iniciar"
 
 #: tfrmmain.acimportframe.caption
 msgctxt "tfrmmain.acimportframe.caption"
 msgid "Import frame"
-msgstr ""
+msgstr "Importar quadro"
 
 #: tfrmmain.actaddlayer.caption
 msgid "Add layer"
-msgstr ""
+msgstr "Adicionar camada"
 
 #: tfrmmain.actcopylayer.caption
 msgid "Copy layer"
-msgstr ""
+msgstr "Copiar camada"
 
 #: tfrmmain.actdeletelayer.caption
 msgid "Delete layer"
-msgstr ""
+msgstr "Deletar camada"
 
 #: tfrmmain.actexit.caption
 msgid "&Exit"
-msgstr ""
+msgstr "&Sair"
 
 #: tfrmmain.actframestoggle.caption
 msgid "Toggle frames"
-msgstr ""
+msgstr "Alternar quadros"
 
 #: tfrmmain.actlanguageselect.caption
 #, fuzzy
@@ -63,11 +65,11 @@ msgstr "Idioma"
 
 #: tfrmmain.actlayerstoggle.caption
 msgid "Show layers"
-msgstr ""
+msgstr "Exibir camadas"
 
 #: tfrmmain.actmergelayers.caption
 msgid "Merge layers"
-msgstr ""
+msgstr "Mesclar camadas"
 
 #: tfrmmain.actnewframe.caption
 #, fuzzy
@@ -83,7 +85,7 @@ msgstr "Importar de um arquivo de imagem"
 
 #: tfrmmain.actpaletteload.caption
 msgid "Load palette from file"
-msgstr ""
+msgstr "Abrir paleta"
 
 #: tfrmmain.actpalettereset.caption
 #, fuzzy
@@ -93,11 +95,11 @@ msgstr "Redefinir paleta"
 
 #: tfrmmain.actpalettesave.caption
 msgid "Save palette to file"
-msgstr ""
+msgstr "Salvar paleta"
 
 #: tfrmmain.actpalettetoggle.caption
 msgid "Toggle palette"
-msgstr ""
+msgstr "Alternar paleta"
 
 #: tfrmmain.actredo.caption
 #, fuzzy
@@ -107,19 +109,19 @@ msgstr "Refazer"
 
 #: tfrmmain.acttogglefullscreen.caption
 msgid "Full Screen"
-msgstr ""
+msgstr "Tela Cheia"
 
 #: tfrmmain.actundo.caption
 msgid "&Undo"
-msgstr ""
+msgstr "&Desfazer"
 
 #: tfrmmain.actzoomin.caption
 msgid "Zoom ++"
-msgstr ""
+msgstr "Mais zoom"
 
 #: tfrmmain.actzoomout.caption
 msgid "Zoom --"
-msgstr ""
+msgstr "Menos zoom"
 
 #: tfrmmain.actzoomreset.caption
 #, fuzzy
@@ -130,19 +132,19 @@ msgstr "Redefinir zoom"
 #: tfrmmain.bbtnimportframe.hint
 msgctxt "tfrmmain.bbtnimportframe.hint"
 msgid "Import frame"
-msgstr ""
+msgstr "Importar quadro"
 
 #: tfrmmain.bbtnnewframe.hint
 msgid "Create new frame"
-msgstr ""
+msgstr "Criar um novo quadro"
 
 #: tfrmmain.bbtnshowlayers.hint
 msgid "Show/hide layers"
-msgstr ""
+msgstr "Exibir/ocultar camadas"
 
 #: tfrmmain.bbtnshowpalette.hint
 msgid "Show/hide palette"
-msgstr ""
+msgstr "Exibir/ocultar paleta"
 
 #: tfrmmain.bbtnswapcolors.hint
 msgctxt "tfrmmain.bbtnswapcolors.hint"
@@ -151,11 +153,11 @@ msgstr "Trocar cores [X]"
 
 #: tfrmmain.bbtntoggleframes.hint
 msgid "Show/hide frames"
-msgstr ""
+msgstr "Exibir/ocultar quadros"
 
 #: tfrmmain.bbtntogglepreview.hint
 msgid "Show/hide preview window"
-msgstr ""
+msgstr "Exibir/ocultar previsualização"
 
 #: tfrmmain.bgcolor.caption
 msgctxt "tfrmmain.bgcolor.caption"
@@ -169,7 +171,7 @@ msgid ""
 "Right click to set transparent color"
 msgstr ""
 "Clique esquedo para selecionar a cor\n"
-"Clique direito para deixar a cor transparente"
+"Clique direito para definir a cor como transparente"
 
 #: tfrmmain.caption
 msgid "Sprite Editor"
@@ -264,7 +266,7 @@ msgstr "Salvar Projeto de Sprites"
 
 #: tfrmmain.miframes.caption
 msgid "Frames"
-msgstr ""
+msgstr "Quadros"
 
 #: tfrmmain.mihelp.caption
 #, fuzzy
@@ -276,7 +278,7 @@ msgstr "Ajuda"
 #, fuzzy
 msgctxt "tfrmmain.miimportspritesheet.caption"
 msgid "Import Spritesheet"
-msgstr "Importar Folha de sprites"
+msgstr "Importar Planilha de sprites"
 
 #: tfrmmain.miimportspritesheet.hint
 #, fuzzy
@@ -285,7 +287,7 @@ msgid ""
 "You can import image or spritesheet file\n"
 "and add it to the library"
 msgstr ""
-"Você pode importar arquivos de imagen ou folhas de sprite\n"
+"Você pode importar imagens ou planilhas de sprite\n"
 "e adicionar à biblioteca"
 
 #: tfrmmain.milayers.caption
@@ -297,7 +299,7 @@ msgstr "Camadas"
 #: tfrmmain.milayerspanel.caption
 msgctxt "tfrmmain.milayerspanel.caption"
 msgid "Layers"
-msgstr ""
+msgstr "Camadas"
 
 #: tfrmmain.minewlibrary.caption
 #, fuzzy
@@ -372,7 +374,7 @@ msgstr "Ferramenta linha"
 
 #: uglobals.rsactivetool
 msgid "Active tool: "
-msgstr "Ferramenta ativa"
+msgstr "Ferramenta ativa: "
 
 #: uglobals.rsbg
 msgid " / BG: "
@@ -453,7 +455,7 @@ msgstr "Retângulo"
 
 #: uglobals.rssorry
 msgid "Sorry, will be implemented soon!"
-msgstr ""
+msgstr "Essa função será implementada em breve!"
 
 #: uglobals.rsthislayercan
 msgid "This layer can't be renamed!"
