@@ -62,11 +62,11 @@ To reset palette to default colors just use menu 'Palette>Reset palette'.
 
 You can export palette in HEX format to use it for any purpose.
 
-Hold Ctrl and use mouse scroll up/down to scale grid size.
+Hold Ctrl and use mouse scroll up/down to scale grid size (or Ctrl+NumPlus/Ctrl+NumMinus keyboard shortcuts).
 
 Hold Alt and use mouse scroll to change background checkers size.
 
-Hold mouse scroll to drag drawable area.
+Hold mouse scroll to drag drawable area (or use Shift+Arrow keys).
 
 Click to 'Preview' image for export in PNG file format.
 
@@ -76,7 +76,9 @@ Click to 'Referense' window to open any image used as reference.
 
 You can add, copy and remove layers in the layer panel, the active layer name is highlighted in red. It is also possible to toggle the visibility of a layer by clicking on the eye icon opposite the layer name. The icon with a lock allows you to lock a layer from changes (will be used when sharing layers between different frames). Double-click the layer name with the left mouse button to change the layer name.
 
-For those who like a minimalistic interface and use the maximum screen area for drawing, there is an option to switch to full-screen mode (shortcut <F11>), as well as to hide the extra panels - layers, frames, palette with a preview using the corresponding buttons on the toolbar .
+For those who like a minimalistic interface and use the maximum screen area for drawing, there is an option to switch to full-screen mode (shortcut <F11>), as well as to hide the extra panels - layers, frames, palette with a preview using the corresponding buttons on the toolbar.
+
+Press the 'Create new frame' button on the toolbar to start new image. A dialogue will appear where Yuo need to set frame name, width, height and min cell size in draw grid (from 4 to 20). It means the minimum value grid will be zoomed out. 
 
 THE FUTURE
 ==========
@@ -97,6 +99,7 @@ TROUBLESHOOTING
 - [+] In Windows keys won't work (fixed)
 - [+] In Windows works very slow (fixed)
 - [+] Sometime memory leaks happens (fixed)
+- [ ] In Windows UI woks incorrect
 
 COPYRIGHT
 =========

@@ -8,7 +8,7 @@ uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} uglobals,
   Classes, SysUtils, Forms, Controls, Graphics, Types,
   Dialogs, Menus, ComCtrls, ExtCtrls, Buttons, ActnList, Grids,
-  JSONPropStorage, ExtDlgs, StdCtrls, StdActns, LCLType,
+  JSONPropStorage, ExtDlgs, StdCtrls, StdActns, LCLType, Spin,
   BGRAImageList, BGRAGraphicControl, BCGameGrid, BGRABitmapTypes, BGRABitmap;
 
 type
@@ -131,7 +131,7 @@ type
     Splitter2: TSplitter;
     Splitter3: TSplitter;
     StatusBar1: TStatusBar;
-    trkbrPenSize: TTrackBar;
+    trkbrPenSize: TSpinEdit;
     procedure actFramesToggleExecute(Sender: TObject);
     procedure actImportFrameExecute(Sender: TObject);
     procedure actAddLayerExecute(Sender: TObject);
@@ -192,6 +192,7 @@ type
       MousePos: TPoint; var Handled: Boolean);
     procedure pbFrameDrawPaint(Sender: TObject);
     procedure sbPenClick(Sender: TObject);
+    procedure trkbrPenSizeChange(Sender: TObject);
   private
    fDrawGridMode : TDrawGridMode;
    dx,dy : Integer;             //offset to move grid
@@ -239,7 +240,7 @@ procedure TfrmMain.actImportFrameExecute(Sender: TObject);
 begin
  if OpenPictureDialog1.Execute then begin
   FreeAndNil(FrameGrid);
-  FrameGrid:=TFrameGrid.Create(OpenPictureDialog1.FileName);
+  FrameGrid:=TFrameGrid.Create(OpenPictureDialog1.FileName,INI.ReadInteger('FRAMEDDLG','CELL SIZE',10));
   FrameGrid.Offset:=Point(0,0);
   dx:=0;
   dy:=0;
@@ -330,7 +331,7 @@ begin
   frmFrameDlg.ShowModal;
   if frmFrameDlg.isOk then begin
    FreeAndNil(FrameGrid);
-   FrameGrid:=TFrameGrid.Create(frmFrameDlg.spnedtWidth.Value,frmFrameDlg.spnedtHeight.Value);
+   FrameGrid:=TFrameGrid.Create(frmFrameDlg.spnedtWidth.Value,frmFrameDlg.spnedtHeight.Value,frmFrameDlg.spnedtCellSize.Value);
    FrameGrid.Offset:=Point(0,0);
    dx:=0;
    dy:=0;
@@ -345,7 +346,7 @@ begin
    for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
    FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
    FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;
-   trkbrPenSize.Max:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
+   trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
   end;
   frmMain.pbFrameDrawPaint(Sender);
 end;
@@ -596,8 +597,6 @@ begin
    {$IFDEF DEBUG}
    DebugLn(DateTimeToStr(Now()),' In: frmMain.Create() JSONProp=',JSONProp);
    {$ENDIF}
-   //because sometimes this property resets to fsStayOnTop and main window shown over the tools windows
-   FormStyle:=fsNormal;
 
    DetectPOLanguage(INI.ReadString('INTERFACE','L10n file',''));
    //if checked create and  show  splashscreen
@@ -605,15 +604,6 @@ begin
       frmAbout:= TfrmAbout.Create(Application);
       frmAbout.Show;
     end;
-
-   //load form size and position from settings
-   frmMain.Top:=INI.ReadInteger('FRMMAIN','TOP',frmMain.Top);
-   frmMain.Left:=INI.ReadInteger('FRMMAIN','LEFT',frmMain.Left);
-   frmMain.Width:=INI.ReadInteger('FRMMAIN','WIDTH',frmMain.Width);
-   frmMain.Height:=INI.ReadInteger('FRMMAIN','HEIGHT',frmMain.Height);
-
-    //preview form
-   miPreview.Checked:=INI.ReadBool('FRMPREVIEW','VISIBLE',False);
 
    //default draw tool - pen
    DrawTool:=TSPPen.Create;
@@ -630,12 +620,15 @@ end;
 
 procedure TfrmMain.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
   );
+var
+   aPt : TPoint;
 begin
      if not Assigned(FrameGrid) then Exit;
+     aPt:=FrameGrid.Offset;
       case Key of
     VK_LEFT: begin
         if ssShift in Shift then begin
-         FrameGrid.Offset:=FrameGrid.Offset.Add(Point(-10,0));
+         FrameGrid.Offset.SetLocation(aPt.X-10,aPt.Y);
         end
         else if Shift=[] then begin
          FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X-1;
@@ -643,7 +636,7 @@ begin
       end;
     VK_RIGHT: begin
         if ssShift in Shift then begin
-         FrameGrid.Offset:=FrameGrid.Offset.Add(Point(10,0));
+         FrameGrid.Offset.SetLocation(aPt.X+10,aPt.Y);
         end
         else if Shift=[] then begin
          FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X+1;
@@ -651,7 +644,7 @@ begin
       end;
     VK_UP: begin
         if ssShift in Shift then begin
-         FrameGrid.Offset:=FrameGrid.Offset.Add(Point(0,-10));
+         FrameGrid.Offset.SetLocation(aPt.X,aPt.Y-10);
         end
         else if Shift=[] then begin
          FrameGrid.CellCursor.Y:=FrameGrid.CellCursor.Y-1;
@@ -659,7 +652,7 @@ begin
       end;
     VK_DOWN: begin
         if ssShift in Shift then begin
-          FrameGrid.Offset:=FrameGrid.Offset.Add(Point(0,10));
+          FrameGrid.Offset.SetLocation(aPt.X,aPt.Y+10);
         end
         else if Shift=[] then begin
          FrameGrid.CellCursor.y:=FrameGrid.CellCursor.y+1;
@@ -743,7 +736,7 @@ begin
     if Assigned(DrawTool) and (FrameGrid.HasCoords(Point(x,y))) then begin
      fDrawGridMode:=dgmDraw;
      p:=FrameGrid.Coords(x,y);
-      ToolOptions.PenSize:=trkbrPenSize.Position;
+      ToolOptions.PenSize:=trkbrPenSize.Value;
       if Button=mbLeft then
          DrawTool.StartDraw(p.X,p.Y,Shift,Button, spclForeColor)
       else if Button=mbRight then
@@ -857,6 +850,12 @@ begin
   end;
  end;
  StatusBar1.Panels[4].Text:=rsActiveTool+DrawTool.ToolName;
+end;
+
+procedure TfrmMain.trkbrPenSizeChange(Sender: TObject);
+begin
+  FrameGrid.CellCursor.CursorSize:=trkbrPenSize.Value;
+  pbFrameDraw.Invalidate;
 end;
 
 end.

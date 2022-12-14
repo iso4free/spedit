@@ -265,8 +265,8 @@ type
     function Coords(x,y : Integer): TPoint; //return pixel coordinates in grid cell
     function PixelPos(x,y : Integer) : Integer; //return pixel index in array
 
-    constructor Create(aW: Integer = 32; aH : Integer = 32; aSize : Word = 10);
-    constructor Create(aImg : TFileName); //create frame from image file
+    constructor Create(aW: Integer = 32; aH : Integer = 32; aSize : Word = 4);
+    constructor Create(aImg : TFileName; aSize : Word = 4); //create frame from image file
     destructor Destroy; override;
 
     function HasCoords(aPoint : TPoint) : Boolean; //check if frame has point
@@ -814,13 +814,13 @@ begin
   ResizeLayers(FrameWidth,FrameHeight);
 end;
 
-constructor TFrameGrid.Create(aImg: TFileName);
+constructor TFrameGrid.Create(aImg: TFileName; aSize: Word);
 var aBmp : TBGRABitmap;
     aFrameName : String;
     i: Integer;
 begin
     aBmp:=TBGRABitmap.Create(aImg);
-    Create(aBmp.Width,aBmp.Height);
+    Create(aBmp.Width,aBmp.Height,aSize);
     aFrameName:=ExtractFileName(aImg);
     Frames[aFrameName]:=TSPFrame.Create(aFrameName, FrameWidth, FrameHeight);
     Layers[aFrameName]:=TSPLayer.Create(aFrameName,FrameWidth,FrameHeight);

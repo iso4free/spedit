@@ -37,6 +37,10 @@ type
   { TfrmFrameDlg }
 
   TfrmFrameDlg = class(TForm)
+    Label1: TLabel;
+    spnedtCellSize: TSpinEdit;
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormShow(Sender: TObject);
   private
     FisOk: Boolean;
   published
@@ -57,8 +61,9 @@ type
 
 var
   frmFrameDlg: TfrmFrameDlg;
-implementation
 
+implementation
+ uses uglobals;
 {$R *.lfm}
 
 { TfrmFrameDlg }
@@ -67,6 +72,17 @@ procedure TfrmFrameDlg.BitBtnOkClick(Sender: TObject);
 begin
   isOk:=True;
   Close;
+end;
+
+procedure TfrmFrameDlg.FormClose(Sender: TObject; var CloseAction: TCloseAction
+  );
+begin
+  INI.WriteInteger('FRAMEDDLG','CELL SIZE',spnedtCellSize.Value);
+end;
+
+procedure TfrmFrameDlg.FormShow(Sender: TObject);
+begin
+  spnedtCellSize.Value:=INI.ReadInteger('FRAMEDDLG','CELL SIZE',10);
 end;
 
 end.

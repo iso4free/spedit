@@ -149,3 +149,8 @@ DEV.LOG
 - [+] Added Fullscreen mode
 - [!] Fixed some flickering and freeze when modal windows shown
 - [-] Cutted oldstyle DOS mode drawing with keys (very awkward way)
+
+14.12.2022
+=
+- [+] Added Shift+arrows keys for moving drawing grid area
+- [+] Added min. cell size in 'New frame' dialog

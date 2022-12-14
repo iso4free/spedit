@@ -19,6 +19,35 @@ msgstr ""
 msgid "Show at startup"
 msgstr ""
 
+#: tfrmframedlg.caption
+msgctxt "tfrmframedlg.caption"
+msgid "New frame"
+msgstr ""
+
+#: tfrmframedlg.checkbox1.caption
+msgid "Copy all layers"
+msgstr ""
+
+#: tfrmframedlg.edtframename.text
+msgid "Frame"
+msgstr ""
+
+#: tfrmframedlg.frmframewidth.caption
+msgid "Frame width"
+msgstr ""
+
+#: tfrmframedlg.label1.caption
+msgid "Min. cell size"
+msgstr ""
+
+#: tfrmframedlg.lblframeheight.caption
+msgid "Frame height"
+msgstr ""
+
+#: tfrmframedlg.lblframename.caption
+msgid "Frame name"
+msgstr ""
+
 #: tfrmmain.acimportframe.caption
 msgctxt "tfrmmain.acimportframe.caption"
 msgid "Import frame"

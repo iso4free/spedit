@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spedit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-12-13 09:58+0200\n"
+"PO-Revision-Date: 2022-12-14 21:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -36,6 +36,35 @@ msgstr ""
 #: tfrmabout.showsplashcheckbox.caption
 msgid "Show at startup"
 msgstr "Показувати під час запуску"
+
+#: tfrmframedlg.caption
+msgctxt "tfrmframedlg.caption"
+msgid "New frame"
+msgstr "Новий фрейм"
+
+#: tfrmframedlg.checkbox1.caption
+msgid "Copy all layers"
+msgstr "Копіювати всі шари"
+
+#: tfrmframedlg.edtframename.text
+msgid "Frame"
+msgstr "Фрейм"
+
+#: tfrmframedlg.frmframewidth.caption
+msgid "Frame width"
+msgstr "Ширина фрейму"
+
+#: tfrmframedlg.label1.caption
+msgid "Min. cell size"
+msgstr "Мін. розмір сітки"
+
+#: tfrmframedlg.lblframeheight.caption
+msgid "Frame height"
+msgstr "Висота фрейму"
+
+#: tfrmframedlg.lblframename.caption
+msgid "Frame name"
+msgstr "Назва фрейму"
 
 #: tfrmmain.acimportframe.caption
 msgctxt "tfrmmain.acimportframe.caption"
@@ -349,7 +378,7 @@ msgstr "Ативний інструмент: "
 
 #: uglobals.rsbg
 msgid " / BG: "
-msgstr "/ ФК: "
+msgstr "/ ФК:"
 
 #: uglobals.rscircle
 msgid "Circle"
@@ -357,7 +386,7 @@ msgstr "Кільце"
 
 #: uglobals.rscolors
 msgid "Colors: "
-msgstr "Кольори:"
+msgstr "Кольори: "
 
 #: uglobals.rscopyof
 msgid "Copy of "
@@ -438,7 +467,7 @@ msgstr "Цей шар не можна видалити!"
 
 #: uglobals.rsthistoolwill
 msgid "This tool will be realised soon, sorry"
-msgstr "Вибачте, цей інструмент буде реалізовано пізніше!"
+msgstr "Вибачте, цей інструмент буде реалізовано пізніше"
 
 #: uglobals.rswarning
 msgid "Warning!"

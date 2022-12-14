@@ -24,13 +24,42 @@ msgstr "Um Editor de Sprites Gratuíto e de Código Aberto - V.4.0"
 msgid ""
 "Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos (translation to pt-br, Mascot)"
-msgstr "Criado por (c) Vadim Vitomsky, 2000-2022\n"
-"Contribuições de:"
-"EddieMattos - Tradução para o pt-BR e redesign do mascote"
+msgstr ""
+"Criado por (c) Vadim Vitomsky, 2000-2022\n"
+"Contribuições de:EddieMattos - Tradução para o pt-BR e redesign do mascote"
 
 #: tfrmabout.showsplashcheckbox.caption
 msgid "Show at startup"
 msgstr "Exibir ao iniciar"
+
+#: tfrmframedlg.caption
+msgctxt "tfrmframedlg.caption"
+msgid "New frame"
+msgstr ""
+
+#: tfrmframedlg.checkbox1.caption
+msgid "Copy all layers"
+msgstr ""
+
+#: tfrmframedlg.edtframename.text
+msgid "Frame"
+msgstr ""
+
+#: tfrmframedlg.frmframewidth.caption
+msgid "Frame width"
+msgstr ""
+
+#: tfrmframedlg.label1.caption
+msgid "Min. cell size"
+msgstr ""
+
+#: tfrmframedlg.lblframeheight.caption
+msgid "Frame height"
+msgstr ""
+
+#: tfrmframedlg.lblframename.caption
+msgid "Frame name"
+msgstr ""
 
 #: tfrmmain.acimportframe.caption
 msgctxt "tfrmmain.acimportframe.caption"

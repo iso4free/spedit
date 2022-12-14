@@ -1,0 +1,9 @@
+{"version":1,"strings":[
+{"hash":158192885,"name":"tfrmframedlg.caption","sourcebytes":[78,101,119,32,102,114,97,109,101],"value":"New frame"},
+{"hash":57909429,"name":"tfrmframedlg.lblframename.caption","sourcebytes":[70,114,97,109,101,32,110,97,109,101],"value":"Frame name"},
+{"hash":5081141,"name":"tfrmframedlg.edtframename.text","sourcebytes":[70,114,97,109,101],"value":"Frame"},
+{"hash":120615832,"name":"tfrmframedlg.frmframewidth.caption","sourcebytes":[70,114,97,109,101,32,119,105,100,116,104],"value":"Frame width"},
+{"hash":36929156,"name":"tfrmframedlg.lblframeheight.caption","sourcebytes":[70,114,97,109,101,32,104,101,105,103,104,116],"value":"Frame height"},
+{"hash":43955219,"name":"tfrmframedlg.checkbox1.caption","sourcebytes":[67,111,112,121,32,97,108,108,32,108,97,121,101,114,115],"value":"Copy all layers"},
+{"hash":49810949,"name":"tfrmframedlg.label1.caption","sourcebytes":[77,105,110,46,32,99,101,108,108,32,115,105,122,101],"value":"Min. cell size"}
+]}
