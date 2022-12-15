@@ -129,11 +129,59 @@ type
      procedure FinishDraw; override;
   end;
 
+  { TSPFloodFill }
+
+  TSPFloodFill = class (TSPDrawTool)
+   fColor : TBGRAPixel;
+   constructor Create;
+    procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
+    procedure MouseMove(x,y : Integer); override;
+    procedure MouseUp(x,y : Integer; Shift: TShiftState);override;
+    procedure FinishDraw; override;
+  end;
+
   var
         DrawTool : TSPDrawTool;
         ToolOptions : TDrawOptions;
 
 implementation
+
+{ TSPFloodFill }
+
+constructor TSPFloodFill.Create;
+begin
+  FToolName:=rsFloodFill;
+end;
+
+procedure TSPFloodFill.FinishDraw;
+begin
+  //inherited FinishDraw;
+end;
+
+procedure TSPFloodFill.MouseMove(x, y: Integer);
+begin
+  //  inherited MouseMove(x, y);
+  fx:=x;
+  fy:=y;
+end;
+
+procedure TSPFloodFill.MouseUp(x, y: Integer; Shift: TShiftState);
+var
+  aTmpColor: TBGRAPixel;
+begin
+  //inherited MouseUp(x, y, Shift);
+  fx:=x;
+  fy:=y;
+  aTmpColor := Layers[FrameGrid.ActiveLayer].Drawable.GetPixel(x,y);
+  Layers[FrameGrid.ActiveLayer].Drawable.FloodFill(fx,fy,fColor,fmSet,0);
+end;
+
+procedure TSPFloodFill.StartDraw(x, y: Integer; Shift: TShiftState;
+  aButton: TMouseButton; aColor: TBGRAPixel);
+begin
+  inherited StartDraw(x, y, Shift, aButton, aColor);
+  fColor:=aColor;
+end;
 
 { TSPCircle }
 

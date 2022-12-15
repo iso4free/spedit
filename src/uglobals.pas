@@ -33,7 +33,7 @@ interface
 uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LCLTranslator,
   Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson,
-  BGRABitmap, BGRABitmapTypes, fgl, base64;
+  BGRABitmap, BGRABitmapTypes, fgl, base64, Dialogs;
 
 resourcestring
   rsColors = 'Colors: ';
@@ -63,6 +63,7 @@ resourcestring
   rsThisLayerCan2 = 'This layer can''t be deleted!';
   rsLayerSIsLock = 'Layer %s is locked for changes!!';
   rsSorry = 'Sorry, will be implemented soon!';
+  rsFloodFill = 'Flood fill';
 
 
 const
@@ -115,7 +116,6 @@ type
   {class for undo/redo posibilities}
 
   PSPUndoRec = ^TSPUndoRec;
-  //todo: change to class
 
   { TSPUndoRec }
 
@@ -346,7 +346,7 @@ begin
     Result := True;
   except
     on E: Exception do
-      //todo: fix ShowMessage(E.Message);
+      ShowMessage(E.Message);
   end;
 end;
 

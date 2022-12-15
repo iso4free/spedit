@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spedit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-12-14 21:41+0200\n"
+"PO-Revision-Date: 2022-12-15 19:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -249,6 +249,10 @@ msgctxt "tfrmmain.layersgroupbox.caption"
 msgid "Layers"
 msgstr "Шари"
 
+#: tfrmmain.lblpensize.caption
+msgid "Pen size"
+msgstr "Розмір олівця"
+
 #: tfrmmain.miabout.caption
 msgctxt "tfrmmain.miabout.caption"
 msgid "About"
@@ -403,6 +407,10 @@ msgstr "ПК: "
 #: uglobals.rsfilledrectan
 msgid "Filled rectangle"
 msgstr "Заповнений прямокутник"
+
+#: uglobals.rsfloodfill
+msgid "Flood fill"
+msgstr "Заливка області"
 
 #: uglobals.rsgenerictool
 msgid "Generic tool"

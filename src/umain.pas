@@ -58,6 +58,7 @@ type
     FramePreview: TPaintBox;
     GroupBox1: TGroupBox;
     JSONPropStorage1: TJSONPropStorage;
+    lblPenSize: TLabel;
     LayersFlowPanel: TFlowPanel;
     LayersGroupBox: TGroupBox;
     miMergeLayers: TMenuItem;
@@ -127,6 +128,7 @@ type
     Separator5: TMenuItem;
     Separator6: TMenuItem;
     Separator7: TMenuItem;
+    sbFloodFill: TSpeedButton;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Splitter3: TSplitter;
@@ -480,7 +482,6 @@ var aKey : String;
     cnt  : Integer;
 begin
   if not Assigned(FrameGrid) then Exit;
-  //todo: change draw headers and layers data from active frame
   cnt:=Frames[FrameGrid.ActiveFrame].LayersList.Count;
   if aRow<>0 then begin //draw header
     if aRow>cnt then Exit;
@@ -707,8 +708,6 @@ begin
     end;
   end;
   ToolOptions.Color:=Palette.SelectedColor;
-   //todo: set this option in settings window
-  //pnlPalette.Visible:=False;
 end;
 
 procedure TfrmMain.PaletteGridRenderControl(Sender: TObject;
@@ -842,7 +841,8 @@ begin
  end;
  5:DrawTool:=TSPRect.Create;
  6:DrawTool:=TSPFilledRect.Create;
- 7:DrawTool:=TSPCircle.Create
+ 7:DrawTool:=TSPCircle.Create;
+ 8:DrawTool:=TSPFloodFill.Create
  else begin
       ShowMessage(rsThisToolWill);
       DrawTool:=TSPPen.Create;

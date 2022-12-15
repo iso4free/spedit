@@ -257,6 +257,10 @@ msgctxt "tfrmmain.layersgroupbox.caption"
 msgid "Layers"
 msgstr "Camadas"
 
+#: tfrmmain.lblpensize.caption
+msgid "Pen size"
+msgstr ""
+
 #: tfrmmain.miabout.caption
 #, fuzzy
 msgctxt "tfrmmain.miabout.caption"
@@ -432,6 +436,10 @@ msgstr "PP"
 #: uglobals.rsfilledrectan
 msgid "Filled rectangle"
 msgstr "Retângulo preenchido"
+
+#: uglobals.rsfloodfill
+msgid "Flood fill"
+msgstr ""
 
 #: uglobals.rsgenerictool
 msgid "Generic tool"

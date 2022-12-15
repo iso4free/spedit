@@ -16,6 +16,7 @@
 {"hash":64264821,"name":"tfrmmain.bbtnshowpalette.hint","sourcebytes":[83,104,111,119,47,104,105,100,101,32,112,97,108,101,116,116,101],"value":"Show/hide palette"},
 {"hash":74951895,"name":"tfrmmain.bbtntogglepreview.hint","sourcebytes":[83,104,111,119,47,104,105,100,101,32,112,114,101,118,105,101,119,32,119,105,110,100,111,119],"value":"Show/hide preview window"},
 {"hash":209921747,"name":"tfrmmain.bbtntoggleframes.hint","sourcebytes":[83,104,111,119,47,104,105,100,101,32,102,114,97,109,101,115],"value":"Show/hide frames"},
+{"hash":201827941,"name":"tfrmmain.lblpensize.caption","sourcebytes":[80,101,110,32,115,105,122,101],"value":"Pen size"},
 {"hash":74975068,"name":"tfrmmain.sbline.hint","sourcebytes":[76,105,110,101,32,116,111,111,108],"value":"Line tool"},
 {"hash":128911175,"name":"tfrmmain.framepreview.hint","sourcebytes":[67,108,105,99,107,32,116,111,32,101,120,112,111,114,116,32,80,78,71],"value":"Click to export PNG"},
 {"hash":315429,"name":"tfrmmain.mifilemenu.caption","sourcebytes":[70,105,108,101],"value":"File"},
