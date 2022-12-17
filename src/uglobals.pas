@@ -85,6 +85,7 @@ type
 
   TColors = array[0..MAX_PALETTE_COLORS] of TBGRAPixel;  //palette - array of colors
   TPixels = array[0..MAX_PIXELS] of TBGRAPixel;      //array of pixels
+  TColorsArray = array of TColor;
 
   { TPalette }
 
@@ -107,6 +108,7 @@ type
      procedure SaveToFile(aName : TFileName);//save palette to HEX file (with colors hex codes)
      function LoadFromFile(aName : TFileName) : Boolean;//load from HEX file
      property Color[Index : Byte] : TBGRAPixel read GetColor; //get color by index
+     function ArrayOfColors() : TColorsArray; //return current palette as array of colors
      function AddColor(aColor : TBGRAPixel) : Integer;   //add new color to palette. Return index for new color or if color exists. If palette full returns -1
     private
      procedure Sort; //sort colors in palette
@@ -1039,6 +1041,15 @@ begin
     Result:=fCount;
   end;
   Sort;
+end;
+
+function TPalette.ArrayOfColors: TColorsArray;
+var
+  i: Integer;
+  //aTmp : TColorsArray;
+begin
+  SetLength(Result,fCount);
+  for i:=0 to fCount-1 do Result[i]:=fColors[i].ToColor;
 end;
 
 procedure TPalette.Sort;

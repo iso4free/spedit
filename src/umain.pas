@@ -5,11 +5,12 @@ unit umain;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} uglobals,
-  Classes, SysUtils, Forms, Controls, Graphics, Types,
-  Dialogs, Menus, ComCtrls, ExtCtrls, Buttons, ActnList, Grids,
-  JSONPropStorage, ExtDlgs, StdCtrls, StdActns, LCLType, Spin,
-  BGRAImageList, BGRAGraphicControl, BCGameGrid, BGRABitmapTypes, BGRABitmap;
+  {$IFDEF DEBUG}LazLoggerBase, {$ENDIF}
+  uglobals, Classes, SysUtils, Forms, Controls,
+  Graphics, Types, Dialogs, Menus, ComCtrls, ExtCtrls, Buttons, ActnList, Grids,
+  JSONPropStorage, ExtDlgs, StdCtrls, StdActns, LCLType, Spin, HexaColorPicker,
+  mbColorPalette, BGRAImageList, BGRAGraphicControl, BCGameGrid,
+  BGRABitmapTypes, BGRABitmap;
 
 type
 
@@ -51,16 +52,20 @@ type
     bbtnNewFrame: TBitBtn;
     ButtonsImageList: TBGRAImageList;
     ColorDialog1: TColorDialog;
+    cbPalettePresets: TComboBox;
     drwgrdLayers: TDrawGrid;
     actUndo: TEditUndo;
     FgColor: TBGRAGraphicControl;
     actExit: TFileExit;
     FramePreview: TPaintBox;
-    GroupBox1: TGroupBox;
+    gbPreview: TGroupBox;
+    HexaColorPicker1: THexaColorPicker;
     JSONPropStorage1: TJSONPropStorage;
+    lbpPalettePresrts: TLabel;
     lblPenSize: TLabel;
     LayersFlowPanel: TFlowPanel;
     LayersGroupBox: TGroupBox;
+    mbColorPalettePreset: TmbColorPalette;
     miMergeLayers: TMenuItem;
     miCopyLayer: TMenuItem;
     miDeleteLayer: TMenuItem;
@@ -69,6 +74,7 @@ type
     OpenPictureDialog1: TOpenPictureDialog;
     opndlgLocalization: TOpenDialog;
     PaletteGrid: TBCGameGrid;
+    pnlColors: TPanel;
     pnlPalette: TPanel;
     pbFrameDraw: TPaintBox;
     pnlTools: TFlowPanel;
@@ -120,6 +126,7 @@ type
     sbRect: TSpeedButton;
     ScrollBox1: TScrollBox;
     ScrollBox2: TScrollBox;
+    ScrollBox3: TScrollBox;
     sdExportFrameSaveDialog: TSaveDialog;
     Separator1: TMenuItem;
     Separator2: TMenuItem;
@@ -177,6 +184,11 @@ type
     procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FramePreviewClick(Sender: TObject);
     procedure FramePreviewPaint(Sender: TObject);
+    procedure HexaColorPicker1MouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure mbColorPalettePresetCellClick(Button: TMouseButton;
+      Shift: TShiftState; Index: integer; AColor: TColor; var DontCheck: boolean
+      );
     procedure miAboutClick(Sender: TObject);
     procedure PaletteGridMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -199,6 +211,7 @@ type
    fDrawGridMode : TDrawGridMode;
    dx,dy : Integer;             //offset to move grid
    startx,starty : Integer;     //start position to move
+   procedure SetSelectedColor(const Button: TMouseButton; aColor : TBGRAPixel);
 
   public
   end;
@@ -592,6 +605,7 @@ end;
 procedure TfrmMain.FormCreate(Sender: TObject);
 var
    JSONProp : TFilename;
+   i: Integer;
 begin
    JSONProp:=UserSettingsPath+'spedit.json';
    JSONPropStorage1.JSONFileName:=JSONProp;
@@ -610,6 +624,8 @@ begin
    DrawTool:=TSPPen.Create;
    StatusBar1.Panels[4].Text:=rsActiveTool+DrawTool.ToolName;
    JSONPropStorage1.Restore;
+   //default palette preset load
+   for i:=0 to Palette.Count-1 do mbColorPalettePreset.Colors.Add(ColorToString(Palette.Color[i].ToColor));
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -679,6 +695,22 @@ begin
   FrameGrid.RenderPicture(FramePreview.Canvas);
 end;
 
+procedure TfrmMain.HexaColorPicker1MouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  if ssCtrl in Shift then SetSelectedColor(mbRight,HexaColorPicker1.SelectedColor)
+   else SetSelectedColor(Button,HexaColorPicker1.SelectedColor);
+  Palette.AddColor(HexaColorPicker1.SelectedColor);
+  PaletteGrid.RenderAndDrawControl;
+end;
+
+procedure TfrmMain.mbColorPalettePresetCellClick(Button: TMouseButton;
+  Shift: TShiftState; Index: integer; AColor: TColor; var DontCheck: boolean);
+begin
+ if ssCtrl in Shift then SetSelectedColor(mbRight,AColor)
+  else SetSelectedColor(Button,AColor);
+end;
+
 procedure TfrmMain.miAboutClick(Sender: TObject);
 begin
      if not Assigned(frmAbout) then frmAbout:= TfrmAbout.Create(Application);
@@ -690,24 +722,14 @@ procedure TfrmMain.PaletteGridMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var xx,yy,n : Integer;
 begin
+  if Button<>mbLeft then Exit;
   xx:=x div PaletteGrid.BlockWidth+1;
   yy:=y div PaletteGrid.BlockHeight+1;
   n := xx-PaletteGrid.GridWidth+yy*PaletteGrid.GridWidth-1;
   if n>Palette.Count then Exit;
   Palette.SelectColor(n);
-  case Button of
-    mbLeft:begin
-     spclForeColor:=Palette.SelectedColor;
-     //todo: fix when refactored
-     FgColor.Invalidate;
-    end;
-    mbRight:begin
-     spclBackColor:=Palette.SelectedColor;
-     //todo: fix when refactored
-     BgColor.Invalidate;
-    end;
-  end;
-  ToolOptions.Color:=Palette.SelectedColor;
+  if ssCtrl in Shift then SetSelectedColor(mbRight,Palette.SelectedColor)
+  else SetSelectedColor(Button,Palette.SelectedColor);
 end;
 
 procedure TfrmMain.PaletteGridRenderControl(Sender: TObject;
@@ -823,6 +845,22 @@ begin
     FrameGrid.RenderPicture(FramePreview.Canvas);
   end;
   StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);
+end;
+
+procedure TfrmMain.SetSelectedColor(const Button: TMouseButton;
+  aColor: TBGRAPixel);
+begin
+  case Button of
+    mbLeft: begin
+     spclForeColor:=aColor;
+     FgColor.Invalidate;
+    end;
+    mbRight: begin
+     spclBackColor:=aColor;
+     BgColor.Invalidate;
+    end;
+  end;
+  ToolOptions.Color:=Palette.SelectedColor;
 end;
 
 procedure TfrmMain.sbPenClick(Sender: TObject);

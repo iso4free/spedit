@@ -154,3 +154,8 @@ DEV.LOG
 =
 - [+] Added Shift+arrows keys for moving drawing grid area
 - [+] Added min. cell size in 'New frame' dialog
+
+17.12.2022
+=
+- [+] Extended work with colors - added Stadard preset combobox (will be filled soon), Preset palette and Hex color picker
+- [*] Changen Background color selection to Ctrl+Click instead Right click. Foreground color selection works with Left mose click

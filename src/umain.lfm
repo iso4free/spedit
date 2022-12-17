@@ -547,18 +547,18 @@ object frmMain: TfrmMain
     Left = 152
     Height = 539
     Top = 32
-    Width = 462
+    Width = 312
     HorzScrollBar.Page = 105
     VertScrollBar.Page = 105
     Align = alClient
     ClientHeight = 537
-    ClientWidth = 460
+    ClientWidth = 310
     TabOrder = 6
     object pbFrameDraw: TPaintBox
       Left = 0
       Height = 537
       Top = 0
-      Width = 460
+      Width = 310
       Align = alClient
       OnMouseDown = pbFrameDrawMouseDown
       OnMouseMove = pbFrameDrawMouseMove
@@ -569,7 +569,7 @@ object frmMain: TfrmMain
     end
   end
   object Splitter2: TSplitter
-    Left = 614
+    Left = 464
     Height = 539
     Top = 32
     Width = 5
@@ -587,29 +587,26 @@ object frmMain: TfrmMain
     ResizeAnchor = akBottom
   end
   object pnlPalette: TPanel
-    AnchorSideTop.Control = pnlEditor
-    AnchorSideTop.Side = asrBottom
-    AnchorSideRight.Control = pnlTools
-    AnchorSideBottom.Control = pnlFrames
     Left = 469
-    Height = 544
+    Height = 539
     Top = 32
     Width = 150
-    Anchors = [akTop, akRight, akBottom]
-    ClientHeight = 544
+    Align = alRight
+    ClientHeight = 539
     ClientWidth = 150
     TabOrder = 9
     object ScrollBox2: TScrollBox
       Left = 1
-      Height = 402
-      Top = 141
+      Height = 150
+      Top = 236
       Width = 148
-      HorzScrollBar.Page = 140
-      VertScrollBar.Page = 400
+      HorzScrollBar.Page = 132
+      VertScrollBar.Page = 134
       Align = alBottom
       AutoSize = True
-      ClientHeight = 400
-      ClientWidth = 146
+      ClientHeight = 134
+      ClientWidth = 132
+      Constraints.MaxHeight = 150
       TabOrder = 0
       object PaletteGrid: TBCGameGrid
         Cursor = crHandPoint
@@ -625,7 +622,7 @@ object frmMain: TfrmMain
         OnMouseUp = PaletteGridMouseUp
       end
     end
-    object GroupBox1: TGroupBox
+    object gbPreview: TGroupBox
       Left = 1
       Height = 105
       Top = 1
@@ -647,10 +644,77 @@ object frmMain: TfrmMain
         OnPaint = FramePreviewPaint
       end
     end
+    object pnlColors: TPanel
+      Left = 1
+      Height = 152
+      Top = 386
+      Width = 148
+      Align = alBottom
+      AutoSize = True
+      ClientHeight = 152
+      ClientWidth = 148
+      TabOrder = 2
+      object HexaColorPicker1: THexaColorPicker
+        Left = 1
+        Height = 150
+        Top = 1
+        Width = 146
+        Align = alClient
+        HintFormat = 'RGB(%r, %g, %b)'#13'Hex: #%hex'
+        IntensityText = 'Intensity'
+        TabOrder = 0
+        Constraints.MinHeight = 150
+        Constraints.MinWidth = 93
+        OnMouseUp = HexaColorPicker1MouseUp
+      end
+    end
+    object cbPalettePresets: TComboBox
+      Left = 1
+      Height = 31
+      Top = 123
+      Width = 148
+      Align = alTop
+      ItemHeight = 0
+      Style = csDropDownList
+      TabOrder = 3
+    end
+    object lbpPalettePresrts: TLabel
+      Left = 1
+      Height = 17
+      Top = 106
+      Width = 148
+      Align = alTop
+      Caption = 'Standard presets'
+      ParentColor = False
+    end
+    object ScrollBox3: TScrollBox
+      Left = 1
+      Height = 82
+      Top = 154
+      Width = 148
+      HorzScrollBar.Page = 75
+      VertScrollBar.Page = 50
+      Align = alClient
+      ClientHeight = 80
+      ClientWidth = 146
+      TabOrder = 4
+      object mbColorPalettePreset: TmbColorPalette
+        Left = 0
+        Height = 80
+        Top = 0
+        Width = 146
+        Align = alClient
+        HintFormat = 'RGB(%r, %g, %b)'#13'Hex: #%hex'
+        CellSize = 10
+        CellStyle = csCorel
+        TabOrder = 0
+        OnCellClick = mbColorPalettePresetCellClick
+      end
+    end
   end
   object MainMenu1: TMainMenu
-    Left = 552
-    Top = 56
+    Left = 352
+    Top = 256
     object miFileMenu: TMenuItem
       Caption = 'File'
       object miFileNewPoject: TMenuItem
@@ -799,8 +863,8 @@ object frmMain: TfrmMain
   object ButtonsImageList: TBGRAImageList
     Height = 24
     Width = 24
-    Left = 440
-    Top = 120
+    Left = 544
+    Top = 56
     Bitmap = {
       4C7A250000001800000018000000785A00000000000078DAEC9D075C8FDFFBFF
       4F49CA1E1F3E08656F25A5522A2A4D65658FECBDF72C7B8408514948769294AD
@@ -1531,8 +1595,8 @@ object frmMain: TfrmMain
   end
   object ActionList1: TActionList
     Images = ButtonsImageList
-    Left = 552
-    Top = 120
+    Left = 416
+    Top = 264
     object actNewFrame: TAction
       Category = 'Frames'
       Caption = 'New frame'

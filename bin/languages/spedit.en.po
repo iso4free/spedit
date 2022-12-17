@@ -242,6 +242,10 @@ msgstr ""
 msgid "Pen size"
 msgstr ""
 
+#: tfrmmain.lbppalettepresrts.caption
+msgid "Standard presets"
+msgstr ""
+
 #: tfrmmain.miabout.caption
 msgctxt "tfrmmain.miabout.caption"
 msgid "About"

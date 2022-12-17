@@ -261,6 +261,10 @@ msgstr "Camadas"
 msgid "Pen size"
 msgstr ""
 
+#: tfrmmain.lbppalettepresrts.caption
+msgid "Standard presets"
+msgstr ""
+
 #: tfrmmain.miabout.caption
 #, fuzzy
 msgctxt "tfrmmain.miabout.caption"

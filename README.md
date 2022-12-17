@@ -19,7 +19,7 @@ HOW TO GET
 ===========
 When the editor is sufficiently ready for use (basic functions will be implemented, the program will work relatively stably), precompiled binaries will be available for download in the Releases section.
 
-If you want to try to compile SPEdit from sources, you must have the Lazarus IDE with the Free Pascal Compiler installed on your operating system (it is recommended to use the latest stable builds). The latest stable version is usually available at [official site](https://lazarus-ide.org). In addition, the [BGRAControls](https://github.com/bgrabitmap/bgracontrols) package, from which individual components are used, must be additionally installed in the Lazarus environment.
+If you want to try to compile SPEdit from sources, you must have the Lazarus IDE with the Free Pascal Compiler installed on your operating system (it is recommended to use the latest stable builds). The latest stable version is usually available at [official site](https://lazarus-ide.org). In addition, the [BGRAControls](https://github.com/bgrabitmap/bgracontrols) package, from which individual components are used, must be additionally installed in the Lazarus environment. The [mbColorLib](https://wiki.lazarus.freepascal.org/mbColorLib) package is used to work with the color palette.
 
 You can then open the spedit.lpi project file in the Lazarus environment and compile and run it in the usual way for that environment.
 
@@ -48,9 +48,9 @@ SHORT DOCUMENTATION
 
 In Tools window select primary and secondary color, select tool for mouse drawing and change pen size. Pencil, Line, Rectangle, Filled Rectangle, Circle, Flood fill, Eraser and Pipette are currently available for drawing.
 
-You can select primary and secondary colors click on any color in palette with left (primary) or right (secondary) mouse buttons.
+You can select primary and secondary colors click on any color in palette with Left (forefround) or Ctrl+Left (background) mouse button.
 
-Also You can select any color just clickin' on primary or secondary colors with left button or set it to transparent clickin' by right mouse button.
+Also You can select any color just clickin'  directly on primary or secondary colors with left button to show Color dialog or set it to transparent clickin' by right mouse button.
 
 Use Pipette tool for select color from image (color will de selected from active layer).
 

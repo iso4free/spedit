@@ -19,6 +19,7 @@
 {"hash":201827941,"name":"tfrmmain.lblpensize.caption","sourcebytes":[80,101,110,32,115,105,122,101],"value":"Pen size"},
 {"hash":74975068,"name":"tfrmmain.sbline.hint","sourcebytes":[76,105,110,101,32,116,111,111,108],"value":"Line tool"},
 {"hash":128911175,"name":"tfrmmain.framepreview.hint","sourcebytes":[67,108,105,99,107,32,116,111,32,101,120,112,111,114,116,32,80,78,71],"value":"Click to export PNG"},
+{"hash":52539459,"name":"tfrmmain.lbppalettepresrts.caption","sourcebytes":[83,116,97,110,100,97,114,100,32,112,114,101,115,101,116,115],"value":"Standard presets"},
 {"hash":315429,"name":"tfrmmain.mifilemenu.caption","sourcebytes":[70,105,108,101],"value":"File"},
 {"hash":90847572,"name":"tfrmmain.mifilenewpoject.caption","sourcebytes":[78,101,119,32,83,112,114,105,116,101,32,80,114,111,106,101,99,116],"value":"New Sprite Project"},
 {"hash":162191620,"name":"tfrmmain.mifilesaveproject.caption","sourcebytes":[83,97,118,101,32,83,112,114,105,116,101,32,80,114,111,106,101,99,116],"value":"Save Sprite Project"},

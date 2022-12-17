@@ -177,6 +177,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="mbColorLibLaz"/>
+      </Item>
+      <Item>
         <PackageName Value="bgracontrols"/>
       </Item>
       <Item>

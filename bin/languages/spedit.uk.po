@@ -253,6 +253,10 @@ msgstr "Шари"
 msgid "Pen size"
 msgstr "Розмір олівця"
 
+#: tfrmmain.lbppalettepresrts.caption
+msgid "Standard presets"
+msgstr ""
+
 #: tfrmmain.miabout.caption
 msgctxt "tfrmmain.miabout.caption"
 msgid "About"
@@ -488,3 +492,4 @@ msgstr "Вам потрібно переназначити метод MouseUp()!
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
 msgstr "Вам потрібно переназначити метод MouseMove() !Назва класу: "
+
