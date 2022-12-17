@@ -851,6 +851,7 @@ end;
 procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas);
 var
   i, _i: Integer;
+  tmpbmp: TBGRABitmap;
 
   procedure DrawGrid(x1,y1,x2,y2 : Integer; size : Integer);
    var i, xsize, ysize : Integer;
@@ -870,6 +871,7 @@ var
     {$IFDEF DEBUG}
     Assert(Assigned(aLayer),'Layer not assigned!');
     {$ENDIF}
+
      for x := 0 to aLayer.Drawable.Width-1 do
     for y:= 0 to aLayer.Drawable.Height-1 do begin
       tmpPix := aLayer.Drawable.GetPixel(x,y);
@@ -885,7 +887,7 @@ var
   end;
 
 begin
-  ShowGrid:=(fFrameGridSize+fFrameZoom)>3;
+  ShowGrid:=(fFrameGridSize+fFrameZoom)>5;
   {$IFDEF DEBUG}
    DebugLn(DateTimeToStr(Now()),' In: TFrameGrid.RenderAndDraw(); FrameWidth=',IntToStr(fBuffer.Width),' FrameHeight=',IntToStr(fBuffer.Height));
   {$ENDIF}
@@ -894,26 +896,12 @@ begin
                        ColorToBGRA($FFFFFF),
                        FCheckersSize,
                        FCheckersSize);;
-
+  //draw preview picture and just zoom it up to grid size
+  RenderPicture(nil);
+  tmpbmp:=fPreview.Resample(fBuffer.Width,fBuffer.Height,rmSimpleStretch);
+  fBuffer.PutImage(0,0,tmpbmp,dmSetExceptTransparent);
+  FreeAndNil(tmpbmp);
   if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
-
-
-  //draw all layers to fBuffer
-  {$IFDEF DEBUG}
-  DebugLn(DateTimeToStr(Now), ' In: RenderAndDraw(); Active frame: ',ActiveFrame,' layers: ',Frames[ActiveFrame].fLayers.Text);
-  DebugLn(DateTimeToStr(Now), ' In: RenderAndDraw(); Layer names:',IntToStr(Frames[ActiveFrame].fLayers.Count));
-  {$ENDIF}
-
-  //first draw internal layer
-  if LayerExists(cINTERNALLAYERANDFRAME) then InternalDrawLayer(Layers[cINTERNALLAYERANDFRAME]);
-  if Frames[ActiveFrame].fLayers.Count>0 then
-  for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do begin
-     if LayerExists(Frames[ActiveFrame].fLayers.Strings[i]) and
-        Layers[Frames[ActiveFrame].fLayers.Strings[i]].Visible then
-          InternalDrawLayer(Layers[Frames[ActiveFrame].fLayers.Strings[i]]);
-  end;
-  //last draw DRAWLAYER from drawing tool
-  if LayerExists(csDRAWLAYER) then InternalDrawLayer(Layers[csDRAWLAYER]);
 
   //draw highlited cell cursor over the grid
   fBuffer.Rectangle(CellCursor.X*(fFrameGridSize+fFrameZoom),
