@@ -259,10 +259,12 @@ type
     fRect          : TRect;  //grid area on canvas
     fShowGrid      : Boolean;//if true grid will be draw
     fOffset        : TPoint; //offset to draw frame on canvas
+    fBounds        : TRect; //actual canvas size for zoomed draw with offset
     procedure CalcGridRect;
     procedure SetCheckersSize(AValue: Byte);
     procedure SetFrameZoom(AValue: Integer);
     procedure SetOffset(AValue: TPoint);
+    procedure GetBounds;
    public
     function Coords(x,y : Integer): TPoint; //return pixel coordinates in grid cell
     function PixelPos(x,y : Integer) : Integer; //return pixel index in array
@@ -284,6 +286,7 @@ type
     property ActiveFrame : String read fActiveFrame write fActiveFrame; //work frame name to access through mapped list
     property ActiveLayer : String read FActiveLayer write FActiveLayer; //current layer to draw
     property CellCursor : TCellCursor read FCellCursor; //just red frame to show where draw in grid
+    property Bounds : TRect read fBounds; //actual canvas size for drawing
   end;
 
 
@@ -792,7 +795,8 @@ begin
   fRect.Create(fOffset, fFrameWidth*(fFrameGridSize+fFrameZoom)+1,
                         fFrameHeight*(fFrameGridSize+fFrameZoom)+1);
   if Assigned(fBuffer) then
-     BGRAReplace(fBuffer,fBuffer.Resample(fRect.Width,fRect.Height));
+     BGRAReplace(fBuffer,fBuffer.Resample(fRect.Width,fRect.Height,rmSimpleStretch));
+  GetBounds;
 end;
 
 constructor TFrameGrid.Create(aW: Integer; aH: Integer; aSize: Word);
@@ -917,25 +921,28 @@ end;
 procedure TFrameGrid.RenderPicture(Canvas: TCanvas);
  var
    i : Integer;
+   aTmp: TBGRABitmap;
 
 begin
   ClearBitmap(fPreview);
-  if Canvas<>nil then
+  if Canvas<>nil then begin
     fPreview.DrawCheckers(Rect(0,0,fPreview.Width,fPreview.Height),
                         ColorToBGRA($BFBFBF),
                         ColorToBGRA($FFFFFF),
                         4,
                         4);
+  end;
   //draw all layers to canvas
-  {$IFDEF DEBUG}
-  DebugLn(DateTimeToStr(Now), ' In: RenderPicture(); Active frame: ',ActiveFrame,' layers: ',Frames[ActiveFrame].fLayers.Text);
-  {$ENDIF}
   if LayerExists(cINTERNALLAYERANDFRAME) then fPreview.PutImage(0,0,Layers[cINTERNALLAYERANDFRAME].Drawable,dmDrawWithTransparency);
   for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do
     if LayerExists(Frames[ActiveFrame].fLayers.Strings[i]) then
       fPreview.PutImage(0,0,Layers[Frames[ActiveFrame].fLayers.Strings[i]].Drawable,dmDrawWithTransparency);
   if LayerExists(csDRAWLAYER) then fPreview.PutImage(0,0,Layers[csDRAWLAYER].Drawable,dmDrawWithTransparency);
-  if Assigned(Canvas) then fPreview.Draw(Canvas,0,0,true);
+  if Assigned(Canvas) then begin
+  //  aTmp := fPreview.Resample(Canvas.Width,Canvas.Height,rmSimpleStretch);
+    fPreview.Draw(Canvas,0,0,true);
+   // FreeAndNil(aTmp);
+  end;
 end;
 
 procedure TFrameGrid.ExpotPng(aFilename: TFileName);
@@ -944,6 +951,14 @@ begin
    RenderPicture(nil);
    fPreview.SaveToFileUTF8(aFilename);
   end;
+end;
+
+procedure TFrameGrid.GetBounds;
+begin
+  fBounds.Left:=0;
+  fBounds.Top:=0;
+  fBounds.Width:=fFrameWidth*(fFrameGridSize+fFrameZoom)+1+fOffset.X;
+  fBounds.Height:=fFrameHeight*(fFrameGridSize+fFrameZoom)+1+fOffset.Y;
 end;
 
 { TPalette }

@@ -2,10 +2,10 @@ object frmMain: TfrmMain
   Left = 522
   Height = 737
   Top = 0
-  Width = 647
+  Width = 752
   Caption = 'Sprite Editor'
   ClientHeight = 714
-  ClientWidth = 647
+  ClientWidth = 752
   DoubleBuffered = False
   KeyPreview = True
   Menu = MainMenu1
@@ -19,7 +19,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 21
     Top = 693
-    Width = 647
+    Width = 752
     Panels = <    
       item
         Width = 200
@@ -196,11 +196,11 @@ object frmMain: TfrmMain
     Left = 0
     Height = 32
     Top = 0
-    Width = 647
+    Width = 752
     Align = alTop
     AutoSize = True
     ClientHeight = 32
-    ClientWidth = 647
+    ClientWidth = 752
     Constraints.MaxHeight = 32
     TabOrder = 2
     object bbtnNewFrame: TBitBtn
@@ -220,7 +220,7 @@ object frmMain: TfrmMain
     end
     object FgColor: TBGRAGraphicControl
       Tag = 2
-      Left = 550
+      Left = 655
       Height = 30
       Hint = 'Left click to select color'#10'Right click to set transparent color'
       Top = 1
@@ -238,7 +238,7 @@ object frmMain: TfrmMain
       Caption = 'FG'
     end
     object bbtnSwapColors: TBitBtn
-      Left = 582
+      Left = 687
       Height = 30
       Hint = 'Swap colors [X]'
       Top = 1
@@ -254,7 +254,7 @@ object frmMain: TfrmMain
     end
     object BgColor: TBGRAGraphicControl
       Tag = 1
-      Left = 614
+      Left = 719
       Height = 30
       Hint = 'Left click to select color'#10'Right click to set transparent color'
       Top = 1
@@ -345,11 +345,12 @@ object frmMain: TfrmMain
       TabOrder = 6
     end
     object trkbrPenSize: TSpinEdit
-      Left = 450
+      Left = 555
       Height = 30
       Top = 1
       Width = 100
       Align = alRight
+      MaxValue = 1
       MinValue = 1
       OnChange = trkbrPenSizeChange
       TabOrder = 7
@@ -358,7 +359,7 @@ object frmMain: TfrmMain
       AnchorSideTop.Control = trkbrPenSize
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = trkbrPenSize
-      Left = 391
+      Left = 496
       Height = 17
       Top = 8
       Width = 54
@@ -373,12 +374,36 @@ object frmMain: TfrmMain
     Left = 0
     Height = 117
     Top = 576
-    Width = 647
+    Width = 752
     Align = alBottom
+    ClientHeight = 117
+    ClientWidth = 752
     TabOrder = 3
+    object sbFrames: TScrollBox
+      Left = 1
+      Height = 115
+      Top = 1
+      Width = 750
+      HorzScrollBar.Page = 100
+      Align = alClient
+      ClientHeight = 113
+      ClientWidth = 748
+      TabOrder = 0
+      object ListBox1: TListBox
+        Left = 0
+        Height = 113
+        Top = 0
+        Width = 100
+        Align = alLeft
+        ItemHeight = 0
+        Style = lbOwnerDrawVariable
+        TabOrder = 0
+        TopIndex = -1
+      end
+    end
   end
   object pnlTools: TFlowPanel
-    Left = 619
+    Left = 724
     Height = 539
     Top = 32
     Width = 28
@@ -543,23 +568,27 @@ object frmMain: TfrmMain
     Top = 32
     Width = 5
   end
-  object ScrollBox1: TScrollBox
+  object sbDrawGrig: TScrollBox
     Left = 152
     Height = 539
     Top = 32
-    Width = 312
-    HorzScrollBar.Page = 105
-    VertScrollBar.Page = 105
+    Width = 417
+    HorzScrollBar.Page = 310
+    VertScrollBar.Page = 537
     Align = alClient
     ClientHeight = 537
-    ClientWidth = 310
+    ClientWidth = 415
     TabOrder = 6
+    OnMouseMove = pbFrameDrawMouseMove
+    OnMouseWheelDown = pbFrameDrawMouseWheelDown
+    OnMouseWheelUp = pbFrameDrawMouseWheelUp
     object pbFrameDraw: TPaintBox
+      AnchorSideLeft.Control = sbDrawGrig
+      AnchorSideTop.Control = sbDrawGrig
       Left = 0
       Height = 537
       Top = 0
       Width = 310
-      Align = alClient
       OnMouseDown = pbFrameDrawMouseDown
       OnMouseMove = pbFrameDrawMouseMove
       OnMouseUp = pbFrameDrawMouseUp
@@ -569,7 +598,7 @@ object frmMain: TfrmMain
     end
   end
   object Splitter2: TSplitter
-    Left = 464
+    Left = 569
     Height = 539
     Top = 32
     Width = 5
@@ -582,12 +611,12 @@ object frmMain: TfrmMain
     Left = 0
     Height = 5
     Top = 571
-    Width = 647
+    Width = 752
     Align = alBottom
     ResizeAnchor = akBottom
   end
   object pnlPalette: TPanel
-    Left = 469
+    Left = 574
     Height = 539
     Top = 32
     Width = 150
@@ -595,31 +624,32 @@ object frmMain: TfrmMain
     ClientHeight = 539
     ClientWidth = 150
     TabOrder = 9
-    object ScrollBox2: TScrollBox
+    object sbCurrentPalette: TScrollBox
       Left = 1
-      Height = 150
-      Top = 236
+      Height = 128
+      Top = 258
       Width = 148
-      HorzScrollBar.Page = 132
-      VertScrollBar.Page = 134
+      HorzScrollBar.Page = 1
+      HorzScrollBar.Visible = False
+      VertScrollBar.Page = 1
+      VertScrollBar.Visible = False
       Align = alBottom
-      AutoSize = True
-      ClientHeight = 134
-      ClientWidth = 132
+      ClientHeight = 126
+      ClientWidth = 146
       Constraints.MaxHeight = 150
       TabOrder = 0
-      object PaletteGrid: TBCGameGrid
-        Cursor = crHandPoint
+      object mbPaletteGrid: TmbColorPalette
+        AnchorSideLeft.Control = sbCurrentPalette
+        AnchorSideTop.Control = sbCurrentPalette
         Left = 0
-        Height = 400
+        Height = 126
         Top = 0
-        Width = 140
-        GridWidth = 14
-        GridHeight = 40
-        BlockWidth = 10
-        BlockHeight = 10
-        OnRenderControl = PaletteGridRenderControl
-        OnMouseUp = PaletteGridMouseUp
+        Width = 180
+        HintFormat = 'RGB(%r, %g, %b)'#13'Hex: #%hex'
+        CellSize = 10
+        CellStyle = csCorel
+        TabOrder = 0
+        OnCellClick = mbColorPalettePresetCellClick
       end
     end
     object gbPreview: TGroupBox
@@ -687,20 +717,20 @@ object frmMain: TfrmMain
       Caption = 'Standard presets'
       ParentColor = False
     end
-    object ScrollBox3: TScrollBox
+    object sbPresetPalette: TScrollBox
       Left = 1
-      Height = 82
+      Height = 104
       Top = 154
       Width = 148
       HorzScrollBar.Page = 75
       VertScrollBar.Page = 50
       Align = alClient
-      ClientHeight = 80
+      ClientHeight = 102
       ClientWidth = 146
       TabOrder = 4
       object mbColorPalettePreset: TmbColorPalette
         Left = 0
-        Height = 80
+        Height = 102
         Top = 0
         Width = 146
         Align = alClient
@@ -781,6 +811,7 @@ object frmMain: TfrmMain
         object miFrames: TMenuItem
           Action = actFramesToggle
           Caption = 'Frames'
+          Checked = True
         end
         object miPreview: TMenuItem
           Caption = 'Preview'
