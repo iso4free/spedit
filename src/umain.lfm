@@ -376,31 +376,7 @@ object frmMain: TfrmMain
     Top = 576
     Width = 752
     Align = alBottom
-    ClientHeight = 117
-    ClientWidth = 752
     TabOrder = 3
-    object sbFrames: TScrollBox
-      Left = 1
-      Height = 115
-      Top = 1
-      Width = 750
-      HorzScrollBar.Page = 100
-      Align = alClient
-      ClientHeight = 113
-      ClientWidth = 748
-      TabOrder = 0
-      object ListBox1: TListBox
-        Left = 0
-        Height = 113
-        Top = 0
-        Width = 100
-        Align = alLeft
-        ItemHeight = 0
-        Style = lbOwnerDrawVariable
-        TabOrder = 0
-        TopIndex = -1
-      end
-    end
   end
   object pnlTools: TFlowPanel
     Left = 724

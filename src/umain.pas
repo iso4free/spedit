@@ -65,7 +65,6 @@ type
     lblPenSize: TLabel;
     LayersFlowPanel: TFlowPanel;
     LayersGroupBox: TGroupBox;
-    ListBox1: TListBox;
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
     miMergeLayers: TMenuItem;
@@ -128,7 +127,6 @@ type
     sbDrawGrig: TScrollBox;
     sbCurrentPalette: TScrollBox;
     sbPresetPalette: TScrollBox;
-    sbFrames: TScrollBox;
     sdExportFrameSaveDialog: TSaveDialog;
     Separator1: TMenuItem;
     Separator2: TMenuItem;
@@ -729,12 +727,18 @@ procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
 var p : TPoint;
 begin
  if not Assigned(FrameGrid) then Exit;
+ //if tool not pipette  Ctrl+mbRight works like color picker
+ if (DrawTool.ToolName<>rsPipette) and (Button=mbRight) and (ssCtrl in Shift) then begin
+   p:=FrameGrid.Coords(x,y);
+   spclForeColor:=Layers[FrameGrid.ActiveLayer].Drawable.GetPixel(p.X,p.Y);
+   FgColor.Invalidate;
+ end else
  case Button of
    mbLeft,mbRight:begin
     if Layers[FrameGrid.ActiveLayer].Locked then begin
      ShowMessage(Format(rsLayerSIsLock, [FrameGrid.ActiveLayer]))
     end;
-    if Assigned(DrawTool) and (FrameGrid.HasCoords(Point(x,y))) then begin
+    if (FrameGrid.HasCoords(Point(x,y))) then begin
      fDrawGridMode:=dgmDraw;
      p:=FrameGrid.Coords(x,y);
       ToolOptions.PenSize:=trkbrPenSize.Value;

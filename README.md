@@ -52,6 +52,8 @@ You can select primary and secondary colors click on any color in palette with L
 
 Also You can select any color just clickin'  directly on primary or secondary colors with left button to show Color dialog or set it to transparent clickin' by right mouse button.
 
+Hold Ctrl and click right mouse button for quick pick color from drawing image.
+
 Use Pipette tool for select color from image (color will de selected from active layer).
 
 To swap colors, press X key or click on middle button (with red and green circled arrows) between primary and secondary colors.
