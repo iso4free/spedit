@@ -46,15 +46,15 @@ SHORT DOCUMENTATION
 ===================
 ~~For now, use arrow keys for moving on-grid cursor, Space and Enter keys to draw use selected colors (primary and secondary), Del key to clear pixel (DOS version style).~~ Just use the mouse like in any image editor.
 
-In Tools window select primary and secondary color, select tool for mouse drawing and change pen size. Pencil, Line, Rectangle, Filled Rectangle, Circle, Flood fill, Eraser and Pipette are currently available for drawing.
+In Tools window select primary and secondary color, select tool for mouse drawing and change pen size. Pencil (hotkey 'P'), Line (hotkey 'L'), Rectangle (hotkey 'R'), Filled Rectangle (hotkey 'Shift+R'), Circle (hotkey 'C'), Flood fill (hotkey 'F'), Eraser (hotkey 'E') and Pipette (hotkey 'O') are currently available for drawing.
+
+To increase/decrease the pencil size, use the Ctrl+NumPlus/Ctrl+NumMinus hotkeys respectively.
 
 You can select primary and secondary colors click on any color in palette with Left (forefround) or Ctrl+Left (background) mouse button.
 
 Also You can select any color just clickin'  directly on primary or secondary colors with left button to show Color dialog or set it to transparent clickin' by right mouse button.
 
-Hold Ctrl and click right mouse button for quick pick color from drawing image.
-
-Use Pipette tool for select color from image (color will de selected from active layer).
+Hold Ctrl and click left mouse button for quick pick color from drawing image or use Pipette tool for select color from image (color will de selected from active layer) (Hotkey 'O').
 
 To swap colors, press X key or click on middle button (with red and green circled arrows) between primary and secondary colors.
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spedit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-12-15 19:34+0200\n"
+"PO-Revision-Date: 2022-12-19 10:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -38,33 +38,34 @@ msgid "Show at startup"
 msgstr "Показувати під час запуску"
 
 #: tfrmframedlg.caption
+#, fuzzy
 msgctxt "tfrmframedlg.caption"
 msgid "New frame"
 msgstr "Новий фрейм"
 
 #: tfrmframedlg.checkbox1.caption
 msgid "Copy all layers"
-msgstr "Копіювати всі шари"
+msgstr ""
 
 #: tfrmframedlg.edtframename.text
 msgid "Frame"
-msgstr "Фрейм"
+msgstr ""
 
 #: tfrmframedlg.frmframewidth.caption
 msgid "Frame width"
-msgstr "Ширина фрейму"
+msgstr ""
 
 #: tfrmframedlg.label1.caption
 msgid "Min. cell size"
-msgstr "Мін. розмір сітки"
+msgstr ""
 
 #: tfrmframedlg.lblframeheight.caption
 msgid "Frame height"
-msgstr "Висота фрейму"
+msgstr ""
 
 #: tfrmframedlg.lblframename.caption
 msgid "Frame name"
-msgstr "Назва фрейму"
+msgstr ""
 
 #: tfrmmain.acimportframe.caption
 msgctxt "tfrmmain.acimportframe.caption"
@@ -135,6 +136,10 @@ msgstr "Показати/приховати палітру"
 msgctxt "tfrmmain.actredo.caption"
 msgid "Redo"
 msgstr "Повторити"
+
+#: tfrmmain.actreferencetoggle.caption
+msgid "Reference"
+msgstr ""
 
 #: tfrmmain.acttogglefullscreen.caption
 msgid "Full Screen"
@@ -251,7 +256,7 @@ msgstr "Шари"
 
 #: tfrmmain.lblpensize.caption
 msgid "Pen size"
-msgstr "Розмір олівця"
+msgstr ""
 
 #: tfrmmain.lbppalettepresrts.caption
 msgid "Standard presets"
@@ -335,11 +340,6 @@ msgctxt "tfrmmain.mipreview.caption"
 msgid "Preview"
 msgstr "Попередній перегляд"
 
-#: tfrmmain.mireferense.caption
-msgctxt "tfrmmain.mireferense.caption"
-msgid "Referense"
-msgstr "Референс"
-
 #: tfrmmain.misavelibrary.caption
 msgctxt "tfrmmain.misavelibrary.caption"
 msgid "Save Sprite Library"
@@ -375,10 +375,40 @@ msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr "Вид"
 
+#: tfrmmain.sbcircle.hint
+msgid "Circle tool - hotkey 'C'"
+msgstr ""
+
+#: tfrmmain.sberacer.hint
+msgid "Eraser tool - hotkey 'E'"
+msgstr ""
+
+#: tfrmmain.sbfilledrect.hint
+msgid "Filled rectangle tool - hotkey 'Shift+R'"
+msgstr ""
+
+#: tfrmmain.sbfloodfill.hint
+msgid "Flood fill tool - hotkey 'F'"
+msgstr ""
+
 #: tfrmmain.sbline.hint
+#, fuzzy
+#| msgid "Line tool"
 msgctxt "tfrmmain.sbline.hint"
-msgid "Line tool"
+msgid "Line tool - hotkey 'L'"
 msgstr "Інструмент Лінія"
+
+#: tfrmmain.sbpen.hint
+msgid "Pen tool - hotkey 'P'"
+msgstr ""
+
+#: tfrmmain.sbpipette.hint
+msgid "Pipette tool - hotkey 'O'"
+msgstr ""
+
+#: tfrmmain.sbrect.hint
+msgid "Rectangle tool - hotkey 'R'"
+msgstr ""
 
 #: uglobals.rsactivetool
 msgid "Active tool: "
@@ -386,7 +416,7 @@ msgstr "Ативний інструмент: "
 
 #: uglobals.rsbg
 msgid " / BG: "
-msgstr "/ ФК:"
+msgstr "/ ФК: "
 
 #: uglobals.rscircle
 msgid "Circle"
@@ -394,7 +424,7 @@ msgstr "Кільце"
 
 #: uglobals.rscolors
 msgid "Colors: "
-msgstr "Кольори: "
+msgstr "Кольори:"
 
 #: uglobals.rscopyof
 msgid "Copy of "
@@ -414,7 +444,7 @@ msgstr "Заповнений прямокутник"
 
 #: uglobals.rsfloodfill
 msgid "Flood fill"
-msgstr "Заливка області"
+msgstr ""
 
 #: uglobals.rsgenerictool
 msgid "Generic tool"

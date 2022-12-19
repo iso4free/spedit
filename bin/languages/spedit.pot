@@ -118,6 +118,10 @@ msgctxt "tfrmmain.actredo.caption"
 msgid "Redo"
 msgstr ""
 
+#: tfrmmain.actreferencetoggle.caption
+msgid "Reference"
+msgstr ""
+
 #: tfrmmain.acttogglefullscreen.caption
 msgid "Full Screen"
 msgstr ""
@@ -311,11 +315,6 @@ msgctxt "tfrmmain.mipreview.caption"
 msgid "Preview"
 msgstr ""
 
-#: tfrmmain.mireferense.caption
-msgctxt "tfrmmain.mireferense.caption"
-msgid "Referense"
-msgstr ""
-
 #: tfrmmain.misavelibrary.caption
 msgctxt "tfrmmain.misavelibrary.caption"
 msgid "Save Sprite Library"
@@ -351,9 +350,37 @@ msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr ""
 
+#: tfrmmain.sbcircle.hint
+msgid "Circle tool - hotkey 'C'"
+msgstr ""
+
+#: tfrmmain.sberacer.hint
+msgid "Eraser tool - hotkey 'E'"
+msgstr ""
+
+#: tfrmmain.sbfilledrect.hint
+msgid "Filled rectangle tool - hotkey 'Shift+R'"
+msgstr ""
+
+#: tfrmmain.sbfloodfill.hint
+msgid "Flood fill tool - hotkey 'F'"
+msgstr ""
+
 #: tfrmmain.sbline.hint
 msgctxt "tfrmmain.sbline.hint"
-msgid "Line tool"
+msgid "Line tool - hotkey 'L'"
+msgstr ""
+
+#: tfrmmain.sbpen.hint
+msgid "Pen tool - hotkey 'P'"
+msgstr ""
+
+#: tfrmmain.sbpipette.hint
+msgid "Pipette tool - hotkey 'O'"
+msgstr ""
+
+#: tfrmmain.sbrect.hint
+msgid "Rectangle tool - hotkey 'R'"
 msgstr ""
 
 #: uglobals.rsactivetool

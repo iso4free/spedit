@@ -22,6 +22,7 @@ type
     actDeleteLayer: TAction;
     actCopyLayer: TAction;
     actFramesToggle: TAction;
+    actReferenceToggle: TAction;
     actPaletteToggle: TAction;
     actPaletteImport: TAction;
     actPaletteSave: TAction;
@@ -156,6 +157,7 @@ type
     procedure actPaletteSaveExecute(Sender: TObject);
     procedure actPaletteToggleExecute(Sender: TObject);
     procedure actRedoExecute(Sender: TObject);
+    procedure actReferenceToggleExecute(Sender: TObject);
     procedure actToggleFullScreenExecute(Sender: TObject);
     procedure actZoomInExecute(Sender: TObject);
     procedure actZoomOutExecute(Sender: TObject);
@@ -190,6 +192,7 @@ type
       Shift: TShiftState; Index: integer; AColor: TColor; var DontCheck: boolean
       );
     procedure miAboutClick(Sender: TObject);
+    procedure miReferenseClick(Sender: TObject);
     procedure pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -403,6 +406,13 @@ procedure TfrmMain.actRedoExecute(Sender: TObject);
 begin
  UndoRedoManager.Redo;
  Invalidate;
+end;
+
+procedure TfrmMain.actReferenceToggleExecute(Sender: TObject);
+begin
+ if not Assigned(frmReferense) then frmReferense:=TfrmReferense.Create(nil);
+ frmReferense.Visible:=not frmReferense.Visible;
+ actReferenceToggle.Checked:=frmReferense.Visible;
 end;
 
 procedure TfrmMain.actToggleFullScreenExecute(Sender: TObject);
@@ -640,41 +650,74 @@ var
 begin
      if not Assigned(FrameGrid) then Exit;
      aPt:=FrameGrid.Offset;
+     if ssShift in Shift then begin
       case Key of
     VK_LEFT: begin
-        if ssShift in Shift then begin
          FrameGrid.Offset.SetLocation(aPt.X-10,aPt.Y);
-        end
-        else if Shift=[] then begin
-         FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X-1;
-        end;
       end;
     VK_RIGHT: begin
-        if ssShift in Shift then begin
          FrameGrid.Offset.SetLocation(aPt.X+10,aPt.Y);
-        end
-        else if Shift=[] then begin
-         FrameGrid.CellCursor.X:=FrameGrid.CellCursor.X+1;
-        end;
       end;
     VK_UP: begin
-        if ssShift in Shift then begin
          FrameGrid.Offset.SetLocation(aPt.X,aPt.Y-10);
-        end
-        else if Shift=[] then begin
-         FrameGrid.CellCursor.Y:=FrameGrid.CellCursor.Y-1;
-        end;
       end;
     VK_DOWN: begin
-        if ssShift in Shift then begin
           FrameGrid.Offset.SetLocation(aPt.X,aPt.Y+10);
-        end
-        else if Shift=[] then begin
-         FrameGrid.CellCursor.y:=FrameGrid.CellCursor.y+1;
-        end;
+      end;
+    VK_R: begin
+       //Shift+R filled rectangle tool
+       sbFilledRect.Click;
+     end;
+    //Shift+NumPlus increase pen size
+    VK_ADD: begin
+       trkbrPenSize.Value:=trkbrPenSize.Value+1;
+       trkbrPenSizeChange(Sender);
+     end;
+    //Shift+NumMinus decrease pen size
+    VK_SUBTRACT: begin
+       trkbrPenSize.Value:=trkbrPenSize.Value-1;
+       trkbrPenSizeChange(Sender);
+     end;
+    end; //case
+
+    end else//ssShift
+     if Shift=[] then begin
+      case Key of
+    VK_P: begin
+       //P key Pen tool
+        sbPen.Click;
+      end;
+    VK_L: begin
+       //L key Line tool
+        sbLine.Click;
+      end;
+    VK_R:begin
+       //R key Rectangle tool
+        sbRect.Click;
+      end;
+    VK_C: begin
+       //C key Cirkle tool
+        sbCircle.Click;
+      end;
+    VK_F:begin
+       //F key Flood fill tool
+        sbFloodFill.Click;
+      end;
+    VK_E: begin
+       //E key Eraser tool
+        sbEracer.Click;
+      end;
+    VK_O:begin
+       //O key Pipette tool (color picker)
+        sbPenClick(sbPipette);
+      end;
+    VK_X:begin
+       //X key Swap colors
+        bbtnSwapColorsClick(Sender);
       end;
       end;
-      Invalidate;
+     end;
+    Invalidate;
 end;
 
 procedure TfrmMain.FramePreviewClick(Sender: TObject);
@@ -699,6 +742,7 @@ begin
   if ssCtrl in Shift then SetSelectedColor(mbRight,HexaColorPicker1.SelectedColor)
    else SetSelectedColor(Button,HexaColorPicker1.SelectedColor);
   Palette.AddColor(HexaColorPicker1.SelectedColor);
+  mbPaletteGrid.Invalidate;
 end;
 
 procedure TfrmMain.mbColorPalettePresetCellClick(Button: TMouseButton;
@@ -706,6 +750,7 @@ procedure TfrmMain.mbColorPalettePresetCellClick(Button: TMouseButton;
 begin
  if ssCtrl in Shift then SetSelectedColor(mbRight,AColor)
   else SetSelectedColor(Button,AColor);
+
 end;
 
 procedure TfrmMain.miAboutClick(Sender: TObject);
@@ -713,6 +758,11 @@ begin
      if not Assigned(frmAbout) then frmAbout:= TfrmAbout.Create(Application);
      frmAbout.ShowModal;
      FreeAndNil(frmAbout);
+end;
+
+procedure TfrmMain.miReferenseClick(Sender: TObject);
+begin
+
 end;
 
 procedure TfrmMain.PaletteChange;
@@ -727,8 +777,8 @@ procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
 var p : TPoint;
 begin
  if not Assigned(FrameGrid) then Exit;
- //if tool not pipette  Ctrl+mbRight works like color picker
- if (DrawTool.ToolName<>rsPipette) and (Button=mbRight) and (ssCtrl in Shift) then begin
+ //if tool not pipette  Ctrl+mbLeft works like color picker
+ if (DrawTool.ToolName<>rsPipette) and (Button=mbLeft) and (ssCtrl in Shift) then begin
    p:=FrameGrid.Coords(x,y);
    spclForeColor:=Layers[FrameGrid.ActiveLayer].Drawable.GetPixel(p.X,p.Y);
    FgColor.Invalidate;
@@ -801,6 +851,8 @@ begin
   end;
   pbFrameDraw.Invalidate;
   drwgrdLayers.Invalidate;
+  FgColor.Invalidate;
+  BgColor.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;
@@ -847,6 +899,7 @@ begin
   end;
   ToolOptions.Color:=Palette.SelectedColor;
   Palette.AddColor(aColor);
+  mbPaletteGrid.Invalidate;
 end;
 
 procedure TfrmMain.sbPenClick(Sender: TObject);
@@ -860,9 +913,7 @@ begin
  1:DrawTool:=TSPPen.Create;
  2:DrawTool:=TSPLine.Create;
  3:DrawTool:=TSPEraser.Create;
- 4:begin
-      DrawTool:=TSPPipette.Create;
- end;
+ 4:DrawTool:=TSPPipette.Create;
  5:DrawTool:=TSPRect.Create;
  6:DrawTool:=TSPFilledRect.Create;
  7:DrawTool:=TSPCircle.Create;
@@ -873,6 +924,7 @@ begin
       sbPen.Down:=True;
   end;
  end;
+ (Sender as TSpeedButton).Down:=True;
  StatusBar1.Panels[4].Text:=rsActiveTool+DrawTool.ToolName;
 end;
 

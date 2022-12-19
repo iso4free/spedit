@@ -136,6 +136,10 @@ msgctxt "tfrmmain.actredo.caption"
 msgid "Redo"
 msgstr "Refazer"
 
+#: tfrmmain.actreferencetoggle.caption
+msgid "Reference"
+msgstr ""
+
 #: tfrmmain.acttogglefullscreen.caption
 msgid "Full Screen"
 msgstr "Tela Cheia"
@@ -356,12 +360,6 @@ msgctxt "tfrmmain.mipreview.caption"
 msgid "Preview"
 msgstr "Previsualização"
 
-#: tfrmmain.mireferense.caption
-#, fuzzy
-msgctxt "tfrmmain.mireferense.caption"
-msgid "Referense"
-msgstr "Referência"
-
 #: tfrmmain.misavelibrary.caption
 #, fuzzy
 msgctxt "tfrmmain.misavelibrary.caption"
@@ -404,10 +402,40 @@ msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr "Visualizar"
 
+#: tfrmmain.sbcircle.hint
+msgid "Circle tool - hotkey 'C'"
+msgstr ""
+
+#: tfrmmain.sberacer.hint
+msgid "Eraser tool - hotkey 'E'"
+msgstr ""
+
+#: tfrmmain.sbfilledrect.hint
+msgid "Filled rectangle tool - hotkey 'Shift+R'"
+msgstr ""
+
+#: tfrmmain.sbfloodfill.hint
+msgid "Flood fill tool - hotkey 'F'"
+msgstr ""
+
 #: tfrmmain.sbline.hint
+#, fuzzy
+#| msgid "Line tool"
 msgctxt "tfrmmain.sbline.hint"
-msgid "Line tool"
+msgid "Line tool - hotkey 'L'"
 msgstr "Ferramenta linha"
+
+#: tfrmmain.sbpen.hint
+msgid "Pen tool - hotkey 'P'"
+msgstr ""
+
+#: tfrmmain.sbpipette.hint
+msgid "Pipette tool - hotkey 'O'"
+msgstr ""
+
+#: tfrmmain.sbrect.hint
+msgid "Rectangle tool - hotkey 'R'"
+msgstr ""
 
 #: uglobals.rsactivetool
 msgid "Active tool: "
