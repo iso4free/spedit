@@ -122,7 +122,7 @@ type
   end;
 
   //presets list
-  TPresetsList = specialize TFPGList<TPalettePreset>;
+//  TPresetsList = specialize TFPGList<TPalettePreset>;
 
   {class for undo/redo posibilities}
 
@@ -319,7 +319,7 @@ var
   spclBackColor : TBGRAPixel; //background color - right mouse button drawing
   //Work palette
   Palette       : TPalette;
-  Presets       : TPresetsList; //palettes presets list
+//  Presets       : TPresetsList; //palettes presets list
 
   FrameGrid     : TFrameGrid;
   Layers        : TLayers;
@@ -365,6 +365,11 @@ begin
     on E: Exception do
       ShowMessage(E.Message);
   end;
+end;
+
+procedure LoadPresets(dir: TFileName);
+begin
+  //todo: load presets from PNG files isn selected directory
 end;
 
 function StreamToBase64(const AStream: TMemoryStream; out Base64: String): Boolean;

@@ -3,3 +3,4 @@ lib/**
 debug/**
 src/backup/**
 *.mo
+*.exe

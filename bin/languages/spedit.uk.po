@@ -1,21 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: spedit\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-12-19 10:57+0200\n"
-"Last-Translator: \n"
-"Language-Team: Ukrainian\n"
-"Language: uk_UA\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: spedit\n"
 "X-Crowdin-Project-ID: 548623\n"
 "X-Crowdin-Language: uk\n"
 "X-Crowdin-File: spedit.pot\n"
 "X-Crowdin-File-ID: 1\n"
-"X-Generator: Poedit 3.0.1\n"
+"Project-Id-Version: spedit\n"
+"Language-Team: Ukrainian\n"
+"Language: uk_UA\n"
+"PO-Revision-Date: 2022-12-20 08:31\n"
 
 #: tfrmabout.label1.caption
 msgid "SPEdit"
@@ -26,11 +21,9 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Вільний і відкритий редактор спрайтів V.4.0"
 
 #: tfrmabout.label3.caption
-msgid ""
-"Created by (c) Vadim Vitomsky, 2000-2022\n"
+msgid "Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos (translation to pt-br, Mascot)"
-msgstr ""
-"Створено (c) Вадимом Вітомським, 2000-2022\n"
+msgstr "Створено (c) Вадимом Вітомським, 2000-2022\n"
 "Залучений Едді Маттос (переклад до pt-br, Талісман)"
 
 #: tfrmabout.showsplashcheckbox.caption
@@ -38,34 +31,33 @@ msgid "Show at startup"
 msgstr "Показувати під час запуску"
 
 #: tfrmframedlg.caption
-#, fuzzy
 msgctxt "tfrmframedlg.caption"
 msgid "New frame"
 msgstr "Новий фрейм"
 
 #: tfrmframedlg.checkbox1.caption
 msgid "Copy all layers"
-msgstr ""
+msgstr "Копіювати всі шари"
 
 #: tfrmframedlg.edtframename.text
 msgid "Frame"
-msgstr ""
+msgstr "Фрейм"
 
 #: tfrmframedlg.frmframewidth.caption
 msgid "Frame width"
-msgstr ""
+msgstr "Ширина фрейму"
 
 #: tfrmframedlg.label1.caption
 msgid "Min. cell size"
-msgstr ""
+msgstr "Мін. розмір клітинки"
 
 #: tfrmframedlg.lblframeheight.caption
 msgid "Frame height"
-msgstr ""
+msgstr "Висота фрейму"
 
 #: tfrmframedlg.lblframename.caption
 msgid "Frame name"
-msgstr ""
+msgstr "Назва фрейму"
 
 #: tfrmmain.acimportframe.caption
 msgctxt "tfrmmain.acimportframe.caption"
@@ -87,6 +79,10 @@ msgstr "Видалити шар"
 #: tfrmmain.actexit.caption
 msgid "&Exit"
 msgstr "&Вихід"
+
+#: tfrmmain.actframeexportpng.caption
+msgid "Export frame as PNG"
+msgstr "Експортувати фрейм як PNG"
 
 #: tfrmmain.actframestoggle.caption
 msgid "Toggle frames"
@@ -139,7 +135,7 @@ msgstr "Повторити"
 
 #: tfrmmain.actreferencetoggle.caption
 msgid "Reference"
-msgstr ""
+msgstr "Референс"
 
 #: tfrmmain.acttogglefullscreen.caption
 msgid "Full Screen"
@@ -199,11 +195,9 @@ msgstr "ФК"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.caption
@@ -237,11 +231,9 @@ msgstr "ПК"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.framepreview.hint
@@ -256,11 +248,11 @@ msgstr "Шари"
 
 #: tfrmmain.lblpensize.caption
 msgid "Pen size"
-msgstr ""
+msgstr "Розмір олівця"
 
 #: tfrmmain.lbppalettepresrts.caption
 msgid "Standard presets"
-msgstr ""
+msgstr "Стандартні пресети"
 
 #: tfrmmain.miabout.caption
 msgctxt "tfrmmain.miabout.caption"
@@ -276,6 +268,10 @@ msgstr "Інструменти малювання"
 msgctxt "tfrmmain.miedit.caption"
 msgid "Edit"
 msgstr "Редагувати"
+
+#: tfrmmain.miexport.caption
+msgid "Export"
+msgstr "Експорт"
 
 #: tfrmmain.mifilemenu.caption
 msgctxt "tfrmmain.mifilemenu.caption"
@@ -308,11 +304,9 @@ msgstr "Імпорт таблиці спрайтів"
 
 #: tfrmmain.miimportspritesheet.hint
 msgctxt "tfrmmain.miimportspritesheet.hint"
-msgid ""
-"You can import image or spritesheet file\n"
+msgid "You can import image or spritesheet file\n"
 "and add it to the library"
-msgstr ""
-"Імпортувати зображення або файл таблиці спрайтів\n"
+msgstr "Імпортувати зображення або файл таблиці спрайтів\n"
 "і додати його в бібліотеку"
 
 #: tfrmmain.milayers.caption
@@ -377,38 +371,36 @@ msgstr "Вид"
 
 #: tfrmmain.sbcircle.hint
 msgid "Circle tool - hotkey 'C'"
-msgstr ""
+msgstr "Інструмент Circle - гаряча клавіша 'C'"
 
 #: tfrmmain.sberacer.hint
 msgid "Eraser tool - hotkey 'E'"
-msgstr ""
+msgstr "Інструмент Гумка - гаряча клавіша 'E'"
 
 #: tfrmmain.sbfilledrect.hint
 msgid "Filled rectangle tool - hotkey 'Shift+R'"
-msgstr ""
+msgstr "Інструмент Заповнений прямокутник - гаряча клавіша 'Shift+R'"
 
 #: tfrmmain.sbfloodfill.hint
 msgid "Flood fill tool - hotkey 'F'"
-msgstr ""
+msgstr "Інструмент заливки кольором - гаряча клавіша 'F'"
 
 #: tfrmmain.sbline.hint
-#, fuzzy
-#| msgid "Line tool"
 msgctxt "tfrmmain.sbline.hint"
 msgid "Line tool - hotkey 'L'"
-msgstr "Інструмент Лінія"
+msgstr "Інструмент лінії - гаряча клавіша 'L'"
 
 #: tfrmmain.sbpen.hint
 msgid "Pen tool - hotkey 'P'"
-msgstr ""
+msgstr "Інструмент Олівець - гаряча клавіша 'P'"
 
 #: tfrmmain.sbpipette.hint
 msgid "Pipette tool - hotkey 'O'"
-msgstr ""
+msgstr "Інструмент Піпетка - гаряча клавіша 'O'"
 
 #: tfrmmain.sbrect.hint
 msgid "Rectangle tool - hotkey 'R'"
-msgstr ""
+msgstr "Інструмент Прямокутник - гаряча клавіша 'R'"
 
 #: uglobals.rsactivetool
 msgid "Active tool: "
@@ -444,7 +436,7 @@ msgstr "Заповнений прямокутник"
 
 #: uglobals.rsfloodfill
 msgid "Flood fill"
-msgstr ""
+msgstr "Заливка кольором"
 
 #: uglobals.rsgenerictool
 msgid "Generic tool"

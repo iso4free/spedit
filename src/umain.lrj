@@ -31,6 +31,7 @@
 {"hash":90847572,"name":"tfrmmain.mifilenewpoject.caption","sourcebytes":[78,101,119,32,83,112,114,105,116,101,32,80,114,111,106,101,99,116],"value":"New Sprite Project"},
 {"hash":162191620,"name":"tfrmmain.mifilesaveproject.caption","sourcebytes":[83,97,118,101,32,83,112,114,105,116,101,32,80,114,111,106,101,99,116],"value":"Save Sprite Project"},
 {"hash":266508814,"name":"tfrmmain.misaveprojectas.caption","sourcebytes":[83,97,118,101,32,83,112,114,105,116,101,32,80,114,111,106,101,99,116,32,65,115,46,46,46],"value":"Save Sprite Project As..."},
+{"hash":80705172,"name":"tfrmmain.miexport.caption","sourcebytes":[69,120,112,111,114,116],"value":"Export"},
 {"hash":2472553,"name":"tfrmmain.minewlibrary.caption","sourcebytes":[78,101,119,32,83,112,114,105,116,101,32,76,105,98,114,97,114,121],"value":"New Sprite Library"},
 {"hash":160949332,"name":"tfrmmain.miimportspritesheet.caption","sourcebytes":[73,109,112,111,114,116,32,83,112,114,105,116,101,115,104,101,101,116],"value":"Import Spritesheet"},
 {"hash":254659625,"name":"tfrmmain.miimportspritesheet.hint","sourcebytes":[89,111,117,32,99,97,110,32,105,109,112,111,114,116,32,105,109,97,103,101,32,111,114,32,115,112,114,105,116,101,115,104,101,101,116,32,102,105,108,101,10,97,110,100,32,97,100,100,32,105,116,32,116,111,32,116,104,101,32,108,105,98,114,97,114,121],"value":"You can import image or spritesheet file\nand add it to the library"},
@@ -70,5 +71,6 @@
 {"hash":207854285,"name":"tfrmmain.actzoomreset.caption","sourcebytes":[82,101,115,101,116,32,122,111,111,109],"value":"Reset zoom"},
 {"hash":97995102,"name":"tfrmmain.acttogglefullscreen.caption","sourcebytes":[70,117,108,108,32,83,99,114,101,101,110],"value":"Full Screen"},
 {"hash":139375349,"name":"tfrmmain.actlanguageselect.caption","sourcebytes":[76,97,110,103,117,97,103,101],"value":"Language"},
-{"hash":214498341,"name":"tfrmmain.actreferencetoggle.caption","sourcebytes":[82,101,102,101,114,101,110,99,101],"value":"Reference"}
+{"hash":214498341,"name":"tfrmmain.actreferencetoggle.caption","sourcebytes":[82,101,102,101,114,101,110,99,101],"value":"Reference"},
+{"hash":212500343,"name":"tfrmmain.actframeexportpng.caption","sourcebytes":[69,120,112,111,114,116,32,102,114,97,109,101,32,97,115,32,80,78,71],"value":"Export frame as PNG"}
 ]}

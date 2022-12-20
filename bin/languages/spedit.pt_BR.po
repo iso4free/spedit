@@ -82,6 +82,10 @@ msgstr "Deletar camada"
 msgid "&Exit"
 msgstr "&Sair"
 
+#: tfrmmain.actframeexportpng.caption
+msgid "Export frame as PNG"
+msgstr ""
+
 #: tfrmmain.actframestoggle.caption
 msgid "Toggle frames"
 msgstr "Alternar quadros"
@@ -286,6 +290,10 @@ msgstr "Ferramentas de desenho"
 msgctxt "tfrmmain.miedit.caption"
 msgid "Edit"
 msgstr "Editar"
+
+#: tfrmmain.miexport.caption
+msgid "Export"
+msgstr ""
 
 #: tfrmmain.mifilemenu.caption
 #, fuzzy

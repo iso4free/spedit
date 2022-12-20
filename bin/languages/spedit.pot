@@ -69,6 +69,10 @@ msgstr ""
 msgid "&Exit"
 msgstr ""
 
+#: tfrmmain.actframeexportpng.caption
+msgid "Export frame as PNG"
+msgstr ""
+
 #: tfrmmain.actframestoggle.caption
 msgid "Toggle frames"
 msgstr ""
@@ -252,6 +256,10 @@ msgstr ""
 #: tfrmmain.miedit.caption
 msgctxt "tfrmmain.miedit.caption"
 msgid "Edit"
+msgstr ""
+
+#: tfrmmain.miexport.caption
+msgid "Export"
 msgstr ""
 
 #: tfrmmain.mifilemenu.caption

@@ -22,6 +22,7 @@ type
     actDeleteLayer: TAction;
     actCopyLayer: TAction;
     actFramesToggle: TAction;
+    actFrameExportPNG: TAction;
     actReferenceToggle: TAction;
     actPaletteToggle: TAction;
     actPaletteImport: TAction;
@@ -68,6 +69,8 @@ type
     LayersGroupBox: TGroupBox;
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
+    miExportFramePNG: TMenuItem;
+    miExport: TMenuItem;
     miMergeLayers: TMenuItem;
     miCopyLayer: TMenuItem;
     miDeleteLayer: TMenuItem;
@@ -142,6 +145,7 @@ type
     Splitter3: TSplitter;
     StatusBar1: TStatusBar;
     trkbrPenSize: TSpinEdit;
+    procedure actFrameExportPNGExecute(Sender: TObject);
     procedure actFramesToggleExecute(Sender: TObject);
     procedure actImportFrameExecute(Sender: TObject);
     procedure actAddLayerExecute(Sender: TObject);
@@ -273,6 +277,16 @@ procedure TfrmMain.actFramesToggleExecute(Sender: TObject);
 begin
     pnlFrames.Visible:=not pnlFrames.Visible;
     actFramesToggle.Checked:=pnlFrames.Visible;
+end;
+
+procedure TfrmMain.actFrameExportPNGExecute(Sender: TObject);
+begin
+ sdExportFrameSaveDialog.InitialDir:=GetUserDir;
+ sdExportFrameSaveDialog.FileName:=FrameGrid.ActiveFrame;
+ if sdExportFrameSaveDialog.Execute then begin
+   //save current frame to PNG file by default to user dir and with frame name
+   FrameGrid.ExpotPng(sdExportFrameSaveDialog.FileName);
+ end;
 end;
 
 procedure TfrmMain.actAddLayerExecute(Sender: TObject);
@@ -504,13 +518,13 @@ const
   MaxColorCount = 64;
 var
   Count, I: Integer;
-  Color: TBGRAPixel;
+  aColor: TBGRAPixel;
   OldColor: TColor;
 begin
   TComboBox(Control).Canvas.FillRect(ARect);
 
   OldColor := TComboBox(Control).Canvas.Brush.Color;
-  Count := Length(Palettes[Index].Palette);
+{  Count := Length(Palettes[Index].Palette);
   for I := 0 to Count - 1 do
   begin
     Color := TARGB(Palettes[Index].Palette[I]);
@@ -526,6 +540,7 @@ begin
   TComboBox(Control).Canvas.Brush.Color := OldColor;
   ARect.Left := ARect.Left + MaxColorCount + 2;
   TComboBox(Control).Canvas.TextOut(ARect.Left, ARect.Top, TComboBox(Control).Items[Index]);
+}
 end;
 
 procedure TfrmMain.drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
@@ -759,12 +774,7 @@ end;
 
 procedure TfrmMain.FramePreviewClick(Sender: TObject);
 begin
- sdExportFrameSaveDialog.InitialDir:=GetUserDir;
- sdExportFrameSaveDialog.FileName:=FrameGrid.ActiveFrame;
- if sdExportFrameSaveDialog.Execute then begin
-   //save current frame to PNG file by default to user dir and with frame name
-   FrameGrid.ExpotPng(sdExportFrameSaveDialog.FileName);
- end;
+  actFrameExportPNGExecute(Sender);
 end;
 
 procedure TfrmMain.FramePreviewPaint(Sender: TObject);
