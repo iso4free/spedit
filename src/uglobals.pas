@@ -115,6 +115,15 @@ type
      function ColorExists(aColor : TBGRAPixel) : Integer; //check if color in palette before adding
   end;
 
+  //palettes presets
+  TPalettePreset = record
+    PaletteName : TFilename; //palette file name (PNG file only)
+    Palette     : TPalette;
+  end;
+
+  //presets list
+  TPresetsList = specialize TFPGList<TPalettePreset>;
+
   {class for undo/redo posibilities}
 
   PSPUndoRec = ^TSPUndoRec;
@@ -287,6 +296,7 @@ type
     property ActiveLayer : String read FActiveLayer write FActiveLayer; //current layer to draw
     property CellCursor : TCellCursor read FCellCursor; //just red frame to show where draw in grid
     property Bounds : TRect read fBounds; //actual canvas size for drawing
+    property GridSize : Word read fFrameGridSize; //current grid size - read only
   end;
 
 
@@ -309,6 +319,7 @@ var
   spclBackColor : TBGRAPixel; //background color - right mouse button drawing
   //Work palette
   Palette       : TPalette;
+  Presets       : TPresetsList; //palettes presets list
 
   FrameGrid     : TFrameGrid;
   Layers        : TLayers;
@@ -329,6 +340,7 @@ var
   procedure ResizeLayers(aW,aH : Integer); //resize al layers when change frame size
   function StreamToBase64(const AStream: TMemoryStream; out Base64: String): Boolean;
   function Base64ToStream(const ABase64: String; var AStream: TMemoryStream): Boolean;
+  procedure LoadPresets(dir : TFileName); //loads palette presets from selected dir
 
 implementation
 
@@ -894,9 +906,6 @@ var
 
 begin
   ShowGrid:=(fFrameGridSize+fFrameZoom)>5;
-  {$IFDEF DEBUG}
-   DebugLn(DateTimeToStr(Now()),' In: TFrameGrid.RenderAndDraw(); FrameWidth=',IntToStr(fBuffer.Width),' FrameHeight=',IntToStr(fBuffer.Height));
-  {$ENDIF}
   fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),
                        ColorToBGRA($BFBFBF),
                        ColorToBGRA($FFFFFF),

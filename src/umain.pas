@@ -172,6 +172,8 @@ type
     procedure bbtnSwapColorsClick(Sender: TObject);
     procedure bbtnImportFrameClick(Sender: TObject);
     procedure bbtnToggleFramesClick(Sender: TObject);
+    procedure cbPalettePresetsDrawItem(Control: TWinControl; Index: Integer;
+      ARect: TRect; State: TOwnerDrawState);
     procedure drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
     procedure drwgrdLayersSelectCell(Sender: TObject; aCol, aRow: Integer;
@@ -405,7 +407,7 @@ end;
 procedure TfrmMain.actRedoExecute(Sender: TObject);
 begin
  UndoRedoManager.Redo;
- Invalidate;
+ pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.actReferenceToggleExecute(Sender: TObject);
@@ -496,6 +498,36 @@ begin
   actFramesToggleExecute(Sender);
 end;
 
+procedure TfrmMain.cbPalettePresetsDrawItem(Control: TWinControl;
+  Index: Integer; ARect: TRect; State: TOwnerDrawState);
+const
+  MaxColorCount = 64;
+var
+  Count, I: Integer;
+  Color: TBGRAPixel;
+  OldColor: TColor;
+begin
+  TComboBox(Control).Canvas.FillRect(ARect);
+
+  OldColor := TComboBox(Control).Canvas.Brush.Color;
+  Count := Length(Palettes[Index].Palette);
+  for I := 0 to Count - 1 do
+  begin
+    Color := TARGB(Palettes[Index].Palette[I]);
+    TComboBox(Control).Canvas.Brush.Color := RGBToColor(Color.R, Color.G, Color.B);
+    TComboBox(Control).Canvas.FillRect(
+      ARect.Left + I * (MaxColorCount div Count) + 2,
+      ARect.Top + 1,
+      ARect.Left + (I + 1) * (MaxColorCount div Count) + 2,
+      ARect.Bottom - 1
+    );
+  end;
+
+  TComboBox(Control).Canvas.Brush.Color := OldColor;
+  ARect.Left := ARect.Left + MaxColorCount + 2;
+  TComboBox(Control).Canvas.TextOut(ARect.Left, ARect.Top, TComboBox(Control).Items[Index]);
+end;
+
 procedure TfrmMain.drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
   aRect: TRect; aState: TGridDrawState);
 var aKey : String;
@@ -559,7 +591,7 @@ end;
 procedure TfrmMain.actUndoExecute(Sender: TObject);
 begin
  UndoRedoManager.Undo;
- Invalidate;
+ pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.FgColorClick(Sender: TObject);
@@ -638,6 +670,7 @@ end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
+     mbPaletteGrid.ColorNames.SaveToFile('frame.hex');
      JSONPropStorage1.Save;
      FreeAndNil(DrawTool);
      if Assigned(frmAbout) then FreeAndNil(frmAbout);
@@ -652,6 +685,7 @@ begin
      aPt:=FrameGrid.Offset;
      if ssShift in Shift then begin
       case Key of
+      //10 px grid shift to selected direction
     VK_LEFT: begin
          FrameGrid.Offset.SetLocation(aPt.X-10,aPt.Y);
       end;
@@ -717,7 +751,10 @@ begin
       end;
       end;
      end;
-    Invalidate;
+    pbFrameDraw.SetBounds(0,0,
+     FrameGrid.Offset.X+(FrameGrid.FrameWidth*(FrameGrid.GridSize+FrameGrid.FrameZoom)),
+     FrameGrid.Offset.Y+(FrameGrid.FrameHeight*(FrameGrid.GridSize+FrameGrid.FrameZoom)));
+    pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.FramePreviewClick(Sender: TObject);
@@ -742,7 +779,6 @@ begin
   if ssCtrl in Shift then SetSelectedColor(mbRight,HexaColorPicker1.SelectedColor)
    else SetSelectedColor(Button,HexaColorPicker1.SelectedColor);
   Palette.AddColor(HexaColorPicker1.SelectedColor);
-  mbPaletteGrid.Invalidate;
 end;
 
 procedure TfrmMain.mbColorPalettePresetCellClick(Button: TMouseButton;
@@ -750,7 +786,6 @@ procedure TfrmMain.mbColorPalettePresetCellClick(Button: TMouseButton;
 begin
  if ssCtrl in Shift then SetSelectedColor(mbRight,AColor)
   else SetSelectedColor(Button,AColor);
-
 end;
 
 procedure TfrmMain.miAboutClick(Sender: TObject);
@@ -769,6 +804,7 @@ procedure TfrmMain.PaletteChange;
 var
   i: Integer;
 begin
+ mbPaletteGrid.Colors.Clear;
   for i:=0 to Palette.Count-1 do mbPaletteGrid.Colors.Add(ColorToString(Palette.Color[i].ToColor));
 end;
 
@@ -848,6 +884,11 @@ begin
   if Assigned(DrawTool) then begin
    p:=FrameGrid.Coords(X,Y);
    DrawTool.MouseUp(p.x,p.y,Shift);
+   //check if current palette hasn't current color then add it
+   if ToolOptions.Color<>BGRAPixelTransparent then begin
+    Palette.AddColor(ToolOptions.Color);
+    PaletteChange;
+   end;
   end;
   pbFrameDraw.Invalidate;
   drwgrdLayers.Invalidate;
