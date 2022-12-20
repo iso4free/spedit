@@ -50,7 +50,7 @@ In Tools window select primary and secondary color, select tool for mouse drawin
 
 To increase/decrease the pencil size, use the Ctrl+NumPlus/Ctrl+NumMinus hotkeys respectively.
 
-You can select primary and secondary colors click on any color in palette with Left (forefround) or Ctrl+Left (background) mouse button.
+You can select primary and secondary colors click on any color in palette with Left (foreground) or Ctrl+Left (background) mouse button.
 
 Also You can select any color just clickin'  directly on primary or secondary colors with left button to show Color dialog or set it to transparent clickin' by right mouse button.
 
@@ -80,7 +80,7 @@ You can add, copy and remove layers in the layer panel, the active layer name is
 
 For those who like a minimalistic interface and use the maximum screen area for drawing, there is an option to switch to full-screen mode (shortcut <F11>), as well as to hide the extra panels - layers, frames, palette with a preview using the corresponding buttons on the toolbar.
 
-Press the 'Create new frame' button on the toolbar to start new image. A dialogue will appear where Yuo need to set frame name, width, height and min cell size in draw grid (from 4 to 20). It means the minimum value grid will be zoomed out. 
+Press the 'Create new frame' button on the toolbar to start new image. A dialogue will appear where you need to set frame name, width, height and min cell size in draw grid (from 4 to 20). It means the minimum value grid will be zoomed out. 
 
 THE FUTURE
 ==========

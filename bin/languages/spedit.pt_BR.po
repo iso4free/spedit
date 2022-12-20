@@ -26,7 +26,7 @@ msgid ""
 "Contributed by Eddie Mattos (translation to pt-br, Mascot)"
 msgstr ""
 "Criado por (c) Vadim Vitomsky, 2000-2022\n"
-"Contribuições de:EddieMattos - Tradução para o pt-BR e redesign do mascote"
+"Contribuições de EddieMattos - Tradução para o pt-BR e redesign do mascote"
 
 #: tfrmabout.showsplashcheckbox.caption
 msgid "Show at startup"
@@ -35,31 +35,31 @@ msgstr "Exibir ao iniciar"
 #: tfrmframedlg.caption
 msgctxt "tfrmframedlg.caption"
 msgid "New frame"
-msgstr ""
+msgstr "Novo quadro"
 
 #: tfrmframedlg.checkbox1.caption
 msgid "Copy all layers"
-msgstr ""
+msgstr "Copiar todas as camadas"
 
 #: tfrmframedlg.edtframename.text
 msgid "Frame"
-msgstr ""
+msgstr "Quadro"
 
 #: tfrmframedlg.frmframewidth.caption
 msgid "Frame width"
-msgstr ""
+msgstr "Largura do quadro"
 
 #: tfrmframedlg.label1.caption
 msgid "Min. cell size"
-msgstr ""
+msgstr "Tamanho min. da célula"
 
 #: tfrmframedlg.lblframeheight.caption
 msgid "Frame height"
-msgstr ""
+msgstr "Altura do quadro"
 
 #: tfrmframedlg.lblframename.caption
 msgid "Frame name"
-msgstr ""
+msgstr "Nome do quadro"
 
 #: tfrmmain.acimportframe.caption
 msgctxt "tfrmmain.acimportframe.caption"
@@ -138,7 +138,7 @@ msgstr "Refazer"
 
 #: tfrmmain.actreferencetoggle.caption
 msgid "Reference"
-msgstr ""
+msgstr "Referência"
 
 #: tfrmmain.acttogglefullscreen.caption
 msgid "Full Screen"
@@ -263,11 +263,11 @@ msgstr "Camadas"
 
 #: tfrmmain.lblpensize.caption
 msgid "Pen size"
-msgstr ""
+msgstr "Tamanho da caneta"
 
 #: tfrmmain.lbppalettepresrts.caption
 msgid "Standard presets"
-msgstr ""
+msgstr "Paletas predefinidas"
 
 #: tfrmmain.miabout.caption
 #, fuzzy
@@ -404,38 +404,38 @@ msgstr "Visualizar"
 
 #: tfrmmain.sbcircle.hint
 msgid "Circle tool - hotkey 'C'"
-msgstr ""
+msgstr "Círculo - atalho 'C'"
 
 #: tfrmmain.sberacer.hint
 msgid "Eraser tool - hotkey 'E'"
-msgstr ""
+msgstr "Borracha - atalho 'E'"
 
 #: tfrmmain.sbfilledrect.hint
 msgid "Filled rectangle tool - hotkey 'Shift+R'"
-msgstr ""
+msgstr "Retângulo preenchido - atalho 'Shift+R'"
 
 #: tfrmmain.sbfloodfill.hint
 msgid "Flood fill tool - hotkey 'F'"
-msgstr ""
+msgstr "Preenchimento - atalho 'F'"
 
 #: tfrmmain.sbline.hint
 #, fuzzy
 #| msgid "Line tool"
 msgctxt "tfrmmain.sbline.hint"
 msgid "Line tool - hotkey 'L'"
-msgstr "Ferramenta linha"
+msgstr "linha - Atakho 'L'"
 
 #: tfrmmain.sbpen.hint
 msgid "Pen tool - hotkey 'P'"
-msgstr ""
+msgstr "Caneta - atalho 'P'"
 
 #: tfrmmain.sbpipette.hint
 msgid "Pipette tool - hotkey 'O'"
-msgstr ""
+msgstr "Pipeta - atalho 'O'"
 
 #: tfrmmain.sbrect.hint
 msgid "Rectangle tool - hotkey 'R'"
-msgstr ""
+msgstr "Retangulo - atalho 'R'"
 
 #: uglobals.rsactivetool
 msgid "Active tool: "
@@ -471,7 +471,7 @@ msgstr "Retângulo preenchido"
 
 #: uglobals.rsfloodfill
 msgid "Flood fill"
-msgstr ""
+msgstr "Preenchimento"
 
 #: uglobals.rsgenerictool
 msgid "Generic tool"
