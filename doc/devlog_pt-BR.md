@@ -148,3 +148,13 @@ REGISTRO DE DESENVOLVIMENTO
 - [+] Adição de um modo em Tela Cheia
 - [!] Correção de oscilações e congelamento quando as janelas modais são exibidas
 - [-] Remoção do estilo DOS antigo de desenhar com as teclas (era um método estranho)
+
+14.12.2022
+=
+- [+] Adicionadas as teclas Shift+setas para mover a área da grade de desenho
+- [+] Acrescentado o tamanho mínimo da célula no diálogo 'Novo quadro'.
+
+17.12.2022
+=
+- [+] Trabalho ampliado com cores - adicionado a combobox Stadard pré-definida (será preenchida em breve), a paleta pré-definida e o seletor de cores Hex
+- [*] Mudou-se a seleção de cores de fundo para Ctrl+Clique em vez de Ctrl+Clique com o botão direito do mouse. A seleção de cor de primeiro plano funciona com o clique esquerdo do mouse.

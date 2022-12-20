@@ -18,6 +18,7 @@ COMO OBTER
 Quando o editor estiver pronto o suficiente para o uso (funções básicas implementadas, o programa funcionando com estabilidade), arquivos executáveis pré-compilados estarão disponíveis na área de 'Releases'.
 
 Se você quiser compilar o SPEdit a partir do código fonte, você deve ter o Lazarus IDE com o Free Pascal Compiler instalado em seu sistema operacional (é recomendado que você use a última versão estável). A última versão estável geralmente está disponível no [site oficial](https://lazarus-ide.org). Além disso, o pacote [BGRAControls](https://github.com/bgrabitmap/bgracontrols), do qual componentes individuais são usados, deve ser instalado adicionalmente no ambiente Lazarus.
+O pacote [mbColorLib](https://wiki.lazarus.freepascal.org/mbColorLib) é usado para trabalhar com a paleta de cores.
 
 Vocẽ pode abrir o arquivo de projeto spedit.lpi no ambiente Lazarus, compilar e rodar (run) da maneira usual para esse ambiente..
 
@@ -40,12 +41,12 @@ BREVE DOCUMENTAÇÃO
 ===================
 ~~Por enquanto, use use as setas do teclado para mover o cursor na grelha, as teclas Espaço e Enter para desenhar usando as cores selecionadas (primária e secundária), a tecla Del para limpar um pixel (no estilo da versão DOS).~~ Use o mouse como qualquer editor de imagens.
 
-Na janela Ferramentas selecione as cores primária e secundária, selecione a ferramenta para desenhar com o mouse e mude o tamanho do lápis. As ferramentas Lápis, Linha, Retângulo, Retângulo Preenchido, Círculo, Borracha e Pipeta estão disponíveis para desenho no momento.
+Na janela Ferramentas selecione as cores primária e secundária, selecione a ferramenta para desenhar com o mouse e mude o tamanho do lápis. As ferramentas Lápis, Linha, Retângulo, Retângulo Preenchido, Círculo, Preenchimento, Borracha e Pipeta estão disponíveis para desenho no momento.
 
 
-Você pode selecionar as cores primária e secundária clicando em uma cor na paleta com os botões esquerdo (primária) ou direito (secundária) do mouse.
+Você pode selecionar as cores primária e secundária clicando em uma cor na paleta com os botões esquerdo (primeiro plano) ou direito (plano de fundo) do mouse.
 
-Você também pode selecionar qualquer cor clicando nas cores primária e secundária com o botão esquerdo do mouse ou definí-la como transparente clicando com o botão direito do mouse.
+Você também pode selecionar qualquer cor clicando diretamente nas cores primária e secundária com o botão esquerdo do mouse para mostrar o diálogo Cores ou definí-la como transparente clicando com o botão direito do mouse.
 
 Para trocar as cores tecle 'X' ou clique no botão entre as cores primária e secundária (as setas verde e vermelho em arco ).
 
@@ -69,6 +70,10 @@ Clique na janela 'Referência' para abrir qualquer imagem de referência.
 
 Você pode adicionar, copiar e remover camadas no painel 'camadas', a camada ativa é destacada em vermelho. Também é possível alternar a visibilidade de uma camada clicando no ícone de olho ao lado do nome da camada. O ícone com cadeado te permite bloquear uma camada contra mudanças (será usado quando se compartilha camadas entre quadros diferentes). Você pode mudar o nome da camada com um clique duplo sobre o nome antigo.
 
+Para aqueles que gostam de uma interface minimalistica e usar um maior espaço da tela para desenhar, há uma opção para mudar para o modo Tela Cheia (atalho <F11>), assim como ocultar os painéis extras - camadas, quadros, paleta usando os botões correspondentes na barra de ferramentas.
+
+Pressione o botão 'Criar um novo quadro' na barra de ferramentas para iniciar uma nova imagem. Uma janela vai abrir onde você debe inserir o nome, a largura, a altura do quadro e um tamanho mínimo da célula na grade de desenho (de 4 até 20). Significa que o valor mínimo a grade vai ter o zoom afastado. 
+
 O FUTURO
 ==========
 No futuro estarão disponíveis:
@@ -88,6 +93,7 @@ SOLUÇÃO DE PROBLEMAS
 - [+] No Windows as teclas não vão funcionar. Será consertado em breve.(consertado)
 - [+] Roda muito lentamente no Windows. (consertado)
 - [+] As vezes ocorrem vazamentos de memória. (consertado)
+- [ ] A interface não funciona muito bem no Windows.
 
 DIREITO AUTORAL
 =========
