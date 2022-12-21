@@ -230,34 +230,10 @@ type
 
 var
   frmMain: TfrmMain;
- //todo: move to globals and return palette recors
-procedure GetPaletteFromImage(aImg : TFilename);
 
 implementation
 
 uses udraw, uabout, uframedlg, ureferense;
-
-procedure GetPaletteFromImage(aImg: TFilename);
-label stop;
-var
-  j,i, h, w: Integer;
-  img: TBGRABitmap;
-begin
-     img:=TBGRABitmap.Create(aImg);
-     w:=img.Width-1;
-     h:=img.Height-1;
-     Palette.Clear;
-     for i :=0 to w do
-       for j:=0 to h do begin
-         if Palette.AddColor(FPColorToBGRA(img.Colors[i,j]))=-1 then begin
-          ShowMessage(rsImageHasTooM);
-          Palette.Reset;
-          goto stop;
-         end;
-       end;
-  stop:
-     FreeAndNil(img);
-end;
 
 {$R *.lfm}
 
@@ -274,7 +250,7 @@ begin
   FramePreview.Width:=FrameGrid.FrameWidth;
   FramePreview.Height:=FrameGrid.FrameHeight;
   trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
-  GetPaletteFromImage(OpenPictureDialog1.FileName);
+  Palette.LoadFromImage(OpenPictureDialog1.FileName);
   mbPaletteGrid.Colors.Clear;
   PaletteChange;
  end;
@@ -368,6 +344,7 @@ begin
     end;
    end;
    cbPalettePresets.ItemIndex:=0;
+   cbPalettePresetsChange(Sender);
    INI.WriteString('PRESETS','PALETTES',SelectDirectoryDialog1.FileName);
   end;
 end;
@@ -417,7 +394,7 @@ procedure TfrmMain.actPaletteImportExecute(Sender: TObject);
 label stop;
 begin
   if OpenPictureDialog1.Execute then begin
-   GetPaletteFromImage(OpenPictureDialog1.FileName);
+   Palette.LoadFromImage(OpenPictureDialog1.FileName);
    PaletteChange;
   end;
 end;
@@ -550,13 +527,10 @@ procedure TfrmMain.cbPalettePresetsChange(Sender: TObject);
 var
   i: Integer;
 begin
-  //todo: check why
-{  mbColorPalettePreset.Colors.Clear;
+  mbColorPalettePreset.Colors.Clear;
   for i:=0 to Presets[cbPalettePresets.Text].Palette.Count-1 do
     mbColorPalettePreset.Colors.Add(ColorToString(Presets[cbPalettePresets.Text].Palette.Color[i]));
-  mbColorPalettePreset.Invalidate;   }
- Palette.CopyFrom(Presets[cbPalettePresets.Text].Palette);
- PaletteChange;
+  mbColorPalettePreset.Invalidate;
 end;
 
 procedure TfrmMain.cbPalettePresetsDrawItem(Control: TWinControl;

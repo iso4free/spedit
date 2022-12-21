@@ -532,7 +532,7 @@ begin
   fPaletteName:=ExtractFileName(aFilename);
   fPaletteName:=copy(PaletteName,1,Pos('.',PaletteName)-1);
   fBmp:= TBGRABitmap.Create(aFilename);
-  fPalette.LoadFromFile(aFilename);
+  fPalette.LoadFromImage(aFilename);
 end;
 
 destructor TPalettePreset.Destroy;
@@ -1100,8 +1100,25 @@ begin
 end;
 
 function TPalette.LoadFromImage(aName: TFilename): Boolean;
+label stop;
+var
+  j,i, h, w: Integer;
+  img: TBGRABitmap;
 begin
-
+     img:=TBGRABitmap.Create(aName);
+     w:=img.Width-1;
+     h:=img.Height-1;
+     Clear;
+     for i :=0 to w do
+       for j:=0 to h do begin
+         if AddColor(FPColorToBGRA(img.Colors[i,j]))=-1 then begin
+          ShowMessage(rsImageHasTooM);
+          //Palette.Reset;
+          goto stop;
+         end;
+       end;
+  stop:
+     FreeAndNil(img);
 end;
 
 function TPalette.AddColor(aColor: TBGRAPixel): Integer;
