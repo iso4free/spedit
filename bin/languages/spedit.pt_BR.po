@@ -100,6 +100,10 @@ msgstr "Idioma"
 msgid "Show layers"
 msgstr "Exibir camadas"
 
+#: tfrmmain.actloadpresets.caption
+msgid "Load presets"
+msgstr ""
+
 #: tfrmmain.actmergelayers.caption
 msgid "Merge layers"
 msgstr "Mesclar camadas"
@@ -193,7 +197,9 @@ msgid "Show/hide frames"
 msgstr "Exibir/ocultar quadros"
 
 #: tfrmmain.bbtntogglepreview.hint
-msgid "Show/hide preview window"
+#, fuzzy
+#| msgid "Show/hide preview window"
+msgid "Show/hide referense window"
 msgstr "Exibir/ocultar previsualização"
 
 #: tfrmmain.bgcolor.caption

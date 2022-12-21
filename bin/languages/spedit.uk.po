@@ -21,9 +21,11 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Вільний і відкритий редактор спрайтів V.4.0"
 
 #: tfrmabout.label3.caption
-msgid "Created by (c) Vadim Vitomsky, 2000-2022\n"
+msgid ""
+"Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos (translation to pt-br, Mascot)"
-msgstr "Створено (c) Вадимом Вітомським, 2000-2022\n"
+msgstr ""
+"Створено (c) Вадимом Вітомським, 2000-2022\n"
 "Залучений Едді Маттос (переклад до pt-br, Талісман)"
 
 #: tfrmabout.showsplashcheckbox.caption
@@ -96,6 +98,10 @@ msgstr "Мова"
 #: tfrmmain.actlayerstoggle.caption
 msgid "Show layers"
 msgstr "Показати Шари"
+
+#: tfrmmain.actloadpresets.caption
+msgid "Load presets"
+msgstr ""
 
 #: tfrmmain.actmergelayers.caption
 msgid "Merge layers"
@@ -185,7 +191,9 @@ msgid "Show/hide frames"
 msgstr "Показати/приховати фрейми"
 
 #: tfrmmain.bbtntogglepreview.hint
-msgid "Show/hide preview window"
+#, fuzzy
+#| msgid "Show/hide preview window"
+msgid "Show/hide referense window"
 msgstr "Показати/приховати Вікно попереднього перегляду"
 
 #: tfrmmain.bgcolor.caption
@@ -195,9 +203,11 @@ msgstr "ФК"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
-msgid "Left click to select color\n"
+msgid ""
+"Left click to select color\n"
 "Right click to set transparent color"
-msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr ""
+"Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.caption
@@ -231,9 +241,11 @@ msgstr "ПК"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
-msgid "Left click to select color\n"
+msgid ""
+"Left click to select color\n"
 "Right click to set transparent color"
-msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr ""
+"Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.framepreview.hint
@@ -304,9 +316,11 @@ msgstr "Імпорт таблиці спрайтів"
 
 #: tfrmmain.miimportspritesheet.hint
 msgctxt "tfrmmain.miimportspritesheet.hint"
-msgid "You can import image or spritesheet file\n"
+msgid ""
+"You can import image or spritesheet file\n"
 "and add it to the library"
-msgstr "Імпортувати зображення або файл таблиці спрайтів\n"
+msgstr ""
+"Імпортувати зображення або файл таблиці спрайтів\n"
 "і додати його в бібліотеку"
 
 #: tfrmmain.milayers.caption

@@ -14,7 +14,7 @@
 {"hash":57275045,"name":"tfrmmain.bbtnimportframe.hint","sourcebytes":[73,109,112,111,114,116,32,102,114,97,109,101],"value":"Import frame"},
 {"hash":225679747,"name":"tfrmmain.bbtnshowlayers.hint","sourcebytes":[83,104,111,119,47,104,105,100,101,32,108,97,121,101,114,115],"value":"Show/hide layers"},
 {"hash":64264821,"name":"tfrmmain.bbtnshowpalette.hint","sourcebytes":[83,104,111,119,47,104,105,100,101,32,112,97,108,101,116,116,101],"value":"Show/hide palette"},
-{"hash":74951895,"name":"tfrmmain.bbtntogglepreview.hint","sourcebytes":[83,104,111,119,47,104,105,100,101,32,112,114,101,118,105,101,119,32,119,105,110,100,111,119],"value":"Show/hide preview window"},
+{"hash":239715511,"name":"tfrmmain.bbtntogglepreview.hint","sourcebytes":[83,104,111,119,47,104,105,100,101,32,114,101,102,101,114,101,110,115,101,32,119,105,110,100,111,119],"value":"Show/hide referense window"},
 {"hash":209921747,"name":"tfrmmain.bbtntoggleframes.hint","sourcebytes":[83,104,111,119,47,104,105,100,101,32,102,114,97,109,101,115],"value":"Show/hide frames"},
 {"hash":201827941,"name":"tfrmmain.lblpensize.caption","sourcebytes":[80,101,110,32,115,105,122,101],"value":"Pen size"},
 {"hash":54864311,"name":"tfrmmain.sbpen.hint","sourcebytes":[80,101,110,32,116,111,111,108,32,45,32,104,111,116,107,101,121,32,39,80,39],"value":"Pen tool - hotkey 'P'"},
@@ -72,5 +72,6 @@
 {"hash":97995102,"name":"tfrmmain.acttogglefullscreen.caption","sourcebytes":[70,117,108,108,32,83,99,114,101,101,110],"value":"Full Screen"},
 {"hash":139375349,"name":"tfrmmain.actlanguageselect.caption","sourcebytes":[76,97,110,103,117,97,103,101],"value":"Language"},
 {"hash":214498341,"name":"tfrmmain.actreferencetoggle.caption","sourcebytes":[82,101,102,101,114,101,110,99,101],"value":"Reference"},
-{"hash":212500343,"name":"tfrmmain.actframeexportpng.caption","sourcebytes":[69,120,112,111,114,116,32,102,114,97,109,101,32,97,115,32,80,78,71],"value":"Export frame as PNG"}
+{"hash":212500343,"name":"tfrmmain.actframeexportpng.caption","sourcebytes":[69,120,112,111,114,116,32,102,114,97,109,101,32,97,115,32,80,78,71],"value":"Export frame as PNG"},
+{"hash":45738691,"name":"tfrmmain.actloadpresets.caption","sourcebytes":[76,111,97,100,32,112,114,101,115,101,116,115],"value":"Load presets"}
 ]}

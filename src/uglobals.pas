@@ -103,10 +103,12 @@ type
      property SelectedColor : TBGRAPixel read FSelectedColor;
      function isEmpty : Boolean; //check if palette is empty
      procedure Clear;
+     procedure CopyFrom(src : TPalette); //copy palette from another palette
      procedure Reset; //reset palette to default 16 colors
      procedure SelectColor(Index : Byte);//Select active color
      procedure SaveToFile(aName : TFileName);//save palette to HEX file (with colors hex codes)
      function LoadFromFile(aName : TFileName) : Boolean;//load from HEX file
+     function LoadFromImage(aName : TFilename) : Boolean; //load from image file
      property Color[Index : Byte] : TBGRAPixel read GetColor; //get color by index
      function ArrayOfColors() : TColorsArray; //return current palette as array of colors
      function AddColor(aColor : TBGRAPixel) : Integer;   //add new color to palette. Return index for new color or if color exists. If palette full returns -1
@@ -115,14 +117,28 @@ type
      function ColorExists(aColor : TBGRAPixel) : Integer; //check if color in palette before adding
   end;
 
-  //palettes presets
-  TPalettePreset = record
-    PaletteName : TFilename; //palette file name (PNG file only)
-    Palette     : TPalette;
+  //palette presets - create palette from PNG file
+  //and create preview for show colors in any control
+
+  { TPalettePreset }
+
+  TPalettePreset = class
+   private
+    fPaletteName : String; //palette file name (PNG file only)
+    fPalette     : TPalette;
+    fBmp         : TBGRABitmap;
+   public
+    constructor Create(aFilename: TFilename);
+    {In Constructor open PNG file and create palette from it}
+    destructor Destroy; override;
+
+    property Palette : TPalette read fPalette;
+    property PaletteName : String read fPaletteName;
+    property PaletteView : TBGRABitmap read fBmp;
   end;
 
   //presets list
-//  TPresetsList = specialize TFPGList<TPalettePreset>;
+  TPresetsList = specialize TFPGMapObject<String,TPalettePreset>;
 
   {class for undo/redo posibilities}
 
@@ -319,7 +335,7 @@ var
   spclBackColor : TBGRAPixel; //background color - right mouse button drawing
   //Work palette
   Palette       : TPalette;
-//  Presets       : TPresetsList; //palettes presets list
+  Presets       : TPresetsList; //palettes presets list
 
   FrameGrid     : TFrameGrid;
   Layers        : TLayers;
@@ -340,7 +356,7 @@ var
   procedure ResizeLayers(aW,aH : Integer); //resize al layers when change frame size
   function StreamToBase64(const AStream: TMemoryStream; out Base64: String): Boolean;
   function Base64ToStream(const ABase64: String; var AStream: TMemoryStream): Boolean;
-  procedure LoadPresets(dir : TFileName); //loads palette presets from selected dir
+  procedure ReloadPresets(aDirectory: String);  //loads palette presets from selected dir
 
 implementation
 
@@ -367,10 +383,6 @@ begin
   end;
 end;
 
-procedure LoadPresets(dir: TFileName);
-begin
-  //todo: load presets from PNG files isn selected directory
-end;
 
 function StreamToBase64(const AStream: TMemoryStream; out Base64: String): Boolean;
 var
@@ -494,6 +506,39 @@ begin
     aKey:=Frames.Keys[f];
     Frames.Remove(aKey);
   end;
+end;
+
+procedure ReloadPresets(aDirectory: String);
+var Fi : TSearchRec;
+    R : Integer;
+begin
+ Presets.Clear;
+ R:=FindFirst(aDirectory+DirectorySeparator+'*.*',faAnyFile-faVolumeId,fi);
+ if R=0 then begin
+   while R=0 do begin
+     if (LowerCase(ExtractFileExt(Fi.Name))='.png') then begin
+       Presets[copy(Fi.Name,1,Pos('.',Fi.Name)-1)]:=TPalettePreset.Create(aDirectory+DirectorySeparator+Fi.Name);
+     end;
+     r:=FindNext(Fi);
+   end;
+   FindClose(Fi);
+ end;
+end;
+
+{ TPalettePreset }
+
+constructor TPalettePreset.Create(aFilename: TFilename);
+begin
+  fPaletteName:=ExtractFileName(aFilename);
+  fPaletteName:=copy(PaletteName,1,Pos('.',PaletteName)-1);
+  fBmp:= TBGRABitmap.Create(aFilename);
+  fPalette.LoadFromFile(aFilename);
+end;
+
+destructor TPalettePreset.Destroy;
+begin
+ FreeAndNil(fBmp);
+ inherited Destroy;
 end;
 
 { TSPUndoRec }
@@ -1054,6 +1099,11 @@ begin
   FreeAndNil(l);
 end;
 
+function TPalette.LoadFromImage(aName: TFilename): Boolean;
+begin
+
+end;
+
 function TPalette.AddColor(aColor: TBGRAPixel): Integer;
 begin
   if fCount=0 then begin
@@ -1113,6 +1163,14 @@ begin
     end;
   end;
 
+end;
+
+procedure TPalette.CopyFrom(src: TPalette);
+var
+  i: Integer;
+begin
+  Clear;
+  for i:=0 to src.Count-1 do AddColor(src.Color[i]);
 end;
 
 
@@ -1192,6 +1250,7 @@ initialization
  spclForeColor:=INI.ReadInteger('FRAME EDITOR','FOREGROUND COLOR',clBlackOpaque);
  //palette with default colors
  Palette.Reset;
+ Presets:=TPresetsList.Create(true);
 
  //mapped lists of frames and layers
  Frames:=TFrames.Create;
@@ -1203,6 +1262,7 @@ initialization
  finalization
   INI.WriteString('INTERFACE','SPRITELIB',CurrentLibName);
   //ClearFramesAndLayers;
+  FreeAndNil(Presets);
   FreeAndNil(UndoRedoManager);
   FreeAndNil(Layers);
   FreeAndNil(Frames);

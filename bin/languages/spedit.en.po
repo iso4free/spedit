@@ -97,6 +97,10 @@ msgstr ""
 msgid "Show layers"
 msgstr ""
 
+#: tfrmmain.actloadpresets.caption
+msgid "Load presets"
+msgstr ""
+
 #: tfrmmain.actmergelayers.caption
 msgid "Merge layers"
 msgstr ""
@@ -185,7 +189,7 @@ msgid "Show/hide frames"
 msgstr ""
 
 #: tfrmmain.bbtntogglepreview.hint
-msgid "Show/hide preview window"
+msgid "Show/hide referense window"
 msgstr ""
 
 #: tfrmmain.bgcolor.caption

@@ -23,6 +23,7 @@ type
     actCopyLayer: TAction;
     actFramesToggle: TAction;
     actFrameExportPNG: TAction;
+    actLoadPresets: TAction;
     actReferenceToggle: TAction;
     actPaletteToggle: TAction;
     actPaletteImport: TAction;
@@ -69,6 +70,7 @@ type
     LayersGroupBox: TGroupBox;
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
+    MenuItem1: TMenuItem;
     miExportFramePNG: TMenuItem;
     miExport: TMenuItem;
     miMergeLayers: TMenuItem;
@@ -132,6 +134,7 @@ type
     sbCurrentPalette: TScrollBox;
     sbPresetPalette: TScrollBox;
     sdExportFrameSaveDialog: TSaveDialog;
+    SelectDirectoryDialog1: TSelectDirectoryDialog;
     Separator1: TMenuItem;
     Separator2: TMenuItem;
     Separator3: TMenuItem;
@@ -140,6 +143,7 @@ type
     Separator6: TMenuItem;
     Separator7: TMenuItem;
     sbFloodFill: TSpeedButton;
+    Separator8: TMenuItem;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Splitter3: TSplitter;
@@ -153,6 +157,7 @@ type
     procedure actDeleteLayerExecute(Sender: TObject);
     procedure actLanguageSelectExecute(Sender: TObject);
     procedure actLayersToggleExecute(Sender: TObject);
+    procedure actLoadPresetsExecute(Sender: TObject);
     procedure actMergeLayersExecute(Sender: TObject);
     procedure actNewFrameExecute(Sender: TObject);
     procedure actPaletteImportExecute(Sender: TObject);
@@ -176,6 +181,8 @@ type
     procedure bbtnSwapColorsClick(Sender: TObject);
     procedure bbtnImportFrameClick(Sender: TObject);
     procedure bbtnToggleFramesClick(Sender: TObject);
+    procedure bbtnTogglePreviewClick(Sender: TObject);
+    procedure cbPalettePresetsChange(Sender: TObject);
     procedure cbPalettePresetsDrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
     procedure drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
@@ -223,7 +230,7 @@ type
 
 var
   frmMain: TfrmMain;
-
+ //todo: move to globals and return palette recors
 procedure GetPaletteFromImage(aImg : TFilename);
 
 implementation
@@ -344,6 +351,27 @@ begin
   actLayersToggle.Checked:=pnlLayers.Visible;
 end;
 
+procedure TfrmMain.actLoadPresetsExecute(Sender: TObject);
+var
+  i: Integer;
+begin
+  SelectDirectoryDialog1.InitialDir:=INI.ReadString('PRESETS','PALETTES','');
+  if SelectDirectoryDialog1.Execute then begin
+   cbPalettePresets.Clear;
+   ReloadPresets(SelectDirectoryDialog1.FileName);
+   if Presets.Count>0 then begin
+    for i:= 0 to Presets.Count-1 do begin
+        cbPalettePresets.Items.Add(Presets.Keys[i]);
+      {$IFDEF DEBUG}
+       DebugLn('In: actLoadPresetsExecute() preset name: ', Presets.Keys[i], ' Colors: '+IntToStr(Presets[Presets.Keys[i]].Palette.Count));
+      {$ENDIF}
+    end;
+   end;
+   cbPalettePresets.ItemIndex:=0;
+   INI.WriteString('PRESETS','PALETTES',SelectDirectoryDialog1.FileName);
+  end;
+end;
+
 procedure TfrmMain.actMergeLayersExecute(Sender: TObject);
 begin
   ShowMessage(rsSorry);
@@ -390,6 +418,7 @@ label stop;
 begin
   if OpenPictureDialog1.Execute then begin
    GetPaletteFromImage(OpenPictureDialog1.FileName);
+   PaletteChange;
   end;
 end;
 
@@ -510,6 +539,24 @@ end;
 procedure TfrmMain.bbtnToggleFramesClick(Sender: TObject);
 begin
   actFramesToggleExecute(Sender);
+end;
+
+procedure TfrmMain.bbtnTogglePreviewClick(Sender: TObject);
+begin
+  actReferenceToggleExecute(Sender);
+end;
+
+procedure TfrmMain.cbPalettePresetsChange(Sender: TObject);
+var
+  i: Integer;
+begin
+  //todo: check why
+{  mbColorPalettePreset.Colors.Clear;
+  for i:=0 to Presets[cbPalettePresets.Text].Palette.Count-1 do
+    mbColorPalettePreset.Colors.Add(ColorToString(Presets[cbPalettePresets.Text].Palette.Color[i]));
+  mbColorPalettePreset.Invalidate;   }
+ Palette.CopyFrom(Presets[cbPalettePresets.Text].Palette);
+ PaletteChange;
 end;
 
 procedure TfrmMain.cbPalettePresetsDrawItem(Control: TWinControl;
