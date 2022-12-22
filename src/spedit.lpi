@@ -231,6 +231,7 @@
         <Filename Value="usettings.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmSettings"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>

@@ -5,7 +5,7 @@ unit umain;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase, {$ENDIF}
+  {$IFDEF DEBUG}LazLoggerBase, {$ENDIF} LResources,
   uglobals, Classes, SysUtils, Forms, Controls,
   Graphics, Types, Dialogs, Menus, ComCtrls, ExtCtrls, Buttons, ActnList, Grids,
   JSONPropStorage, ExtDlgs, StdCtrls, StdActns, LCLType, Spin,
@@ -227,6 +227,7 @@ type
    startx,starty : Integer;     //start position to move
    procedure SetSelectedColor(const Button: TMouseButton; aColor : TBGRAPixel);
    procedure PaletteChange; //added colors to current palette
+   procedure CreateCursors; //create custom cursors for drawing
   public
   end;
 
@@ -236,7 +237,6 @@ var
 implementation
 
 uses udraw, uabout, uframedlg, ureferense, usettings;
-
 {$R *.lfm}
 
 { TfrmMain }
@@ -709,6 +709,8 @@ begin
    //default palette preset load
    for i:=0 to Palette.Count-1 do mbColorPalettePreset.Colors.Add(ColorToString(Palette.Color[i].ToColor));
    Palette.Clear;
+   CreateCursors;
+   pbFrameDraw.Cursor:=1;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -844,6 +846,21 @@ var
 begin
  mbPaletteGrid.Colors.Clear;
   for i:=0 to Palette.Count-1 do mbPaletteGrid.Colors.Add(ColorToString(Palette.Color[i].ToColor));
+end;
+
+procedure TfrmMain.CreateCursors;
+ var
+   aCur : TCursorImage;
+   i: Integer;
+begin
+   //create cursors from tool buttons images
+   for i:= 1 to 8 do begin
+    aCur:=TCursorImage.Create;
+    aCur.LoadFromLazarusResource(IntToStr(i));
+    aCur.HotSpot.Create(0,15);
+    Screen.Cursors[i]:=aCur.ReleaseHandle;
+    aCur.Free;
+   end;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
@@ -1003,7 +1020,9 @@ begin
       sbPen.Down:=True;
   end;
  end;
+  trkbrPenSize.Value:=ToolOptions.PenSize;
  (Sender as TSpeedButton).Down:=True;
+ pbFrameDraw.Cursor:=TSpeedButton(Sender).Tag;
  StatusBar1.Panels[4].Text:=rsActiveTool+DrawTool.ToolName;
 end;
 
@@ -1012,6 +1031,9 @@ begin
   FrameGrid.CellCursor.CursorSize:=trkbrPenSize.Value;
   pbFrameDraw.Invalidate;
 end;
+
+initialization
+{$I cursors.lrs}
 
 end.
 

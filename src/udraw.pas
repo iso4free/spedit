@@ -151,6 +151,7 @@ implementation
 constructor TSPFloodFill.Create;
 begin
   FToolName:=rsFloodFill;
+  ToolOptions.PenSize:=1;
 end;
 
 procedure TSPFloodFill.FinishDraw;
@@ -275,6 +276,7 @@ end;
 constructor TSPPipette.Create;
 begin
   FToolName:=rsPipette;
+  ToolOptions.PenSize:=1;
 end;
 
 procedure TSPPipette.FinishDraw;
