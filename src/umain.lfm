@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 1461
+  Left = 183
   Height = 737
-  Top = 170
+  Top = 193
   Width = 752
   Caption = 'Sprite Editor'
   ClientHeight = 713

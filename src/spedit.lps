@@ -17,8 +17,7 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="1008"/>
+        <TopLine Value="1005"/>
         <CursorPos Y="1026"/>
         <UsageCount Value="81"/>
         <Loaded Value="True"/>
@@ -81,6 +80,7 @@
         <ComponentName Value="frmSettings"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="2"/>
         <CursorPos X="24" Y="31"/>

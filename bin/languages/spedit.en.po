@@ -406,17 +406,13 @@ msgstr ""
 msgid "Rectangle tool - hotkey 'R'"
 msgstr ""
 
+#: tfrmsettings.bitbtn2.caption
+msgid "Cancel"
+msgstr ""
+
 #: tfrmsettings.caption
 msgctxt "tfrmsettings.caption"
 msgid "Settings"
-msgstr ""
-
-#: tfrmsettings.panel1.caption
-msgid "Panel1"
-msgstr ""
-
-#: tfrmsettings.panel2.caption
-msgid "Panel2"
 msgstr ""
 
 #: uglobals.rsactivetool

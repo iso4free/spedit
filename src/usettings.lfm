@@ -10,19 +10,21 @@ object frmSettings: TfrmSettings
   LCLVersion = '2.2.4.0'
   object Panel1: TPanel
     Left = 0
-    Height = 50
-    Top = 190
+    Height = 32
+    Top = 208
     Width = 320
     Align = alBottom
-    Caption = 'Panel1'
-    ClientHeight = 50
+    AutoSize = True
+    ClientHeight = 32
     ClientWidth = 320
     TabOrder = 0
     object BitBtn1: TBitBtn
-      Left = 24
+      Left = 1
       Height = 30
-      Top = 17
-      Width = 75
+      Top = 1
+      Width = 52
+      Align = alLeft
+      AutoSize = True
       Default = True
       DefaultCaption = True
       Kind = bkOK
@@ -30,12 +32,14 @@ object frmSettings: TfrmSettings
       TabOrder = 0
     end
     object BitBtn2: TBitBtn
-      Left = 190
+      Left = 245
       Height = 30
-      Top = 19
-      Width = 75
+      Top = 1
+      Width = 74
+      Align = alRight
+      AutoSize = True
       Cancel = True
-      DefaultCaption = True
+      Caption = 'Cancel'
       Kind = bkCancel
       ModalResult = 2
       TabOrder = 1
@@ -43,17 +47,16 @@ object frmSettings: TfrmSettings
   end
   object Panel2: TPanel
     Left = 0
-    Height = 190
+    Height = 208
     Top = 0
     Width = 320
     Align = alClient
-    Caption = 'Panel2'
-    ClientHeight = 190
+    ClientHeight = 208
     ClientWidth = 320
     TabOrder = 1
     object TreeView1: TTreeView
       Left = 1
-      Height = 188
+      Height = 206
       Top = 1
       Width = 318
       Align = alClient
