@@ -23,6 +23,7 @@ type
     actCopyLayer: TAction;
     actFramesToggle: TAction;
     actFrameExportPNG: TAction;
+    actSettings: TAction;
     actLoadPresets: TAction;
     actReferenceToggle: TAction;
     actPaletteToggle: TAction;
@@ -167,6 +168,7 @@ type
     procedure actPaletteToggleExecute(Sender: TObject);
     procedure actRedoExecute(Sender: TObject);
     procedure actReferenceToggleExecute(Sender: TObject);
+    procedure actSettingsExecute(Sender: TObject);
     procedure actToggleFullScreenExecute(Sender: TObject);
     procedure actZoomInExecute(Sender: TObject);
     procedure actZoomOutExecute(Sender: TObject);
@@ -233,7 +235,7 @@ var
 
 implementation
 
-uses udraw, uabout, uframedlg, ureferense;
+uses udraw, uabout, uframedlg, ureferense, usettings;
 
 {$R *.lfm}
 
@@ -435,6 +437,11 @@ begin
  if not Assigned(frmReferense) then frmReferense:=TfrmReferense.Create(nil);
  frmReferense.Visible:=not frmReferense.Visible;
  actReferenceToggle.Checked:=frmReferense.Visible;
+end;
+
+procedure TfrmMain.actSettingsExecute(Sender: TObject);
+begin
+  frmSettings.ShowModal;
 end;
 
 procedure TfrmMain.actToggleFullScreenExecute(Sender: TObject);

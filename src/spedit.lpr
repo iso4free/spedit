@@ -16,7 +16,7 @@ uses
   Forms, umain, udraw, uglobals, uabout, ureferense,
   uframedlg
   { you can add units after this },
-  sysutils;
+  sysutils, usettings;
 
 {$R *.res}
 
@@ -32,6 +32,7 @@ begin
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmReferense, frmReferense);
   Application.CreateForm(TfrmFrameDlg, frmFrameDlg);
+  Application.CreateForm(TfrmSettings, frmSettings);
   Application.Run;
 end.
 

@@ -130,6 +130,11 @@ msgstr ""
 msgid "Reference"
 msgstr ""
 
+#: tfrmmain.actsettings.caption
+msgctxt "tfrmmain.actsettings.caption"
+msgid "Settings"
+msgstr ""
+
 #: tfrmmain.acttogglefullscreen.caption
 msgid "Full Screen"
 msgstr ""
@@ -342,11 +347,6 @@ msgctxt "tfrmmain.miselectlibrary.caption"
 msgid "Select Sprite Library"
 msgstr ""
 
-#: tfrmmain.misettings.caption
-msgctxt "tfrmmain.misettings.caption"
-msgid "Settings"
-msgstr ""
-
 #: tfrmmain.misprite.caption
 msgctxt "tfrmmain.misprite.caption"
 msgid "Sprite"
@@ -393,6 +393,19 @@ msgstr ""
 
 #: tfrmmain.sbrect.hint
 msgid "Rectangle tool - hotkey 'R'"
+msgstr ""
+
+#: tfrmsettings.caption
+msgctxt "tfrmsettings.caption"
+msgid "Settings"
+msgstr ""
+
+#: tfrmsettings.panel1.caption
+msgid "Panel1"
+msgstr ""
+
+#: tfrmsettings.panel2.caption
+msgid "Panel2"
 msgstr ""
 
 #: uglobals.rsactivetool

@@ -143,6 +143,12 @@ msgstr "Повторити"
 msgid "Reference"
 msgstr "Референс"
 
+#: tfrmmain.actsettings.caption
+#, fuzzy
+msgctxt "tfrmmain.actsettings.caption"
+msgid "Settings"
+msgstr "Установки"
+
 #: tfrmmain.acttogglefullscreen.caption
 msgid "Full Screen"
 msgstr "Повний екран"
@@ -363,11 +369,6 @@ msgctxt "tfrmmain.miselectlibrary.caption"
 msgid "Select Sprite Library"
 msgstr "Обрати бібліотеку спрайтів"
 
-#: tfrmmain.misettings.caption
-msgctxt "tfrmmain.misettings.caption"
-msgid "Settings"
-msgstr "Установки"
-
 #: tfrmmain.misprite.caption
 msgctxt "tfrmmain.misprite.caption"
 msgid "Sprite"
@@ -415,6 +416,20 @@ msgstr "Інструмент Піпетка - гаряча клавіша 'O'"
 #: tfrmmain.sbrect.hint
 msgid "Rectangle tool - hotkey 'R'"
 msgstr "Інструмент Прямокутник - гаряча клавіша 'R'"
+
+#: tfrmsettings.caption
+#, fuzzy
+msgctxt "tfrmsettings.caption"
+msgid "Settings"
+msgstr "Установки"
+
+#: tfrmsettings.panel1.caption
+msgid "Panel1"
+msgstr ""
+
+#: tfrmsettings.panel2.caption
+msgid "Panel2"
+msgstr ""
 
 #: uglobals.rsactivetool
 msgid "Active tool: "

@@ -148,6 +148,11 @@ msgstr "Refazer"
 msgid "Reference"
 msgstr "Referência"
 
+#: tfrmmain.actsettings.caption
+msgctxt "tfrmmain.actsettings.caption"
+msgid "Settings"
+msgstr ""
+
 #: tfrmmain.acttogglefullscreen.caption
 msgid "Full Screen"
 msgstr "Tela Cheia"
@@ -392,12 +397,6 @@ msgctxt "tfrmmain.miselectlibrary.caption"
 msgid "Select Sprite Library"
 msgstr "Selecionar Biblioteca de Sprites"
 
-#: tfrmmain.misettings.caption
-#, fuzzy
-msgctxt "tfrmmain.misettings.caption"
-msgid "Settings"
-msgstr "Configurações"
-
 #: tfrmmain.misprite.caption
 #, fuzzy
 msgctxt "tfrmmain.misprite.caption"
@@ -450,6 +449,19 @@ msgstr "Pipeta - atalho 'O'"
 #: tfrmmain.sbrect.hint
 msgid "Rectangle tool - hotkey 'R'"
 msgstr "Retangulo - atalho 'R'"
+
+#: tfrmsettings.caption
+msgctxt "tfrmsettings.caption"
+msgid "Settings"
+msgstr ""
+
+#: tfrmsettings.panel1.caption
+msgid "Panel1"
+msgstr ""
+
+#: tfrmsettings.panel2.caption
+msgid "Panel2"
+msgstr ""
 
 #: uglobals.rsactivetool
 msgid "Active tool: "
