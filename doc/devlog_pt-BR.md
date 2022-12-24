@@ -158,3 +158,8 @@ REGISTRO DE DESENVOLVIMENTO
 =
 - [+] Trabalho ampliado com cores - adicionado a combobox Stadard pré-definida (será preenchida em breve), a paleta pré-definida e o seletor de cores Hex
 - [*] Mudou-se a seleção de cores de fundo para Ctrl+Clique em vez de Ctrl+Clique com o botão direito do mouse. A seleção de cor de primeiro plano funciona com o clique esquerdo do mouse.
+
+22.12.2022
+=
+- [+] Adição do suporte à paletas no formato PNG
+- [+] Adição de cursores customizados enquanto se desenha
