@@ -84,7 +84,7 @@ msgstr "&Sair"
 
 #: tfrmmain.actframeexportpng.caption
 msgid "Export frame as PNG"
-msgstr ""
+msgstr "Exportar quadro como PNG"
 
 #: tfrmmain.actframestoggle.caption
 msgid "Toggle frames"
@@ -151,7 +151,7 @@ msgstr "Referência"
 #: tfrmmain.actsettings.caption
 msgctxt "tfrmmain.actsettings.caption"
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
 #: tfrmmain.acttogglefullscreen.caption
 msgid "Full Screen"
@@ -304,7 +304,7 @@ msgstr "Editar"
 
 #: tfrmmain.miexport.caption
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
 #: tfrmmain.mifilemenu.caption
 #, fuzzy
@@ -452,12 +452,12 @@ msgstr "Retangulo - atalho 'R'"
 
 #: tfrmsettings.bitbtn2.caption
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: tfrmsettings.caption
 msgctxt "tfrmsettings.caption"
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
 #: uglobals.rsactivetool
 msgid "Active tool: "
