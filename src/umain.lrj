@@ -17,6 +17,7 @@
 {"hash":239715511,"name":"tfrmmain.bbtntogglepreview.hint","sourcebytes":[83,104,111,119,47,104,105,100,101,32,114,101,102,101,114,101,110,115,101,32,119,105,110,100,111,119],"value":"Show/hide referense window"},
 {"hash":209921747,"name":"tfrmmain.bbtntoggleframes.hint","sourcebytes":[83,104,111,119,47,104,105,100,101,32,102,114,97,109,101,115],"value":"Show/hide frames"},
 {"hash":201827941,"name":"tfrmmain.lblpensize.caption","sourcebytes":[80,101,110,32,115,105,122,101],"value":"Pen size"},
+{"hash":48310069,"name":"tfrmmain.bbtnresize.hint","sourcebytes":[82,101,115,105,122,101,32,102,114,97,109,101],"value":"Resize frame"},
 {"hash":54864311,"name":"tfrmmain.sbpen.hint","sourcebytes":[80,101,110,32,116,111,111,108,32,45,32,104,111,116,107,101,121,32,39,80,39],"value":"Pen tool - hotkey 'P'"},
 {"hash":54555863,"name":"tfrmmain.sbpipette.hint","sourcebytes":[80,105,112,101,116,116,101,32,116,111,111,108,32,45,32,104,111,116,107,101,121,32,39,79,39],"value":"Pipette tool - hotkey 'O'"},
 {"hash":79530231,"name":"tfrmmain.sbline.hint","sourcebytes":[76,105,110,101,32,116,111,111,108,32,45,32,104,111,116,107,101,121,32,39,76,39],"value":"Line tool - hotkey 'L'"},
@@ -75,5 +76,6 @@
 {"hash":212500343,"name":"tfrmmain.actframeexportpng.caption","sourcebytes":[69,120,112,111,114,116,32,102,114,97,109,101,32,97,115,32,80,78,71],"value":"Export frame as PNG"},
 {"hash":45738691,"name":"tfrmmain.actloadpresets.caption","sourcebytes":[76,111,97,100,32,112,114,101,115,101,116,115],"value":"Load presets"},
 {"hash":213582195,"name":"tfrmmain.actsettings.caption","sourcebytes":[83,101,116,116,105,110,103,115],"value":"Settings"},
-{"hash":48310069,"name":"tfrmmain.actframeresize.caption","sourcebytes":[82,101,115,105,122,101,32,102,114,97,109,101],"value":"Resize frame"}
+{"hash":48310069,"name":"tfrmmain.actframeresize.caption","sourcebytes":[82,101,115,105,122,101,32,102,114,97,109,101],"value":"Resize frame"},
+{"hash":251147140,"name":"tfrmmain.actnotimplemented.caption","sourcebytes":[78,111,116,32,105,109,112,108,101,109,101,110,116,101,100,32,121,101,116],"value":"Not implemented yet"}
 ]}

@@ -1,3 +1,28 @@
+{***************************************************************************}
+{*     This file is a part of                                              *}
+{*                                                                         *}
+{* @@@@@@  @@@@@@@  @@@@@@@@ @@@@@@@  @@@ @@@@@@@   @@@  @@@         @@@   *}
+{*@@@@@@@  @@@@@@@@ @@@@@@@@ @@@@@@@@ @@@ @@@@@@@   @@@  @@@        @@@@   *}
+{*!@@      @@!  @@@ @@!      @@!  @@@ @@!   @@!     @@!  @@@       @@!@!   *}
+{*!@!      !@!  @!@ !@!      !@!  @!@ !@!   !@!     !@!  @!@      !@!!@!   *}
+{*!!@@!!   @!@@!@!  @!!!:!   @!@  !@! !!@   @!!     @!@  !@!     @!! @!!   *}
+{* !!@!!!  !!@!!!   !!!!!:   !@!  !!! !!!   !!!     !@!  !!!    !!!  !@!   *}
+{*     !:! !!:      !!:      !!:  !!! !!:   !!:     :!:  !!:    :!!:!:!!:  *}
+{*    !:!  :!:      :!:      :!:  !:! :!:   :!:      ::!!:! :!: !:::!!:::  *}
+{*:::: ::   ::       :: ::::  :::: ::  ::    ::       ::::  :::      :::   *}
+{*:: : :    :       : :: ::  :: :  :  :      :         :    :::      :::   *}
+{*                                                                         *}
+{***************************************************************************}
+{*    Sprite Editor 4.0                                                    *}
+{*    Copyright (c) 2000-2022 by Vadim Vitomsky                            *}
+{*                                                                         *}
+{*    See the file LICENSE, included in this distribution, for details.    *}
+{*                                                                         *}
+{*    This program is distributed in the hope that it will be useful,      *}
+{*    but WITHOUT ANY WARRANTY; without even the implied warranty of       *}
+{*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                 *}
+{***************************************************************************}
+
 unit umain;
 
 {$mode objfpc}{$H+}
@@ -24,6 +49,7 @@ type
     actFramesToggle: TAction;
     actFrameExportPNG: TAction;
     actFrameResize: TAction;
+    actNotImplemented: TAction;
     actSettings: TAction;
     actLoadPresets: TAction;
     actReferenceToggle: TAction;
@@ -55,6 +81,7 @@ type
     bbtnToggleFrames: TBitBtn;
     bbtnImportFrame: TBitBtn;
     bbtnNewFrame: TBitBtn;
+    bbtnResize: TBitBtn;
     ButtonsImageList: TBGRAImageList;
     ColorDialog1: TColorDialog;
     cbPalettePresets: TComboBox;
@@ -165,6 +192,7 @@ type
     procedure actLoadPresetsExecute(Sender: TObject);
     procedure actMergeLayersExecute(Sender: TObject);
     procedure actNewFrameExecute(Sender: TObject);
+    procedure actNotImplementedExecute(Sender: TObject);
     procedure actPaletteImportExecute(Sender: TObject);
     procedure actPaletteLoadExecute(Sender: TObject);
     procedure actPaletteResetExecute(Sender: TObject);
@@ -188,6 +216,7 @@ type
     procedure bbtnImportFrameClick(Sender: TObject);
     procedure bbtnToggleFramesClick(Sender: TObject);
     procedure bbtnTogglePreviewClick(Sender: TObject);
+    procedure bbtnResizeClick(Sender: TObject);
     procedure cbPalettePresetsChange(Sender: TObject);
     procedure cbPalettePresetsDrawItem(Control: TWinControl; Index: Integer;
       ARect: TRect; State: TOwnerDrawState);
@@ -280,9 +309,13 @@ end;
 
 procedure TfrmMain.actFrameResizeExecute(Sender: TObject);
 begin
+ if not Assigned (FrameGrid) then Exit;
+  frmResize.CheckSettings;
   frmResize.ShowModal;
   if frmResize.ModalResult=mrOK then begin
     //todo: miFrameResize all layers belongs to frame with miFrameResize settings
+    FrameGrid.Resize(frmResize.spnWidth.Value,frmResize.spnHeight.Value,frmResize.cbStretch.Checked);
+    pbFrameDraw.Invalidate;
   end;
 end;
 
@@ -402,6 +435,11 @@ begin
    mbPaletteGrid.Colors.Clear;
   end;
   frmMain.pbFrameDrawPaint(Sender);
+end;
+
+procedure TfrmMain.actNotImplementedExecute(Sender: TObject);
+begin
+  ShowMessage(rsSorry);
 end;
 
 procedure TfrmMain.actPaletteImportExecute(Sender: TObject);
@@ -555,6 +593,11 @@ end;
 procedure TfrmMain.bbtnTogglePreviewClick(Sender: TObject);
 begin
   actReferenceToggleExecute(Sender);
+end;
+
+procedure TfrmMain.bbtnResizeClick(Sender: TObject);
+begin
+  actFrameResizeExecute(Sender);
 end;
 
 procedure TfrmMain.cbPalettePresetsChange(Sender: TObject);
@@ -742,7 +785,6 @@ end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
-     mbPaletteGrid.ColorNames.SaveToFile('frame.hex');
      JSONPropStorage1.Save;
      FreeAndNil(DrawTool);
      if Assigned(frmAbout) then FreeAndNil(frmAbout);

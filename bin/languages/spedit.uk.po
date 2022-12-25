@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spedit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-12-25 13:39+0200\n"
+"PO-Revision-Date: 2022-12-25 22:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -93,6 +93,7 @@ msgid "Export frame as PNG"
 msgstr "Експортувати фрейм як PNG"
 
 #: tfrmmain.actframeresize.caption
+msgctxt "tfrmmain.actframeresize.caption"
 msgid "Resize frame"
 msgstr "Змінити розмір фрейму"
 
@@ -121,6 +122,10 @@ msgstr "Об'єднати з попереднім шаром"
 msgctxt "tfrmmain.actnewframe.caption"
 msgid "New frame"
 msgstr "Новий фрейм"
+
+#: tfrmmain.actnotimplemented.caption
+msgid "Not implemented yet"
+msgstr "Ще не реалізовано"
 
 #: tfrmmain.actpaletteimport.caption
 msgctxt "tfrmmain.actpaletteimport.caption"
@@ -187,6 +192,11 @@ msgstr "Імпортувати фрейм"
 #: tfrmmain.bbtnnewframe.hint
 msgid "Create new frame"
 msgstr "Створити новий фрейм"
+
+#: tfrmmain.bbtnresize.hint
+msgctxt "tfrmmain.bbtnresize.hint"
+msgid "Resize frame"
+msgstr "Змінити розмір фрейму"
 
 #: tfrmmain.bbtnshowlayers.hint
 msgid "Show/hide layers"
@@ -314,7 +324,6 @@ msgid "Save Sprite Project"
 msgstr "Зберегти проєкт спрайтів"
 
 #: tfrmmain.miframe.caption
-#, fuzzy
 msgctxt "tfrmmain.miframe.caption"
 msgid "Frame"
 msgstr "Фрейм"
@@ -431,7 +440,6 @@ msgid "Rectangle tool - hotkey 'R'"
 msgstr "Інструмент Прямокутник - гаряча клавіша 'R'"
 
 #: tfrmresize.bbtncancel.caption
-#, fuzzy
 msgctxt "tfrmresize.bbtncancel.caption"
 msgid "Cancel"
 msgstr "Скасувати"
@@ -440,16 +448,27 @@ msgstr "Скасувати"
 msgid "Resize"
 msgstr "Змінити розмір"
 
-#: tfrmresize.chkbcanvasonly.caption
-msgid "Canvas only"
-msgstr "Лише полотно"
+#: tfrmresize.cbkeepproportions.caption
+msgid "Keep propoprtions"
+msgstr "Зберігати пропорції"
+
+#: tfrmresize.cbstretch.caption
+msgid "Stretch"
+msgstr "Розтягнути"
 
 #: tfrmresize.grpbresize.caption
 msgid "Resize options"
 msgstr "Параметри"
 
+#: tfrmresize.lblheight.caption
+msgid "Height"
+msgstr "Висота"
+
+#: tfrmresize.lblwidth.caption
+msgid "Width"
+msgstr "Ширина"
+
 #: tfrmsettings.bbtncancel.caption
-#, fuzzy
 msgctxt "tfrmsettings.bbtncancel.caption"
 msgid "Cancel"
 msgstr "Скасувати"
@@ -465,7 +484,7 @@ msgstr "Ативний інструмент: "
 
 #: uglobals.rsbg
 msgid " / BG: "
-msgstr "/ ФК: "
+msgstr " / ФК: "
 
 #: uglobals.rscircle
 msgid "Circle"
@@ -473,7 +492,7 @@ msgstr "Кільце"
 
 #: uglobals.rscolors
 msgid "Colors: "
-msgstr "Кольори:"
+msgstr "Кольори: "
 
 #: uglobals.rscopyof
 msgid "Copy of "
@@ -571,3 +590,4 @@ msgstr "Вам потрібно переназначити метод MouseUp()!
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
 msgstr "Вам потрібно переназначити метод MouseMove() !Назва класу: "
+

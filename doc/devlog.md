@@ -164,3 +164,8 @@ DEV.LOG
 =
 - [+] Supported palette presest in PNG format
 - [+] Added custom cursors while drawing
+
+25.12.2022
+=
+- [+] Added 'Zen mode' in fullscreen
+- [+] Added Frame resize feature

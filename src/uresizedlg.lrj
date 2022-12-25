@@ -2,5 +2,8 @@
 {"hash":93102341,"name":"tfrmresize.caption","sourcebytes":[82,101,115,105,122,101],"value":"Resize"},
 {"hash":77089212,"name":"tfrmresize.bbtncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
 {"hash":182192291,"name":"tfrmresize.grpbresize.caption","sourcebytes":[82,101,115,105,122,101,32,111,112,116,105,111,110,115],"value":"Resize options"},
-{"hash":136372985,"name":"tfrmresize.chkbcanvasonly.caption","sourcebytes":[67,97,110,118,97,115,32,111,110,108,121],"value":"Canvas only"}
+{"hash":179882696,"name":"tfrmresize.cbstretch.caption","sourcebytes":[83,116,114,101,116,99,104],"value":"Stretch"},
+{"hash":11550483,"name":"tfrmresize.cbkeepproportions.caption","sourcebytes":[75,101,101,112,32,112,114,111,112,111,112,114,116,105,111,110,115],"value":"Keep propoprtions"},
+{"hash":6159272,"name":"tfrmresize.lblwidth.caption","sourcebytes":[87,105,100,116,104],"value":"Width"},
+{"hash":82574836,"name":"tfrmresize.lblheight.caption","sourcebytes":[72,101,105,103,104,116],"value":"Height"}
 ]}

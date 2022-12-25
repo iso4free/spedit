@@ -78,19 +78,19 @@ Click to 'Referense' window to open any image used as reference.
 
 You can add, copy and remove layers in the layer panel, the active layer name is highlighted in red. It is also possible to toggle the visibility of a layer by clicking on the eye icon opposite the layer name. The icon with a lock allows you to lock a layer from changes (will be used when sharing layers between different frames). Double-click the layer name with the left mouse button to change the layer name.
 
-For those who like a minimalistic interface and use the maximum screen area for drawing, there is an option to switch to full-screen mode (shortcut <F11>), as well as to hide the extra panels - layers, frames, palette with a preview using the corresponding buttons on the toolbar.
+For those who like a minimalist interface and use a large area of the screen for drawing, there is an option to switch to "Zen" mode (<F11> key) - full-screen mode with all toolbars hidden (convenient for quick sketches). In normal mode, you can also hide additional panels - layers, frames, palette with a preview using the corresponding buttons on the toolbar.
 
 Press the 'Create new frame' button on the toolbar to start new image. A dialogue will appear where you need to set frame name, width, height and min cell size in draw grid (from 4 to 20). It means the minimum value grid will be zoomed out. 
 
 THE FUTURE
 ==========
 In future will be avaliable:
-- mouse drawing using different draw tools
-- multi-frames and multi-layers for drawing
+- mouse drawing using different draw tools (done partially)
+- multi-frames and multi-layers for drawing (done multi-layers)
 - shift and rotate layers and frames
 - animations composer from any frames
 - import other image files and copy parts from it to own image
-- frame resize
+- frame resize (done)
 - export in own JSON file format
 - manage local sprite library with some useful search by hashtags
 - other features that will be needed

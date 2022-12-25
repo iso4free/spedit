@@ -289,7 +289,7 @@ object frmMain: TfrmMain
       TabOrder = 2
     end
     object bbtnShowLayers: TBitBtn
-      Left = 65
+      Left = 97
       Height = 38
       Hint = 'Show/hide layers'
       Top = 1
@@ -304,7 +304,7 @@ object frmMain: TfrmMain
       TabOrder = 3
     end
     object bbtnShowPalette: TBitBtn
-      Left = 97
+      Left = 129
       Height = 38
       Hint = 'Show/hide palette'
       Top = 1
@@ -319,7 +319,7 @@ object frmMain: TfrmMain
       TabOrder = 4
     end
     object bbtnTogglePreview: TBitBtn
-      Left = 129
+      Left = 161
       Height = 38
       Hint = 'Show/hide referense window'
       Top = 1
@@ -334,7 +334,7 @@ object frmMain: TfrmMain
       TabOrder = 5
     end
     object bbtnToggleFrames: TBitBtn
-      Left = 161
+      Left = 193
       Height = 38
       Hint = 'Show/hide frames'
       Top = 1
@@ -372,6 +372,19 @@ object frmMain: TfrmMain
       BorderSpacing.Right = 5
       Caption = 'Pen size'
       ParentColor = False
+    end
+    object bbtnResize: TBitBtn
+      Left = 65
+      Height = 38
+      Hint = 'Resize frame'
+      Top = 1
+      Width = 32
+      Align = alLeft
+      AutoSize = True
+      Images = ButtonsImageList
+      ImageIndex = 38
+      OnClick = bbtnResizeClick
+      TabOrder = 8
     end
   end
   object pnlFrames: TPanel
@@ -1822,6 +1835,10 @@ object frmMain: TfrmMain
       Category = 'Frames'
       Caption = 'Resize frame'
       OnExecute = actFrameResizeExecute
+    end
+    object actNotImplemented: TAction
+      Caption = 'Not implemented yet'
+      OnExecute = actNotImplementedExecute
     end
   end
   object BGRAImageList24x24: TBGRAImageList

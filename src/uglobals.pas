@@ -234,6 +234,7 @@ type
     constructor Create(aName : String; w : Integer = 32; h : integer = 32);
     destructor Destroy; override;
 
+    procedure Resize(w,h : Integer; Stretched : Boolean = false); //resize all layers belongs to frame
     property FrameName : String read fFrameName;//unique frame name for correct managing in mapped list
     property LayersList : TStringList read fLayers;  //layers mapped list
     property Index : Integer read FIndex write SetIndex;
@@ -296,6 +297,8 @@ type
 
     constructor Create(aW: Integer = 32; aH : Integer = 32; aSize : Word = 4);
     constructor Create(aImg : TFileName; aSize : Word = 4); //create frame from image file
+    procedure Resize(newWidth, newHeight : Integer; Stretched : Boolean = false);//resize all layers in current frame
+
     destructor Destroy; override;
 
     function HasCoords(aPoint : TPoint) : Boolean; //check if frame has point
@@ -353,7 +356,7 @@ var
   function DetectPOLanguage(pofile : TFileName) : String;  //return language code for localization
   function LayerExists(aKey : String) : Boolean; inline; //check if layer key exists
   procedure ClearBitmap(const aBmp : TBGRABitmap);//replase all pixels to BGRAPixelTransparent
-  procedure ResizeLayers(aW,aH : Integer); //resize al layers when change frame size
+  procedure ResizeLayers(aW,aH : Integer; Stretched : Boolean = false); //resize al layers when change frame size
   function StreamToBase64(const AStream: TMemoryStream; out Base64: String): Boolean;
   function Base64ToStream(const ABase64: String; var AStream: TMemoryStream): Boolean;
   procedure ReloadPresets(aDirectory: String);  //loads palette presets from selected dir
@@ -709,6 +712,15 @@ begin
   inherited Destroy;
 end;
 
+procedure TSPFrame.Resize(w, h: Integer; Stretched: Boolean);
+var
+  i: Integer;
+begin
+  FWidth:=w;
+  FHeight:=h;
+  ResizeLayers(w,h,Stretched);
+end;
+
 function TSPFrame.AddLayer(LayerName: String): Boolean;
 begin
   result := False;
@@ -731,13 +743,22 @@ end;
 { TSPLayer }
 
 procedure TSPLayer.Resize(newWidth, NewHeight: Integer; Stretched: Boolean);
+var
+  tmpbmp : TBGRABitmap;
 begin
+  FWidth:=newWidth;
+  FHeight:=NewHeight;
   if Stretched then begin
-    fLayerImg:=fLayerImg.Resample(newWidth,NewHeight);
+     fLayerImg.ResampleFilter:=rfBicubic;
+     tmpbmp:=fLayerImg.Resample(newWidth,NewHeight,rmSimpleStretch) as TBGRABitmap;
+     BGRAReplace(fLayerImg,tmpbmp);
   end else begin
+    tmpbmp:=fLayerImg.Resample(fLayerImg.Width,fLayerImg.Height) as TBGRABitmap;
     fLayerImg.SetSize(newWidth,NewHeight);
+    ClearBitmap(fLayerImg);
+    fLayerImg.PutImage(0,0,tmpbmp,dmSetExceptTransparent);
+    FreeAndNil(tmpbmp);
   end;
-
 end;
 
 function TSPLayer.ToBASE64String: String;
@@ -884,21 +905,22 @@ end;
 
 constructor TFrameGrid.Create(aImg: TFileName; aSize: Word);
 var aBmp : TBGRABitmap;
-    aFrameName : String;
+    aFrameName , aLayerName: String;
     i: Integer;
 begin
     aBmp:=TBGRABitmap.Create(aImg);
     Create(aBmp.Width,aBmp.Height,aSize);
     aFrameName:=ExtractFileName(aImg);
+    aLayerName:=aFrameName;
     Frames[aFrameName]:=TSPFrame.Create(aFrameName, FrameWidth, FrameHeight);
-    Layers[aFrameName]:=TSPLayer.Create(aFrameName,FrameWidth,FrameHeight);
+    Layers[aFrameName]:=TSPLayer.Create(aLayerName,FrameWidth,FrameHeight);
     ActiveFrame:=aFrameName;
 
-    Frames[aFrameName].AddLayer(aFrameName);
-    Layers[cINTERNALLAYERANDFRAME].AddToFrame(aFrameName);
-    ClearBitmap(Layers[cINTERNALLAYERANDFRAME].Drawable);
+    Frames[aFrameName].AddLayer(aLayerName);
+    Layers[aLayerName].AddToFrame(aFrameName);
+    ClearBitmap(Layers[aFrameName].Drawable);
     ResizeLayers(FrameWidth,FrameHeight);
-    Layers[cINTERNALLAYERANDFRAME].Drawable.PutImage(0,0,aBmp,dmSetExceptTransparent);
+    Layers[aLayerName].Drawable.PutImage(0,0,aBmp,dmSetExceptTransparent);
     FreeAndNil(aBmp);
 end;
 
@@ -1002,6 +1024,23 @@ begin
     fPreview.Draw(Canvas,0,0,true);
    // FreeAndNil(aTmp);
   end;
+end;
+
+procedure TFrameGrid.Resize(newWidth, newHeight: Integer; Stretched: Boolean);
+var
+  tmp : TBGRABitmap;
+begin
+  Frames[fActiveFrame].Resize(newWidth, newHeight, Stretched);
+  fFrameHeight:=newHeight;
+  fFrameWidth:=newWidth;
+
+  tmp:=fPreview.Resample(newWidth,newHeight,rmSimpleStretch) as TBGRABitmap;
+  BGRAReplace(fPreview,tmp);
+
+  tmp:=fBuffer.Resample(fFrameWidth*(fFrameGridSize+fFrameZoom),
+                              fFrameHeight*(fFrameGridSize+fFrameZoom)) as TBGRABitmap;
+  BGRAReplace(fBuffer,tmp);
+  CalcGridRect;
 end;
 
 procedure TFrameGrid.ExpotPng(aFilename: TFileName);
@@ -1232,15 +1271,15 @@ begin
   aBmp.InvalidateBitmap;
 end;
 
-procedure ResizeLayers(aW, aH: Integer);
+procedure ResizeLayers(aW, aH: Integer; Stretched : Boolean = false);
 var
   i : Integer;
   aKey : String;
 begin
  for i:=0 to Layers.Count-1 do begin
   aKey:=Layers.Keys[i];
-  Layers[aKey].Resize(aW,aH);
-  ClearBitmap(Layers[aKey].Drawable);
+  Layers[aKey].Resize(aW,aH,Stretched);
+ // ClearBitmap(Layers[aKey].Drawable);
  end;
 end;
 

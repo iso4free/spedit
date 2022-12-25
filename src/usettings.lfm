@@ -6,6 +6,7 @@ object frmSettings: TfrmSettings
   Caption = 'Settings'
   ClientHeight = 240
   ClientWidth = 320
+  OnClose = FormClose
   Position = poScreenCenter
   LCLVersion = '2.2.4.0'
   object pnlButtons: TPanel

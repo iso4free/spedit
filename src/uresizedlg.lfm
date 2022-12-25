@@ -1,22 +1,25 @@
 object frmResize: TfrmResize
-  Left = 558
+  Left = 337
   Height = 240
-  Top = 241
-  Width = 320
+  Top = 257
+  Width = 272
+  AutoSize = True
+  BorderStyle = bsDialog
   Caption = 'Resize'
   ClientHeight = 240
-  ClientWidth = 320
+  ClientWidth = 272
+  OnClose = FormClose
   Position = poScreenCenter
   LCLVersion = '2.2.4.0'
   object pnlButtons: TPanel
     Left = 0
     Height = 32
     Top = 208
-    Width = 320
+    Width = 272
     Align = alBottom
     AutoSize = True
     ClientHeight = 32
-    ClientWidth = 320
+    ClientWidth = 272
     TabOrder = 0
     object bbtnOk: TBitBtn
       Left = 1
@@ -49,19 +52,91 @@ object frmResize: TfrmResize
     Left = 0
     Height = 208
     Top = 0
-    Width = 320
+    Width = 272
     Align = alClient
+    AutoSize = True
     Caption = 'Resize options'
     ClientHeight = 189
-    ClientWidth = 316
+    ClientWidth = 268
     TabOrder = 1
-    object chkbCanvasOnly: TCheckBox
-      Left = 16
+    object cbStretch: TCheckBox
+      AnchorSideLeft.Control = grpbResize
+      AnchorSideTop.Control = grpbResize
+      Left = 5
       Height = 22
-      Top = 12
-      Width = 104
-      Caption = 'Canvas only'
+      Top = 5
+      Width = 70
+      BorderSpacing.Around = 5
+      Caption = 'Stretch'
       TabOrder = 0
+    end
+    object cbKeepProportions: TCheckBox
+      AnchorSideLeft.Control = cbStretch
+      AnchorSideTop.Control = cbStretch
+      AnchorSideTop.Side = asrBottom
+      Left = 5
+      Height = 22
+      Top = 32
+      Width = 142
+      Caption = 'Keep propoprtions'
+      Checked = True
+      State = cbChecked
+      TabOrder = 1
+    end
+    object lblWidth: TLabel
+      AnchorSideLeft.Control = cbStretch
+      AnchorSideTop.Control = spnWidth
+      AnchorSideTop.Side = asrCenter
+      Left = 5
+      Height = 17
+      Top = 64
+      Width = 38
+      Caption = 'Width'
+      ParentColor = False
+    end
+    object spnWidth: TSpinEdit
+      Tag = 1
+      AnchorSideTop.Control = cbKeepProportions
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = cbKeepProportions
+      AnchorSideRight.Side = asrBottom
+      Left = 97
+      Height = 27
+      Top = 59
+      Width = 50
+      Anchors = [akTop, akRight]
+      BorderSpacing.Top = 5
+      MaxValue = 10000
+      MinValue = 1
+      OnChange = spnWidthChange
+      TabOrder = 2
+      Value = 1
+    end
+    object lblHeight: TLabel
+      AnchorSideLeft.Control = cbStretch
+      AnchorSideTop.Control = spnHeight
+      AnchorSideTop.Side = asrCenter
+      Left = 5
+      Height = 17
+      Top = 96
+      Width = 43
+      Caption = 'Height'
+      ParentColor = False
+    end
+    object spnHeight: TSpinEdit
+      Tag = 2
+      AnchorSideTop.Control = spnWidth
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = cbKeepProportions
+      AnchorSideRight.Side = asrBottom
+      Left = 97
+      Height = 27
+      Top = 91
+      Width = 50
+      Anchors = [akTop, akRight]
+      BorderSpacing.Top = 5
+      BorderSpacing.Bottom = 5
+      TabOrder = 3
     end
   end
 end

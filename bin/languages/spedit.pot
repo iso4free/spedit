@@ -75,6 +75,7 @@ msgid "Export frame as PNG"
 msgstr ""
 
 #: tfrmmain.actframeresize.caption
+msgctxt "tfrmmain.actframeresize.caption"
 msgid "Resize frame"
 msgstr ""
 
@@ -102,6 +103,10 @@ msgstr ""
 #: tfrmmain.actnewframe.caption
 msgctxt "tfrmmain.actnewframe.caption"
 msgid "New frame"
+msgstr ""
+
+#: tfrmmain.actnotimplemented.caption
+msgid "Not implemented yet"
 msgstr ""
 
 #: tfrmmain.actpaletteimport.caption
@@ -168,6 +173,11 @@ msgstr ""
 
 #: tfrmmain.bbtnnewframe.hint
 msgid "Create new frame"
+msgstr ""
+
+#: tfrmmain.bbtnresize.hint
+msgctxt "tfrmmain.bbtnresize.hint"
+msgid "Resize frame"
 msgstr ""
 
 #: tfrmmain.bbtnshowlayers.hint
@@ -414,12 +424,24 @@ msgstr ""
 msgid "Resize"
 msgstr ""
 
-#: tfrmresize.chkbcanvasonly.caption
-msgid "Canvas only"
+#: tfrmresize.cbkeepproportions.caption
+msgid "Keep propoprtions"
+msgstr ""
+
+#: tfrmresize.cbstretch.caption
+msgid "Stretch"
 msgstr ""
 
 #: tfrmresize.grpbresize.caption
 msgid "Resize options"
+msgstr ""
+
+#: tfrmresize.lblheight.caption
+msgid "Height"
+msgstr ""
+
+#: tfrmresize.lblwidth.caption
+msgid "Width"
 msgstr ""
 
 #: tfrmsettings.bbtncancel.caption

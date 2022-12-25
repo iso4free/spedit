@@ -1,3 +1,27 @@
+{***************************************************************************}
+{*                                                                         *}
+{* @@@@@@  @@@@@@@  @@@@@@@@ @@@@@@@  @@@ @@@@@@@   @@@  @@@         @@@   *}
+{*@@@@@@@  @@@@@@@@ @@@@@@@@ @@@@@@@@ @@@ @@@@@@@   @@@  @@@        @@@@   *}
+{*!@@      @@!  @@@ @@!      @@!  @@@ @@!   @@!     @@!  @@@       @@!@!   *}
+{*!@!      !@!  @!@ !@!      !@!  @!@ !@!   !@!     !@!  @!@      !@!!@!   *}
+{*!!@@!!   @!@@!@!  @!!!:!   @!@  !@! !!@   @!!     @!@  !@!     @!! @!!   *}
+{* !!@!!!  !!@!!!   !!!!!:   !@!  !!! !!!   !!!     !@!  !!!    !!!  !@!   *}
+{*     !:! !!:      !!:      !!:  !!! !!:   !!:     :!:  !!:    :!!:!:!!:  *}
+{*    !:!  :!:      :!:      :!:  !:! :!:   :!:      ::!!:! :!: !:::!!:::  *}
+{*:::: ::   ::       :: ::::  :::: ::  ::    ::       ::::  :::      :::   *}
+{*:: : :    :       : :: ::  :: :  :  :      :         :    :::      :::   *}
+{*                                                                         *}
+{***************************************************************************}
+{*    Sprite Editor 4.0                                                    *}
+{*    Copyright (c) 2000-2022 by Vadim Vitomsky                            *}
+{*                                                                         *}
+{*    See the file LICENSE, included in this distribution, for details.    *}
+{*                                                                         *}
+{*    This program is distributed in the hope that it will be useful,      *}
+{*    but WITHOUT ANY WARRANTY; without even the implied warranty of       *}
+{*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                 *}
+{***************************************************************************}
+
 program spedit;
 
 {$mode objfpc}{$H+}
@@ -27,7 +51,6 @@ begin
   {$ENDIF}
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
-  Application.DoubleBuffered:=adbTrue;
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmReferense, frmReferense);

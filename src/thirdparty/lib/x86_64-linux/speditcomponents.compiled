@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="/home/vadim/fpcupdeluxe/fpc/bin/x86_64-linux/fpc.sh" Date="1665568494"/>
-  <Params Value=" -MObjFPC -Scghi -Cg -O1 -g -gl -l -vewnhibq -Fu/home/vadim/fpcupdeluxe/lazarus/packager/units/x86_64-linux -Fu/home/vadim/fpcupdeluxe/lazarus/components/lazutils/lib/x86_64-linux -Fu/home/vadim/fpcupdeluxe/lazarus/components/freetype/lib/x86_64-linux -Fu/home/vadim/fpcupdeluxe/lazarus/lcl/units/x86_64-linux -Fu/home/vadim/fpcupdeluxe/lazarus/lcl/units/x86_64-linux/gtk2 -Fu/home/vadim/fpcupdeluxe/config_lazarus/onlinepackagemanager/packages/bgrabitmap-master/bgrabitmap/lib/x86_64-linux-gtk2-3.2.2 -Fu/home/vadim/development/pascal/github/spedit/src/thirdparty/ -FU/home/vadim/development/pascal/github/spedit/src/thirdparty/lib/x86_64-linux/ -dLCL -dLCLgtk2 speditcomponents.pas"/>
-</CONFIG>
