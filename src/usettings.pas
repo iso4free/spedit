@@ -13,11 +13,11 @@ type
   { TfrmSettings }
 
   TfrmSettings = class(TForm)
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    Panel1: TPanel;
-    Panel2: TPanel;
-    TreeView1: TTreeView;
+    bbtnOk: TBitBtn;
+    bbtnCancel: TBitBtn;
+    pnlButtons: TPanel;
+    pnlSettings: TPanel;
+    tvSettingsTree: TTreeView;
   private
 
   public

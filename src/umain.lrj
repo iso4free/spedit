@@ -45,6 +45,7 @@
 {"hash":81298371,"name":"tfrmmain.miframes.caption","sourcebytes":[70,114,97,109,101,115],"value":"Frames"},
 {"hash":126668695,"name":"tfrmmain.mipreview.caption","sourcebytes":[80,114,101,118,105,101,119],"value":"Preview"},
 {"hash":94867621,"name":"tfrmmain.misprite.caption","sourcebytes":[83,112,114,105,116,101],"value":"Sprite"},
+{"hash":5081141,"name":"tfrmmain.miframe.caption","sourcebytes":[70,114,97,109,101],"value":"Frame"},
 {"hash":86572179,"name":"tfrmmain.milayers.caption","sourcebytes":[76,97,121,101,114,115],"value":"Layers"},
 {"hash":109235189,"name":"tfrmmain.mipalette.caption","sourcebytes":[80,97,108,101,116,116,101],"value":"Palette"},
 {"hash":322608,"name":"tfrmmain.mihelp.caption","sourcebytes":[72,101,108,112],"value":"Help"},
@@ -68,10 +69,11 @@
 {"hash":23458491,"name":"tfrmmain.actzoomin.caption","sourcebytes":[90,111,111,109,32,43,43],"value":"Zoom ++"},
 {"hash":23458461,"name":"tfrmmain.actzoomout.caption","sourcebytes":[90,111,111,109,32,45,45],"value":"Zoom --"},
 {"hash":207854285,"name":"tfrmmain.actzoomreset.caption","sourcebytes":[82,101,115,101,116,32,122,111,111,109],"value":"Reset zoom"},
-{"hash":97995102,"name":"tfrmmain.acttogglefullscreen.caption","sourcebytes":[70,117,108,108,32,83,99,114,101,101,110],"value":"Full Screen"},
+{"hash":105771113,"name":"tfrmmain.acttogglefullscreen.caption","sourcebytes":[70,117,108,108,32,83,99,114,101,101,110,32,40,90,69,78,32,109,111,100,101,41],"value":"Full Screen (ZEN mode)"},
 {"hash":139375349,"name":"tfrmmain.actlanguageselect.caption","sourcebytes":[76,97,110,103,117,97,103,101],"value":"Language"},
 {"hash":214498341,"name":"tfrmmain.actreferencetoggle.caption","sourcebytes":[82,101,102,101,114,101,110,99,101],"value":"Reference"},
 {"hash":212500343,"name":"tfrmmain.actframeexportpng.caption","sourcebytes":[69,120,112,111,114,116,32,102,114,97,109,101,32,97,115,32,80,78,71],"value":"Export frame as PNG"},
 {"hash":45738691,"name":"tfrmmain.actloadpresets.caption","sourcebytes":[76,111,97,100,32,112,114,101,115,101,116,115],"value":"Load presets"},
-{"hash":213582195,"name":"tfrmmain.actsettings.caption","sourcebytes":[83,101,116,116,105,110,103,115],"value":"Settings"}
+{"hash":213582195,"name":"tfrmmain.actsettings.caption","sourcebytes":[83,101,116,116,105,110,103,115],"value":"Settings"},
+{"hash":48310069,"name":"tfrmmain.actframeresize.caption","sourcebytes":[82,101,115,105,122,101,32,102,114,97,109,101],"value":"Resize frame"}
 ]}

@@ -8,7 +8,7 @@ object frmSettings: TfrmSettings
   ClientWidth = 320
   Position = poScreenCenter
   LCLVersion = '2.2.4.0'
-  object Panel1: TPanel
+  object pnlButtons: TPanel
     Left = 0
     Height = 32
     Top = 208
@@ -18,11 +18,11 @@ object frmSettings: TfrmSettings
     ClientHeight = 32
     ClientWidth = 320
     TabOrder = 0
-    object BitBtn1: TBitBtn
+    object bbtnOk: TBitBtn
       Left = 1
       Height = 30
       Top = 1
-      Width = 52
+      Width = 51
       Align = alLeft
       AutoSize = True
       Default = True
@@ -31,11 +31,11 @@ object frmSettings: TfrmSettings
       ModalResult = 1
       TabOrder = 0
     end
-    object BitBtn2: TBitBtn
-      Left = 245
+    object bbtnCancel: TBitBtn
+      Left = 241
       Height = 30
       Top = 1
-      Width = 74
+      Width = 78
       Align = alRight
       AutoSize = True
       Cancel = True
@@ -45,7 +45,7 @@ object frmSettings: TfrmSettings
       TabOrder = 1
     end
   end
-  object Panel2: TPanel
+  object pnlSettings: TPanel
     Left = 0
     Height = 208
     Top = 0
@@ -54,13 +54,27 @@ object frmSettings: TfrmSettings
     ClientHeight = 208
     ClientWidth = 320
     TabOrder = 1
-    object TreeView1: TTreeView
+    object tvSettingsTree: TTreeView
       Left = 1
       Height = 206
       Top = 1
       Width = 318
       Align = alClient
       TabOrder = 0
+      Items.Data = {
+        F9FFFFFF020002000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF040000000000
+        0000010B0000004469726563746F72696573FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFF0000000000000000000F00000050616C657474652070726573657473FFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000000000000F0000004672616D65
+        206578706F727420746FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+        0000000A0000005265666572656E636573FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FF000000000000000000120000004C6F63616C206C6962726172792070617468
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF02000000000000000108000000417574
+        6F6C6F6164FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000000000000F00
+        000050616C657474652070726573657473FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FF0000000000000000001300000052656F70656E206C6173742070726F6A6563
+        74
+      }
     end
   end
 end

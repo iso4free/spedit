@@ -1,0 +1,6 @@
+{"version":1,"strings":[
+{"hash":93102341,"name":"tfrmresize.caption","sourcebytes":[82,101,115,105,122,101],"value":"Resize"},
+{"hash":77089212,"name":"tfrmresize.bbtncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
+{"hash":182192291,"name":"tfrmresize.grpbresize.caption","sourcebytes":[82,101,115,105,122,101,32,111,112,116,105,111,110,115],"value":"Resize options"},
+{"hash":136372985,"name":"tfrmresize.chkbcanvasonly.caption","sourcebytes":[67,97,110,118,97,115,32,111,110,108,121],"value":"Canvas only"}
+]}

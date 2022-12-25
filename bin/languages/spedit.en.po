@@ -40,6 +40,7 @@ msgid "Copy all layers"
 msgstr ""
 
 #: tfrmframedlg.edtframename.text
+msgctxt "tfrmframedlg.edtframename.text"
 msgid "Frame"
 msgstr ""
 
@@ -82,6 +83,10 @@ msgstr ""
 
 #: tfrmmain.actframeexportpng.caption
 msgid "Export frame as PNG"
+msgstr ""
+
+#: tfrmmain.actframeresize.caption
+msgid "Resize frame"
 msgstr ""
 
 #: tfrmmain.actframestoggle.caption
@@ -147,7 +152,7 @@ msgid "Settings"
 msgstr ""
 
 #: tfrmmain.acttogglefullscreen.caption
-msgid "Full Screen"
+msgid "Full Screen (ZEN mode)"
 msgstr ""
 
 #: tfrmmain.actundo.caption
@@ -297,6 +302,11 @@ msgctxt "tfrmmain.mifilesaveproject.caption"
 msgid "Save Sprite Project"
 msgstr ""
 
+#: tfrmmain.miframe.caption
+msgctxt "tfrmmain.miframe.caption"
+msgid "Frame"
+msgstr ""
+
 #: tfrmmain.miframes.caption
 msgid "Frames"
 msgstr ""
@@ -406,7 +416,25 @@ msgstr ""
 msgid "Rectangle tool - hotkey 'R'"
 msgstr ""
 
-#: tfrmsettings.bitbtn2.caption
+#: tfrmresize.bbtncancel.caption
+msgctxt "tfrmresize.bbtncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tfrmresize.caption
+msgid "Resize"
+msgstr ""
+
+#: tfrmresize.chkbcanvasonly.caption
+msgid "Canvas only"
+msgstr ""
+
+#: tfrmresize.grpbresize.caption
+msgid "Resize options"
+msgstr ""
+
+#: tfrmsettings.bbtncancel.caption
+msgctxt "tfrmsettings.bbtncancel.caption"
 msgid "Cancel"
 msgstr ""
 

@@ -23,6 +23,7 @@ type
     actCopyLayer: TAction;
     actFramesToggle: TAction;
     actFrameExportPNG: TAction;
+    actFrameResize: TAction;
     actSettings: TAction;
     actLoadPresets: TAction;
     actReferenceToggle: TAction;
@@ -72,6 +73,8 @@ type
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
     MenuItem1: TMenuItem;
+    miFrameResize: TMenuItem;
+    miFrame: TMenuItem;
     miExportFramePNG: TMenuItem;
     miExport: TMenuItem;
     miMergeLayers: TMenuItem;
@@ -151,6 +154,7 @@ type
     StatusBar1: TStatusBar;
     trkbrPenSize: TSpinEdit;
     procedure actFrameExportPNGExecute(Sender: TObject);
+    procedure actFrameResizeExecute(Sender: TObject);
     procedure actFramesToggleExecute(Sender: TObject);
     procedure actImportFrameExecute(Sender: TObject);
     procedure actAddLayerExecute(Sender: TObject);
@@ -236,7 +240,7 @@ var
 
 implementation
 
-uses udraw, uabout, uframedlg, ureferense, usettings;
+uses udraw, uabout, uframedlg, uresizedlg, ureferense, usettings;
 {$R *.lfm}
 
 { TfrmMain }
@@ -272,6 +276,14 @@ begin
    //save current frame to PNG file by default to user dir and with frame name
    FrameGrid.ExpotPng(sdExportFrameSaveDialog.FileName);
  end;
+end;
+
+procedure TfrmMain.actFrameResizeExecute(Sender: TObject);
+begin
+  frmResize.ShowModal;
+  if frmResize.ModalResult=mrOK then begin
+    //todo: miFrameResize all layers belongs to frame with miFrameResize settings
+  end;
 end;
 
 procedure TfrmMain.actAddLayerExecute(Sender: TObject);
@@ -448,7 +460,22 @@ procedure TfrmMain.actToggleFullScreenExecute(Sender: TObject);
 begin
   if WindowState<>wsFullScreen then WindowState:=wsFullScreen
      else WindowState:=wsMaximized;
-  actToggleFullScreen.Checked:=WindowState = wsMaximized;
+  actToggleFullScreen.Checked:=WindowState = wsFullScreen;
+  //try ZEN mode
+  if actToggleFullScreen.Checked then begin
+   pnlFrames.Visible := false;
+   pnlPalette.Visible := false;
+   pnlLayers.Visible:= false;
+   pnlEditor.Visible:=false;
+   pnlTools.Visible:=false;
+  end else begin
+    //back to normal mode
+   pnlFrames.Visible := actFramesToggle.Checked;
+   pnlPalette.Visible := actPaletteToggle.Checked;
+   pnlLayers.Visible:= actLayersToggle.Checked;
+   pnlEditor.Visible:=true;
+   pnlTools.Visible:=true;
+  end;
 end;
 
 procedure TfrmMain.actZoomInExecute(Sender: TObject);
@@ -949,6 +976,8 @@ begin
   drwgrdLayers.Invalidate;
   FgColor.Invalidate;
   BgColor.Invalidate;
+  actUndo.Enabled:=UndoRedoManager.CanUndo;
+  actRedo.Enabled:=UndoRedoManager.CanRedo;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;

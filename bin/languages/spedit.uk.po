@@ -1,16 +1,21 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: spedit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2022-12-25 13:39+0200\n"
+"Last-Translator: \n"
+"Language-Team: Ukrainian\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: spedit\n"
 "X-Crowdin-Project-ID: 548623\n"
 "X-Crowdin-Language: uk\n"
 "X-Crowdin-File: spedit.pot\n"
 "X-Crowdin-File-ID: 1\n"
-"Project-Id-Version: spedit\n"
-"Language-Team: Ukrainian\n"
-"Language: uk_UA\n"
-"PO-Revision-Date: 2022-12-22 11:46\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: tfrmabout.label1.caption
 msgid "SPEdit"
@@ -21,9 +26,11 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Вільний і відкритий редактор спрайтів V.4.0"
 
 #: tfrmabout.label3.caption
-msgid "Created by (c) Vadim Vitomsky, 2000-2022\n"
+msgid ""
+"Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos (translation to pt-br, Mascot)"
-msgstr "Створено (c) Вадимом Вітомським, 2000-2022\n"
+msgstr ""
+"Створено (c) Вадимом Вітомським, 2000-2022\n"
 "Залучений Едді Маттос (переклад до pt-br, Талісман)"
 
 #: tfrmabout.showsplashcheckbox.caption
@@ -40,6 +47,7 @@ msgid "Copy all layers"
 msgstr "Копіювати всі шари"
 
 #: tfrmframedlg.edtframename.text
+msgctxt "tfrmframedlg.edtframename.text"
 msgid "Frame"
 msgstr "Фрейм"
 
@@ -83,6 +91,10 @@ msgstr "&Вихід"
 #: tfrmmain.actframeexportpng.caption
 msgid "Export frame as PNG"
 msgstr "Експортувати фрейм як PNG"
+
+#: tfrmmain.actframeresize.caption
+msgid "Resize frame"
+msgstr "Змінити розмір фрейму"
 
 #: tfrmmain.actframestoggle.caption
 msgid "Toggle frames"
@@ -147,8 +159,8 @@ msgid "Settings"
 msgstr "Налаштування"
 
 #: tfrmmain.acttogglefullscreen.caption
-msgid "Full Screen"
-msgstr "Повний екран"
+msgid "Full Screen (ZEN mode)"
+msgstr "Повний екран (режим ДЗЕН)"
 
 #: tfrmmain.actundo.caption
 msgid "&Undo"
@@ -204,9 +216,11 @@ msgstr "ФК"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
-msgid "Left click to select color\n"
+msgid ""
+"Left click to select color\n"
 "Right click to set transparent color"
-msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr ""
+"Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.caption
@@ -240,9 +254,11 @@ msgstr "ПК"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
-msgid "Left click to select color\n"
+msgid ""
+"Left click to select color\n"
 "Right click to set transparent color"
-msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr ""
+"Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.framepreview.hint
@@ -297,6 +313,12 @@ msgctxt "tfrmmain.mifilesaveproject.caption"
 msgid "Save Sprite Project"
 msgstr "Зберегти проєкт спрайтів"
 
+#: tfrmmain.miframe.caption
+#, fuzzy
+msgctxt "tfrmmain.miframe.caption"
+msgid "Frame"
+msgstr "Фрейм"
+
 #: tfrmmain.miframes.caption
 msgid "Frames"
 msgstr "Фрейми"
@@ -313,9 +335,11 @@ msgstr "Імпорт таблиці спрайтів"
 
 #: tfrmmain.miimportspritesheet.hint
 msgctxt "tfrmmain.miimportspritesheet.hint"
-msgid "You can import image or spritesheet file\n"
+msgid ""
+"You can import image or spritesheet file\n"
 "and add it to the library"
-msgstr "Імпортувати зображення або файл таблиці спрайтів\n"
+msgstr ""
+"Імпортувати зображення або файл таблиці спрайтів\n"
 "і додати його в бібліотеку"
 
 #: tfrmmain.milayers.caption
@@ -406,7 +430,27 @@ msgstr "Інструмент Піпетка - гаряча клавіша 'O'"
 msgid "Rectangle tool - hotkey 'R'"
 msgstr "Інструмент Прямокутник - гаряча клавіша 'R'"
 
-#: tfrmsettings.bitbtn2.caption
+#: tfrmresize.bbtncancel.caption
+#, fuzzy
+msgctxt "tfrmresize.bbtncancel.caption"
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: tfrmresize.caption
+msgid "Resize"
+msgstr "Змінити розмір"
+
+#: tfrmresize.chkbcanvasonly.caption
+msgid "Canvas only"
+msgstr "Лише полотно"
+
+#: tfrmresize.grpbresize.caption
+msgid "Resize options"
+msgstr "Параметри"
+
+#: tfrmsettings.bbtncancel.caption
+#, fuzzy
+msgctxt "tfrmsettings.bbtncancel.caption"
 msgid "Cancel"
 msgstr "Скасувати"
 
@@ -527,4 +571,3 @@ msgstr "Вам потрібно переназначити метод MouseUp()!
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
 msgstr "Вам потрібно переназначити метод MouseMove() !Назва класу: "
-

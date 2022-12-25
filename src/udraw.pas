@@ -167,13 +167,11 @@ begin
 end;
 
 procedure TSPFloodFill.MouseUp(x, y: Integer; Shift: TShiftState);
-var
-  aTmpColor: TBGRAPixel;
 begin
   //inherited MouseUp(x, y, Shift);
+  if Shift<>[] then Exit; //flood fiil only if no accelerator keys pressed
   fx:=x;
   fy:=y;
-  aTmpColor := Layers[FrameGrid.ActiveLayer].Drawable.GetPixel(x,y);
   Layers[FrameGrid.ActiveLayer].Drawable.FloodFill(fx,fy,fColor,fmSet,0);
 end;
 

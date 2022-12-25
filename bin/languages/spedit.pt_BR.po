@@ -42,6 +42,7 @@ msgid "Copy all layers"
 msgstr "Copiar todas as camadas"
 
 #: tfrmframedlg.edtframename.text
+msgctxt "tfrmframedlg.edtframename.text"
 msgid "Frame"
 msgstr "Quadro"
 
@@ -85,6 +86,10 @@ msgstr "&Sair"
 #: tfrmmain.actframeexportpng.caption
 msgid "Export frame as PNG"
 msgstr "Exportar quadro como PNG"
+
+#: tfrmmain.actframeresize.caption
+msgid "Resize frame"
+msgstr ""
 
 #: tfrmmain.actframestoggle.caption
 msgid "Toggle frames"
@@ -154,7 +159,9 @@ msgid "Settings"
 msgstr "Configurações"
 
 #: tfrmmain.acttogglefullscreen.caption
-msgid "Full Screen"
+#, fuzzy
+#| msgid "Full Screen"
+msgid "Full Screen (ZEN mode)"
 msgstr "Tela Cheia"
 
 #: tfrmmain.actundo.caption
@@ -324,6 +331,12 @@ msgctxt "tfrmmain.mifilesaveproject.caption"
 msgid "Save Sprite Project"
 msgstr "Salvar Projeto de Sprites"
 
+#: tfrmmain.miframe.caption
+#, fuzzy
+msgctxt "tfrmmain.miframe.caption"
+msgid "Frame"
+msgstr "Quadro"
+
 #: tfrmmain.miframes.caption
 msgid "Frames"
 msgstr "Quadros"
@@ -450,7 +463,27 @@ msgstr "Pipeta - atalho 'O'"
 msgid "Rectangle tool - hotkey 'R'"
 msgstr "Retangulo - atalho 'R'"
 
-#: tfrmsettings.bitbtn2.caption
+#: tfrmresize.bbtncancel.caption
+#, fuzzy
+msgctxt "tfrmresize.bbtncancel.caption"
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: tfrmresize.caption
+msgid "Resize"
+msgstr ""
+
+#: tfrmresize.chkbcanvasonly.caption
+msgid "Canvas only"
+msgstr ""
+
+#: tfrmresize.grpbresize.caption
+msgid "Resize options"
+msgstr ""
+
+#: tfrmsettings.bbtncancel.caption
+#, fuzzy
+msgctxt "tfrmsettings.bbtncancel.caption"
 msgid "Cancel"
 msgstr "Cancelar"
 

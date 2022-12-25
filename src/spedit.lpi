@@ -234,6 +234,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="uresizedlg.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmResize"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
