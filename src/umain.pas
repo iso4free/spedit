@@ -161,7 +161,6 @@ type
     sbPen: TSpeedButton;
     sbPipette: TSpeedButton;
     sbRect: TSpeedButton;
-    sbDrawGrig: TScrollBox;
     sbCurrentPalette: TScrollBox;
     sbPresetPalette: TScrollBox;
     sdExportFrameSaveDialog: TSaveDialog;
@@ -992,6 +991,7 @@ FrameGrid.CellCursor.Coords:=FrameGrid.Coords(x,y);
   end;
  end;
  StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
+ pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;

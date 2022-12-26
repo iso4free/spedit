@@ -6,7 +6,7 @@ object frmMain: TfrmMain
   Caption = 'Sprite Editor'
   ClientHeight = 713
   ClientWidth = 752
-  DoubleBuffered = False
+  DoubleBuffered = True
   KeyPreview = True
   Menu = MainMenu1
   OnCreate = FormCreate
@@ -584,34 +584,6 @@ object frmMain: TfrmMain
     Top = 40
     Width = 5
   end
-  object sbDrawGrig: TScrollBox
-    Left = 152
-    Height = 533
-    Top = 40
-    Width = 417
-    HorzScrollBar.Page = 105
-    VertScrollBar.Page = 105
-    Align = alClient
-    ClientHeight = 531
-    ClientWidth = 415
-    TabOrder = 6
-    OnMouseMove = pbFrameDrawMouseMove
-    OnMouseWheelDown = pbFrameDrawMouseWheelDown
-    OnMouseWheelUp = pbFrameDrawMouseWheelUp
-    object pbFrameDraw: TPaintBox
-      Left = 0
-      Height = 531
-      Top = 0
-      Width = 415
-      Align = alClient
-      OnMouseDown = pbFrameDrawMouseDown
-      OnMouseMove = pbFrameDrawMouseMove
-      OnMouseUp = pbFrameDrawMouseUp
-      OnMouseWheelDown = pbFrameDrawMouseWheelDown
-      OnMouseWheelUp = pbFrameDrawMouseWheelUp
-      OnPaint = pbFrameDrawPaint
-    end
-  end
   object Splitter2: TSplitter
     Left = 569
     Height = 533
@@ -638,7 +610,7 @@ object frmMain: TfrmMain
     Align = alRight
     ClientHeight = 533
     ClientWidth = 150
-    TabOrder = 9
+    TabOrder = 8
     object sbCurrentPalette: TScrollBox
       Left = 1
       Height = 128
@@ -757,6 +729,19 @@ object frmMain: TfrmMain
         OnCellClick = mbColorPalettePresetCellClick
       end
     end
+  end
+  object pbFrameDraw: TPaintBox
+    Left = 152
+    Height = 533
+    Top = 40
+    Width = 417
+    Align = alClient
+    OnMouseDown = pbFrameDrawMouseDown
+    OnMouseMove = pbFrameDrawMouseMove
+    OnMouseUp = pbFrameDrawMouseUp
+    OnMouseWheelDown = pbFrameDrawMouseWheelDown
+    OnMouseWheelUp = pbFrameDrawMouseWheelUp
+    OnPaint = pbFrameDrawPaint
   end
   object MainMenu1: TMainMenu
     Images = ButtonsImageList
