@@ -434,7 +434,7 @@ begin
    Palette.Clear;
    mbPaletteGrid.Colors.Clear;
   end;
-  frmMain.pbFrameDrawPaint(Sender);
+  Invalidate;
 end;
 
 procedure TfrmMain.actNotImplementedExecute(Sender: TObject);
@@ -735,7 +735,7 @@ begin
 
  end;
 end;
- FgColorPaint(Sender);
+ Invalidate;
 end;
 
 procedure TfrmMain.FgColorPaint(Sender: TObject);
@@ -751,7 +751,6 @@ begin
     else (Sender as TBGRAGraphicControl).Bitmap.FillRect(Rect(2,2,(Sender as TBGRAGraphicControl).Width-2,(Sender as TBGRAGraphicControl).Height-2),ColorToBGRA(cl));
   frmMain.StatusBar1.Panels[1].Text:=rsFG+IntToHex(spclForeColor)+rsBG+
     IntToHex(spclBackColor);
-  (Sender as TControl).Invalidate;
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
@@ -993,8 +992,6 @@ FrameGrid.CellCursor.Coords:=FrameGrid.Coords(x,y);
   end;
  end;
  StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
- pbFrameDraw.Invalidate;
- drwgrdLayers.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
