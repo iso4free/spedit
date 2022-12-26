@@ -829,7 +829,6 @@ object frmMain: TfrmMain
         end
         object miReferense: TMenuItem
           Action = actReferenceToggle
-          OnClick = miReferenseClick
         end
       end
       object Separator7: TMenuItem

@@ -35,7 +35,7 @@ uses
   Graphics, Types, Dialogs, Menus, ComCtrls, ExtCtrls, Buttons, ActnList, Grids,
   JSONPropStorage, ExtDlgs, StdCtrls, StdActns, LCLType, Spin,
   HexaColorPicker, mbColorPalette,
-  BGRAImageList, BGRAGraphicControl, BGRABitmapTypes, BGRABitmap;
+  BGRAImageList, BGRAGraphicControl, BGRABitmapTypes, BGRABitmap, BCTypes;
 
 type
 
@@ -239,7 +239,6 @@ type
       Shift: TShiftState; Index: integer; AColor: TColor; var DontCheck: boolean
       );
     procedure miAboutClick(Sender: TObject);
-    procedure miReferenseClick(Sender: TObject);
     procedure pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -312,7 +311,6 @@ begin
   frmResize.CheckSettings;
   frmResize.ShowModal;
   if frmResize.ModalResult=mrOK then begin
-    //todo: miFrameResize all layers belongs to frame with miFrameResize settings
     FrameGrid.Resize(frmResize.spnWidth.Value,frmResize.spnHeight.Value,frmResize.cbStretch.Checked);
     pbFrameDraw.Invalidate;
   end;
@@ -432,8 +430,8 @@ begin
    trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
    Palette.Clear;
    mbPaletteGrid.Colors.Clear;
+   pbFrameDraw.Invalidate;
   end;
-  Invalidate;
 end;
 
 procedure TfrmMain.actNotImplementedExecute(Sender: TObject);
@@ -724,6 +722,7 @@ begin
              Palette.AddColor(ColorDialog1.Color);
              ToolOptions.Color:=ColorDialog1.Color;
              frmMain.StatusBar1.Panels[0].Text:=rsColors+IntToStr(Palette.Count);
+             FgColor.;
              //PaletteGrid.RenderAndDrawControl;
           end;
          end;
@@ -731,10 +730,9 @@ begin
           if (Sender as TBGRAGraphicControl).Tag=1 then spclBackColor:=BGRAPixelTransparent
              else spclForeColor:=BGRAPixelTransparent;
             ToolOptions.Color:=BGRAPixelTransparent;
-
+            BgColor.Invalidate;
  end;
 end;
- Invalidate;
 end;
 
 procedure TfrmMain.FgColorPaint(Sender: TObject);
@@ -902,11 +900,6 @@ begin
      FreeAndNil(frmAbout);
 end;
 
-procedure TfrmMain.miReferenseClick(Sender: TObject);
-begin
-
-end;
-
 procedure TfrmMain.PaletteChange;
 var
   i: Integer;
@@ -984,10 +977,11 @@ FrameGrid.CellCursor.Coords:=FrameGrid.Coords(x,y);
    FrameGrid.Offset:=Point(dx,dy);
  end;
  if fDrawGridMode=dgmDraw then begin //draw if layer not locked
-  if Assigned(DrawTool) and ( FrameGrid.HasCoords(Point(X,Y))) then begin
+  if Assigned(DrawTool) and (FrameGrid.HasCoords(Point(X,Y))) then begin
    if Layers[FrameGrid.ActiveLayer].Locked then Exit;
    p:=FrameGrid.Coords(X,Y);
    DrawTool.MouseMove(p.X,p.Y);
+   FramePreview.Invalidate;
   end;
  end;
  StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
@@ -1011,10 +1005,10 @@ begin
     PaletteChange;
    end;
   end;
-  pbFrameDraw.Invalidate;
+{  pbFrameDraw.Invalidate;
   drwgrdLayers.Invalidate;
   FgColor.Invalidate;
-  BgColor.Invalidate;
+  BgColor.Invalidate;}
   actUndo.Enabled:=UndoRedoManager.CanUndo;
   actRedo.Enabled:=UndoRedoManager.CanRedo;
 end;
@@ -1042,8 +1036,10 @@ begin
    //draw here zoomed frame data
   if Assigned(FrameGrid) then begin
     pbFrameDraw.SetBounds(0,0,FrameGrid.Bounds.Width,FrameGrid.Bounds.Height);
+    {$IFDEF DEBUG}
+    DebugLn('In: pbFrameDrawPaint() Rect', format('Rect = %d,%d,%d,%d',[pbFrameDraw.left,pbFrameDraw.top,pbFrameDraw.Width,pbFrameDraw.Height]));
+    {$ENDIF}
     FrameGrid.RenderAndDraw(pbFrameDraw.Canvas);
-    FrameGrid.RenderPicture(FramePreview.Canvas);
   end;
   StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);
 end;
