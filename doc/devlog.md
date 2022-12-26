@@ -169,3 +169,7 @@ DEV.LOG
 =
 - [+] Added 'Zen mode' in fullscreen
 - [+] Added Frame resize feature
+
+26.12.2022
+=
+- [!] Fixed GTK2 warning in Linux and it seems now works in Windows too 

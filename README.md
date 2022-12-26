@@ -101,7 +101,7 @@ TROUBLESHOOTING
 - [+] In Windows keys won't work (fixed)
 - [+] In Windows works very slow (fixed)
 - [+] Sometime memory leaks happens (fixed)
-- [ ] In Windows UI woks incorrect
+- [+] In Windows UI woks incorrect (fixed)
 
 COPYRIGHT
 =========

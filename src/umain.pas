@@ -722,7 +722,7 @@ begin
              Palette.AddColor(ColorDialog1.Color);
              ToolOptions.Color:=ColorDialog1.Color;
              frmMain.StatusBar1.Panels[0].Text:=rsColors+IntToStr(Palette.Count);
-             FgColor.;
+             FgColor.Invalidate;
              //PaletteGrid.RenderAndDrawControl;
           end;
          end;
@@ -1035,10 +1035,6 @@ procedure TfrmMain.pbFrameDrawPaint(Sender: TObject);
 begin
    //draw here zoomed frame data
   if Assigned(FrameGrid) then begin
-    pbFrameDraw.SetBounds(0,0,FrameGrid.Bounds.Width,FrameGrid.Bounds.Height);
-    {$IFDEF DEBUG}
-    DebugLn('In: pbFrameDrawPaint() Rect', format('Rect = %d,%d,%d,%d',[pbFrameDraw.left,pbFrameDraw.top,pbFrameDraw.Width,pbFrameDraw.Height]));
-    {$ENDIF}
     FrameGrid.RenderAndDraw(pbFrameDraw.Canvas);
   end;
   StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);

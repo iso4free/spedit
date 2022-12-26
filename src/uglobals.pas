@@ -603,13 +603,14 @@ begin
  DebugLn(#9,'Layer data: ',aData^.fLayerData);
  DebugLn(#9,'Layer frames: ',aData^.fLayerFrames);
 end;
+{$ENDIF}
 
 function TUndoRedoManager.InternalCanRedo: Boolean;
 begin
   Result:=fRedoList.Count>0;
 end;
 
-{$ENDIF}
+
 
 procedure TUndoRedoManager.InternalClearStack(aStack: TUndoRedoList);
 begin
