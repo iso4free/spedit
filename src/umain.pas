@@ -49,6 +49,7 @@ type
     actFramesToggle: TAction;
     actFrameExportPNG: TAction;
     actFrameResize: TAction;
+    actDither: TAction;
     actNotImplemented: TAction;
     actSettings: TAction;
     actLoadPresets: TAction;
@@ -99,7 +100,8 @@ type
     LayersGroupBox: TGroupBox;
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
-    MenuItem1: TMenuItem;
+    miLoadPresets: TMenuItem;
+    miFrameDither: TMenuItem;
     miFrameResize: TMenuItem;
     miFrame: TMenuItem;
     miExportFramePNG: TMenuItem;
@@ -179,6 +181,7 @@ type
     Splitter3: TSplitter;
     StatusBar1: TStatusBar;
     trkbrPenSize: TSpinEdit;
+    procedure actDitherExecute(Sender: TObject);
     procedure actFrameExportPNGExecute(Sender: TObject);
     procedure actFrameResizeExecute(Sender: TObject);
     procedure actFramesToggleExecute(Sender: TObject);
@@ -303,6 +306,15 @@ begin
    //save current frame to PNG file by default to user dir and with frame name
    FrameGrid.ExpotPng(sdExportFrameSaveDialog.FileName);
  end;
+end;
+
+procedure TfrmMain.actDitherExecute(Sender: TObject);
+var
+  i: Integer;
+begin
+ //dither all layers
+ for i:= 0 to Layers.Count-1 do DitherImage(Layers[Layers.Keys[i]].Drawable,Presets[cbPalettePresets.Text].Palette,200);
+ pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.actFrameResizeExecute(Sender: TObject);

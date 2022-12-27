@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: pt_BR\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Crowdin-Project: spedit\n"
+"X-Crowdin-Project-ID: 548623\n"
+"X-Crowdin-Language: pt-BR\n"
+"X-Crowdin-File: spedit.pot\n"
+"X-Crowdin-File-ID: 1\n"
+"Project-Id-Version: spedit\n"
+"Language-Team: Portuguese, Brazilian\n"
+"Language: pt_BR\n"
+"PO-Revision-Date: 2022-12-27 11:21\n"
 
 #: tfrmabout.label1.caption
 msgid "SPEdit"
@@ -18,7 +18,7 @@ msgstr "SPEdit"
 
 #: tfrmabout.label2.caption
 msgid "Free and Open source Sprite Editor V.4.0"
-msgstr "Um Editor de Sprites Gratuíto e de Código Aberto - V.4.0"
+msgstr "Um Editor de Sprites Gratuito e de Código Aberto - V.4.0"
 
 #: tfrmabout.label3.caption
 msgid ""
@@ -26,7 +26,8 @@ msgid ""
 "Contributed by Eddie Mattos (translation to pt-br, Mascot)"
 msgstr ""
 "Criado por (c) Vadim Vitomsky, 2000-2022\n"
-"Contribuições de EddieMattos - Tradução para o pt-BR e redesign do mascote"
+"Contribuições de:\n"
+" EddieMattos - Tradução para o pt-BR e redesign do mascote"
 
 #: tfrmabout.showsplashcheckbox.caption
 msgid "Show at startup"
@@ -79,6 +80,14 @@ msgstr "Copiar camada"
 msgid "Delete layer"
 msgstr "Deletar camada"
 
+#: tfrmmain.actdither.caption
+msgid "Dither frame"
+msgstr ""
+
+#: tfrmmain.actdither.hint
+msgid "Reduse colors to preset palette"
+msgstr ""
+
 #: tfrmmain.actexit.caption
 msgid "&Exit"
 msgstr "&Sair"
@@ -90,14 +99,13 @@ msgstr "Exportar quadro como PNG"
 #: tfrmmain.actframeresize.caption
 msgctxt "tfrmmain.actframeresize.caption"
 msgid "Resize frame"
-msgstr ""
+msgstr "Redimensionar quadro"
 
 #: tfrmmain.actframestoggle.caption
 msgid "Toggle frames"
 msgstr "Alternar quadros"
 
 #: tfrmmain.actlanguageselect.caption
-#, fuzzy
 msgctxt "tfrmmain.actlanguageselect.caption"
 msgid "Language"
 msgstr "Idioma"
@@ -108,34 +116,31 @@ msgstr "Exibir camadas"
 
 #: tfrmmain.actloadpresets.caption
 msgid "Load presets"
-msgstr ""
+msgstr "Carregar predefinição"
 
 #: tfrmmain.actmergelayers.caption
 msgid "Merge layers"
 msgstr "Mesclar camadas"
 
 #: tfrmmain.actnewframe.caption
-#, fuzzy
 msgctxt "tfrmmain.actnewframe.caption"
 msgid "New frame"
 msgstr "Novo quadro"
 
 #: tfrmmain.actnotimplemented.caption
 msgid "Not implemented yet"
-msgstr ""
+msgstr "Ainda não implementado"
 
 #: tfrmmain.actpaletteimport.caption
-#, fuzzy
 msgctxt "tfrmmain.actpaletteimport.caption"
 msgid "Import from image file"
-msgstr "Importar de um arquivo de imagem"
+msgstr "Importar de uma imagem"
 
 #: tfrmmain.actpaletteload.caption
 msgid "Load palette from file"
 msgstr "Abrir paleta"
 
 #: tfrmmain.actpalettereset.caption
-#, fuzzy
 msgctxt "tfrmmain.actpalettereset.caption"
 msgid "Reset palette"
 msgstr "Redefinir paleta"
@@ -149,7 +154,6 @@ msgid "Toggle palette"
 msgstr "Alternar paleta"
 
 #: tfrmmain.actredo.caption
-#, fuzzy
 msgctxt "tfrmmain.actredo.caption"
 msgid "Redo"
 msgstr "Refazer"
@@ -164,10 +168,8 @@ msgid "Settings"
 msgstr "Configurações"
 
 #: tfrmmain.acttogglefullscreen.caption
-#, fuzzy
-#| msgid "Full Screen"
 msgid "Full Screen (ZEN mode)"
-msgstr "Tela Cheia"
+msgstr "Tela cheia (modo ZEN)"
 
 #: tfrmmain.actundo.caption
 msgid "&Undo"
@@ -182,7 +184,6 @@ msgid "Zoom --"
 msgstr "Menos zoom"
 
 #: tfrmmain.actzoomreset.caption
-#, fuzzy
 msgctxt "tfrmmain.actzoomreset.caption"
 msgid "Reset zoom"
 msgstr "Redefinir zoom"
@@ -199,7 +200,7 @@ msgstr "Criar um novo quadro"
 #: tfrmmain.bbtnresize.hint
 msgctxt "tfrmmain.bbtnresize.hint"
 msgid "Resize frame"
-msgstr ""
+msgstr "Redimensionar quadro"
 
 #: tfrmmain.bbtnshowlayers.hint
 msgid "Show/hide layers"
@@ -219,10 +220,8 @@ msgid "Show/hide frames"
 msgstr "Exibir/ocultar quadros"
 
 #: tfrmmain.bbtntogglepreview.hint
-#, fuzzy
-#| msgid "Show/hide preview window"
 msgid "Show/hide referense window"
-msgstr "Exibir/ocultar previsualização"
+msgstr "Exibir/ocultar janela de referência"
 
 #: tfrmmain.bgcolor.caption
 msgctxt "tfrmmain.bgcolor.caption"
@@ -243,25 +242,21 @@ msgid "Sprite Editor"
 msgstr "Editor de Sprites"
 
 #: tfrmmain.drwgrdlayers.columns[0].title.caption
-#, fuzzy
 msgctxt "tfrmmain.drwgrdlayers.columns[0].title.caption"
 msgid "Visible"
 msgstr "Visível"
 
 #: tfrmmain.drwgrdlayers.columns[1].title.caption
-#, fuzzy
 msgctxt "tfrmmain.drwgrdlayers.columns[1].title.caption"
 msgid "Locked"
 msgstr "Bloqueado"
 
 #: tfrmmain.drwgrdlayers.columns[2].title.caption
-#, fuzzy
 msgctxt "tfrmmain.drwgrdlayers.columns[2].title.caption"
 msgid "Name"
 msgstr "Nome"
 
 #: tfrmmain.drwgrdlayers.columns[3].title.caption
-#, fuzzy
 msgctxt "tfrmmain.drwgrdlayers.columns[3].title.caption"
 msgid "Image"
 msgstr "Imagem"
@@ -272,23 +267,20 @@ msgid "FG"
 msgstr "PP"
 
 #: tfrmmain.fgcolor.hint
-#, fuzzy
 msgctxt "tfrmmain.fgcolor.hint"
 msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
 msgstr ""
 "Clique esquedo para selecionar a cor\n"
-"Clique direito para deixar a cor transparente"
+"Clique direito para definir a cor como transparente"
 
 #: tfrmmain.framepreview.hint
-#, fuzzy
 msgctxt "tfrmmain.framepreview.hint"
 msgid "Click to export PNG"
 msgstr "Clique para exportar PNG"
 
 #: tfrmmain.layersgroupbox.caption
-#, fuzzy
 msgctxt "tfrmmain.layersgroupbox.caption"
 msgid "Layers"
 msgstr "Camadas"
@@ -302,19 +294,16 @@ msgid "Standard presets"
 msgstr "Paletas predefinidas"
 
 #: tfrmmain.miabout.caption
-#, fuzzy
 msgctxt "tfrmmain.miabout.caption"
 msgid "About"
 msgstr "Sobre"
 
 #: tfrmmain.midrawingtools.caption
-#, fuzzy
 msgctxt "tfrmmain.midrawingtools.caption"
 msgid "Drawing tools"
 msgstr "Ferramentas de desenho"
 
 #: tfrmmain.miedit.caption
-#, fuzzy
 msgctxt "tfrmmain.miedit.caption"
 msgid "Edit"
 msgstr "Editar"
@@ -324,25 +313,21 @@ msgid "Export"
 msgstr "Exportar"
 
 #: tfrmmain.mifilemenu.caption
-#, fuzzy
 msgctxt "tfrmmain.mifilemenu.caption"
 msgid "File"
 msgstr "Arquivo"
 
 #: tfrmmain.mifilenewpoject.caption
-#, fuzzy
 msgctxt "tfrmmain.mifilenewpoject.caption"
 msgid "New Sprite Project"
 msgstr "Novo Projeto de Sprite"
 
 #: tfrmmain.mifilesaveproject.caption
-#, fuzzy
 msgctxt "tfrmmain.mifilesaveproject.caption"
 msgid "Save Sprite Project"
 msgstr "Salvar Projeto de Sprites"
 
 #: tfrmmain.miframe.caption
-#, fuzzy
 msgctxt "tfrmmain.miframe.caption"
 msgid "Frame"
 msgstr "Quadro"
@@ -352,29 +337,23 @@ msgid "Frames"
 msgstr "Quadros"
 
 #: tfrmmain.mihelp.caption
-#, fuzzy
 msgctxt "tfrmmain.mihelp.caption"
 msgid "Help"
 msgstr "Ajuda"
 
 #: tfrmmain.miimportspritesheet.caption
-#, fuzzy
 msgctxt "tfrmmain.miimportspritesheet.caption"
 msgid "Import Spritesheet"
 msgstr "Importar Planilha de sprites"
 
 #: tfrmmain.miimportspritesheet.hint
-#, fuzzy
 msgctxt "tfrmmain.miimportspritesheet.hint"
 msgid ""
 "You can import image or spritesheet file\n"
 "and add it to the library"
-msgstr ""
-"Você pode importar imagens ou planilhas de sprite\n"
-"e adicionar à biblioteca"
+msgstr "Você pode importar uma imagem ou planilha de sprites e adicioná-la à biblioteca"
 
 #: tfrmmain.milayers.caption
-#, fuzzy
 msgctxt "tfrmmain.milayers.caption"
 msgid "Layers"
 msgstr "Camadas"
@@ -385,55 +364,46 @@ msgid "Layers"
 msgstr "Camadas"
 
 #: tfrmmain.minewlibrary.caption
-#, fuzzy
 msgctxt "tfrmmain.minewlibrary.caption"
 msgid "New Sprite Library"
 msgstr "Nova Biblioteca de Sprites"
 
 #: tfrmmain.mipalette.caption
-#, fuzzy
 msgctxt "tfrmmain.mipalette.caption"
 msgid "Palette"
 msgstr "Paleta"
 
 #: tfrmmain.mipreview.caption
-#, fuzzy
 msgctxt "tfrmmain.mipreview.caption"
 msgid "Preview"
 msgstr "Previsualização"
 
 #: tfrmmain.misavelibrary.caption
-#, fuzzy
 msgctxt "tfrmmain.misavelibrary.caption"
 msgid "Save Sprite Library"
 msgstr "Salvar Biblioteca de Sprites"
 
 #: tfrmmain.misaveprojectas.caption
-#, fuzzy
 msgctxt "tfrmmain.misaveprojectas.caption"
 msgid "Save Sprite Project As..."
 msgstr "Salvar Projeto de Sprites como..."
 
 #: tfrmmain.miselectlibrary.caption
-#, fuzzy
 msgctxt "tfrmmain.miselectlibrary.caption"
 msgid "Select Sprite Library"
 msgstr "Selecionar Biblioteca de Sprites"
 
 #: tfrmmain.misprite.caption
-#, fuzzy
 msgctxt "tfrmmain.misprite.caption"
 msgid "Sprite"
 msgstr "Sprite"
 
 #: tfrmmain.mitioolpanels.caption
-#, fuzzy
 msgctxt "tfrmmain.mitioolpanels.caption"
 msgid "Tool panels"
 msgstr "Painéis de Ferramentas"
 
 #: tfrmmain.miview.caption
-#, fuzzy
 msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr "Visualizar"
@@ -455,11 +425,9 @@ msgid "Flood fill tool - hotkey 'F'"
 msgstr "Preenchimento - atalho 'F'"
 
 #: tfrmmain.sbline.hint
-#, fuzzy
-#| msgid "Line tool"
 msgctxt "tfrmmain.sbline.hint"
 msgid "Line tool - hotkey 'L'"
-msgstr "linha - Atakho 'L'"
+msgstr "Ferramenta Linha - atalho 'L'"
 
 #: tfrmmain.sbpen.hint
 msgid "Pen tool - hotkey 'P'"
@@ -474,37 +442,35 @@ msgid "Rectangle tool - hotkey 'R'"
 msgstr "Retangulo - atalho 'R'"
 
 #: tfrmresize.bbtncancel.caption
-#, fuzzy
 msgctxt "tfrmresize.bbtncancel.caption"
 msgid "Cancel"
 msgstr "Cancelar"
 
 #: tfrmresize.caption
 msgid "Resize"
-msgstr ""
+msgstr "Redimensionar"
 
 #: tfrmresize.cbkeepproportions.caption
 msgid "Keep propoprtions"
-msgstr ""
+msgstr "Manter proporções"
 
 #: tfrmresize.cbstretch.caption
 msgid "Stretch"
-msgstr ""
+msgstr "Esticar"
 
 #: tfrmresize.grpbresize.caption
 msgid "Resize options"
-msgstr ""
+msgstr "Opções de Redimensionamento"
 
 #: tfrmresize.lblheight.caption
 msgid "Height"
-msgstr ""
+msgstr "Altura"
 
 #: tfrmresize.lblwidth.caption
 msgid "Width"
-msgstr ""
+msgstr "Largura"
 
 #: tfrmsettings.bbtncancel.caption
-#, fuzzy
 msgctxt "tfrmsettings.bbtncancel.caption"
 msgid "Cancel"
 msgstr "Cancelar"

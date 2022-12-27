@@ -66,6 +66,14 @@ msgstr ""
 msgid "Delete layer"
 msgstr ""
 
+#: tfrmmain.actdither.caption
+msgid "Dither frame"
+msgstr ""
+
+#: tfrmmain.actdither.hint
+msgid "Reduse colors to preset palette"
+msgstr ""
+
 #: tfrmmain.actexit.caption
 msgid "&Exit"
 msgstr ""

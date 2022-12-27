@@ -84,6 +84,14 @@ msgstr "Копіювати шар"
 msgid "Delete layer"
 msgstr "Видалити шар"
 
+#: tfrmmain.actdither.caption
+msgid "Dither frame"
+msgstr ""
+
+#: tfrmmain.actdither.hint
+msgid "Reduse colors to preset palette"
+msgstr ""
+
 #: tfrmmain.actexit.caption
 msgid "&Exit"
 msgstr "&Вихід"

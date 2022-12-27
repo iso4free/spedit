@@ -77,5 +77,7 @@
 {"hash":45738691,"name":"tfrmmain.actloadpresets.caption","sourcebytes":[76,111,97,100,32,112,114,101,115,101,116,115],"value":"Load presets"},
 {"hash":213582195,"name":"tfrmmain.actsettings.caption","sourcebytes":[83,101,116,116,105,110,103,115],"value":"Settings"},
 {"hash":48310069,"name":"tfrmmain.actframeresize.caption","sourcebytes":[82,101,115,105,122,101,32,102,114,97,109,101],"value":"Resize frame"},
-{"hash":251147140,"name":"tfrmmain.actnotimplemented.caption","sourcebytes":[78,111,116,32,105,109,112,108,101,109,101,110,116,101,100,32,121,101,116],"value":"Not implemented yet"}
+{"hash":251147140,"name":"tfrmmain.actnotimplemented.caption","sourcebytes":[78,111,116,32,105,109,112,108,101,109,101,110,116,101,100,32,121,101,116],"value":"Not implemented yet"},
+{"hash":14494453,"name":"tfrmmain.actdither.caption","sourcebytes":[68,105,116,104,101,114,32,102,114,97,109,101],"value":"Dither frame"},
+{"hash":101573909,"name":"tfrmmain.actdither.hint","sourcebytes":[82,101,100,117,115,101,32,99,111,108,111,114,115,32,116,111,32,112,114,101,115,101,116,32,112,97,108,101,116,116,101],"value":"Reduse colors to preset palette"}
 ]}

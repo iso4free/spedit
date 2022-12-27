@@ -352,6 +352,11 @@ var
   function ConvertHtmlHexToTColor(HexColor: String):TColor;
   function CheckHexForHash(col: string):string;
   function ConvertTColorToHTML(aColor: TColor) : String;
+  function CalcColorDist(const Color1, Color2: TBGRAPixel): Integer;
+  function FindClosestColor(const aColor: TBGRAPixel; const aPalette : TPalette): TBGRAPixel;
+  function ClipByte(const Value: Integer): Byte;
+  procedure FloydSteinbergDithering(const aImage: TBGRABitmap; const Palette: TPalette; const Power: Byte);
+  procedure DitherImage(aImg : TBGRABitmap; aPalette : TPalette; aPower : Byte);
   function CheckLayerName(aName : String) : String; //check layer name if exists return aName+'1' on aName if not
   function DetectPOLanguage(pofile : TFileName) : String;  //return language code for localization
   function LayerExists(aKey : String) : Boolean; inline; //check if layer key exists
@@ -360,6 +365,7 @@ var
   function StreamToBase64(const AStream: TMemoryStream; out Base64: String): Boolean;
   function Base64ToStream(const ABase64: String; var AStream: TMemoryStream): Boolean;
   procedure ReloadPresets(aDirectory: String);  //loads palette presets from selected dir
+
 
 implementation
 
@@ -461,6 +467,136 @@ end;
 function ConvertTColorToHTML(aColor: TColor): String;
 begin
    Result := '#'+IntToHex(Blue(aColor))+IntToHex(Green(aColor))+IntToHex(Red(aColor));
+end;
+
+function CalcColorDist(const Color1, Color2: TBGRAPixel): Integer;
+var
+  DistR, DistG, DistB: Integer;
+begin
+  DistR := Abs(Color1.red - Color2.red);
+  DistG := Abs(Color1.green - Color2.green);
+  DistB := Abs(Color1.blue - Color2.blue);
+
+  Result := DistR * DistR+DistG * DistG+DistB * DistB;
+end;
+
+function FindClosestColor(const aColor: TBGRAPixel; const aPalette: TPalette
+  ): TBGRAPixel;
+var
+  MinDist,currDist, i: Integer;
+  PaletteColor: TBGRAPixel;
+begin
+  if aPalette.Count = 0 then
+    Exit(BGRAPixelTransparent);
+
+  MinDist := High(Integer);
+  for i:= 0 to aPalette.Count-1 do begin
+    PaletteColor:=aPalette.Color[i];
+    currDist:=CalcColorDist(aColor, PaletteColor);
+    if MinDist >  currDist then
+    begin
+      Result := PaletteColor;
+      MinDist := currDist;
+      if MinDist=0 then Exit(PaletteColor);
+    end;
+  end;
+end;
+
+function ClipByte(const Value: Integer): Byte;
+begin
+  if Value > 255 then
+    Exit(255)
+  else if Value < 0 then
+    Exit(0);
+
+  Result := Value;
+end;
+
+procedure FloydSteinbergDithering(const aImage: TBGRABitmap;
+  const Palette: TPalette; const Power: Byte);
+var
+  X, Y, I: Integer;
+  aOldColor,
+  aNewColor: TBGRAPixel;
+  anError: TBGRAPixel;
+  CurrLineError: array of TBGRAPixel;
+  NextLineError: array of TBGRAPixel;
+  p : PBGRAPixel;
+begin
+  SetLength(CurrLineError, aImage.Width + 2);
+  SetLength(NextLineError, aImage.Width + 2);
+
+  for Y := 0 to aImage.Height - 1 do begin
+    p:=aImage.ScanLine[y];
+    for X := 0 to aImage.Width - 1 do begin
+      aOldColor:=p^;
+      aOldColor.red :=ClipByte(aOldColor.red + (CurrLineError[X + 1].red * Power div 16) div 255);
+      aOldColor.green := ClipByte(aOldColor.green + (CurrLineError[X + 1].green * Power div 16) div 255);
+      aOldColor.blue := ClipByte(aOldColor.blue + (CurrLineError[X + 1].blue * Power div 16) div 255);
+
+      aNewColor := FindClosestColor(aOldColor, Palette);
+
+      p^.red := aNewColor.red;
+      p^.green := aNewColor.green;
+      p^.blue := aNewColor.blue;
+
+
+      anError.red := aOldColor.red - aNewColor.red;
+      anError.green := aOldColor.green - aNewColor.green;
+      anError.green := aOldColor.blue - aNewColor.blue;
+
+      // [             *     7/16(0) ]
+      // [ 3/16(1)  5/16(2)  1/16(3) ]
+      // 0
+      CurrLineError[X + 2].red := CurrLineError[X + 2].red + 7 * anError.red;
+      CurrLineError[X + 2].green := CurrLineError[X + 2].green + 7 * anError.green;
+      CurrLineError[X + 2].blue := CurrLineError[X + 2].blue + 7 * anError.blue;
+      // 1
+      NextLineError[X + 0].red := NextLineError[X + 0].red + 3 * anError.red;
+      NextLineError[X + 0].green := NextLineError[X + 0].green + 3 * anError.green;
+      NextLineError[X + 0].blue := NextLineError[X + 0].blue + 3 * anError.blue;
+      // 2
+      NextLineError[X + 1].red := NextLineError[X + 1].red + 5 * anError.red;
+      NextLineError[X + 1].green := NextLineError[X + 1].green + 5 * anError.green;
+      NextLineError[X + 1].blue := NextLineError[X + 1].blue + 5 * anError.blue;
+      // 3
+      NextLineError[X + 2].red := NextLineError[X + 2].red + 1 * anError.red;
+      NextLineError[X + 2].green := NextLineError[X + 2].green + 1 * anError.green;
+      NextLineError[X + 2].blue := NextLineError[X + 2].blue + 1 * anError.blue;
+      Inc(p);
+    end;
+
+    for I := 0 to High(CurrLineError) do
+    begin
+      CurrLineError[I] := NextLineError[I];
+      NextLineError[I] := BGRAPixelTransparent;
+    end;
+  end;
+  aImage.InvalidateBitmap;
+end;
+
+procedure DitherImage(aImg: TBGRABitmap; aPalette: TPalette; aPower: Byte);
+var
+  aTmp: TBGRABitmap;
+  X, Y: Integer;
+  aColor: TBGRAPixel;
+begin
+  aTmp := TBGRABitmap.Create(aImg.Width, aImg.Height);
+  try
+    // load form origin image
+    aTmp.PutImage(0,0,aImg,dmSetExceptTransparent);
+    //creare palette from preset
+
+
+    // dither
+    //todo: check dither power from settings
+    FloydSteinbergDithering(aTmp, aPalette, 200);
+    // load to dither image
+    ClearBitmap(aImg);
+    aImg.PutImage(0,0,aTmp,dmSetExceptTransparent);
+  finally
+    aTmp.Free;
+  end;
 end;
 
 function CheckLayerName(aName: String): String;
