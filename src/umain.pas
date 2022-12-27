@@ -276,6 +276,9 @@ uses udraw, uabout, uframedlg, uresizedlg, ureferense, usettings;
 { TfrmMain }
 
 procedure TfrmMain.actImportFrameExecute(Sender: TObject);
+var
+  aPal : TPalette;
+  i: Integer;
 begin
  if OpenPictureDialog1.Execute then begin
   FreeAndNil(FrameGrid);
@@ -286,7 +289,9 @@ begin
   FramePreview.Width:=FrameGrid.FrameWidth;
   FramePreview.Height:=FrameGrid.FrameHeight;
   trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
-  Palette.LoadFromImage(OpenPictureDialog1.FileName);
+  Palette.Clear;
+  aPal.LoadFromImage(OpenPictureDialog1.FileName);
+  for i:=0 to aPal.Count-1 do Palette.AddColor(aPal.Color[i]);
   mbPaletteGrid.Colors.Clear;
   PaletteChange;
  end;
@@ -452,10 +457,14 @@ begin
 end;
 
 procedure TfrmMain.actPaletteImportExecute(Sender: TObject);
-label stop;
+var
+  aPal : TPalette;
+  i: Integer;
 begin
   if OpenPictureDialog1.Execute then begin
-   Palette.LoadFromImage(OpenPictureDialog1.FileName);
+   aPal.LoadFromImage(OpenPictureDialog1.FileName);
+   Palette.Clear;
+   for i:= 0 to aPal.Count-1 do Palette.AddColor(aPal.Color[i]);
    PaletteChange;
   end;
 end;
@@ -468,9 +477,16 @@ begin
 end;
 
 procedure TfrmMain.actPaletteResetExecute(Sender: TObject);
+var
+  i: Integer;
 begin
   if MessageDlg(rsWarning, rsPaletteWillB, mtWarning, mbYesNo, '')=mrYes
-    then Palette.Reset;
+    then begin
+     Palette.Clear;
+     if Layers.Count>0 then
+     for i:= 0 to Layers.Count-1 do
+      Palette.AddColors(Layers[Layers.Keys[i]].Drawable);
+    end;
 end;
 
 procedure TfrmMain.actPaletteSaveExecute(Sender: TObject);
@@ -1065,7 +1081,7 @@ begin
      BgColor.Invalidate;
     end;
   end;
-  ToolOptions.Color:=Palette.SelectedColor;
+  ToolOptions.Color:=aColor;
   Palette.AddColor(aColor);
   mbPaletteGrid.Invalidate;
 end;

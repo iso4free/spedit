@@ -33,7 +33,8 @@ interface
 uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LCLTranslator,
   Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson,
-  BGRABitmap, BGRABitmapTypes, fgl, base64, Dialogs;
+  BGRABitmap, BGRABitmapTypes, BGRAPalette,
+  fgl, base64, Dialogs;
 
 resourcestring
   rsColors = 'Colors: ';
@@ -337,7 +338,7 @@ var
   spclForeColor : TBGRAPixel;  //foreground color - left mouse button drawing
   spclBackColor : TBGRAPixel; //background color - right mouse button drawing
   //Work palette
-  Palette       : TPalette;
+  Palette       : TBGRAPalette;
   Presets       : TPresetsList; //palettes presets list
 
   FrameGrid     : TFrameGrid;
@@ -650,28 +651,43 @@ end;
 procedure ReloadPresets(aDirectory: String);
 var Fi : TSearchRec;
     R : Integer;
+    tmp : TBGRAPalette;
 begin
  Presets.Clear;
+ tmp:= TBGRAPalette.Create;
  R:=FindFirst(aDirectory+DirectorySeparator+'*.*',faAnyFile-faVolumeId,fi);
  if R=0 then begin
    while R=0 do begin
-     if (LowerCase(ExtractFileExt(Fi.Name))='.png') then begin
+     if (LowerCase(ExtractFileExt(Fi.Name))='.png') or (LowerCase(ExtractFileExt(Fi.Name))='.hex') then begin
        Presets[copy(Fi.Name,1,Pos('.',Fi.Name)-1)]:=TPalettePreset.Create(aDirectory+DirectorySeparator+Fi.Name);
+  //   end else if (LowerCase(ExtractFileExt(Fi.Name))='.hex') then begin
+  //     Presets[copy(Fi.Name,1,Pos('.',Fi.Name)-1)]:=TPalettePreset.Create(aDirectory+DirectorySeparator+Fi.Name);
      end;
      r:=FindNext(Fi);
    end;
    FindClose(Fi);
  end;
+  FreeAndNil(tmp);
 end;
 
 { TPalettePreset }
 
 constructor TPalettePreset.Create(aFilename: TFilename);
+var
+    fExt : String;
 begin
   fPaletteName:=ExtractFileName(aFilename);
   fPaletteName:=copy(PaletteName,1,Pos('.',PaletteName)-1);
-  fBmp:= TBGRABitmap.Create(aFilename);
-  fPalette.LoadFromImage(aFilename);
+  fExt:=LowerCase(ExtractFileExt(aFilename));
+  {$IFDEF DEBUG}
+   DebugLn('In: TPalettePreset.Create() ext=',fExt);
+  {$ENDIF}
+  if fExt='.png' then begin
+    fBmp:= TBGRABitmap.Create(aFilename);
+    fPalette.LoadFromImage(aFilename);
+  end else if fExt='.hex' then begin
+    fPalette.LoadFromFile(aFilename);
+  end;
 end;
 
 destructor TPalettePreset.Destroy;
@@ -1442,7 +1458,7 @@ initialization
  spclBackColor:=INI.ReadInteger('FRAME EDITOR','BACKGROUND COLOR',clNone);
  spclForeColor:=INI.ReadInteger('FRAME EDITOR','FOREGROUND COLOR',clBlackOpaque);
  //palette with default colors
- Palette.Reset;
+ Palette:=TBGRAPalette.Create;
  Presets:=TPresetsList.Create(true);
 
  //mapped lists of frames and layers
@@ -1460,6 +1476,7 @@ initialization
   FreeAndNil(Layers);
   FreeAndNil(Frames);
   FreeAndNil(FrameGrid);
+  FreeAndNil(Palette);
   FreeAndNil(SpriteLibNames);
   FreeAndNil(INI);
 end.
