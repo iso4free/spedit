@@ -318,8 +318,14 @@ var
   i: Integer;
 begin
  //dither all layers
- for i:= 0 to Layers.Count-1 do DitherImage(Layers[Layers.Keys[i]].Drawable,Presets[cbPalettePresets.Text].Palette,200);
+ for i:= 0 to Frames[FrameGrid.ActiveFrame].LayersList.Count-1 do begin
+  {$IFDEF DEBUG}
+  DebugLn('In: actDitherExecute() layer: ',Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]);
+  {$ENDIF}
+  DitherImage(Layers[Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]].Drawable,Presets[cbPalettePresets.Text].Palette,200);
+ end;
  pbFrameDraw.Invalidate;
+ PaletteChange;
 end;
 
 procedure TfrmMain.actFrameResizeExecute(Sender: TObject);
@@ -643,27 +649,32 @@ var
   Count, I: Integer;
   aColor: TBGRAPixel;
   OldColor: TColor;
+  BoxWidth : Integer;
 begin
   TComboBox(Control).Canvas.FillRect(ARect);
 
   OldColor := TComboBox(Control).Canvas.Brush.Color;
-{  Count := Length(Palettes[Index].Palette);
-  for I := 0 to Count - 1 do
+  Count := Presets[TComboBox(Control).Items[Index]].Palette.Count;
+  //if Count>MaxColorCount then Count:=MaxColorCount;
+  if Count<=(ARect.Width-2) then
+    BoxWidth:=(ARect.Width-2) div Count
+  else BoxWidth:=1 ;
+  for i := 0 to Count - 1 do
   begin
-    Color := TARGB(Palettes[Index].Palette[I]);
-    TComboBox(Control).Canvas.Brush.Color := RGBToColor(Color.R, Color.G, Color.B);
+    aColor := Presets[TComboBox(Control).Items[Index]].Palette.Color[i];
+    TComboBox(Control).Canvas.Brush.Color := aColor;
     TComboBox(Control).Canvas.FillRect(
-      ARect.Left + I * (MaxColorCount div Count) + 2,
+      ARect.Left + I * BoxWidth + 2,
       ARect.Top + 1,
-      ARect.Left + (I + 1) * (MaxColorCount div Count) + 2,
+      ARect.Right-1{ + (I + 1) * (MaxColorCount div Count) + 2},
       ARect.Bottom - 1
     );
   end;
 
   TComboBox(Control).Canvas.Brush.Color := OldColor;
-  ARect.Left := ARect.Left + MaxColorCount + 2;
+  //ARect.Left := ARect.Left + MaxColorCount + 2;
   TComboBox(Control).Canvas.TextOut(ARect.Left, ARect.Top, TComboBox(Control).Items[Index]);
-}
+
 end;
 
 procedure TfrmMain.drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;

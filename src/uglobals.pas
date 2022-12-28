@@ -88,6 +88,14 @@ type
   TPixels = array[0..MAX_PIXELS] of TBGRAPixel;      //array of pixels
   TColorsArray = array of TColor;
 
+  type
+  TDitherColorError = record
+    Red: Integer;
+    Green: Integer;
+    Blue: Integer;
+    Alpha: Integer
+  end;
+
   { TPalette }
 
   //PPalette = ^TPalette;
@@ -356,7 +364,7 @@ var
   function CalcColorDist(const Color1, Color2: TBGRAPixel): Integer;
   function FindClosestColor(const aColor: TBGRAPixel; const aPalette : TPalette): TBGRAPixel;
   function ClipByte(const Value: Integer): Byte;
-  procedure FloydSteinbergDithering(const aImage: TBGRABitmap; const Palette: TPalette; const Power: Byte);
+  procedure FloydSteinbergDithering(const aImage: TBGRABitmap; const aPalette: TPalette; const Power: Byte);
   procedure DitherImage(aImg : TBGRABitmap; aPalette : TPalette; aPower : Byte);
   function CheckLayerName(aName : String) : String; //check layer name if exists return aName+'1' on aName if not
   function DetectPOLanguage(pofile : TFileName) : String;  //return language code for localization
@@ -472,13 +480,14 @@ end;
 
 function CalcColorDist(const Color1, Color2: TBGRAPixel): Integer;
 var
-  DistR, DistG, DistB: Integer;
+  DistR, DistG, DistB, DistA: Integer;
 begin
   DistR := Abs(Color1.red - Color2.red);
   DistG := Abs(Color1.green - Color2.green);
   DistB := Abs(Color1.blue - Color2.blue);
+  DistA := Abs(Color1.alpha - Color2.alpha);
 
-  Result := DistR * DistR+DistG * DistG+DistB * DistB;
+  Result := DistR * DistR+DistG * DistG+DistB * DistB+DistA * DistA;
 end;
 
 function FindClosestColor(const aColor: TBGRAPixel; const aPalette: TPalette
@@ -514,19 +523,20 @@ begin
 end;
 
 procedure FloydSteinbergDithering(const aImage: TBGRABitmap;
-  const Palette: TPalette; const Power: Byte);
+  const aPalette: TPalette; const Power: Byte);
 var
   X, Y, I: Integer;
   aOldColor,
   aNewColor: TBGRAPixel;
-  anError: TBGRAPixel;
-  CurrLineError: array of TBGRAPixel;
-  NextLineError: array of TBGRAPixel;
+  anError: TDitherColorError;
+  CurrLineError: array of TDitherColorError;
+  NextLineError: array of TDitherColorError;
   p : PBGRAPixel;
 begin
   SetLength(CurrLineError, aImage.Width + 2);
   SetLength(NextLineError, aImage.Width + 2);
-
+ // FillByte(CurrLineError,SizeOf(CurrLineError),0);
+ // FillByte(NextLineError,SizeOf(NextLineError),0);
   for Y := 0 to aImage.Height - 1 do begin
     p:=aImage.ScanLine[y];
     for X := 0 to aImage.Width - 1 do begin
@@ -535,16 +545,19 @@ begin
       aOldColor.green := ClipByte(aOldColor.green + (CurrLineError[X + 1].green * Power div 16) div 255);
       aOldColor.blue := ClipByte(aOldColor.blue + (CurrLineError[X + 1].blue * Power div 16) div 255);
 
-      aNewColor := FindClosestColor(aOldColor, Palette);
-
+      aNewColor := FindClosestColor(aOldColor, aPalette);
+      aNewColor.alpha:=aOldColor.alpha;
+      Palette.AddColor(aNewColor);
       p^.red := aNewColor.red;
       p^.green := aNewColor.green;
       p^.blue := aNewColor.blue;
+      p^.alpha:= aOldColor.alpha;
 
 
       anError.red := aOldColor.red - aNewColor.red;
       anError.green := aOldColor.green - aNewColor.green;
-      anError.green := aOldColor.blue - aNewColor.blue;
+      anError.blue := aOldColor.blue - aNewColor.blue;
+      //anError.Alpha:=aOldColor.alpha;
 
       // [             *     7/16(0) ]
       // [ 3/16(1)  5/16(2)  1/16(3) ]
@@ -552,25 +565,29 @@ begin
       CurrLineError[X + 2].red := CurrLineError[X + 2].red + 7 * anError.red;
       CurrLineError[X + 2].green := CurrLineError[X + 2].green + 7 * anError.green;
       CurrLineError[X + 2].blue := CurrLineError[X + 2].blue + 7 * anError.blue;
+      //CurrLineError[X + 2].Alpha := CurrLineError[X + 2].Alpha + 7 * anError.Alpha;
       // 1
       NextLineError[X + 0].red := NextLineError[X + 0].red + 3 * anError.red;
       NextLineError[X + 0].green := NextLineError[X + 0].green + 3 * anError.green;
       NextLineError[X + 0].blue := NextLineError[X + 0].blue + 3 * anError.blue;
+      //NextLineError[X + 0].Alpha := NextLineError[X + 0].Alpha + 3 * anError.Alpha;
       // 2
       NextLineError[X + 1].red := NextLineError[X + 1].red + 5 * anError.red;
       NextLineError[X + 1].green := NextLineError[X + 1].green + 5 * anError.green;
       NextLineError[X + 1].blue := NextLineError[X + 1].blue + 5 * anError.blue;
+      //NextLineError[X + 1].Alpha := NextLineError[X + 1].Alpha + 5 * anError.Alpha;
       // 3
       NextLineError[X + 2].red := NextLineError[X + 2].red + 1 * anError.red;
       NextLineError[X + 2].green := NextLineError[X + 2].green + 1 * anError.green;
       NextLineError[X + 2].blue := NextLineError[X + 2].blue + 1 * anError.blue;
+      //NextLineError[X + 2].Alpha := NextLineError[X + 2].Alpha + 1 * anError.Alpha;
       Inc(p);
     end;
 
     for I := 0 to High(CurrLineError) do
     begin
       CurrLineError[I] := NextLineError[I];
-      NextLineError[I] := BGRAPixelTransparent;
+      NextLineError[I] := Default(TDitherColorError);
     end;
   end;
   aImage.InvalidateBitmap;
@@ -588,7 +605,7 @@ begin
     aTmp.PutImage(0,0,aImg,dmSetExceptTransparent);
     //creare palette from preset
 
-
+    Palette.Clear;
     // dither
     //todo: check dither power from settings
     FloydSteinbergDithering(aTmp, aPalette, 200);

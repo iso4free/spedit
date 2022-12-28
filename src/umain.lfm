@@ -694,7 +694,7 @@ object frmMain: TfrmMain
       OnChange = cbPalettePresetsChange
       OnDrawItem = cbPalettePresetsDrawItem
       Sorted = True
-      Style = csDropDownList
+      Style = csOwnerDrawVariable
       TabOrder = 3
     end
     object lbpPalettePresrts: TLabel

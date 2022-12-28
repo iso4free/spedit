@@ -172,4 +172,9 @@ DEV.LOG
 
 26.12.2022
 =
-- [!] Fixed GTK2 warning in Linux and it seems now works in Windows too 
+- [!] Fixed GTK2 warning in Linux and it seems now works in Windows too
+
+28.12.2022
+=
+- [+] Added Frame dithering (apply palette preset for change colors)
+- [*] After load presets in combobox with preset name colors preview
