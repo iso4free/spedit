@@ -42,6 +42,7 @@ type
     public
       constructor Create(srcimg : TBGRABitmap; dstPalette : TPalette);
       destructor Destroy; override;
+      procedure Execute;
   end;
 
   function CalcColorDistance(const Color1, Color2: TBGRAPixel): Integer;
@@ -70,6 +71,11 @@ end;
 destructor TSPDither.Destroy;
 begin
   inherited Destroy;
+end;
+
+procedure TSPDither.Execute;
+begin
+
 end;
 
 end.
