@@ -233,6 +233,7 @@ type
     procedure FgColorPaint(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
     procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FramePreviewClick(Sender: TObject);
     procedure FramePreviewPaint(Sender: TObject);
@@ -262,6 +263,7 @@ type
    procedure SetSelectedColor(const Button: TMouseButton; aColor : TBGRAPixel);
    procedure PaletteChange; //added colors to current palette
    procedure CreateCursors; //create custom cursors for drawing
+   procedure ImportFrame(aFilename : TFilename);
   public
   end;
 
@@ -276,24 +278,9 @@ uses udraw, uabout, uframedlg, uresizedlg, ureferense, usettings;
 { TfrmMain }
 
 procedure TfrmMain.actImportFrameExecute(Sender: TObject);
-var
-  aPal : TPalette;
-  i: Integer;
 begin
  if OpenPictureDialog1.Execute then begin
-  FreeAndNil(FrameGrid);
-  FrameGrid:=TFrameGrid.Create(OpenPictureDialog1.FileName,INI.ReadInteger('FRAMEDDLG','CELL SIZE',10));
-  FrameGrid.Offset:=Point(0,0);
-  dx:=0;
-  dy:=0;
-  FramePreview.Width:=FrameGrid.FrameWidth;
-  FramePreview.Height:=FrameGrid.FrameHeight;
-  trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
-  Palette.Clear;
-  aPal.LoadFromImage(OpenPictureDialog1.FileName);
-  for i:=0 to aPal.Count-1 do Palette.AddColor(aPal.Color[i]);
-  mbPaletteGrid.Colors.Clear;
-  PaletteChange;
+   ImportFrame(OpenPictureDialog1.Filename);
  end;
 end;
 
@@ -825,6 +812,15 @@ begin
      if Assigned(frmAbout) then FreeAndNil(frmAbout);
 end;
 
+procedure TfrmMain.FormDropFiles(Sender: TObject;
+  const FileNames: array of string);
+begin
+ {$IFDEF DEBUG}
+  DebugLn('In: FormDropFiles() Filenames[0]='+FileNames[0]);
+ {$ENDIF}
+  ImportFrame(FileNames[0]);
+end;
+
 procedure TfrmMain.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
   );
 var
@@ -960,6 +956,28 @@ begin
     Screen.Cursors[i]:=aCur.ReleaseHandle;
     aCur.Free;
    end;
+end;
+
+procedure TfrmMain.ImportFrame(aFilename: TFilename);
+ var
+   aPal : TPalette;
+   i: Integer;
+begin
+ //todo: check file type before import
+  FreeAndNil(FrameGrid);
+  FrameGrid:=TFrameGrid.Create(aFilename,INI.ReadInteger('FRAMEDLG','CELL SIZE',10));
+  FrameGrid.Offset:=Point(0,0);
+  dx:=0;
+  dy:=0;
+  FramePreview.Width:=FrameGrid.FrameWidth;
+  FramePreview.Height:=FrameGrid.FrameHeight;
+  trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
+  Palette.Clear;
+  aPal.LoadFromImage(aFilename);
+  for i:=0 to aPal.Count-1 do Palette.AddColor(aPal.Color[i]);
+  mbPaletteGrid.Colors.Clear;
+  PaletteChange;
+  drwgrdLayers.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;

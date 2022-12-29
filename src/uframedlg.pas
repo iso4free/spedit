@@ -77,12 +77,12 @@ end;
 procedure TfrmFrameDlg.FormClose(Sender: TObject; var CloseAction: TCloseAction
   );
 begin
-  INI.WriteInteger('FRAMEDDLG','CELL SIZE',spnedtCellSize.Value);
+  INI.WriteInteger('FRAMEDLG','CELL SIZE',spnedtCellSize.Value);
 end;
 
 procedure TfrmFrameDlg.FormShow(Sender: TObject);
 begin
-  spnedtCellSize.Value:=INI.ReadInteger('FRAMEDDLG','CELL SIZE',10);
+  spnedtCellSize.Value:=INI.ReadInteger('FRAMEDLG','CELL SIZE',10);
 end;
 
 end.
