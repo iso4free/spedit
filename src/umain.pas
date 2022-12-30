@@ -260,6 +260,7 @@ type
    fDrawGridMode : TDrawGridMode;
    dx,dy : Integer;             //offset to move grid
    startx,starty : Integer;     //start position to move
+   procedure LoadPresets(aDir : String);
    procedure SetSelectedColor(const Button: TMouseButton; aColor : TBGRAPixel);
    procedure PaletteChange; //added colors to current palette
    procedure CreateCursors; //create custom cursors for drawing
@@ -386,23 +387,10 @@ begin
 end;
 
 procedure TfrmMain.actLoadPresetsExecute(Sender: TObject);
-var
-  i: Integer;
 begin
   SelectDirectoryDialog1.InitialDir:=INI.ReadString('PRESETS','PALETTES','');
   if SelectDirectoryDialog1.Execute then begin
-   cbPalettePresets.Clear;
-   ReloadPresets(SelectDirectoryDialog1.FileName);
-   if Presets.Count>0 then begin
-    for i:= 0 to Presets.Count-1 do begin
-        cbPalettePresets.Items.Add(Presets.Keys[i]);
-      {$IFDEF DEBUG}
-       DebugLn('In: actLoadPresetsExecute() preset name: ', Presets.Keys[i], ' Colors: '+IntToStr(Presets[Presets.Keys[i]].Palette.Count));
-      {$ENDIF}
-    end;
-   end;
-   cbPalettePresets.ItemIndex:=0;
-   cbPalettePresetsChange(Sender);
+   LoadPresets(SelectDirectoryDialog1.FileName);
    INI.WriteString('PRESETS','PALETTES',SelectDirectoryDialog1.FileName);
   end;
 end;
@@ -802,8 +790,8 @@ begin
    DrawTool:=TSPPen.Create;
    StatusBar1.Panels[4].Text:=rsActiveTool+DrawTool.ToolName;
    JSONPropStorage1.Restore;
-   //default palette preset load
-   for i:=0 to Palette.Count-1 do mbColorPalettePreset.Colors.Add(ColorToString(Palette.Color[i].ToColor));
+   //palette preset load if directory selected
+   if INI.ReadString('PRESETS','PALETTES','')<>'' then LoadPresets(INI.ReadString('PRESETS','PALETTES',''));
    Palette.Clear;
    CreateCursors;
    pbFrameDraw.Cursor:=1;
@@ -1118,6 +1106,25 @@ begin
   ToolOptions.Color:=aColor;
   Palette.AddColor(aColor);
   mbPaletteGrid.Invalidate;
+end;
+
+procedure TfrmMain.LoadPresets(aDir: String);
+var
+  i: Integer;
+begin
+  cbPalettePresets.Clear;
+  ReloadPresets(aDir);
+  if Presets.Count>0 then begin
+   for i:= 0 to Presets.Count-1 do begin
+       cbPalettePresets.Items.Add(Presets.Keys[i]);
+     {$IFDEF DEBUG}
+      DebugLn('In: LoadPresets preset name: ', Presets.Keys[i], ' '
+        +'Colors: '+IntToStr(Presets[Presets.Keys[i]].Palette.Count));
+     {$ENDIF}
+   end;
+  end;
+  cbPalettePresets.ItemIndex:=0;
+  cbPalettePresetsChange(Self);
 end;
 
 procedure TfrmMain.sbPenClick(Sender: TObject);
