@@ -1085,6 +1085,7 @@ begin
     Frames[aFrameName]:=TSPFrame.Create(aFrameName, FrameWidth, FrameHeight);
     Layers[aFrameName]:=TSPLayer.Create(aLayerName,FrameWidth,FrameHeight);
     ActiveFrame:=aFrameName;
+    ActiveLayer:=aLayerName;
 
     Frames[aFrameName].AddLayer(aLayerName);
     Layers[aLayerName].AddToFrame(aFrameName);

@@ -34,11 +34,18 @@ uses
 
 type
 
+  //selection region type
+  TSelectionRegion = (srCustom, srRect, srEllipse, srPixels);
+
   //basic drawing class
 
   TDrawOptions = record
     PenSize : Byte; //pen width
-    Color   : TBGRAPixel;
+    Color   : TBGRAPixel; //draw color for some tools
+    IsSelection : Boolean; //has active selection
+    SelectionLayer : String; //layer name with selection
+    SelectionRect : TRect;  //rectangular area with selecttion
+    SelectionRegion : TSelectionRegion; //selection region type
   end;
 
   { TSPDrawTool }
@@ -78,6 +85,14 @@ type
 
   TSPLine = class(TSPDrawTool)
     constructor Create;
+     procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
+     procedure MouseMove(x,y : Integer); override;
+  end;
+
+  { TSPSelection }
+
+  TSPSelection = class(TSPDrawTool)
+     constructor Create;
      procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
   end;
@@ -145,6 +160,24 @@ type
         ToolOptions : TDrawOptions;
 
 implementation
+
+{ TSPSelection }
+
+constructor TSPSelection.Create;
+begin
+
+end;
+
+procedure TSPSelection.MouseMove(x, y: Integer);
+begin
+  inherited MouseMove(x, y);
+end;
+
+procedure TSPSelection.StartDraw(x, y: Integer; Shift: TShiftState;
+  aButton: TMouseButton; aColor: TBGRAPixel);
+begin
+  inherited StartDraw(x, y, Shift, aButton, aColor);
+end;
 
 { TSPFloodFill }
 

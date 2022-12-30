@@ -309,9 +309,13 @@ begin
   {$IFDEF DEBUG}
   DebugLn('In: actDitherExecute() layer: ',Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]);
   {$ENDIF}
+  UndoRedoManager.SaveState;
   DitherImage(Layers[Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]].Drawable,Presets[cbPalettePresets.Text].Palette,200);
+  //todo: fix undo enabled
+  actUndo.Enabled:=True;//UndoRedoManager.CanUndo;
  end;
  pbFrameDraw.Invalidate;
+ FramePreview.Invalidate;
  PaletteChange;
 end;
 
@@ -1043,6 +1047,9 @@ FrameGrid.CellCursor.Coords:=FrameGrid.Coords(x,y);
  end;
  StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
  pbFrameDraw.Invalidate;
+ //todo: fix undo/redo enabled
+ actUndo.Enabled:=True;//UndoRedoManager.CanUndo;
+ actRedo.Enabled:=True;//UndoRedoManager.CanRedo;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
@@ -1066,8 +1073,6 @@ begin
   drwgrdLayers.Invalidate;
   FgColor.Invalidate;
   BgColor.Invalidate;}
-  actUndo.Enabled:=UndoRedoManager.CanUndo;
-  actRedo.Enabled:=UndoRedoManager.CanRedo;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;
