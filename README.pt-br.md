@@ -77,12 +77,12 @@ Pressione o botão 'Criar um novo quadro' na barra de ferramentas para iniciar u
 O FUTURO
 ==========
 No futuro estarão disponíveis:
-- desenho com mouse usando ferramentas de desenho diferentes
-- multi-quadros e multi-camadas para desenho
+- desenho com mouse usando ferramentas de desenho diferentes (parcialmente implementado)
+- multi-quadros e multi-camadas para desenho (multi-camadas implementado)
 - deslocar e girar camadas e quadros
 - compositor de animações de qualquer quadro (fps)
 - importar outros arquivos de imagem e copiar partes delas pro arquivo sendo editado
-- redimensionamento de quadro
+- redimensionamento de quadro (implementado)
 - exportar no seu próprio formato de arquivo JSON
 - gerenciar a biblioteca local de sprites com busca por hashtags
 - outros recursos que serão necessários
@@ -93,7 +93,7 @@ SOLUÇÃO DE PROBLEMAS
 - [+] No Windows as teclas não vão funcionar. Será consertado em breve.(consertado)
 - [+] Roda muito lentamente no Windows. (consertado)
 - [+] As vezes ocorrem vazamentos de memória. (consertado)
-- [ ] A interface não funciona muito bem no Windows.
+- [+] A interface não funciona muito bem no Windows.(consertado)
 
 DIREITO AUTORAL
 =========

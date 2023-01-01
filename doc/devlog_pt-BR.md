@@ -163,3 +163,17 @@ REGISTRO DE DESENVOLVIMENTO
 =
 - [+] Adição do suporte à paletas no formato PNG
 - [+] Adição de cursores customizados enquanto se desenha
+
+25.12.2022
+=
+- [+] Adição do 'Modo Zen' em tela cheia
+- [+] Adição do recurso 'Redimensionar quadro' 
+
+26.12.2022
+=
+- [!] Conserto do aviso GTK2 no Linux e parece que também está funcionando no Windows
+
+28.12.2022
+=
+- [+] Adição da ferramenta de pontilhismo (aplique uma paleta para obter o efeito desejado)
+- [*] Depois de carregar as paletas elas aparecerão com seu nome na caixa de busca de paletas
