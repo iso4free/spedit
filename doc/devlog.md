@@ -178,3 +178,9 @@ DEV.LOG
 =
 - [+] Added Frame dithering (apply palette preset for change colors)
 - [*] After load presets in combobox with preset name colors preview
+
+02.01.2023
+=
+- [!] Fixed Language load, autoload palette presets and unknowd error (Issue #16)
+- [+] Implemented Rectangular selection tool
+- [*] Minor fixes and changes

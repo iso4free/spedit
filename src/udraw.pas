@@ -92,7 +92,8 @@ type
   { TSPSelection }
 
   TSPSelection = class(TSPDrawTool)
-     constructor Create;
+    private
+    public
      procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
   end;
@@ -172,20 +173,34 @@ end;
 
 { TSPSelection }
 
-constructor TSPSelection.Create;
-begin
-
-end;
-
 procedure TSPSelection.MouseMove(x, y: Integer);
 begin
   inherited MouseMove(x, y);
+  if x>=fstartx then begin
+   ToolOptions.SelectionRect.Left:=fstartx;
+   ToolOptions.SelectionRect.Right:=x;
+  end else begin
+    ToolOptions.SelectionRect.Right:=fstartx;
+    fstartx:=x;
+  end;
+  if y>=fstarty then begin
+   ToolOptions.SelectionRect.Top:=fstarty;
+   ToolOptions.SelectionRect.Bottom:=y;
+  end else begin
+    ToolOptions.SelectionRect.Bottom:=fstarty;
+    fstarty:=y;
+  end;
 end;
 
 procedure TSPSelection.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
   inherited StartDraw(x, y, Shift, aButton, aColor);
+  ToolOptions.IsSelection:=True;
+  ToolOptions.SelectionRect.Left:=x;
+  ToolOptions.SelectionRect.Top:=y;
+  ToolOptions.SelectionRect.Right:=x;
+  ToolOptions.SelectionRect.Bottom:=y;
 end;
 
 { TSPFloodFill }
@@ -463,7 +478,7 @@ procedure TSPDrawTool.MouseMove(x, y: Integer);
 begin
   if x<fstartx then SwapInts(x,fstartx);
   if y<fstarty then SwapInts(y,fstarty);
-  Assert(False, rsYouMustOverr2+Self.ClassName);
+  //Assert(False, rsYouMustOverr2+Self.ClassName);
 end;
 
 procedure TSPDrawTool.MouseUp(x, y: Integer; Shift: TShiftState);
@@ -481,6 +496,10 @@ begin
   Layers[csDRAWLAYER].ClearDrawable;
 end;
 
+
+initialization
+
+ToolOptions.IsSelection:=False;
 
 
 end.

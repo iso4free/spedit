@@ -441,6 +441,10 @@ msgstr "Pipeta - atalho 'O'"
 msgid "Rectangle tool - hotkey 'R'"
 msgstr "Retangulo - atalho 'R'"
 
+#: tfrmmain.sbrectselection.hint
+msgid "Rectangular selection tool - hotkey 'S'"
+msgstr ""
+
 #: tfrmresize.bbtncancel.caption
 msgctxt "tfrmresize.bbtncancel.caption"
 msgid "Cancel"

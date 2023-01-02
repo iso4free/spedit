@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spedit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-12-25 22:52+0200\n"
+"PO-Revision-Date: 2023-01-02 15:02+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -86,11 +86,11 @@ msgstr "Видалити шар"
 
 #: tfrmmain.actdither.caption
 msgid "Dither frame"
-msgstr ""
+msgstr "Дизеринг фрейму"
 
 #: tfrmmain.actdither.hint
 msgid "Reduse colors to preset palette"
-msgstr ""
+msgstr "Зменшити кількість кольорів для попередньо налаштованої палітри"
 
 #: tfrmmain.actexit.caption
 msgid "&Exit"
@@ -447,6 +447,10 @@ msgstr "Інструмент Піпетка - гаряча клавіша 'O'"
 msgid "Rectangle tool - hotkey 'R'"
 msgstr "Інструмент Прямокутник - гаряча клавіша 'R'"
 
+#: tfrmmain.sbrectselection.hint
+msgid "Rectangular selection tool - hotkey 'S'"
+msgstr "Інструмент прямокутного виділення - гаряча клавіша 'S'"
+
 #: tfrmresize.bbtncancel.caption
 msgctxt "tfrmresize.bbtncancel.caption"
 msgid "Cancel"
@@ -598,4 +602,3 @@ msgstr "Вам потрібно переназначити метод MouseUp()!
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
 msgstr "Вам потрібно переназначити метод MouseMove() !Назва класу: "
-

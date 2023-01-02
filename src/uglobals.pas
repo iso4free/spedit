@@ -378,6 +378,9 @@ var
 
 implementation
 
+uses udraw;
+
+
 //for image encode/decode BASE64
 function Base64ToStream(const ABase64: String; var AStream: TMemoryStream): Boolean;
 var
@@ -1181,6 +1184,15 @@ begin
                     CellCursor.Y*(fFrameGridSize+fFrameZoom),
                     CellCursor.X*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.CursorSize,
                     CellCursor.Y*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.CursorSize,clRed);
+  //if selection enabled draw XORed selection rect
+  if ToolOptions.IsSelection then begin
+   //recalc selection rect coords
+   fBuffer.Rectangle(Rect(ToolOptions.SelectionRect.Left*(fFrameGridSize+fFrameZoom),
+                          ToolOptions.SelectionRect.Top*(fFrameGridSize+fFrameZoom),
+                          ToolOptions.SelectionRect.Right*(fFrameGridSize+fFrameZoom),
+                          ToolOptions.SelectionRect.Bottom*(fFrameGridSize+fFrameZoom)),
+                          VGALime,dmXor);
+  end;
   Canvas.Clear;
   fBuffer.Draw(Canvas,fOffset.X,fOffset.Y);
 end;

@@ -176,6 +176,7 @@ type
     Separator7: TMenuItem;
     sbFloodFill: TSpeedButton;
     Separator8: TMenuItem;
+    sbRectSelection: TSpeedButton;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Splitter3: TSplitter;
@@ -588,6 +589,8 @@ begin
    cl := spclBackColor;
    spclBackColor:=spclForeColor;
    spclForeColor:=cl;
+   FgColor.Invalidate;
+   BgColor.Invalidate;
 end;
 
 procedure TfrmMain.bbtnImportFrameClick(Sender: TObject);
@@ -888,7 +891,15 @@ begin
        //X key Swap colors
         bbtnSwapColorsClick(Sender);
       end;
+    VK_S:begin
+       //S key Selection
+        sbPenClick(sbRectSelection);
       end;
+      //Esc for discard selection
+    VK_ESCAPE: begin
+        ToolOptions.IsSelection:=false;
+      end;
+     end;
      end;
     pbFrameDraw.SetBounds(0,0,
      FrameGrid.Offset.X+(FrameGrid.FrameWidth*(FrameGrid.GridSize+FrameGrid.FrameZoom)),
@@ -1059,10 +1070,10 @@ begin
     PaletteChange;
    end;
   end;
-{  pbFrameDraw.Invalidate;
+  pbFrameDraw.Invalidate;
   drwgrdLayers.Invalidate;
   FgColor.Invalidate;
-  BgColor.Invalidate;}
+  //BgColor.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;
@@ -1144,7 +1155,8 @@ begin
  5:DrawTool:=TSPRect.Create;
  6:DrawTool:=TSPFilledRect.Create;
  7:DrawTool:=TSPCircle.Create;
- 8:DrawTool:=TSPFloodFill.Create
+ 8:DrawTool:=TSPFloodFill.Create;
+ 9:DrawTool:=TSPSelection.Create
  else begin
       ShowMessage(rsThisToolWill);
       DrawTool:=TSPPen.Create;

@@ -46,7 +46,7 @@ SHORT DOCUMENTATION
 ===================
 ~~For now, use arrow keys for moving on-grid cursor, Space and Enter keys to draw use selected colors (primary and secondary), Del key to clear pixel (DOS version style).~~ Just use the mouse like in any image editor.
 
-In Tools window select primary and secondary color, select tool for mouse drawing and change pen size. Pencil (hotkey 'P'), Line (hotkey 'L'), Rectangle (hotkey 'R'), Filled Rectangle (hotkey 'Shift+R'), Circle (hotkey 'C'), Flood fill (hotkey 'F'), Eraser (hotkey 'E') and Pipette (hotkey 'O') are currently available for drawing.
+In Tools window select primary and secondary color, select tool for mouse drawing and change pen size. Pencil (hotkey 'P'), Line (hotkey 'L'), Rectangle (hotkey 'R'), Filled Rectangle (hotkey 'Shift+R'), Circle (hotkey 'C'), Flood fill (hotkey 'F'), Eraser (hotkey 'E'),  Pipette (hotkey 'O') and Rectangular selection (hotkey 'S') are currently available for drawing. To disable selection press 'Esc' key.
 
 To increase/decrease the pencil size, use the Ctrl+NumPlus/Ctrl+NumMinus hotkeys respectively.
 
