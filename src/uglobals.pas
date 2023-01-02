@@ -31,7 +31,7 @@ unit uglobals;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LCLTranslator,
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LCLTranslator, FileUtil, LazFileUtils,
   Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson,
   BGRABitmap, BGRABitmapTypes, BGRAPalette,
   fgl, base64, Dialogs;
@@ -666,24 +666,26 @@ begin
 end;
 
 procedure ReloadPresets(aDirectory: String);
-var Fi : TSearchRec;
-    R : Integer;
+var
+    aList : TStringList;
     tmp : TBGRAPalette;
+    i   : Integer;
+    aName : String;
 begin
  Presets.Clear;
+ aList:=TStringList.Create;
  tmp:= TBGRAPalette.Create;
- R:=FindFirst(aDirectory+DirectorySeparator+'*.*',faAnyFile-faVolumeId,fi);
- if R=0 then begin
-   while R=0 do begin
-     if (LowerCase(ExtractFileExt(Fi.Name))='.png') or (LowerCase(ExtractFileExt(Fi.Name))='.hex') then begin
-       Presets[copy(Fi.Name,1,Pos('.',Fi.Name)-1)]:=TPalettePreset.Create(aDirectory+DirectorySeparator+Fi.Name);
-  //   end else if (LowerCase(ExtractFileExt(Fi.Name))='.hex') then begin
-  //     Presets[copy(Fi.Name,1,Pos('.',Fi.Name)-1)]:=TPalettePreset.Create(aDirectory+DirectorySeparator+Fi.Name);
-     end;
-     r:=FindNext(Fi);
+ //todo: check if palette in image file or hex use TPalette class
+ //else use TBGRAPatlette
+ FindAllFiles(aList,aDirectory,'*.png,;*.PNG;*.hex;*.HEX');
+ if aList.Count>0 then begin
+   for i:= 0 to aList.Count-1 do begin
+     aName:=LazFileUtils.ExtractFileNameWithoutExt(aList.Strings[i]);
+      Delete(aName,1,Length(aDirectory)+1);
+      Presets[aName]:=TPalettePreset.Create(aList.Strings[i]);
    end;
-   FindClose(Fi);
  end;
+  FreeAndNil(aList);
   FreeAndNil(tmp);
 end;
 
@@ -692,6 +694,9 @@ end;
 constructor TPalettePreset.Create(aFilename: TFilename);
 var
     fExt : String;
+    aPal : TBGRAPalette;
+    i: Integer;
+    aBmp : TBGRABitmap;
 begin
   fPaletteName:=ExtractFileName(aFilename);
   fPaletteName:=copy(PaletteName,1,Pos('.',PaletteName)-1);
@@ -704,6 +709,15 @@ begin
     fPalette.LoadFromImage(aFilename);
   end else if fExt='.hex' then begin
     fPalette.LoadFromFile(aFilename);
+  end else if fExt='.gpl' then begin
+   aBmp:=TBGRABitmap.Create;
+   aPal:=TBGRAPalette.Create(aBmp);
+   aPal.LoadFromFile(aFilename);
+   for i:= 0to aPal.Count-1 do begin
+    fPalette.AddColor(aPal.Color[i]);
+   end;
+   FreeAndNil(aBmp);
+   FreeAndNil(aPal);
   end;
 end;
 
@@ -1119,8 +1133,8 @@ var
   begin
     xsize := (x2-x1) div size;
     ysize := (y2-y1) div size;
-    For i := 1 to ysize do fBuffer.DrawLine(x1,y1+i*size,x2,y1+i*size,ColorToBGRA(clNavy),False);
-    For i := 1 to xsize do fBuffer.DrawLine(x1+i*size,y1,x1+i*size,y2,ColorToBGRA(clNavy),False);
+    For i := 1 to ysize do fBuffer.DrawLine(x1,y1+i*size,x2,y1+i*size,VGANavy,False);
+    For i := 1 to xsize do fBuffer.DrawLine(x1+i*size,y1,x1+i*size,y2,VGANavy,False);
     fBuffer.Rectangle(x1,y1,x2,y2,ColorToBGRA(clNavy));
   end;
 
@@ -1150,8 +1164,8 @@ var
 begin
   ShowGrid:=(fFrameGridSize+fFrameZoom)>5;
   fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),
-                       ColorToBGRA($BFBFBF),
-                       ColorToBGRA($FFFFFF),
+                       $BFBFBF,
+                       $FFFFFF,
                        FCheckersSize,
                        FCheckersSize);;
   //draw preview picture and just zoom it up to grid size
@@ -1179,10 +1193,7 @@ begin
   ClearBitmap(fPreview);
   if Canvas<>nil then begin
     fPreview.DrawCheckers(Rect(0,0,fPreview.Width,fPreview.Height),
-                        ColorToBGRA($BFBFBF),
-                        ColorToBGRA($FFFFFF),
-                        4,
-                        4);
+                        $BFBFBF, $FFFFFF, 4, 4);
   end;
   //draw all layers to canvas
   if LayerExists(cINTERNALLAYERANDFRAME) then fPreview.PutImage(0,0,Layers[cINTERNALLAYERANDFRAME].Drawable,dmDrawWithTransparency);

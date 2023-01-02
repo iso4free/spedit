@@ -161,6 +161,15 @@ type
 
 implementation
 
+procedure SwapInts(var a,b : Integer);
+var
+      tmp : Integer;
+begin
+  tmp:= a;
+  a:=b;
+  b:=tmp;
+end;
+
 { TSPSelection }
 
 constructor TSPSelection.Create;
@@ -452,7 +461,9 @@ end;
 
 procedure TSPDrawTool.MouseMove(x, y: Integer);
 begin
- Assert(False, rsYouMustOverr2+Self.ClassName);
+  if x<fstartx then SwapInts(x,fstartx);
+  if y<fstarty then SwapInts(y,fstarty);
+  Assert(False, rsYouMustOverr2+Self.ClassName);
 end;
 
 procedure TSPDrawTool.MouseUp(x, y: Integer; Shift: TShiftState);

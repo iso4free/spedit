@@ -635,8 +635,10 @@ begin
   OldColor := TComboBox(Control).Canvas.Brush.Color;
   Count := Presets[TComboBox(Control).Items[Index]].Palette.Count;
   //if Count>MaxColorCount then Count:=MaxColorCount;
-  if Count<=(ARect.Width-2) then
-    BoxWidth:=(ARect.Width-2) div Count
+  if (Count<=(ARect.Width-2))  then   begin
+
+    BoxWidth:=(ARect.Width-2) div Count;
+  end
   else BoxWidth:=1 ;
   for i := 0 to Count - 1 do
   begin
