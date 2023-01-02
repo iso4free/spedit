@@ -308,7 +308,7 @@ begin
  //dither all layers
  for i:= 0 to Frames[FrameGrid.ActiveFrame].LayersList.Count-1 do begin
   {$IFDEF DEBUG}
-  DebugLn('In: actDitherExecute() layer: ',Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]);
+  //DebugLn('In: actDitherExecute() layer: ',Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]);
   {$ENDIF}
   UndoRedoManager.SaveState;
   DitherImage(Layers[Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]].Drawable,Presets[cbPalettePresets.Text].Palette,200);
@@ -778,7 +778,7 @@ begin
    JSONProp:=UserSettingsPath+'spedit.json';
    JSONPropStorage1.JSONFileName:=JSONProp;
    {$IFDEF DEBUG}
-   DebugLn(DateTimeToStr(Now()),' In: frmMain.Create() JSONProp=',JSONProp);
+   //DebugLn(DateTimeToStr(Now()),' In: frmMain.Create() JSONProp=',JSONProp);
    {$ENDIF}
 
    DetectPOLanguage(INI.ReadString('INTERFACE','L10n file',''));
@@ -1120,8 +1120,8 @@ begin
    for i:= 0 to Presets.Count-1 do begin
        cbPalettePresets.Items.Add(Presets.Keys[i]);
      {$IFDEF DEBUG}
-      DebugLn('In: LoadPresets preset name: ', Presets.Keys[i], ' '
-        +'Colors: '+IntToStr(Presets[Presets.Keys[i]].Palette.Count));
+     // DebugLn('In: LoadPresets preset name: ', Presets.Keys[i], ' '
+      //  +'Colors: '+IntToStr(Presets[Presets.Keys[i]].Palette.Count));
      {$ENDIF}
    end;
   end;

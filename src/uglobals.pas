@@ -702,7 +702,7 @@ begin
   fPaletteName:=copy(PaletteName,1,Pos('.',PaletteName)-1);
   fExt:=LowerCase(ExtractFileExt(aFilename));
   {$IFDEF DEBUG}
-   DebugLn('In: TPalettePreset.Create() ext=',fExt);
+  // DebugLn('In: TPalettePreset.Create() ext=',fExt);
   {$ENDIF}
   if fExt='.png' then begin
     fBmp:= TBGRABitmap.Create(aFilename);
@@ -953,7 +953,7 @@ begin
   Drawable.SaveToStreamAsPng(aStream);
   if not StreamToBase64(aStream,Result) then Result:='';
   {$IFDEF DEBUG}
-  DebugLn(DateTimeToStr(Now()),' In: TSPLayer.ToBASE64String() data: ', Result);
+  //DebugLn(DateTimeToStr(Now()),' In: TSPLayer.ToBASE64String() data: ', Result);
   {$ENDIF}
   FreeAndNil(aStream);
 end;
@@ -1072,15 +1072,14 @@ begin
   fFrameHeight:=aH;
   fFrameWidth:=aW;
   FCheckersSize:=INI.ReadInteger('INTERFACE','CHECKERS SIZE',32);
-  if FCheckersSize<8 then FCheckersSize:=8
-     else if FCheckersSize>(fFrameGridSize div 4) then FCheckersSize:=fFrameGridSize div 4;
+  if FCheckersSize<8 then FCheckersSize:=8;
   fFrameZoom:=0;
   CalcGridRect;
   fPreview:=TBGRABitmap.Create(aW,aH);
   FCellCursor := TCellCursor.Create;
   FCellCursor.CursorSize:=1;
   {$IFDEF DEBUG}
-  DebugLn(DateTimeToStr(Now), ': In  TFrameGrid.Create() Layers count ',IntToStr(Layers.Count));
+  //DebugLn(DateTimeToStr(Now), ': In  TFrameGrid.Create() Layers count ',IntToStr(Layers.Count));
   {$ENDIF}
   FActiveLayer:=cINTERNALLAYERANDFRAME;
   fActiveFrame:=cINTERNALLAYERANDFRAME;
