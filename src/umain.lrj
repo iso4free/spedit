@@ -80,5 +80,9 @@
 {"hash":48310069,"name":"tfrmmain.actframeresize.caption","sourcebytes":[82,101,115,105,122,101,32,102,114,97,109,101],"value":"Resize frame"},
 {"hash":251147140,"name":"tfrmmain.actnotimplemented.caption","sourcebytes":[78,111,116,32,105,109,112,108,101,109,101,110,116,101,100,32,121,101,116],"value":"Not implemented yet"},
 {"hash":14494453,"name":"tfrmmain.actdither.caption","sourcebytes":[68,105,116,104,101,114,32,102,114,97,109,101],"value":"Dither frame"},
-{"hash":101573909,"name":"tfrmmain.actdither.hint","sourcebytes":[82,101,100,117,115,101,32,99,111,108,111,114,115,32,116,111,32,112,114,101,115,101,116,32,112,97,108,101,116,116,101],"value":"Reduse colors to preset palette"}
+{"hash":101573909,"name":"tfrmmain.actdither.hint","sourcebytes":[82,101,100,117,115,101,32,99,111,108,111,114,115,32,116,111,32,112,114,101,115,101,116,32,112,97,108,101,116,116,101],"value":"Reduse colors to preset palette"},
+{"hash":195296268,"name":"tfrmmain.actselectall.caption","sourcebytes":[83,101,108,101,99,116,32,97,108,108],"value":"Select all"},
+{"hash":304761,"name":"tfrmmain.actcopy.caption","sourcebytes":[67,111,112,121],"value":"Copy"},
+{"hash":19140,"name":"tfrmmain.actcut.caption","sourcebytes":[67,117,116],"value":"Cut"},
+{"hash":5671589,"name":"tfrmmain.actpaste.caption","sourcebytes":[80,97,115,116,101],"value":"Paste"}
 ]}

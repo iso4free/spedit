@@ -72,9 +72,17 @@ msgstr "Importar quadro"
 msgid "Add layer"
 msgstr "Adicionar camada"
 
+#: tfrmmain.actcopy.caption
+msgid "Copy"
+msgstr ""
+
 #: tfrmmain.actcopylayer.caption
 msgid "Copy layer"
 msgstr "Copiar camada"
+
+#: tfrmmain.actcut.caption
+msgid "Cut"
+msgstr ""
 
 #: tfrmmain.actdeletelayer.caption
 msgid "Delete layer"
@@ -153,6 +161,10 @@ msgstr "Salvar paleta"
 msgid "Toggle palette"
 msgstr "Alternar paleta"
 
+#: tfrmmain.actpaste.caption
+msgid "Paste"
+msgstr ""
+
 #: tfrmmain.actredo.caption
 msgctxt "tfrmmain.actredo.caption"
 msgid "Redo"
@@ -161,6 +173,10 @@ msgstr "Refazer"
 #: tfrmmain.actreferencetoggle.caption
 msgid "Reference"
 msgstr "Referência"
+
+#: tfrmmain.actselectall.caption
+msgid "Select all"
+msgstr ""
 
 #: tfrmmain.actsettings.caption
 msgctxt "tfrmmain.actsettings.caption"
@@ -584,6 +600,10 @@ msgstr "Essa camada não pode ser deletada!"
 #: uglobals.rsthistoolwill
 msgid "This tool will be realised soon, sorry"
 msgstr "Essa ferramenta será lançada em breve"
+
+#: uglobals.rsunsupportedfmt
+msgid "There is no supported format in Clipboard!"
+msgstr ""
 
 #: uglobals.rswarning
 msgid "Warning!"

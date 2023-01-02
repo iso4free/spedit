@@ -65,6 +65,7 @@ resourcestring
   rsLayerSIsLock = 'Layer %s is locked for changes!!';
   rsSorry = 'Sorry, will be implemented soon!';
   rsFloodFill = 'Flood fill';
+  rsUnsupportedFmt = 'There is no supported format in Clipboard!';
 
 
 const

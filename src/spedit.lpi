@@ -286,6 +286,9 @@
       <Item>
         <Name Value="EAccessViolation"/>
       </Item>
+      <Item>
+        <Name Value="Exception"/>
+      </Item>
     </Exceptions>
   </Debugging>
 </CONFIG>

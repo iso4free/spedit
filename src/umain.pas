@@ -33,9 +33,9 @@ uses
   {$IFDEF DEBUG}LazLoggerBase, {$ENDIF} LResources,
   uglobals, Classes, SysUtils, Forms, Controls,
   Graphics, Types, Dialogs, Menus, ComCtrls, ExtCtrls, Buttons, ActnList, Grids,
-  JSONPropStorage, ExtDlgs, StdCtrls, StdActns, LCLType, Spin,
+  JSONPropStorage, ExtDlgs, StdCtrls, StdActns, LCLIntf, LCLType, Spin,
   HexaColorPicker, mbColorPalette,
-  BGRAImageList, BGRAGraphicControl, BGRABitmapTypes, BGRABitmap, BCTypes;
+  BGRAImageList, BGRAGraphicControl, BGRABitmapTypes, BGRABitmap, Clipbrd;
 
 type
 
@@ -50,6 +50,10 @@ type
     actFrameExportPNG: TAction;
     actFrameResize: TAction;
     actDither: TAction;
+    actCopy: TAction;
+    actCut: TAction;
+    actPaste: TAction;
+    actSelectAll: TAction;
     actNotImplemented: TAction;
     actSettings: TAction;
     actLoadPresets: TAction;
@@ -100,6 +104,10 @@ type
     LayersGroupBox: TGroupBox;
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
+    miPaste: TMenuItem;
+    miCut: TMenuItem;
+    miSelectAll: TMenuItem;
+    miCopy: TMenuItem;
     miLoadPresets: TMenuItem;
     miFrameDither: TMenuItem;
     miFrameResize: TMenuItem;
@@ -177,11 +185,14 @@ type
     sbFloodFill: TSpeedButton;
     Separator8: TMenuItem;
     sbRectSelection: TSpeedButton;
+    Separator9: TMenuItem;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Splitter3: TSplitter;
     StatusBar1: TStatusBar;
     trkbrPenSize: TSpinEdit;
+    procedure actCopyExecute(Sender: TObject);
+    procedure actCutExecute(Sender: TObject);
     procedure actDitherExecute(Sender: TObject);
     procedure actFrameExportPNGExecute(Sender: TObject);
     procedure actFrameResizeExecute(Sender: TObject);
@@ -201,8 +212,10 @@ type
     procedure actPaletteResetExecute(Sender: TObject);
     procedure actPaletteSaveExecute(Sender: TObject);
     procedure actPaletteToggleExecute(Sender: TObject);
+    procedure actPasteExecute(Sender: TObject);
     procedure actRedoExecute(Sender: TObject);
     procedure actReferenceToggleExecute(Sender: TObject);
+    procedure actSelectAllExecute(Sender: TObject);
     procedure actSettingsExecute(Sender: TObject);
     procedure actToggleFullScreenExecute(Sender: TObject);
     procedure actZoomInExecute(Sender: TObject);
@@ -275,6 +288,15 @@ var
 implementation
 
 uses udraw, uabout, uframedlg, uresizedlg, ureferense, usettings;
+
+procedure EraseSelection;
+begin
+  if ToolOptions.IsSelection then begin
+     UndoRedoManager.SaveState;
+     Layers[FrameGrid.ActiveLayer].Drawable.EraseRect(ToolOptions.SelectionRect,255);
+  end;
+end;
+
 {$R *.lfm}
 
 { TfrmMain }
@@ -346,6 +368,19 @@ begin
   Layers[cINTERNALLAYERANDFRAME].Visible:=True;
 end;
 
+procedure TfrmMain.actCopyExecute(Sender: TObject);
+var
+  aBmp : TBGRABitmap;
+begin
+  //copy selection to clipboard
+  if ToolOptions.IsSelection then begin
+    aBmp:=TBGRABitmap.Create(ToolOptions.SelectionRect.Width,ToolOptions.SelectionRect.Height);
+    aBmp.CanvasBGRA.CopyRect(Rect(0,0,aBmp.Width-1,aBmp.Height-1),Layers[FrameGrid.ActiveLayer].Drawable,ToolOptions.SelectionRect);
+    Clipboard.Assign(aBmp.Bitmap);
+    FreeAndNil(aBmp);
+  end;
+end;
+
 procedure TfrmMain.actCopyLayerExecute(Sender: TObject);
 var
   aName : String;
@@ -357,6 +392,15 @@ begin
  Frames[FrameGrid.ActiveFrame].AddLayer(aName);
  Layers[aName].AddToFrame(FrameGrid.ActiveFrame);
  FrameGrid.ActiveLayer:=aName;
+end;
+
+procedure TfrmMain.actCutExecute(Sender: TObject);
+begin
+  //cut selection to clipboard
+ if not ToolOptions.IsSelection then Exit;
+ UndoRedoManager.SaveState;
+ actCopyExecute(Sender);
+ EraseSelection;
 end;
 
 procedure TfrmMain.actDeleteLayerExecute(Sender: TObject);
@@ -487,6 +531,48 @@ begin
   pnlPalette.Visible:=not pnlPalette.Visible;
 end;
 
+procedure TfrmMain.actPasteExecute(Sender: TObject);
+var
+  aBmp : TBGRABitmap;
+begin
+ Exit;
+  //todo: clip or resample clipboar image to selection or frame size
+  aBmp:=TBGRABitmap.Create();
+  if (Clipboard.HasFormat(PredefinedClipboardFormat(pcfBitmap))) then
+     aBmp.Bitmap.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfBitmap))
+  else if (Clipboard.HasFormat(PredefinedClipboardFormat(pcfPixmap))) then
+     aBmp.Bitmap.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfPixmap))
+  else if (Clipboard.HasFormat(PredefinedClipboardFormat(pcfIcon))) then
+     aBmp.Bitmap.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfIcon))
+  else if (Clipboard.HasFormat(PredefinedClipboardFormat(pcfPicture))) then
+     aBmp.Bitmap.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfPicture))
+  else if (Clipboard.HasFormat(PredefinedClipboardFormat(pcfMetaFilePict))) then
+     aBmp.Bitmap.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfMetaFilePict))
+  else begin
+    ShowMessage(rsUnsupportedFmt);
+    FreeAndNil(aBmp);
+    Exit;
+   end;
+      {$IFDEF DEBUG}
+      DebugLn('In: actPasteExecute() w=', IntToStr(aBmp.Width)+'/h='+IntToStr(aBmp.Height));
+      {$ENDIF}
+      //we get image from clipboard - now create new layer with it
+      Layers['Clipboard']:=TSPLayer.Create('Clipboard',FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+      Layers['Clipboard'].AddToFrame(FrameGrid.ActiveFrame);
+      Frames[FrameGrid.ActiveFrame].AddLayer('Clipboard');
+
+      //if has selection paste inside selection
+      if ToolOptions.IsSelection then begin
+        Layers['Clipboard'].Drawable.PutImage(ToolOptions.SelectionRect.Left,ToolOptions.SelectionRect.Top,aBmp.Bitmap,dmSetExceptTransparent);
+      end else begin
+        Layers['Clipboard'].Drawable.PutImage(0,0,aBmp.Bitmap,dmSetExceptTransparent);
+      end;
+      FreeAndNil(aBmp);
+      pbFrameDraw.Invalidate;
+      drwgrdLayers.Invalidate;
+      FramePreview.Invalidate;
+end;
+
 procedure TfrmMain.actRedoExecute(Sender: TObject);
 begin
  UndoRedoManager.Redo;
@@ -498,6 +584,15 @@ begin
  if not Assigned(frmReferense) then frmReferense:=TfrmReferense.Create(nil);
  frmReferense.Visible:=not frmReferense.Visible;
  actReferenceToggle.Checked:=frmReferense.Visible;
+end;
+
+procedure TfrmMain.actSelectAllExecute(Sender: TObject);
+begin
+  ToolOptions.SelectionRect.Left:=0;
+  ToolOptions.SelectionRect.Top:=0;
+  ToolOptions.SelectionRect.Bottom:=FrameGrid.FrameHeight;
+  ToolOptions.SelectionRect.Right:=FrameGrid.FrameWidth;
+  ToolOptions.IsSelection:=True;
 end;
 
 procedure TfrmMain.actSettingsExecute(Sender: TObject);
@@ -512,8 +607,11 @@ begin
   actToggleFullScreen.Checked:=WindowState = wsFullScreen;
   //try ZEN mode
   if actToggleFullScreen.Checked then begin
+   actFramesToggle.Checked:=pnlFrames.Visible;
    pnlFrames.Visible := false;
+   actPaletteToggle.Checked:=pnlPalette.Visible;
    pnlPalette.Visible := false;
+   actLayersToggle.Checked:=pnlLayers.Visible;
    pnlLayers.Visible:= false;
    pnlEditor.Visible:=false;
    pnlTools.Visible:=false;
@@ -899,12 +997,18 @@ begin
     VK_ESCAPE: begin
         ToolOptions.IsSelection:=false;
       end;
+    //clear celected region if selection is active
+    VK_DELETE: begin
+       EraseSelection;
+      end;
+      end;
      end;
-     end;
-    pbFrameDraw.SetBounds(0,0,
+   { pbFrameDraw.SetBounds(0,0,
      FrameGrid.Offset.X+(FrameGrid.FrameWidth*(FrameGrid.GridSize+FrameGrid.FrameZoom)),
-     FrameGrid.Offset.Y+(FrameGrid.FrameHeight*(FrameGrid.GridSize+FrameGrid.FrameZoom)));
+     FrameGrid.Offset.Y+(FrameGrid.FrameHeight*(FrameGrid.GridSize+FrameGrid.FrameZoom)));  }
     pbFrameDraw.Invalidate;
+    FramePreview.Invalidate;
+    drwgrdLayers.Invalidate;
 end;
 
 procedure TfrmMain.FramePreviewClick(Sender: TObject);
@@ -954,7 +1058,7 @@ procedure TfrmMain.CreateCursors;
    i: Integer;
 begin
    //create cursors from tool buttons images
-   for i:= 1 to 8 do begin
+   for i:= 1 to 9 do begin
     aCur:=TCursorImage.Create;
     aCur.LoadFromLazarusResource(IntToStr(i));
     aCur.HotSpot.Create(0,15);

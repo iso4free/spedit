@@ -76,9 +76,17 @@ msgstr "Імпортувати фрейм"
 msgid "Add layer"
 msgstr "Додати шар"
 
+#: tfrmmain.actcopy.caption
+msgid "Copy"
+msgstr ""
+
 #: tfrmmain.actcopylayer.caption
 msgid "Copy layer"
 msgstr "Копіювати шар"
+
+#: tfrmmain.actcut.caption
+msgid "Cut"
+msgstr ""
 
 #: tfrmmain.actdeletelayer.caption
 msgid "Delete layer"
@@ -157,6 +165,10 @@ msgstr "Зберегти палітру в файл"
 msgid "Toggle palette"
 msgstr "Показати/приховати палітру"
 
+#: tfrmmain.actpaste.caption
+msgid "Paste"
+msgstr ""
+
 #: tfrmmain.actredo.caption
 msgctxt "tfrmmain.actredo.caption"
 msgid "Redo"
@@ -165,6 +177,10 @@ msgstr "Повторити"
 #: tfrmmain.actreferencetoggle.caption
 msgid "Reference"
 msgstr "Референс"
+
+#: tfrmmain.actselectall.caption
+msgid "Select all"
+msgstr ""
 
 #: tfrmmain.actsettings.caption
 msgctxt "tfrmmain.actsettings.caption"
@@ -591,6 +607,10 @@ msgstr "Цей шар не можна видалити!"
 msgid "This tool will be realised soon, sorry"
 msgstr "Вибачте, цей інструмент буде реалізовано пізніше"
 
+#: uglobals.rsunsupportedfmt
+msgid "There is no supported format in Clipboard!"
+msgstr ""
+
 #: uglobals.rswarning
 msgid "Warning!"
 msgstr "Попередження!"
@@ -602,3 +622,4 @@ msgstr "Вам потрібно переназначити метод MouseUp()!
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
 msgstr "Вам потрібно переназначити метод MouseMove() !Назва класу: "
+

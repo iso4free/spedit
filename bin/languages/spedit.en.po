@@ -69,8 +69,16 @@ msgstr ""
 msgid "Add layer"
 msgstr ""
 
+#: tfrmmain.actcopy.caption
+msgid "Copy"
+msgstr ""
+
 #: tfrmmain.actcopylayer.caption
 msgid "Copy layer"
+msgstr ""
+
+#: tfrmmain.actcut.caption
+msgid "Cut"
 msgstr ""
 
 #: tfrmmain.actdeletelayer.caption
@@ -150,6 +158,10 @@ msgstr ""
 msgid "Toggle palette"
 msgstr ""
 
+#: tfrmmain.actpaste.caption
+msgid "Paste"
+msgstr ""
+
 #: tfrmmain.actredo.caption
 msgctxt "tfrmmain.actredo.caption"
 msgid "Redo"
@@ -157,6 +169,10 @@ msgstr ""
 
 #: tfrmmain.actreferencetoggle.caption
 msgid "Reference"
+msgstr ""
+
+#: tfrmmain.actselectall.caption
+msgid "Select all"
 msgstr ""
 
 #: tfrmmain.actsettings.caption
@@ -576,6 +592,10 @@ msgstr ""
 
 #: uglobals.rsthistoolwill
 msgid "This tool will be realised soon, sorry"
+msgstr ""
+
+#: uglobals.rsunsupportedfmt
+msgid "There is no supported format in Clipboard!"
 msgstr ""
 
 #: uglobals.rswarning
