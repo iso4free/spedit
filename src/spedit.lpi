@@ -283,6 +283,9 @@
       <Item>
         <Name Value="FPImageException"/>
       </Item>
+      <Item>
+        <Name Value="EAccessViolation"/>
+      </Item>
     </Exceptions>
   </Debugging>
 </CONFIG>

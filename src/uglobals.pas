@@ -1072,6 +1072,8 @@ begin
   fFrameHeight:=aH;
   fFrameWidth:=aW;
   FCheckersSize:=INI.ReadInteger('INTERFACE','CHECKERS SIZE',32);
+  if FCheckersSize<8 then FCheckersSize:=8
+     else if FCheckersSize>(fFrameGridSize div 4) then FCheckersSize:=fFrameGridSize div 4;
   fFrameZoom:=0;
   CalcGridRect;
   fPreview:=TBGRABitmap.Create(aW,aH);
