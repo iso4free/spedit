@@ -93,7 +93,7 @@ type
 
   TSPSelection = class(TSPDrawTool)
     private
-    public
+     constructor  Create;
      procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
   end;
@@ -172,6 +172,11 @@ begin
 end;
 
 { TSPSelection }
+
+constructor TSPSelection.Create;
+begin
+  FToolName:=rsRectangleSel;
+end;
 
 procedure TSPSelection.MouseMove(x, y: Integer);
 begin

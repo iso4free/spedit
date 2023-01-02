@@ -578,6 +578,10 @@ msgstr ""
 msgid "Rectangle"
 msgstr ""
 
+#: uglobals.rsrectanglesel
+msgid "Rectangle selection"
+msgstr ""
+
 #: uglobals.rssorry
 msgid "Sorry, will be implemented soon!"
 msgstr ""

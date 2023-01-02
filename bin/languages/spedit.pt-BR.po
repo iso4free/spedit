@@ -585,6 +585,10 @@ msgstr "Por favor, insira o nome da nova biblioteca"
 msgid "Rectangle"
 msgstr "Retângulo"
 
+#: uglobals.rsrectanglesel
+msgid "Rectangle selection"
+msgstr ""
+
 #: uglobals.rssorry
 msgid "Sorry, will be implemented soon!"
 msgstr "Essa função será implementada em breve!"

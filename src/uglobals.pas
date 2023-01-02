@@ -66,6 +66,7 @@ resourcestring
   rsSorry = 'Sorry, will be implemented soon!';
   rsFloodFill = 'Flood fill';
   rsUnsupportedFmt = 'There is no supported format in Clipboard!';
+  rsRectangleSel = 'Rectangle selection';
 
 
 const
@@ -329,7 +330,22 @@ type
   end;
 
 
-  TLayers = specialize TFPGMapObject<String,TSPLayer>;  //mapped layers list
+  TCustomLayers = specialize TFPGMapObject<String,TSPLayer>;  //simple mapped layers list
+
+  type
+      TOnLayersChange = function(const aKey: String; const LayersCount : Integer): Integer;
+
+  { TLayers }
+
+  TLayers = class(TCustomLayers)
+  private
+    FOnLayersChange: TOnLayersChange;
+    procedure SetOnLayersChange(AValue: TOnLayersChange);
+  public
+    property OnLayersChange : TOnLayersChange read FOnLayersChange write SetOnLayersChange;
+  end;
+
+
   TFrames = specialize TFPGMapObject<String,TSPFrame>;  //mapped frames list
 
 var
@@ -691,6 +707,14 @@ begin
  end;
   FreeAndNil(aList);
   FreeAndNil(tmp);
+end;
+
+{ TLayers }
+
+procedure TLayers.SetOnLayersChange(AValue: TOnLayersChange);
+begin
+  if FOnLayersChange=AValue then Exit;
+  FOnLayersChange:=AValue;
 end;
 
 { TPalettePreset }

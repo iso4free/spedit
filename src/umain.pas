@@ -289,6 +289,7 @@ implementation
 
 uses udraw, uabout, uframedlg, uresizedlg, ureferense, usettings;
 
+
 procedure EraseSelection;
 begin
   if ToolOptions.IsSelection then begin
@@ -375,7 +376,7 @@ begin
   //copy selection to clipboard
   if ToolOptions.IsSelection then begin
     aBmp:=TBGRABitmap.Create(ToolOptions.SelectionRect.Width,ToolOptions.SelectionRect.Height);
-    aBmp.CanvasBGRA.CopyRect(Rect(0,0,aBmp.Width-1,aBmp.Height-1),Layers[FrameGrid.ActiveLayer].Drawable,ToolOptions.SelectionRect);
+    aBmp.Canvas.CopyRect(aBmp.ClipRect,Layers[FrameGrid.ActiveLayer].Drawable.Canvas,ToolOptions.SelectionRect);
     Clipboard.Assign(aBmp.Bitmap);
     FreeAndNil(aBmp);
   end;
@@ -533,21 +534,20 @@ end;
 
 procedure TfrmMain.actPasteExecute(Sender: TObject);
 var
-  aBmp : TBGRABitmap;
+  aBmp : TBitmap;
 begin
- Exit;
   //todo: clip or resample clipboar image to selection or frame size
-  aBmp:=TBGRABitmap.Create();
+  aBmp:=TBitmap.Create();
   if (Clipboard.HasFormat(PredefinedClipboardFormat(pcfBitmap))) then
-     aBmp.Bitmap.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfBitmap))
+     aBmp.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfBitmap))
   else if (Clipboard.HasFormat(PredefinedClipboardFormat(pcfPixmap))) then
-     aBmp.Bitmap.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfPixmap))
+     aBmp.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfPixmap))
   else if (Clipboard.HasFormat(PredefinedClipboardFormat(pcfIcon))) then
-     aBmp.Bitmap.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfIcon))
+     aBmp.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfIcon))
   else if (Clipboard.HasFormat(PredefinedClipboardFormat(pcfPicture))) then
-     aBmp.Bitmap.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfPicture))
+     aBmp.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfPicture))
   else if (Clipboard.HasFormat(PredefinedClipboardFormat(pcfMetaFilePict))) then
-     aBmp.Bitmap.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfMetaFilePict))
+     aBmp.LoadFromClipboardFormat(PredefinedClipboardFormat(pcfMetaFilePict))
   else begin
     ShowMessage(rsUnsupportedFmt);
     FreeAndNil(aBmp);
@@ -563,9 +563,10 @@ begin
 
       //if has selection paste inside selection
       if ToolOptions.IsSelection then begin
-        Layers['Clipboard'].Drawable.PutImage(ToolOptions.SelectionRect.Left,ToolOptions.SelectionRect.Top,aBmp.Bitmap,dmSetExceptTransparent);
+       // Layers['Clipboard'].Drawable.ResampleFilter:=rfBicubic;
+        Layers['Clipboard'].Drawable.PutImage(ToolOptions.SelectionRect.Left,ToolOptions.SelectionRect.Top,aBmp,dmSetExceptTransparent);
       end else begin
-        Layers['Clipboard'].Drawable.PutImage(0,0,aBmp.Bitmap,dmSetExceptTransparent);
+        Layers['Clipboard'].Drawable.Canvas.Draw(0,0,aBmp);
       end;
       FreeAndNil(aBmp);
       pbFrameDraw.Invalidate;
@@ -1094,6 +1095,11 @@ procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
 var p : TPoint;
 begin
  if not Assigned(FrameGrid) then Exit;
+ if (DrawTool.ToolName<>rsRectangleSel) and (ToolOptions.IsSelection) then begin
+  Layers[FrameGrid.ActiveLayer].Drawable.ClipRect:=ToolOptions.SelectionRect;
+ end else begin
+  Layers[FrameGrid.ActiveLayer].Drawable.ClipRect:=Rect(0,0,Layers[FrameGrid.ActiveLayer].Drawable.Width,Layers[FrameGrid.ActiveLayer].Drawable.Height);
+ end;
  //if tool not pipette  Ctrl+mbLeft works like color picker
  if (DrawTool.ToolName<>rsPipette) and (Button=mbLeft) and (ssCtrl in Shift) then begin
    p:=FrameGrid.Coords(x,y);

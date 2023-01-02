@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spedit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-01-02 15:02+0200\n"
+"PO-Revision-Date: 2023-01-02 23:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -78,7 +78,7 @@ msgstr "Додати шар"
 
 #: tfrmmain.actcopy.caption
 msgid "Copy"
-msgstr ""
+msgstr "Копіювати"
 
 #: tfrmmain.actcopylayer.caption
 msgid "Copy layer"
@@ -86,7 +86,7 @@ msgstr "Копіювати шар"
 
 #: tfrmmain.actcut.caption
 msgid "Cut"
-msgstr ""
+msgstr "Вирізати"
 
 #: tfrmmain.actdeletelayer.caption
 msgid "Delete layer"
@@ -167,7 +167,7 @@ msgstr "Показати/приховати палітру"
 
 #: tfrmmain.actpaste.caption
 msgid "Paste"
-msgstr ""
+msgstr "Вставити"
 
 #: tfrmmain.actredo.caption
 msgctxt "tfrmmain.actredo.caption"
@@ -180,7 +180,7 @@ msgstr "Референс"
 
 #: tfrmmain.actselectall.caption
 msgid "Select all"
-msgstr ""
+msgstr "Обрати все"
 
 #: tfrmmain.actsettings.caption
 msgctxt "tfrmmain.actsettings.caption"
@@ -591,6 +591,10 @@ msgstr "Будь ласка введіть назву нової бібліот�
 msgid "Rectangle"
 msgstr "Прямокутник"
 
+#: uglobals.rsrectanglesel
+msgid "Rectangle selection"
+msgstr "Прямокутне виділення"
+
 #: uglobals.rssorry
 msgid "Sorry, will be implemented soon!"
 msgstr "Вибачте, буде реалізовано пізніше!"
@@ -609,7 +613,7 @@ msgstr "Вибачте, цей інструмент буде реалізова�
 
 #: uglobals.rsunsupportedfmt
 msgid "There is no supported format in Clipboard!"
-msgstr ""
+msgstr "В буфері обміну немає підтримуваних форматів!"
 
 #: uglobals.rswarning
 msgid "Warning!"
@@ -622,4 +626,3 @@ msgstr "Вам потрібно переназначити метод MouseUp()!
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
 msgstr "Вам потрібно переназначити метод MouseMove() !Назва класу: "
-
