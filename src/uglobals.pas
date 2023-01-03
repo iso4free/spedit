@@ -1062,7 +1062,7 @@ begin
      posx:=x-fOffset.X;
      posy:=y-fOffset.Y;
      Result.X:= posx div (fFrameGridSize+fFrameZoom);
-     Result.Y:= posy div (fFrameGridSize+fFrameZoom);
+     Result.Y:= (posy+1) div (fFrameGridSize+fFrameZoom)+1;
   end;
 end;
 
