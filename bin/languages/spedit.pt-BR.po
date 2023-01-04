@@ -21,11 +21,9 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Um Editor de Sprites Gratuito e de Código Aberto - V.4.0"
 
 #: tfrmabout.label3.caption
-msgid ""
-"Created by (c) Vadim Vitomsky, 2000-2022\n"
+msgid "Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos (translation to pt-br, Mascot)"
-msgstr ""
-"Criado por (c) Vadim Vitomsky, 2000-2022\n"
+msgstr "Criado por (c) Vadim Vitomsky, 2000-2022\n"
 "Contribuições de:\n"
 " EddieMattos - Tradução para o pt-BR e redesign do mascote"
 
@@ -72,29 +70,13 @@ msgstr "Importar quadro"
 msgid "Add layer"
 msgstr "Adicionar camada"
 
-#: tfrmmain.actcopy.caption
-msgid "Copy"
-msgstr ""
-
 #: tfrmmain.actcopylayer.caption
 msgid "Copy layer"
 msgstr "Copiar camada"
 
-#: tfrmmain.actcut.caption
-msgid "Cut"
-msgstr ""
-
 #: tfrmmain.actdeletelayer.caption
 msgid "Delete layer"
 msgstr "Deletar camada"
-
-#: tfrmmain.actdither.caption
-msgid "Dither frame"
-msgstr ""
-
-#: tfrmmain.actdither.hint
-msgid "Reduse colors to preset palette"
-msgstr ""
 
 #: tfrmmain.actexit.caption
 msgid "&Exit"
@@ -161,10 +143,6 @@ msgstr "Salvar paleta"
 msgid "Toggle palette"
 msgstr "Alternar paleta"
 
-#: tfrmmain.actpaste.caption
-msgid "Paste"
-msgstr ""
-
 #: tfrmmain.actredo.caption
 msgctxt "tfrmmain.actredo.caption"
 msgid "Redo"
@@ -173,10 +151,6 @@ msgstr "Refazer"
 #: tfrmmain.actreferencetoggle.caption
 msgid "Reference"
 msgstr "Referência"
-
-#: tfrmmain.actselectall.caption
-msgid "Select all"
-msgstr ""
 
 #: tfrmmain.actsettings.caption
 msgctxt "tfrmmain.actsettings.caption"
@@ -246,11 +220,9 @@ msgstr "PF"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Clique esquedo para selecionar a cor\n"
+msgstr "Clique esquedo para selecionar a cor\n"
 "Clique direito para definir a cor como transparente"
 
 #: tfrmmain.caption
@@ -284,11 +256,9 @@ msgstr "PP"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Clique esquedo para selecionar a cor\n"
+msgstr "Clique esquedo para selecionar a cor\n"
 "Clique direito para definir a cor como transparente"
 
 #: tfrmmain.framepreview.hint
@@ -364,8 +334,7 @@ msgstr "Importar Planilha de sprites"
 
 #: tfrmmain.miimportspritesheet.hint
 msgctxt "tfrmmain.miimportspritesheet.hint"
-msgid ""
-"You can import image or spritesheet file\n"
+msgid "You can import image or spritesheet file\n"
 "and add it to the library"
 msgstr "Você pode importar uma imagem ou planilha de sprites e adicioná-la à biblioteca"
 
@@ -456,10 +425,6 @@ msgstr "Pipeta - atalho 'O'"
 #: tfrmmain.sbrect.hint
 msgid "Rectangle tool - hotkey 'R'"
 msgstr "Retangulo - atalho 'R'"
-
-#: tfrmmain.sbrectselection.hint
-msgid "Rectangular selection tool - hotkey 'S'"
-msgstr ""
 
 #: tfrmresize.bbtncancel.caption
 msgctxt "tfrmresize.bbtncancel.caption"
@@ -585,10 +550,6 @@ msgstr "Por favor, insira o nome da nova biblioteca"
 msgid "Rectangle"
 msgstr "Retângulo"
 
-#: uglobals.rsrectanglesel
-msgid "Rectangle selection"
-msgstr ""
-
 #: uglobals.rssorry
 msgid "Sorry, will be implemented soon!"
 msgstr "Essa função será implementada em breve!"
@@ -604,10 +565,6 @@ msgstr "Essa camada não pode ser deletada!"
 #: uglobals.rsthistoolwill
 msgid "This tool will be realised soon, sorry"
 msgstr "Essa ferramenta será lançada em breve"
-
-#: uglobals.rsunsupportedfmt
-msgid "There is no supported format in Clipboard!"
-msgstr ""
 
 #: uglobals.rswarning
 msgid "Warning!"

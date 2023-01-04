@@ -34,6 +34,28 @@ You can also join the project discussion in [Telegram](https://t.me/+UrD_O1LO8MN
 
 **Since our country is currently at war and Russia is destroying our critical infrastructure facilities, due to long blackouts I do not have the opportunity to devote enough time to development. Help stop the aggressor!**
 
+HOW TO CONTRIBUTE
+=================
+Before starting to work, please open an issue for discussion so that we can organize the work without creating too many conflicts. Any changes that fix bugs or add features are welcome.
+
+Suggestions / Planned features:
+
+- Documentation:
+   - create WIKI and GitHub Pages
+- Drawing:
+   - Tiled mode
+   - Symmetry options 
+   - Shift and rotate layers and frames
+   - Scale/rotate selection
+- UI:
+   - Frames timeline
+   - Animation composer
+   - Spritesheet/Tilesheet import wizard
+   - Project manager
+   - Local sprite libraries
+- Other stuff
+   - Import other formats (.ase, .piskel etc.)
+
 LOCALIZATION
 ============
 SPEdit supports localization of the interface to different languages. Interface translation files have the standard PO (Portable Object) format and must have names in the format spedit.xx.po or spedit.xx_XX.po, where xx or xx_XX is the common language identifier (e.g. spedit.pt_BR.po for Brazilian Portuguese). After selecting the interface translation file, localization occurs immediately without restarting the program and will be activated automatically at the next start.
@@ -44,7 +66,7 @@ If you want to see SPEdit localized to your language, you can contribute to the 
 
 SHORT DOCUMENTATION
 ===================
-~~For now, use arrow keys for moving on-grid cursor, Space and Enter keys to draw use selected colors (primary and secondary), Del key to clear pixel (DOS version style).~~ Just use the mouse like in any image editor.
+Just use the mouse like in any image editor.
 
 In Tools window select primary and secondary color, select tool for mouse drawing and change pen size. Pencil (hotkey 'P'), Line (hotkey 'L'), Rectangle (hotkey 'R'), Filled Rectangle (hotkey 'Shift+R'), Circle (hotkey 'C'), Flood fill (hotkey 'F'), Eraser (hotkey 'E'),  Pipette (hotkey 'O') and Rectangular selection (hotkey 'S') are currently available for drawing. To disable selection press 'Esc' key.
 
@@ -78,7 +100,7 @@ Click to 'Referense' window to open any image used as reference.
 
 You can add, copy and remove layers in the layer panel, the active layer name is highlighted in red. It is also possible to toggle the visibility of a layer by clicking on the eye icon opposite the layer name. The icon with a lock allows you to lock a layer from changes (will be used when sharing layers between different frames). Double-click the layer name with the left mouse button to change the layer name.
 
-For those who like a minimalist interface and use a large area of the screen for drawing, there is an option to switch to "Zen" mode (<F11> key) - full-screen mode with all toolbars hidden (convenient for quick sketches). In normal mode, you can also hide additional panels - layers, frames, palette with a preview using the corresponding buttons on the toolbar.
+For those who like a minimalist interface and use a large area of the screen for drawing, there is an option to switch to "Zen" mode ('F11' key) - full-screen mode with all toolbars hidden (convenient for quick sketches). In normal mode, you can also hide additional panels - layers, frames, palette with a preview using the corresponding buttons on the toolbar.
 
 Press the 'Create new frame' button on the toolbar to start new image. A dialogue will appear where you need to set frame name, width, height and min cell size in draw grid (from 4 to 20). It means the minimum value grid will be zoomed out. 
 
