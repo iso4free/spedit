@@ -25,9 +25,38 @@ Vocẽ pode abrir o arquivo de projeto spedit.lpi no ambiente Lazarus, compilar 
 TRABALHO EM PROGRESSO
 =============
 Continua em desenvolvimento, novos recursos seão adicionados quando eu tiver tempo e motivação suficiente.
-Você pode me patrocinar através do https://www.buymeacoffee.com/iso4free se quiser que alguns recursos sejam priorizados.
+Você pode patrocinar o criador do projeto através do https://www.buymeacoffee.com/iso4free se quiser que alguns recursos sejam priorizados.
+
+[Junte-se ao servidor Discord do SPEdit!](https://discord.gg/7Bfjxadz)
+
+Vocẽ também pode se juntar à discussão do projeto no [Telegram](https://t.me/+UrD_O1LO8MNlOTEy)
+
+![Telegram](/doc/QR.png)
+
 
 **Já que o País (do criador do Spedit -Ucrânia-) está em guerra e a Rússia está destruindo as instalações críticas de infraestrutura, vem ocorrendo vários e longos apagões, portanto eu não tenho a oportunidade de dedicar tempo suficiente ao desenvolvimento. Ajude a parar o agressor!**
+
+COMO CONTRIBUIR 
+=================
+Antes de começar a trabalhar, por favor, abra uma questão no Github para discutir e manter o projeto com o mínimo de conflitos. Quaisquer mudanças que corrijam bugs ou adicionem funções são bem-vindas.
+
+Sugestões / Recursos planejados:
+
+- Documentação:
+   - criar páginas WIKI e GitHub
+- Desenho:
+   - Modo ladrilhado
+   - Opções de simetria
+   - Girar e mudar camadas e quadros
+   - Redimensionar/girar a seleção
+- UI:
+   - Linha do tempo para os quadros
+   - Compositor de animação
+   - Assistente de importação de Planilhas de Sprite/Ladrilho
+   - Gerenciador de Projetos
+   - Biblioteca local de sprites
+- Outros itens
+   - Importar outros formatos (.ase, .piskel etc.)
 
 LOCALIZAÇÃO
 ============
@@ -39,9 +68,9 @@ Se voce quer que o SPEdit seja localizado para o seu idioma, você pode contribu
 
 BREVE DOCUMENTAÇÃO
 ===================
-~~Por enquanto, use use as setas do teclado para mover o cursor na grelha, as teclas Espaço e Enter para desenhar usando as cores selecionadas (primária e secundária), a tecla Del para limpar um pixel (no estilo da versão DOS).~~ Use o mouse como qualquer editor de imagens.
+Use o mouse ou a sua mesa digitalizadora para desenhar.
 
-Na janela Ferramentas selecione as cores primária e secundária, selecione a ferramenta para desenhar com o mouse e mude o tamanho do lápis. As ferramentas Lápis, Linha, Retângulo, Retângulo Preenchido, Círculo, Preenchimento, Borracha e Pipeta estão disponíveis para desenho no momento.
+Na janela Ferramentas selecione as cores primária e secundária, selecione a ferramenta para desenhar com o mouse e mude o tamanho do lápis. As ferramentas Lápis (P), Linha (L), Retângulo (R), Retângulo Preenchido (Shift + R), Círculo (C), Preenchimento (F), Borracha (E), Pipeta (O) e Seleção Retangular (S) estão disponíveis para desenho no momento.
 
 
 Você pode selecionar as cores primária e secundária clicando em uma cor na paleta com os botões esquerdo (primeiro plano) ou direito (plano de fundo) do mouse.
@@ -70,7 +99,7 @@ Clique na janela 'Referência' para abrir qualquer imagem de referência.
 
 Você pode adicionar, copiar e remover camadas no painel 'camadas', a camada ativa é destacada em vermelho. Também é possível alternar a visibilidade de uma camada clicando no ícone de olho ao lado do nome da camada. O ícone com cadeado te permite bloquear uma camada contra mudanças (será usado quando se compartilha camadas entre quadros diferentes). Você pode mudar o nome da camada com um clique duplo sobre o nome antigo.
 
-Para aqueles que gostam de uma interface minimalistica e usar um maior espaço da tela para desenhar, há uma opção para mudar para o modo Tela Cheia (atalho <F11>), assim como ocultar os painéis extras - camadas, quadros, paleta usando os botões correspondentes na barra de ferramentas.
+Para aqueles que gostam de uma interface minimalistica e usar um maior espaço da tela para desenhar, há uma opção para mudar para o modo Tela Cheia (atalho 'F11'), assim como ocultar os painéis extras - camadas, quadros, paleta usando os botões correspondentes na barra de ferramentas.
 
 Pressione o botão 'Criar um novo quadro' na barra de ferramentas para iniciar uma nova imagem. Uma janela vai abrir onde você debe inserir o nome, a largura, a altura do quadro e um tamanho mínimo da célula na grade de desenho (de 4 até 20). Significa que o valor mínimo a grade vai ter o zoom afastado. 
 
