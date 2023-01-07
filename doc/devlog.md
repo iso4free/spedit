@@ -184,3 +184,7 @@ DEV.LOG
 - [!] Fixed Language load, autoload palette presets and unknowd error (Issue #16)
 - [+] Implemented Rectangular selection tool
 - [*] Minor fixes and changes
+
+07.01.2023
+=
+- [+] Added Toggle grid feature

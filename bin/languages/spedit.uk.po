@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spedit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-01-02 23:01+0200\n"
+"PO-Revision-Date: 2023-01-07 11:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -117,6 +117,15 @@ msgstr "Змінити розмір фрейму"
 msgid "Toggle frames"
 msgstr "Показати/приховати фрейми"
 
+#: tfrmmain.actgridtoggle.caption
+msgid "Toggle grid visibility"
+msgstr "Ввім/вимк сітку"
+
+#: tfrmmain.actgridtoggle.hint
+msgctxt "tfrmmain.actgridtoggle.hint"
+msgid "Show/hide grid"
+msgstr "Показати/приховати сітку"
+
 #: tfrmmain.actlanguageselect.caption
 msgctxt "tfrmmain.actlanguageselect.caption"
 msgid "Language"
@@ -207,6 +216,11 @@ msgstr "Масштаб --"
 msgctxt "tfrmmain.actzoomreset.caption"
 msgid "Reset zoom"
 msgstr "Скинути масштаб"
+
+#: tfrmmain.bbtngridtoggle.hint
+msgctxt "tfrmmain.bbtngridtoggle.hint"
+msgid "Show/hide grid"
+msgstr "Показати/приховати сітку"
 
 #: tfrmmain.bbtnimportframe.hint
 msgctxt "tfrmmain.bbtnimportframe.hint"

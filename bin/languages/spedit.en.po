@@ -110,6 +110,15 @@ msgstr ""
 msgid "Toggle frames"
 msgstr ""
 
+#: tfrmmain.actgridtoggle.caption
+msgid "Toggle grid visibility"
+msgstr ""
+
+#: tfrmmain.actgridtoggle.hint
+msgctxt "tfrmmain.actgridtoggle.hint"
+msgid "Show/hide grid"
+msgstr ""
+
 #: tfrmmain.actlanguageselect.caption
 msgctxt "tfrmmain.actlanguageselect.caption"
 msgid "Language"
@@ -199,6 +208,11 @@ msgstr ""
 #: tfrmmain.actzoomreset.caption
 msgctxt "tfrmmain.actzoomreset.caption"
 msgid "Reset zoom"
+msgstr ""
+
+#: tfrmmain.bbtngridtoggle.hint
+msgctxt "tfrmmain.bbtngridtoggle.hint"
+msgid "Show/hide grid"
 msgstr ""
 
 #: tfrmmain.bbtnimportframe.hint

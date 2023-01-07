@@ -294,7 +294,7 @@ type
     fFrameHeight   : Integer;   //frame size in pixels
     fFrameZoom     : Integer;//zoom coeff for drawing grid (0 for normal size)
     fRect          : TRect;  //grid area on canvas
-    fShowGrid      : Boolean;//if true grid will be draw
+    fShowGrid      : Boolean;//if true grid will be draw if possible
     fOffset        : TPoint; //offset to draw frame on canvas
     fBounds        : TRect; //actual canvas size for zoomed draw with offset
     procedure CalcGridRect;
@@ -1191,7 +1191,6 @@ var
   end;
 
 begin
-  ShowGrid:=(fFrameGridSize+fFrameZoom)>5;
   fBuffer.DrawCheckers(Rect(0,0,fBuffer.Width,fBuffer.Height),
                        $BFBFBF,
                        $FFFFFF,
@@ -1202,7 +1201,7 @@ begin
   tmpbmp:=fPreview.Resample(fBuffer.Width,fBuffer.Height,rmSimpleStretch);
   fBuffer.PutImage(0,0,tmpbmp,dmSetExceptTransparent);
   FreeAndNil(tmpbmp);
-  if ShowGrid then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
+  if ShowGrid and ((fFrameGridSize+fFrameZoom)>5) then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
 
   //draw highlited cell cursor over the grid
   fBuffer.Rectangle(CellCursor.X*(fFrameGridSize+fFrameZoom),

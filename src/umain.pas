@@ -52,6 +52,7 @@ type
     actDither: TAction;
     actCopy: TAction;
     actCut: TAction;
+    actGridToggle: TAction;
     actPaste: TAction;
     actSelectAll: TAction;
     actNotImplemented: TAction;
@@ -104,6 +105,7 @@ type
     LayersGroupBox: TGroupBox;
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
+    MenuItem1: TMenuItem;
     miPaste: TMenuItem;
     miCut: TMenuItem;
     miSelectAll: TMenuItem;
@@ -176,6 +178,7 @@ type
     sdExportFrameSaveDialog: TSaveDialog;
     SelectDirectoryDialog1: TSelectDirectoryDialog;
     Separator1: TMenuItem;
+    Separator10: TMenuItem;
     Separator2: TMenuItem;
     Separator3: TMenuItem;
     Separator4: TMenuItem;
@@ -186,6 +189,7 @@ type
     Separator8: TMenuItem;
     sbRectSelection: TSpeedButton;
     Separator9: TMenuItem;
+    bbtnGridToggle: TBitBtn;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Splitter3: TSplitter;
@@ -197,6 +201,7 @@ type
     procedure actFrameExportPNGExecute(Sender: TObject);
     procedure actFrameResizeExecute(Sender: TObject);
     procedure actFramesToggleExecute(Sender: TObject);
+    procedure actGridToggleExecute(Sender: TObject);
     procedure actImportFrameExecute(Sender: TObject);
     procedure actAddLayerExecute(Sender: TObject);
     procedure actCopyLayerExecute(Sender: TObject);
@@ -224,6 +229,7 @@ type
     procedure bbtnAddLayerClick(Sender: TObject);
     procedure bbtnCopyLayerClick(Sender: TObject);
     procedure bbtnDeleteLayerClick(Sender: TObject);
+    procedure bbtnGridToggleClick(Sender: TObject);
     procedure bbtnMergeLayersClick(Sender: TObject);
     procedure bbtnNewFrameClick(Sender: TObject);
     procedure bbtnShowLayersClick(Sender: TObject);
@@ -313,6 +319,15 @@ procedure TfrmMain.actFramesToggleExecute(Sender: TObject);
 begin
     pnlFrames.Visible:=not pnlFrames.Visible;
     actFramesToggle.Checked:=pnlFrames.Visible;
+end;
+
+procedure TfrmMain.actGridToggleExecute(Sender: TObject);
+begin
+  actGridToggle.Checked:=not actGridToggle.Checked;
+  if not Assigned(FrameGrid) then Exit;
+  FrameGrid.ShowGrid:=actGridToggle.Checked;
+  INI.WriteBool('INTERFACE','SHOWGRID',actGridToggle.Checked);
+  pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.actFrameExportPNGExecute(Sender: TObject);
@@ -475,6 +490,7 @@ begin
    for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
    FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
    FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;
+   FrameGrid.ShowGrid:=actGridToggle.Checked;
    trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
    Palette.Clear;
    mbPaletteGrid.Colors.Clear;
@@ -660,6 +676,11 @@ end;
 procedure TfrmMain.bbtnDeleteLayerClick(Sender: TObject);
 begin
   actDeleteLayerExecute(Sender);
+end;
+
+procedure TfrmMain.bbtnGridToggleClick(Sender: TObject);
+begin
+  actGridToggleExecute(Sender);
 end;
 
 procedure TfrmMain.bbtnMergeLayersClick(Sender: TObject);
@@ -894,6 +915,9 @@ begin
    DrawTool:=TSPPen.Create;
    StatusBar1.Panels[4].Text:=rsActiveTool+DrawTool.ToolName;
    JSONPropStorage1.Restore;
+
+   //grid visibility
+   actGridToggle.Checked:=INI.ReadBool('INTERFACE','SHOWGRID',True);
    //palette preset load if directory selected
    if INI.ReadString('PRESETS','PALETTES','')<>'' then LoadPresets(INI.ReadString('PRESETS','PALETTES',''));
    Palette.Clear;
