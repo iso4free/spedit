@@ -517,6 +517,10 @@ msgstr ""
 msgid " / BG: "
 msgstr ""
 
+#: uglobals.rscantmerge
+msgid "Can't merge layers!"
+msgstr ""
+
 #: uglobals.rscircle
 msgid "Circle"
 msgstr ""

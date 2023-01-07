@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: spedit\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-01-07 11:01+0200\n"
+"PO-Revision-Date: 2023-01-07 20:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -26,10 +26,6 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Вільний і відкритий редактор спрайтів V.4.0"
 
 #: tfrmabout.label3.caption
-#, fuzzy
-#| msgid ""
-#| "Created by (c) Vadim Vitomsky, 2000-2022\n"
-#| "Contributed by Eddie Mattos (translation to pt-br, Mascot)"
 msgid ""
 "Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos\n"
@@ -37,7 +33,9 @@ msgid ""
 "Mascot based on Original image created by Unknown_Chan"
 msgstr ""
 "Створено (c) Вадимом Вітомським, 2000-2022\n"
-"Залучений Едді Маттос (переклад до pt-br, Талісман)"
+"Залучений Едді Маттос \n"
+"(переклад до pt-br, анімація Талісмана)\n"
+"Талісман створено на основі оригінального зображення від Unknown_Chan"
 
 #: tfrmabout.showsplashcheckbox.caption
 msgid "Show at startup"
@@ -534,6 +532,10 @@ msgstr "Ативний інструмент: "
 msgid " / BG: "
 msgstr " / ФК: "
 
+#: uglobals.rscantmerge
+msgid "Can't merge layers!"
+msgstr "Не можна об'єднати шари!"
+
 #: uglobals.rscircle
 msgid "Circle"
 msgstr "Кільце"
@@ -646,4 +648,3 @@ msgstr "Вам потрібно переназначити метод MouseUp()!
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
 msgstr "Вам потрібно переназначити метод MouseMove() !Назва класу: "
-

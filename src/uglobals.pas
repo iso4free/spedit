@@ -67,6 +67,7 @@ resourcestring
   rsFloodFill = 'Flood fill';
   rsUnsupportedFmt = 'There is no supported format in Clipboard!';
   rsRectangleSel = 'Rectangle selection';
+  rsCantMerge = 'Can''t merge layers!';
 
 
 const
@@ -183,6 +184,7 @@ type
     constructor Create;
     destructor Destroy;override;
     procedure SaveState;
+    procedure SaveState(aLayerName : String);
     procedure Undo;
     procedure Redo;
 
@@ -805,6 +807,22 @@ begin
   end;
 end;
 
+procedure TUndoRedoManager.SaveState(aLayerName: String);
+ var
+   aData : TSPUndoRec;
+begin
+  aData:=TSPUndoRec.Create;
+  aData.fLayerName:=aLayerName;
+  aData.fLayerData:=PChar(Layers[aLayerName].ToBASE64String);
+  aData.fLayerFrames:=Layers[aLayerName].FFrames.Text;
+  {$IFDEF DEBUG}
+  DumpDataToLog(@aData);
+  {$ENDIF}
+  fUndoList.Add(aData);
+  //clear all redo records if new undo record pushed
+  InternalClearStack(fRedoList);
+end;
+
 {$IFDEF DEBUG}
 procedure TUndoRedoManager.DumpDataToLog(aData: PSPUndoRec);
 begin
@@ -844,19 +862,8 @@ begin
 end;
 
 procedure TUndoRedoManager.SaveState;
- var
-   aData : TSPUndoRec;
 begin
-  aData:=TSPUndoRec.Create;
-  aData.fLayerName:=FrameGrid.ActiveLayer;
-  aData.fLayerData:=PChar(Layers[FrameGrid.ActiveLayer].ToBASE64String);
-  aData.fLayerFrames:=Layers[FrameGrid.ActiveLayer].FFrames.Text;
-  {$IFDEF DEBUG}
-  DumpDataToLog(@aData);
-  {$ENDIF}
-  fUndoList.Add(aData);
-  //clear all redo records if new undo record pushed
-  InternalClearStack(fRedoList);
+ SaveState(FrameGrid.ActiveLayer);
 end;
 
 procedure TUndoRedoManager.Undo;
@@ -1233,9 +1240,10 @@ begin
                         $BFBFBF, $FFFFFF, 4, 4);
   end;
   //draw all layers to canvas
-  if LayerExists(cINTERNALLAYERANDFRAME) then fPreview.PutImage(0,0,Layers[cINTERNALLAYERANDFRAME].Drawable,dmDrawWithTransparency);
+  if (LayerExists(cINTERNALLAYERANDFRAME) and Layers[cINTERNALLAYERANDFRAME].Visible) then fPreview.PutImage(0,0,Layers[cINTERNALLAYERANDFRAME].Drawable,dmDrawWithTransparency);
   for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do
-    if LayerExists(Frames[ActiveFrame].fLayers.Strings[i]) then
+    if (LayerExists(Frames[ActiveFrame].fLayers.Strings[i]) and
+        Layers[Frames[ActiveFrame].fLayers.Strings[i]].Visible) then
       fPreview.PutImage(0,0,Layers[Frames[ActiveFrame].fLayers.Strings[i]].Drawable,dmDrawWithTransparency);
   if LayerExists(csDRAWLAYER) then fPreview.PutImage(0,0,Layers[csDRAWLAYER].Drawable,dmDrawWithTransparency);
   if Assigned(Canvas) then begin

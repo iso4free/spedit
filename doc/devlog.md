@@ -188,3 +188,5 @@ DEV.LOG
 07.01.2023
 =
 - [+] Added Toggle grid feature
+- [+] Added Merge layer with previous feature
+- [!] Fixed incorrect layers list in Layers grid

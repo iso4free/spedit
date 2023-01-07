@@ -280,6 +280,7 @@ type
    fDrawGridMode : TDrawGridMode;
    dx,dy : Integer;             //offset to move grid
    startx,starty : Integer;     //start position to move
+   procedure LayersChange;
    procedure LoadPresets(aDir : String);
    procedure SetSelectedColor(const Button: TMouseButton; aColor : TBGRAPixel);
    procedure PaletteChange; //added colors to current palette
@@ -374,14 +375,16 @@ procedure TfrmMain.actAddLayerExecute(Sender: TObject);
 var
   aLayerName: String;
 begin
+  if not Assigned(FrameGrid) then Exit;
   aLayerName:=CheckLayerName('Layer'+IntToStr(Layers.Count-1));
   aLayerName := InputBox(rsLayerName, rsInputNewLaye, aLayerName);
   Layers[aLayerName]:=TSPLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
-  drwgrdLayers.RowCount:=Layers.Count;
   FrameGrid.ActiveLayer:=aLayerName;
   Frames[FrameGrid.ActiveFrame].AddLayer(aLayerName);
   Layers[aLayerName].AddToFrame(FrameGrid.ActiveFrame);
-  Layers[cINTERNALLAYERANDFRAME].Visible:=True;
+  Layers[aLayerName].Visible:=True;
+  Layers[aLayerName].Locked:=False;
+  LayersChange;
 end;
 
 procedure TfrmMain.actCopyExecute(Sender: TObject);
@@ -402,12 +405,14 @@ var
   aName : String;
   aData : String;
 begin
+ if not Assigned(FrameGrid) then Exit;
  aName:=rsCopyOf + FrameGrid.ActiveLayer;
  aData:=Layers[FrameGrid.ActiveLayer].ToBASE64String;
  Layers[aName]:=TSPLayer.Create(aName,aData);
  Frames[FrameGrid.ActiveFrame].AddLayer(aName);
  Layers[aName].AddToFrame(FrameGrid.ActiveFrame);
  FrameGrid.ActiveLayer:=aName;
+ LayersChange;
 end;
 
 procedure TfrmMain.actCutExecute(Sender: TObject);
@@ -421,7 +426,8 @@ end;
 
 procedure TfrmMain.actDeleteLayerExecute(Sender: TObject);
 begin
-  if FrameGrid.ActiveLayer=cINTERNALLAYERANDFRAME then begin
+ if not Assigned(FrameGrid) then Exit;
+ if FrameGrid.ActiveLayer=cINTERNALLAYERANDFRAME then begin
     ShowMessage(rsThisLayerCan2);
     Exit;
   end;
@@ -429,6 +435,7 @@ begin
   Layers.Remove(FrameGrid.ActiveLayer);
   Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
   FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;
+  LayersChange;
 end;
 
 procedure TfrmMain.actLanguageSelectExecute(Sender: TObject);
@@ -457,8 +464,34 @@ begin
 end;
 
 procedure TfrmMain.actMergeLayersExecute(Sender: TObject);
+var
+  aIdx : Integer;
+  aName: String;
 begin
-  ShowMessage(rsSorry);
+  if not Assigned(FrameGrid) then Exit;
+  if (FrameGrid.ActiveLayer=cINTERNALLAYERANDFRAME) or
+     (Frames[FrameGrid.ActiveFrame].LayersList.Count<2) or
+     (Layers[FrameGrid.ActiveLayer].Locked) then begin
+      ShowMessage(rsCantMerge);
+      Exit;
+  end;
+  aIdx:=Frames[FrameGrid.ActiveFrame].LayersList.IndexOf(FrameGrid.ActiveLayer);
+  if aIdx>0 then begin
+    aName:=Frames[FrameGrid.ActiveFrame].LayersList.Strings[aIdx-1];
+    if Layers[aName].Locked then begin
+      ShowMessage(rsCantMerge);
+      Exit;
+    end;
+    //all good - let`s merge
+    UndoRedoManager.SaveState(aName);
+    Layers[aName].Drawable.PutImage(0,0,Layers[FrameGrid.ActiveLayer].Drawable,dmDrawWithTransparency);
+    UndoRedoManager.SaveState;
+    Layers.Remove(FrameGrid.ActiveLayer);
+    Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
+    FrameGrid.ActiveLayer:=aName;
+    LayersChange;
+  end else
+     ShowMessage(rsCantMerge);
 end;
 
 procedure TfrmMain.actNewFrameExecute(Sender: TObject);
@@ -486,6 +519,7 @@ begin
                                                           FramePreview.Height);
    Frames[frmFrameDlg.edtFrameName.Text].AddLayer(cINTERNALLAYERANDFRAME);
    Layers[cINTERNALLAYERANDFRAME].AddToFrame(frmFrameDlg.edtFrameName.Text);
+   LayersChange;
    //todo: copy all layers to new frame if option checked
    for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
    FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
@@ -585,8 +619,8 @@ begin
         Layers['Clipboard'].Drawable.Canvas.Draw(0,0,aBmp);
       end;
       FreeAndNil(aBmp);
+      LayersChange;
       pbFrameDraw.Invalidate;
-      drwgrdLayers.Invalidate;
       FramePreview.Invalidate;
 end;
 
@@ -839,6 +873,8 @@ begin
      FrameGrid.ActiveLayer:=aKey;
     end;
   end;
+  pbFrameDraw.Invalidate;
+  FramePreview.Invalidate;
 end;
 
 procedure TfrmMain.actUndoExecute(Sender: TObject);
@@ -1235,6 +1271,13 @@ begin
     FrameGrid.RenderAndDraw(pbFrameDraw.Canvas);
   end;
   StatusBar1.Panels[2].Text:='w='+IntToStr(pbFrameDraw.ClientWidth)+'/h='+IntToStr(pbFrameDraw.ClientHeight);
+end;
+
+procedure TfrmMain.LayersChange;
+begin
+  Layers[FrameGrid.ActiveLayer].Visible:=True;
+  drwgrdLayers.RowCount:=Frames[FrameGrid.ActiveFrame].LayersList.Count+1;
+  drwgrdLayers.Invalidate;
 end;
 
 procedure TfrmMain.SetSelectedColor(const Button: TMouseButton;
