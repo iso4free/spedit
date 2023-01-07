@@ -21,9 +21,15 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Um Editor de Sprites Gratuito e de Código Aberto - V.4.0"
 
 #: tfrmabout.label3.caption
+#, fuzzy
+#| msgid ""
+#| "Created by (c) Vadim Vitomsky, 2000-2022\n"
+#| "Contributed by Eddie Mattos (translation to pt-br, Mascot)"
 msgid ""
 "Created by (c) Vadim Vitomsky, 2000-2022\n"
-"Contributed by Eddie Mattos (translation to pt-br, Mascot)"
+"Contributed by Eddie Mattos\n"
+"(translation to pt-br, Mascot animation)\n"
+"Mascot based on Original image created by Unknown_Chan"
 msgstr ""
 "Criado por (c) Vadim Vitomsky, 2000-2022\n"
 "Contribuições de:\n"

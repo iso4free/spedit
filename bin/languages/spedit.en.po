@@ -23,7 +23,9 @@ msgstr ""
 #: tfrmabout.label3.caption
 msgid ""
 "Created by (c) Vadim Vitomsky, 2000-2022\n"
-"Contributed by Eddie Mattos (translation to pt-br, Mascot)"
+"Contributed by Eddie Mattos\n"
+"(translation to pt-br, Mascot animation)\n"
+"Mascot based on Original image created by Unknown_Chan"
 msgstr ""
 
 #: tfrmabout.showsplashcheckbox.caption
