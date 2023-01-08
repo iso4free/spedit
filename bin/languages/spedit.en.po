@@ -462,6 +462,10 @@ msgctxt "tfrmmain.sbline.hint"
 msgid "Line tool - hotkey 'L'"
 msgstr ""
 
+#: tfrmmain.sbmove.hint
+msgid "Move tool - hotkey 'M'"
+msgstr ""
+
 #: tfrmmain.sbpen.hint
 msgid "Pen tool - hotkey 'P'"
 msgstr ""
@@ -589,6 +593,10 @@ msgstr ""
 
 #: uglobals.rsline
 msgid "Line"
+msgstr ""
+
+#: uglobals.rsmovetool
+msgid "Move tool"
 msgstr ""
 
 #: uglobals.rspalettewillb

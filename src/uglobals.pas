@@ -68,6 +68,7 @@ resourcestring
   rsUnsupportedFmt = 'There is no supported format in Clipboard!';
   rsRectangleSel = 'Rectangle selection';
   rsCantMerge = 'Can''t merge layers!';
+  rsMoveTool = 'Move tool';
 
 
 const
@@ -264,6 +265,7 @@ type
      FCells: Byte;
      FPrevX: Integer;
      FPrevY: Integer;
+     fVisible: Boolean;
      FX: Integer;
      FY: Integer;
      function GetPrevCoords: TPoint;
@@ -278,6 +280,7 @@ type
     property PrevX : Integer read FPrevX default 0;
     property PrevY : Integer read FPrevY default 0;
     property CursorSize : Byte read FCells write SetCells default 1; //cursor size in cells i.e. 2x2, 4x4 etc.
+    property Visible : Boolean read fVisible write fVisible default True;
   end;
 
   { TFrameGrid }
@@ -1113,6 +1116,7 @@ begin
   fPreview:=TBGRABitmap.Create(aW,aH);
   FCellCursor := TCellCursor.Create;
   FCellCursor.CursorSize:=1;
+  FCellCursor.Visible:=True;
   {$IFDEF DEBUG}
   //DebugLn(DateTimeToStr(Now), ': In  TFrameGrid.Create() Layers count ',IntToStr(Layers.Count));
   {$ENDIF}
@@ -1211,10 +1215,11 @@ begin
   if ShowGrid and ((fFrameGridSize+fFrameZoom)>5) then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
 
   //draw highlited cell cursor over the grid
-  fBuffer.Rectangle(CellCursor.X*(fFrameGridSize+fFrameZoom),
+  if CellCursor.Visible then
+   fBuffer.Rectangle(CellCursor.X*(fFrameGridSize+fFrameZoom),
                     CellCursor.Y*(fFrameGridSize+fFrameZoom),
                     CellCursor.X*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.CursorSize,
-                    CellCursor.Y*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.CursorSize,clRed);
+                    CellCursor.Y*(fFrameGridSize+fFrameZoom)+(fFrameGridSize+fFrameZoom)*CellCursor.CursorSize,clRed,dmXOR);
   //if selection enabled draw XORed selection rect
   if ToolOptions.IsSelection then begin
    //recalc selection rect coords

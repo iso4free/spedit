@@ -92,10 +92,22 @@ type
   { TSPSelection }
 
   TSPSelection = class(TSPDrawTool)
-    private
      constructor  Create;
      procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
      procedure MouseMove(x,y : Integer); override;
+  end;
+
+  { TSPMove }
+
+  TSPMove = class(TSPDrawTool)
+   fMovable : TBGRABitmap;
+    OffsetX,
+    OffsetY : Integer;
+    public
+     constructor Create;
+     procedure StartDraw(x,y : Integer; Shift: TShiftState; aButton : TMouseButton; aColor : TBGRAPixel);override;
+     procedure MouseMove(x,y : Integer); override;
+     destructor Destroy; override;
   end;
 
   { TSPRect }
@@ -169,6 +181,48 @@ begin
   tmp:= a;
   a:=b;
   b:=tmp;
+end;
+
+{ TSPMove }
+
+constructor TSPMove.Create;
+begin
+  FToolName:=rsMoveTool;
+  //if no active selection create full size image
+  if  not ToolOptions.IsSelection then begin
+    ToolOptions.SelectionRect.Left:=0;
+    ToolOptions.SelectionRect.Top:=0;
+    ToolOptions.SelectionRect.Bottom:=FrameGrid.FrameHeight-1;
+    ToolOptions.SelectionRect.Right:=FrameGrid.FrameWidth-1;
+    //ToolOptions.IsSelection:=True;
+  end;
+  fMovable:=TBGRABitmap.Create(ToolOptions.SelectionRect.Width, ToolOptions.SelectionRect.Height);
+  OffsetX:=0;
+  Offsety:=0;
+end;
+
+destructor TSPMove.Destroy;
+begin
+  FreeAndNil(fMovable);
+end;
+
+procedure TSPMove.MouseMove(x, y: Integer);
+begin
+  //inherited MouseMove(x, y);
+  OffsetX:=x-fstartx;
+  OffsetY:=y-fstarty;
+  ToolOptions.SelectionRect.Offset(OffsetX,OffsetY);
+  ClearBitmap(Layers[csDRAWLAYER].Drawable);
+  Layers[csDRAWLAYER].Drawable.PutImage(OffsetX,OffsetY,fMovable,dmDrawWithTransparency);
+end;
+
+procedure TSPMove.StartDraw(x, y: Integer; Shift: TShiftState;
+  aButton: TMouseButton; aColor: TBGRAPixel);
+begin
+  inherited StartDraw(x, y, Shift, aButton, aColor);
+  UndoRedoManager.SaveState;
+  Layers[FrameGrid.ActiveLayer].Drawable.DrawPart(ToolOptions.SelectionRect,fMovable.Canvas,0,0,True);
+  Layers[FrameGrid.ActiveLayer].Drawable.EraseRect(ToolOptions.SelectionRect,255);
 end;
 
 { TSPSelection }

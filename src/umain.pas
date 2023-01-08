@@ -201,6 +201,7 @@ type
     sbRectSelection: TSpeedButton;
     Separator9: TMenuItem;
     bbtnGridToggle: TBitBtn;
+    sbMove: TSpeedButton;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     Splitter3: TSplitter;
@@ -1076,6 +1077,10 @@ begin
        //L key Line tool
         sbLine.Click;
       end;
+    VK_M: begin
+       //M key Move tool
+        sbMove.Click;
+    end;
     VK_R:begin
        //R key Rectangle tool
         sbRect.Click;
@@ -1094,7 +1099,7 @@ begin
       end;
     VK_O:begin
        //O key Pipette tool (color picker)
-        sbPenClick(sbPipette);
+        sbPipette.Click;
       end;
     VK_X:begin
        //X key Swap colors
@@ -1102,7 +1107,7 @@ begin
       end;
     VK_S:begin
        //S key Selection
-        sbPenClick(sbRectSelection);
+        sbRectSelection.Click;
       end;
       //Esc for discard selection
     VK_ESCAPE: begin
@@ -1114,9 +1119,7 @@ begin
       end;
       end;
      end;
-   { pbFrameDraw.SetBounds(0,0,
-     FrameGrid.Offset.X+(FrameGrid.FrameWidth*(FrameGrid.GridSize+FrameGrid.FrameZoom)),
-     FrameGrid.Offset.Y+(FrameGrid.FrameHeight*(FrameGrid.GridSize+FrameGrid.FrameZoom)));  }
+
     pbFrameDraw.Invalidate;
     FramePreview.Invalidate;
     drwgrdLayers.Invalidate;
@@ -1169,7 +1172,7 @@ procedure TfrmMain.CreateCursors;
    i: Integer;
 begin
    //create cursors from tool buttons images
-   for i:= 1 to 9 do begin
+   for i:= 1 to 10 do begin
     aCur:=TCursorImage.Create;
     aCur.LoadFromLazarusResource(IntToStr(i));
     aCur.HotSpot.Create(0,15);
@@ -1385,7 +1388,8 @@ begin
  6:DrawTool:=TSPFilledRect.Create;
  7:DrawTool:=TSPCircle.Create;
  8:DrawTool:=TSPFloodFill.Create;
- 9:DrawTool:=TSPSelection.Create
+ 9:DrawTool:=TSPSelection.Create;
+ 10:DrawTool:=TSPMove.Create
  else begin
       ShowMessage(rsThisToolWill);
       DrawTool:=TSPPen.Create;

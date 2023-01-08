@@ -477,6 +477,10 @@ msgctxt "tfrmmain.sbline.hint"
 msgid "Line tool - hotkey 'L'"
 msgstr "Інструмент лінії - гаряча клавіша 'L'"
 
+#: tfrmmain.sbmove.hint
+msgid "Move tool - hotkey 'M'"
+msgstr ""
+
 #: tfrmmain.sbpen.hint
 msgid "Pen tool - hotkey 'P'"
 msgstr "Інструмент Олівець - гаряча клавіша 'P'"
@@ -606,6 +610,10 @@ msgstr "Шар %s заблокований для змін!!"
 msgid "Line"
 msgstr "Лінія"
 
+#: uglobals.rsmovetool
+msgid "Move tool"
+msgstr ""
+
 #: uglobals.rspalettewillb
 msgid "Palette will be resetted to default colors! Are You shure?"
 msgstr "Палітру буде скинуто до кольорів по замовчуванню! Ви впевнені?"
@@ -661,3 +669,4 @@ msgstr "Вам потрібно перевизначити метод MouseUp()!
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
 msgstr "Вам потрібно перевизначити метод MouseMove()! Назва класу: "
+

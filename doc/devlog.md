@@ -195,3 +195,4 @@ DEV.LOG
 =
 - [+] Added Popup menu for layers
 - [+] Added Move layer up/down features (use Popup menu)
+- [+] Added Move draw tool
