@@ -28,7 +28,7 @@ WORK PROGRESS
 Still development, new features will be added when i have enought time and motivation.
 You can sponsor me throught https://www.buymeacoffee.com/iso4free if You wanna get some features done faster.
 
-[Join the SPEdit Discord Server!](https://discord.gg/7Bfjxadz)
+[Join the SPEdit Discord Server!](https://discord.gg/JEU3ghn6W7)
 
 You can also join the project discussion in [Telegram](https://t.me/+UrD_O1LO8MNlOTEy)
 

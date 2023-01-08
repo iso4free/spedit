@@ -138,6 +138,14 @@ msgstr ""
 msgid "Merge layers"
 msgstr ""
 
+#: tfrmmain.actmovedown.caption
+msgid "Move Down"
+msgstr ""
+
+#: tfrmmain.actmoveup.caption
+msgid "Move Up"
+msgstr ""
+
 #: tfrmmain.actnewframe.caption
 msgctxt "tfrmmain.actnewframe.caption"
 msgid "New frame"

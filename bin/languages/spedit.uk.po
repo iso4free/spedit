@@ -1,21 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: spedit\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-01-07 20:45+0200\n"
-"Last-Translator: \n"
-"Language-Team: Ukrainian\n"
-"Language: uk_UA\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: spedit\n"
 "X-Crowdin-Project-ID: 548623\n"
 "X-Crowdin-Language: uk\n"
 "X-Crowdin-File: spedit.pot\n"
 "X-Crowdin-File-ID: 1\n"
-"X-Generator: Poedit 3.0.1\n"
+"Project-Id-Version: spedit\n"
+"Language-Team: Ukrainian\n"
+"Language: uk_UA\n"
+"PO-Revision-Date: 2023-01-08 10:24\n"
 
 #: tfrmabout.label1.caption
 msgid "SPEdit"
@@ -26,16 +21,14 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Вільний і відкритий редактор спрайтів V.4.0"
 
 #: tfrmabout.label3.caption
-msgid ""
-"Created by (c) Vadim Vitomsky, 2000-2022\n"
+msgid "Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos\n"
 "(translation to pt-br, Mascot animation)\n"
 "Mascot based on Original image created by Unknown_Chan"
-msgstr ""
-"Створено (c) Вадимом Вітомським, 2000-2022\n"
-"Залучений Едді Маттос \n"
-"(переклад до pt-br, анімація Талісмана)\n"
-"Талісман створено на основі оригінального зображення від Unknown_Chan"
+msgstr "Створено (c) Вадим Vitomsky, 2000-2022\n"
+"участю Едді Маттос\n"
+"(переклад до pt-br, Анімація Mascot)\n"
+"Mascot заснована на оригінальному зображенні, створеному Unknown_Chan"
 
 #: tfrmabout.showsplashcheckbox.caption
 msgid "Show at startup"
@@ -106,7 +99,7 @@ msgstr "Зменшити кількість кольорів для попере
 
 #: tfrmmain.actexit.caption
 msgid "&Exit"
-msgstr "&Вихід"
+msgstr "Вихід &E"
 
 #: tfrmmain.actframeexportpng.caption
 msgid "Export frame as PNG"
@@ -123,7 +116,7 @@ msgstr "Показати/приховати фрейми"
 
 #: tfrmmain.actgridtoggle.caption
 msgid "Toggle grid visibility"
-msgstr "Ввім/вимк сітку"
+msgstr "Показати/заховати Сітку"
 
 #: tfrmmain.actgridtoggle.hint
 msgctxt "tfrmmain.actgridtoggle.hint"
@@ -141,11 +134,19 @@ msgstr "Показати Шари"
 
 #: tfrmmain.actloadpresets.caption
 msgid "Load presets"
-msgstr "Завантажити пресети"
+msgstr "Завантажити шаблони"
 
 #: tfrmmain.actmergelayers.caption
 msgid "Merge layers"
 msgstr "Об'єднати з попереднім шаром"
+
+#: tfrmmain.actmovedown.caption
+msgid "Move Down"
+msgstr "Нижче"
+
+#: tfrmmain.actmoveup.caption
+msgid "Move Up"
+msgstr "Вище"
 
 #: tfrmmain.actnewframe.caption
 msgctxt "tfrmmain.actnewframe.caption"
@@ -193,7 +194,7 @@ msgstr "Референс"
 
 #: tfrmmain.actselectall.caption
 msgid "Select all"
-msgstr "Обрати все"
+msgstr "Виділити все"
 
 #: tfrmmain.actsettings.caption
 msgctxt "tfrmmain.actsettings.caption"
@@ -268,11 +269,9 @@ msgstr "ФК"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.caption
@@ -306,11 +305,9 @@ msgstr "ПК"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.framepreview.hint
@@ -329,7 +326,7 @@ msgstr "Розмір олівця"
 
 #: tfrmmain.lbppalettepresrts.caption
 msgid "Standard presets"
-msgstr "Стандартні пресети"
+msgstr "Стандартні шаблони"
 
 #: tfrmmain.miabout.caption
 msgctxt "tfrmmain.miabout.caption"
@@ -386,11 +383,9 @@ msgstr "Імпорт таблиці спрайтів"
 
 #: tfrmmain.miimportspritesheet.hint
 msgctxt "tfrmmain.miimportspritesheet.hint"
-msgid ""
-"You can import image or spritesheet file\n"
+msgid "You can import image or spritesheet file\n"
 "and add it to the library"
-msgstr ""
-"Імпортувати зображення або файл таблиці спрайтів\n"
+msgstr "Імпортувати зображення або файл таблиці спрайтів\n"
 "і додати його в бібліотеку"
 
 #: tfrmmain.milayers.caption
@@ -483,7 +478,7 @@ msgstr "Інструмент Прямокутник - гаряча клавіш�
 
 #: tfrmmain.sbrectselection.hint
 msgid "Rectangular selection tool - hotkey 'S'"
-msgstr "Інструмент прямокутного виділення - гаряча клавіша 'S'"
+msgstr "Прямокутне виділення - гаряча клавіша 'S'"
 
 #: tfrmresize.bbtncancel.caption
 msgctxt "tfrmresize.bbtncancel.caption"
@@ -526,7 +521,7 @@ msgstr "Налаштування"
 
 #: uglobals.rsactivetool
 msgid "Active tool: "
-msgstr "Ативний інструмент: "
+msgstr "Активний інструмент: "
 
 #: uglobals.rsbg
 msgid " / BG: "
@@ -534,7 +529,7 @@ msgstr " / ФК: "
 
 #: uglobals.rscantmerge
 msgid "Can't merge layers!"
-msgstr "Не можна об'єднати шари!"
+msgstr "Не вдалося об'єднати шари!"
 
 #: uglobals.rscircle
 msgid "Circle"
@@ -587,7 +582,7 @@ msgstr "Назва шару"
 #: uglobals.rslayersislock
 #, object-pascal-format
 msgid "Layer %s is locked for changes!!"
-msgstr "Шар %s заблокований для змін!"
+msgstr "Шар %s заблокований для змін!!"
 
 #: uglobals.rsline
 msgid "Line"
@@ -595,7 +590,7 @@ msgstr "Лінія"
 
 #: uglobals.rspalettewillb
 msgid "Palette will be resetted to default colors! Are You shure?"
-msgstr "Палітру буде перестворено з кольорами по замовчуванню! Ви впевнені?"
+msgstr "Палітру буде скинуто до кольорів по замовчуванню! Ви впевнені?"
 
 #: uglobals.rspen
 msgid "Pen"
@@ -607,7 +602,7 @@ msgstr "Піпетка"
 
 #: uglobals.rspleaseinputn
 msgid "Please input new library name"
-msgstr "Будь ласка введіть назву нової бібліотеки"
+msgstr "Будь ласка, введіть назву нової бібліотеки"
 
 #: uglobals.rsrectangle
 msgid "Rectangle"
@@ -615,7 +610,7 @@ msgstr "Прямокутник"
 
 #: uglobals.rsrectanglesel
 msgid "Rectangle selection"
-msgstr "Прямокутне виділення"
+msgstr "Прямокутний вибір"
 
 #: uglobals.rssorry
 msgid "Sorry, will be implemented soon!"
@@ -623,7 +618,7 @@ msgstr "Вибачте, буде реалізовано пізніше!"
 
 #: uglobals.rsthislayercan
 msgid "This layer can't be renamed!"
-msgstr "Цей шар не можна переіменувати!"
+msgstr "Цей шар не можна перейменувати!"
 
 #: uglobals.rsthislayercan2
 msgid "This layer can't be deleted!"
@@ -635,7 +630,7 @@ msgstr "Вибачте, цей інструмент буде реалізова�
 
 #: uglobals.rsunsupportedfmt
 msgid "There is no supported format in Clipboard!"
-msgstr "В буфері обміну немає підтримуваних форматів!"
+msgstr "Немає підтримуваного формату в буфер обміну!"
 
 #: uglobals.rswarning
 msgid "Warning!"
@@ -643,8 +638,9 @@ msgstr "Попередження!"
 
 #: uglobals.rsyoumustoverr
 msgid "You must override MouseUp() method! Class name: "
-msgstr "Вам потрібно переназначити метод MouseUp()! Назва класу: "
+msgstr "Вам потрібно перевизначити метод MouseUp()! Назва класу: "
 
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
-msgstr "Вам потрібно переназначити метод MouseMove() !Назва класу: "
+msgstr "Вам потрібно перевизначити метод MouseMove()! Назва класу: "
+

@@ -179,13 +179,14 @@ object frmMain: TfrmMain
         ExtendedSelect = False
         FixedCols = 0
         ParentDoubleBuffered = False
+        PopupMenu = pmLayers
         RowCount = 2
         TabOrder = 0
         TabStop = False
         TitleImageList = BGRAImageList24x24
         TitleImageListWidth = 24
         OnDrawCell = drwgrdLayersDrawCell
-        OnSelectCell = drwgrdLayersSelectCell
+        OnMouseUp = drwgrdLayersMouseUp
         ColWidths = (
           18
           18
@@ -940,6 +941,12 @@ object frmMain: TfrmMain
       end
       object miMergeLayers: TMenuItem
         Action = actMergeLayers
+      end
+      object miMoveUp: TMenuItem
+        Action = actMoveUp
+      end
+      object miMoveDown: TMenuItem
+        Action = actMoveDown
       end
     end
     object miPalette: TMenuItem
@@ -1852,6 +1859,18 @@ object frmMain: TfrmMain
       ImageIndex = 32
       OnExecute = actGridToggleExecute
     end
+    object actMoveUp: TAction
+      Category = 'Layers'
+      Caption = 'Move Up'
+      ImageIndex = 26
+      OnExecute = actMoveUpExecute
+    end
+    object actMoveDown: TAction
+      Category = 'Layers'
+      Caption = 'Move Down'
+      ImageIndex = 25
+      OnExecute = actMoveDownExecute
+    end
   end
   object BGRAImageList24x24: TBGRAImageList
     Left = 440
@@ -2016,5 +2035,27 @@ object frmMain: TfrmMain
   object SelectDirectoryDialog1: TSelectDirectoryDialog
     Left = 200
     Top = 224
+  end
+  object pmLayers: TPopupMenu
+    Left = 57
+    Top = 356
+    object pmiAddLayer: TMenuItem
+      Action = actAddLayer
+    end
+    object pmiDeleteLayer: TMenuItem
+      Action = actDeleteLayer
+    end
+    object pmiCopyLayer: TMenuItem
+      Action = actCopyLayer
+    end
+    object pmiMergeLayers: TMenuItem
+      Action = actMergeLayers
+    end
+    object MenuItem2: TMenuItem
+      Action = actMoveUp
+    end
+    object MenuItem3: TMenuItem
+      Action = actMoveDown
+    end
   end
 end

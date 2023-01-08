@@ -27,7 +27,7 @@ TRABALHO EM PROGRESSO
 Continua em desenvolvimento, novos recursos seão adicionados quando eu tiver tempo e motivação suficiente.
 Você pode patrocinar o criador do projeto através do https://www.buymeacoffee.com/iso4free se quiser que alguns recursos sejam priorizados.
 
-[Junte-se ao servidor Discord do SPEdit!](https://discord.gg/7Bfjxadz)
+[Junte-se ao servidor Discord do SPEdit!](https://discord.gg/JEU3ghn6W7)
 
 Vocẽ também pode se juntar à discussão do projeto no [Telegram](https://t.me/+UrD_O1LO8MNlOTEy)
 

@@ -190,3 +190,8 @@ DEV.LOG
 - [+] Added Toggle grid feature
 - [+] Added Merge layer with previous feature
 - [!] Fixed incorrect layers list in Layers grid
+
+08.01.2023
+=
+- [+] Added Popup menu for layers
+- [+] Added Move layer up/down features (use Popup menu)

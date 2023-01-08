@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: spedit\n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
-"PO-Revision-Date: 2022-12-27 11:21\n"
+"PO-Revision-Date: 2023-01-08 10:24\n"
 
 #: tfrmabout.label1.caption
 msgid "SPEdit"
@@ -21,19 +21,14 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Um Editor de Sprites Gratuito e de Código Aberto - V.4.0"
 
 #: tfrmabout.label3.caption
-#, fuzzy
-#| msgid ""
-#| "Created by (c) Vadim Vitomsky, 2000-2022\n"
-#| "Contributed by Eddie Mattos (translation to pt-br, Mascot)"
-msgid ""
-"Created by (c) Vadim Vitomsky, 2000-2022\n"
+msgid "Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos\n"
 "(translation to pt-br, Mascot animation)\n"
 "Mascot based on Original image created by Unknown_Chan"
-msgstr ""
-"Criado por (c) Vadim Vitomsky, 2000-2022\n"
-"Contribuições de:\n"
-" EddieMattos - Tradução para o pt-BR e redesign do mascote"
+msgstr "Criado por (c) Vadim Vitomsky, 2000-2022\n"
+"Contribuído por Eddie Mattos\n"
+"(tradução para pt-br, Animação de mascote)\n"
+"Mascote baseado na imagem original criada por Unknown_Chan"
 
 #: tfrmabout.showsplashcheckbox.caption
 msgid "Show at startup"
@@ -80,7 +75,7 @@ msgstr "Adicionar camada"
 
 #: tfrmmain.actcopy.caption
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 #: tfrmmain.actcopylayer.caption
 msgid "Copy layer"
@@ -88,7 +83,7 @@ msgstr "Copiar camada"
 
 #: tfrmmain.actcut.caption
 msgid "Cut"
-msgstr ""
+msgstr "Cortar"
 
 #: tfrmmain.actdeletelayer.caption
 msgid "Delete layer"
@@ -96,11 +91,11 @@ msgstr "Deletar camada"
 
 #: tfrmmain.actdither.caption
 msgid "Dither frame"
-msgstr ""
+msgstr "Pontilhar quadro"
 
 #: tfrmmain.actdither.hint
 msgid "Reduse colors to preset palette"
-msgstr ""
+msgstr "Reduzir cores para a paleta predefinida"
 
 #: tfrmmain.actexit.caption
 msgid "&Exit"
@@ -121,12 +116,12 @@ msgstr "Alternar quadros"
 
 #: tfrmmain.actgridtoggle.caption
 msgid "Toggle grid visibility"
-msgstr ""
+msgstr "Alterar visibilidade da grade"
 
 #: tfrmmain.actgridtoggle.hint
 msgctxt "tfrmmain.actgridtoggle.hint"
 msgid "Show/hide grid"
-msgstr ""
+msgstr "Exibir/ocultar grade"
 
 #: tfrmmain.actlanguageselect.caption
 msgctxt "tfrmmain.actlanguageselect.caption"
@@ -144,6 +139,14 @@ msgstr "Carregar predefinição"
 #: tfrmmain.actmergelayers.caption
 msgid "Merge layers"
 msgstr "Mesclar camadas"
+
+#: tfrmmain.actmovedown.caption
+msgid "Move Down"
+msgstr ""
+
+#: tfrmmain.actmoveup.caption
+msgid "Move Up"
+msgstr ""
 
 #: tfrmmain.actnewframe.caption
 msgctxt "tfrmmain.actnewframe.caption"
@@ -178,7 +181,7 @@ msgstr "Alternar paleta"
 
 #: tfrmmain.actpaste.caption
 msgid "Paste"
-msgstr ""
+msgstr "Colar"
 
 #: tfrmmain.actredo.caption
 msgctxt "tfrmmain.actredo.caption"
@@ -191,7 +194,7 @@ msgstr "Referência"
 
 #: tfrmmain.actselectall.caption
 msgid "Select all"
-msgstr ""
+msgstr "Selecionar tudo"
 
 #: tfrmmain.actsettings.caption
 msgctxt "tfrmmain.actsettings.caption"
@@ -222,7 +225,7 @@ msgstr "Redefinir zoom"
 #: tfrmmain.bbtngridtoggle.hint
 msgctxt "tfrmmain.bbtngridtoggle.hint"
 msgid "Show/hide grid"
-msgstr ""
+msgstr "Exibir/ocultar grade"
 
 #: tfrmmain.bbtnimportframe.hint
 msgctxt "tfrmmain.bbtnimportframe.hint"
@@ -266,11 +269,9 @@ msgstr "PF"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Clique esquedo para selecionar a cor\n"
+msgstr "Clique esquedo para selecionar a cor\n"
 "Clique direito para definir a cor como transparente"
 
 #: tfrmmain.caption
@@ -304,11 +305,9 @@ msgstr "PP"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Clique esquedo para selecionar a cor\n"
+msgstr "Clique esquedo para selecionar a cor\n"
 "Clique direito para definir a cor como transparente"
 
 #: tfrmmain.framepreview.hint
@@ -384,8 +383,7 @@ msgstr "Importar Planilha de sprites"
 
 #: tfrmmain.miimportspritesheet.hint
 msgctxt "tfrmmain.miimportspritesheet.hint"
-msgid ""
-"You can import image or spritesheet file\n"
+msgid "You can import image or spritesheet file\n"
 "and add it to the library"
 msgstr "Você pode importar uma imagem ou planilha de sprites e adicioná-la à biblioteca"
 
@@ -479,7 +477,7 @@ msgstr "Retangulo - atalho 'R'"
 
 #: tfrmmain.sbrectselection.hint
 msgid "Rectangular selection tool - hotkey 'S'"
-msgstr ""
+msgstr "Seleção retangular - atalho 'S'"
 
 #: tfrmresize.bbtncancel.caption
 msgctxt "tfrmresize.bbtncancel.caption"
@@ -530,7 +528,7 @@ msgstr " / PF"
 
 #: uglobals.rscantmerge
 msgid "Can't merge layers!"
-msgstr ""
+msgstr "Camadas não podem ser mescladas!"
 
 #: uglobals.rscircle
 msgid "Circle"
@@ -611,7 +609,7 @@ msgstr "Retângulo"
 
 #: uglobals.rsrectanglesel
 msgid "Rectangle selection"
-msgstr ""
+msgstr "Seleção retangular"
 
 #: uglobals.rssorry
 msgid "Sorry, will be implemented soon!"
@@ -631,7 +629,7 @@ msgstr "Essa ferramenta será lançada em breve"
 
 #: uglobals.rsunsupportedfmt
 msgid "There is no supported format in Clipboard!"
-msgstr ""
+msgstr "Não há nenhum formato suportado na área de transferência!"
 
 #: uglobals.rswarning
 msgid "Warning!"

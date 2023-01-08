@@ -53,6 +53,8 @@ type
     actCopy: TAction;
     actCut: TAction;
     actGridToggle: TAction;
+    actMoveDown: TAction;
+    actMoveUp: TAction;
     actPaste: TAction;
     actSelectAll: TAction;
     actNotImplemented: TAction;
@@ -106,6 +108,14 @@ type
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
     MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    miMoveDown: TMenuItem;
+    miMoveUp: TMenuItem;
+    pmiMergeLayers: TMenuItem;
+    pmiCopyLayer: TMenuItem;
+    pmiDeleteLayer: TMenuItem;
+    pmiAddLayer: TMenuItem;
     miPaste: TMenuItem;
     miCut: TMenuItem;
     miSelectAll: TMenuItem;
@@ -165,6 +175,7 @@ type
     pnlFrames: TPanel;
     pnlEditor: TPanel;
     pnlLayers: TPanel;
+    pmLayers: TPopupMenu;
     SavePaletteDialog: TSaveDialog;
     sbCircle: TSpeedButton;
     sbEracer: TSpeedButton;
@@ -210,6 +221,8 @@ type
     procedure actLayersToggleExecute(Sender: TObject);
     procedure actLoadPresetsExecute(Sender: TObject);
     procedure actMergeLayersExecute(Sender: TObject);
+    procedure actMoveDownExecute(Sender: TObject);
+    procedure actMoveUpExecute(Sender: TObject);
     procedure actNewFrameExecute(Sender: TObject);
     procedure actNotImplementedExecute(Sender: TObject);
     procedure actPaletteImportExecute(Sender: TObject);
@@ -244,8 +257,8 @@ type
       ARect: TRect; State: TOwnerDrawState);
     procedure drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
-    procedure drwgrdLayersSelectCell(Sender: TObject; aCol, aRow: Integer;
-      var CanSelect: Boolean);
+    procedure drwgrdLayersMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     procedure actUndoExecute(Sender: TObject);
     procedure FgColorClick(Sender: TObject);
     procedure FgColorMouseUp(Sender: TObject; Button: TMouseButton;
@@ -492,6 +505,30 @@ begin
     LayersChange;
   end else
      ShowMessage(rsCantMerge);
+end;
+
+procedure TfrmMain.actMoveDownExecute(Sender: TObject);
+var aIdx : Integer;
+begin
+ with Frames[FrameGrid.ActiveFrame].LayersList do begin
+  aIdx:=IndexOf(FrameGrid.ActiveLayer);
+  if aIdx>1 then begin
+    Move(aIdx,aIdx-1);
+    LayersChange;
+  end;
+ end;
+end;
+
+procedure TfrmMain.actMoveUpExecute(Sender: TObject);
+var aIdx : Integer;
+begin
+ with Frames[FrameGrid.ActiveFrame].LayersList do begin
+  aIdx:=IndexOf(FrameGrid.ActiveLayer);
+  if aIdx<(Count-1) then begin
+    Move(aIdx,aIdx+1);
+    LayersChange;
+  end;
+ end;
 end;
 
 procedure TfrmMain.actNewFrameExecute(Sender: TObject);
@@ -851,16 +888,22 @@ begin
   end;
 end;
 
-procedure TfrmMain.drwgrdLayersSelectCell(Sender: TObject; aCol, aRow: Integer;
-  var CanSelect: Boolean);
-var aKey : String;
-    cnt  : Integer;
+procedure TfrmMain.drwgrdLayersMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  ACol, ARow: Integer;
+  ARect: TRect;
+  aKey : String;
+  cnt  : Integer;
 begin
-  if not Assigned(FrameGrid) then Exit;
-  if aRow=0 then Exit; //click on table header - do nothing
-  cnt:=Frames[FrameGrid.ActiveFrame].LayersList.Count;
-  aKey:=Frames[FrameGrid.ActiveFrame].LayersList.Strings[Cnt-aRow];
-  if aKey='' then Exit;
+  if ((Button<>mbLeft) or (not Assigned(FrameGrid))) then Exit;
+  with (Sender as TDrawGrid) do begin
+    MouseToCell(X, Y, ACol, ARow);
+    ARect := CellRect(ACol, ARow);
+    if ((aRow=0) or (Y > ARect.Bottom))then Exit;
+    cnt:=Frames[FrameGrid.ActiveFrame].LayersList.Count;
+    aKey:=Frames[FrameGrid.ActiveFrame].LayersList.Strings[Cnt-aRow];
+    if aKey='' then Exit;
 
   case aCol of
 0:begin //change layer visibility
@@ -875,6 +918,7 @@ begin
   end;
   pbFrameDraw.Invalidate;
   FramePreview.Invalidate;
+ end;
 end;
 
 procedure TfrmMain.actUndoExecute(Sender: TObject);
