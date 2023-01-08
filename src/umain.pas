@@ -108,8 +108,8 @@ type
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
     MenuItem1: TMenuItem;
-    MenuItem2: TMenuItem;
-    MenuItem3: TMenuItem;
+    pmiMoveUp: TMenuItem;
+    pmiMoveDown: TMenuItem;
     miMoveDown: TMenuItem;
     miMoveUp: TMenuItem;
     pmiMergeLayers: TMenuItem;
@@ -307,7 +307,7 @@ var
 
 implementation
 
-uses udraw, uabout, uframedlg, uresizedlg, ureferense, usettings;
+uses udraw, uabout, unamedlg, uframedlg, uresizedlg, ureferense, usettings;
 
 
 procedure EraseSelection;
@@ -390,7 +390,12 @@ var
 begin
   if not Assigned(FrameGrid) then Exit;
   aLayerName:=CheckLayerName('Layer'+IntToStr(Layers.Count-1));
-  aLayerName := InputBox(rsLayerName, rsInputNewLaye, aLayerName);
+  frmNameDlg.Caption:=rsLayerName;
+  frmNameDlg.edName.Text:=aLayerName;
+  frmNameDlg.lblName.Caption:=rsInputNewLaye;
+  frmNameDlg.ShowModal;
+  if frmNameDlg.ModalResult<>mrOK then Exit;
+  aLayerName:=frmNameDlg.edName.Text;
   Layers[aLayerName]:=TSPLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
   FrameGrid.ActiveLayer:=aLayerName;
   Frames[FrameGrid.ActiveFrame].AddLayer(aLayerName);
@@ -605,6 +610,7 @@ begin
      for i:= 0 to Layers.Count-1 do
       Palette.AddColors(Layers[Layers.Keys[i]].Drawable);
     end;
+  mbPaletteGrid.Invalidate;
 end;
 
 procedure TfrmMain.actPaletteSaveExecute(Sender: TObject);
@@ -1322,6 +1328,8 @@ begin
   Layers[FrameGrid.ActiveLayer].Visible:=True;
   drwgrdLayers.RowCount:=Frames[FrameGrid.ActiveFrame].LayersList.Count+1;
   drwgrdLayers.Invalidate;
+  pbFrameDraw.Invalidate;
+  FramePreview.Invalidate;
 end;
 
 procedure TfrmMain.SetSelectedColor(const Button: TMouseButton;

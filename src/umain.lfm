@@ -2051,10 +2051,10 @@ object frmMain: TfrmMain
     object pmiMergeLayers: TMenuItem
       Action = actMergeLayers
     end
-    object MenuItem2: TMenuItem
+    object pmiMoveUp: TMenuItem
       Action = actMoveUp
     end
-    object MenuItem3: TMenuItem
+    object pmiMoveDown: TMenuItem
       Action = actMoveDown
     end
   end

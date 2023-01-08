@@ -1,4 +1,5 @@
 {***************************************************************************}
+{*     This file is a part of                                              *}
 {*                                                                         *}
 {* @@@@@@  @@@@@@@  @@@@@@@@ @@@@@@@  @@@ @@@@@@@   @@@  @@@         @@@   *}
 {*@@@@@@@  @@@@@@@@ @@@@@@@@ @@@@@@@@ @@@ @@@@@@@   @@@  @@@        @@@@   *}
@@ -21,43 +22,37 @@
 {*    but WITHOUT ANY WARRANTY; without even the implied warranty of       *}
 {*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                 *}
 {***************************************************************************}
+unit unamedlg;
 
-program spedit;
+{$mode ObjFPC}{$H+}
 
-{$mode objfpc}{$H+}
+interface
 
 uses
-  {$IFDEF UNIX}
-  cthreads,
-  {$ENDIF}
-  {$IFDEF HASAMIGA}
-  athreads,
-  {$ENDIF}
-  {$IFDEF DEBUG}
-  LazLogger,
-  {$ENDIF}
-  Interfaces, // this includes the LCL widgetset
-  Forms, umain, udraw, uglobals, uabout, ureferense,
-  uframedlg
-  { you can add units after this },
-  sysutils, usettings, uresizedlg, unamedlg;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Buttons,
+  StdCtrls;
 
-{$R *.res}
+type
 
-begin
-  {$IFDEF DEBUG}
-  if FileExists(ChangeFileExt(Application.ExeName,'.log')) then DeleteFile(ChangeFileExt(Application.ExeName,'.log'));
-  DebugLogger.ParamForLogFileName:='--debug-log';
-  {$ENDIF}
-  RequireDerivedFormResource:=True;
-  Application.Scaled:=True;
-  Application.Initialize;
-  Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TfrmReferense, frmReferense);
-  Application.CreateForm(TfrmFrameDlg, frmFrameDlg);
-  Application.CreateForm(TfrmSettings, frmSettings);
-  Application.CreateForm(TfrmResize, frmResize);
-  Application.CreateForm(TfrmNameDlg, frmNameDlg);
-  Application.Run;
+  { TfrmNameDlg }
+
+  TfrmNameDlg = class(TForm)
+    bbtnOk: TBitBtn;
+    bbtnCancel: TBitBtn;
+    edName: TEdit;
+    lblName: TLabel;
+    pnlButtons: TPanel;
+  private
+
+  public
+
+  end;
+
+var
+  frmNameDlg: TfrmNameDlg;
+
+implementation
+{$R *.lfm}
+
 end.
 

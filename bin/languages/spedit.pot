@@ -467,6 +467,11 @@ msgstr ""
 msgid "Rectangular selection tool - hotkey 'S'"
 msgstr ""
 
+#: tfrmnamedlg.bbtncancel.caption
+msgctxt "tfrmnamedlg.bbtncancel.caption"
+msgid "Cancel"
+msgstr ""
+
 #: tfrmresize.bbtncancel.caption
 msgctxt "tfrmresize.bbtncancel.caption"
 msgid "Cancel"

@@ -1,16 +1,21 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: spedit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2023-01-08 17:22+0200\n"
+"Last-Translator: \n"
+"Language-Team: Ukrainian\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: spedit\n"
 "X-Crowdin-Project-ID: 548623\n"
 "X-Crowdin-Language: uk\n"
 "X-Crowdin-File: spedit.pot\n"
 "X-Crowdin-File-ID: 1\n"
-"Project-Id-Version: spedit\n"
-"Language-Team: Ukrainian\n"
-"Language: uk_UA\n"
-"PO-Revision-Date: 2023-01-08 10:24\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: tfrmabout.label1.caption
 msgid "SPEdit"
@@ -21,11 +26,13 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Вільний і відкритий редактор спрайтів V.4.0"
 
 #: tfrmabout.label3.caption
-msgid "Created by (c) Vadim Vitomsky, 2000-2022\n"
+msgid ""
+"Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos\n"
 "(translation to pt-br, Mascot animation)\n"
 "Mascot based on Original image created by Unknown_Chan"
-msgstr "Створено (c) Вадим Vitomsky, 2000-2022\n"
+msgstr ""
+"Створено (c) Вадим Vitomsky, 2000-2022\n"
 "участю Едді Маттос\n"
 "(переклад до pt-br, Анімація Mascot)\n"
 "Mascot заснована на оригінальному зображенні, створеному Unknown_Chan"
@@ -269,9 +276,11 @@ msgstr "ФК"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
-msgid "Left click to select color\n"
+msgid ""
+"Left click to select color\n"
 "Right click to set transparent color"
-msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr ""
+"Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.caption
@@ -305,9 +314,11 @@ msgstr "ПК"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
-msgid "Left click to select color\n"
+msgid ""
+"Left click to select color\n"
 "Right click to set transparent color"
-msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr ""
+"Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.framepreview.hint
@@ -383,9 +394,11 @@ msgstr "Імпорт таблиці спрайтів"
 
 #: tfrmmain.miimportspritesheet.hint
 msgctxt "tfrmmain.miimportspritesheet.hint"
-msgid "You can import image or spritesheet file\n"
+msgid ""
+"You can import image or spritesheet file\n"
 "and add it to the library"
-msgstr "Імпортувати зображення або файл таблиці спрайтів\n"
+msgstr ""
+"Імпортувати зображення або файл таблиці спрайтів\n"
 "і додати його в бібліотеку"
 
 #: tfrmmain.milayers.caption
@@ -479,6 +492,11 @@ msgstr "Інструмент Прямокутник - гаряча клавіш�
 #: tfrmmain.sbrectselection.hint
 msgid "Rectangular selection tool - hotkey 'S'"
 msgstr "Прямокутне виділення - гаряча клавіша 'S'"
+
+#: tfrmnamedlg.bbtncancel.caption
+msgctxt "tfrmnamedlg.bbtncancel.caption"
+msgid "Cancel"
+msgstr "Скасувати"
 
 #: tfrmresize.bbtncancel.caption
 msgctxt "tfrmresize.bbtncancel.caption"
@@ -643,4 +661,3 @@ msgstr "Вам потрібно перевизначити метод MouseUp()!
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
 msgstr "Вам потрібно перевизначити метод MouseMove()! Назва класу: "
-
