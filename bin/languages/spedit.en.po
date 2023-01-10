@@ -99,6 +99,14 @@ msgstr ""
 msgid "&Exit"
 msgstr ""
 
+#: tfrmmain.actfliph.caption
+msgid "Flip horizontal"
+msgstr ""
+
+#: tfrmmain.actflipv.caption
+msgid "Flip vertical"
+msgstr ""
+
 #: tfrmmain.actframeexportpng.caption
 msgid "Export frame as PNG"
 msgstr ""
@@ -188,6 +196,14 @@ msgstr ""
 
 #: tfrmmain.actreferencetoggle.caption
 msgid "Reference"
+msgstr ""
+
+#: tfrmmain.actrotateccw.caption
+msgid "Rotate CCW 90"
+msgstr ""
+
+#: tfrmmain.actrotatecw.caption
+msgid "Rotate CW 90"
 msgstr ""
 
 #: tfrmmain.actselectall.caption
@@ -360,6 +376,10 @@ msgctxt "tfrmmain.mifilesaveproject.caption"
 msgid "Save Sprite Project"
 msgstr ""
 
+#: tfrmmain.mifliprotate.caption
+msgid "Flip/Rotate"
+msgstr ""
+
 #: tfrmmain.miframe.caption
 msgctxt "tfrmmain.miframe.caption"
 msgid "Frame"
@@ -439,6 +459,10 @@ msgstr ""
 #: tfrmmain.miview.caption
 msgctxt "tfrmmain.miview.caption"
 msgid "View"
+msgstr ""
+
+#: tfrmmain.pmilayerfliprotate.caption
+msgid "Flip/rotate layer"
 msgstr ""
 
 #: tfrmmain.sbcircle.hint

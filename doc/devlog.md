@@ -196,3 +196,10 @@ DEV.LOG
 - [+] Added Popup menu for layers
 - [+] Added Move layer up/down features (use Popup menu)
 - [+] Added Move draw tool
+
+10.01.2023
+=
+- [+] Added Flipping/Rotating layers
+- [*] Last Palette preset autoload and autosave
+- [*] Last Frame Export path store in settings
+- [+] Docs added Hotkeys Cheatsheet

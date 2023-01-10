@@ -53,6 +53,10 @@ type
     actCopy: TAction;
     actCut: TAction;
     actGridToggle: TAction;
+    actFlipH: TAction;
+    actFlipV: TAction;
+    actRotateCCW: TAction;
+    actRotateCW: TAction;
     actMoveDown: TAction;
     actMoveUp: TAction;
     actPaste: TAction;
@@ -108,6 +112,16 @@ type
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
     MenuItem1: TMenuItem;
+    miRotateCCW: TMenuItem;
+    miRotateCW: TMenuItem;
+    miFlipVertical: TMenuItem;
+    miFlipH: TMenuItem;
+    miFlipRotate: TMenuItem;
+    pmiRotateCCW: TMenuItem;
+    pmiRotateCW: TMenuItem;
+    pmiFlipV: TMenuItem;
+    pmiFlipH: TMenuItem;
+    pmiLayerFlipRotate: TMenuItem;
     pmiMoveUp: TMenuItem;
     pmiMoveDown: TMenuItem;
     miMoveDown: TMenuItem;
@@ -210,6 +224,7 @@ type
     procedure actCopyExecute(Sender: TObject);
     procedure actCutExecute(Sender: TObject);
     procedure actDitherExecute(Sender: TObject);
+    procedure actFlipVExecute(Sender: TObject);
     procedure actFrameExportPNGExecute(Sender: TObject);
     procedure actFrameResizeExecute(Sender: TObject);
     procedure actFramesToggleExecute(Sender: TObject);
@@ -222,6 +237,7 @@ type
     procedure actLayersToggleExecute(Sender: TObject);
     procedure actLoadPresetsExecute(Sender: TObject);
     procedure actMergeLayersExecute(Sender: TObject);
+    procedure actFlipHExecute(Sender: TObject);
     procedure actMoveDownExecute(Sender: TObject);
     procedure actMoveUpExecute(Sender: TObject);
     procedure actNewFrameExecute(Sender: TObject);
@@ -234,6 +250,8 @@ type
     procedure actPasteExecute(Sender: TObject);
     procedure actRedoExecute(Sender: TObject);
     procedure actReferenceToggleExecute(Sender: TObject);
+    procedure actRotateCCWExecute(Sender: TObject);
+    procedure actRotateCWExecute(Sender: TObject);
     procedure actSelectAllExecute(Sender: TObject);
     procedure actSettingsExecute(Sender: TObject);
     procedure actToggleFullScreenExecute(Sender: TObject);
@@ -347,11 +365,11 @@ end;
 
 procedure TfrmMain.actFrameExportPNGExecute(Sender: TObject);
 begin
- sdExportFrameSaveDialog.InitialDir:=GetUserDir;
- sdExportFrameSaveDialog.FileName:=FrameGrid.ActiveFrame;
+ sdExportFrameSaveDialog.InitialDir:=INI.ReadString('PATH','EXPORT',GetUserDir());
  if sdExportFrameSaveDialog.Execute then begin
    //save current frame to PNG file by default to user dir and with frame name
    FrameGrid.ExpotPng(sdExportFrameSaveDialog.FileName);
+   INI.WriteString('PATH','EXPORT',ExtractFilePath(sdExportFrameSaveDialog.FileName));
  end;
 end;
 
@@ -511,6 +529,26 @@ begin
     LayersChange;
   end else
      ShowMessage(rsCantMerge);
+end;
+
+procedure TfrmMain.actFlipHExecute(Sender: TObject);
+begin
+  if Assigned(FrameGrid) then begin
+   Layers[FrameGrid.ActiveLayer].Drawable.HorizontalFlip;
+   pbFrameDraw.Invalidate;
+   FramePreview.Invalidate;
+   drwgrdLayers.Invalidate;
+  end;
+end;
+
+procedure TfrmMain.actFlipVExecute(Sender: TObject);
+begin
+  if Assigned(FrameGrid) then begin
+   Layers[FrameGrid.ActiveLayer].Drawable.VerticalFlip;
+   pbFrameDraw.Invalidate;
+   FramePreview.Invalidate;
+   drwgrdLayers.Invalidate;
+  end;
 end;
 
 procedure TfrmMain.actMoveDownExecute(Sender: TObject);
@@ -679,6 +717,36 @@ begin
  if not Assigned(frmReferense) then frmReferense:=TfrmReferense.Create(nil);
  frmReferense.Visible:=not frmReferense.Visible;
  actReferenceToggle.Checked:=frmReferense.Visible;
+end;
+
+procedure TfrmMain.actRotateCCWExecute(Sender: TObject);
+var
+  aTmp : TBGRABitmap;
+begin
+ if Assigned(FrameGrid) then begin
+  aTmp:= Layers[FrameGrid.ActiveLayer].Drawable.RotateCCW;
+  ClearBitmap(Layers[FrameGrid.ActiveLayer].Drawable);
+  Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,aTmp,dmSetExceptTransparent);
+  FreeAndNil(aTmp);
+  pbFrameDraw.Invalidate;
+  FramePreview.Invalidate;
+  drwgrdLayers.Invalidate;
+ end;
+end;
+
+procedure TfrmMain.actRotateCWExecute(Sender: TObject);
+var
+  aTmp : TBGRABitmap;
+begin
+ if Assigned(FrameGrid) then begin
+  aTmp:= Layers[FrameGrid.ActiveLayer].Drawable.RotateCW;
+  ClearBitmap(Layers[FrameGrid.ActiveLayer].Drawable);
+  Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,aTmp,dmSetExceptTransparent);
+  FreeAndNil(aTmp);
+  pbFrameDraw.Invalidate;
+  FramePreview.Invalidate;
+  drwgrdLayers.Invalidate;
+ end;
 end;
 
 procedure TfrmMain.actSelectAllExecute(Sender: TObject);
@@ -984,6 +1052,7 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 var
    JSONProp : TFilename;
    i: Integer;
+   aPreset: String;
 begin
    JSONProp:=UserSettingsPath+'spedit.json';
    JSONPropStorage1.JSONFileName:=JSONProp;
@@ -1008,12 +1077,18 @@ begin
    //palette preset load if directory selected
    if INI.ReadString('PRESETS','PALETTES','')<>'' then LoadPresets(INI.ReadString('PRESETS','PALETTES',''));
    Palette.Clear;
+   aPreset := INI.ReadString('INTERFACE','PRESET','');
+   if aPreset<>'' then begin
+     cbPalettePresets.ItemIndex:=cbPalettePresets.Items.IndexOf(aPreset);
+     cbPalettePresetsChange(Sender);
+   end;
    CreateCursors;
    pbFrameDraw.Cursor:=1;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
+     if cbPalettePresets.Items.Count>0 then INI.WriteString('INTERFACE','PRESET',cbPalettePresets.Text);
      JSONPropStorage1.Save;
      FreeAndNil(DrawTool);
      if Assigned(frmAbout) then FreeAndNil(frmAbout);

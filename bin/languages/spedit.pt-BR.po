@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: spedit\n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
-"PO-Revision-Date: 2023-01-08 10:24\n"
+"PO-Revision-Date: 2023-01-10 19:46\n"
 
 #: tfrmabout.label1.caption
 msgid "SPEdit"
@@ -103,6 +103,14 @@ msgstr "Reduzir cores para a paleta predefinida"
 msgid "&Exit"
 msgstr "&Sair"
 
+#: tfrmmain.actfliph.caption
+msgid "Flip horizontal"
+msgstr ""
+
+#: tfrmmain.actflipv.caption
+msgid "Flip vertical"
+msgstr ""
+
 #: tfrmmain.actframeexportpng.caption
 msgid "Export frame as PNG"
 msgstr "Exportar quadro como PNG"
@@ -193,6 +201,14 @@ msgstr "Refazer"
 #: tfrmmain.actreferencetoggle.caption
 msgid "Reference"
 msgstr "Referência"
+
+#: tfrmmain.actrotateccw.caption
+msgid "Rotate CCW 90"
+msgstr ""
+
+#: tfrmmain.actrotatecw.caption
+msgid "Rotate CW 90"
+msgstr ""
 
 #: tfrmmain.actselectall.caption
 msgid "Select all"
@@ -368,6 +384,10 @@ msgctxt "tfrmmain.mifilesaveproject.caption"
 msgid "Save Sprite Project"
 msgstr "Salvar Projeto de Sprites"
 
+#: tfrmmain.mifliprotate.caption
+msgid "Flip/Rotate"
+msgstr ""
+
 #: tfrmmain.miframe.caption
 msgctxt "tfrmmain.miframe.caption"
 msgid "Frame"
@@ -449,6 +469,10 @@ msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr "Visualizar"
 
+#: tfrmmain.pmilayerfliprotate.caption
+msgid "Flip/rotate layer"
+msgstr ""
+
 #: tfrmmain.sbcircle.hint
 msgid "Circle tool - hotkey 'C'"
 msgstr "Círculo - atalho 'C'"
@@ -491,7 +515,6 @@ msgid "Rectangular selection tool - hotkey 'S'"
 msgstr "Seleção retangular - atalho 'S'"
 
 #: tfrmnamedlg.bbtncancel.caption
-#, fuzzy
 msgctxt "tfrmnamedlg.bbtncancel.caption"
 msgid "Cancel"
 msgstr "Cancelar"
