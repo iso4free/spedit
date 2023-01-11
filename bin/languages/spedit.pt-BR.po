@@ -224,7 +224,9 @@ msgid "Full Screen (ZEN mode)"
 msgstr "Tela cheia (modo ZEN)"
 
 #: tfrmmain.actundo.caption
-msgid "&Undo"
+#, fuzzy
+#| msgid "&Undo"
+msgid "Undo"
 msgstr "&Desfazer"
 
 #: tfrmmain.actzoomin.caption

@@ -58,7 +58,7 @@
 {"hash":158192885,"name":"tfrmmain.actnewframe.caption","sourcebytes":[78,101,119,32,102,114,97,109,101],"value":"New frame"},
 {"hash":57275045,"name":"tfrmmain.acimportframe.caption","sourcebytes":[73,109,112,111,114,116,32,102,114,97,109,101],"value":"Import frame"},
 {"hash":124848643,"name":"tfrmmain.actlayerstoggle.caption","sourcebytes":[83,104,111,119,32,108,97,121,101,114,115],"value":"Show layers"},
-{"hash":2868399,"name":"tfrmmain.actundo.caption","sourcebytes":[38,85,110,100,111],"value":"&Undo"},
+{"hash":378031,"name":"tfrmmain.actundo.caption","sourcebytes":[85,110,100,111],"value":"Undo"},
 {"hash":363439,"name":"tfrmmain.actredo.caption","sourcebytes":[82,101,100,111],"value":"Redo"},
 {"hash":2805508,"name":"tfrmmain.actexit.caption","sourcebytes":[38,69,120,105,116],"value":"&Exit"},
 {"hash":108185698,"name":"tfrmmain.actaddlayer.caption","sourcebytes":[65,100,100,32,108,97,121,101,114],"value":"Add layer"},

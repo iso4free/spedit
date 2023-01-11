@@ -82,17 +82,17 @@ end;
 
 procedure TfrmResize.spnWidthChange(Sender: TObject);
 var
-  k : Integer;
+  k : Double;
 begin
  if cbKeepProportions.Checked and TSpinEdit(Sender).Focused then begin
    case TSpinEdit(Sender).Tag of
   1:begin
-     k:=TSpinEdit(Sender).Value - FrameGrid.FrameWidth;
-     spnHeight.Value:=FrameGrid.FrameHeight+k;
+     k:=TSpinEdit(Sender).Value / FrameGrid.FrameWidth;
+     spnHeight.Value:=Round(FrameGrid.FrameHeight*k);
     end;
   2:begin
-     k:=TSpinEdit(Sender).Value - FrameGrid.FrameHeight;
-     spnWidth.Value:=FrameGrid.FrameWidth+k;
+     k:=TSpinEdit(Sender).Value / FrameGrid.FrameHeight;
+     spnWidth.Value:=Round(FrameGrid.FrameWidth*k);
     end;
   end;
 

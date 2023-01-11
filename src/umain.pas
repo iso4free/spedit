@@ -1368,6 +1368,8 @@ begin
     PaletteChange;
    end;
   end;
+  actUndo.Enabled:=UndoRedoManager.CanUndo;
+  actRedo.Enabled:=UndoRedoManager.CanRedo;
   pbFrameDraw.Invalidate;
   drwgrdLayers.Invalidate;
   FgColor.Invalidate;
