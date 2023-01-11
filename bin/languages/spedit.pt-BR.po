@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: spedit\n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt_BR\n"
-"PO-Revision-Date: 2023-01-10 19:46\n"
+"PO-Revision-Date: 2023-01-11 11:56\n"
 
 #: tfrmabout.label1.caption
 msgid "SPEdit"
@@ -21,13 +21,11 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Um Editor de Sprites Gratuito e de Código Aberto - V.4.0"
 
 #: tfrmabout.label3.caption
-msgid ""
-"Created by (c) Vadim Vitomsky, 2000-2022\n"
+msgid "Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos\n"
 "(translation to pt-br, Mascot animation)\n"
 "Mascot based on Original image created by Unknown_Chan"
-msgstr ""
-"Criado por (c) Vadim Vitomsky, 2000-2022\n"
+msgstr "Criado por (c) Vadim Vitomsky, 2000-2022\n"
 "Contribuído por Eddie Mattos\n"
 "(tradução para pt-br, Animação de mascote)\n"
 "Mascote baseado na imagem original criada por Unknown_Chan"
@@ -105,11 +103,11 @@ msgstr "&Sair"
 
 #: tfrmmain.actfliph.caption
 msgid "Flip horizontal"
-msgstr ""
+msgstr "Inverter horizontalmente"
 
 #: tfrmmain.actflipv.caption
 msgid "Flip vertical"
-msgstr ""
+msgstr "Inverter verticalmente"
 
 #: tfrmmain.actframeexportpng.caption
 msgid "Export frame as PNG"
@@ -152,11 +150,11 @@ msgstr "Mesclar camadas"
 
 #: tfrmmain.actmovedown.caption
 msgid "Move Down"
-msgstr ""
+msgstr "Mover Abaixo"
 
 #: tfrmmain.actmoveup.caption
 msgid "Move Up"
-msgstr ""
+msgstr "Mover Acima"
 
 #: tfrmmain.actnewframe.caption
 msgctxt "tfrmmain.actnewframe.caption"
@@ -204,11 +202,11 @@ msgstr "Referência"
 
 #: tfrmmain.actrotateccw.caption
 msgid "Rotate CCW 90"
-msgstr ""
+msgstr "Girar 90º anti-horário"
 
 #: tfrmmain.actrotatecw.caption
 msgid "Rotate CW 90"
-msgstr ""
+msgstr "Girar 90º horário"
 
 #: tfrmmain.actselectall.caption
 msgid "Select all"
@@ -224,10 +222,9 @@ msgid "Full Screen (ZEN mode)"
 msgstr "Tela cheia (modo ZEN)"
 
 #: tfrmmain.actundo.caption
-#, fuzzy
-#| msgid "&Undo"
+msgctxt "tfrmmain.actundo.caption"
 msgid "Undo"
-msgstr "&Desfazer"
+msgstr ""
 
 #: tfrmmain.actzoomin.caption
 msgid "Zoom ++"
@@ -289,11 +286,9 @@ msgstr "PF"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Clique esquedo para selecionar a cor\n"
+msgstr "Clique esquedo para selecionar a cor\n"
 "Clique direito para definir a cor como transparente"
 
 #: tfrmmain.caption
@@ -327,11 +322,9 @@ msgstr "PP"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Clique esquedo para selecionar a cor\n"
+msgstr "Clique esquedo para selecionar a cor\n"
 "Clique direito para definir a cor como transparente"
 
 #: tfrmmain.framepreview.hint
@@ -388,7 +381,7 @@ msgstr "Salvar Projeto de Sprites"
 
 #: tfrmmain.mifliprotate.caption
 msgid "Flip/Rotate"
-msgstr ""
+msgstr "Inverter/Girar"
 
 #: tfrmmain.miframe.caption
 msgctxt "tfrmmain.miframe.caption"
@@ -411,8 +404,7 @@ msgstr "Importar Planilha de sprites"
 
 #: tfrmmain.miimportspritesheet.hint
 msgctxt "tfrmmain.miimportspritesheet.hint"
-msgid ""
-"You can import image or spritesheet file\n"
+msgid "You can import image or spritesheet file\n"
 "and add it to the library"
 msgstr "Você pode importar uma imagem ou planilha de sprites e adicioná-la à biblioteca"
 
@@ -441,6 +433,11 @@ msgctxt "tfrmmain.mipreview.caption"
 msgid "Preview"
 msgstr "Previsualização"
 
+#: tfrmmain.miredo.caption
+msgctxt "tfrmmain.miredo.caption"
+msgid "Redo"
+msgstr "Refazer"
+
 #: tfrmmain.misavelibrary.caption
 msgctxt "tfrmmain.misavelibrary.caption"
 msgid "Save Sprite Library"
@@ -466,6 +463,11 @@ msgctxt "tfrmmain.mitioolpanels.caption"
 msgid "Tool panels"
 msgstr "Painéis de Ferramentas"
 
+#: tfrmmain.miundo.caption
+msgctxt "tfrmmain.miundo.caption"
+msgid "Undo"
+msgstr ""
+
 #: tfrmmain.miview.caption
 msgctxt "tfrmmain.miview.caption"
 msgid "View"
@@ -473,48 +475,48 @@ msgstr "Visualizar"
 
 #: tfrmmain.pmilayerfliprotate.caption
 msgid "Flip/rotate layer"
-msgstr ""
+msgstr "Inverter/Girar Camada"
 
 #: tfrmmain.sbcircle.hint
 msgid "Circle tool - hotkey 'C'"
-msgstr "Círculo - atalho 'C'"
+msgstr "Círculo — 'C'"
 
 #: tfrmmain.sberacer.hint
 msgid "Eraser tool - hotkey 'E'"
-msgstr "Borracha - atalho 'E'"
+msgstr "Borracha — 'E'"
 
 #: tfrmmain.sbfilledrect.hint
 msgid "Filled rectangle tool - hotkey 'Shift+R'"
-msgstr "Retângulo preenchido - atalho 'Shift+R'"
+msgstr "Retângulo preenchido — 'Shift+R'"
 
 #: tfrmmain.sbfloodfill.hint
 msgid "Flood fill tool - hotkey 'F'"
-msgstr "Preenchimento - atalho 'F'"
+msgstr "Preenchimento — 'F'"
 
 #: tfrmmain.sbline.hint
 msgctxt "tfrmmain.sbline.hint"
 msgid "Line tool - hotkey 'L'"
-msgstr "Ferramenta Linha - atalho 'L'"
+msgstr "Linha — 'L'"
 
 #: tfrmmain.sbmove.hint
 msgid "Move tool - hotkey 'M'"
-msgstr ""
+msgstr "Mover — 'M'"
 
 #: tfrmmain.sbpen.hint
 msgid "Pen tool - hotkey 'P'"
-msgstr "Caneta - atalho 'P'"
+msgstr "Caneta — 'P'"
 
 #: tfrmmain.sbpipette.hint
 msgid "Pipette tool - hotkey 'O'"
-msgstr "Pipeta - atalho 'O'"
+msgstr "Pipeta — 'O'"
 
 #: tfrmmain.sbrect.hint
 msgid "Rectangle tool - hotkey 'R'"
-msgstr "Retangulo - atalho 'R'"
+msgstr "Retângulo — 'R'"
 
 #: tfrmmain.sbrectselection.hint
 msgid "Rectangular selection tool - hotkey 'S'"
-msgstr "Seleção retangular - atalho 'S'"
+msgstr "Seleção retangular — 'S'"
 
 #: tfrmnamedlg.bbtncancel.caption
 msgctxt "tfrmnamedlg.bbtncancel.caption"
@@ -631,7 +633,7 @@ msgstr "Linha"
 
 #: uglobals.rsmovetool
 msgid "Move tool"
-msgstr ""
+msgstr "Mover"
 
 #: uglobals.rspalettewillb
 msgid "Palette will be resetted to default colors! Are You shure?"

@@ -173,8 +173,8 @@ type
    private
      fUndoList : TUndoRedoList;
      fRedoList : TUndoRedoList;
-     function InternalCanUndo: boolean; inline;
-     function InternalCanRedo : Boolean; inline;
+     function InternalCanUndo: boolean;
+     function InternalCanRedo : Boolean;
      function InternalGetStatesCount : Integer; inline;
      procedure InternalRestoreData(aData : PSPUndoRec);
      {$IFDEF DEBUG}

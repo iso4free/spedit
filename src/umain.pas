@@ -295,6 +295,8 @@ type
       Shift: TShiftState; Index: integer; AColor: TColor; var DontCheck: boolean
       );
     procedure miAboutClick(Sender: TObject);
+    procedure miRedoClick(Sender: TObject);
+    procedure miUndoClick(Sender: TObject);
     procedure pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure pbFrameDrawMouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -385,7 +387,7 @@ begin
   UndoRedoManager.SaveState;
   DitherImage(Layers[Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]].Drawable,Presets[cbPalettePresets.Text].Palette,200);
   //todo: fix undo enabled
-  actUndo.Enabled:=True;//UndoRedoManager.CanUndo;
+  //actUndo.Enabled:=True;//UndoRedoManager.CanUndo;
  end;
  pbFrameDraw.Invalidate;
  FramePreview.Invalidate;
@@ -1233,6 +1235,16 @@ begin
      FreeAndNil(frmAbout);
 end;
 
+procedure TfrmMain.miRedoClick(Sender: TObject);
+begin
+  actRedoExecute(Sender);
+end;
+
+procedure TfrmMain.miUndoClick(Sender: TObject);
+begin
+  actUndoExecute(Sender);
+end;
+
 procedure TfrmMain.PaletteChange;
 var
   i: Integer;
@@ -1347,8 +1359,8 @@ FrameGrid.CellCursor.Coords:=FrameGrid.Coords(x,y);
  StatusBar1.Panels[0].Text:='x='+IntToStr(x)+'/y='+IntToStr(y);
  pbFrameDraw.Invalidate;
  //todo: fix undo/redo enabled
- actUndo.Enabled:=True;//UndoRedoManager.CanUndo;
- actRedo.Enabled:=True;//UndoRedoManager.CanRedo;
+ //actUndo.Enabled:=True;//UndoRedoManager.CanUndo;
+ //actRedo.Enabled:=True;//UndoRedoManager.CanRedo;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;
@@ -1368,11 +1380,11 @@ begin
     PaletteChange;
    end;
   end;
-  actUndo.Enabled:=UndoRedoManager.CanUndo;
-  actRedo.Enabled:=UndoRedoManager.CanRedo;
+  //miUndo.Enabled:=UndoRedoManager.CanUndo;
+  //miRedo.Enabled:=UndoRedoManager.CanRedo;
   pbFrameDraw.Invalidate;
   drwgrdLayers.Invalidate;
-  FgColor.Invalidate;
+  if ssCtrl in Shift then FgColor.Invalidate;
   //BgColor.Invalidate;
 end;
 

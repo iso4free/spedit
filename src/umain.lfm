@@ -850,10 +850,14 @@ object frmMain: TfrmMain
     object miEdit: TMenuItem
       Caption = 'Edit'
       object miUndo: TMenuItem
-        Action = actUndo
+        Caption = 'Undo'
+        ShortCut = 16474
+        OnClick = miUndoClick
       end
       object miRedo: TMenuItem
-        Action = actRedo
+        Caption = 'Redo'
+        ShortCut = 24666
+        OnClick = miRedoClick
       end
       object Separator3: TMenuItem
         Caption = '-'

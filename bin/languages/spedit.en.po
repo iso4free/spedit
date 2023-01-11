@@ -220,6 +220,7 @@ msgid "Full Screen (ZEN mode)"
 msgstr ""
 
 #: tfrmmain.actundo.caption
+msgctxt "tfrmmain.actundo.caption"
 msgid "Undo"
 msgstr ""
 
@@ -431,6 +432,11 @@ msgctxt "tfrmmain.mipreview.caption"
 msgid "Preview"
 msgstr ""
 
+#: tfrmmain.miredo.caption
+msgctxt "tfrmmain.miredo.caption"
+msgid "Redo"
+msgstr ""
+
 #: tfrmmain.misavelibrary.caption
 msgctxt "tfrmmain.misavelibrary.caption"
 msgid "Save Sprite Library"
@@ -454,6 +460,11 @@ msgstr ""
 #: tfrmmain.mitioolpanels.caption
 msgctxt "tfrmmain.mitioolpanels.caption"
 msgid "Tool panels"
+msgstr ""
+
+#: tfrmmain.miundo.caption
+msgctxt "tfrmmain.miundo.caption"
+msgid "Undo"
 msgstr ""
 
 #: tfrmmain.miview.caption
