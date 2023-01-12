@@ -1036,6 +1036,7 @@ begin
   FLocked:=False;
   FFrames := TStringList.Create;
   FFrames.CaseSensitive:=false;
+  fName:=aName;
 end;
 
 destructor TSPLayer.Destroy;

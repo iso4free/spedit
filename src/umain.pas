@@ -385,7 +385,7 @@ begin
   //DebugLn('In: actDitherExecute() layer: ',Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]);
   {$ENDIF}
   UndoRedoManager.SaveState;
-  DitherImage(Layers[Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]].Drawable,Presets[cbPalettePresets.Text].Palette,200);
+  DitherImage(Layers[Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]].Drawable,Presets[cbPalettePresets.Text].Palette,0);
   //todo: fix undo enabled
   //actUndo.Enabled:=True;//UndoRedoManager.CanUndo;
  end;
@@ -600,13 +600,17 @@ begin
    Frames[frmFrameDlg.edtFrameName.Text]:=TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
                                                           FramePreview.Width,
                                                           FramePreview.Height);
-   Frames[frmFrameDlg.edtFrameName.Text].AddLayer(cINTERNALLAYERANDFRAME);
-   Layers[cINTERNALLAYERANDFRAME].AddToFrame(frmFrameDlg.edtFrameName.Text);
+   Layers[frmFrameDlg.edtFrameName.Text]:=TSPLayer.Create(frmFrameDlg.edtFrameName.Text,
+                                                          FramePreview.Width,
+                                                          FramePreview.Height);
+   Layers[frmFrameDlg.edtFrameName.Text].AddToFrame(frmFrameDlg.edtFrameName.Text);
+   Frames[frmFrameDlg.edtFrameName.Text].AddLayer(frmFrameDlg.edtFrameName.Text);
+
    LayersChange;
    //todo: copy all layers to new frame if option checked
    for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
    FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
-   FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;
+   FrameGrid.ActiveLayer:=frmFrameDlg.edtFrameName.Text;
    FrameGrid.ShowGrid:=actGridToggle.Checked;
    trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
    Palette.Clear;

@@ -38,9 +38,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, umain, udraw, uglobals, uabout, ureferense,
-  uframedlg
-  { you can add units after this },
-  sysutils, usettings, uresizedlg, unamedlg;
+  uframedlg,  sysutils, usettings, uresizedlg, unamedlg;
 
 {$R *.res}
 
