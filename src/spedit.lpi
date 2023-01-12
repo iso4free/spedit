@@ -294,6 +294,15 @@
       <Item>
         <Name Value="Exception"/>
       </Item>
+      <Item>
+        <Name Value="EJSONParser"/>
+      </Item>
+      <Item>
+        <Name Value="RunError(202)"/>
+      </Item>
+      <Item>
+        <Name Value="EListError"/>
+      </Item>
     </Exceptions>
   </Debugging>
 </CONFIG>

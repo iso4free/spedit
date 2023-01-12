@@ -420,7 +420,6 @@ begin
   Layers[aLayerName]:=TSPLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
   FrameGrid.ActiveLayer:=aLayerName;
   Frames[FrameGrid.ActiveFrame].AddLayer(aLayerName);
-  Layers[aLayerName].AddToFrame(FrameGrid.ActiveFrame);
   Layers[aLayerName].Visible:=True;
   Layers[aLayerName].Locked:=False;
   LayersChange;
@@ -449,7 +448,6 @@ begin
  aData:=Layers[FrameGrid.ActiveLayer].ToBASE64String;
  Layers[aName]:=TSPLayer.Create(aName,aData);
  Frames[FrameGrid.ActiveFrame].AddLayer(aName);
- Layers[aName].AddToFrame(FrameGrid.ActiveFrame);
  FrameGrid.ActiveLayer:=aName;
  LayersChange;
 end;
@@ -466,14 +464,14 @@ end;
 procedure TfrmMain.actDeleteLayerExecute(Sender: TObject);
 begin
  if not Assigned(FrameGrid) then Exit;
- if FrameGrid.ActiveLayer=cINTERNALLAYERANDFRAME then begin
+ if FrameGrid.ActiveLayer=Frames[FrameGrid.ActiveFrame].LayersList.Strings[0] then begin
     ShowMessage(rsThisLayerCan2);
     Exit;
   end;
   UndoRedoManager.SaveState;
   Layers.Remove(FrameGrid.ActiveLayer);
   Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
-  FrameGrid.ActiveLayer:=cINTERNALLAYERANDFRAME;
+  FrameGrid.ActiveLayer:=Frames[FrameGrid.ActiveFrame].LayersList.Strings[0];
   LayersChange;
 end;
 
@@ -508,7 +506,7 @@ var
   aName: String;
 begin
   if not Assigned(FrameGrid) then Exit;
-  if (FrameGrid.ActiveLayer=cINTERNALLAYERANDFRAME) or
+  if (FrameGrid.ActiveLayer=Frames[FrameGrid.ActiveFrame].LayersList.Strings[0]) or
      (Frames[FrameGrid.ActiveFrame].LayersList.Count<2) or
      (Layers[FrameGrid.ActiveLayer].Locked) then begin
       ShowMessage(rsCantMerge);
@@ -603,14 +601,13 @@ begin
    Layers[frmFrameDlg.edtFrameName.Text]:=TSPLayer.Create(frmFrameDlg.edtFrameName.Text,
                                                           FramePreview.Width,
                                                           FramePreview.Height);
-   Layers[frmFrameDlg.edtFrameName.Text].AddToFrame(frmFrameDlg.edtFrameName.Text);
    Frames[frmFrameDlg.edtFrameName.Text].AddLayer(frmFrameDlg.edtFrameName.Text);
+   FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
+   FrameGrid.ActiveLayer:=frmFrameDlg.edtFrameName.Text;
 
    LayersChange;
    //todo: copy all layers to new frame if option checked
    for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
-   FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
-   FrameGrid.ActiveLayer:=frmFrameDlg.edtFrameName.Text;
    FrameGrid.ShowGrid:=actGridToggle.Checked;
    trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
    Palette.Clear;
@@ -696,7 +693,6 @@ begin
       {$ENDIF}
       //we get image from clipboard - now create new layer with it
       Layers['Clipboard']:=TSPLayer.Create('Clipboard',FrameGrid.FrameWidth,FrameGrid.FrameHeight);
-      Layers['Clipboard'].AddToFrame(FrameGrid.ActiveFrame);
       Frames[FrameGrid.ActiveFrame].AddLayer('Clipboard');
 
       //if has selection paste inside selection

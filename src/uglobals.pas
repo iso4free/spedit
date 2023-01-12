@@ -32,7 +32,7 @@ interface
 
 uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LCLTranslator, FileUtil, LazFileUtils,
-  Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson,
+  Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson, jsonparser, jsonscanner,
   BGRABitmap, BGRABitmapTypes, BGRAPalette,
   fgl, base64, Dialogs;
 
@@ -69,6 +69,7 @@ resourcestring
   rsRectangleSel = 'Rectangle selection';
   rsCantMerge = 'Can''t merge layers!';
   rsMoveTool = 'Move tool';
+  rsFrame = 'Frame';
 
 
 const
@@ -77,7 +78,7 @@ const
       MAX_PIXELS = 512*512;      //max pixels array (sprite size 512x512 pixels)
       //MAX_LAYERS = 10;           //max layers count in one frame
 
-      cINTERNALLAYERANDFRAME = 'spedit v.4'; //default frame name and background layer name
+      //cINTERNALLAYERANDFRAME = 'spedit v.4'; //default frame name and background layer name
       //background layer needed for merged image from all layers
       csDRAWLAYER = 'Draw layer';  //layer name for drawing buffer
 
@@ -153,34 +154,27 @@ type
   //presets list
   TPresetsList = specialize TFPGMapObject<String,TPalettePreset>;
 
-  {class for undo/redo posibilities}
+  {
+  Undo/Redo information stored in JSON format.
+  SavedState serialize current frame to JSON data string and add it to Undo list
+  cearing Redo list.
+  Restore state get last JSON data string from Redo list if avaliaable, restore
+  frame state and add it again to Undo list
+  }
 
-  PSPUndoRec = ^TSPUndoRec;
-
-  { TSPUndoRec }
-
-  TSPUndoRec = class
-    fLayerName : String;
-    fLayerData : String;   //BASE64 encoded image
-    fLayerFrames : String; //frames list contained layer
-    procedure Assign(aSrc : TSPUndoRec);
-  end;
-
-   TUndoRedoList = specialize TFPGObjectList<TSPUndoRec>;
   { TUndoRedoManager }
 
   TUndoRedoManager = class
    private
-     fUndoList : TUndoRedoList;
-     fRedoList : TUndoRedoList;
+     fUndoList : TStringList;
+     fRedoList : TStringList;
      function InternalCanUndo: boolean;
      function InternalCanRedo : Boolean;
      function InternalGetStatesCount : Integer; inline;
-     procedure InternalRestoreData(aData : PSPUndoRec);
+     procedure InternalRestoreData(aData : String);
      {$IFDEF DEBUG}
-     procedure DumpDataToLog(aData : PSPUndoRec);
+     procedure DumpDataToLog(aData : String);
      {$ENDIF}
-     procedure InternalClearStack(aStack : TUndoRedoList);
    public
     constructor Create;
     destructor Destroy;override;
@@ -208,7 +202,6 @@ type
     fVisible : Boolean;
     fLayerImg : TBGRABitmap; //layer image
     FWidth: Integer;
-    FFrames : TStringList;
    public
     property LayerName : String read fName write fName; //text to layers list identify
     property Visible : Boolean read fVisible write fVisible default True; //is drawable
@@ -219,14 +212,14 @@ type
     property Drawable : TBGRABitmap read fLayerImg write fLayerImg;  //BGRABitmap for drawing
     //property FramesList : TStringList read FFrames; //frame names list containing current layer
     procedure Resize(newWidth, NewHeight: Integer; Stretched: Boolean=False); //resize layer
-    procedure AddToFrame(FrameName : String); //add layer to frame
-    function DeleteFromFrame(aFrameName : String) : Boolean; //remove frame name from internal list of frames where layer belongs
     procedure RestoreFromString(aBASE64 : String); //restore layer data from BASE64 encoded string
     procedure ClearDrawable; //clear BGRABitmap for new drawing
     function ToBASE64String : String; //encode layer image to BASE64
+    function ToJSON : String; //serialize layer to JSON data
 
-    constructor Create(aName : String; aWidth : Integer = 32; aHeight : Integer = 32);
+    constructor Create(aName : String; aWidth : Integer; aHeight : Integer);
     constructor Create(aName, aData : String); //create layer image from BASE64 encoded string
+    constructor Create(aJSONData : String); //create layer from JSON data
     destructor Destroy; override;
 
     procedure Clear;
@@ -245,9 +238,10 @@ type
     FWidth: Integer;
     procedure SetIndex(AValue: Integer);
    public
-    constructor Create(aName : String; w : Integer = 32; h : integer = 32);
+    constructor Create(aName : String; w : Integer; h : integer);
+    constructor Create(aJSONData : String);
     destructor Destroy; override;
-
+    function ToJSON : String; //serialize Frame data with layers to JSON
     procedure Resize(w,h : Integer; Stretched : Boolean = false); //resize all layers belongs to frame
     property FrameName : String read fFrameName;//unique frame name for correct managing in mapped list
     property LayersList : TStringList read fLayers;  //layers mapped list
@@ -664,16 +658,6 @@ begin
       if S[I] = Char then Inc(Result);
 end;
 
-
-procedure CreateInternalFrameAndLayer;
-begin
- Frames[cINTERNALLAYERANDFRAME]:=TSPFrame.Create(cINTERNALLAYERANDFRAME);
- Layers[cINTERNALLAYERANDFRAME]:=TSPLayer.Create(cINTERNALLAYERANDFRAME);
- Layers[csDRAWLAYER]:=TSPLayer.Create(csDRAWLAYER);
- Layers[cINTERNALLAYERANDFRAME].AddToFrame(cINTERNALLAYERANDFRAME);
- Frames[cINTERNALLAYERANDFRAME].AddLayer(cINTERNALLAYERANDFRAME);
-end;
-
 procedure ClearFramesAndLayers;
 var
     f , l : Integer;
@@ -760,15 +744,6 @@ begin
  inherited Destroy;
 end;
 
-{ TSPUndoRec }
-
-procedure TSPUndoRec.Assign(aSrc: TSPUndoRec);
-begin
-  fLayerName:=aSrc.fLayerName;
-  fLayerData:=aSrc.fLayerData;
-  fLayerFrames:=aSrc.fLayerFrames;
-end;
-
 { TUndoRedoManager }
 function TUndoRedoManager.InternalCanUndo: boolean;
 begin
@@ -781,59 +756,46 @@ begin
   result := fUndoList.Count;
 end;
 
-procedure TUndoRedoManager.InternalRestoreData(aData: PSPUndoRec);
+procedure TUndoRedoManager.InternalRestoreData(aData: String);
 begin
   {$IFDEF DEBUG}
    DumpDataToLog(aData);
   {$ENDIF}
-  if not LayerExists(aData^.fLayerName) then begin
+  //todo: change to frame restore from JSON
+{  if not LayerExists(aData^.fLayerName) then begin
    //restore deleted layer
    Layers[aData^.fLayerName]:=TSPLayer.Create(aData^.fLayerName,aData^.fLayerData);
    Layers[aData^.fLayerName].FFrames.Text:=aData^.fLayerFrames;
   end else begin
     Layers[aData^.fLayerName].RestoreFromString(aData^.fLayerData);
-  end;
+  end;}
 end;
 
 procedure TUndoRedoManager.Redo;
 var
-  aData: TSPUndoRec;
-  aUndo: TSPUndoRec;
+  aData: String;
+  aUndo: String;
 begin
     if CanRedo then begin
-     aData:=fRedoList.Last;
-     aUndo:=TSPUndoRec.Create;
-     aUndo.Assign(aData);
-     InternalRestoreData(@aData);
-     fRedoList.Remove(aData);
+     aData:=fRedoList.Pop;
+     aUndo:=aData;
+     InternalRestoreData(aData);
      fUndoList.Add(aData);
   end;
 end;
 
 procedure TUndoRedoManager.SaveState(aLayerName: String);
- var
-   aData : TSPUndoRec;
 begin
-  aData:=TSPUndoRec.Create;
-  aData.fLayerName:=aLayerName;
-  aData.fLayerData:=PChar(Layers[aLayerName].ToBASE64String);
-  aData.fLayerFrames:=Layers[aLayerName].FFrames.Text;
-  {$IFDEF DEBUG}
-  DumpDataToLog(@aData);
-  {$ENDIF}
-  fUndoList.Add(aData);
-  //clear all redo records if new undo record pushed
-  InternalClearStack(fRedoList);
+
 end;
 
 {$IFDEF DEBUG}
-procedure TUndoRedoManager.DumpDataToLog(aData: PSPUndoRec);
+procedure TUndoRedoManager.DumpDataToLog(aData: String);
 begin
- //Assert(aData=nil,'No data to dump!');
- DebugLn(DateTimeToStr(Now()),' In: TUndoRedoManager.DumpDataToLog()');
+ {DebugLn(DateTimeToStr(Now()),' In: TUndoRedoManager.DumpDataToLog()');
  DebugLn(#9,'Layer name: ',aData^.fLayerName);
  DebugLn(#9,'Layer data: ',aData^.fLayerData);
- DebugLn(#9,'Layer frames: ',aData^.fLayerFrames);
+ DebugLn(#9,'Layer frames: ',aData^.fLayerFrames);}
 end;
 {$ENDIF}
 
@@ -844,43 +806,34 @@ end;
 
 
 
-procedure TUndoRedoManager.InternalClearStack(aStack: TUndoRedoList);
-begin
-   if aStack.Count=0 then Exit;
-   aStack.Clear;
-end;
-
 constructor TUndoRedoManager.Create;
 begin
-  fUndoList:=TUndoRedoList.Create;
-  fRedoList:=TUndoRedoList.Create;
+  fUndoList:=TStringList.Create;
+  fRedoList:=TStringList.Create;
 end;
 
 destructor TUndoRedoManager.Destroy;
 begin
- InternalClearStack(fRedoList);
  FreeAndNil(fRedoList);
- InternalClearStack(fUndoList);
  FreeAndNil(fUndoList);
 end;
 
 procedure TUndoRedoManager.SaveState;
 begin
- SaveState(FrameGrid.ActiveLayer);
+  {$IFDEF DEBUG}
+   Exit;
+  {$ENDIF}
+  fUndoList.Add(Frames[FrameGrid.ActiveFrame].ToJSON);
 end;
 
 procedure TUndoRedoManager.Undo;
 var
-  aData : TSPUndoRec;
-  aRedo : TSPUndoRec;
+  aFrame : TSPFrame;
 begin
   if CanUndo then begin
-     aData:=fUndoList.Last;
-     aRedo:=TSPUndoRec.Create;
-     aRedo.Assign(aData);
-     InternalRestoreData(@aData);
-     fRedoList.Add(aRedo);
-     fUndoList.Remove(aData);
+   Frames.Remove(FrameGrid.ActiveFrame);
+   aFrame:=TSPFrame.Create(fUndoList.Pop);
+   Frames[FrameGrid.ActiveFrame]:=aFrame;
   end;
 end;
 
@@ -927,11 +880,75 @@ begin
  fLayers:=TStringList.Create;
 end;
 
+constructor TSPFrame.Create(aJSONData: String);
+var
+  aJSONParser : TJSONParser;
+  aData       : TJSONObject;
+  aLayers     : TJSONObject;
+  aEnum       : TBaseJSONEnumerator;
+  aLayer      : TSPLayer;
+begin
+  aJSONParser:=TJSONParser.Create(aJSONData,DefaultOptions);
+  try
+    aData:=aJSONParser.Parse as TJSONObject;
+     FIndex:=aData.Get('Index',0);
+     fFrameName:=aData.Get('Frame name', rsFrame);
+     FWidth:=aData.Get('Width',0);
+     FHeight:=aData.Get('Height',0);
+     FCount:=aData.Get('Layers count',0);
+    try
+      aLayers:=aData.Get('Layers',TJSONObject.Create([]));
+      aEnum:=aLayers.GetEnumerator;
+      try
+        while aEnum.MoveNext do begin
+         //read all layers data
+         aLayer:=TSPLayer.Create(aEnum.Current.Value.AsString);
+         Layers[aLayer.LayerName]:=aLayer;
+         fLayers.Add(aLayer.LayerName);
+         FreeAndNil(aLayer);
+        end;
+      finally
+
+      end;
+    finally
+      FreeAndNil(aEnum);
+    end;
+  finally
+   FreeAndNil(aData);
+  end;
+  FreeAndNil(aJSONParser);
+end;
+
 destructor TSPFrame.Destroy;
 begin
   fLayers.Clear;
   FreeAndNil(fLayers);
   inherited Destroy;
+end;
+
+function TSPFrame.ToJSON: String;
+var
+    aJSON : TJSONObject;
+    aLayers : TJSONArray;
+    i: Integer;
+begin
+ result := '';
+ aJSON:=TJSONObject.Create;
+ aJSON.Add('Index',FIndex);
+ aJSON.Add('Frame name',fFrameName);
+ aJSON.Add('Width',FWidth);
+ aJSON.Add('Height',FHeight);
+ aJSON.Add('Layers count',FCount);
+ aLayers:=TJSONArray.Create;
+ //add all layers to JSON array
+ for i := 0 to FCount-1 do aLayers.Add(Layers[fLayers.Strings[i]].ToJSON);
+ aJSON.Add('Layers',aLayers);
+ Result:=aJSON.AsJSON;
+ {$IFDEF DEBUG}
+ DebugLn('In: TSPFrame.ToJSON() JSON data:',Result);
+ {$ENDIF}
+ FreeAndNil(aLayers);
+ FreeAndNil(aJSON);
 end;
 
 procedure TSPFrame.Resize(w, h: Integer; Stretched: Boolean);
@@ -996,20 +1013,21 @@ begin
   FreeAndNil(aStream);
 end;
 
-procedure TSPLayer.AddToFrame(FrameName: String);
+function TSPLayer.ToJSON: String;
+ var
+     aJSON : TJSONObject;
 begin
-  FFrames.Add(FrameName);
-end;
-
-function TSPLayer.DeleteFromFrame(aFrameName: String): Boolean;
-var i : Integer;
-begin
- Result:=False;
- i:=FFrames.IndexOf(aFrameName);
- if i>0 then begin
-   FFrames.Delete(i);
-   Result:=True;
- end;
+  result := '';
+  aJSON:=TJSONObject.Create;
+  aJSON.Add('Layer name',fName);
+  aJSON.Add('Image (BASE64)',ToBASE64String);
+  aJSON.Add('Visible',fVisible);
+  aJSON.Add('Locked',FLocked);
+  Result:=aJSON.AsJSON;
+  {$IFDEF DEBUG}
+  DebugLn('In: TSPLayer.ToJSON() JSON data:',Result);
+  {$ENDIF}
+  FreeAndNil(aJSON);
 end;
 
 procedure TSPLayer.RestoreFromString(aBASE64: String);
@@ -1029,20 +1047,39 @@ begin
   RestoreFromString(aData);
 end;
 
+constructor TSPLayer.Create(aJSONData: String);
+var
+      aJSON : TJSONObject;
+aJSONParser : TJSONParser;
+      aName : String;
+      aData : String;
+begin
+ aJSONParser:=TJSONParser.Create(aJSONData,DefaultOptions);
+ aName:=rsLayerName;
+ aData:='';
+ try
+  aJSON:=aJSONParser.Parse as TJSONObject;
+  aName:=aJSON.Get('Layer name',rsLayerName);
+  aData:=aJSON.Get('Image (BASE64)','');
+  fVisible:=aJSON.Get('Visible',True);
+  FLocked:=aJSON.Get('Locked',False);
+ finally
+  Create(aName,aData);
+  FreeAndNil(aJSONParser);
+  FreeAndNil(aJSON);
+ end;
+end;
+
 constructor TSPLayer.Create(aName: String; aWidth: Integer; aHeight: Integer);
 begin
   fLayerImg := TBGRABitmap.Create(aWidth,aHeight);
   fVisible:=True;
   FLocked:=False;
-  FFrames := TStringList.Create;
-  FFrames.CaseSensitive:=false;
   fName:=aName;
 end;
 
 destructor TSPLayer.Destroy;
 begin
-  FFrames.Clear;
-  FreeAndNil(FFrames);
   FreeAndNil(fLayerImg);
   inherited Destroy;
 end;
@@ -1121,8 +1158,8 @@ begin
   {$IFDEF DEBUG}
   //DebugLn(DateTimeToStr(Now), ': In  TFrameGrid.Create() Layers count ',IntToStr(Layers.Count));
   {$ENDIF}
-  FActiveLayer:=cINTERNALLAYERANDFRAME;
-  fActiveFrame:=cINTERNALLAYERANDFRAME;
+  FActiveLayer:='';
+  fActiveFrame:='';
   fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),
                               fFrameHeight*(fFrameGridSize+fFrameZoom));
   ResizeLayers(FrameWidth,FrameHeight);
@@ -1141,9 +1178,7 @@ begin
     Layers[aFrameName]:=TSPLayer.Create(aLayerName,FrameWidth,FrameHeight);
     ActiveFrame:=aFrameName;
     ActiveLayer:=aLayerName;
-
     Frames[aFrameName].AddLayer(aLayerName);
-    Layers[aLayerName].AddToFrame(aFrameName);
     ClearBitmap(Layers[aFrameName].Drawable);
     ResizeLayers(FrameWidth,FrameHeight);
     Layers[aLayerName].Drawable.PutImage(0,0,aBmp,dmSetExceptTransparent);
@@ -1246,7 +1281,7 @@ begin
                         $BFBFBF, $FFFFFF, 4, 4);
   end;
   //draw all layers to canvas
-  if (LayerExists(cINTERNALLAYERANDFRAME) and Layers[cINTERNALLAYERANDFRAME].Visible) then fPreview.PutImage(0,0,Layers[cINTERNALLAYERANDFRAME].Drawable,dmDrawWithTransparency);
+ // if (LayerExists(cINTERNALLAYERANDFRAME) and Layers[cINTERNALLAYERANDFRAME].Visible) then fPreview.PutImage(0,0,Layers[cINTERNALLAYERANDFRAME].Drawable,dmDrawWithTransparency);
   for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do
     if (LayerExists(Frames[ActiveFrame].fLayers.Strings[i]) and
         Layers[Frames[ActiveFrame].fLayers.Strings[i]].Visible) then
@@ -1544,7 +1579,7 @@ initialization
  //mapped lists of frames and layers
  Frames:=TFrames.Create;
  Layers :=TLayers.Create;
- CreateInternalFrameAndLayer;
+ Layers[csDRAWLAYER]:=TSPLayer.Create(csDRAWLAYER,0,0);
  UndoRedoManager:=TUndoRedoManager.Create;
 
 

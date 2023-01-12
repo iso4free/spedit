@@ -21,11 +21,13 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Um Editor de Sprites Gratuito e de Código Aberto - V.4.0"
 
 #: tfrmabout.label3.caption
-msgid "Created by (c) Vadim Vitomsky, 2000-2022\n"
+msgid ""
+"Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos\n"
 "(translation to pt-br, Mascot animation)\n"
 "Mascot based on Original image created by Unknown_Chan"
-msgstr "Criado por (c) Vadim Vitomsky, 2000-2022\n"
+msgstr ""
+"Criado por (c) Vadim Vitomsky, 2000-2022\n"
 "Contribuído por Eddie Mattos\n"
 "(tradução para pt-br, Animação de mascote)\n"
 "Mascote baseado na imagem original criada por Unknown_Chan"
@@ -286,9 +288,11 @@ msgstr "PF"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
-msgid "Left click to select color\n"
+msgid ""
+"Left click to select color\n"
 "Right click to set transparent color"
-msgstr "Clique esquedo para selecionar a cor\n"
+msgstr ""
+"Clique esquedo para selecionar a cor\n"
 "Clique direito para definir a cor como transparente"
 
 #: tfrmmain.caption
@@ -322,9 +326,11 @@ msgstr "PP"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
-msgid "Left click to select color\n"
+msgid ""
+"Left click to select color\n"
 "Right click to set transparent color"
-msgstr "Clique esquedo para selecionar a cor\n"
+msgstr ""
+"Clique esquedo para selecionar a cor\n"
 "Clique direito para definir a cor como transparente"
 
 #: tfrmmain.framepreview.hint
@@ -404,7 +410,8 @@ msgstr "Importar Planilha de sprites"
 
 #: tfrmmain.miimportspritesheet.hint
 msgctxt "tfrmmain.miimportspritesheet.hint"
-msgid "You can import image or spritesheet file\n"
+msgid ""
+"You can import image or spritesheet file\n"
 "and add it to the library"
 msgstr "Você pode importar uma imagem ou planilha de sprites e adicioná-la à biblioteca"
 
@@ -601,6 +608,12 @@ msgstr "Retângulo preenchido"
 #: uglobals.rsfloodfill
 msgid "Flood fill"
 msgstr "Preenchimento"
+
+#: uglobals.rsframe
+#, fuzzy
+msgctxt "uglobals.rsframe"
+msgid "Frame"
+msgstr "Quadro"
 
 #: uglobals.rsgenerictool
 msgid "Generic tool"

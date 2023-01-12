@@ -601,6 +601,11 @@ msgstr ""
 msgid "Flood fill"
 msgstr ""
 
+#: uglobals.rsframe
+msgctxt "uglobals.rsframe"
+msgid "Frame"
+msgstr ""
+
 #: uglobals.rsgenerictool
 msgid "Generic tool"
 msgstr ""
