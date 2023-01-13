@@ -171,7 +171,6 @@ type
      function InternalCanUndo: boolean;
      function InternalCanRedo : Boolean;
      function InternalGetStatesCount : Integer; inline;
-     procedure InternalRestoreData(aData : String);
      {$IFDEF DEBUG}
      procedure DumpDataToLog(aData : String);
      {$ENDIF}
@@ -179,7 +178,6 @@ type
     constructor Create;
     destructor Destroy;override;
     procedure SaveState;
-    procedure SaveState(aLayerName : String);
     procedure Undo;
     procedure Redo;
 
@@ -756,46 +754,22 @@ begin
   result := fUndoList.Count;
 end;
 
-procedure TUndoRedoManager.InternalRestoreData(aData: String);
-begin
-  {$IFDEF DEBUG}
-   DumpDataToLog(aData);
-  {$ENDIF}
-  //todo: change to frame restore from JSON
-{  if not LayerExists(aData^.fLayerName) then begin
-   //restore deleted layer
-   Layers[aData^.fLayerName]:=TSPLayer.Create(aData^.fLayerName,aData^.fLayerData);
-   Layers[aData^.fLayerName].FFrames.Text:=aData^.fLayerFrames;
-  end else begin
-    Layers[aData^.fLayerName].RestoreFromString(aData^.fLayerData);
-  end;}
-end;
-
 procedure TUndoRedoManager.Redo;
 var
   aData: String;
-  aUndo: String;
 begin
     if CanRedo then begin
      aData:=fRedoList.Pop;
-     aUndo:=aData;
-     InternalRestoreData(aData);
+     Frames.Remove(FrameGrid.ActiveFrame);
+     Frames[FrameGrid.ActiveFrame]:=TSPFrame.Create(aData);
      fUndoList.Add(aData);
   end;
-end;
-
-procedure TUndoRedoManager.SaveState(aLayerName: String);
-begin
-
 end;
 
 {$IFDEF DEBUG}
 procedure TUndoRedoManager.DumpDataToLog(aData: String);
 begin
- {DebugLn(DateTimeToStr(Now()),' In: TUndoRedoManager.DumpDataToLog()');
- DebugLn(#9,'Layer name: ',aData^.fLayerName);
- DebugLn(#9,'Layer data: ',aData^.fLayerData);
- DebugLn(#9,'Layer frames: ',aData^.fLayerFrames);}
+ DebugLn(' In: TUndoRedoManager.DumpDataToLog() aData: ',aData);
 end;
 {$ENDIF}
 
@@ -820,9 +794,6 @@ end;
 
 procedure TUndoRedoManager.SaveState;
 begin
-  {$IFDEF DEBUG}
-   Exit;
-  {$ENDIF}
   fUndoList.Add(Frames[FrameGrid.ActiveFrame].ToJSON);
 end;
 
@@ -832,8 +803,7 @@ var
 begin
   if CanUndo then begin
    Frames.Remove(FrameGrid.ActiveFrame);
-   aFrame:=TSPFrame.Create(fUndoList.Pop);
-   Frames[FrameGrid.ActiveFrame]:=aFrame;
+   Frames[FrameGrid.ActiveFrame]:=TSPFrame.Create(fUndoList.Pop);;
   end;
 end;
 
@@ -884,25 +854,33 @@ constructor TSPFrame.Create(aJSONData: String);
 var
   aJSONParser : TJSONParser;
   aData       : TJSONObject;
-  aLayers     : TJSONObject;
+  aLayers     : TJSONArray;
   aEnum       : TBaseJSONEnumerator;
   aLayer      : TSPLayer;
+  i: Integer;
 begin
+ fLayers:=TStringList.Create;
+ {$IFDEF DEBUG}
+ DebugLn('In: TSPFrame.Create(JSON): aJSONData=',aJSONData);
+ {$ENDIF}
   aJSONParser:=TJSONParser.Create(aJSONData,DefaultOptions);
   try
-    aData:=aJSONParser.Parse as TJSONObject;
+     aData:=aJSONParser.Parse as TJSONObject;
      FIndex:=aData.Get('Index',0);
      fFrameName:=aData.Get('Frame name', rsFrame);
      FWidth:=aData.Get('Width',0);
      FHeight:=aData.Get('Height',0);
      FCount:=aData.Get('Layers count',0);
     try
-      aLayers:=aData.Get('Layers',TJSONObject.Create([]));
-      aEnum:=aLayers.GetEnumerator;
+      aData.Find('Layers',aLayers);
       try
-        while aEnum.MoveNext do begin
+       if aLayers.Count>0 then
+        for i:=0 to aLayers.Count-1 do begin
          //read all layers data
-         aLayer:=TSPLayer.Create(aEnum.Current.Value.AsString);
+         {$IFDEF DEBUG}
+         DebugLn('In: TSPFrame.Create(JSON) Layers JSON: ', aLayers.AsJSON);
+         {$ENDIF}
+         aLayer:=TSPLayer.Create(aLayers.Items[i].AsJSON);
          Layers[aLayer.LayerName]:=aLayer;
          fLayers.Add(aLayer.LayerName);
          FreeAndNil(aLayer);
@@ -911,7 +889,7 @@ begin
 
       end;
     finally
-      FreeAndNil(aEnum);
+      //FreeAndNil(aEnum);
     end;
   finally
    FreeAndNil(aData);
@@ -921,7 +899,6 @@ end;
 
 destructor TSPFrame.Destroy;
 begin
-  fLayers.Clear;
   FreeAndNil(fLayers);
   inherited Destroy;
 end;
@@ -929,6 +906,7 @@ end;
 function TSPFrame.ToJSON: String;
 var
     aJSON : TJSONObject;
+    aLayer : TJSONObject;
     aLayers : TJSONArray;
     i: Integer;
 begin
@@ -938,16 +916,19 @@ begin
  aJSON.Add('Frame name',fFrameName);
  aJSON.Add('Width',FWidth);
  aJSON.Add('Height',FHeight);
+ FCount:=fLayers.Count;
  aJSON.Add('Layers count',FCount);
  aLayers:=TJSONArray.Create;
  //add all layers to JSON array
- for i := 0 to FCount-1 do aLayers.Add(Layers[fLayers.Strings[i]].ToJSON);
+
+ for i := 0 to FCount-1 do begin
+  aLayers.Add(GetJSON(Layers[fLayers.Strings[i]].ToJSON));
+ end;
  aJSON.Add('Layers',aLayers);
  Result:=aJSON.AsJSON;
  {$IFDEF DEBUG}
  DebugLn('In: TSPFrame.ToJSON() JSON data:',Result);
  {$ENDIF}
- FreeAndNil(aLayers);
  FreeAndNil(aJSON);
 end;
 
@@ -1024,9 +1005,6 @@ begin
   aJSON.Add('Visible',fVisible);
   aJSON.Add('Locked',FLocked);
   Result:=aJSON.AsJSON;
-  {$IFDEF DEBUG}
-  DebugLn('In: TSPLayer.ToJSON() JSON data:',Result);
-  {$ENDIF}
   FreeAndNil(aJSON);
 end;
 
@@ -1054,16 +1032,21 @@ aJSONParser : TJSONParser;
       aName : String;
       aData : String;
 begin
- aJSONParser:=TJSONParser.Create(aJSONData,DefaultOptions);
  aName:=rsLayerName;
  aData:='';
  try
+  aJSONParser:=TJSONParser.Create(aData,DefaultOptions);
   aJSON:=aJSONParser.Parse as TJSONObject;
-  aName:=aJSON.Get('Layer name',rsLayerName);
+  { #note 1 -oiso4free -cFixme : Why can't get value? Why aJSON not initialized? }
+  {$IFDEF DEBUG}
+  DebugLn('In: TSPLayer.Create(JSON) parsed data: ', aJSON.AsJSON);
+  {$ENDIF}
+  aName:=aJSON.Get('Layer name','');
   aData:=aJSON.Get('Image (BASE64)','');
   fVisible:=aJSON.Get('Visible',True);
   FLocked:=aJSON.Get('Locked',False);
  finally
+  Assert(aData='','Can''t create image from empty data!');
   Create(aName,aData);
   FreeAndNil(aJSONParser);
   FreeAndNil(aJSON);
@@ -1282,7 +1265,10 @@ begin
   end;
   //draw all layers to canvas
  // if (LayerExists(cINTERNALLAYERANDFRAME) and Layers[cINTERNALLAYERANDFRAME].Visible) then fPreview.PutImage(0,0,Layers[cINTERNALLAYERANDFRAME].Drawable,dmDrawWithTransparency);
-  for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do
+ {$IFDEF DEBUG}
+ //DebugLn('Frame broken!!!! '+IntToStr(Frames.IndexOf(ActiveFrame)));
+ {$ENDIF}
+ for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do
     if (LayerExists(Frames[ActiveFrame].fLayers.Strings[i]) and
         Layers[Frames[ActiveFrame].fLayers.Strings[i]].Visible) then
       fPreview.PutImage(0,0,Layers[Frames[ActiveFrame].fLayers.Strings[i]].Drawable,dmDrawWithTransparency);

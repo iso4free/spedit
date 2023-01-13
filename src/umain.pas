@@ -520,9 +520,8 @@ begin
       Exit;
     end;
     //all good - let`s merge
-    UndoRedoManager.SaveState(aName);
-    Layers[aName].Drawable.PutImage(0,0,Layers[FrameGrid.ActiveLayer].Drawable,dmDrawWithTransparency);
     UndoRedoManager.SaveState;
+    Layers[aName].Drawable.PutImage(0,0,Layers[FrameGrid.ActiveLayer].Drawable,dmDrawWithTransparency);
     Layers.Remove(FrameGrid.ActiveLayer);
     Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
     FrameGrid.ActiveLayer:=aName;
@@ -1001,6 +1000,8 @@ end;
 procedure TfrmMain.actUndoExecute(Sender: TObject);
 begin
  UndoRedoManager.Undo;
+ LayersChange;
+ FramePreview.Invalidate;
  pbFrameDraw.Invalidate;
 end;
 
