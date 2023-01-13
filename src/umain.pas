@@ -597,11 +597,12 @@ begin
    Frames[frmFrameDlg.edtFrameName.Text]:=TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
                                                           FramePreview.Width,
                                                           FramePreview.Height);
+   FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
+
    Layers[frmFrameDlg.edtFrameName.Text]:=TSPLayer.Create(frmFrameDlg.edtFrameName.Text,
                                                           FramePreview.Width,
                                                           FramePreview.Height);
    Frames[frmFrameDlg.edtFrameName.Text].AddLayer(frmFrameDlg.edtFrameName.Text);
-   FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
    FrameGrid.ActiveLayer:=frmFrameDlg.edtFrameName.Text;
 
    LayersChange;

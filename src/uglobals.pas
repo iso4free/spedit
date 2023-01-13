@@ -852,49 +852,29 @@ end;
 
 constructor TSPFrame.Create(aJSONData: String);
 var
-  aJSONParser : TJSONParser;
-  aData       : TJSONObject;
-  aLayers     : TJSONArray;
-  aEnum       : TBaseJSONEnumerator;
-  aLayer      : TSPLayer;
-  i: Integer;
-begin
- fLayers:=TStringList.Create;
- {$IFDEF DEBUG}
- DebugLn('In: TSPFrame.Create(JSON): aJSONData=',aJSONData);
- {$ENDIF}
-  aJSONParser:=TJSONParser.Create(aJSONData,DefaultOptions);
-  try
-     aData:=aJSONParser.Parse as TJSONObject;
-     FIndex:=aData.Get('Index',0);
-     fFrameName:=aData.Get('Frame name', rsFrame);
-     FWidth:=aData.Get('Width',0);
-     FHeight:=aData.Get('Height',0);
-     FCount:=aData.Get('Layers count',0);
-    try
-      aData.Find('Layers',aLayers);
-      try
-       if aLayers.Count>0 then
-        for i:=0 to aLayers.Count-1 do begin
-         //read all layers data
-         {$IFDEF DEBUG}
-         DebugLn('In: TSPFrame.Create(JSON) Layers JSON: ', aLayers.AsJSON);
-         {$ENDIF}
-         aLayer:=TSPLayer.Create(aLayers.Items[i].AsJSON);
-         Layers[aLayer.LayerName]:=aLayer;
-         fLayers.Add(aLayer.LayerName);
-         FreeAndNil(aLayer);
-        end;
-      finally
-
-      end;
-    finally
-      //FreeAndNil(aEnum);
+ aJSON : TJSONData;
+ e_ : TJSONEnum;
+ i : Integer;
+ begin
+  aJSON:=GetJSON(aJSONData);
+  for e_ in aJSON do begin
+   case e_.Key of
+ 'Index' : FIndex:=e_.Value.AsInteger;
+ 'Frame name': fFrameName:=e_.Value.AsString;
+ 'Width' : FWidth:=e_.Value.AsInteger;
+ 'Height': FHeight:=e_.Value.AsInteger;
+ 'Layers count': FCount:=e_.Value.AsInteger;
+ 'Layers': begin //todo: array must be here - object convert error
+     for i:=0 to e_.Value.Count-1 do begin
+      {$IFDEF DEBUG}
+      DebugLn('In : LoadLayersFromJSON() data: ',e_.Value.AsJSON);
+      {$ENDIF}
+      TSPLayer.Create(e_.Value.Items[i].AsJSON);
+     end;
     end;
-  finally
-   FreeAndNil(aData);
+   end;
   end;
-  FreeAndNil(aJSONParser);
+  FreeAndNil(aJSON);
 end;
 
 destructor TSPFrame.Destroy;
@@ -1021,34 +1001,33 @@ end;
 
 constructor TSPLayer.Create(aName, aData: String);
 begin
-  Create(aName);
+  Create(aName,0,0);
   RestoreFromString(aData);
 end;
 
 constructor TSPLayer.Create(aJSONData: String);
 var
-      aJSON : TJSONObject;
-aJSONParser : TJSONParser;
-      aName : String;
+      aJSON : TJSONData;
+      e     : TJSONEnum;
+      aName,
       aData : String;
 begin
- aName:=rsLayerName;
- aData:='';
+ aJSON:=GetJSON(aJSONData);
  try
-  aJSONParser:=TJSONParser.Create(aData,DefaultOptions);
-  aJSON:=aJSONParser.Parse as TJSONObject;
   { #note 1 -oiso4free -cFixme : Why can't get value? Why aJSON not initialized? }
   {$IFDEF DEBUG}
   DebugLn('In: TSPLayer.Create(JSON) parsed data: ', aJSON.AsJSON);
   {$ENDIF}
-  aName:=aJSON.Get('Layer name','');
-  aData:=aJSON.Get('Image (BASE64)','');
-  fVisible:=aJSON.Get('Visible',True);
-  FLocked:=aJSON.Get('Locked',False);
- finally
-  Assert(aData='','Can''t create image from empty data!');
+  for e in aJSON do begin
+   case e.Key of
+   'Layer name' : aName:=e.Value.AsString;
+   'Image (BASE64)': aData:=e.Value.AsString;
+   'Visible' : fVisible:=e.Value.AsBoolean;
+   'Locked' : FLocked:=e.Value.AsBoolean;
+   end;
+  end;
   Create(aName,aData);
-  FreeAndNil(aJSONParser);
+ finally
   FreeAndNil(aJSON);
  end;
 end;
@@ -1059,6 +1038,8 @@ begin
   fVisible:=True;
   FLocked:=False;
   fName:=aName;
+  if Assigned(FrameGrid) then
+  Frames[FrameGrid.ActiveFrame].AddLayer(fName);
 end;
 
 destructor TSPLayer.Destroy;
