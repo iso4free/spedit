@@ -217,7 +217,7 @@ type
 
     constructor Create(aName : String; aWidth : Integer; aHeight : Integer);
     constructor Create(aName, aData : String); //create layer image from BASE64 encoded string
-    constructor Create(aJSONData : String); //create layer from JSON data
+    class procedure RestoreFromJSON(aJSONData : String); static; //create layer from JSON data
     destructor Destroy; override;
 
     procedure Clear;
@@ -237,7 +237,7 @@ type
     procedure SetIndex(AValue: Integer);
    public
     constructor Create(aName : String; w : Integer; h : integer);
-    constructor Create(aJSONData : String);
+    procedure RestoreFromJSON(aJSONData : String);
     destructor Destroy; override;
     function ToJSON : String; //serialize Frame data with layers to JSON
     procedure Resize(w,h : Integer; Stretched : Boolean = false); //resize all layers belongs to frame
@@ -760,8 +760,8 @@ var
 begin
     if CanRedo then begin
      aData:=fRedoList.Pop;
-     Frames.Remove(FrameGrid.ActiveFrame);
-     Frames[FrameGrid.ActiveFrame]:=TSPFrame.Create(aData);
+     //Frames.Remove(FrameGrid.ActiveFrame);
+     Frames[FrameGrid.ActiveFrame].RestoreFromJSON(aData);
      fUndoList.Add(aData);
   end;
 end;
@@ -799,11 +799,12 @@ end;
 
 procedure TUndoRedoManager.Undo;
 var
-  aFrame : TSPFrame;
+  s : String;
 begin
   if CanUndo then begin
-   Frames.Remove(FrameGrid.ActiveFrame);
-   Frames[FrameGrid.ActiveFrame]:=TSPFrame.Create(fUndoList.Pop);;
+   s:=fUndoList.Pop;
+   Frames[FrameGrid.ActiveFrame].RestoreFromJSON(s);
+   fRedoList.Add(s);
   end;
 end;
 
@@ -850,7 +851,7 @@ begin
  fLayers:=TStringList.Create;
 end;
 
-constructor TSPFrame.Create(aJSONData: String);
+procedure TSPFrame.RestoreFromJSON(aJSONData: String);
 var
  aJSON : TJSONData;
  e_ : TJSONEnum;
@@ -869,11 +870,14 @@ var
       {$IFDEF DEBUG}
       DebugLn('In : LoadLayersFromJSON() data: ',e_.Value.AsJSON);
       {$ENDIF}
-      TSPLayer.Create(e_.Value.Items[i].AsJSON);
+       TSPLayer.RestoreFromJSON(e_.Value.AsJSON);
      end;
     end;
    end;
   end;
+  {$IFDEF DEBUG}
+  DebugLn('In: LoadLayersFromJSON, Layers :',Frames[FrameGrid.ActiveFrame].LayersList.Text);
+  {$ENDIF}
   FreeAndNil(aJSON);
 end;
 
@@ -1005,28 +1009,31 @@ begin
   RestoreFromString(aData);
 end;
 
-constructor TSPLayer.Create(aJSONData: String);
+class procedure TSPLayer.RestoreFromJSON(aJSONData: String);
 var
       aJSON : TJSONData;
       e     : TJSONEnum;
-      aName,
-      aData : String;
+      el    : TJSONEnum;
+      aName : String;
 begin
  aJSON:=GetJSON(aJSONData);
  try
-  { #note 1 -oiso4free -cFixme : Why can't get value? Why aJSON not initialized? }
   {$IFDEF DEBUG}
-  DebugLn('In: TSPLayer.Create(JSON) parsed data: ', aJSON.AsJSON);
+  DebugLn('In: TSPLayer.RestoreFromJSON(JSON) parsed data: ', aJSON.AsJSON);
   {$ENDIF}
-  for e in aJSON do begin
-   case e.Key of
-   'Layer name' : aName:=e.Value.AsString;
-   'Image (BASE64)': aData:=e.Value.AsString;
-   'Visible' : fVisible:=e.Value.AsBoolean;
-   'Locked' : FLocked:=e.Value.AsBoolean;
+  for e in aJSON do
+    for el in e.Value do begin
+    case el.Key of
+   'Layer name' : begin
+     aName:=el.Value.AsString;
+     if not LayerExists(aName) then Layers[aName]:=TSPLayer.Create(aName,0,0);
+     if Assigned(FrameGrid) then Frames[FrameGrid.ActiveFrame].AddLayer(aName);
+    end;
+   'Image (BASE64)': Layers[aName].RestoreFromString(el.Value.AsString);
+   'Visible' : Layers[aName].Visible:=el.Value.AsBoolean;
+   'Locked' : Layers[aName].Locked:=el.Value.AsBoolean;
    end;
   end;
-  Create(aName,aData);
  finally
   FreeAndNil(aJSON);
  end;

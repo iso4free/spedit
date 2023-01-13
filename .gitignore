@@ -2,5 +2,7 @@ bin/spedit*
 lib/**
 debug/**
 src/backup/**
+src/thirdparty/backup/**
 *.mo
 *.exe
+bin/datatest-*
