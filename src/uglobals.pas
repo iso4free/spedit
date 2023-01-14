@@ -156,7 +156,7 @@ type
 
   {
   Undo/Redo information stored in JSON format.
-  SavedState serialize current frame to JSON data string and add it to Undo list
+  SaveState serialize current frame to JSON data string and add it to Undo list
   cearing Redo list.
   Restore state get last JSON data string from Redo list if avaliaable, restore
   frame state and add it again to Undo list
@@ -248,6 +248,7 @@ type
     property Height : Integer read FHeight;
     function AddLayer(LayerName : String): Boolean; //add new layer and return it`s index or -1 if error
     function DeleteLayer(aLayerName : String): Boolean;      //remove layer from frame
+    procedure DeleteAllLayers; //delete layers belongs to current frame only
   end;
 
   { TCellCursor - for drawing red rectangle followed by mouse cursor or moved by arrow keys}
@@ -656,21 +657,6 @@ begin
       if S[I] = Char then Inc(Result);
 end;
 
-procedure ClearFramesAndLayers;
-var
-    f , l : Integer;
-    aKey  : String;
-begin
-  while l>0 do begin
-    aKey:=Layers.Keys[l];
-    Layers.Remove(aKey);
-  end;
-  f:=Frames.Count-1;
-  while f>0 do begin
-    aKey:=Frames.Keys[f];
-    Frames.Remove(aKey);
-  end;
-end;
 
 procedure ReloadPresets(aDirectory: String);
 var
@@ -933,13 +919,25 @@ begin
   Result:=True;
 end;
 
+procedure TSPFrame.DeleteAllLayers;
+var
+  s : String;
+begin
+  if fLayers.Count=0 then Exit;
+  while fLayers.Count<>0 do begin
+   s:=fLayers.Pop;
+   Layers.Remove(s);
+  end;
+end;
+
 function TSPFrame.DeleteLayer(aLayerName: String): Boolean;
  var i : Integer;
 begin
   Result:=False;
   i:=fLayers.IndexOf(aLayerName);
-  if i>0 then begin
+  if i<>-1 then begin
     fLayers.Delete(i);
+    Layers.Remove(aLayerName);
     Result:=True;
   end;
 end;
@@ -972,9 +970,6 @@ begin
   aStream:=TMemoryStream.Create;
   Drawable.SaveToStreamAsPng(aStream);
   if not StreamToBase64(aStream,Result) then Result:='';
-  {$IFDEF DEBUG}
-  //DebugLn(DateTimeToStr(Now()),' In: TSPLayer.ToBASE64String() data: ', Result);
-  {$ENDIF}
   FreeAndNil(aStream);
 end;
 
@@ -996,6 +991,9 @@ procedure TSPLayer.RestoreFromString(aBASE64: String);
 var
     aStream : TMemoryStream;
 begin
+   {$IFDEF DEBUG}
+  DebugLn('In: TSPLayer.RestoreFromString() data: ', aBASE64);
+  {$ENDIF}
   aStream:=TMemoryStream.Create;
   if Base64ToStream(aBASE64,aStream) then begin
     fLayerImg.LoadFromStream(aStream);
@@ -1126,9 +1124,6 @@ begin
   FCellCursor := TCellCursor.Create;
   FCellCursor.CursorSize:=1;
   FCellCursor.Visible:=True;
-  {$IFDEF DEBUG}
-  //DebugLn(DateTimeToStr(Now), ': In  TFrameGrid.Create() Layers count ',IntToStr(Layers.Count));
-  {$ENDIF}
   FActiveLayer:='';
   fActiveFrame:='';
   fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),
@@ -1190,10 +1185,6 @@ var
     x,y: Integer;
     tmpPix : TBGRAPixel;
   begin
-    {$IFDEF DEBUG}
-    Assert(Assigned(aLayer),'Layer not assigned!');
-    {$ENDIF}
-
      for x := 0 to aLayer.Drawable.Width-1 do
     for y:= 0 to aLayer.Drawable.Height-1 do begin
       tmpPix := aLayer.Drawable.GetPixel(x,y);
@@ -1252,19 +1243,13 @@ begin
                         $BFBFBF, $FFFFFF, 4, 4);
   end;
   //draw all layers to canvas
- // if (LayerExists(cINTERNALLAYERANDFRAME) and Layers[cINTERNALLAYERANDFRAME].Visible) then fPreview.PutImage(0,0,Layers[cINTERNALLAYERANDFRAME].Drawable,dmDrawWithTransparency);
- {$IFDEF DEBUG}
- //DebugLn('Frame broken!!!! '+IntToStr(Frames.IndexOf(ActiveFrame)));
- {$ENDIF}
  for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do
     if (LayerExists(Frames[ActiveFrame].fLayers.Strings[i]) and
         Layers[Frames[ActiveFrame].fLayers.Strings[i]].Visible) then
       fPreview.PutImage(0,0,Layers[Frames[ActiveFrame].fLayers.Strings[i]].Drawable,dmDrawWithTransparency);
   if LayerExists(csDRAWLAYER) then fPreview.PutImage(0,0,Layers[csDRAWLAYER].Drawable,dmDrawWithTransparency);
   if Assigned(Canvas) then begin
-  //  aTmp := fPreview.Resample(Canvas.Width,Canvas.Height,rmSimpleStretch);
     fPreview.Draw(Canvas,0,0,true);
-   // FreeAndNil(aTmp);
   end;
 end;
 
@@ -1325,28 +1310,11 @@ begin
 end;
 
 procedure TPalette.Reset;
+var
+  i: Integer;
 begin
   Clear;
-  AddColor(clBlackOpaque);
-  AddColor(clMaroon);
-  AddColor(clGreen);
-  AddColor(clOlive);
-  AddColor(clNavy);
-  AddColor(clPurple);
-  AddColor(clTeal);
-  AddColor(clGray);
-  AddColor(clSilver);
-  AddColor(clRed);
-  AddColor(clLime);
-  AddColor(clYellow);
-  AddColor(clBlue);
-  AddColor(clFuchsia);
-  AddColor(clAqua);
-  AddColor(clWhite);
-  AddColor(clCream);
-  AddColor(clMedGray);
-  AddColor(clMoneyGreen);
-  AddColor(clSkyBlue);
+  for i:=0 to VGAColors.Count-1 do Palette.AddColor(VGAColors.ByIndex[i]);
 end;
 
 procedure TPalette.SelectColor(Index: Byte);
@@ -1521,7 +1489,6 @@ begin
  for i:=0 to Layers.Count-1 do begin
   aKey:=Layers.Keys[i];
   Layers[aKey].Resize(aW,aH,Stretched);
- // ClearBitmap(Layers[aKey].Drawable);
  end;
 end;
 
@@ -1559,7 +1526,6 @@ initialization
 
  finalization
   INI.WriteString('INTERFACE','SPRITELIB',CurrentLibName);
-  //ClearFramesAndLayers;
   FreeAndNil(Presets);
   FreeAndNil(UndoRedoManager);
   FreeAndNil(Layers);

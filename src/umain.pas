@@ -469,7 +469,6 @@ begin
     Exit;
   end;
   UndoRedoManager.SaveState;
-  Layers.Remove(FrameGrid.ActiveLayer);
   Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
   FrameGrid.ActiveLayer:=Frames[FrameGrid.ActiveFrame].LayersList.Strings[0];
   LayersChange;
@@ -522,7 +521,6 @@ begin
     //all good - let`s merge
     UndoRedoManager.SaveState;
     Layers[aName].Drawable.PutImage(0,0,Layers[FrameGrid.ActiveLayer].Drawable,dmDrawWithTransparency);
-    Layers.Remove(FrameGrid.ActiveLayer);
     Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
     FrameGrid.ActiveLayer:=aName;
     LayersChange;
@@ -595,13 +593,13 @@ begin
    FramePreview.Width:=FrameGrid.FrameWidth;
    FramePreview.Height:=FrameGrid.FrameHeight;
    Frames[frmFrameDlg.edtFrameName.Text]:=TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
-                                                          FramePreview.Width,
-                                                          FramePreview.Height);
+                                                          frmFrameDlg.spnedtWidth.Value,
+                                                          frmFrameDlg.spnedtHeight.Value);
    FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
 
    Layers[frmFrameDlg.edtFrameName.Text]:=TSPLayer.Create(frmFrameDlg.edtFrameName.Text,
-                                                          FramePreview.Width,
-                                                          FramePreview.Height);
+                                                          frmFrameDlg.spnedtWidth.Value,
+                                                          frmFrameDlg.spnedtHeight.Value);
    Frames[frmFrameDlg.edtFrameName.Text].AddLayer(frmFrameDlg.edtFrameName.Text);
    FrameGrid.ActiveLayer:=frmFrameDlg.edtFrameName.Text;
 
@@ -711,7 +709,7 @@ end;
 procedure TfrmMain.actRedoExecute(Sender: TObject);
 begin
  UndoRedoManager.Redo;
- pbFrameDraw.Invalidate;
+ LayersChange;
 end;
 
 procedure TfrmMain.actReferenceToggleExecute(Sender: TObject);
@@ -1002,8 +1000,6 @@ procedure TfrmMain.actUndoExecute(Sender: TObject);
 begin
  UndoRedoManager.Undo;
  LayersChange;
- FramePreview.Invalidate;
- pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.FgColorClick(Sender: TObject);
