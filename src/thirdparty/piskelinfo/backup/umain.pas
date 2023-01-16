@@ -29,6 +29,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Edit1KeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ValueListEditor1SelectCell(Sender: TObject; aCol, aRow: Integer;
@@ -69,6 +70,9 @@ var
 begin
   root.LoadFromFile(ValueListEditor1.Values['Piskel file']);
   ValueListEditor1.Values['root']:=root.Value;
+  if not root.Exists('piskel') then begin
+    ShowMessage('Not Piskel file!');
+  end;
   for c in root do begin
    ValueListEditor1.Values[c.Name]:=c.Value;
   end;
@@ -77,13 +81,12 @@ begin
    ValueListEditor1.Values[c.Name]:=c.Value;
   end;
   layers:=piskel.Find('layers');
+  ShowMessage('Layers count: '+IntToStr(layers.Count));
   for c in layers do begin
-   s := c.Value;
-   Delete(s,1,1);
-   Delete(s,Length(s),1);
-   s:=StringReplace(s,'\"','"',[rfReplaceAll]);
+   s := c.AsString;
+   Memo1.Append(s);
    ValueListEditor1.Values['layer['+c.Name+']']:=s;
-   c.Value:=s;
+   c.AsJson:=s;
    for l in c do begin
     ValueListEditor1.Values['layer['+c.Name+']/'+l.Name]:=l.Value;
     if l.Value='chunks' then
@@ -103,6 +106,11 @@ begin
   end;
 end;
 
+procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: char);
+begin
+  if Key=#13 then Button3Click(Sender);
+end;
+
 procedure TForm1.FormCreate(Sender: TObject);
 begin
       root:=TJsonNode.Create;
@@ -116,9 +124,8 @@ end;
 procedure TForm1.ValueListEditor1SelectCell(Sender: TObject; aCol,
   aRow: Integer; var CanSelect: Boolean);
 begin
-  if aCol<>1 then Exit;
   Memo1.Clear;
-  Memo1.Append(ValueListEditor1.Cells[aCol,aRow]);
+  Memo1.Append(ValueListEditor1.Cells[aCol,1]);
 end;
 
 end.

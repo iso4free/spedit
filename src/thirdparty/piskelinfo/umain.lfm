@@ -61,6 +61,7 @@ object Form1: TForm1
       Top = 1
       Width = 400
       Align = alRight
+      OnKeyPress = Edit1KeyPress
       TabOrder = 3
     end
   end

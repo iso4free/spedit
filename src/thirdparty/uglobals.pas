@@ -234,6 +234,7 @@ type
     FIndex: Integer;
     fLayers : TStringList;
     FWidth: Integer;
+    FPreview : TBGRABitmap;
     procedure SetIndex(AValue: Integer);
    public
     constructor Create(aName : String; w : Integer; h : integer);
@@ -246,6 +247,7 @@ type
     property Index : Integer read FIndex write SetIndex;
     property Width : Integer read FWidth;
     property Height : Integer read FHeight;
+    property Preview : TBGRABitmap read FPreview; //for draw in frame list item
     function AddLayer(LayerName : String): Boolean; //add new layer and return it`s index or -1 if error
     function DeleteLayer(aLayerName : String): Boolean;      //remove layer from frame
     procedure DeleteAllLayers; //delete layers belongs to current frame only
@@ -296,6 +298,7 @@ type
     fOffset        : TPoint; //offset to draw frame on canvas
     fBounds        : TRect; //actual canvas size for zoomed draw with offset
     procedure CalcGridRect;
+    procedure SetActiveFrame(AValue: String);
     procedure SetCheckersSize(AValue: Byte);
     procedure SetFrameZoom(AValue: Integer);
     procedure SetOffset(AValue: TPoint);
@@ -320,7 +323,7 @@ type
     property CheckersSize : Byte read FCheckersSize write SetCheckersSize default 16;
     property FrameWidth : Integer read fFrameWidth;
     property FrameHeight : Integer read fFrameHeight;
-    property ActiveFrame : String read fActiveFrame write fActiveFrame; //work frame name to access through mapped list
+    property ActiveFrame : String read fActiveFrame write SetActiveFrame; //work frame name to access through mapped list
     property ActiveLayer : String read FActiveLayer write FActiveLayer; //current layer to draw
     property CellCursor : TCellCursor read FCellCursor; //just red frame to show where draw in grid
     property Bounds : TRect read fBounds; //actual canvas size for drawing
@@ -835,6 +838,7 @@ begin
  FWidth:=w;
  FHeight:=h;
  fLayers:=TStringList.Create;
+ FPreview:=TBGRABitmap.Create(w,h);
 end;
 
 procedure TSPFrame.RestoreFromJSON(aJSONData: String);
@@ -869,6 +873,7 @@ end;
 
 destructor TSPFrame.Destroy;
 begin
+  FreeAndNil(FPreview);
   FreeAndNil(fLayers);
   inherited Destroy;
 end;
@@ -1139,6 +1144,7 @@ begin
     aBmp:=TBGRABitmap.Create(aImg);
     Create(aBmp.Width,aBmp.Height,aSize);
     aFrameName:=ExtractFileName(aImg);
+    aFrameName:=ChangeFileExt(aFrameName,'');
     aLayerName:=aFrameName;
     Frames[aFrameName]:=TSPFrame.Create(aFrameName, FrameWidth, FrameHeight);
     Layers[aFrameName]:=TSPLayer.Create(aLayerName,FrameWidth,FrameHeight);
@@ -1250,6 +1256,7 @@ begin
   if LayerExists(csDRAWLAYER) then fPreview.PutImage(0,0,Layers[csDRAWLAYER].Drawable,dmDrawWithTransparency);
   if Assigned(Canvas) then begin
     fPreview.Draw(Canvas,0,0,true);
+    fPreview.Draw(Frames[ActiveFrame].Preview.Canvas,0,0,true);
   end;
 end;
 
@@ -1268,6 +1275,14 @@ begin
                               fFrameHeight*(fFrameGridSize+fFrameZoom)) as TBGRABitmap;
   BGRAReplace(fBuffer,tmp);
   CalcGridRect;
+end;
+
+procedure TFrameGrid.SetActiveFrame(AValue: String);
+begin
+  if fActiveFrame=AValue then Exit;
+  fActiveFrame:=AValue;
+  fFrameWidth:=Frames[fActiveFrame].Width;
+  fFrameHeight:=Frames[fActiveFrame].Height;
 end;
 
 procedure TFrameGrid.ExpotPng(aFilename: TFileName);

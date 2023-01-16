@@ -110,6 +110,7 @@ type
     lblPenSize: TLabel;
     LayersFlowPanel: TFlowPanel;
     LayersGroupBox: TGroupBox;
+    lbFrames: TListBox;
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
     MenuItem1: TMenuItem;
@@ -295,6 +296,12 @@ type
     procedure FramePreviewPaint(Sender: TObject);
     procedure HexaColorPicker1MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure lbFramesDrawItem(Control: TWinControl; Index: Integer;
+      ARect: TRect; State: TOwnerDrawState);
+    procedure lbFramesMeasureItem(Control: TWinControl; Index: Integer;
+      var AHeight: Integer);
+    procedure lbFramesSelectionChange(Sender: TObject; User: boolean);
+    procedure lwFramesColumnClick(Sender: TObject; Column: TListColumn);
     procedure mbColorPalettePresetCellClick(Button: TMouseButton;
       Shift: TShiftState; Index: integer; AColor: TColor; var DontCheck: boolean
       );
@@ -320,6 +327,7 @@ type
    dx,dy : Integer;             //offset to move grid
    startx,starty : Integer;     //start position to move
    procedure LayersChange;
+   procedure FramesChange;
    procedure LoadPresets(aDir : String);
    procedure SetSelectedColor(const Button: TMouseButton; aColor : TBGRAPixel);
    procedure PaletteChange; //added colors to current palette
@@ -614,6 +622,8 @@ begin
    FrameGrid.ShowGrid:=actGridToggle.Checked;
    trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
    Palette.Clear;
+   lbFrames.AddItem(frmFrameDlg.edtFrameName.Text,Frames[FrameGrid.ActiveFrame]);
+   FramesChange;
    mbPaletteGrid.Colors.Clear;
    pbFrameDraw.Invalidate;
   end;
@@ -1212,8 +1222,17 @@ end;
 
 procedure TfrmMain.FramePreviewPaint(Sender: TObject);
 begin
- if Assigned(FrameGrid) then
+ if Assigned(FrameGrid) then begin
   FrameGrid.RenderPicture(FramePreview.Canvas);
+  lbFrames.Invalidate;
+ end;
+end;
+
+procedure TfrmMain.FramesChange;
+begin
+  lbFrames.ItemHeight:=lbFrames.Height;
+  lbFrames.Columns:=Frames.Count;
+  LayersChange;
 end;
 
 procedure TfrmMain.HexaColorPicker1MouseUp(Sender: TObject;
@@ -1297,6 +1316,7 @@ begin
   FramePreview.Width:=FrameGrid.FrameWidth;
   FramePreview.Height:=FrameGrid.FrameHeight;
   trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
+  lbFrames.AddItem(FrameGrid.ActiveFrame,Frames[FrameGrid.ActiveFrame]);
   Palette.Clear;
   aPal.LoadFromImage(aFilename);
   for i:=0 to aPal.Count-1 do Palette.AddColor(aPal.Color[i]);
@@ -1439,6 +1459,30 @@ begin
   FramePreview.Invalidate;
 end;
 
+procedure TfrmMain.lbFramesDrawItem(Control: TWinControl; Index: Integer;
+  ARect: TRect; State: TOwnerDrawState);
+var
+    r : TRect;
+begin
+ r.Left:=ARect.Left;
+ r.Top:=ARect.Top;
+ r.Right:=r.Left+Frames[lbFrames.Items[Index]].Width-1;
+ r.Bottom:=r.Top+Frames[lbFrames.Items[Index]].Height-1;
+ Frames[lbFrames.Items[Index]].Preview.Draw(TListBox(Control).Canvas,ARect.Left,ARect.Top,True);
+end;
+
+procedure TfrmMain.lbFramesMeasureItem(Control: TWinControl; Index: Integer;
+  var AHeight: Integer);
+begin
+  AHeight:=Frames[lbFrames.Items[Index]].Height;
+end;
+
+procedure TfrmMain.lbFramesSelectionChange(Sender: TObject; User: boolean);
+begin
+  FrameGrid.ActiveFrame:=lbFrames.GetSelectedText;
+  LayersChange;
+end;
+
 procedure TfrmMain.SetSelectedColor(const Button: TMouseButton;
   aColor: TBGRAPixel);
 begin
@@ -1474,6 +1518,11 @@ begin
   end;
   cbPalettePresets.ItemIndex:=0;
   cbPalettePresetsChange(Self);
+end;
+
+procedure TfrmMain.lwFramesColumnClick(Sender: TObject; Column: TListColumn);
+begin
+  //todo: save current frame and load selected
 end;
 
 procedure TfrmMain.sbPenClick(Sender: TObject);

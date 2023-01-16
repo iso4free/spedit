@@ -531,6 +531,10 @@ msgctxt "tfrmnamedlg.bbtncancel.caption"
 msgid "Cancel"
 msgstr ""
 
+#: tfrmprojectprops.caption
+msgid "Project options"
+msgstr ""
+
 #: tfrmresize.bbtncancel.caption
 msgctxt "tfrmresize.bbtncancel.caption"
 msgid "Cancel"

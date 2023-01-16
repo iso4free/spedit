@@ -43,17 +43,17 @@ object frmMain: TfrmMain
   end
   object pnlLayers: TPanel
     Left = 0
-    Height = 531
+    Height = 566
     Top = 40
     Width = 147
     Align = alLeft
-    ClientHeight = 531
+    ClientHeight = 566
     ClientWidth = 147
     TabOrder = 1
     object LayersFlowPanel: TFlowPanel
       Left = 1
       Height = 35
-      Top = 495
+      Top = 530
       Width = 145
       Align = alBottom
       AutoSize = True
@@ -141,17 +141,17 @@ object frmMain: TfrmMain
     end
     object LayersGroupBox: TGroupBox
       Left = 1
-      Height = 494
+      Height = 529
       Top = 1
       Width = 145
       Align = alClient
       Caption = 'Layers'
-      ClientHeight = 475
+      ClientHeight = 510
       ClientWidth = 141
       TabOrder = 1
       object drwgrdLayers: TDrawGrid
         Left = 0
-        Height = 475
+        Height = 510
         Top = 0
         Width = 141
         Align = alClient
@@ -407,15 +407,33 @@ object frmMain: TfrmMain
   end
   object pnlFrames: TPanel
     Left = 0
-    Height = 117
-    Top = 576
+    Height = 82
+    Top = 611
     Width = 752
     Align = alBottom
+    AutoSize = True
+    ClientHeight = 82
+    ClientWidth = 752
     TabOrder = 3
+    object lbFrames: TListBox
+      Left = 1
+      Height = 80
+      Top = 1
+      Width = 750
+      Align = alClient
+      Columns = 5
+      ItemHeight = 0
+      OnDrawItem = lbFramesDrawItem
+      OnMeasureItem = lbFramesMeasureItem
+      OnSelectionChange = lbFramesSelectionChange
+      Style = lbOwnerDrawVariable
+      TabOrder = 0
+      TopIndex = -1
+    end
   end
   object pnlTools: TFlowPanel
     Left = 729
-    Height = 531
+    Height = 566
     Top = 40
     Width = 23
     Align = alRight
@@ -638,13 +656,13 @@ object frmMain: TfrmMain
   end
   object Splitter1: TSplitter
     Left = 147
-    Height = 531
+    Height = 566
     Top = 40
     Width = 5
   end
   object Splitter2: TSplitter
     Left = 574
-    Height = 531
+    Height = 566
     Top = 40
     Width = 5
     Align = alRight
@@ -655,24 +673,24 @@ object frmMain: TfrmMain
     Cursor = crVSplit
     Left = 0
     Height = 5
-    Top = 571
+    Top = 606
     Width = 752
     Align = alBottom
     ResizeAnchor = akBottom
   end
   object pnlPalette: TPanel
     Left = 579
-    Height = 531
+    Height = 566
     Top = 40
     Width = 150
     Align = alRight
-    ClientHeight = 531
+    ClientHeight = 566
     ClientWidth = 150
     TabOrder = 8
     object sbCurrentPalette: TScrollBox
       Left = 1
       Height = 128
-      Top = 250
+      Top = 285
       Width = 148
       HorzScrollBar.Page = 1
       HorzScrollBar.Visible = False
@@ -721,7 +739,7 @@ object frmMain: TfrmMain
     object pnlColors: TPanel
       Left = 1
       Height = 152
-      Top = 378
+      Top = 413
       Width = 148
       Align = alBottom
       AutoSize = True
@@ -766,18 +784,18 @@ object frmMain: TfrmMain
     end
     object sbPresetPalette: TScrollBox
       Left = 1
-      Height = 96
+      Height = 131
       Top = 154
       Width = 148
       HorzScrollBar.Page = 75
       VertScrollBar.Page = 50
       Align = alClient
-      ClientHeight = 94
+      ClientHeight = 129
       ClientWidth = 146
       TabOrder = 4
       object mbColorPalettePreset: TmbColorPalette
         Left = 0
-        Height = 94
+        Height = 129
         Top = 0
         Width = 146
         Align = alClient
@@ -791,7 +809,7 @@ object frmMain: TfrmMain
   end
   object pbFrameDraw: TPaintBox
     Left = 152
-    Height = 531
+    Height = 566
     Top = 40
     Width = 422
     Align = alClient

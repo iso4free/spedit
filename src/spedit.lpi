@@ -251,6 +251,7 @@
         <Filename Value="uprojprops.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmProjectProps"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>
