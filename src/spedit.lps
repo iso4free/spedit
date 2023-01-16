@@ -10,7 +10,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="26"/>
         <CursorPos X="13" Y="41"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="umain.pas"/>
@@ -18,11 +18,12 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="599"/>
-        <CursorPos X="88" Y="601"/>
-        <UsageCount Value="194"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="1241"/>
+        <CursorPos X="21" Y="1246"/>
+        <UsageCount Value="200"/>
         <Bookmarks Count="1">
-          <Item0 X="79" Y="370"/>
+          <Item0 X="79" Y="375"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -30,11 +31,9 @@
       <Unit>
         <Filename Value="udraw.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="520"/>
-        <CursorPos X="25" Y="525"/>
-        <UsageCount Value="194"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="17" Y="17"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="ureferense.pas"/>
@@ -45,7 +44,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="17"/>
         <CursorPos X="11" Y="32"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="uframedlg.pas"/>
@@ -56,17 +55,15 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="55"/>
         <CursorPos X="47" Y="85"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="uglobals.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="780"/>
-        <CursorPos X="3" Y="783"/>
-        <UsageCount Value="194"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="28"/>
+        <CursorPos X="24" Y="31"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="uabout.pas"/>
@@ -77,7 +74,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
         <CursorPos X="11" Y="33"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="usettings.pas"/>
@@ -88,7 +85,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="52"/>
         <CursorPos Y="65"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="143"/>
       </Unit>
       <Unit>
         <Filename Value="uresizedlg.pas"/>
@@ -99,7 +96,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="72"/>
         <CursorPos X="49" Y="95"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="140"/>
       </Unit>
       <Unit>
         <Filename Value="unamedlg.pas"/>
@@ -110,7 +107,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="26"/>
         <CursorPos Y="55"/>
-        <UsageCount Value="65"/>
+        <UsageCount Value="72"/>
       </Unit>
       <Unit>
         <Filename Value="upreview.pas"/>
@@ -125,8 +122,8 @@
       <Unit>
         <Filename Value="umain.lfm"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="638"/>
-        <CursorPos Y="643"/>
+        <TopLine Value="826"/>
+        <CursorPos X="10" Y="842"/>
         <UsageCount Value="13"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
@@ -368,17 +365,19 @@
       </Unit>
       <Unit>
         <Filename Value="../../../../../fpcupdeluxe/fpcsrc/rtl/inc/objpash.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="198"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="195"/>
         <CursorPos X="23" Y="206"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../fpcupdeluxe/fpcsrc/rtl/inc/objpas.inc"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="323"/>
         <CursorPos X="9" Y="325"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../fpcups/fpcsrc/rtl/objpas/fgl.pp"/>
@@ -563,11 +562,10 @@
       </Unit>
       <Unit>
         <Filename Value="umisc.pas"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="43"/>
         <CursorPos X="32" Y="46"/>
         <UsageCount Value="48"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../fpcupdeluxe/lazarus/components/lazutils/fileutil.pas"/>
@@ -715,9 +713,8 @@
       </Unit>
       <Unit>
         <Filename Value="upiskel.pas"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="18"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../fpcupdeluxe/fpcsrc/packages/fcl-json/src/jsonparser.pp"/>
@@ -728,20 +725,50 @@
       </Unit>
       <Unit>
         <Filename Value="../../../../../fpcupdeluxe/lazarus/lcl/include/menuitem.inc"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="78"/>
         <CursorPos Y="85"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../fpcupdeluxe/lazarus/components/lazutils/lazloggerbase.pas"/>
         <UnitName Value="LazLoggerBase"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="330"/>
         <CursorPos Y="342"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="thirdparty/upiscelformat.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="11"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="198"/>
+        <CursorPos Y="209"/>
+        <UsageCount Value="13"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../../fpcupdeluxe/fpcsrc/rtl/objpas/sysutils/sysutilh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="322"/>
+        <CursorPos X="13" Y="330"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uprojprops.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmProjectProps"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
     </Units>
     <Debugger>
@@ -752,124 +779,124 @@
     </OtherDefines>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1421" Column="27" TopLine="1417"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="334" TopLine="322"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="826" Column="3" TopLine="824"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="344" TopLine="335"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="235" Column="15" TopLine="228"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="332" TopLine="322"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="472" TopLine="463"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="334" TopLine="322"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="250" Column="14" TopLine="244"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="346" TopLine="337"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="943" Column="13" TopLine="934"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="139" TopLine="129"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="239" Column="20" TopLine="237"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="140" TopLine="129"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="852" TopLine="844"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="141" TopLine="129"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="251" Column="77" TopLine="238"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="142" TopLine="129"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="943" Column="24" TopLine="936"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="144" TopLine="129"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="524" TopLine="511"/>
+        <Filename Value="../../../../../fpcupdeluxe/lazarus/components/lazutils/lazloggerbase.pas"/>
+        <Caret Line="338" TopLine="330"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="666" Column="15" TopLine="659"/>
+        <Filename Value="../../../../../fpcupdeluxe/lazarus/components/lazutils/lazloggerbase.pas"/>
+        <Caret Line="339" TopLine="330"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="851" TopLine="843"/>
+        <Filename Value="../../../../../fpcupdeluxe/lazarus/components/lazutils/lazloggerbase.pas"/>
+        <Caret Line="341" TopLine="330"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="524" TopLine="511"/>
+        <Filename Value="../../../../../fpcupdeluxe/lazarus/components/lazutils/lazloggerbase.pas"/>
+        <Caret Line="342" TopLine="330"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="839" Column="3" TopLine="836"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="141" TopLine="129"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="243" Column="15" TopLine="236"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="142" TopLine="129"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="602" Column="85" TopLine="593"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="144" TopLine="129"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="601" Column="88" TopLine="599"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="141" TopLine="129"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="1577" Column="3" TopLine="1569"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="147" TopLine="131"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="989" Column="57" TopLine="980"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="332" TopLine="322"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="219" Column="21" TopLine="209"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="334" TopLine="322"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="1020" Column="23" TopLine="1016"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="348" TopLine="339"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="213" Column="15" TopLine="207"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="332" TopLine="322"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="1012" Column="61" TopLine="1005"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="353" TopLine="344"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="1544" Column="37" TopLine="1480"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="319" TopLine="309"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="659" TopLine="658"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="419" TopLine="409"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="661" Column="22" TopLine="658"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="430" TopLine="421"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="391" Column="13" TopLine="383"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="411" TopLine="401"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="668" Column="2" TopLine="661"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="208" TopLine="198"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="180" Column="20" TopLine="171"/>
+        <Filename Value="thirdparty/upiskelformat.pas"/>
+        <Caret Line="209" TopLine="198"/>
       </Position>
     </JumpHistory>
     <RunParams>

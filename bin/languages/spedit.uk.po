@@ -133,6 +133,11 @@ msgctxt "tfrmmain.actgridtoggle.hint"
 msgid "Show/hide grid"
 msgstr "Показати/приховати сітку"
 
+#: tfrmmain.actimportpiskel.caption
+msgctxt "tfrmmain.actimportpiskel.caption"
+msgid "Import Piskel file"
+msgstr ""
+
 #: tfrmmain.actlanguageselect.caption
 msgctxt "tfrmmain.actlanguageselect.caption"
 msgid "Language"
@@ -402,6 +407,10 @@ msgstr "Фрейми"
 msgctxt "tfrmmain.mihelp.caption"
 msgid "Help"
 msgstr "Довідка"
+
+#: tfrmmain.miimport.caption
+msgid "Import..."
+msgstr ""
 
 #: tfrmmain.miimportspritesheet.caption
 msgctxt "tfrmmain.miimportspritesheet.caption"

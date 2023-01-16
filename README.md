@@ -111,7 +111,7 @@ THE FUTURE
 In future will be avaliable:
 - mouse drawing using different draw tools (done partially)
 - multi-frames and multi-layers for drawing (done multi-layers)
-- shift and rotate layers and frames
+- shift and rotate layers and frames (done)
 - animations composer from any frames
 - import other image files and copy parts from it to own image
 - frame resize (done)

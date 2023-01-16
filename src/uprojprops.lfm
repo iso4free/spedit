@@ -1,0 +1,8 @@
+object frmProjectProps: TfrmProjectProps
+  Left = 260
+  Height = 240
+  Top = 250
+  Width = 320
+  Caption = 'Project options'
+  LCLVersion = '2.2.4.0'
+end

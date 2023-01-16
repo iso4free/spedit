@@ -55,6 +55,7 @@ type
     actGridToggle: TAction;
     actFlipH: TAction;
     actFlipV: TAction;
+    actImportPiskel: TAction;
     actRotateCCW: TAction;
     actRotateCW: TAction;
     actMoveDown: TAction;
@@ -112,11 +113,14 @@ type
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
     MenuItem1: TMenuItem;
+    miPiskelImport: TMenuItem;
+    miImport: TMenuItem;
     miRotateCCW: TMenuItem;
     miRotateCW: TMenuItem;
     miFlipVertical: TMenuItem;
     miFlipH: TMenuItem;
     miFlipRotate: TMenuItem;
+    OpenPiskelDialog: TOpenDialog;
     pmiRotateCCW: TMenuItem;
     pmiRotateCW: TMenuItem;
     pmiFlipV: TMenuItem;
@@ -295,6 +299,7 @@ type
       Shift: TShiftState; Index: integer; AColor: TColor; var DontCheck: boolean
       );
     procedure miAboutClick(Sender: TObject);
+    procedure actImportPiskelExecute(Sender: TObject);
     procedure miRedoClick(Sender: TObject);
     procedure miUndoClick(Sender: TObject);
     procedure pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
@@ -328,7 +333,7 @@ var
 
 implementation
 
-uses udraw, uabout, unamedlg, uframedlg, uresizedlg, ureferense, usettings;
+uses udraw, uabout, unamedlg, uframedlg, uresizedlg, ureferense, usettings, upiskelformat;
 
 
 procedure EraseSelection;
@@ -1231,6 +1236,18 @@ begin
      if not Assigned(frmAbout) then frmAbout:= TfrmAbout.Create(Application);
      frmAbout.ShowModal;
      FreeAndNil(frmAbout);
+end;
+
+procedure TfrmMain.actImportPiskelExecute(Sender: TObject);
+var
+   Piskel : TPiskelFile;
+begin
+  OpenPiskelDialog.InitialDir:=INI.ReadString('PATH','Piskel files','');
+  if OpenPiskelDialog.Execute then begin
+   Piskel:=LoadPiskelFile(OpenPiskelDialog.FileName);
+   INI.WriteString('PATH','Piskel files',ExtractFilePath(OpenPiskelDialog.FileName));
+   FreeAndNil(Piskel);
+  end;
 end;
 
 procedure TfrmMain.miRedoClick(Sender: TObject);

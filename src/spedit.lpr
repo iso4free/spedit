@@ -38,7 +38,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, umain, udraw, uglobals, uabout, ureferense,
-  uframedlg,  sysutils, usettings, uresizedlg, unamedlg;
+  uframedlg,  sysutils, usettings, uresizedlg, unamedlg, uprojprops;
 
 {$R *.res}
 
@@ -56,6 +56,7 @@ begin
   Application.CreateForm(TfrmSettings, frmSettings);
   Application.CreateForm(TfrmResize, frmResize);
   Application.CreateForm(TfrmNameDlg, frmNameDlg);
+  Application.CreateForm(TfrmProjectProps, frmProjectProps);
   Application.Run;
 end.
 

@@ -203,3 +203,9 @@ DEV.LOG
 - [*] Last Palette preset autoload and autosave
 - [*] Last Frame Export path store in settings
 - [+] Docs added Hotkeys Cheatsheet
+
+14.01.2023
+=
+- [*] Added JSON support for TSPLayer and TSPFrame (used with Undo/Redo manager,
+  soon will be used in own SPEdit format)
+- [*] Rewrited Undo/Redo manager (used whole JSON frame data with layers)

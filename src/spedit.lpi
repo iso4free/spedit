@@ -27,6 +27,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="thirdparty"/>
             <UnitOutputDirectory Value="../lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -244,6 +245,12 @@
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmNameDlg"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uprojprops.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmProjectProps"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>

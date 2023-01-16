@@ -37,6 +37,7 @@
 {"hash":266508814,"name":"tfrmmain.misaveprojectas.caption","sourcebytes":[83,97,118,101,32,83,112,114,105,116,101,32,80,114,111,106,101,99,116,32,65,115,46,46,46],"value":"Save Sprite Project As..."},
 {"hash":80705172,"name":"tfrmmain.miexport.caption","sourcebytes":[69,120,112,111,114,116],"value":"Export"},
 {"hash":2472553,"name":"tfrmmain.minewlibrary.caption","sourcebytes":[78,101,119,32,83,112,114,105,116,101,32,76,105,98,114,97,114,121],"value":"New Sprite Library"},
+{"hash":124338510,"name":"tfrmmain.miimport.caption","sourcebytes":[73,109,112,111,114,116,46,46,46],"value":"Import..."},
 {"hash":160949332,"name":"tfrmmain.miimportspritesheet.caption","sourcebytes":[73,109,112,111,114,116,32,83,112,114,105,116,101,115,104,101,101,116],"value":"Import Spritesheet"},
 {"hash":254659625,"name":"tfrmmain.miimportspritesheet.hint","sourcebytes":[89,111,117,32,99,97,110,32,105,109,112,111,114,116,32,105,109,97,103,101,32,111,114,32,115,112,114,105,116,101,115,104,101,101,116,32,102,105,108,101,10,97,110,100,32,97,100,100,32,105,116,32,116,111,32,116,104,101,32,108,105,98,114,97,114,121],"value":"You can import image or spritesheet file\nand add it to the library"},
 {"hash":129176489,"name":"tfrmmain.miselectlibrary.caption","sourcebytes":[83,101,108,101,99,116,32,83,112,114,105,116,101,32,76,105,98,114,97,114,121],"value":"Select Sprite Library"},
@@ -98,5 +99,6 @@
 {"hash":27975420,"name":"tfrmmain.actflipv.caption","sourcebytes":[70,108,105,112,32,118,101,114,116,105,99,97,108],"value":"Flip vertical"},
 {"hash":48118624,"name":"tfrmmain.actrotatecw.caption","sourcebytes":[82,111,116,97,116,101,32,67,87,32,57,48],"value":"Rotate CW 90"},
 {"hash":219290080,"name":"tfrmmain.actrotateccw.caption","sourcebytes":[82,111,116,97,116,101,32,67,67,87,32,57,48],"value":"Rotate CCW 90"},
+{"hash":146100389,"name":"tfrmmain.actimportpiskel.caption","sourcebytes":[73,109,112,111,114,116,32,80,105,115,107,101,108,32,102,105,108,101],"value":"Import Piskel file"},
 {"hash":29955922,"name":"tfrmmain.pmilayerfliprotate.caption","sourcebytes":[70,108,105,112,47,114,111,116,97,116,101,32,108,97,121,101,114],"value":"Flip/rotate layer"}
 ]}
