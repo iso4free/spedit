@@ -1336,7 +1336,7 @@ begin
   Layers[FrameGrid.ActiveLayer].Drawable.ClipRect:=Rect(0,0,Layers[FrameGrid.ActiveLayer].Drawable.Width,Layers[FrameGrid.ActiveLayer].Drawable.Height);
  end;
  //if tool not pipette  Ctrl+mbLeft works like color picker
- if (DrawTool.ToolName<>rsPipette) and (Button=mbLeft) and (ssCtrl in Shift) then begin
+ if (DrawTool.ToolName<>rsPipette) and (Button=mbRight) then begin
    p:=FrameGrid.Coords(x,y);
    spclForeColor:=Layers[FrameGrid.ActiveLayer].Drawable.GetPixel(p.X,p.Y);
    FgColor.Invalidate;

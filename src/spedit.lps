@@ -19,8 +19,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="1480"/>
-        <CursorPos X="16" Y="1483"/>
+        <TopLine Value="1328"/>
+        <CursorPos X="57" Y="1339"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 X="79" Y="383"/>
@@ -742,11 +742,10 @@
       <Unit>
         <Filename Value="../../../../../fpcupdeluxe/lazarus/components/lazutils/lazloggerbase.pas"/>
         <UnitName Value="LazLoggerBase"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="330"/>
         <CursorPos Y="342"/>
         <UsageCount Value="14"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="thirdparty/upiscelformat.pas"/>
@@ -785,18 +784,6 @@
       <Define0 Value="DEBUG"/>
     </OtherDefines>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="876" Column="3" TopLine="874"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="237" Column="15" TopLine="228"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="358" Column="2" TopLine="355"/>
-      </Position>
       <Position>
         <Filename Value="umain.pas"/>
         <Caret Line="332" Column="14" TopLine="324"/>
@@ -904,6 +891,18 @@
       <Position>
         <Filename Value="umain.pas"/>
         <Caret Line="1235" Column="16" TopLine="1229"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1483" Column="16" TopLine="1480"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1128" Column="25" TopLine="1184"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1406" Column="3" TopLine="1401"/>
       </Position>
     </JumpHistory>
     <RunParams>
