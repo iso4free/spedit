@@ -120,10 +120,6 @@ msgctxt "tfrmmain.actframeresize.caption"
 msgid "Resize frame"
 msgstr "Змінити розмір фрейму"
 
-#: tfrmmain.actframestoggle.caption
-msgid "Toggle frames"
-msgstr "Показати/приховати фрейми"
-
 #: tfrmmain.actgridtoggle.caption
 msgid "Toggle grid visibility"
 msgstr "Показати/заховати Сітку"
@@ -277,10 +273,6 @@ msgstr "Показати/приховати палітру"
 msgctxt "tfrmmain.bbtnswapcolors.hint"
 msgid "Swap colors [X]"
 msgstr "Поміняти кольори [X]"
-
-#: tfrmmain.bbtntoggleframes.hint
-msgid "Show/hide frames"
-msgstr "Показати/приховати фрейми"
 
 #: tfrmmain.bbtntogglepreview.hint
 msgid "Show/hide referense window"

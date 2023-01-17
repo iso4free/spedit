@@ -120,10 +120,6 @@ msgctxt "tfrmmain.actframeresize.caption"
 msgid "Resize frame"
 msgstr "Redimensionar quadro"
 
-#: tfrmmain.actframestoggle.caption
-msgid "Toggle frames"
-msgstr "Alternar quadros"
-
 #: tfrmmain.actgridtoggle.caption
 msgid "Toggle grid visibility"
 msgstr "Alterar visibilidade da grade"
@@ -277,10 +273,6 @@ msgstr "Exibir/ocultar paleta"
 msgctxt "tfrmmain.bbtnswapcolors.hint"
 msgid "Swap colors [X]"
 msgstr "Trocar cores [X]"
-
-#: tfrmmain.bbtntoggleframes.hint
-msgid "Show/hide frames"
-msgstr "Exibir/ocultar quadros"
 
 #: tfrmmain.bbtntogglepreview.hint
 msgid "Show/hide referense window"

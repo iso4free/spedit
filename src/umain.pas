@@ -30,12 +30,12 @@ unit umain;
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase, {$ENDIF} LResources,
-  uglobals, Classes, SysUtils, Forms, Controls,
-  Graphics, Types, Dialogs, Menus, ComCtrls, ExtCtrls, Buttons, ActnList, Grids,
-  JSONPropStorage, ExtDlgs, StdCtrls, StdActns, LCLIntf, LCLType, Spin,
-  HexaColorPicker, mbColorPalette,
-  BGRAImageList, BGRAGraphicControl, BGRABitmapTypes, BGRABitmap, Clipbrd;
+  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
+  LResources, uglobals, Classes, SysUtils, Forms,
+  Controls, Graphics, Types, Dialogs, Menus, ComCtrls, ExtCtrls, Buttons,
+  ActnList, Grids, JSONPropStorage, ExtDlgs, StdCtrls, StdActns, LCLIntf,
+  LCLType, Spin, HexaColorPicker, mbColorPalette, BGRAImageList,
+  BGRAGraphicControl, BGRABitmapTypes, BGRABitmap, Clipbrd;
 
 type
 
@@ -46,7 +46,6 @@ type
     actAddLayer: TAction;
     actDeleteLayer: TAction;
     actCopyLayer: TAction;
-    actFramesToggle: TAction;
     actFrameExportPNG: TAction;
     actFrameResize: TAction;
     actDither: TAction;
@@ -91,7 +90,6 @@ type
     bbtnShowLayers: TBitBtn;
     bbtnShowPalette: TBitBtn;
     bbtnTogglePreview: TBitBtn;
-    bbtnToggleFrames: TBitBtn;
     bbtnImportFrame: TBitBtn;
     bbtnNewFrame: TBitBtn;
     bbtnResize: TBitBtn;
@@ -191,7 +189,6 @@ type
     miZoomIn: TMenuItem;
     miZoomOut: TMenuItem;
     miZoomReset: TMenuItem;
-    pnlFrames: TPanel;
     pnlEditor: TPanel;
     pnlLayers: TPanel;
     pmLayers: TPopupMenu;
@@ -223,7 +220,6 @@ type
     sbMove: TSpeedButton;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
-    Splitter3: TSplitter;
     StatusBar1: TStatusBar;
     trkbrPenSize: TSpinEdit;
     procedure actCopyExecute(Sender: TObject);
@@ -232,7 +228,6 @@ type
     procedure actFlipVExecute(Sender: TObject);
     procedure actFrameExportPNGExecute(Sender: TObject);
     procedure actFrameResizeExecute(Sender: TObject);
-    procedure actFramesToggleExecute(Sender: TObject);
     procedure actGridToggleExecute(Sender: TObject);
     procedure actImportFrameExecute(Sender: TObject);
     procedure actAddLayerExecute(Sender: TObject);
@@ -273,7 +268,6 @@ type
     procedure bbtnShowPaletteClick(Sender: TObject);
     procedure bbtnSwapColorsClick(Sender: TObject);
     procedure bbtnImportFrameClick(Sender: TObject);
-    procedure bbtnToggleFramesClick(Sender: TObject);
     procedure bbtnTogglePreviewClick(Sender: TObject);
     procedure bbtnResizeClick(Sender: TObject);
     procedure cbPalettePresetsChange(Sender: TObject);
@@ -361,12 +355,6 @@ begin
  if OpenPictureDialog1.Execute then begin
    ImportFrame(OpenPictureDialog1.Filename);
  end;
-end;
-
-procedure TfrmMain.actFramesToggleExecute(Sender: TObject);
-begin
-    pnlFrames.Visible:=not pnlFrames.Visible;
-    actFramesToggle.Checked:=pnlFrames.Visible;
 end;
 
 procedure TfrmMain.actGridToggleExecute(Sender: TObject);
@@ -785,8 +773,6 @@ begin
   actToggleFullScreen.Checked:=WindowState = wsFullScreen;
   //try ZEN mode
   if actToggleFullScreen.Checked then begin
-   actFramesToggle.Checked:=pnlFrames.Visible;
-   pnlFrames.Visible := false;
    actPaletteToggle.Checked:=pnlPalette.Visible;
    pnlPalette.Visible := false;
    actLayersToggle.Checked:=pnlLayers.Visible;
@@ -795,7 +781,6 @@ begin
    pnlTools.Visible:=false;
   end else begin
     //back to normal mode
-   pnlFrames.Visible := actFramesToggle.Checked;
    pnlPalette.Visible := actPaletteToggle.Checked;
    pnlLayers.Visible:= actLayersToggle.Checked;
    pnlEditor.Visible:=true;
@@ -877,11 +862,6 @@ end;
 procedure TfrmMain.bbtnImportFrameClick(Sender: TObject);
 begin
   actImportFrameExecute(Sender);
-end;
-
-procedure TfrmMain.bbtnToggleFramesClick(Sender: TObject);
-begin
-  actFramesToggleExecute(Sender);
 end;
 
 procedure TfrmMain.bbtnTogglePreviewClick(Sender: TObject);

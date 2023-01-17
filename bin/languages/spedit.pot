@@ -105,10 +105,6 @@ msgctxt "tfrmmain.actframeresize.caption"
 msgid "Resize frame"
 msgstr ""
 
-#: tfrmmain.actframestoggle.caption
-msgid "Toggle frames"
-msgstr ""
-
 #: tfrmmain.actgridtoggle.caption
 msgid "Toggle grid visibility"
 msgstr ""
@@ -261,10 +257,6 @@ msgstr ""
 #: tfrmmain.bbtnswapcolors.hint
 msgctxt "tfrmmain.bbtnswapcolors.hint"
 msgid "Swap colors [X]"
-msgstr ""
-
-#: tfrmmain.bbtntoggleframes.hint
-msgid "Show/hide frames"
 msgstr ""
 
 #: tfrmmain.bbtntogglepreview.hint
