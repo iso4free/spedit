@@ -73,6 +73,7 @@ begin
   if not root.Exists('piskel') then begin
     ShowMessage('Not Piskel file!');
   end;
+  ShowMessage('FPS: '+IntToStr(root.Find('piskel/fps').AsInteger));
   for c in root do begin
    ValueListEditor1.Values[c.Name]:=c.Value;
   end;

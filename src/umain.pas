@@ -101,7 +101,6 @@ type
     FgColor: TBGRAGraphicControl;
     actExit: TFileExit;
     FramePreview: TPaintBox;
-    gbPreview: TGroupBox;
     HexaColorPicker1: THexaColorPicker;
     JSONPropStorage1: TJSONPropStorage;
     lbpPalettePresrts: TLabel;
@@ -200,8 +199,6 @@ type
     sbPen: TSpeedButton;
     sbPipette: TSpeedButton;
     sbRect: TSpeedButton;
-    sbCurrentPalette: TScrollBox;
-    sbPresetPalette: TScrollBox;
     sdExportFrameSaveDialog: TSaveDialog;
     SelectDirectoryDialog1: TSelectDirectoryDialog;
     Separator1: TMenuItem;
@@ -278,7 +275,6 @@ type
     procedure drwgrdLayersMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure actUndoExecute(Sender: TObject);
-    procedure FgColorClick(Sender: TObject);
     procedure FgColorMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure FgColorPaint(Sender: TObject);
@@ -666,6 +662,7 @@ end;
 procedure TfrmMain.actPaletteToggleExecute(Sender: TObject);
 begin
   pnlPalette.Visible:=not pnlPalette.Visible;
+  actPaletteToggle.Visible:=pnlPalette.Visible;
 end;
 
 procedure TfrmMain.actPasteExecute(Sender: TObject);
@@ -995,13 +992,6 @@ procedure TfrmMain.actUndoExecute(Sender: TObject);
 begin
  UndoRedoManager.Undo;
  LayersChange;
-end;
-
-procedure TfrmMain.FgColorClick(Sender: TObject);
-begin
- pnlPalette.Top:=(Sender as TControl).Top;
- pnlPalette.Left:=(Sender as TControl).Left-pnlPalette.Width;
- pnlPalette.Visible:=True;
 end;
 
 procedure TfrmMain.FgColorMouseUp(Sender: TObject; Button: TMouseButton;

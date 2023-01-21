@@ -624,7 +624,9 @@ msgstr "Quadro"
 msgid "Generic tool"
 msgstr "Ferramenta genérica"
 
-#: uglobals.rshasnonintege
+#: uglobals.rshasnonint
+#, fuzzy
+msgctxt "uglobals.rshasnonint"
 msgid " has non-integer value!"
 msgstr "tem valor não inteiro!"
 

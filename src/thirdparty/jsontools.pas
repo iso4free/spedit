@@ -88,6 +88,8 @@ type
     function FormatCompact: string;
     function Add(Kind: TJsonNodeKind; const Name, Value: string): TJsonNode; overload;
     function GetRoot: TJsonNode;
+    function GetAsInteger: Int64;
+    procedure SetAsInteger(AValue: Int64);
     procedure SetKind(Value: TJsonNodeKind);
     function GetName: string;
     procedure SetName(const Value: string);
@@ -187,6 +189,8 @@ type
     property AsString: string read GetAsString write SetAsString;
     { Convert the node to a number }
     property AsNumber: Double read GetAsNumber write SetAsNumber;
+    { Convert the node to an integer }
+    property AsInteger: Int64 read GetAsInteger write SetAsInteger;
   end;
 
 { JsonValidate tests if a string contains a valid json format }
@@ -794,6 +798,20 @@ begin
   Result := FValue = 'true';
 end;
 
+function TJsonNode.GetAsInteger: Int64;
+begin
+if FParent = nil then
+  Error(SRootNodeKind);
+if FKind <> nkNumber then
+begin
+  Clear;
+  FKind := nkNumber;
+  FValue := '0';
+  Exit(0);
+end;
+Result := StrToIntDef(FValue, 0);
+end;
+
 procedure TJsonNode.SetAsBoolean(Value: Boolean);
 begin
   if FParent = nil then
@@ -807,6 +825,18 @@ begin
     FValue := 'true'
   else
     FValue := 'false';
+end;
+
+procedure TJsonNode.SetAsInteger(AValue: Int64);
+begin
+if FParent = nil then
+  Error(SRootNodeKind);
+if FKind <> nkNumber then
+begin
+  Clear;
+  FKind := nkNumber;
+end;
+FValue := IntToStr(AValue);
 end;
 
 function TJsonNode.GetAsString: string;

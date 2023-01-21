@@ -73,6 +73,7 @@ begin
   if not root.Exists('piskel') then begin
     ShowMessage('Not Piskel file!');
   end;
+  ShowMessage('FPS: '+IntToStr(root.Find('fps').AsInteger));
   for c in root do begin
    ValueListEditor1.Values[c.Name]:=c.Value;
   end;
@@ -125,7 +126,7 @@ procedure TForm1.ValueListEditor1SelectCell(Sender: TObject; aCol,
   aRow: Integer; var CanSelect: Boolean);
 begin
   Memo1.Clear;
-  Memo1.Append(ValueListEditor1.Cells[aCol,1]);
+  Memo1.Append(ValueListEditor1.Cells[1,aRow]);
 end;
 
 end.

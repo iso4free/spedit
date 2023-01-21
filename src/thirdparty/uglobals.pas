@@ -32,7 +32,7 @@ interface
 
 uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF} LCLTranslator, FileUtil, LazFileUtils,
-  Classes, sysutils, StrUtils, Graphics, IniFiles, fpjson, jsonparser, jsonscanner,
+  Classes, sysutils, StrUtils, Graphics, IniFiles, JsonTools,
   BGRABitmap, BGRABitmapTypes, BGRAPalette,
   fgl, base64, Dialogs;
 
@@ -44,7 +44,7 @@ resourcestring
   rsPaletteWillB = 'Palette will be resetted to default colors! Are You shure?';
   rsImageHasTooM = 'Image has too many colors!';
   rsPleaseInputN = 'Please input new library name';
-  rsHasNonIntege = ' has non-integer value!';
+  rsHasNonInt = ' has non-integer value!';
   rsLayerName = 'Layer name';
   rsInputNewLaye = 'Input new layer name:';
   rsYouMustOverr = 'You must override MouseUp() method! Class name: ';
@@ -233,6 +233,8 @@ type
     FHeight: Integer;
     FIndex: Integer;
     fLayers : TStringList;
+    fModifiead: Boolean;
+    fModified: Boolean;
     FWidth: Integer;
     FPreview : TBGRABitmap;
     procedure SetIndex(AValue: Integer);
@@ -251,6 +253,7 @@ type
     function AddLayer(LayerName : String): Boolean; //add new layer and return it`s index or -1 if error
     function DeleteLayer(aLayerName : String): Boolean;      //remove layer from frame
     procedure DeleteAllLayers; //delete layers belongs to current frame only
+    property Modified : Boolean read fModified write fModifiead default False; //if was editing
   end;
 
   { TCellCursor - for drawing red rectangle followed by mouse cursor or moved by arrow keys}
@@ -843,28 +846,25 @@ end;
 
 procedure TSPFrame.RestoreFromJSON(aJSONData: String);
 var
- aJSON : TJSONData;
- e_ : TJSONEnum;
+ aJSON : TJsonNode;
  i : Integer;
  begin
-  aJSON:=GetJSON(aJSONData);
-  for e_ in aJSON do begin
-   case e_.Key of
- 'Index' : FIndex:=e_.Value.AsInteger;
- 'Frame name': fFrameName:=e_.Value.AsString;
- 'Width' : FWidth:=e_.Value.AsInteger;
- 'Height': FHeight:=e_.Value.AsInteger;
- 'Layers count': FCount:=e_.Value.AsInteger;
- 'Layers': begin //todo: array must be here - object convert error
-     for i:=0 to e_.Value.Count-1 do begin
+  aJSON:=TJsonNode.Create;
+  aJSON.Parse(aJSONData);
+
+  FIndex:=aJSON.Find('index').AsInteger;
+  fFrameName:=aJSON.Find('frame name').AsString;
+  FWidth:=aJSON.Find('width').AsInteger;
+  FHeight:=aJSON.Find('height').AsInteger;
+  FCount:=aJSON.Find('layers count').AsInteger;
+  for i:=0 to FCount-1 do begin
+      TSPLayer.RestoreFromJSON(aJSON.Force('layers/'+IntToStr(i)).Value);
       {$IFDEF DEBUG}
-      DebugLn('In : LoadLayersFromJSON() data: ',e_.Value.AsJSON);
+      DebugLn('In : LoadLayersFromJSON() data: ',aJSON.Child(i).Value);
       {$ENDIF}
-       TSPLayer.RestoreFromJSON(e_.Value.AsJSON);
-     end;
-    end;
-   end;
+
   end;
+
   {$IFDEF DEBUG}
   DebugLn('In: LoadLayersFromJSON, Layers :',Frames[FrameGrid.ActiveFrame].LayersList.Text);
   {$ENDIF}
@@ -880,27 +880,26 @@ end;
 
 function TSPFrame.ToJSON: String;
 var
-    aJSON : TJSONObject;
-    aLayer : TJSONObject;
-    aLayers : TJSONArray;
+    aJSON : TJsonNode;
+    aLayers : TJsonNode;
     i: Integer;
 begin
  result := '';
- aJSON:=TJSONObject.Create;
- aJSON.Add('Index',FIndex);
- aJSON.Add('Frame name',fFrameName);
- aJSON.Add('Width',FWidth);
- aJSON.Add('Height',FHeight);
+ aJSON:=TJsonNode.Create;
+ aJSON.Force('index').AsInteger:=FIndex;
+ aJSON.Force('frame name').AsString:=fFrameName;
+ aJSON.Force('width').AsInteger:=FWidth;
+ aJSON.Force('height').AsInteger:=FHeight;
  FCount:=fLayers.Count;
- aJSON.Add('Layers count',FCount);
- aLayers:=TJSONArray.Create;
+ aJSON.Force('layers count').AsInteger:=FCount;
  //add all layers to JSON array
+ aLayers:=aJSON.Force('layers').Add;
 
  for i := 0 to FCount-1 do begin
-  aLayers.Add(GetJSON(Layers[fLayers.Strings[i]].ToJSON));
+  aJSON.Force('layers/'+IntToStr(i)).Value:=Layers[fLayers.Strings[i]].ToJSON;
  end;
- aJSON.Add('Layers',aLayers);
- Result:=aJSON.AsJSON;
+
+ Result:=aJSON.Value;
  {$IFDEF DEBUG}
  DebugLn('In: TSPFrame.ToJSON() JSON data:',Result);
  {$ENDIF}
@@ -980,15 +979,18 @@ end;
 
 function TSPLayer.ToJSON: String;
  var
-     aJSON : TJSONObject;
+     aJSON : TJsonNode;
 begin
   result := '';
-  aJSON:=TJSONObject.Create;
-  aJSON.Add('Layer name',fName);
-  aJSON.Add('Image (BASE64)',ToBASE64String);
-  aJSON.Add('Visible',fVisible);
-  aJSON.Add('Locked',FLocked);
-  Result:=aJSON.AsJSON;
+  aJSON:=TJsonNode.Create;
+  aJSON.Add('layer name',fName);
+  aJSON.Add('image (BASE64)',ToBASE64String);
+  aJSON.Add('visible',fVisible);
+  aJSON.Add('locked',FLocked);
+  Result:=aJSON.Value;
+  {$IFDEF DEBUG}
+  DebugLn('In : TSPLayer.ToJSON() result:'+Result);
+  {$ENDIF}
   FreeAndNil(aJSON);
 end;
 
@@ -1014,29 +1016,22 @@ end;
 
 class procedure TSPLayer.RestoreFromJSON(aJSONData: String);
 var
-      aJSON : TJSONData;
-      e     : TJSONEnum;
-      el    : TJSONEnum;
+      aJSON : TJsonNode;
       aName : String;
 begin
- aJSON:=GetJSON(aJSONData);
+ aJSON:=TJsonNode.Create;
+ aJSON.Value:=aJSONData;
  try
   {$IFDEF DEBUG}
   DebugLn('In: TSPLayer.RestoreFromJSON(JSON) parsed data: ', aJSON.AsJSON);
   {$ENDIF}
-  for e in aJSON do
-    for el in e.Value do begin
-    case el.Key of
-   'Layer name' : begin
-     aName:=el.Value.AsString;
+     aName:=aJSON.Force('layer name').AsString;
      if not LayerExists(aName) then Layers[aName]:=TSPLayer.Create(aName,0,0);
      if Assigned(FrameGrid) then Frames[FrameGrid.ActiveFrame].AddLayer(aName);
-    end;
-   'Image (BASE64)': Layers[aName].RestoreFromString(el.Value.AsString);
-   'Visible' : Layers[aName].Visible:=el.Value.AsBoolean;
-   'Locked' : Layers[aName].Locked:=el.Value.AsBoolean;
-   end;
-  end;
+
+     Layers[aName].RestoreFromString(aJSON.Force('image (BASE64)').AsString);
+     Layers[aName].Visible:=aJSON.Force('visible').AsBoolean;
+     Layers[aName].Locked:=aJSON.Force('locked').AsBoolean;
  finally
   FreeAndNil(aJSON);
  end;

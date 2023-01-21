@@ -626,7 +626,9 @@ msgstr "Фрейм"
 msgid "Generic tool"
 msgstr "Базовий інструмент"
 
-#: uglobals.rshasnonintege
+#: uglobals.rshasnonint
+#, fuzzy
+msgctxt "uglobals.rshasnonint"
 msgid " has non-integer value!"
 msgstr " має не цілочисельне значення!"
 

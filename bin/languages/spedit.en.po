@@ -615,7 +615,8 @@ msgstr ""
 msgid "Generic tool"
 msgstr ""
 
-#: uglobals.rshasnonintege
+#: uglobals.rshasnonint
+msgctxt "uglobals.rshasnonint"
 msgid " has non-integer value!"
 msgstr ""
 
