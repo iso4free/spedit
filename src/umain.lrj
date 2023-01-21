@@ -31,8 +31,6 @@
 {"hash":52539459,"name":"tfrmmain.lbppalettepresrts.caption","sourcebytes":[83,116,97,110,100,97,114,100,32,112,114,101,115,101,116,115],"value":"Standard presets"},
 {"hash":128911175,"name":"tfrmmain.framepreview.hint","sourcebytes":[67,108,105,99,107,32,116,111,32,101,120,112,111,114,116,32,80,78,71],"value":"Click to export PNG"},
 {"hash":315429,"name":"tfrmmain.mifilemenu.caption","sourcebytes":[70,105,108,101],"value":"File"},
-{"hash":90847572,"name":"tfrmmain.mifilenewpoject.caption","sourcebytes":[78,101,119,32,83,112,114,105,116,101,32,80,114,111,106,101,99,116],"value":"New Sprite Project"},
-{"hash":162191620,"name":"tfrmmain.mifilesaveproject.caption","sourcebytes":[83,97,118,101,32,83,112,114,105,116,101,32,80,114,111,106,101,99,116],"value":"Save Sprite Project"},
 {"hash":266508814,"name":"tfrmmain.misaveprojectas.caption","sourcebytes":[83,97,118,101,32,83,112,114,105,116,101,32,80,114,111,106,101,99,116,32,65,115,46,46,46],"value":"Save Sprite Project As..."},
 {"hash":80705172,"name":"tfrmmain.miexport.caption","sourcebytes":[69,120,112,111,114,116],"value":"Export"},
 {"hash":2472553,"name":"tfrmmain.minewlibrary.caption","sourcebytes":[78,101,119,32,83,112,114,105,116,101,32,76,105,98,114,97,114,121],"value":"New Sprite Library"},
@@ -98,5 +96,9 @@
 {"hash":48118624,"name":"tfrmmain.actrotatecw.caption","sourcebytes":[82,111,116,97,116,101,32,67,87,32,57,48],"value":"Rotate CW 90"},
 {"hash":219290080,"name":"tfrmmain.actrotateccw.caption","sourcebytes":[82,111,116,97,116,101,32,67,67,87,32,57,48],"value":"Rotate CCW 90"},
 {"hash":146100389,"name":"tfrmmain.actimportpiskel.caption","sourcebytes":[73,109,112,111,114,116,32,80,105,115,107,101,108,32,102,105,108,101],"value":"Import Piskel file"},
+{"hash":165131795,"name":"tfrmmain.actprojprops.caption","sourcebytes":[80,114,111,106,101,99,116,32,112,114,111,112,101,114,116,105,101,115],"value":"Project properties"},
+{"hash":90847604,"name":"tfrmmain.actnewproj.caption","sourcebytes":[78,101,119,32,83,112,114,105,116,101,32,112,114,111,106,101,99,116],"value":"New Sprite project"},
+{"hash":36621524,"name":"tfrmmain.actsaveproj.caption","sourcebytes":[83,97,118,101,32,112,114,111,106,101,99,116],"value":"Save project"},
+{"hash":49597396,"name":"tfrmmain.actopenproj.caption","sourcebytes":[79,112,101,110,32,112,114,111,106,101,99,116],"value":"Open project"},
 {"hash":29955922,"name":"tfrmmain.pmilayerfliprotate.caption","sourcebytes":[70,108,105,112,47,114,111,116,97,116,101,32,108,97,121,101,114],"value":"Flip/rotate layer"}
 ]}

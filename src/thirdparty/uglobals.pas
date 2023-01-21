@@ -73,6 +73,13 @@ resourcestring
 
 
 const
+      APP_NAME = 'SPEdit v.4';
+      APP_VER_MAJOR = '4';
+      APP_VER_MINOR = '0';
+      APP_VER_SUFFIX = 'pre-alpha';
+      //todo: change it every build date change!!!
+      APP_VER_BUILDDATE = '2023-01-21';
+
       //MAX_FRAMES = 50;           //it will be enought for one animation?
       MAX_PALETTE_COLORS = 255;  //max colors count in palette
       MAX_PIXELS = 512*512;      //max pixels array (sprite size 512x512 pixels)
@@ -352,6 +359,57 @@ type
 
   TFrames = specialize TFPGMapObject<String,TSPFrame>;  //mapped frames list
 
+  //Main class for whole project
+  //Contains all information about sprites, animations, frames, layers
+
+  { TSPProjectInfo }
+
+  TSPProjectInfo = class
+  private
+    FAppName: String;
+    FAuthor: String;
+    FChanged: Boolean;
+    FCreditsInfo: String;
+    FDescription: String;
+    FFilename: TFilename;
+    FLicense: String;
+    FTitle: String;
+    procedure SetAuthor(AValue: String);
+    procedure SetCreditsInfo(AValue: String);
+    procedure SetDescription(AValue: String);
+    procedure SetFilename(AValue: TFilename);
+    procedure SetLicense(AValue: String);
+    procedure SetTitle(AValue: String);
+
+  public
+
+   constructor Create;
+   destructor Destroy; override;
+
+   //path and file to save project
+   property Filename : TFilename read FFilename write SetFilename;
+   //project title
+   property Title : String read FTitle write SetTitle;
+   //project description
+   property Description : String read FDescription write SetDescription;
+   //Info about author
+   property Author : String read FAuthor write SetAuthor;
+   //Ifo that can be used in 'Credits' if used in other apps/games etc.
+   property CreditsInfo : String read FCreditsInfo write SetCreditsInfo;
+   //License type - can be used from predefined list or set manually
+   property License : String read FLicense write SetLicense;
+   //AppName used only for information about app created this file.
+   //Cannot be modified directly
+   property AppName : String read FAppName;
+   //True if poroject has some unsaved changes
+   property Changed : Boolean read FChanged;
+
+   //save project to JSON-based file
+   procedure Save;
+   //load project from JSON-based file
+   procedure Load;
+  end;
+
 var
 
   UserSettingsPath : UTF8String;
@@ -374,6 +432,8 @@ var
   Layers        : TLayers;
   Frames        : TFrames;
   UndoRedoManager : TUndoRedoManager;
+
+  ProjectInfo : TSPProjectInfo;
 
   //**********************************************************************
   function IsDigits(s : String) : Boolean;
@@ -686,6 +746,110 @@ begin
  end;
   FreeAndNil(aList);
   FreeAndNil(tmp);
+end;
+
+{ TSPProjectInfo }
+
+constructor TSPProjectInfo.Create;
+begin
+  FFilename:='';
+  FTitle:='Untitled';
+  FDescription:='';
+  {$IFDEF UNIX}
+  FAuthor:=sysutils.GetEnvironmentVariable('USER');
+  {$ELSE}
+  ShowMessage(sysutils.GetEnvironmentVariable('USER'););
+  {$ENDIF}
+end;
+
+destructor TSPProjectInfo.Destroy;
+begin
+  inherited Destroy;
+end;
+
+procedure TSPProjectInfo.Load;
+var
+    aJSON : TJsonNode;
+    aVer  : Integer;
+begin
+ if Filename='' then begin
+   Assert(Filename<>'','Error: project file name not set!!!');
+ end;
+ aJSON:=TJsonNode.Create;
+ aJSON.LoadFromFile(Filename);
+ if aJSON.Force('type').AsString<>'SPEDit file' then begin
+   ShowMessage(Format('% is not valid SPEdit file!',[Filename]));
+   Exit;
+ end;
+ aVer:=aJSON.Force('version').AsInteger;
+ FAppName:=aJSON.Force('app').AsString;
+ FTitle:=aJSON.Force('project/title').AsString;
+ FAuthor:=aJSON.Force('project/author').AsString;
+
+ aJSON.SaveToFile(Filename);
+ FChanged:=False;
+ FreeAndNil(aJSON);
+end;
+
+procedure TSPProjectInfo.Save;
+var
+    aJSON : TJsonNode;
+begin
+ if Filename='' then begin
+   Assert(Filename<>'','Error: project file name not set!!!');
+ end;
+ aJSON:=TJsonNode.Create;
+ aJSON.Force('type').AsString:='SPEDit file';
+ aJSON.Force('version').AsInteger:=1;
+ aJSON.Force('app').AsString:=APP_NAME;
+ aJSON.Force('project/title').AsString:=Title;
+ aJSON.Force('project/author').AsString:=Author;
+
+ aJSON.SaveToFile(Filename);
+ FChanged:=False;
+ FreeAndNil(aJSON);
+end;
+
+procedure TSPProjectInfo.SetAuthor(AValue: String);
+begin
+  if FAuthor=AValue then Exit;
+  FAuthor:=AValue;
+  FChanged:=True;
+end;
+
+procedure TSPProjectInfo.SetCreditsInfo(AValue: String);
+begin
+  if FCreditsInfo=AValue then Exit;
+  FCreditsInfo:=AValue;
+  FChanged:=True;
+end;
+
+procedure TSPProjectInfo.SetDescription(AValue: String);
+begin
+  if FDescription=AValue then Exit;
+  FDescription:=AValue;
+  FChanged:=True;
+end;
+
+procedure TSPProjectInfo.SetFilename(AValue: TFilename);
+begin
+  if FFilename=AValue then Exit;
+  FFilename:=AValue;
+  FChanged:=True;
+end;
+
+procedure TSPProjectInfo.SetLicense(AValue: String);
+begin
+  if FLicense=AValue then Exit;
+  FLicense:=AValue;
+  FChanged:=True;
+end;
+
+procedure TSPProjectInfo.SetTitle(AValue: String);
+begin
+  if FTitle=AValue then Exit;
+  FTitle:=AValue;
+  FChanged:=True;
 end;
 
 { TLayers }
@@ -1542,6 +1706,7 @@ initialization
   FreeAndNil(Frames);
   FreeAndNil(FrameGrid);
   FreeAndNil(Palette);
+  FreeAndNil(ProjectInfo);
   FreeAndNil(SpriteLibNames);
   FreeAndNil(INI);
 end.

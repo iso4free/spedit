@@ -55,6 +55,10 @@ type
     actFlipH: TAction;
     actFlipV: TAction;
     actImportPiskel: TAction;
+    actOpenProj: TAction;
+    actSaveProj: TAction;
+    actNewProj: TAction;
+    actProjProps: TAction;
     actRotateCCW: TAction;
     actRotateCW: TAction;
     actMoveDown: TAction;
@@ -111,6 +115,8 @@ type
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
     MenuItem1: TMenuItem;
+    miOpenProj: TMenuItem;
+    miProjProps: TMenuItem;
     miPiskelImport: TMenuItem;
     miImport: TMenuItem;
     miRotateCCW: TMenuItem;
@@ -118,7 +124,7 @@ type
     miFlipVertical: TMenuItem;
     miFlipH: TMenuItem;
     miFlipRotate: TMenuItem;
-    OpenPiskelDialog: TOpenDialog;
+    dlgOpenProj: TOpenDialog;
     pmiRotateCCW: TMenuItem;
     pmiRotateCW: TMenuItem;
     pmiFlipV: TMenuItem;
@@ -203,6 +209,9 @@ type
     SelectDirectoryDialog1: TSelectDirectoryDialog;
     Separator1: TMenuItem;
     Separator10: TMenuItem;
+    Separator11: TMenuItem;
+    Separator12: TMenuItem;
+    Separator13: TMenuItem;
     Separator2: TMenuItem;
     Separator3: TMenuItem;
     Separator4: TMenuItem;
@@ -238,17 +247,21 @@ type
     procedure actMoveDownExecute(Sender: TObject);
     procedure actMoveUpExecute(Sender: TObject);
     procedure actNewFrameExecute(Sender: TObject);
+    procedure actNewProjExecute(Sender: TObject);
     procedure actNotImplementedExecute(Sender: TObject);
+    procedure actOpenProjExecute(Sender: TObject);
     procedure actPaletteImportExecute(Sender: TObject);
     procedure actPaletteLoadExecute(Sender: TObject);
     procedure actPaletteResetExecute(Sender: TObject);
     procedure actPaletteSaveExecute(Sender: TObject);
     procedure actPaletteToggleExecute(Sender: TObject);
     procedure actPasteExecute(Sender: TObject);
+    procedure actProjPropsExecute(Sender: TObject);
     procedure actRedoExecute(Sender: TObject);
     procedure actReferenceToggleExecute(Sender: TObject);
     procedure actRotateCCWExecute(Sender: TObject);
     procedure actRotateCWExecute(Sender: TObject);
+    procedure actSaveProjExecute(Sender: TObject);
     procedure actSelectAllExecute(Sender: TObject);
     procedure actSettingsExecute(Sender: TObject);
     procedure actToggleFullScreenExecute(Sender: TObject);
@@ -298,6 +311,7 @@ type
     procedure miAboutClick(Sender: TObject);
     procedure actImportPiskelExecute(Sender: TObject);
     procedure miRedoClick(Sender: TObject);
+    procedure miSaveProjectAsClick(Sender: TObject);
     procedure miUndoClick(Sender: TObject);
     procedure pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -331,7 +345,7 @@ var
 
 implementation
 
-uses udraw, uabout, unamedlg, uframedlg, uresizedlg, ureferense, usettings, upiskelformat;
+uses uprojprops, udraw, uabout, unamedlg, uframedlg, uresizedlg, ureferense, usettings, upiskelformat;
 
 
 procedure EraseSelection;
@@ -613,9 +627,47 @@ begin
   end;
 end;
 
+procedure TfrmMain.actNewProjExecute(Sender: TObject);
+var
+  mr : TModalResult;
+begin
+  if Assigned(ProjectInfo) then begin
+   if ProjectInfo.Changed then begin
+    mr:= MessageDlg(rsWarning,'Current project not saved!'+LineEnding+
+                            'Press "Yes" to save and continue,'+LineEnding+
+                            '"No" to continue without saving'+LineEnding+
+                            'or "Cancel" to continue with current project',mtWarning,mbYesNoCancel,'');
+   case mr of
+     mrYes: begin
+      ProjectInfo.Save;
+     end;
+     mrCancel: begin
+      Exit;
+     end;
+   end;
+
+   end;
+   FreeAndNil(ProjectInfo);
+  end;
+  ProjectInfo:=TSPProjectInfo.Create;
+  actProjPropsExecute(Sender);
+end;
+
 procedure TfrmMain.actNotImplementedExecute(Sender: TObject);
 begin
   ShowMessage(rsSorry);
+end;
+
+procedure TfrmMain.actOpenProjExecute(Sender: TObject);
+begin
+  if not Assigned(ProjectInfo) then ProjectInfo:=TSPProjectInfo.Create;
+
+  dlgOpenProj.InitialDir:=INI.ReadString('PATH','EXPORT',GetUserDir());
+  if dlgOpenProj.Execute then begin
+   ProjectInfo.Filename:=dlgOpenProj.FileName;
+   ProjectInfo.Load;
+   actProjPropsExecute(Sender);
+  end;
 end;
 
 procedure TfrmMain.actPaletteImportExecute(Sender: TObject);
@@ -706,6 +758,13 @@ begin
       FramePreview.Invalidate;
 end;
 
+procedure TfrmMain.actProjPropsExecute(Sender: TObject);
+begin
+  if not Assigned(ProjectInfo) then Exit;
+  frmProjectProps.LoadProjProps;
+  frmProjectProps.ShowModal;
+end;
+
 procedure TfrmMain.actRedoExecute(Sender: TObject);
 begin
  UndoRedoManager.Redo;
@@ -747,6 +806,19 @@ begin
   FramePreview.Invalidate;
   drwgrdLayers.Invalidate;
  end;
+end;
+
+procedure TfrmMain.actSaveProjExecute(Sender: TObject);
+begin
+  if not Assigned(ProjectInfo) then Exit;
+  if ProjectInfo.Filename='' then begin
+  sdExportFrameSaveDialog.InitialDir:=INI.ReadString('PATH','EXPORT',GetUserDir());
+  sdExportFrameSaveDialog.DefaultExt:='.json';
+  sdExportFrameSaveDialog.FileName:=ProjectInfo.Title;
+  if sdExportFrameSaveDialog.Execute
+     then ProjectInfo.Filename:=sdExportFrameSaveDialog.FileName;
+  end;
+  ProjectInfo.Save;
 end;
 
 procedure TfrmMain.actSelectAllExecute(Sender: TObject);
@@ -1231,10 +1303,10 @@ procedure TfrmMain.actImportPiskelExecute(Sender: TObject);
 var
    Piskel : TPiskelFile;
 begin
-  OpenPiskelDialog.InitialDir:=INI.ReadString('PATH','Piskel files','');
-  if OpenPiskelDialog.Execute then begin
-   Piskel:=LoadPiskelFile(OpenPiskelDialog.FileName);
-   INI.WriteString('PATH','Piskel files',ExtractFilePath(OpenPiskelDialog.FileName));
+  dlgOpenProj.InitialDir:=INI.ReadString('PATH','Piskel files','');
+  if dlgOpenProj.Execute then begin
+   Piskel:=LoadPiskelFile(dlgOpenProj.FileName);
+   INI.WriteString('PATH','Piskel files',ExtractFilePath(dlgOpenProj.FileName));
    FreeAndNil(Piskel);
   end;
 end;
@@ -1242,6 +1314,13 @@ end;
 procedure TfrmMain.miRedoClick(Sender: TObject);
 begin
   actRedoExecute(Sender);
+end;
+
+procedure TfrmMain.miSaveProjectAsClick(Sender: TObject);
+begin
+  if not Assigned(ProjectInfo) then Exit;
+  ProjectInfo.Filename:='';
+  actSaveProjExecute(Sender);
 end;
 
 procedure TfrmMain.miUndoClick(Sender: TObject);

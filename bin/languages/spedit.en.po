@@ -160,8 +160,16 @@ msgctxt "tfrmmain.actnewframe.caption"
 msgid "New frame"
 msgstr ""
 
+#: tfrmmain.actnewproj.caption
+msgid "New Sprite project"
+msgstr ""
+
 #: tfrmmain.actnotimplemented.caption
 msgid "Not implemented yet"
+msgstr ""
+
+#: tfrmmain.actopenproj.caption
+msgid "Open project"
 msgstr ""
 
 #: tfrmmain.actpaletteimport.caption
@@ -190,6 +198,11 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
+#: tfrmmain.actprojprops.caption
+msgctxt "tfrmmain.actprojprops.caption"
+msgid "Project properties"
+msgstr ""
+
 #: tfrmmain.actredo.caption
 msgctxt "tfrmmain.actredo.caption"
 msgid "Redo"
@@ -205,6 +218,10 @@ msgstr ""
 
 #: tfrmmain.actrotatecw.caption
 msgid "Rotate CW 90"
+msgstr ""
+
+#: tfrmmain.actsaveproj.caption
+msgid "Save project"
 msgstr ""
 
 #: tfrmmain.actselectall.caption
@@ -364,16 +381,6 @@ msgctxt "tfrmmain.mifilemenu.caption"
 msgid "File"
 msgstr ""
 
-#: tfrmmain.mifilenewpoject.caption
-msgctxt "tfrmmain.mifilenewpoject.caption"
-msgid "New Sprite Project"
-msgstr ""
-
-#: tfrmmain.mifilesaveproject.caption
-msgctxt "tfrmmain.mifilesaveproject.caption"
-msgid "Save Sprite Project"
-msgstr ""
-
 #: tfrmmain.mifliprotate.caption
 msgid "Flip/Rotate"
 msgstr ""
@@ -523,8 +530,30 @@ msgctxt "tfrmnamedlg.bbtncancel.caption"
 msgid "Cancel"
 msgstr ""
 
+#: tfrmprojectprops.bbtncancel.caption
+msgctxt "tfrmprojectprops.bbtncancel.caption"
+msgid "Cancel"
+msgstr ""
+
+#: tfrmprojectprops.bbtnok.caption
+msgid "ОК"
+msgstr ""
+
+#: tfrmprojectprops.bbtnsave.hint
+msgid "Save options"
+msgstr ""
+
 #: tfrmprojectprops.caption
-msgid "Project options"
+msgctxt "tfrmprojectprops.caption"
+msgid "Project properties"
+msgstr ""
+
+#: tfrmprojectprops.lbltitle.caption
+msgid "Title"
+msgstr ""
+
+#: tfrmprojectprops.tsgeneral.caption
+msgid "General"
 msgstr ""
 
 #: tfrmresize.bbtncancel.caption
