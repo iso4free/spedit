@@ -362,6 +362,7 @@ end;
 
 procedure TfrmMain.actImportFrameExecute(Sender: TObject);
 begin
+ if not Assigned(ProjectInfo) then Exit;
  if OpenPictureDialog1.Execute then begin
    ImportFrame(OpenPictureDialog1.Filename);
  end;
@@ -588,6 +589,7 @@ var
   i: Integer;
 begin
   //show dialog to create new frame with default parameters
+  if not Assigned(ProjectInfo) then Exit;
   if Assigned(FrameGrid) then begin
    frmFrameDlg.spnedtHeight.Value:=FrameGrid.FrameHeight;
    frmFrameDlg.spnedtWidth.Value:=FrameGrid.FrameWidth;
@@ -603,9 +605,9 @@ begin
    dy:=0;
    FramePreview.Width:=FrameGrid.FrameWidth;
    FramePreview.Height:=FrameGrid.FrameHeight;
-   Frames[frmFrameDlg.edtFrameName.Text]:=TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
+   Frames.Add(TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
                                                           frmFrameDlg.spnedtWidth.Value,
-                                                          frmFrameDlg.spnedtHeight.Value);
+                                                          frmFrameDlg.spnedtHeight.Value));
    FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
 
    Layers[frmFrameDlg.edtFrameName.Text]:=TSPLayer.Create(frmFrameDlg.edtFrameName.Text,
@@ -666,7 +668,15 @@ begin
   if dlgOpenProj.Execute then begin
    ProjectInfo.Filename:=dlgOpenProj.FileName;
    ProjectInfo.Load;
+
    actProjPropsExecute(Sender);
+   //todo: read which frame was last active
+   if not Assigned(FrameGrid) then begin
+    FrameGrid:=TFrameGrid.Create();
+   end;
+   FrameGrid.ActiveFrame:=Frames.Names[0];
+   FrameGrid.ActiveLayer:=Frames[FrameGrid.ActiveFrame].LayersList[0];
+   FramesChange;
   end;
 end;
 
@@ -1272,6 +1282,7 @@ end;
 
 procedure TfrmMain.FramesChange;
 begin
+  if not Assigned(FrameGrid) then Exit;
   lbFrames.ItemHeight:=lbFrames.Height;
   lbFrames.Columns:=Frames.Count;
   LayersChange;

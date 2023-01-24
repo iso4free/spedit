@@ -43,6 +43,7 @@ type
 var
   Form1: TForm1;
   root : TJSONNode;
+  isLoaded : Boolean;
 
 implementation
 
@@ -54,48 +55,49 @@ procedure TForm1.Button1Click(Sender: TObject);
 begin
   if OpenDialog1.Execute then begin
     ValueListEditor1.Clear;
-    ValueListEditor1.Values['Piskel file']:=OpenDialog1.FileName;
+    ValueListEditor1.Values['JSON file']:=OpenDialog1.FileName;
     Button2.Enabled := true;
+    isloaded := true;
     Button2Click(Sender);
   end;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 var
-  piskel : TJsonNode;
-  layers : TJSONNode;
-  layerdata: TJsonNode;
-  c , l, cc: TJsonNode;
-  s : String;
+  firstlevel : TJsonNode;
 begin
-  root.LoadFromFile(ValueListEditor1.Values['Piskel file']);
-  ValueListEditor1.Values['root']:=root.Value;
-  if not root.Exists('piskel') then begin
-    ShowMessage('Not Piskel file!');
-  end;
-  ShowMessage('FPS: '+IntToStr(root.Find('piskel/fps').AsInteger));
-  for c in root do begin
-   ValueListEditor1.Values[c.Name]:=c.Value;
-  end;
-  piskel:=root.Find('piskel');
-  for c in piskel do begin
-   ValueListEditor1.Values[c.Name]:=c.Value;
-  end;
-  layers:=piskel.Find('layers');
-  ShowMessage('Layers count: '+IntToStr(layers.Count));
-  for c in layers do begin
-   s := c.AsString;
-   Memo1.Append(s);
-   ValueListEditor1.Values['layer['+c.Name+']']:=s;
-   c.AsJson:=s;
-   for l in c do begin
-    ValueListEditor1.Values['layer['+c.Name+']/'+l.Name]:=l.Value;
-    if l.Value='chunks' then
-     for cc in l do begin
-      ValueListEditor1.Values['layer['+c.Name+']/'+l.Name+'/'+'chunks/'+cc.Name]:=cc.Value;
-     end;
+  root.LoadFromFile(ValueListEditor1.Values['JSON file']);
+ { for firstlevel in root do begin
+    ValueListEditor1.Values[firstlevel.Name]:=firstlevel.AsJson;
+  end;  }
+  {
+   if not root.Exists('piskel') then begin
+     ShowMessage('Not Piskel file!');
    end;
-  end;
+   ShowMessage('FPS: '+IntToStr(root.Find('piskel/fps').AsInteger));
+   for c in root do begin
+    ValueListEditor1.Values[c.Name]:=c.Value;
+   end;
+   piskel:=root.Find('piskel');
+   for c in piskel do begin
+    ValueListEditor1.Values[c.Name]:=c.Value;
+   end;
+   layers:=piskel.Find('layers');
+   ShowMessage('Layers count: '+IntToStr(layers.Count));
+   for c in layers do begin
+    s := c.AsString;
+    Memo1.Append(s);
+    ValueListEditor1.Values['layer['+c.Name+']']:=s;
+    c.AsJson:=s;
+    for l in c do begin
+     ValueListEditor1.Values['layer['+c.Name+']/'+l.Name]:=l.Value;
+     if l.Value='chunks' then
+      for cc in l do begin
+       ValueListEditor1.Values['layer['+c.Name+']/'+l.Name+'/'+'chunks/'+cc.Name]:=cc.Value;
+      end;
+    end;
+   end;
+  }
   Button3.Enabled := true;
 end;
 
@@ -115,6 +117,7 @@ end;
 procedure TForm1.FormCreate(Sender: TObject);
 begin
       root:=TJsonNode.Create;
+      isLoaded:=false;
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
@@ -124,9 +127,13 @@ end;
 
 procedure TForm1.ValueListEditor1SelectCell(Sender: TObject; aCol,
   aRow: Integer; var CanSelect: Boolean);
+var
+  level : TJsonNode;
 begin
+  if not isLoaded then Exit;
+  level:=root.Find(ValueListEditor1.Cells[0,aRow]);
   Memo1.Clear;
-  Memo1.Append(ValueListEditor1.Cells[1,aRow]);
+  Memo1.Append(level.Name+' : '+level.Value);
 end;
 
 end.

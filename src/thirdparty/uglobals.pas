@@ -70,6 +70,7 @@ resourcestring
   rsCantMerge = 'Can''t merge layers!';
   rsMoveTool = 'Move tool';
   rsFrame = 'Frame';
+  rsErrorProject = 'Error: project file name not set!!!';
 
 
 const
@@ -235,6 +236,7 @@ type
 
   TSPFrame = class
    private
+    fActiveLayer: TSPLayer;
     FCount : Byte;
     fFrameName: String;
     FHeight: Integer;
@@ -261,6 +263,7 @@ type
     function DeleteLayer(aLayerName : String): Boolean;      //remove layer from frame
     procedure DeleteAllLayers; //delete layers belongs to current frame only
     property Modified : Boolean read fModified write fModifiead default False; //if was editing
+    property ActiveLayer : TSPLayer read fActiveLayer write fActiveLayer;  //active layer in frame
   end;
 
   { TCellCursor - for drawing red rectangle followed by mouse cursor or moved by arrow keys}
@@ -292,8 +295,6 @@ type
 
   TFrameGrid = class
    private
-    fActiveFrame: String;
-    FActiveLayer: String;
     FCellCursor: TCellCursor;
     FBackground: Boolean;
     FCheckersSize  : Byte;
@@ -326,15 +327,13 @@ type
     function HasCoords(aPoint : TPoint) : Boolean; //check if frame has point
     procedure RenderAndDraw(Canvas : TCanvas);  //draw background and all layers data to canvas
     procedure RenderPicture(Canvas : TCanvas);
-    procedure ExpotPng(aFilename : TFileName);  //export frame to file
+    procedure ExpotrPng(aFilename : TFileName);  //export frame to file
     property ShowGrid : Boolean read fShowGrid write fShowGrid;      //draw grid
     property FrameZoom : Integer read fFrameZoom write SetFrameZoom; //scale index
     property Offset : TPoint read FOffset write SetOffset;
     property CheckersSize : Byte read FCheckersSize write SetCheckersSize default 16;
     property FrameWidth : Integer read fFrameWidth;
     property FrameHeight : Integer read fFrameHeight;
-    property ActiveFrame : String read fActiveFrame write SetActiveFrame; //work frame name to access through mapped list
-    property ActiveLayer : String read FActiveLayer write FActiveLayer; //current layer to draw
     property CellCursor : TCellCursor read FCellCursor; //just red frame to show where draw in grid
     property Bounds : TRect read fBounds; //actual canvas size for drawing
     property GridSize : Word read fFrameGridSize; //current grid size - read only
@@ -350,14 +349,33 @@ type
 
   TLayers = class(TCustomLayers)
   private
-    FOnLayersChange: TOnLayersChange;
-    procedure SetOnLayersChange(AValue: TOnLayersChange);
   public
-    property OnLayersChange : TOnLayersChange read FOnLayersChange write SetOnLayersChange;
   end;
 
 
-  TFrames = specialize TFPGMapObject<String,TSPFrame>;  //mapped frames list
+  TCustomFrames = specialize TFPGMapObject<String,TSPFrame>;  //mapped frames list
+
+  { TFrames }
+
+  TFrames = class(TCustomFrames)
+  private
+    FNames: TStringList;
+    function GetCount : Integer;
+  public
+   constructor Create;
+   destructor Destroy; override;
+
+   //add new frame to mappped array
+   procedure Add(aFrame : TSPFrame);
+
+   //return all frames in JSON array
+   function ToJSON : String;
+   //create frames from JSON data
+   procedure FromJSON(aData : String);
+   //list of all frame names
+   property Names : TStringList read FNames;
+   property Count : Integer read GetCount;
+  end;
 
   //Main class for whole project
   //Contains all information about sprites, animations, frames, layers
@@ -366,20 +384,24 @@ type
 
   TSPProjectInfo = class
   private
+    FActiveFrame: TSPFrame;
     FAppName: String;
     FAuthor: String;
     FChanged: Boolean;
     FCreditsInfo: String;
     FDescription: String;
     FFilename: TFilename;
+    FFramesCount: Integer;
     FLicense: String;
     FTitle: String;
+    procedure SetActiveFrame(AValue: TSPFrame);
     procedure SetAuthor(AValue: String);
     procedure SetCreditsInfo(AValue: String);
     procedure SetDescription(AValue: String);
     procedure SetFilename(AValue: TFilename);
     procedure SetLicense(AValue: String);
     procedure SetTitle(AValue: String);
+
 
   public
 
@@ -402,7 +424,12 @@ type
    //Cannot be modified directly
    property AppName : String read FAppName;
    //True if poroject has some unsaved changes
-   property Changed : Boolean read FChanged;
+   property Changed : Boolean read FChanged write FChanged;
+   //total frames count, in empty project can be 0
+   property FramesCount : Integer read FFramesCount;
+   //link to current frame (can be nil in empty project)
+   property ActiveFrame : TSPFrame read FActiveFrame write SetActiveFrame;
+
 
    //save project to JSON-based file
    procedure Save;
@@ -748,6 +775,82 @@ begin
   FreeAndNil(tmp);
 end;
 
+{ TFrames }
+
+constructor TFrames.Create;
+begin
+ inherited Create;
+ FNames:=TStringList.Create;
+end;
+
+procedure TFrames.Add(aFrame: TSPFrame);
+begin
+  Self[aFrame.FrameName]:=aFrame;
+  FNames.Add(aFrame.FrameName);
+end;
+
+destructor TFrames.Destroy;
+begin
+  FreeAndNil(FNames);
+  inherited Destroy;
+end;
+
+procedure TFrames.FromJSON(aData: String);
+var
+    aJson : TJsonNode;
+    e : TJsonNode;
+    i: Integer;
+    aname : String;
+begin
+ aJson:=TJsonNode.Create;
+ aJson.Parse('{'+aData+'}');
+
+ Self.Clear;
+   for e in aJson do begin
+     {$IFDEF DEBUG}
+      DebugLn('In: TFrames.FromJSON() node: '+e.Name);
+      DebugLn('In: TFrames.FromJSON() data: '+e.Value);
+     {$ENDIF}
+    //todo: create frames from data
+     aname:=e.Force(IntToStr(i)+'/frame name').AsString;
+
+     if (aname='') then Continue;
+     if (FNames.IndexOf(aname)=-1) then Self[aname]:=TSPFrame.Create(aname,0,0);
+     Self[aname].RestoreFromJSON(aJson.Force(IntToStr(i)).Value);
+   end;
+
+ FreeAndNil(aJson);
+end;
+
+function TFrames.GetCount: Integer;
+begin
+  Result:=FNames.Count;
+end;
+
+function TFrames.ToJSON: String;
+var
+    aJson : TJsonNode;
+    i: Integer;
+begin
+ aJson:=TJsonNode.Create;
+ aJson.Add;
+ if Count> 0 then begin
+   for i:=0 to Count-1 do begin
+     if FNames[i]<>'' then
+        aJson.Force(IntToStr(i)).Value:=Self[FNames.Strings[i]].ToJSON;
+     {$IFDEF DEBUG}
+      DebugLn('In: TFrames.ToJSON(): '+Self[FNames.Strings[i]].ToJSON);
+     {$ENDIF}
+   end;
+ end;
+
+ Result:=aJson.Value;
+      {$IFDEF DEBUG}
+      DebugLn('In: TFrames.ToJSON() all frames:'+Result);
+     {$ENDIF}
+ FreeAndNil(aJson);
+end;
+
 { TSPProjectInfo }
 
 constructor TSPProjectInfo.Create;
@@ -760,6 +863,7 @@ begin
   {$ELSE}
   ShowMessage(sysutils.GetEnvironmentVariable('USER'););
   {$ENDIF}
+  FActiveFrame:=nil;
 end;
 
 destructor TSPProjectInfo.Destroy;
@@ -770,7 +874,9 @@ end;
 procedure TSPProjectInfo.Load;
 var
     aJSON : TJsonNode;
-    aVer  : Integer;
+    aVer  , i: Integer;
+    fname : String;
+    fw, fh: Int64;
 begin
  if Filename='' then begin
    Assert(Filename<>'','Error: project file name not set!!!');
@@ -785,8 +891,20 @@ begin
  FAppName:=aJSON.Force('app').AsString;
  FTitle:=aJSON.Force('project/title').AsString;
  FAuthor:=aJSON.Force('project/author').AsString;
-
- aJSON.SaveToFile(Filename);
+ Description := aJSON.Force('project/description').AsString;
+ License:=aJSON.Force('project/license').AsString;
+ CreditsInfo := aJSON.Force('project/credits').AsString;
+ FFramesCount:=aJSON.Force('project/frames count').AsInteger;
+ if FramesCount>0 then for i:=0 to FramesCount-1 do begin
+   fname := aJSON.Force('frames/'+IntToStr(i)+'/frame name').AsString;
+   fw:=aJSON.Force('frames/'+IntToStr(i)+'/width').AsInteger;
+   fh:=aJSON.Force('frames/'+IntToStr(i)+'/height').AsInteger;
+   Frames.Add(TSPFrame.Create(fname,fw,fh));
+   Frames[fname].RestoreFromJSON(aJSON.Force('frames/'+IntToStr(i)).AsJson);
+ end;
+ {$IFDEF DEBUG}
+ DebugLn('In: TSPProjectInfo.Load() after load frames: '+Frames.Names.Text);
+ {$ENDIF}
  FChanged:=False;
  FreeAndNil(aJSON);
 end;
@@ -796,7 +914,7 @@ var
     aJSON : TJsonNode;
 begin
  if Filename='' then begin
-   Assert(Filename<>'','Error: project file name not set!!!');
+   Assert(Filename<>'', rsErrorProject);
  end;
  aJSON:=TJsonNode.Create;
  aJSON.Force('type').AsString:='SPEDit file';
@@ -804,10 +922,20 @@ begin
  aJSON.Force('app').AsString:=APP_NAME;
  aJSON.Force('project/title').AsString:=Title;
  aJSON.Force('project/author').AsString:=Author;
-
+ aJSON.Force('project/description').AsString:=Description;
+ aJSON.Force('project/license').AsString:=License;
+ aJSON.Force('project/credits').AsString:=CreditsInfo;
+ aJSON.Force('project/frames count').AsInteger:=FramesCount;
+ aJSON.Force('frames').Value:=Frames.ToJSON;
  aJSON.SaveToFile(Filename);
  FChanged:=False;
  FreeAndNil(aJSON);
+end;
+
+procedure TSPProjectInfo.SetActiveFrame(AValue: TSPFrame);
+begin
+  if FActiveFrame=AValue then Exit;
+  FActiveFrame:=AValue;
 end;
 
 procedure TSPProjectInfo.SetAuthor(AValue: String);
@@ -850,14 +978,6 @@ begin
   if FTitle=AValue then Exit;
   FTitle:=AValue;
   FChanged:=True;
-end;
-
-{ TLayers }
-
-procedure TLayers.SetOnLayersChange(AValue: TOnLayersChange);
-begin
-  if FOnLayersChange=AValue then Exit;
-  FOnLayersChange:=AValue;
 end;
 
 { TPalettePreset }
@@ -916,8 +1036,7 @@ var
 begin
     if CanRedo then begin
      aData:=fRedoList.Pop;
-     //Frames.Remove(FrameGrid.ActiveFrame);
-     Frames[FrameGrid.ActiveFrame].RestoreFromJSON(aData);
+     ProjectInfo.ActiveFrame.RestoreFromJSON(aData);
      fUndoList.Add(aData);
   end;
 end;
@@ -1006,6 +1125,7 @@ begin
  FHeight:=h;
  fLayers:=TStringList.Create;
  FPreview:=TBGRABitmap.Create(w,h);
+ fActiveLayer:=nil;
 end;
 
 procedure TSPFrame.RestoreFromJSON(aJSONData: String);
@@ -1023,15 +1143,7 @@ var
   FCount:=aJSON.Find('layers count').AsInteger;
   for i:=0 to FCount-1 do begin
       TSPLayer.RestoreFromJSON(aJSON.Force('layers/'+IntToStr(i)).Value);
-      {$IFDEF DEBUG}
-      DebugLn('In : LoadLayersFromJSON() data: ',aJSON.Child(i).Value);
-      {$ENDIF}
-
   end;
-
-  {$IFDEF DEBUG}
-  DebugLn('In: LoadLayersFromJSON, Layers :',Frames[FrameGrid.ActiveFrame].LayersList.Text);
-  {$ENDIF}
   FreeAndNil(aJSON);
 end;
 
@@ -1305,7 +1417,7 @@ begin
     aFrameName:=ExtractFileName(aImg);
     aFrameName:=ChangeFileExt(aFrameName,'');
     aLayerName:=aFrameName;
-    Frames[aFrameName]:=TSPFrame.Create(aFrameName, FrameWidth, FrameHeight);
+    Frames.Add(TSPFrame.Create(aFrameName, FrameWidth, FrameHeight));
     Layers[aFrameName]:=TSPLayer.Create(aLayerName,FrameWidth,FrameHeight);
     ActiveFrame:=aFrameName;
     ActiveLayer:=aLayerName;

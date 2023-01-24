@@ -537,6 +537,26 @@ msgctxt "tfrmprojectprops.caption"
 msgid "Project properties"
 msgstr ""
 
+#: tfrmprojectprops.edlicense.text
+msgid "For non-commercial use only"
+msgstr ""
+
+#: tfrmprojectprops.gbdescript.caption
+msgid "Description"
+msgstr ""
+
+#: tfrmprojectprops.lblauthor.caption
+msgid "Author"
+msgstr ""
+
+#: tfrmprojectprops.lblcredits.caption
+msgid "Credits"
+msgstr ""
+
+#: tfrmprojectprops.lbllicense.caption
+msgid "License"
+msgstr ""
+
 #: tfrmprojectprops.lbltitle.caption
 msgid "Title"
 msgstr ""
@@ -610,6 +630,10 @@ msgstr ""
 
 #: uglobals.rseraser
 msgid "Eraser"
+msgstr ""
+
+#: uglobals.rserrorproject
+msgid "Error: project file name not set!!!"
 msgstr ""
 
 #: uglobals.rsfg

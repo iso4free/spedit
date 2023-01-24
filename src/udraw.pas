@@ -221,8 +221,8 @@ procedure TSPMove.StartDraw(x, y: Integer; Shift: TShiftState;
 begin
   inherited StartDraw(x, y, Shift, aButton, aColor);
   UndoRedoManager.SaveState;
-  Layers[FrameGrid.ActiveLayer].Drawable.DrawPart(ToolOptions.SelectionRect,fMovable.Canvas,0,0,True);
-  Layers[FrameGrid.ActiveLayer].Drawable.EraseRect(ToolOptions.SelectionRect,255);
+  ProjectInfo.ActiveFrame.ActiveLayer.Drawable.DrawPart(ToolOptions.SelectionRect,fMovable.Canvas,0,0,True);
+  ProjectInfo.ActiveFrame.ActiveLayer.Drawable.EraseRect(ToolOptions.SelectionRect,255);
 end;
 
 { TSPSelection }
@@ -288,7 +288,7 @@ begin
   if Shift<>[] then Exit; //flood fiil only if no accelerator keys pressed
   fx:=x;
   fy:=y;
-  Layers[FrameGrid.ActiveLayer].Drawable.FloodFill(fx,fy,fColor,fmSet,0);
+  ProjectInfo.ActiveFrame.ActiveLayer.Drawable.FloodFill(fx,fy,fColor,fmSet,0);
 end;
 
 procedure TSPFloodFill.StartDraw(x, y: Integer; Shift: TShiftState;
@@ -406,8 +406,8 @@ end;
 
 procedure TSPPipette.MouseUp(x, y: Integer; Shift: TShiftState);
 begin
-  if fMainColor then spclForeColor:=Layers[FrameGrid.ActiveLayer].Drawable.GetPixel(x,y)
-     else spclBackColor:=Layers[FrameGrid.ActiveLayer].Drawable.GetPixel(x,y);
+  if fMainColor then spclForeColor:=ProjectInfo.ActiveFrame.ActiveLayer.Drawable.GetPixel(x,y)
+     else spclBackColor:=ProjectInfo.ActiveFrame.ActiveLayer.Drawable.GetPixel(x,y);
 end;
 
 procedure TSPPipette.StartDraw(x, y: Integer; Shift: TShiftState;
@@ -422,7 +422,7 @@ procedure TSPEraser.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
   inherited StartDraw(x,y,Shift, aButton, BGRAPixelTransparent);
-     Layers[FrameGrid.ActiveLayer].Drawable.FillRect(x,y,x+ToolOptions.PenSize,y+ToolOptions.PenSize,BGRAPixelTransparent);
+  ProjectInfo.ActiveFrame.ActiveLayer.Drawable.FillRect(x,y,x+ToolOptions.PenSize,y+ToolOptions.PenSize,BGRAPixelTransparent);
 end;
 
 constructor TSPEraser.Create;
@@ -437,7 +437,7 @@ end;
 
 procedure TSPEraser.MouseMove(x, y: Integer);
 begin
-     Layers[FrameGrid.ActiveLayer].Drawable.FillRect(x,y,x+ToolOptions.PenSize,y+ToolOptions.PenSize,BGRAPixelTransparent);
+     ProjectInfo.ActiveFrame.ActiveLayer.Drawable.FillRect(x,y,x+ToolOptions.PenSize,y+ToolOptions.PenSize,BGRAPixelTransparent);
 end;
 
 procedure TSPEraser.MouseUp(x, y: Integer; Shift: TShiftState);
@@ -521,7 +521,7 @@ end;
 procedure TSPDrawTool.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
-  if (not LayerExists(FrameGrid.ActiveLayer)) or (not LayerExists(csDRAWLAYER)) then Exit;
+  if (not LayerExists(ProjectInfo.ActiveFrame.ActiveLayer.LayerName)) or (not LayerExists(csDRAWLAYER)) then Exit;
   UndoRedoManager.SaveState;
   ToolOptions.Color:=aColor;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=ToolOptions.Color;
@@ -549,9 +549,9 @@ end;
 
 procedure TSPDrawTool.FinishDraw;
 begin
-  if (not Assigned(FrameGrid)) or (not LayerExists(FrameGrid.ActiveLayer)) then Exit;
+  if (not Assigned(FrameGrid)) or (not LayerExists(ProjectInfo.ActiveFrame.ActiveLayer.LayerName)) then Exit;
 
-  Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,Layers[csDRAWLAYER].Drawable,dmSetExceptTransparent);
+  ProjectInfo.ActiveFrame.ActiveLayer.Drawable.PutImage(0,0,Layers[csDRAWLAYER].Drawable,dmSetExceptTransparent);
   Layers[csDRAWLAYER].ClearDrawable;
 end;
 

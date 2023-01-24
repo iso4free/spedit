@@ -225,11 +225,12 @@ var
 begin
   w:=aSrc.piskel.width;
   h:=aSrc.piskel.height;
+  {
   Frames[aName]:=TSPFrame.Create(aName,w,h);
   Layers[aName]:=TSPLayer.Create(aName,w,h);
   Frames[aName].AddLayer(aName);
   FrameGrid.ActiveFrame:=aName;
-  FrameGrid.ActiveLayer:=aName;
+  FrameGrid.ActiveLayer:=aName;   }
   //load all layers
   cnt:=aSrc.piskel.LayersCount;
   for i:=0 to cnt-1 do begin

@@ -4,5 +4,10 @@
 {"hash":77089212,"name":"tfrmprojectprops.bbtncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
 {"hash":65159971,"name":"tfrmprojectprops.bbtnsave.hint","sourcebytes":[83,97,118,101,32,111,112,116,105,111,110,115],"value":"Save options"},
 {"hash":231000124,"name":"tfrmprojectprops.tsgeneral.caption","sourcebytes":[71,101,110,101,114,97,108],"value":"General"},
-{"hash":5966629,"name":"tfrmprojectprops.lbltitle.caption","sourcebytes":[84,105,116,108,101],"value":"Title"}
+{"hash":5966629,"name":"tfrmprojectprops.lbltitle.caption","sourcebytes":[84,105,116,108,101],"value":"Title"},
+{"hash":76328802,"name":"tfrmprojectprops.lblauthor.caption","sourcebytes":[65,117,116,104,111,114],"value":"Author"},
+{"hash":156067838,"name":"tfrmprojectprops.gbdescript.caption","sourcebytes":[68,101,115,99,114,105,112,116,105,111,110],"value":"Description"},
+{"hash":49923525,"name":"tfrmprojectprops.lbllicense.caption","sourcebytes":[76,105,99,101,110,115,101],"value":"License"},
+{"hash":246919721,"name":"tfrmprojectprops.edlicense.text","sourcebytes":[70,111,114,32,110,111,110,45,99,111,109,109,101,114,99,105,97,108,32,117,115,101,32,111,110,108,121],"value":"For non-commercial use only"},
+{"hash":176926963,"name":"tfrmprojectprops.lblcredits.caption","sourcebytes":[67,114,101,100,105,116,115],"value":"Credits"}
 ]}

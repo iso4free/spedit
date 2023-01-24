@@ -140,8 +140,9 @@ object Form1: TForm1
     end
   end
   object OpenDialog1: TOpenDialog
-    DefaultExt = '.piskel'
-    Filter = 'Piskel files (.piskel)|*.piskel|All files|*.*'
+    DefaultExt = '.json'
+    Filter = 'JSON files (.json)|*.json; *.JSON|PISKEL files (.piskel)|*.piskel; *.PISKEL|All files|*.*'
+    InitialDir = '/home/vadim/Pictures/'
     Left = 475
     Top = 100
   end

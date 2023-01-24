@@ -29,6 +29,7 @@ object frmProjectProps: TfrmProjectProps
       Default = True
       Kind = bkOK
       ModalResult = 1
+      OnClick = bbtnOkClick
       TabOrder = 0
     end
     object bbtnCancel: TBitBtn
@@ -94,20 +95,136 @@ object frmProjectProps: TfrmProjectProps
         ClientHeight = 346
         ClientWidth = 714
         object lblTitle: TLabel
-          Left = 17
+          AnchorSideLeft.Control = tsGeneral
+          AnchorSideTop.Control = edTitle
+          AnchorSideTop.Side = asrCenter
+          Left = 12
           Height = 17
           Top = 10
           Width = 29
+          BorderSpacing.Left = 6
+          BorderSpacing.Around = 6
           Caption = 'Title'
           ParentColor = False
         end
         object edTitle: TEdit
-          Left = 85
+          AnchorSideLeft.Control = tsGeneral
+          AnchorSideTop.Control = tsGeneral
+          AnchorSideRight.Control = tsGeneral
+          AnchorSideRight.Side = asrBottom
+          Left = 106
           Height = 25
-          Top = 4
-          Width = 427
+          Top = 6
+          Width = 602
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 100
+          BorderSpacing.Around = 6
           OnChange = edTitleChange
           TabOrder = 0
+        end
+        object lblAuthor: TLabel
+          AnchorSideLeft.Control = lblTitle
+          AnchorSideTop.Control = edAuthor
+          AnchorSideTop.Side = asrCenter
+          Left = 12
+          Height = 17
+          Top = 41
+          Width = 43
+          Caption = 'Author'
+          ParentColor = False
+        end
+        object edAuthor: TEdit
+          AnchorSideLeft.Control = edTitle
+          AnchorSideTop.Control = edTitle
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = edTitle
+          AnchorSideRight.Side = asrBottom
+          Left = 106
+          Height = 25
+          Top = 37
+          Width = 602
+          Anchors = [akTop, akLeft, akRight]
+          OnChange = edTitleChange
+          TabOrder = 1
+        end
+        object gbDescript: TGroupBox
+          AnchorSideLeft.Control = tsGeneral
+          AnchorSideTop.Control = lblAuthor
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = tsGeneral
+          AnchorSideRight.Side = asrBottom
+          Left = 6
+          Height = 105
+          Top = 64
+          Width = 702
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Around = 6
+          Caption = 'Description'
+          ClientHeight = 86
+          ClientWidth = 698
+          TabOrder = 2
+          object mDescription: TMemo
+            Left = 0
+            Height = 86
+            Top = 0
+            Width = 698
+            Align = alClient
+            OnChange = edTitleChange
+            ScrollBars = ssAutoVertical
+            TabOrder = 0
+          end
+        end
+        object lblLicense: TLabel
+          AnchorSideLeft.Control = lblTitle
+          AnchorSideTop.Control = edLicense
+          AnchorSideTop.Side = asrCenter
+          Left = 12
+          Height = 17
+          Top = 179
+          Width = 49
+          Caption = 'License'
+          ParentColor = False
+        end
+        object edLicense: TEdit
+          AnchorSideLeft.Control = edTitle
+          AnchorSideTop.Control = gbDescript
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = edTitle
+          AnchorSideRight.Side = asrBottom
+          Left = 106
+          Height = 25
+          Top = 175
+          Width = 602
+          Anchors = [akTop, akLeft, akRight]
+          OnChange = edTitleChange
+          TabOrder = 3
+          Text = 'For non-commercial use only'
+        end
+        object lblCredits: TLabel
+          AnchorSideLeft.Control = lblTitle
+          AnchorSideTop.Control = edCredits
+          AnchorSideTop.Side = asrCenter
+          Left = 12
+          Height = 17
+          Top = 210
+          Width = 46
+          Caption = 'Credits'
+          ParentColor = False
+        end
+        object edCredits: TEdit
+          AnchorSideLeft.Control = edTitle
+          AnchorSideTop.Control = edLicense
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = edTitle
+          AnchorSideRight.Side = asrBottom
+          Left = 106
+          Height = 25
+          Top = 206
+          Width = 602
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 6
+          OnChange = edTitleChange
+          TabOrder = 4
         end
       end
     end
