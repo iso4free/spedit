@@ -692,6 +692,10 @@ msgstr "A imagem tem muitas cores!"
 msgid "Input new layer name:"
 msgstr "Insira o nome da nova camada:"
 
+#: uglobals.rslayer
+msgid "Layer"
+msgstr ""
+
 #: uglobals.rslayername
 msgid "Layer name"
 msgstr "Nome da camada"

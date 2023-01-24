@@ -351,8 +351,8 @@ uses uprojprops, udraw, uabout, unamedlg, uframedlg, uresizedlg, ureferense, use
 procedure EraseSelection;
 begin
   if ToolOptions.IsSelection then begin
-     UndoRedoManager.SaveState;
-     Layers[FrameGrid.ActiveLayer].Drawable.EraseRect(ToolOptions.SelectionRect,255);
+     ProjectInfo.ActiveFrame.SaveState;
+     ProjectInfo.ActiveFrame.ActiveLayer.Drawable.EraseRect(ToolOptions.SelectionRect,255);
   end;
 end;
 
@@ -382,7 +382,7 @@ begin
  sdExportFrameSaveDialog.InitialDir:=INI.ReadString('PATH','EXPORT',GetUserDir());
  if sdExportFrameSaveDialog.Execute then begin
    //save current frame to PNG file by default to user dir and with frame name
-   FrameGrid.ExpotPng(sdExportFrameSaveDialog.FileName);
+   FrameGrid.ExportPng(sdExportFrameSaveDialog.FileName);
    INI.WriteString('PATH','EXPORT',ExtractFilePath(sdExportFrameSaveDialog.FileName));
  end;
 end;
@@ -391,15 +391,13 @@ procedure TfrmMain.actDitherExecute(Sender: TObject);
 var
   i: Integer;
 begin
+ ProjectInfo.ActiveFrame.SaveState;
  //dither all layers
- for i:= 0 to Frames[FrameGrid.ActiveFrame].LayersList.Count-1 do begin
+ for i:= 0 to ProjectInfo.ActiveFrame.LayersList.Count-1 do begin
   {$IFDEF DEBUG}
   //DebugLn('In: actDitherExecute() layer: ',Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]);
   {$ENDIF}
-  UndoRedoManager.SaveState;
-  DitherImage(Layers[Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]].Drawable,Presets[cbPalettePresets.Text].Palette,0);
-  //todo: fix undo enabled
-  //actUndo.Enabled:=True;//UndoRedoManager.CanUndo;
+  DitherImage(Layers[ProjectInfo.ActiveFrame.LayersList.Strings[i]].Drawable,Presets[cbPalettePresets.Text].Palette,0);
  end;
  pbFrameDraw.Invalidate;
  FramePreview.Invalidate;
@@ -422,7 +420,7 @@ var
   aLayerName: String;
 begin
   if not Assigned(FrameGrid) then Exit;
-  aLayerName:=CheckLayerName('Layer'+IntToStr(Layers.Count-1));
+  aLayerName:=CheckLayerName(rsLayer+IntToStr(Layers.Count-1));
   frmNameDlg.Caption:=rsLayerName;
   frmNameDlg.edName.Text:=aLayerName;
   frmNameDlg.lblName.Caption:=rsInputNewLaye;
@@ -430,8 +428,7 @@ begin
   if frmNameDlg.ModalResult<>mrOK then Exit;
   aLayerName:=frmNameDlg.edName.Text;
   Layers[aLayerName]:=TSPLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
-  FrameGrid.ActiveLayer:=aLayerName;
-  Frames[FrameGrid.ActiveFrame].AddLayer(aLayerName);
+  ProjectInfo.ActiveFrame.AddLayer(aLayerName);
   Layers[aLayerName].Visible:=True;
   Layers[aLayerName].Locked:=False;
   LayersChange;
@@ -444,7 +441,7 @@ begin
   //copy selection to clipboard
   if ToolOptions.IsSelection then begin
     aBmp:=TBGRABitmap.Create(ToolOptions.SelectionRect.Width,ToolOptions.SelectionRect.Height);
-    aBmp.Canvas.CopyRect(aBmp.ClipRect,Layers[FrameGrid.ActiveLayer].Drawable.Canvas,ToolOptions.SelectionRect);
+    aBmp.Canvas.CopyRect(aBmp.ClipRect,ProjectInfo.ActiveFrame.ActiveLayer.Drawable.Canvas,ToolOptions.SelectionRect);
     Clipboard.Assign(aBmp.Bitmap);
     FreeAndNil(aBmp);
   end;
@@ -456,11 +453,10 @@ var
   aData : String;
 begin
  if not Assigned(FrameGrid) then Exit;
- aName:=rsCopyOf + FrameGrid.ActiveLayer;
- aData:=Layers[FrameGrid.ActiveLayer].ToBASE64String;
+ aName:=rsCopyOf + ProjectInfo.ActiveFrame.ActiveLayer.LayerName;
+ aData:=ProjectInfo.ActiveFrame.ActiveLayer.ToBASE64String;
  Layers[aName]:=TSPLayer.Create(aName,aData);
- Frames[FrameGrid.ActiveFrame].AddLayer(aName);
- FrameGrid.ActiveLayer:=aName;
+ ProjectInfo.ActiveFrame.AddLayer(aName);
  LayersChange;
 end;
 
@@ -468,7 +464,7 @@ procedure TfrmMain.actCutExecute(Sender: TObject);
 begin
   //cut selection to clipboard
  if not ToolOptions.IsSelection then Exit;
- UndoRedoManager.SaveState;
+ ProjectInfo.ActiveFrame.SaveState;
  actCopyExecute(Sender);
  EraseSelection;
 end;
@@ -476,13 +472,12 @@ end;
 procedure TfrmMain.actDeleteLayerExecute(Sender: TObject);
 begin
  if not Assigned(FrameGrid) then Exit;
- if FrameGrid.ActiveLayer=Frames[FrameGrid.ActiveFrame].LayersList.Strings[0] then begin
+ if ProjectInfo.ActiveFrame.IsMainLayerActive then begin
     ShowMessage(rsThisLayerCan2);
     Exit;
   end;
-  UndoRedoManager.SaveState;
-  Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
-  FrameGrid.ActiveLayer:=Frames[FrameGrid.ActiveFrame].LayersList.Strings[0];
+  ProjectInfo.ActiveFrame.SaveState;
+  ProjectInfo.ActiveFrame.DeleteLayer(ProjectInfo.ActiveFrame.ActiveLayer.LayerName);
   LayersChange;
 end;
 
@@ -514,27 +509,29 @@ end;
 procedure TfrmMain.actMergeLayersExecute(Sender: TObject);
 var
   aIdx : Integer;
-  aName: String;
+  aMergeName,
+  activeName: String;
 begin
   if not Assigned(FrameGrid) then Exit;
-  if (FrameGrid.ActiveLayer=Frames[FrameGrid.ActiveFrame].LayersList.Strings[0]) or
-     (Frames[FrameGrid.ActiveFrame].LayersList.Count<2) or
-     (Layers[FrameGrid.ActiveLayer].Locked) then begin
+  if ProjectInfo.ActiveFrame.IsMainLayerActive or
+     (ProjectInfo.ActiveFrame.LayersList.Count<2) or
+     (ProjectInfo.ActiveFrame.ActiveLayer.Locked) then begin
       ShowMessage(rsCantMerge);
       Exit;
   end;
-  aIdx:=Frames[FrameGrid.ActiveFrame].LayersList.IndexOf(FrameGrid.ActiveLayer);
+  activeName:=ProjectInfo.ActiveFrame.ActiveLayer.LayerName;
+  aIdx:=ProjectInfo.ActiveFrame.LayersList.IndexOf(activeName);
   if aIdx>0 then begin
-    aName:=Frames[FrameGrid.ActiveFrame].LayersList.Strings[aIdx-1];
-    if Layers[aName].Locked then begin
+    aMergeName:=ProjectInfo.ActiveFrame.LayersList.Strings[aIdx-1];
+    if Layers[aMergeName].Locked then begin
       ShowMessage(rsCantMerge);
       Exit;
     end;
     //all good - let`s merge
-    UndoRedoManager.SaveState;
-    Layers[aName].Drawable.PutImage(0,0,Layers[FrameGrid.ActiveLayer].Drawable,dmDrawWithTransparency);
-    Frames[FrameGrid.ActiveFrame].DeleteLayer(FrameGrid.ActiveLayer);
-    FrameGrid.ActiveLayer:=aName;
+    ProjectInfo.ActiveFrame.SaveState;
+    Layers[aMergeName].Drawable.PutImage(0,0,Layers[activeName].Drawable,dmDrawWithTransparency);
+    ProjectInfo.ActiveFrame.DeleteLayer(activeName);
+    ProjectInfo.ActiveFrame.ActiveLayer:=Layers[aMergeName];
     LayersChange;
   end else
      ShowMessage(rsCantMerge);
@@ -543,7 +540,7 @@ end;
 procedure TfrmMain.actFlipHExecute(Sender: TObject);
 begin
   if Assigned(FrameGrid) then begin
-   Layers[FrameGrid.ActiveLayer].Drawable.HorizontalFlip;
+   ProjectInfo.ActiveFrame.ActiveLayer.Drawable.HorizontalFlip;
    pbFrameDraw.Invalidate;
    FramePreview.Invalidate;
    drwgrdLayers.Invalidate;
@@ -553,7 +550,7 @@ end;
 procedure TfrmMain.actFlipVExecute(Sender: TObject);
 begin
   if Assigned(FrameGrid) then begin
-   Layers[FrameGrid.ActiveLayer].Drawable.VerticalFlip;
+   ProjectInfo.ActiveFrame.ActiveLayer.Drawable.VerticalFlip;
    pbFrameDraw.Invalidate;
    FramePreview.Invalidate;
    drwgrdLayers.Invalidate;
@@ -563,8 +560,8 @@ end;
 procedure TfrmMain.actMoveDownExecute(Sender: TObject);
 var aIdx : Integer;
 begin
- with Frames[FrameGrid.ActiveFrame].LayersList do begin
-  aIdx:=IndexOf(FrameGrid.ActiveLayer);
+ with ProjectInfo.ActiveFrame.LayersList do begin
+  aIdx:=IndexOf(ProjectInfo.ActiveFrame.ActiveLayer.LayerName);
   if aIdx>1 then begin
     Move(aIdx,aIdx-1);
     LayersChange;
@@ -575,8 +572,8 @@ end;
 procedure TfrmMain.actMoveUpExecute(Sender: TObject);
 var aIdx : Integer;
 begin
- with Frames[FrameGrid.ActiveFrame].LayersList do begin
-  aIdx:=IndexOf(FrameGrid.ActiveLayer);
+ with ProjectInfo.ActiveFrame.LayersList do begin
+  aIdx:=IndexOf(ProjectInfo.ActiveFrame.ActiveLayer.LayerName);
   if aIdx<(Count-1) then begin
     Move(aIdx,aIdx+1);
     LayersChange;
@@ -593,7 +590,7 @@ begin
   if Assigned(FrameGrid) then begin
    frmFrameDlg.spnedtHeight.Value:=FrameGrid.FrameHeight;
    frmFrameDlg.spnedtWidth.Value:=FrameGrid.FrameWidth;
-   frmFrameDlg.edtFrameName.Text:=FrameGrid.ActiveFrame;
+   frmFrameDlg.edtFrameName.Text:=CheckFrameName(rsFrame);
   end;
   frmFrameDlg.isOk:=False;
   frmFrameDlg.ShowModal;
@@ -608,21 +605,19 @@ begin
    Frames.Add(TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
                                                           frmFrameDlg.spnedtWidth.Value,
                                                           frmFrameDlg.spnedtHeight.Value));
-   FrameGrid.ActiveFrame:=frmFrameDlg.edtFrameName.Text;
+   ProjectInfo.ActiveFrame:=Frames[frmFrameDlg.edtFrameName.Text];
 
    Layers[frmFrameDlg.edtFrameName.Text]:=TSPLayer.Create(frmFrameDlg.edtFrameName.Text,
                                                           frmFrameDlg.spnedtWidth.Value,
                                                           frmFrameDlg.spnedtHeight.Value);
-   Frames[frmFrameDlg.edtFrameName.Text].AddLayer(frmFrameDlg.edtFrameName.Text);
-   FrameGrid.ActiveLayer:=frmFrameDlg.edtFrameName.Text;
-
+   ProjectInfo.ActiveFrame.AddLayer(frmFrameDlg.edtFrameName.Text);
    LayersChange;
    //todo: copy all layers to new frame if option checked
    for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
    FrameGrid.ShowGrid:=actGridToggle.Checked;
    trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
    Palette.Clear;
-   lbFrames.AddItem(frmFrameDlg.edtFrameName.Text,Frames[FrameGrid.ActiveFrame]);
+   lbFrames.AddItem(frmFrameDlg.edtFrameName.Text,Frames[frmFrameDlg.edtFrameName.Text]);
    FramesChange;
    mbPaletteGrid.Colors.Clear;
    pbFrameDraw.Invalidate;
@@ -674,8 +669,9 @@ begin
    if not Assigned(FrameGrid) then begin
     FrameGrid:=TFrameGrid.Create();
    end;
-   FrameGrid.ActiveFrame:=Frames.Names[0];
-   FrameGrid.ActiveLayer:=Frames[FrameGrid.ActiveFrame].LayersList[0];
+   //todo: (change) set active frame ater project loaded
+  // ProjectInfo.ActiveFrame:=Frames.Names[0];
+   //ProjectInfo.ActiveLayer:=Frames[FrameGrid.ActiveFrame].LayersList[0];
    FramesChange;
   end;
 end;
@@ -753,7 +749,7 @@ begin
       {$ENDIF}
       //we get image from clipboard - now create new layer with it
       Layers['Clipboard']:=TSPLayer.Create('Clipboard',FrameGrid.FrameWidth,FrameGrid.FrameHeight);
-      Frames[FrameGrid.ActiveFrame].AddLayer('Clipboard');
+      ProjectInfo.ActiveFrame.AddLayer('Clipboard');
 
       //if has selection paste inside selection
       if ToolOptions.IsSelection then begin
@@ -777,7 +773,7 @@ end;
 
 procedure TfrmMain.actRedoExecute(Sender: TObject);
 begin
- UndoRedoManager.Redo;
+ ProjectInfo.ActiveFrame.RedoState;
  LayersChange;
 end;
 
@@ -793,10 +789,11 @@ var
   aTmp : TBGRABitmap;
 begin
  if Assigned(FrameGrid) then begin
-  aTmp:= Layers[FrameGrid.ActiveLayer].Drawable.RotateCCW;
-  ClearBitmap(Layers[FrameGrid.ActiveLayer].Drawable);
-  Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,aTmp,dmSetExceptTransparent);
+  aTmp:= ProjectInfo.ActiveFrame.ActiveLayer.Drawable.RotateCCW;
+  ClearBitmap(ProjectInfo.ActiveFrame.ActiveLayer.Drawable);
+  ProjectInfo.ActiveFrame.ActiveLayer.Drawable.PutImage(0,0,aTmp,dmSetExceptTransparent);
   FreeAndNil(aTmp);
+  //todo:if w<>h change FrameGrid W/H
   pbFrameDraw.Invalidate;
   FramePreview.Invalidate;
   drwgrdLayers.Invalidate;
@@ -808,10 +805,11 @@ var
   aTmp : TBGRABitmap;
 begin
  if Assigned(FrameGrid) then begin
-  aTmp:= Layers[FrameGrid.ActiveLayer].Drawable.RotateCW;
-  ClearBitmap(Layers[FrameGrid.ActiveLayer].Drawable);
-  Layers[FrameGrid.ActiveLayer].Drawable.PutImage(0,0,aTmp,dmSetExceptTransparent);
+  aTmp:= ProjectInfo.ActiveFrame.ActiveLayer.Drawable.RotateCW;
+  ClearBitmap(ProjectInfo.ActiveFrame.ActiveLayer.Drawable);
+  ProjectInfo.ActiveFrame.ActiveLayer.Drawable.PutImage(0,0,aTmp,dmSetExceptTransparent);
   FreeAndNil(aTmp);
+  //todo:if w<>h change FrameGrid W/H
   pbFrameDraw.Invalidate;
   FramePreview.Invalidate;
   drwgrdLayers.Invalidate;
@@ -1007,10 +1005,10 @@ var aKey : String;
     cnt  : Integer;
 begin
   if not Assigned(FrameGrid) then Exit;
-  cnt:=Frames[FrameGrid.ActiveFrame].LayersList.Count;
+  cnt:=ProjectInfo.ActiveFrame.LayersList.Count;
   if aRow<>0 then begin //draw header
     if aRow>cnt then Exit;
-    aKey:=Frames[FrameGrid.ActiveFrame].LayersList.Strings[Cnt-aRow];
+    aKey:=ProjectInfo.ActiveFrame.LayersList.Strings[Cnt-aRow];
     if not LayerExists(aKey) then Exit;
     case aCol of
   0:begin
@@ -1025,7 +1023,7 @@ begin
     end;
   2:begin
       //draw layer name
-      if aKey=FrameGrid.ActiveLayer then drwgrdLayers.Canvas.Font.Color:=clRed
+      if aKey=ProjectInfo.ActiveFrame.ActiveLayer.LayerName then drwgrdLayers.Canvas.Font.Color:=clRed
          else drwgrdLayers.Canvas.Font.Color:=clWindowText;
       drwgrdLayers.Canvas.TextRect(aRect,aRect.Left,aRect.Top,aKey);
     end;
@@ -1050,8 +1048,8 @@ begin
     MouseToCell(X, Y, ACol, ARow);
     ARect := CellRect(ACol, ARow);
     if ((aRow=0) or (Y > ARect.Bottom))then Exit;
-    cnt:=Frames[FrameGrid.ActiveFrame].LayersList.Count;
-    aKey:=Frames[FrameGrid.ActiveFrame].LayersList.Strings[Cnt-aRow];
+    cnt:=ProjectInfo.ActiveFrame.LayersList.Count;
+    aKey:=ProjectInfo.ActiveFrame.LayersList.Strings[Cnt-aRow];
     if aKey='' then Exit;
 
   case aCol of
@@ -1062,7 +1060,7 @@ begin
      Layers[aKey].Locked:=not Layers[aKey].Locked;
     end;
 2,3:begin  //select active layer
-     FrameGrid.ActiveLayer:=aKey;
+     ProjectInfo.ActiveFrame.ActiveLayer:=Layers[aKey];
     end;
   end;
   pbFrameDraw.Invalidate;
@@ -1072,7 +1070,7 @@ end;
 
 procedure TfrmMain.actUndoExecute(Sender: TObject);
 begin
- UndoRedoManager.Undo;
+ ProjectInfo.ActiveFrame.RestoreState;
  LayersChange;
 end;
 
@@ -1376,7 +1374,7 @@ begin
   FramePreview.Width:=FrameGrid.FrameWidth;
   FramePreview.Height:=FrameGrid.FrameHeight;
   trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
-  lbFrames.AddItem(FrameGrid.ActiveFrame,Frames[FrameGrid.ActiveFrame]);
+  lbFrames.AddItem(ProjectInfo.ActiveFrame.FrameName,ProjectInfo.ActiveFrame);
   Palette.Clear;
   aPal.LoadFromImage(aFilename);
   for i:=0 to aPal.Count-1 do Palette.AddColor(aPal.Color[i]);
@@ -1391,20 +1389,22 @@ var p : TPoint;
 begin
  if not Assigned(FrameGrid) then Exit;
  if (DrawTool.ToolName<>rsRectangleSel) and (ToolOptions.IsSelection) then begin
-  Layers[FrameGrid.ActiveLayer].Drawable.ClipRect:=ToolOptions.SelectionRect;
+  ProjectInfo.ActiveFrame.ActiveLayer.Drawable.ClipRect:=ToolOptions.SelectionRect;
  end else begin
-  Layers[FrameGrid.ActiveLayer].Drawable.ClipRect:=Rect(0,0,Layers[FrameGrid.ActiveLayer].Drawable.Width,Layers[FrameGrid.ActiveLayer].Drawable.Height);
+ ProjectInfo.ActiveFrame.ActiveLayer.Drawable.ClipRect:=
+     Rect(0,0,ProjectInfo.ActiveFrame.ActiveLayer.Drawable.Width,
+              ProjectInfo.ActiveFrame.ActiveLayer.Drawable.Height);
  end;
  //if tool not pipette  Ctrl+mbLeft works like color picker
  if (DrawTool.ToolName<>rsPipette) and (Button=mbRight) then begin
    p:=FrameGrid.Coords(x,y);
-   spclForeColor:=Layers[FrameGrid.ActiveLayer].Drawable.GetPixel(p.X,p.Y);
+   spclForeColor:=ProjectInfo.ActiveFrame.ActiveLayer.Drawable.GetPixel(p.X,p.Y);
    FgColor.Invalidate;
  end else
  case Button of
    mbLeft,mbRight:begin
-    if Layers[FrameGrid.ActiveLayer].Locked then begin
-     ShowMessage(Format(rsLayerSIsLock, [FrameGrid.ActiveLayer]))
+    if ProjectInfo.ActiveFrame.ActiveLayer.Locked then begin
+     ShowMessage(Format(rsLayerSIsLock, [ProjectInfo.ActiveFrame.ActiveLayer.LayerName]))
     end;
     if (FrameGrid.HasCoords(Point(x,y))) then begin
      fDrawGridMode:=dgmDraw;
@@ -1445,7 +1445,7 @@ FrameGrid.CellCursor.Coords:=FrameGrid.Coords(x,y);
  end;
  if fDrawGridMode=dgmDraw then begin //draw if layer not locked
   if Assigned(DrawTool) and (FrameGrid.HasCoords(Point(X,Y))) then begin
-   if Layers[FrameGrid.ActiveLayer].Locked then Exit;
+   if ProjectInfo.ActiveFrame.ActiveLayer.Locked then Exit;
    p:=FrameGrid.Coords(X,Y);
    DrawTool.MouseMove(p.X,p.Y);
    FramePreview.Invalidate;
@@ -1465,7 +1465,7 @@ var
 begin
   if not Assigned(FrameGrid) then Exit;
   fDrawGridMode:=dgmNone;
-  if Layers[FrameGrid.ActiveLayer].Locked then Exit;
+  if ProjectInfo.ActiveFrame.ActiveLayer.Locked then Exit;
   if Assigned(DrawTool) then begin
    p:=FrameGrid.Coords(X,Y);
    DrawTool.MouseUp(p.x,p.y,Shift);
@@ -1512,8 +1512,8 @@ end;
 
 procedure TfrmMain.LayersChange;
 begin
-  Layers[FrameGrid.ActiveLayer].Visible:=True;
-  drwgrdLayers.RowCount:=Frames[FrameGrid.ActiveFrame].LayersList.Count+1;
+  ProjectInfo.ActiveFrame.ActiveLayer.Visible:=True;
+  drwgrdLayers.RowCount:=ProjectInfo.ActiveFrame.LayersList.Count+1;
   drwgrdLayers.Invalidate;
   pbFrameDraw.Invalidate;
   FramePreview.Invalidate;
@@ -1539,7 +1539,7 @@ end;
 
 procedure TfrmMain.lbFramesSelectionChange(Sender: TObject; User: boolean);
 begin
-  FrameGrid.ActiveFrame:=lbFrames.GetSelectedText;
+  ProjectInfo.ActiveFrame:=Frames[lbFrames.GetSelectedText];
   LayersChange;
 end;
 

@@ -694,6 +694,10 @@ msgstr "Зображення має надто багато кольорів!"
 msgid "Input new layer name:"
 msgstr "Введіть назву нового шару:"
 
+#: uglobals.rslayer
+msgid "Layer"
+msgstr ""
+
 #: uglobals.rslayername
 msgid "Layer name"
 msgstr "Назва шару"

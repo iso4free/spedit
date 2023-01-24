@@ -670,6 +670,10 @@ msgstr ""
 msgid "Input new layer name:"
 msgstr ""
 
+#: uglobals.rslayer
+msgid "Layer"
+msgstr ""
+
 #: uglobals.rslayername
 msgid "Layer name"
 msgstr ""

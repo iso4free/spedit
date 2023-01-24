@@ -220,7 +220,7 @@ procedure TSPMove.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
   inherited StartDraw(x, y, Shift, aButton, aColor);
-  UndoRedoManager.SaveState;
+  ProjectInfo.ActiveFrame.SaveState;
   ProjectInfo.ActiveFrame.ActiveLayer.Drawable.DrawPart(ToolOptions.SelectionRect,fMovable.Canvas,0,0,True);
   ProjectInfo.ActiveFrame.ActiveLayer.Drawable.EraseRect(ToolOptions.SelectionRect,255);
 end;
@@ -522,7 +522,7 @@ procedure TSPDrawTool.StartDraw(x, y: Integer; Shift: TShiftState;
   aButton: TMouseButton; aColor: TBGRAPixel);
 begin
   if (not LayerExists(ProjectInfo.ActiveFrame.ActiveLayer.LayerName)) or (not LayerExists(csDRAWLAYER)) then Exit;
-  UndoRedoManager.SaveState;
+  ProjectInfo.ActiveFrame.SaveState;
   ToolOptions.Color:=aColor;
   Layers[csDRAWLAYER].Drawable.Canvas.Pen.Color:=ToolOptions.Color;
   Layers[csDRAWLAYER].Drawable.Canvas.Brush.Color:=ToolOptions.Color;

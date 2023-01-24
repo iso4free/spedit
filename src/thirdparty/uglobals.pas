@@ -71,6 +71,7 @@ resourcestring
   rsMoveTool = 'Move tool';
   rsFrame = 'Frame';
   rsErrorProject = 'Error: project file name not set!!!';
+  rsLayer = 'Layer';
 
 
 const
@@ -162,36 +163,22 @@ type
   //presets list
   TPresetsList = specialize TFPGMapObject<String,TPalettePreset>;
 
-  {
-  Undo/Redo information stored in JSON format.
-  SaveState serialize current frame to JSON data string and add it to Undo list
-  cearing Redo list.
-  Restore state get last JSON data string from Redo list if avaliaable, restore
-  frame state and add it again to Undo list
-  }
+  { TSPUndoRedoManager }
 
-  { TUndoRedoManager }
-
-  TUndoRedoManager = class
+  TSPUndoRedoManager = class
    private
      fUndoList : TStringList;
      fRedoList : TStringList;
-     function InternalCanUndo: boolean;
-     function InternalCanRedo : Boolean;
-     function InternalGetStatesCount : Integer; inline;
-     {$IFDEF DEBUG}
-     procedure DumpDataToLog(aData : String);
-     {$ENDIF}
    public
     constructor Create;
     destructor Destroy;override;
-    procedure SaveState;
-    procedure Undo;
-    procedure Redo;
 
-    property CanUndo : boolean read InternalCanUndo;
-    property CanRedo : Boolean read InternalCanRedo;
-    property SavedStatesCount : Integer read InternalGetStatesCount;
+    //add any data string to undo list
+    procedure SaveState(const aData : String);
+    //return data string for restopre state or empy string if nohing to restore
+    function Undo : String;
+    //return data string for cancel last Undo or empty string if nothing to Redo
+    function Redo : String;
   end;
 
 
@@ -241,12 +228,15 @@ type
     fFrameName: String;
     FHeight: Integer;
     FIndex: Integer;
+    FIsMainLayerActive: Boolean;
     fLayers : TStringList;
     fModifiead: Boolean;
     fModified: Boolean;
     FWidth: Integer;
     FPreview : TBGRABitmap;
+    fUndo : TSPUndoRedoManager;
     procedure SetIndex(AValue: Integer);
+    procedure SetActiveLayer(aLayer : TSPLayer);
    public
     constructor Create(aName : String; w : Integer; h : integer);
     procedure RestoreFromJSON(aJSONData : String);
@@ -263,7 +253,11 @@ type
     function DeleteLayer(aLayerName : String): Boolean;      //remove layer from frame
     procedure DeleteAllLayers; //delete layers belongs to current frame only
     property Modified : Boolean read fModified write fModifiead default False; //if was editing
-    property ActiveLayer : TSPLayer read fActiveLayer write fActiveLayer;  //active layer in frame
+    property ActiveLayer : TSPLayer read fActiveLayer write SetActiveLayer;  //active layer in frame
+    procedure SaveState; //save current state for Undo
+    function RestoreState : Boolean; //restore last saved state if possible. Return True if success
+    function RedoState : Boolean; //redo last restored state if possible. Return True if
+    property IsMainLayerActive : Boolean read FIsMainLayerActive;
   end;
 
   { TCellCursor - for drawing red rectangle followed by mouse cursor or moved by arrow keys}
@@ -309,7 +303,6 @@ type
     fOffset        : TPoint; //offset to draw frame on canvas
     fBounds        : TRect; //actual canvas size for zoomed draw with offset
     procedure CalcGridRect;
-    procedure SetActiveFrame(AValue: String);
     procedure SetCheckersSize(AValue: Byte);
     procedure SetFrameZoom(AValue: Integer);
     procedure SetOffset(AValue: TPoint);
@@ -327,7 +320,7 @@ type
     function HasCoords(aPoint : TPoint) : Boolean; //check if frame has point
     procedure RenderAndDraw(Canvas : TCanvas);  //draw background and all layers data to canvas
     procedure RenderPicture(Canvas : TCanvas);
-    procedure ExpotrPng(aFilename : TFileName);  //export frame to file
+    procedure ExportPng(aFilename : TFileName);  //export frame to file
     property ShowGrid : Boolean read fShowGrid write fShowGrid;      //draw grid
     property FrameZoom : Integer read fFrameZoom write SetFrameZoom; //scale index
     property Offset : TPoint read FOffset write SetOffset;
@@ -458,7 +451,6 @@ var
   FrameGrid     : TFrameGrid;
   Layers        : TLayers;
   Frames        : TFrames;
-  UndoRedoManager : TUndoRedoManager;
 
   ProjectInfo : TSPProjectInfo;
 
@@ -474,7 +466,8 @@ var
   function ClipByte(const Value: Integer): Byte;
   procedure FloydSteinbergDithering(const aImage: TBGRABitmap; const aPalette: TPalette; const Power: Byte);
   procedure DitherImage(aImg : TBGRABitmap; aPalette : TPalette; aPower : Byte);
-  function CheckLayerName(aName : String) : String; //check layer name if exists return aName+'1' on aName if not
+  function CheckLayerName(aName : String) : String; //check layer name if exists return aName+'1' or aName if not
+  function CheckFrameName(aName : String) : String; //check frame name if exists return aName+'1' or aName if not
   function DetectPOLanguage(pofile : TFileName) : String;  //return language code for localization
   function LayerExists(aKey : String) : Boolean; inline; //check if layer key exists
   procedure ClearBitmap(const aBmp : TBGRABitmap);//replase all pixels to BGRAPixelTransparent
@@ -1018,68 +1011,45 @@ begin
  inherited Destroy;
 end;
 
-{ TUndoRedoManager }
-function TUndoRedoManager.InternalCanUndo: boolean;
-begin
-  result := fUndoList.Count<>0;
-end;
-
-
-function TUndoRedoManager.InternalGetStatesCount: Integer;
-begin
-  result := fUndoList.Count;
-end;
-
-procedure TUndoRedoManager.Redo;
+function TSPUndoRedoManager.Redo: String;
 var
-  aData: String;
+  s: String;
 begin
-    if CanRedo then begin
-     aData:=fRedoList.Pop;
-     ProjectInfo.ActiveFrame.RestoreFromJSON(aData);
-     fUndoList.Add(aData);
+  s:='';
+  if (fRedoList.Count>0) then begin
+     s:=fRedoList.Pop;
+     fUndoList.Add(s);
   end;
-end;
-
-{$IFDEF DEBUG}
-procedure TUndoRedoManager.DumpDataToLog(aData: String);
-begin
- DebugLn(' In: TUndoRedoManager.DumpDataToLog() aData: ',aData);
-end;
-{$ENDIF}
-
-function TUndoRedoManager.InternalCanRedo: Boolean;
-begin
-  Result:=fRedoList.Count>0;
+  Result:=s;
 end;
 
 
-
-constructor TUndoRedoManager.Create;
+constructor TSPUndoRedoManager.Create;
 begin
   fUndoList:=TStringList.Create;
   fRedoList:=TStringList.Create;
 end;
 
-destructor TUndoRedoManager.Destroy;
+destructor TSPUndoRedoManager.Destroy;
 begin
  FreeAndNil(fRedoList);
  FreeAndNil(fUndoList);
 end;
 
-procedure TUndoRedoManager.SaveState;
+procedure TSPUndoRedoManager.SaveState(const aData: String);
 begin
-  fUndoList.Add(Frames[FrameGrid.ActiveFrame].ToJSON);
+  fUndoList.Add(aData);
 end;
 
-procedure TUndoRedoManager.Undo;
+function TSPUndoRedoManager.Undo: String;
 var
   s : String;
 begin
-  if CanUndo then begin
+  s:='';
+  if (fUndoList.Count>0) then begin
    s:=fUndoList.Pop;
-   Frames[FrameGrid.ActiveFrame].RestoreFromJSON(s);
    fRedoList.Add(s);
+   Result:=s;
   end;
 end;
 
@@ -1126,6 +1096,7 @@ begin
  fLayers:=TStringList.Create;
  FPreview:=TBGRABitmap.Create(w,h);
  fActiveLayer:=nil;
+ fUndo:=TSPUndoRedoManager.Create;
 end;
 
 procedure TSPFrame.RestoreFromJSON(aJSONData: String);
@@ -1133,6 +1104,8 @@ var
  aJSON : TJsonNode;
  i : Integer;
  begin
+  //empty JSON mean nothing to restore so leave as is
+  if aJSONData='' then Exit;
   aJSON:=TJsonNode.Create;
   aJSON.Parse(aJSONData);
 
@@ -1147,11 +1120,41 @@ var
   FreeAndNil(aJSON);
 end;
 
+function TSPFrame.RestoreState: Boolean;
+var
+ s : String;
+begin
+  s :=fUndo.Undo;
+  RestoreFromJSON(s);
+  Result:=s<>'';
+end;
+
+procedure TSPFrame.SaveState;
+begin
+  fUndo.SaveState(ToJSON);
+end;
+
+procedure TSPFrame.SetActiveLayer(aLayer: TSPLayer);
+begin
+  FIsMainLayerActive:=aLayer.LayerName=fFrameName;
+  fActiveLayer:=aLayer;
+end;
+
 destructor TSPFrame.Destroy;
 begin
+  FreeAndNil(fUndo);
   FreeAndNil(FPreview);
   FreeAndNil(fLayers);
   inherited Destroy;
+end;
+
+function TSPFrame.RedoState: Boolean;
+var
+ s : String;
+begin
+  s :=fUndo.Redo;
+  RestoreFromJSON(s);
+  Result:=s<>'';
 end;
 
 function TSPFrame.ToJSON: String;
@@ -1196,6 +1199,7 @@ begin
   result := False;
   if fLayers.IndexOf(LayerName)<>-1 then Exit;
   fLayers.Add(LayerName);
+  fActiveLayer:=Layers[LayerName];
   Result:=True;
 end;
 
@@ -1217,6 +1221,8 @@ begin
   i:=fLayers.IndexOf(aLayerName);
   if i<>-1 then begin
     fLayers.Delete(i);
+    if i>0 then fActiveLayer:=Layers[fLayers.Strings[i-1]]
+       else fActiveLayer:=Layers[fLayers.Strings[0]];
     Layers.Remove(aLayerName);
     Result:=True;
   end;
@@ -1303,7 +1309,7 @@ begin
   {$ENDIF}
      aName:=aJSON.Force('layer name').AsString;
      if not LayerExists(aName) then Layers[aName]:=TSPLayer.Create(aName,0,0);
-     if Assigned(FrameGrid) then Frames[FrameGrid.ActiveFrame].AddLayer(aName);
+     if Assigned(FrameGrid) then ProjectInfo.ActiveFrame.AddLayer(aName);
 
      Layers[aName].RestoreFromString(aJSON.Force('image (BASE64)').AsString);
      Layers[aName].Visible:=aJSON.Force('visible').AsBoolean;
@@ -1320,7 +1326,7 @@ begin
   FLocked:=False;
   fName:=aName;
   if Assigned(FrameGrid) then
-  Frames[FrameGrid.ActiveFrame].AddLayer(fName);
+  ProjectInfo.ActiveFrame.AddLayer(fName);
 end;
 
 destructor TSPLayer.Destroy;
@@ -1400,8 +1406,6 @@ begin
   FCellCursor := TCellCursor.Create;
   FCellCursor.CursorSize:=1;
   FCellCursor.Visible:=True;
-  FActiveLayer:='';
-  fActiveFrame:='';
   fBuffer:=TBGRABitmap.Create(fFrameWidth*(fFrameGridSize+fFrameZoom),
                               fFrameHeight*(fFrameGridSize+fFrameZoom));
   ResizeLayers(FrameWidth,FrameHeight);
@@ -1419,8 +1423,6 @@ begin
     aLayerName:=aFrameName;
     Frames.Add(TSPFrame.Create(aFrameName, FrameWidth, FrameHeight));
     Layers[aFrameName]:=TSPLayer.Create(aLayerName,FrameWidth,FrameHeight);
-    ActiveFrame:=aFrameName;
-    ActiveLayer:=aLayerName;
     Frames[aFrameName].AddLayer(aLayerName);
     ClearBitmap(Layers[aFrameName].Drawable);
     ResizeLayers(FrameWidth,FrameHeight);
@@ -1511,8 +1513,8 @@ end;
 procedure TFrameGrid.RenderPicture(Canvas: TCanvas);
  var
    i : Integer;
-   aTmp: TBGRABitmap;
-
+  // aTmp: TBGRABitmap;
+   _ln : String;
 begin
   ClearBitmap(fPreview);
   if Canvas<>nil then begin
@@ -1520,22 +1522,23 @@ begin
                         $BFBFBF, $FFFFFF, 4, 4);
   end;
   //draw all layers to canvas
- for i:=0 to Frames[ActiveFrame].fLayers.Count-1 do
-    if (LayerExists(Frames[ActiveFrame].fLayers.Strings[i]) and
-        Layers[Frames[ActiveFrame].fLayers.Strings[i]].Visible) then
-      fPreview.PutImage(0,0,Layers[Frames[ActiveFrame].fLayers.Strings[i]].Drawable,dmDrawWithTransparency);
+ for i:=0 to ProjectInfo.ActiveFrame.fLayers.Count-1 do begin
+   _ln:=ProjectInfo.ActiveFrame.LayersList.Strings[i];
+    if (LayerExists(_ln) and Layers[_ln].Visible) then
+      fPreview.PutImage(0,0,Layers[_ln].Drawable,dmDrawWithTransparency);
   if LayerExists(csDRAWLAYER) then fPreview.PutImage(0,0,Layers[csDRAWLAYER].Drawable,dmDrawWithTransparency);
   if Assigned(Canvas) then begin
     fPreview.Draw(Canvas,0,0,true);
-    fPreview.Draw(Frames[ActiveFrame].Preview.Canvas,0,0,true);
+    fPreview.Draw(ProjectInfo.ActiveFrame.Preview.Canvas,0,0,true);
   end;
+ end;
 end;
 
 procedure TFrameGrid.Resize(newWidth, newHeight: Integer; Stretched: Boolean);
 var
   tmp : TBGRABitmap;
 begin
-  Frames[fActiveFrame].Resize(newWidth, newHeight, Stretched);
+  ProjectInfo.ActiveFrame.Resize(newWidth, newHeight, Stretched);
   fFrameHeight:=newHeight;
   fFrameWidth:=newWidth;
 
@@ -1548,15 +1551,7 @@ begin
   CalcGridRect;
 end;
 
-procedure TFrameGrid.SetActiveFrame(AValue: String);
-begin
-  if fActiveFrame=AValue then Exit;
-  fActiveFrame:=AValue;
-  fFrameWidth:=Frames[fActiveFrame].Width;
-  fFrameHeight:=Frames[fActiveFrame].Height;
-end;
-
-procedure TFrameGrid.ExpotPng(aFilename: TFileName);
+procedure TFrameGrid.ExportPng(aFilename: TFileName);
 begin
   if aFilename<>'' then begin
    RenderPicture(nil);
@@ -1731,6 +1726,18 @@ begin
   Result := 'spedit';
 end;
 
+function CheckFrameName(aName: String): String;
+var i : Integer;
+begin
+  Result:=aName;
+  for i:=0 to Frames.Count-1 do begin
+    if Frames.Keys[i]=aName then begin
+       Result:=aName+'1';
+       Break;
+    end;
+  end;
+end;
+
 function DetectPOLanguage(pofile : TFileName) : String;
 var s : String;
   strl : TStringList;
@@ -1807,13 +1814,11 @@ initialization
  Frames:=TFrames.Create;
  Layers :=TLayers.Create;
  Layers[csDRAWLAYER]:=TSPLayer.Create(csDRAWLAYER,0,0);
- UndoRedoManager:=TUndoRedoManager.Create;
 
 
  finalization
   INI.WriteString('INTERFACE','SPRITELIB',CurrentLibName);
   FreeAndNil(Presets);
-  FreeAndNil(UndoRedoManager);
   FreeAndNil(Layers);
   FreeAndNil(Frames);
   FreeAndNil(FrameGrid);
