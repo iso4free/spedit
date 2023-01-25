@@ -397,7 +397,7 @@ begin
   {$IFDEF DEBUG}
   //DebugLn('In: actDitherExecute() layer: ',Frames[FrameGrid.ActiveFrame].LayersList.Strings[i]);
   {$ENDIF}
-  DitherImage(Layers[ProjectInfo.ActiveFrame.LayersList.Strings[i]].Drawable,Presets[cbPalettePresets.Text].Palette,0);
+  DitherImage(ProjectInfo.ActiveFrame.Layers[ProjectInfo.ActiveFrame.LayersList.Strings[i]].Drawable,Presets[cbPalettePresets.Text].Palette,0);
  end;
  pbFrameDraw.Invalidate;
  FramePreview.Invalidate;
@@ -420,17 +420,17 @@ var
   aLayerName: String;
 begin
   if not Assigned(FrameGrid) then Exit;
-  aLayerName:=CheckLayerName(rsLayer+IntToStr(Layers.Count-1));
+  aLayerName:=CheckLayerName(rsLayer+IntToStr(ProjectInfo.ActiveFrame.Layers.Count-1));
   frmNameDlg.Caption:=rsLayerName;
   frmNameDlg.edName.Text:=aLayerName;
   frmNameDlg.lblName.Caption:=rsInputNewLaye;
   frmNameDlg.ShowModal;
   if frmNameDlg.ModalResult<>mrOK then Exit;
   aLayerName:=frmNameDlg.edName.Text;
-  Layers[aLayerName]:=TSPLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+  ProjectInfo.ActiveFrame.Layers[aLayerName]:=TSPLayer.Create(aLayerName,FrameGrid.FrameWidth,FrameGrid.FrameHeight);
   ProjectInfo.ActiveFrame.AddLayer(aLayerName);
-  Layers[aLayerName].Visible:=True;
-  Layers[aLayerName].Locked:=False;
+  ProjectInfo.ActiveFrame.Layers[aLayerName].Visible:=True;
+  ProjectInfo.ActiveFrame.Layers[aLayerName].Locked:=False;
   LayersChange;
 end;
 
@@ -455,7 +455,7 @@ begin
  if not Assigned(FrameGrid) then Exit;
  aName:=rsCopyOf + ProjectInfo.ActiveFrame.ActiveLayer.LayerName;
  aData:=ProjectInfo.ActiveFrame.ActiveLayer.ToBASE64String;
- Layers[aName]:=TSPLayer.Create(aName,aData);
+ ProjectInfo.ActiveFrame.Layers[aName]:=TSPLayer.Create(aName,aData);
  ProjectInfo.ActiveFrame.AddLayer(aName);
  LayersChange;
 end;
@@ -523,15 +523,15 @@ begin
   aIdx:=ProjectInfo.ActiveFrame.LayersList.IndexOf(activeName);
   if aIdx>0 then begin
     aMergeName:=ProjectInfo.ActiveFrame.LayersList.Strings[aIdx-1];
-    if Layers[aMergeName].Locked then begin
+    if ProjectInfo.ActiveFrame.Layers[aMergeName].Locked then begin
       ShowMessage(rsCantMerge);
       Exit;
     end;
     //all good - let`s merge
     ProjectInfo.ActiveFrame.SaveState;
-    Layers[aMergeName].Drawable.PutImage(0,0,Layers[activeName].Drawable,dmDrawWithTransparency);
+    ProjectInfo.ActiveFrame.Layers[aMergeName].Drawable.PutImage(0,0,ProjectInfo.ActiveFrame.Layers[activeName].Drawable,dmDrawWithTransparency);
     ProjectInfo.ActiveFrame.DeleteLayer(activeName);
-    ProjectInfo.ActiveFrame.ActiveLayer:=Layers[aMergeName];
+    ProjectInfo.ActiveFrame.ActiveLayer:=ProjectInfo.ActiveFrame.Layers[aMergeName];
     LayersChange;
   end else
      ShowMessage(rsCantMerge);
@@ -595,6 +595,20 @@ begin
   frmFrameDlg.isOk:=False;
   frmFrameDlg.ShowModal;
   if frmFrameDlg.isOk then begin
+   //at first let's create new frame
+   Frames.Add(TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
+                                                          frmFrameDlg.spnedtWidth.Value,
+                                                          frmFrameDlg.spnedtHeight.Value));
+   ProjectInfo.ActiveFrame:=Frames[frmFrameDlg.edtFrameName.Text];
+
+   ProjectInfo.ActiveFrame.Layers[frmFrameDlg.edtFrameName.Text]:=TSPLayer.Create(frmFrameDlg.edtFrameName.Text,
+                                                          frmFrameDlg.spnedtWidth.Value,
+                                                          frmFrameDlg.spnedtHeight.Value);
+   ShowMessage('Index of '+frmFrameDlg.edtFrameName.Text+':'+IntToStr(ProjectInfo.ActiveFrame.Layers.IndexOf(frmFrameDlg.edtFrameName.Text)));
+   //then let's add default layer
+
+   ProjectInfo.ActiveFrame.AddLayer(frmFrameDlg.edtFrameName.Text);
+   //al last we can create FrameGrid for visualize our frame
    FreeAndNil(FrameGrid);
    FrameGrid:=TFrameGrid.Create(frmFrameDlg.spnedtWidth.Value,frmFrameDlg.spnedtHeight.Value,frmFrameDlg.spnedtCellSize.Value);
    FrameGrid.Offset:=Point(0,0);
@@ -602,18 +616,11 @@ begin
    dy:=0;
    FramePreview.Width:=FrameGrid.FrameWidth;
    FramePreview.Height:=FrameGrid.FrameHeight;
-   Frames.Add(TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
-                                                          frmFrameDlg.spnedtWidth.Value,
-                                                          frmFrameDlg.spnedtHeight.Value));
-   ProjectInfo.ActiveFrame:=Frames[frmFrameDlg.edtFrameName.Text];
 
-   Layers[frmFrameDlg.edtFrameName.Text]:=TSPLayer.Create(frmFrameDlg.edtFrameName.Text,
-                                                          frmFrameDlg.spnedtWidth.Value,
-                                                          frmFrameDlg.spnedtHeight.Value);
-   ProjectInfo.ActiveFrame.AddLayer(frmFrameDlg.edtFrameName.Text);
+
    LayersChange;
    //todo: copy all layers to new frame if option checked
-   for i:=0 to Layers.Count-1 do Layers.Data[i].Resize(FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+
    FrameGrid.ShowGrid:=actGridToggle.Checked;
    trkbrPenSize.MaxValue:=(FrameGrid.FrameWidth+FrameGrid.FrameHeight) div 4;
    Palette.Clear;
@@ -703,9 +710,9 @@ begin
   if MessageDlg(rsWarning, rsPaletteWillB, mtWarning, mbYesNo, '')=mrYes
     then begin
      Palette.Clear;
-     if Layers.Count>0 then
-     for i:= 0 to Layers.Count-1 do
-      Palette.AddColors(Layers[Layers.Keys[i]].Drawable);
+     if ProjectInfo.ActiveFrame.Layers.Count>0 then
+     for i:= 0 to ProjectInfo.ActiveFrame.Layers.Count-1 do
+      Palette.AddColors(ProjectInfo.ActiveFrame.Layers[ProjectInfo.ActiveFrame.Layers.Keys[i]].Drawable);
     end;
   mbPaletteGrid.Invalidate;
 end;
@@ -748,15 +755,15 @@ begin
       DebugLn('In: actPasteExecute() w=', IntToStr(aBmp.Width)+'/h='+IntToStr(aBmp.Height));
       {$ENDIF}
       //we get image from clipboard - now create new layer with it
-      Layers['Clipboard']:=TSPLayer.Create('Clipboard',FrameGrid.FrameWidth,FrameGrid.FrameHeight);
+      ProjectInfo.ActiveFrame.Layers['Clipboard']:=TSPLayer.Create('Clipboard',FrameGrid.FrameWidth,FrameGrid.FrameHeight);
       ProjectInfo.ActiveFrame.AddLayer('Clipboard');
 
       //if has selection paste inside selection
       if ToolOptions.IsSelection then begin
        // Layers['Clipboard'].Drawable.ResampleFilter:=rfBicubic;
-        Layers['Clipboard'].Drawable.PutImage(ToolOptions.SelectionRect.Left,ToolOptions.SelectionRect.Top,aBmp,dmSetExceptTransparent);
+        ProjectInfo.ActiveFrame.Layers['Clipboard'].Drawable.PutImage(ToolOptions.SelectionRect.Left,ToolOptions.SelectionRect.Top,aBmp,dmSetExceptTransparent);
       end else begin
-        Layers['Clipboard'].Drawable.Canvas.Draw(0,0,aBmp);
+        ProjectInfo.ActiveFrame.Layers['Clipboard'].Drawable.Canvas.Draw(0,0,aBmp);
       end;
       FreeAndNil(aBmp);
       LayersChange;
@@ -1009,16 +1016,16 @@ begin
   if aRow<>0 then begin //draw header
     if aRow>cnt then Exit;
     aKey:=ProjectInfo.ActiveFrame.LayersList.Strings[Cnt-aRow];
-    if not LayerExists(aKey) then Exit;
+    if (ProjectInfo.ActiveFrame.Layers.IndexOf(aKey)=-1) then Exit;
     case aCol of
   0:begin
       //draw layer visibility icon
-      if Layers[aKey].Visible then BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,0)
+      if ProjectInfo.ActiveFrame.Layers[aKey].Visible then BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,0)
          else BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,1);
     end;
   1:begin
       //draw layer protection icon
-      if Layers[aKey].Locked then BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,3)
+      if ProjectInfo.ActiveFrame.Layers[aKey].Locked then BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,3)
          else BGRAImageList24x24.Draw(drwgrdLayers.Canvas,aRect.Left,aRect.Top,2);
     end;
   2:begin
@@ -1029,7 +1036,7 @@ begin
     end;
   3:begin
       //draw layer image
-      Layers[aKey].Drawable.Draw(drwgrdLayers.Canvas,aRect,False);
+      ProjectInfo.ActiveFrame.Layers[aKey].Drawable.Draw(drwgrdLayers.Canvas,aRect,False);
     end;
     end;
   end;
@@ -1054,13 +1061,13 @@ begin
 
   case aCol of
 0:begin //change layer visibility
-     Layers[aKey].Visible:=not Layers[aKey].Visible;
+     ProjectInfo.ActiveFrame.Layers[aKey].Visible:=not ProjectInfo.ActiveFrame.Layers[aKey].Visible;
     end;
 1:begin
-     Layers[aKey].Locked:=not Layers[aKey].Locked;
+     ProjectInfo.ActiveFrame.Layers[aKey].Locked:=not ProjectInfo.ActiveFrame.Layers[aKey].Locked;
     end;
 2,3:begin  //select active layer
-     ProjectInfo.ActiveFrame.ActiveLayer:=Layers[aKey];
+     ProjectInfo.ActiveFrame.ActiveLayer:=ProjectInfo.ActiveFrame.Layers[aKey];
     end;
   end;
   pbFrameDraw.Invalidate;
