@@ -177,3 +177,33 @@ REGISTRO DE DESENVOLVIMENTO
 =
 - [+] Adição da ferramenta de pontilhismo (aplique uma paleta para obter o efeito desejado)
 - [*] Depois de carregar as paletas elas aparecerão com seu nome na caixa de busca de paletas
+02.01.2023
+=
+- [!] Conserto do carregamento de Idioma, auto-carregamento de paletas e erro desconhecido (Issue #16)
+- [+] Implementação da ferramenta de seleção Retangular
+- [*] Pequenas mudanças e melhorias
+
+07.01.2023
+=
+- [+] Adição do recurso para desativar/reativar a grade
+- [+] Adição do recurso Mesclar camada com a inferior
+- [!] Conserto da lista de camadas incorreta na grade de Camadas
+
+08.01.2023
+=
+- [+] Adição de menu Popup para camadas (clique direito)
+- [+] Adição do recurso Mover camada (use Popup menu)
+- [+] Adição da ferramenta para mover o desenho
+
+10.01.2023
+=
+- [+] Adição do recurso Espelhar/Girar camadas
+- [*] A última paleta usada auto carrega e auto salva
+- [*] O caminho da última exportação de quadro é salva nas configurações
+- [+] Adição dos atalhos nos documentos
+
+14.01.2023
+=
+- [*] Adição do suporte JSON para TSPLayer e TSPFrame (Usado com o gerenciador de Desfazer/Refazer,
+  em breve será usado um formato próprio do SPEdit)
+- [*] O gerenciado de Desfazer/Refazer foi reescrito
