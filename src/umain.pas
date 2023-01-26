@@ -582,8 +582,6 @@ begin
 end;
 
 procedure TfrmMain.actNewFrameExecute(Sender: TObject);
-var
-  i: Integer;
 begin
   //show dialog to create new frame with default parameters
   if not Assigned(ProjectInfo) then Exit;
