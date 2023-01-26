@@ -72,6 +72,7 @@ Use o mouse ou a sua mesa digitalizadora para desenhar.
 
 Na janela Ferramentas selecione as cores primária e secundária, selecione a ferramenta para desenhar com o mouse e mude o tamanho do lápis. As ferramentas Lápis (P), Linha (L), Retângulo (R), Retângulo Preenchido (Shift + R), Círculo (C), Preenchimento (F), Borracha (E), Pipeta (O) e Seleção Retangular (S) estão disponíveis para desenho no momento.
 
+ Para aumentar/diminuir o tamanho do lápis use os atalhos Ctrl+'+'(mais)/Ctrl+'-'(menos) respectivamente.
 
 Você pode selecionar as cores primária e secundária clicando em uma cor na paleta com os botões esquerdo (primeiro plano) ou direito (plano de fundo) do mouse.
 
