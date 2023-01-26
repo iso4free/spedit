@@ -1207,16 +1207,18 @@ var
 begin
  FWidth:=w;
  FHeight:=h;
- for i:=0 to Layers.Count-1 do begin
+ DrawLayer.Drawable.SetSize(w,h);
+ if LayersList.Count=0 then Exit;
+ for i:=0 to LayersList.Count-1 do begin
   if Stretched then begin
-     Layers.Data[i].Drawable.ResampleFilter:=rfBicubic;
-     tmpbmp:=Layers.Data[i].Drawable.Resample(w,h,rmSimpleStretch) as TBGRABitmap;
+     Layers[LayersList.Strings[i]].Drawable.ResampleFilter:=rfBicubic;
+     tmpbmp:=Layers[LayersList.Strings[i]].Drawable.Resample(w,h,rmSimpleStretch) as TBGRABitmap;
   end else begin
-    tmpbmp:=Layers.Data[i].Drawable.Resample(w,h) as TBGRABitmap;
-    Layers.Data[i].Drawable.SetSize(w,h);
+    tmpbmp:=Layers[LayersList.Strings[i]].Drawable.Resample(w,h) as TBGRABitmap;
+    Layers[LayersList.Strings[i]].Drawable.SetSize(w,h);
     ClearBitmap(Layers.Data[i].Drawable);
   end;
- Layers.Data[i].Drawable.PutImage(0,0,tmpbmp,dmSetExceptTransparent);
+ Layers[LayersList.Strings[i]].Drawable.PutImage(0,0,tmpbmp,dmSetExceptTransparent);
  FreeAndNil(tmpbmp);
  end;
 end;
