@@ -202,6 +202,7 @@ type
     property Temporary : Boolean read fTemporary write fTemporary default False; //temporary created - not visible in layers form
     property Height : Integer read FHeight;
     property Width : Integer read FWidth;
+    procedure Resize(w,h : Integer; Stretched : Boolean = false); //set new size and stretch if need
     property Drawable : TBGRABitmap read fLayerImg write fLayerImg;  //BGRABitmap for drawing
     procedure RestoreFromString(aBASE64 : String); //restore layer data from BASE64 encoded string
     procedure ClearDrawable; //clear BGRABitmap for new drawing
@@ -259,6 +260,7 @@ type
     function RestoreState : Boolean; //restore last saved state if possible. Return True if success
     function RedoState : Boolean; //redo last restored state if possible. Return True if
     property IsMainLayerActive : Boolean read FIsMainLayerActive;
+    procedure RenderPicture; //create preview with all layers
   end;
 
   { TCellCursor - for drawing red rectangle followed by mouse cursor or moved by arrow keys}
@@ -764,8 +766,12 @@ end;
 
 procedure TFrames.Add(aFrame: TSPFrame);
 begin
-  Self[aFrame.FrameName]:=aFrame;
-  FNames.Add(aFrame.FrameName);
+ if FNames.IndexOf(aFrame.FrameName)<>0 then begin
+   Self[aFrame.FrameName]:=aFrame;
+   FNames.Add(aFrame.FrameName);
+ end else begin
+   FreeAndNil(aFrame);
+ end;
 end;
 
 destructor TFrames.Destroy;
@@ -1078,12 +1084,11 @@ begin
  //create an empty frame without layers
  fFrameName:=aName;
  fLayersList:=TStringList.Create;
- FPreview:=TBGRABitmap.Create(w,h);
- fActiveLayer:=nil;
  fUndo:=TSPUndoRedoManager.Create;
  fLayers:=TLayers.Create(true);
- Layers[csDRAWLAYER]:=DrawLayer;
- Resize(w,h);
+ AddLayer(aName);
+ DrawLayer.Drawable.SetSize(w,h);
+ FPreview:=TBGRABitmap.Create(w,h);
 end;
 
 procedure TSPFrame.RestoreFromJSON(aJSONData: String);
@@ -1129,6 +1134,7 @@ end;
 
 destructor TSPFrame.Destroy;
 begin
+  FreeAndNil(FPreview);
   FreeAndNil(fUndo);
   FreeAndNil(FPreview);
   //just nil the link to drawlayer without freeing instance:
@@ -1147,6 +1153,22 @@ begin
   s :=fUndo.Redo;
   RestoreFromJSON(s);
   Result:=s<>'';
+end;
+
+procedure TSPFrame.RenderPicture;
+var
+  i : Integer;
+  _ln : String;
+begin
+ ClearBitmap(FPreview);
+ //draw all layers to canvas
+ for i:=0 to LayersList.Count-1 do begin
+  _ln:=LayersList.Strings[i];
+   if ((Layers.IndexOf(_ln)<>-1) and (Layers[_ln].Visible)) then
+     fPreview.PutImage(0,0,Layers[_ln].Drawable,dmDrawWithTransparency);
+
+  fPreview.PutImage(0,0,DrawLayer.Drawable,dmDrawWithTransparency);
+ end;
 end;
 
 function TSPFrame.ToJSON: String;
@@ -1189,8 +1211,7 @@ begin
   DebugLn('In: TSPFrame.RestoreLayerFromJSON(JSON) parsed data: ', aJSON.AsJSON);
   {$ENDIF}
      aName:=aJSON.Force('layer name').AsString;
-     if (Layers.IndexOf(aName)=-1) then Layers[aName]:=TSPLayer.Create(aName,0,0);
-     if Assigned(FrameGrid) then ProjectInfo.ActiveFrame.AddLayer(aName);
+     ProjectInfo.ActiveFrame.AddLayer(aName);
 
      Layers[aName].RestoreFromString(aJSON.Force('image (BASE64)').AsString);
      Layers[aName].Visible:=aJSON.Force('visible').AsBoolean;
@@ -1210,25 +1231,23 @@ begin
  DrawLayer.Drawable.SetSize(w,h);
  if LayersList.Count=0 then Exit;
  for i:=0 to LayersList.Count-1 do begin
-  if Stretched then begin
-     Layers[LayersList.Strings[i]].Drawable.ResampleFilter:=rfBicubic;
-     tmpbmp:=Layers[LayersList.Strings[i]].Drawable.Resample(w,h,rmSimpleStretch) as TBGRABitmap;
-  end else begin
-    tmpbmp:=Layers[LayersList.Strings[i]].Drawable.Resample(w,h) as TBGRABitmap;
-    Layers[LayersList.Strings[i]].Drawable.SetSize(w,h);
-    ClearBitmap(Layers.Data[i].Drawable);
-  end;
- Layers[LayersList.Strings[i]].Drawable.PutImage(0,0,tmpbmp,dmSetExceptTransparent);
- FreeAndNil(tmpbmp);
+  Layers[LayersList.Strings[i]].Resize(w,h,Stretched);
  end;
 end;
 
 function TSPFrame.AddLayer(LayerName: String): Boolean;
 begin
   result := False;
-  if Layers.IndexOf(LayerName)=-1 then Exit;
-  fLayers.Add(LayerName);
-  fActiveLayer:=Layers[LayerName];
+  //layer with LayerName already exist - just set it as active
+ // if fLayersList.IndexOf(LayerName)=-1 then begin
+    fLayersList.Add(LayerName);
+    fLayers[LayerName]:=TSPLayer.Create(LayerName,FWidth,FHeight);
+ // end;
+  {$IFDEF DEBUG}
+  DebugLn('In: AddLayer() LayersList: '+fLayersList.Text);
+  {$ENDIF}
+  fActiveLayer:=fLayers[LayerName];
+
   Result:=True;
 end;
 
@@ -1322,6 +1341,25 @@ begin
   inherited Destroy;
 end;
 
+procedure TSPLayer.Resize(w, h: Integer; Stretched: Boolean);
+var
+  tmpbmp : TBGRABitmap;
+begin
+  FWidth:=w;
+  FHeight:=h;
+  if Stretched then begin
+     fLayerImg.ResampleFilter:=rfBicubic;
+     tmpbmp:=fLayerImg.Resample(w,h,rmSimpleStretch) as TBGRABitmap;
+     BGRAReplace(fLayerImg,tmpbmp);
+  end else begin
+    tmpbmp:=fLayerImg.Resample(fLayerImg.Width,fLayerImg.Height) as TBGRABitmap;
+    fLayerImg.SetSize(w,h);
+    ClearBitmap(fLayerImg);
+    fLayerImg.PutImage(0,0,tmpbmp,dmSetExceptTransparent);
+    FreeAndNil(tmpbmp);
+  end;
+end;
+
 procedure TSPLayer.Clear;
 begin
  fLayerImg.EraseRect(0,0,fLayerImg.Width,fLayerImg.Height,255);
@@ -1398,21 +1436,8 @@ begin
 end;
 
 constructor TFrameGrid.Create(aImg: TFileName; aSize: Word);
-var aBmp : TBGRABitmap;
-    aFrameName , aLayerName: String;
-    i: Integer;
 begin
-    aBmp:=TBGRABitmap.Create(aImg);
-    Create(aBmp.Width,aBmp.Height,aSize);
-    aFrameName:=ExtractFileName(aImg);
-    aFrameName:=ChangeFileExt(aFrameName,'');
-    aLayerName:=aFrameName;
-    Frames.Add(TSPFrame.Create(aFrameName, FrameWidth, FrameHeight));
-    ProjectInfo.ActiveFrame.Layers[aFrameName]:=TSPLayer.Create(aLayerName,FrameWidth,FrameHeight);
-    Frames[aFrameName].AddLayer(aLayerName);
-    ClearBitmap(ProjectInfo.ActiveFrame.Layers[aFrameName].Drawable);
-    ProjectInfo.ActiveFrame.Layers[aLayerName].Drawable.PutImage(0,0,aBmp,dmSetExceptTransparent);
-    FreeAndNil(aBmp);
+
 end;
 
 destructor TFrameGrid.Destroy;
@@ -1507,16 +1532,12 @@ begin
                         $BFBFBF, $FFFFFF, 4, 4);
   end;
   //draw all layers to canvas
- for i:=0 to ProjectInfo.ActiveFrame.fLayers.Count-1 do begin
-   _ln:=ProjectInfo.ActiveFrame.LayersList.Strings[i];
-    if ((ProjectInfo.ActiveFrame.Layers.IndexOf(_ln)<>-1) and (ProjectInfo.ActiveFrame.Layers[_ln].Visible)) then
-      fPreview.PutImage(0,0,ProjectInfo.ActiveFrame.Layers[_ln].Drawable,dmDrawWithTransparency);
-  if ProjectInfo.ActiveFrame.Layers.IndexOf(csDRAWLAYER)<>-1 then fPreview.PutImage(0,0,ProjectInfo.ActiveFrame.Layers[csDRAWLAYER].Drawable,dmDrawWithTransparency);
+  ProjectInfo.ActiveFrame.RenderPicture;
+  fPreview.PutImage(0,0,ProjectInfo.ActiveFrame.FPreview,dmSetExceptTransparent);
+  fPreview.PutImage(0,0,DrawLayer.Drawable,dmSetExceptTransparent);
   if Assigned(Canvas) then begin
     fPreview.Draw(Canvas,0,0,true);
-    fPreview.Draw(ProjectInfo.ActiveFrame.Preview.Canvas,0,0,true);
   end;
- end;
 end;
 
 procedure TFrameGrid.Resize(newWidth, newHeight: Integer; Stretched: Boolean);
