@@ -72,6 +72,9 @@ resourcestring
   rsFrame = 'Frame';
   rsErrorProject = 'Error: project file name not set!!!';
   rsLayer = 'Layer';
+  rsUntitled = 'Untitled';
+  rsProjInfo = 'Project info: ';
+
 
 
 const
@@ -111,8 +114,6 @@ type
   end;
 
   { TPalette }
-
-  //PPalette = ^TPalette;
 
   TPalette = record
     private
@@ -213,7 +214,6 @@ type
     constructor Create(aName, aData : String); //create layer image from BASE64 encoded string
     destructor Destroy; override;
 
-    procedure Clear;
   end;
 
   TLayers = specialize TFPGMapObject<String,TSPLayer>;  //simple mapped layers list
@@ -237,12 +237,12 @@ type
     fUndo : TSPUndoRedoManager;
     procedure SetIndex(AValue: Integer);
     procedure SetActiveLayer(aLayer : TSPLayer);
+    procedure RestoreLayerFromJSON(aJSONData : String);
    public
     constructor Create(aName : String; w : Integer; h : integer);
     procedure RestoreFromJSON(aJSONData : String);
     destructor Destroy; override;
     function ToJSON : String; //serialize Frame data with layers to JSON
-    procedure RestoreLayerFromJSON(aJSONData : String);
     procedure Resize(w,h : Integer; Stretched : Boolean = false); //resize all layers belongs to frame
     property FrameName : String read fFrameName;//unique frame name for correct managing in mapped list
     property LayersList : TStringList read fLayersList;  //layers mapped list
@@ -261,7 +261,42 @@ type
     function RedoState : Boolean; //redo last restored state if possible. Return True if
     property IsMainLayerActive : Boolean read FIsMainLayerActive;
     procedure RenderPicture; //create preview with all layers
+    procedure ExportPNG(aFile : TFileName); //export frame to PNG file
   end;
+
+  //used in TAction for set mirror kind if mirrored
+  TSPMirrorKind = (mkNone,mkHorizontal,mkVertical,mkBoth);
+  //mirror kind strings for use in impoert/export
+  const TMirrorKindToString : array[TSPMirrorKind] of String =
+   ('mkNone','mkHorizonal','mkVertical','mkBoth');
+
+  function StrToMirrorKind(aName: String) : TSPMirrorKind;
+
+  { TAction }
+
+ type
+  TAction = record
+  private
+    FActionName: String;
+    FFrames: Integer;
+    FMirroredAction: String;
+    FMirrorKind: TSPMirrorKind;
+    procedure SetActionName(AValue: String);
+    procedure SetFrames(AValue: Integer);
+    procedure SetMirroredAction(AValue: String);
+    procedure SetMirrorKind(AValue: TSPMirrorKind);
+  public
+   //unique action name
+   property ActionName : String read FActionName write SetActionName;
+   //frames count in action
+   property Frames : Integer read FFrames write SetFrames;
+   //Name action used as basic for mirror, if emty no mirrored action set
+   property MirroredAction : String read FMirroredAction write SetMirroredAction;
+   //used only if MirrorAction set, by default mkNoone
+   property MirrorKind : TSPMirrorKind read FMirrorKind write SetMirrorKind;
+  end;
+
+  TSPActions = specialize TFPGMap <String, TAction>;
 
   { TCellCursor - for drawing red rectangle followed by mouse cursor or moved by arrow keys}
 
@@ -315,15 +350,10 @@ type
     function PixelPos(x,y : Integer) : Integer; //return pixel index in array
 
     constructor Create(aW: Integer = 32; aH : Integer = 32; aSize : Word = 4);
-    constructor Create(aImg : TFileName; aSize : Word = 4); //create frame from image file
-    procedure Resize(newWidth, newHeight : Integer; Stretched : Boolean = false);//resize all layers in current frame
-
     destructor Destroy; override;
 
     function HasCoords(aPoint : TPoint) : Boolean; //check if frame has point
     procedure RenderAndDraw(Canvas : TCanvas);  //draw background and all layers data to canvas
-    procedure RenderPicture(Canvas : TCanvas);
-    procedure ExportPng(aFilename : TFileName);  //export frame to file
     property ShowGrid : Boolean read fShowGrid write fShowGrid;      //draw grid
     property FrameZoom : Integer read fFrameZoom write SetFrameZoom; //scale index
     property Offset : TPoint read FOffset write SetOffset;
@@ -349,7 +379,10 @@ type
    destructor Destroy; override;
 
    //add new frame to mappped array
-   procedure Add(aFrame : TSPFrame);
+   procedure Add(const aFrame : TSPFrame);
+
+   //create new frame from image file
+   procedure CreateFromImage(aFile : TFileName);
 
    //return all frames in JSON array
    function ToJSON : String;
@@ -367,6 +400,8 @@ type
 
   TSPProjectInfo = class
   private
+    FActions: TSPActions;
+    FActionsCount: Integer;
     FActiveFrame: TSPFrame;
     FAppName: String;
     FAuthor: String;
@@ -374,6 +409,7 @@ type
     FCreditsInfo: String;
     FDescription: String;
     FFilename: TFilename;
+    FFrames: TFrames;
     FFramesCount: Integer;
     FLicense: String;
     FTitle: String;
@@ -408,11 +444,18 @@ type
    property AppName : String read FAppName;
    //True if poroject has some unsaved changes
    property Changed : Boolean read FChanged write FChanged;
+
+   //All project frames in one generic list
+   property Frames : TFrames read FFrames;
    //total frames count, in empty project can be 0
    property FramesCount : Integer read FFramesCount;
    //link to current frame (can be nil in empty project)
    property ActiveFrame : TSPFrame read FActiveFrame write SetActiveFrame;
 
+   //Actions for some animations
+   property Actions : TSPActions read FActions;
+   //total actions count, can be 0 by default
+   property ActionsCount : Integer read FActionsCount;
 
    //save project to JSON-based file
    procedure Save;
@@ -440,7 +483,7 @@ var
 
   FrameGrid     : TFrameGrid;
   DrawLayer     : TSPLayer;
-  Frames        : TFrames;
+
 
   ProjectInfo : TSPProjectInfo;
 
@@ -527,6 +570,15 @@ begin
        SpriteLibNames.Add(sr.Name);
     until (FindNext(sr) <> 0);
   FindClose(sr);
+end;
+
+function StrToMirrorKind(aName: String): TSPMirrorKind;
+begin
+  if LowerCase(aName)='mknone' then Result := mkNone
+     else if LowerCase(aName)='mkhorizonal' then Result:=mkHorizontal
+     else if LowerCase(aName)='mkvertical' then Result:=mkVertical
+     else if LowerCase(aName)='mkboth' then Result:=mkBoth
+     else result := mkNone;
 end;
 
 function IsDigits(s: String): Boolean;
@@ -756,6 +808,32 @@ begin
   FreeAndNil(tmp);
 end;
 
+{ TAction }
+
+procedure TAction.SetActionName(AValue: String);
+begin
+  if FActionName=AValue then Exit;
+  FActionName:=AValue;
+end;
+
+procedure TAction.SetFrames(AValue: Integer);
+begin
+  if FFrames=AValue then Exit;
+  FFrames:=AValue;
+end;
+
+procedure TAction.SetMirroredAction(AValue: String);
+begin
+  if FMirroredAction=AValue then Exit;
+  FMirroredAction:=AValue;
+end;
+
+procedure TAction.SetMirrorKind(AValue: TSPMirrorKind);
+begin
+  if FMirrorKind=AValue then Exit;
+  FMirrorKind:=AValue;
+end;
+
 { TFrames }
 
 constructor TFrames.Create;
@@ -764,18 +842,39 @@ begin
  FNames:=TStringList.Create;
 end;
 
-procedure TFrames.Add(aFrame: TSPFrame);
+procedure TFrames.Add(const aFrame: TSPFrame);
 begin
- if FNames.IndexOf(aFrame.FrameName)<>0 then begin
-   Self[aFrame.FrameName]:=aFrame;
+   {$IFDEF DEBUG}
+   DebugLn('In: TFrames.Add() Frame JSON:'+LineEnding+aFrame.ToJSON);
+   {$ENDIF}
+   Self.AddOrSetData(aFrame.FrameName,aFrame);
    FNames.Add(aFrame.FrameName);
- end else begin
-   FreeAndNil(aFrame);
+   ProjectInfo.ActiveFrame:=aFrame;
+end;
+
+procedure TFrames.CreateFromImage(aFile: TFileName);
+var
+    aImg : TBGRABitmap;
+    aName : String;
+begin
+ aName:=CheckFrameName(ChangeFileExt(ExtractFileName(aFile),''));
+ try
+   aImg:=TBGRABitmap.Create(aFile);
+   Self.Add(TSPFrame.Create(aName,aImg.Width,aImg.Height));
+   ProjectInfo.ActiveFrame.AddLayer(aName);
+   ProjectInfo.ActiveFrame.ActiveLayer.Drawable.LoadFromFile(aFile);
+
+ finally
+ FreeAndNil(aImg);
  end;
+
 end;
 
 destructor TFrames.Destroy;
+var
+  i: Integer;
 begin
+  if FNames.Count>0 then for i:=FNames.Count-1 downto 0 do Self.Remove(FNames.Strings[i]);
   FreeAndNil(FNames);
   inherited Destroy;
 end;
@@ -841,18 +940,27 @@ end;
 constructor TSPProjectInfo.Create;
 begin
   FFilename:='';
-  FTitle:='Untitled';
+  FTitle:=rsUntitled+'*';
   FDescription:='';
   {$IFDEF UNIX}
   FAuthor:=sysutils.GetEnvironmentVariable('USER');
-  {$ELSE}
+  {$ELSE}   //check in windows
   ShowMessage(sysutils.GetEnvironmentVariable('USER'););
   {$ENDIF}
+  //frames
+  FFrames:=TFrames.Create;
   FActiveFrame:=nil;
+  FFramesCount:=0;
+  //actions
+  FActions:=TSPActions.Create;
+  FActionsCount:=0;
+
 end;
 
 destructor TSPProjectInfo.Destroy;
 begin
+  FreeAndNil(FActions);
+  FreeAndNil(FFrames);
   inherited Destroy;
 end;
 
@@ -880,13 +988,15 @@ begin
  License:=aJSON.Force('project/license').AsString;
  CreditsInfo := aJSON.Force('project/credits').AsString;
  FFramesCount:=aJSON.Force('project/frames count').AsInteger;
- if FramesCount>0 then for i:=0 to FramesCount-1 do begin
+ //todo: why Stack overflov here? Try to fix!
+ {if FramesCount>0 then
+  for i:=0 to FramesCount-1 do begin
    fname := aJSON.Force('frames/'+IntToStr(i)+'/frame name').AsString;
    fw:=aJSON.Force('frames/'+IntToStr(i)+'/width').AsInteger;
    fh:=aJSON.Force('frames/'+IntToStr(i)+'/height').AsInteger;
    Frames.Add(TSPFrame.Create(fname,fw,fh));
    Frames[fname].RestoreFromJSON(aJSON.Force('frames/'+IntToStr(i)).AsJson);
- end;
+ end;  }
  {$IFDEF DEBUG}
  DebugLn('In: TSPProjectInfo.Load() after load frames: '+Frames.Names.Text);
  {$ENDIF}
@@ -1083,6 +1193,8 @@ constructor TSPFrame.Create(aName: String; w: Integer; h: integer);
 begin
  //create an empty frame without layers
  fFrameName:=aName;
+ FWidth:=w;
+ FHeight:=h;
  fLayersList:=TStringList.Create;
  fUndo:=TSPUndoRedoManager.Create;
  fLayers:=TLayers.Create(true);
@@ -1105,6 +1217,7 @@ var
   fFrameName:=aJSON.Find('frame name').AsString;
   FWidth:=aJSON.Find('width').AsInteger;
   FHeight:=aJSON.Find('height').AsInteger;
+  FPreview.SetSize(FWidth,FHeight);
   FCount:=aJSON.Find('layers count').AsInteger;
   for i:=0 to FCount-1 do begin
       RestoreLayerFromJSON(aJSON.Force('layers/'+IntToStr(i)).Value);
@@ -1146,6 +1259,13 @@ begin
   inherited Destroy;
 end;
 
+procedure TSPFrame.ExportPNG(aFile: TFileName);
+begin
+   if aFile<>'' then begin
+   fPreview.SaveToFileUTF8(aFile);
+  end;
+end;
+
 function TSPFrame.RedoState: Boolean;
 var
  s : String;
@@ -1160,6 +1280,7 @@ var
   i : Integer;
   _ln : String;
 begin
+ if not Assigned(FPreview) then Exit;
  ClearBitmap(FPreview);
  //draw all layers to canvas
  for i:=0 to LayersList.Count-1 do begin
@@ -1228,6 +1349,7 @@ var
 begin
  FWidth:=w;
  FHeight:=h;
+ FPreview.SetSize(w,h);
  DrawLayer.Drawable.SetSize(w,h);
  if LayersList.Count=0 then Exit;
  for i:=0 to LayersList.Count-1 do begin
@@ -1360,11 +1482,6 @@ begin
   end;
 end;
 
-procedure TSPLayer.Clear;
-begin
- fLayerImg.EraseRect(0,0,fLayerImg.Width,fLayerImg.Height,255);
-end;
-
 procedure TSPLayer.ClearDrawable;
 begin
   ClearBitmap(fLayerImg);
@@ -1435,11 +1552,6 @@ begin
                               fFrameHeight*(fFrameGridSize+fFrameZoom));
 end;
 
-constructor TFrameGrid.Create(aImg: TFileName; aSize: Word);
-begin
-
-end;
-
 destructor TFrameGrid.Destroy;
 begin
   INI.WriteInteger('INTERFACE','CHECKERS SIZE',FCheckersSize);
@@ -1495,8 +1607,8 @@ begin
                        FCheckersSize,
                        FCheckersSize);;
   //draw preview picture and just zoom it up to grid size
-  RenderPicture(nil);
-  tmpbmp:=fPreview.Resample(fBuffer.Width,fBuffer.Height,rmSimpleStretch);
+
+  tmpbmp:=ProjectInfo.ActiveFrame.Preview.Resample(fBuffer.Width,fBuffer.Height,rmSimpleStretch);
   fBuffer.PutImage(0,0,tmpbmp,dmSetExceptTransparent);
   FreeAndNil(tmpbmp);
   if ShowGrid and ((fFrameGridSize+fFrameZoom)>5) then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
@@ -1518,51 +1630,6 @@ begin
   end;
   Canvas.Clear;
   fBuffer.Draw(Canvas,fOffset.X,fOffset.Y);
-end;
-
-procedure TFrameGrid.RenderPicture(Canvas: TCanvas);
- var
-   i : Integer;
-  // aTmp: TBGRABitmap;
-   _ln : String;
-begin
-  ClearBitmap(fPreview);
-  if Canvas<>nil then begin
-    fPreview.DrawCheckers(Rect(0,0,fPreview.Width,fPreview.Height),
-                        $BFBFBF, $FFFFFF, 4, 4);
-  end;
-  //draw all layers to canvas
-  ProjectInfo.ActiveFrame.RenderPicture;
-  fPreview.PutImage(0,0,ProjectInfo.ActiveFrame.FPreview,dmSetExceptTransparent);
-  fPreview.PutImage(0,0,DrawLayer.Drawable,dmSetExceptTransparent);
-  if Assigned(Canvas) then begin
-    fPreview.Draw(Canvas,0,0,true);
-  end;
-end;
-
-procedure TFrameGrid.Resize(newWidth, newHeight: Integer; Stretched: Boolean);
-var
-  tmp : TBGRABitmap;
-begin
-  ProjectInfo.ActiveFrame.Resize(newWidth, newHeight, Stretched);
-  fFrameHeight:=newHeight;
-  fFrameWidth:=newWidth;
-
-  tmp:=fPreview.Resample(newWidth,newHeight,rmSimpleStretch) as TBGRABitmap;
-  BGRAReplace(fPreview,tmp);
-
-  tmp:=fBuffer.Resample(fFrameWidth*(fFrameGridSize+fFrameZoom),
-                              fFrameHeight*(fFrameGridSize+fFrameZoom)) as TBGRABitmap;
-  BGRAReplace(fBuffer,tmp);
-  CalcGridRect;
-end;
-
-procedure TFrameGrid.ExportPng(aFilename: TFileName);
-begin
-  if aFilename<>'' then begin
-   RenderPicture(nil);
-   fPreview.SaveToFileUTF8(aFilename);
-  end;
 end;
 
 procedure TFrameGrid.GetBounds;
@@ -1736,8 +1803,8 @@ function CheckFrameName(aName: String): String;
 var i : Integer;
 begin
   Result:=aName;
-  for i:=0 to Frames.Count-1 do begin
-    if Frames.Keys[i]=aName then begin
+  for i:=0 to ProjectInfo.Frames.Count-1 do begin
+    if ProjectInfo.Frames.Keys[i]=aName then begin
        Result:=aName+'1';
        Break;
     end;
@@ -1802,9 +1869,6 @@ initialization
  Palette:=TBGRAPalette.Create;
  Presets:=TPresetsList.Create(true);
 
- //mapped lists of frames and layers
- Frames:=TFrames.Create;
-
  DrawLayer:=TSPLayer.Create(csDRAWLAYER,0,0);
 
 
@@ -1812,7 +1876,6 @@ initialization
   INI.WriteString('INTERFACE','SPRITELIB',CurrentLibName);
   FreeAndNil(Presets);
   FreeAndNil(DrawLayer);
-  FreeAndNil(Frames);
   FreeAndNil(FrameGrid);
   FreeAndNil(Palette);
   FreeAndNil(ProjectInfo);

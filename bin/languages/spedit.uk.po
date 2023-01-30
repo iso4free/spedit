@@ -309,10 +309,6 @@ msgstr ""
 "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
-#: tfrmmain.caption
-msgid "Sprite Editor"
-msgstr "Редактор спрайтів"
-
 #: tfrmmain.drwgrdlayers.columns[0].title.caption
 msgctxt "tfrmmain.drwgrdlayers.columns[0].title.caption"
 msgid "Visible"
@@ -731,6 +727,10 @@ msgstr "Піпетка"
 msgid "Please input new library name"
 msgstr "Будь ласка, введіть назву нової бібліотеки"
 
+#: uglobals.rsprojinfo
+msgid "Project info: "
+msgstr ""
+
 #: uglobals.rsrectangle
 msgid "Rectangle"
 msgstr "Прямокутник"
@@ -758,6 +758,10 @@ msgstr "Вибачте, цей інструмент буде реалізова�
 #: uglobals.rsunsupportedfmt
 msgid "There is no supported format in Clipboard!"
 msgstr "Немає підтримуваного формату в буфер обміну!"
+
+#: uglobals.rsuntitled
+msgid "Untitled"
+msgstr ""
 
 #: uglobals.rswarning
 msgid "Warning!"

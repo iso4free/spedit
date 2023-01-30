@@ -309,10 +309,6 @@ msgstr ""
 "Clique esquedo para selecionar a cor\n"
 "Clique direito para definir a cor como transparente"
 
-#: tfrmmain.caption
-msgid "Sprite Editor"
-msgstr "Editor de Sprites"
-
 #: tfrmmain.drwgrdlayers.columns[0].title.caption
 msgctxt "tfrmmain.drwgrdlayers.columns[0].title.caption"
 msgid "Visible"
@@ -729,6 +725,10 @@ msgstr "Pipeta"
 msgid "Please input new library name"
 msgstr "Por favor, insira o nome da nova biblioteca"
 
+#: uglobals.rsprojinfo
+msgid "Project info: "
+msgstr ""
+
 #: uglobals.rsrectangle
 msgid "Rectangle"
 msgstr "Retângulo"
@@ -756,6 +756,10 @@ msgstr "Essa ferramenta será lançada em breve"
 #: uglobals.rsunsupportedfmt
 msgid "There is no supported format in Clipboard!"
 msgstr "Não há nenhum formato suportado na área de transferência!"
+
+#: uglobals.rsuntitled
+msgid "Untitled"
+msgstr ""
 
 #: uglobals.rswarning
 msgid "Warning!"

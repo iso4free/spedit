@@ -1,5 +1,4 @@
 {"version":1,"strings":[
-{"hash":247726402,"name":"tfrmmain.caption","sourcebytes":[83,112,114,105,116,101,32,69,100,105,116,111,114],"value":"Sprite Editor"},
 {"hash":86572179,"name":"tfrmmain.layersgroupbox.caption","sourcebytes":[76,97,121,101,114,115],"value":"Layers"},
 {"hash":218757493,"name":"tfrmmain.drwgrdlayers.columns[0].title.caption","sourcebytes":[86,105,115,105,98,108,101],"value":"Visible"},
 {"hash":87400884,"name":"tfrmmain.drwgrdlayers.columns[1].title.caption","sourcebytes":[76,111,99,107,101,100],"value":"Locked"},

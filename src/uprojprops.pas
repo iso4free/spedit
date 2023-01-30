@@ -76,17 +76,17 @@ begin
 end;
 
 procedure TfrmProjectProps.LoadProjProps;
-var olchanged : Boolean;
+var oldchanged : Boolean;
 begin
   if not Assigned(ProjectInfo) then Exit;
-  olchanged:=ProjectInfo.Changed;
-
+  oldchanged:=ProjectInfo.Changed;
+  Caption:=rsProjInfo+ProjectInfo.Title;
   StatusBar1.Panels[1].Text:=ProjectInfo.Filename;
   edTitle.Text:=ProjectInfo.Title;
   edAuthor.Text:=ProjectInfo.Author;
   mDescription.Text:=ProjectInfo.Description;
   edCredits.Text := ProjectInfo.CreditsInfo;
-  ProjectInfo.Changed:=olchanged;
+  ProjectInfo.Changed:=oldchanged;
    if ProjectInfo.Changed then StatusBar1.Panels[0].Text:='*'
      else StatusBar1.Panels[0].Text:=' ';
 end;

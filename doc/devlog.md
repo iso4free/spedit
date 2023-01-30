@@ -209,3 +209,12 @@ DEV.LOG
 - [*] Added JSON support for TSPLayer and TSPFrame (used with Undo/Redo manager,
   soon will be used in own SPEdit format)
 - [*] Rewrited Undo/Redo manager (used whole JSON frame data with layers)
+
+29.01.2023
+=
+- [*] A lot of code refactored
+- [+] Created Project info class and window
+- [+] Added posibility so save/load project (just basic things, will be extended soon)
+- [*] Some minor GUI changes
+- [*] Optimized speed
+- [*] Other internal things changed

@@ -111,7 +111,6 @@ type
     lblPenSize: TLabel;
     LayersFlowPanel: TFlowPanel;
     LayersGroupBox: TGroupBox;
-    lbFrames: TListBox;
     mbPaletteGrid: TmbColorPalette;
     mbColorPalettePreset: TmbColorPalette;
     MenuItem1: TMenuItem;
@@ -227,6 +226,7 @@ type
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     StatusBar1: TStatusBar;
+    sgFrames: TStringGrid;
     trkbrPenSize: TSpinEdit;
     procedure actCopyExecute(Sender: TObject);
     procedure actCutExecute(Sender: TObject);
@@ -299,11 +299,6 @@ type
     procedure FramePreviewPaint(Sender: TObject);
     procedure HexaColorPicker1MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: integer);
-    procedure lbFramesDrawItem(Control: TWinControl; Index: integer;
-      ARect: TRect; State: TOwnerDrawState);
-    procedure lbFramesMeasureItem(Control: TWinControl; Index: integer;
-      var AHeight: integer);
-    procedure lbFramesSelectionChange(Sender: TObject; User: boolean);
     procedure lwFramesColumnClick(Sender: TObject; Column: TListColumn);
     procedure mbColorPalettePresetCellClick(Button: TMouseButton;
       Shift: TShiftState; Index: integer; AColor: TColor; var DontCheck: boolean);
@@ -362,7 +357,8 @@ end;
 
 procedure TfrmMain.actImportFrameExecute(Sender: TObject);
 begin
-  if not Assigned(ProjectInfo) then Exit;
+  if not Assigned(ProjectInfo) then
+     actNewProjExecute(Sender);
   if OpenPictureDialog1.Execute then
   begin
     ImportFrame(OpenPictureDialog1.Filename);
@@ -384,7 +380,7 @@ begin
   if sdExportFrameSaveDialog.Execute then
   begin
     //save current frame to PNG file by default to user dir and with frame name
-    FrameGrid.ExportPng(sdExportFrameSaveDialog.FileName);
+    ProjectInfo.ActiveFrame.ExportPng(sdExportFrameSaveDialog.FileName);
     INI.WriteString('PATH', 'EXPORT', ExtractFilePath(sdExportFrameSaveDialog.FileName));
   end;
 end;
@@ -416,8 +412,9 @@ begin
   frmResize.ShowModal;
   if frmResize.ModalResult = mrOk then
   begin
-    FrameGrid.Resize(frmResize.spnWidth.Value, frmResize.spnHeight.Value,
-      frmResize.cbStretch.Checked);
+    //todo: change frame and grid sizes
+{    FrameGrid.Resize(frmResize.spnWidth.Value, frmResize.spnHeight.Value,
+      frmResize.cbStretch.Checked);}
     pbFrameDraw.Invalidate;
   end;
 end;
@@ -619,11 +616,11 @@ begin
   if frmFrameDlg.isOk then
   begin
     //at first let's create new frame
-    Frames.Add(TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
+    ProjectInfo.Frames.Add(TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
       frmFrameDlg.spnedtWidth.Value,
       frmFrameDlg.spnedtHeight.Value));
 
-    ProjectInfo.ActiveFrame := Frames[frmFrameDlg.edtFrameName.Text];
+    ProjectInfo.ActiveFrame := ProjectInfo.Frames[frmFrameDlg.edtFrameName.Text];
 
     //al last we can create FrameGrid for visualize our frame
     FreeAndNil(FrameGrid);
@@ -640,7 +637,7 @@ begin
     FrameGrid.ShowGrid := actGridToggle.Checked;
     trkbrPenSize.MaxValue := (FrameGrid.FrameWidth + FrameGrid.FrameHeight) div 4;
     Palette.Clear;
-    lbFrames.AddItem(frmFrameDlg.edtFrameName.Text, Frames[frmFrameDlg.edtFrameName.Text]);
+    //todo: here just add the frame name in visual control, in DrawItem use mapped frame Preview image (scalable)
 
     LayersChange;
     mbPaletteGrid.Colors.Clear;
@@ -691,7 +688,7 @@ begin
   begin
     ProjectInfo.Filename := dlgOpenProj.FileName;
     ProjectInfo.Load;
-
+    Caption:=APP_NAME+' - '+ProjectInfo.Title;
     actProjPropsExecute(Sender);
     //todo: read which frame was last active
     if not Assigned(FrameGrid) then
@@ -1197,6 +1194,7 @@ var
   i: integer;
   aPreset: string;
 begin
+  Caption:=APP_NAME;
   JSONProp := UserSettingsPath + 'spedit.json';
   JSONPropStorage1.JSONFileName := JSONProp;
    {$IFDEF DEBUG}
@@ -1355,10 +1353,10 @@ end;
 
 procedure TfrmMain.FramePreviewPaint(Sender: TObject);
 begin
-  if Assigned(FrameGrid) then
+  if Assigned(ProjectInfo) then
   begin
-    FrameGrid.RenderPicture(FramePreview.Canvas);
-    lbFrames.Invalidate;
+    if ProjectInfo.FramesCount>0 then
+    ProjectInfo.ActiveFrame.Preview.Draw(FramePreview.Canvas,0,0);
   end;
 end;
 
@@ -1446,22 +1444,27 @@ var
   aPal: TPalette;
   i: integer;
 begin
-  //todo: check file type before import
+  ProjectInfo.Frames.CreateFromImage(aFilename);
   FreeAndNil(FrameGrid);
-  FrameGrid := TFrameGrid.Create(aFilename, INI.ReadInteger('FRAMEDLG', 'CELL SIZE', 10));
+
+  FrameGrid:=TFrameGrid.Create(ProjectInfo.ActiveFrame.Width,
+                               ProjectInfo.ActiveFrame.Height,4);
   FrameGrid.Offset := Point(0, 0);
   dx := 0;
   dy := 0;
-  FramePreview.Width := FrameGrid.FrameWidth;
-  FramePreview.Height := FrameGrid.FrameHeight;
+  FramePreview.Width := ProjectInfo.ActiveFrame.Width;
+  FramePreview.Height := ProjectInfo.ActiveFrame.Height;
+
   trkbrPenSize.MaxValue := (FrameGrid.FrameWidth + FrameGrid.FrameHeight) div 4;
-  lbFrames.AddItem(ProjectInfo.ActiveFrame.FrameName, ProjectInfo.ActiveFrame);
+  //todo: here add item to visual control for frames list
+  //lbFrames.AddItem(ProjectInfo.ActiveFrame.FrameName, ProjectInfo.ActiveFrame);
   Palette.Clear;
   aPal.LoadFromImage(aFilename);
   for i := 0 to aPal.Count - 1 do Palette.AddColor(aPal.Color[i]);
   mbPaletteGrid.Colors.Clear;
   PaletteChange;
-  drwgrdLayers.Invalidate;
+  LayersChange;
+  pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
@@ -1611,36 +1614,12 @@ end;
 
 procedure TfrmMain.LayersChange;
 begin
+  if not Assigned(ProjectInfo.ActiveFrame) then Exit;
   ProjectInfo.ActiveFrame.ActiveLayer.Visible := True;
   drwgrdLayers.RowCount := ProjectInfo.ActiveFrame.LayersList.Count + 1;
   drwgrdLayers.Invalidate;
   pbFrameDraw.Invalidate;
   FramePreview.Invalidate;
-end;
-
-procedure TfrmMain.lbFramesDrawItem(Control: TWinControl; Index: integer;
-  ARect: TRect; State: TOwnerDrawState);
-var
-  r: TRect;
-begin
-  r.Left := ARect.Left;
-  r.Top := ARect.Top;
-  r.Right := r.Left + Frames[lbFrames.Items[Index]].Width - 1;
-  r.Bottom := r.Top + Frames[lbFrames.Items[Index]].Height - 1;
-  Frames[lbFrames.Items[Index]].Preview.Draw(TListBox(Control).Canvas,
-    ARect.Left, ARect.Top, True);
-end;
-
-procedure TfrmMain.lbFramesMeasureItem(Control: TWinControl; Index: integer;
-  var AHeight: integer);
-begin
-  AHeight := Frames[lbFrames.Items[Index]].Height;
-end;
-
-procedure TfrmMain.lbFramesSelectionChange(Sender: TObject; User: boolean);
-begin
-  ProjectInfo.ActiveFrame := Frames[lbFrames.GetSelectedText];
-  LayersChange;
 end;
 
 procedure TfrmMain.SetSelectedColor(const Button: TMouseButton; aColor: TBGRAPixel);

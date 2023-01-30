@@ -1,10 +1,9 @@
 object frmMain: TfrmMain
-  Left = 528
+  Left = 530
   Height = 737
   Top = 0
   Width = 752
   AllowDropFiles = True
-  Caption = 'Sprite Editor'
   ClientHeight = 714
   ClientWidth = 752
   DoubleBuffered = True
@@ -50,34 +49,19 @@ object frmMain: TfrmMain
     ClientHeight = 653
     ClientWidth = 147
     TabOrder = 1
-    object lbFrames: TListBox
-      Left = 1
-      Height = 396
-      Top = 256
-      Width = 145
-      Align = alBottom
-      Columns = 5
-      ItemHeight = 0
-      OnDrawItem = lbFramesDrawItem
-      OnMeasureItem = lbFramesMeasureItem
-      OnSelectionChange = lbFramesSelectionChange
-      Style = lbOwnerDrawVariable
-      TabOrder = 0
-      TopIndex = -1
-    end
     object LayersGroupBox: TGroupBox
       Left = 1
-      Height = 255
+      Height = 383
       Top = 1
       Width = 145
       Align = alClient
       Caption = 'Layers'
-      ClientHeight = 236
+      ClientHeight = 364
       ClientWidth = 141
-      TabOrder = 1
+      TabOrder = 0
       object drwgrdLayers: TDrawGrid
         Left = 0
-        Height = 201
+        Height = 329
         Top = 0
         Width = 141
         Align = alClient
@@ -123,7 +107,7 @@ object frmMain: TfrmMain
       object LayersFlowPanel: TFlowPanel
         Left = 0
         Height = 35
-        Top = 201
+        Top = 329
         Width = 141
         Align = alBottom
         AutoSize = True
@@ -209,6 +193,27 @@ object frmMain: TfrmMain
           TabOrder = 3
         end
       end
+    end
+    object sgFrames: TStringGrid
+      Left = 1
+      Height = 268
+      Top = 384
+      Width = 145
+      Align = alBottom
+      AutoEdit = False
+      ColCount = 2
+      RowCount = 1
+      TabOrder = 1
+      UseXORFeatures = True
+      Cells = (
+        2
+        0
+        0
+        'Frame'
+        1
+        0
+        'Preview'
+      )
     end
   end
   object pnlEditor: TPanel
