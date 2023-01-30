@@ -222,7 +222,7 @@ type
 
   TSPFrame = class
    private
-    fActiveLayer: TSPLayer;
+    fActiveLayerName: String;
     FCount : Byte;
     fFrameName: String;
     FHeight: Integer;
@@ -238,6 +238,7 @@ type
     procedure SetIndex(AValue: Integer);
     procedure SetActiveLayer(aLayer : TSPLayer);
     procedure RestoreLayerFromJSON(aJSONData : String);
+    function  GetActiveLayer : TSPLayer;
    public
     constructor Create(aName : String; w : Integer; h : integer);
     procedure RestoreFromJSON(aJSONData : String);
@@ -255,7 +256,7 @@ type
     function DeleteLayer(aLayerName : String): Boolean;      //remove layer from frame
     procedure DeleteAllLayers; //delete layers belongs to current frame only
     property Modified : Boolean read fModified write fModifiead default False; //if was editing
-    property ActiveLayer : TSPLayer read fActiveLayer write SetActiveLayer;  //active layer in frame
+    property ActiveLayer : TSPLayer read GetActiveLayer write SetActiveLayer;  //active layer in frame
     procedure SaveState; //save current state for Undo
     function RestoreState : Boolean; //restore last saved state if possible. Return True if success
     function RedoState : Boolean; //redo last restored state if possible. Return True if
@@ -403,6 +404,7 @@ type
     FActions: TSPActions;
     FActionsCount: Integer;
     FActiveFrame: TSPFrame;
+    FActiveFrameName : String;
     FAppName: String;
     FAuthor: String;
     FChanged: Boolean;
@@ -420,7 +422,7 @@ type
     procedure SetFilename(AValue: TFilename);
     procedure SetLicense(AValue: String);
     procedure SetTitle(AValue: String);
-
+    function  GetActiveFrame : TSPFrame;
 
   public
 
@@ -450,7 +452,7 @@ type
    //total frames count, in empty project can be 0
    property FramesCount : Integer read FFramesCount;
    //link to current frame (can be nil in empty project)
-   property ActiveFrame : TSPFrame read FActiveFrame write SetActiveFrame;
+   property ActiveFrame : TSPFrame read GetActiveFrame write SetActiveFrame;
 
    //Actions for some animations
    property Actions : TSPActions read FActions;
@@ -945,7 +947,7 @@ begin
   {$IFDEF UNIX}
   FAuthor:=sysutils.GetEnvironmentVariable('USER');
   {$ELSE}   //check in windows
-  ShowMessage(sysutils.GetEnvironmentVariable('USER'););
+  FAuthor:=sysutils.GetEnvironmentVariable('USERNAME');
   {$ENDIF}
   //frames
   FFrames:=TFrames.Create;
@@ -1029,8 +1031,7 @@ end;
 
 procedure TSPProjectInfo.SetActiveFrame(AValue: TSPFrame);
 begin
-  if FActiveFrame=AValue then Exit;
-  FActiveFrame:=AValue;
+  FActiveFrameName:=AValue.FrameName;
 end;
 
 procedure TSPProjectInfo.SetAuthor(AValue: String);
@@ -1073,6 +1074,11 @@ begin
   if FTitle=AValue then Exit;
   FTitle:=AValue;
   FChanged:=True;
+end;
+
+function TSPProjectInfo.GetActiveFrame: TSPFrame;
+begin
+ Result:=Frames[FActiveFrameName];
 end;
 
 { TPalettePreset }
@@ -1241,8 +1247,8 @@ end;
 
 procedure TSPFrame.SetActiveLayer(aLayer: TSPLayer);
 begin
-  FIsMainLayerActive:=aLayer.LayerName=fFrameName;
-  fActiveLayer:=aLayer;
+ fActiveLayerName:=aLayer.LayerName;
+ FIsMainLayerActive:=aLayer.LayerName=fFrameName;
 end;
 
 destructor TSPFrame.Destroy;
@@ -1342,6 +1348,11 @@ begin
  end;
 end;
 
+function TSPFrame.GetActiveLayer: TSPLayer;
+begin
+  Result:=Layers[fActiveLayerName];
+end;
+
 procedure TSPFrame.Resize(w, h: Integer; Stretched: Boolean);
 var
   i: Integer;
@@ -1362,13 +1373,13 @@ begin
   result := False;
   //layer with LayerName already exist - just set it as active
  // if fLayersList.IndexOf(LayerName)=-1 then begin
-    fLayersList.Add(LayerName);
-    fLayers[LayerName]:=TSPLayer.Create(LayerName,FWidth,FHeight);
+    LayersList.Add(LayerName);
+    Layers[LayerName]:=TSPLayer.Create(LayerName,FWidth,FHeight);
  // end;
   {$IFDEF DEBUG}
-  DebugLn('In: AddLayer() LayersList: '+fLayersList.Text);
+  DebugLn('In: AddLayer() LayersList: '+LayersList.Text);
   {$ENDIF}
-  fActiveLayer:=fLayers[LayerName];
+  ActiveLayer:=Layers[LayerName];
 
   Result:=True;
 end;
@@ -1391,8 +1402,8 @@ begin
   i:=fLayers.IndexOf(aLayerName);
   if i<>-1 then begin
     fLayers.Delete(i);
-    if i>0 then fActiveLayer:=Layers[fLayersList.Strings[i-1]]
-       else fActiveLayer:=Layers[fLayersList.Strings[0]];
+    if i>0 then ActiveLayer:=Layers[fLayersList.Strings[i-1]]
+       else ActiveLayer:=Layers[fLayersList.Strings[0]];
     Layers.Remove(aLayerName);
     Result:=True;
   end;
@@ -1453,8 +1464,6 @@ begin
   fVisible:=True;
   FLocked:=False;
   fName:=aName;
-  if Assigned(FrameGrid) then
-  ProjectInfo.ActiveFrame.AddLayer(fName);
 end;
 
 destructor TSPLayer.Destroy;
