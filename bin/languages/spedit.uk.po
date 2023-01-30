@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: spedit\n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
-"PO-Revision-Date: 2023-01-11 11:56\n"
+"PO-Revision-Date: 2023-01-30 13:19\n"
 
 #: tfrmabout.label1.caption
 msgid "SPEdit"
@@ -21,13 +21,11 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Вільний і відкритий редактор спрайтів V.4.0"
 
 #: tfrmabout.label3.caption
-msgid ""
-"Created by (c) Vadim Vitomsky, 2000-2022\n"
+msgid "Created by (c) Vadim Vitomsky, 2000-2022\n"
 "Contributed by Eddie Mattos\n"
 "(translation to pt-br, Mascot animation)\n"
 "Mascot based on Original image created by Unknown_Chan"
-msgstr ""
-"Створено (c) Вадим Vitomsky, 2000-2022\n"
+msgstr "Створено (c) Вадим Vitomsky, 2000-2022\n"
 "участю Едді Маттос\n"
 "(переклад до pt-br, Анімація Mascot)\n"
 "Mascot заснована на оригінальному зображенні, створеному Unknown_Chan"
@@ -132,7 +130,7 @@ msgstr "Показати/приховати сітку"
 #: tfrmmain.actimportpiskel.caption
 msgctxt "tfrmmain.actimportpiskel.caption"
 msgid "Import Piskel file"
-msgstr ""
+msgstr "Імпорт файлу Piskel"
 
 #: tfrmmain.actlanguageselect.caption
 msgctxt "tfrmmain.actlanguageselect.caption"
@@ -166,7 +164,7 @@ msgstr "Новий фрейм"
 
 #: tfrmmain.actnewproj.caption
 msgid "New Sprite project"
-msgstr ""
+msgstr "Новий проєкт спрайтів"
 
 #: tfrmmain.actnotimplemented.caption
 msgid "Not implemented yet"
@@ -174,7 +172,7 @@ msgstr "Ще не реалізовано"
 
 #: tfrmmain.actopenproj.caption
 msgid "Open project"
-msgstr ""
+msgstr "Відкрити проєкт"
 
 #: tfrmmain.actpaletteimport.caption
 msgctxt "tfrmmain.actpaletteimport.caption"
@@ -205,7 +203,7 @@ msgstr "Вставити"
 #: tfrmmain.actprojprops.caption
 msgctxt "tfrmmain.actprojprops.caption"
 msgid "Project properties"
-msgstr ""
+msgstr "Властивості проєкту"
 
 #: tfrmmain.actredo.caption
 msgctxt "tfrmmain.actredo.caption"
@@ -226,7 +224,7 @@ msgstr "Обернути за год. стрілкою 90"
 
 #: tfrmmain.actsaveproj.caption
 msgid "Save project"
-msgstr ""
+msgstr "Зберегти проект"
 
 #: tfrmmain.actselectall.caption
 msgid "Select all"
@@ -262,7 +260,7 @@ msgstr "Скинути масштаб"
 #: tfrmmain.bbtngridtoggle.hint
 msgctxt "tfrmmain.bbtngridtoggle.hint"
 msgid "Show/hide grid"
-msgstr "Показати/приховати сітку"
+msgstr "Показати/приховати Сітку"
 
 #: tfrmmain.bbtnimportframe.hint
 msgctxt "tfrmmain.bbtnimportframe.hint"
@@ -302,11 +300,9 @@ msgstr "ФК"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.drwgrdlayers.columns[0].title.caption
@@ -336,11 +332,9 @@ msgstr "ПК"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.framepreview.hint
@@ -405,7 +399,7 @@ msgstr "Довідка"
 
 #: tfrmmain.miimport.caption
 msgid "Import..."
-msgstr ""
+msgstr "Імпорт..."
 
 #: tfrmmain.miimportspritesheet.caption
 msgctxt "tfrmmain.miimportspritesheet.caption"
@@ -414,11 +408,9 @@ msgstr "Імпорт таблиці спрайтів"
 
 #: tfrmmain.miimportspritesheet.hint
 msgctxt "tfrmmain.miimportspritesheet.hint"
-msgid ""
-"You can import image or spritesheet file\n"
+msgid "You can import image or spritesheet file\n"
 "and add it to the library"
-msgstr ""
-"Імпортувати зображення або файл таблиці спрайтів\n"
+msgstr "Імпортувати зображення або файл таблиці спрайтів\n"
 "і додати його в бібліотеку"
 
 #: tfrmmain.milayers.caption
@@ -537,51 +529,50 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 #: tfrmprojectprops.bbtncancel.caption
-#, fuzzy
 msgctxt "tfrmprojectprops.bbtncancel.caption"
 msgid "Cancel"
 msgstr "Скасувати"
 
 #: tfrmprojectprops.bbtnok.caption
 msgid "ОК"
-msgstr ""
+msgstr "ОК"
 
 #: tfrmprojectprops.bbtnsave.hint
 msgid "Save options"
-msgstr ""
+msgstr "Зберегти налаштування"
 
 #: tfrmprojectprops.caption
 msgctxt "tfrmprojectprops.caption"
 msgid "Project properties"
-msgstr ""
+msgstr "Властивості проєкту"
 
 #: tfrmprojectprops.edlicense.text
 msgid "For non-commercial use only"
-msgstr ""
+msgstr "Тільки для некомерційного використання"
 
 #: tfrmprojectprops.gbdescript.caption
 msgid "Description"
-msgstr ""
+msgstr "Опис"
 
 #: tfrmprojectprops.lblauthor.caption
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
 #: tfrmprojectprops.lblcredits.caption
 msgid "Credits"
-msgstr ""
+msgstr "Кредити"
 
 #: tfrmprojectprops.lbllicense.caption
 msgid "License"
-msgstr ""
+msgstr "Ліцензія"
 
 #: tfrmprojectprops.lbltitle.caption
 msgid "Title"
-msgstr ""
+msgstr "Назва"
 
 #: tfrmprojectprops.tsgeneral.caption
 msgid "General"
-msgstr ""
+msgstr "Основне"
 
 #: tfrmresize.bbtncancel.caption
 msgctxt "tfrmresize.bbtncancel.caption"
@@ -652,7 +643,7 @@ msgstr "Витирачка"
 
 #: uglobals.rserrorproject
 msgid "Error: project file name not set!!!"
-msgstr ""
+msgstr "Помилка: не вказано назву файлу проекту!!!"
 
 #: uglobals.rsfg
 msgid "FG: "
@@ -667,7 +658,6 @@ msgid "Flood fill"
 msgstr "Заливка кольором"
 
 #: uglobals.rsframe
-#, fuzzy
 msgctxt "uglobals.rsframe"
 msgid "Frame"
 msgstr "Фрейм"
@@ -677,10 +667,9 @@ msgid "Generic tool"
 msgstr "Базовий інструмент"
 
 #: uglobals.rshasnonint
-#, fuzzy
 msgctxt "uglobals.rshasnonint"
 msgid " has non-integer value!"
-msgstr " має не цілочисельне значення!"
+msgstr " має не ціле значення!"
 
 #: uglobals.rsimagehastoom
 msgid "Image has too many colors!"
@@ -692,7 +681,7 @@ msgstr "Введіть назву нового шару:"
 
 #: uglobals.rslayer
 msgid "Layer"
-msgstr ""
+msgstr "Шар"
 
 #: uglobals.rslayername
 msgid "Layer name"
@@ -729,7 +718,7 @@ msgstr "Будь ласка, введіть назву нової бібліот
 
 #: uglobals.rsprojinfo
 msgid "Project info: "
-msgstr ""
+msgstr "Інформація про проєкт: "
 
 #: uglobals.rsrectangle
 msgid "Rectangle"
@@ -761,7 +750,7 @@ msgstr "Немає підтримуваного формату в буфер о�
 
 #: uglobals.rsuntitled
 msgid "Untitled"
-msgstr ""
+msgstr "Без назви"
 
 #: uglobals.rswarning
 msgid "Warning!"

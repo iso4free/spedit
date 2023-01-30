@@ -3,6 +3,7 @@ lib/**
 debug/**
 src/backup/**
 src/thirdparty/backup/**
+src/thirdparty/piskelinfo/backup/**
 *.mo
 *.exe
 bin/datatest-*
