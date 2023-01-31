@@ -552,6 +552,7 @@ begin
 
   ProjectInfo.ActiveFrame.ActiveLayer.Drawable.PutImage(0,0,DrawLayer.Drawable,dmSetExceptTransparent);
   DrawLayer.ClearDrawable;
+
 end;
 
 

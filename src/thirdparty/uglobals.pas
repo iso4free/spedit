@@ -863,7 +863,6 @@ begin
  try
    aImg:=TBGRABitmap.Create(aFile);
    Self.Add(TSPFrame.Create(aName,aImg.Width,aImg.Height));
-   ProjectInfo.ActiveFrame.AddLayer(aName);
    ProjectInfo.ActiveFrame.ActiveLayer.Drawable.LoadFromFile(aFile);
 
  finally
@@ -1293,9 +1292,8 @@ begin
   _ln:=LayersList.Strings[i];
    if ((Layers.IndexOf(_ln)<>-1) and (Layers[_ln].Visible)) then
      fPreview.PutImage(0,0,Layers[_ln].Drawable,dmDrawWithTransparency);
-
-  fPreview.PutImage(0,0,DrawLayer.Drawable,dmDrawWithTransparency);
  end;
+  fPreview.PutImage(0,0,DrawLayer.Drawable,dmDrawWithTransparency);
 end;
 
 function TSPFrame.ToJSON: String;
@@ -1372,10 +1370,10 @@ function TSPFrame.AddLayer(LayerName: String): Boolean;
 begin
   result := False;
   //layer with LayerName already exist - just set it as active
- // if fLayersList.IndexOf(LayerName)=-1 then begin
+  if fLayersList.IndexOf(LayerName)=-1 then begin
     LayersList.Add(LayerName);
     Layers[LayerName]:=TSPLayer.Create(LayerName,FWidth,FHeight);
- // end;
+  end;
   {$IFDEF DEBUG}
   DebugLn('In: AddLayer() LayersList: '+LayersList.Text);
   {$ENDIF}
@@ -1616,7 +1614,7 @@ begin
                        FCheckersSize,
                        FCheckersSize);;
   //draw preview picture and just zoom it up to grid size
-
+  ProjectInfo.ActiveFrame.RenderPicture;
   tmpbmp:=ProjectInfo.ActiveFrame.Preview.Resample(fBuffer.Width,fBuffer.Height,rmSimpleStretch);
   fBuffer.PutImage(0,0,tmpbmp,dmSetExceptTransparent);
   FreeAndNil(tmpbmp);

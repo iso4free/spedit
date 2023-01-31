@@ -18,8 +18,7 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="603"/>
+        <TopLine Value="607"/>
         <CursorPos Y="619"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
@@ -32,8 +31,8 @@
         <Filename Value="udraw.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="37"/>
-        <CursorPos Y="42"/>
+        <TopLine Value="543"/>
+        <CursorPos X="3" Y="555"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit>
@@ -109,7 +108,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="26"/>
         <CursorPos Y="55"/>
-        <UsageCount Value="155"/>
+        <UsageCount Value="156"/>
       </Unit>
       <Unit>
         <Filename Value="uprojprops.pas"/>
@@ -120,7 +119,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="52"/>
         <CursorPos Y="60"/>
-        <UsageCount Value="103"/>
+        <UsageCount Value="104"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -290,10 +289,11 @@
       </Unit>
       <Unit>
         <Filename Value="../../../../../fpcupdeluxe/config_lazarus/onlinepackagemanager/packages/bgrabitmap-master/bgrabitmap/bgrapixel.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="25"/>
-        <CursorPos X="3" Y="34"/>
-        <UsageCount Value="1"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="173"/>
+        <CursorPos X="5" Y="184"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../fpcupdeluxe/config_lazarus/onlinepackagemanager/packages/bgrabitmap-master/bgrabitmap/bgragraphics.pas"/>
@@ -702,11 +702,10 @@
       </Unit>
       <Unit>
         <Filename Value="../../../../fpcups/lazarus/lcl/include/control.inc"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="3597"/>
         <CursorPos Y="3612"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../../../fpcupdeluxe/fpcsrc/rtl/objpas/classes/stringl.inc"/>
@@ -771,10 +770,11 @@
       </Unit>
       <Unit>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="1192"/>
-        <CursorPos Y="1208"/>
-        <UsageCount Value="48"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="1281"/>
+        <CursorPos X="66" Y="1296"/>
+        <UsageCount Value="49"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -976,124 +976,124 @@
     </OtherDefines>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="../../../../fpcups/lazarus/lcl/include/control.inc"/>
-        <Caret Line="3595" TopLine="3575"/>
-      </Position>
-      <Position>
-        <Filename Value="../../../../fpcups/lazarus/lcl/include/control.inc"/>
-        <Caret Line="3596" TopLine="3575"/>
-      </Position>
-      <Position>
-        <Filename Value="../../../../fpcups/lazarus/lcl/include/control.inc"/>
-        <Caret Line="3612" TopLine="3597"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="621" TopLine="603"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="619" TopLine="603"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="621" TopLine="603"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1199" TopLine="1183"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1201" TopLine="1183"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1202" TopLine="1183"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1203" TopLine="1183"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1204" TopLine="1183"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1205" TopLine="1183"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1206" TopLine="1183"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1207" TopLine="1183"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1372" TopLine="1356"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1373" TopLine="1356"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1376" TopLine="1356"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1377" TopLine="1356"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1462" TopLine="1446"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1463" TopLine="1446"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1464" TopLine="1446"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1465" TopLine="1446"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1466" TopLine="1446"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1467" TopLine="1446"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1380" TopLine="1364"/>
-      </Position>
-      <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
         <Caret Line="1382" TopLine="1364"/>
       </Position>
       <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1384" TopLine="1364"/>
+        <Caret Line="1384" TopLine="1366"/>
       </Position>
       <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1385" TopLine="1364"/>
+        <Caret Line="1385" TopLine="1367"/>
       </Position>
       <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1208" TopLine="1192"/>
+        <Caret Line="1208" TopLine="1197"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="619" TopLine="603"/>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1209" TopLine="1197"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1210" TopLine="1197"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="866" TopLine="855"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="386" Column="14" TopLine="376"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="862" Column="2" TopLine="856"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1206" TopLine="1195"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1386" Column="28" TopLine="1370"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="264" Column="23" TopLine="248"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1288" TopLine="1281"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="357" Column="20" TopLine="353"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1619" TopLine="1607"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1294" Column="44" TopLine="1277"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="357" Column="21" TopLine="349"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1618" Column="32" TopLine="1605"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="264" Column="15" TopLine="255"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1289" Column="10" TopLine="1281"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="243" Column="20" TopLine="239"/>
+      </Position>
+      <Position>
+        <Filename Value="udraw.pas"/>
+        <Caret Line="69" Column="22" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1208" Column="34" TopLine="1196"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="264" Column="23" TopLine="252"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1294" Column="71" TopLine="1281"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1289" Column="5" TopLine="1281"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="507" Column="13" TopLine="496"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1845" Column="3" TopLine="1840"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="329" Column="3" TopLine="318"/>
+      </Position>
+      <Position>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="264" Column="21" TopLine="253"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -1117,22 +1117,6 @@
     </HistoryLists>
   </ProjectSession>
   <Debugging>
-    <BreakPoints>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="thirdparty/uglobals.pas"/>
-        <Line Value="1207"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="thirdparty/uglobals.pas"/>
-        <Line Value="1373"/>
-      </Item>
-    </BreakPoints>
     <Watches>
       <Item>
         <Expression Value="e.Key"/>
