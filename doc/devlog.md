@@ -218,3 +218,11 @@ DEV.LOG
 - [*] Some minor GUI changes
 - [*] Optimized speed
 - [*] Other internal things changed
+
+31.01.2023
+=
+- [!] Fixed project load from file (now frames loaded correct)
+- [*] Reworked Frame list (now based on TDrawGrid and works as the Layers list)
+- [!] Fixed Frame change if frames has different sizes
+- [+] Created first public pre-alpha builds for Linux64/Linux32/Windows64/Windows32
+      (links avaliable in our Discord - see readme.md)

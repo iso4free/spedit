@@ -14,7 +14,6 @@ type
 
   TfrmProjectProps = class(TForm)
     bbtnOk: TBitBtn;
-    bbtnCancel: TBitBtn;
     bbtnSave: TBitBtn;
     edAuthor: TEdit;
     edCredits: TEdit;

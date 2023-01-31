@@ -850,7 +850,9 @@ begin
    {$ENDIF}
    Self.AddOrSetData(aFrame.FrameName,aFrame);
    FNames.Add(aFrame.FrameName);
+   aFrame.RenderPicture;
    ProjectInfo.ActiveFrame:=aFrame;
+   ProjectInfo.FFramesCount:=FNames.Count;
 end;
 
 procedure TFrames.CreateFromImage(aFile: TFileName);
@@ -863,11 +865,11 @@ begin
    aImg:=TBGRABitmap.Create(aFile);
    Self.Add(TSPFrame.Create(aName,aImg.Width,aImg.Height));
    ProjectInfo.ActiveFrame.ActiveLayer.Drawable.LoadFromFile(aFile);
-
+   ProjectInfo.FFramesCount:=FNames.Count;
+   Self[aName].RenderPicture;
  finally
  FreeAndNil(aImg);
  end;
-
 end;
 
 destructor TFrames.Destroy;
@@ -988,15 +990,16 @@ begin
  License:=aJSON.Force('project/license').AsString;
  CreditsInfo := aJSON.Force('project/credits').AsString;
  FFramesCount:=aJSON.Force('project/frames count').AsInteger;
- //todo: why Stack overflov here? Try to fix!
- {if FramesCount>0 then
+ if FramesCount>0 then begin
   for i:=0 to FramesCount-1 do begin
    fname := aJSON.Force('frames/'+IntToStr(i)+'/frame name').AsString;
    fw:=aJSON.Force('frames/'+IntToStr(i)+'/width').AsInteger;
    fh:=aJSON.Force('frames/'+IntToStr(i)+'/height').AsInteger;
    Frames.Add(TSPFrame.Create(fname,fw,fh));
    Frames[fname].RestoreFromJSON(aJSON.Force('frames/'+IntToStr(i)).AsJson);
- end;  }
+  end;
+  ActiveFrame:=Frames[aJSON.Force('project/active frame').AsString];
+ end;
  {$IFDEF DEBUG}
  DebugLn('In: TSPProjectInfo.Load() after load frames: '+Frames.Names.Text);
  {$ENDIF}
@@ -1021,6 +1024,8 @@ begin
  aJSON.Force('project/license').AsString:=License;
  aJSON.Force('project/credits').AsString:=CreditsInfo;
  aJSON.Force('project/frames count').AsInteger:=FramesCount;
+ if FramesCount=0 then aJSON.Force('project/active frame').AsString:=''
+    else aJSON.Force('project/active frame').AsString:=ActiveFrame.FrameName;
  aJSON.Force('frames').Value:=Frames.ToJSON;
  aJSON.SaveToFile(Filename);
  FChanged:=False;

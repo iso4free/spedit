@@ -223,10 +223,10 @@ type
     Separator9: TMenuItem;
     bbtnGridToggle: TBitBtn;
     sbMove: TSpeedButton;
+    drwgrdFrames: TDrawGrid;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     StatusBar1: TStatusBar;
-    sgFrames: TStringGrid;
     trkbrPenSize: TSpinEdit;
     procedure actCopyExecute(Sender: TObject);
     procedure actCutExecute(Sender: TObject);
@@ -283,6 +283,8 @@ type
     procedure cbPalettePresetsChange(Sender: TObject);
     procedure cbPalettePresetsDrawItem(Control: TWinControl; Index: integer;
       ARect: TRect; State: TOwnerDrawState);
+    procedure drwgrdFramesSelectCell(Sender: TObject; aCol, aRow: Integer;
+      var CanSelect: Boolean);
     procedure drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: integer;
       aRect: TRect; aState: TGridDrawState);
     procedure drwgrdLayersMouseUp(Sender: TObject; Button: TMouseButton;
@@ -319,12 +321,15 @@ type
       MousePos: TPoint; var Handled: boolean);
     procedure pbFrameDrawPaint(Sender: TObject);
     procedure sbPenClick(Sender: TObject);
+    procedure drwgrdFramesDrawCell(Sender: TObject; aCol, aRow: Integer;
+      aRect: TRect; aState: TGridDrawState);
     procedure trkbrPenSizeChange(Sender: TObject);
   private
     fDrawGridMode: TDrawGridMode;
     dx, dy: integer;             //offset to move grid
     startx, starty: integer;     //start position to move
     procedure LayersChange;
+    procedure FramesChange;
     procedure LoadPresets(aDir: string);
     procedure SetSelectedColor(const Button: TMouseButton; aColor: TBGRAPixel);
     procedure PaletteChange; //added colors to current palette
@@ -643,6 +648,7 @@ begin
     LayersChange;
     mbPaletteGrid.Colors.Clear;
     pbFrameDraw.Invalidate;
+    FramesChange;
   end;
 end;
 
@@ -697,9 +703,8 @@ begin
       FrameGrid := TFrameGrid.Create();
     end;
     //todo: (change) set active frame ater project loaded
-    // ProjectInfo.ActiveFrame:=Frames.Names[0];
-    //ProjectInfo.ActiveLayer:=Frames[FrameGrid.ActiveFrame].LayersList[0];
     LayersChange;
+    FramesChange;
   end;
 end;
 
@@ -1077,10 +1082,14 @@ begin
       end;
       2: begin
         //draw layer name
-        if aKey = ProjectInfo.ActiveFrame.ActiveLayer.LayerName then
-          drwgrdLayers.Canvas.Font.Color := clRed
-        else
+        if aKey = ProjectInfo.ActiveFrame.ActiveLayer.LayerName then begin
+          drwgrdLayers.Canvas.Font.Color := clRed;
+          drwgrdLayers.Canvas.Font.Bold:=True;
+        end
+        else begin
           drwgrdLayers.Canvas.Font.Color := clWindowText;
+          drwgrdLayers.Canvas.Font.Bold:=False;
+        end;
         drwgrdLayers.Canvas.TextRect(aRect, aRect.Left, aRect.Top, aKey);
       end;
       3: begin
@@ -1357,7 +1366,18 @@ begin
   if Assigned(ProjectInfo) then
    if (ProjectInfo.FramesCount>0) and Assigned(ProjectInfo.ActiveFrame) then begin
     ProjectInfo.ActiveFrame.RenderPicture;
-    ProjectInfo.ActiveFrame.Preview.Draw(FramePreview.Picture.Bitmap.Canvas,0,0);
+    FramePreview.Picture.Bitmap.Canvas.Brush.Color:=clDefault;
+    FramePreview.Picture.Bitmap.Canvas.FillRect(FramePreview.ClientRect);
+
+    ProjectInfo.ActiveFrame.Preview.Draw(FramePreview.Picture.Bitmap.Canvas,FramePreview.ClientRect);
+  end;
+end;
+
+procedure TfrmMain.FramesChange;
+begin
+  if Assigned(ProjectInfo) then begin
+     drwgrdFrames.RowCount:=ProjectInfo.FramesCount;
+     drwgrdFrames.Invalidate;
   end;
 end;
 
@@ -1465,6 +1485,7 @@ begin
   mbPaletteGrid.Colors.Clear;
   PaletteChange;
   LayersChange;
+  FramesChange;
   pbFrameDraw.Invalidate;
 end;
 
@@ -1582,6 +1603,7 @@ begin
   drwgrdLayers.Invalidate;
   if ssCtrl in Shift then FgColor.Invalidate;
   FramePreview.Invalidate;
+  FramesChange;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;
@@ -1638,6 +1660,48 @@ begin
   ToolOptions.Color := aColor;
   Palette.AddColor(aColor);
   mbPaletteGrid.Invalidate;
+end;
+
+procedure TfrmMain.drwgrdFramesDrawCell(Sender: TObject; aCol, aRow: Integer;
+  aRect: TRect; aState: TGridDrawState);
+var
+  aName : String;
+begin
+  if not Assigned(ProjectInfo) then Exit;
+  aName:=ProjectInfo.Frames.Names.Strings[aRow];
+  case aCol of
+0:begin
+  //show frame name
+  if aName=ProjectInfo.ActiveFrame.FrameName
+     then begin
+       TDrawGrid(Sender).Canvas.Font.Color:=clRed;
+       TDrawGrid(Sender).Canvas.Font.Bold:=True;
+     end else begin
+       TDrawGrid(Sender).Canvas.Font.Color:=clDefault;
+       TDrawGrid(Sender).Canvas.Font.Bold:=False;
+     end;
+  TDrawGrid(Sender).Canvas.TextRect(aRect, aRect.Left, aRect.Top, aName);
+end;
+1:begin
+  //show frame preview
+   TDrawGrid(Sender).Canvas.Brush.Color:=clDefault;
+   TDrawGrid(Sender).Canvas.FillRect(aRect);
+   ProjectInfo.Frames[aName].Preview.Draw(TDrawGrid(Sender).Canvas,aRect,False);
+  end;
+  end;
+end;
+
+procedure TfrmMain.drwgrdFramesSelectCell(Sender: TObject; aCol, aRow: Integer;
+  var CanSelect: Boolean);
+begin
+  if not Assigned(ProjectInfo) then Exit;
+  ProjectInfo.ActiveFrame:=ProjectInfo.Frames[ProjectInfo.Frames.Names.Strings[aRow]];
+  FreeAndNil(FrameGrid);
+  FrameGrid:=TFrameGrid.Create(ProjectInfo.ActiveFrame.Width,
+                               ProjectInfo.ActiveFrame.Height);
+  drwgrdFrames.Invalidate;
+  drwgrdLayers.Invalidate;
+  pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.LoadPresets(aDir: string);

@@ -4,7 +4,7 @@ object frmMain: TfrmMain
   Top = 0
   Width = 752
   AllowDropFiles = True
-  ClientHeight = 713
+  ClientHeight = 714
   ClientWidth = 752
   DoubleBuffered = True
   KeyPreview = True
@@ -19,8 +19,8 @@ object frmMain: TfrmMain
   WindowState = wsMaximized
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 18
-    Top = 695
+    Height = 21
+    Top = 693
     Width = 752
     Panels = <    
       item
@@ -42,28 +42,28 @@ object frmMain: TfrmMain
   end
   object pnlLayers: TPanel
     Left = 0
-    Height = 655
+    Height = 653
     Top = 40
     Width = 147
     Align = alLeft
-    ClientHeight = 655
+    ClientHeight = 653
     ClientWidth = 147
     TabOrder = 1
     object LayersGroupBox: TGroupBox
       Left = 1
-      Height = 385
+      Height = 383
       Top = 1
       Width = 145
       Align = alClient
       Caption = 'Layers'
-      ClientHeight = 368
-      ClientWidth = 143
+      ClientHeight = 364
+      ClientWidth = 141
       TabOrder = 0
       object drwgrdLayers: TDrawGrid
         Left = 0
-        Height = 327
-        Top = 0
-        Width = 143
+        Height = 329
+        Top = 35
+        Width = 141
         Align = alClient
         ColCount = 4
         Columns = <        
@@ -106,10 +106,10 @@ object frmMain: TfrmMain
       end
       object LayersFlowPanel: TFlowPanel
         Left = 0
-        Height = 41
-        Top = 327
-        Width = 143
-        Align = alBottom
+        Height = 35
+        Top = 0
+        Width = 141
+        Align = alTop
         AutoSize = True
         AutoWrap = False
         ControlList = <        
@@ -138,9 +138,9 @@ object frmMain: TfrmMain
         TabOrder = 1
         object bbtnAddLayer: TBitBtn
           Left = 1
-          Height = 38
+          Height = 32
           Top = 1
-          Width = 38
+          Width = 32
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -151,10 +151,10 @@ object frmMain: TfrmMain
           TabOrder = 0
         end
         object bbtnDeleteLayer: TBitBtn
-          Left = 39
-          Height = 38
+          Left = 33
+          Height = 32
           Top = 1
-          Width = 38
+          Width = 32
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -165,10 +165,10 @@ object frmMain: TfrmMain
           TabOrder = 1
         end
         object bbtnCopyLayer: TBitBtn
-          Left = 77
-          Height = 38
+          Left = 65
+          Height = 32
           Top = 1
-          Width = 38
+          Width = 32
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -179,10 +179,10 @@ object frmMain: TfrmMain
           TabOrder = 2
         end
         object bbtnMergeLayers: TBitBtn
-          Left = 115
-          Height = 38
+          Left = 97
+          Height = 32
           Top = 1
-          Width = 38
+          Width = 32
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
@@ -194,26 +194,23 @@ object frmMain: TfrmMain
         end
       end
     end
-    object sgFrames: TStringGrid
+    object drwgrdFrames: TDrawGrid
       Left = 1
       Height = 268
-      Top = 386
+      Top = 384
       Width = 145
       Align = alBottom
       AutoEdit = False
       ColCount = 2
-      RowCount = 1
+      DefaultRowHeight = 64
+      ExtendedSelect = False
+      FixedCols = 0
+      FixedRows = 0
+      RowCount = 0
       TabOrder = 1
       UseXORFeatures = True
-      Cells = (
-        2
-        0
-        0
-        'Frame'
-        1
-        0
-        'Preview'
-      )
+      OnDrawCell = drwgrdFramesDrawCell
+      OnSelectCell = drwgrdFramesSelectCell
     end
   end
   object pnlEditor: TPanel
@@ -245,7 +242,7 @@ object frmMain: TfrmMain
     end
     object FgColor: TBGRAGraphicControl
       Tag = 2
-      Left = 649
+      Left = 655
       Height = 38
       Hint = 'Left click to select color'#10'Right click to set transparent color'
       Top = 1
@@ -262,11 +259,11 @@ object frmMain: TfrmMain
       Caption = 'FG'
     end
     object bbtnSwapColors: TBitBtn
-      Left = 681
+      Left = 687
       Height = 38
       Hint = 'Swap colors [X]'
       Top = 1
-      Width = 38
+      Width = 32
       Align = alRight
       AutoSize = True
       Images = ButtonsImageList
@@ -298,7 +295,7 @@ object frmMain: TfrmMain
       Height = 38
       Hint = 'Import frame'
       Top = 1
-      Width = 38
+      Width = 32
       Align = alLeft
       AutoSize = True
       Images = ButtonsImageList
@@ -309,11 +306,11 @@ object frmMain: TfrmMain
       TabOrder = 2
     end
     object bbtnShowLayers: TBitBtn
-      Left = 115
+      Left = 103
       Height = 38
       Hint = 'Show/hide layers'
       Top = 1
-      Width = 38
+      Width = 32
       Align = alLeft
       AutoSize = True
       Images = ButtonsImageList
@@ -324,11 +321,11 @@ object frmMain: TfrmMain
       TabOrder = 3
     end
     object bbtnShowPalette: TBitBtn
-      Left = 153
+      Left = 135
       Height = 38
       Hint = 'Show/hide palette'
       Top = 1
-      Width = 38
+      Width = 32
       Align = alLeft
       AutoSize = True
       Images = ButtonsImageList
@@ -339,11 +336,11 @@ object frmMain: TfrmMain
       TabOrder = 4
     end
     object bbtnTogglePreview: TBitBtn
-      Left = 191
+      Left = 167
       Height = 38
       Hint = 'Show/hide referense window'
       Top = 1
-      Width = 38
+      Width = 32
       Align = alLeft
       AutoSize = True
       Images = ButtonsImageList
@@ -354,7 +351,7 @@ object frmMain: TfrmMain
       TabOrder = 5
     end
     object trkbrPenSize: TSpinEdit
-      Left = 549
+      Left = 555
       Height = 38
       Top = 1
       Width = 100
@@ -369,9 +366,9 @@ object frmMain: TfrmMain
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = trkbrPenSize
       Left = 496
-      Height = 16
+      Height = 17
       Top = 12
-      Width = 48
+      Width = 54
       Anchors = [akTop, akRight]
       BorderSpacing.Left = 5
       BorderSpacing.Right = 5
@@ -379,11 +376,11 @@ object frmMain: TfrmMain
       ParentColor = False
     end
     object bbtnResize: TBitBtn
-      Left = 77
+      Left = 71
       Height = 38
       Hint = 'Resize frame'
       Top = 1
-      Width = 38
+      Width = 32
       Align = alLeft
       AutoSize = True
       Images = ButtonsImageList
@@ -392,11 +389,11 @@ object frmMain: TfrmMain
       TabOrder = 7
     end
     object bbtnGridToggle: TBitBtn
-      Left = 229
+      Left = 199
       Height = 38
       Hint = 'Show/hide grid'
       Top = 1
-      Width = 38
+      Width = 32
       Align = alLeft
       AutoSize = True
       Images = ButtonsImageList
@@ -409,7 +406,7 @@ object frmMain: TfrmMain
   end
   object pnlTools: TFlowPanel
     Left = 729
-    Height = 655
+    Height = 653
     Top = 40
     Width = 23
     Align = alRight
@@ -632,13 +629,13 @@ object frmMain: TfrmMain
   end
   object Splitter1: TSplitter
     Left = 147
-    Height = 655
+    Height = 653
     Top = 40
     Width = 5
   end
   object Splitter2: TSplitter
-    Left = 620
-    Height = 655
+    Left = 612
+    Height = 653
     Top = 40
     Width = 5
     Align = alRight
@@ -646,31 +643,31 @@ object frmMain: TfrmMain
     ResizeAnchor = akRight
   end
   object pnlPalette: TPanel
-    Left = 625
-    Height = 655
+    Left = 617
+    Height = 653
     Top = 40
-    Width = 104
+    Width = 112
     Align = alRight
     AutoSize = True
-    ClientHeight = 655
-    ClientWidth = 104
+    ClientHeight = 653
+    ClientWidth = 112
     ParentBidiMode = False
     TabOrder = 6
     object pnlColors: TPanel
       Left = 1
       Height = 152
-      Top = 502
-      Width = 102
+      Top = 500
+      Width = 110
       Align = alBottom
       AutoSize = True
       ClientHeight = 152
-      ClientWidth = 102
+      ClientWidth = 110
       TabOrder = 0
       object HexaColorPicker1: THexaColorPicker
         Left = 1
         Height = 150
         Top = 1
-        Width = 100
+        Width = 108
         Align = alClient
         HintFormat = 'RGB(%r, %g, %b)'#13'Hex: #%hex'
         IntensityText = 'Intensity'
@@ -682,9 +679,9 @@ object frmMain: TfrmMain
     end
     object cbPalettePresets: TComboBox
       Left = 1
-      Height = 30
-      Top = 118
-      Width = 102
+      Height = 31
+      Top = 119
+      Width = 110
       Align = alTop
       ItemHeight = 0
       OnChange = cbPalettePresetsChange
@@ -695,9 +692,9 @@ object frmMain: TfrmMain
     end
     object lbpPalettePresrts: TLabel
       Left = 1
-      Height = 16
+      Height = 17
       Top = 102
-      Width = 102
+      Width = 110
       Align = alTop
       Caption = 'Standard presets'
       ParentColor = False
@@ -705,8 +702,8 @@ object frmMain: TfrmMain
     object mbPaletteGrid: TmbColorPalette
       Left = 1
       Height = 134
-      Top = 270
-      Width = 102
+      Top = 272
+      Width = 110
       Align = alTop
       HintFormat = 'RGB(%r, %g, %b)'#13'Hex: #%hex'
       AutoHeight = True
@@ -718,8 +715,8 @@ object frmMain: TfrmMain
     object mbColorPalettePreset: TmbColorPalette
       Left = 1
       Height = 122
-      Top = 148
-      Width = 102
+      Top = 150
+      Width = 110
       Align = alTop
       HintFormat = 'RGB(%r, %g, %b)'#13'Hex: #%hex'
       AutoHeight = True
@@ -733,7 +730,7 @@ object frmMain: TfrmMain
       Height = 91
       Hint = 'Click to export PNG'
       Top = 6
-      Width = 92
+      Width = 100
       Align = alTop
       BorderSpacing.Around = 5
       Constraints.MinHeight = 32
@@ -746,9 +743,9 @@ object frmMain: TfrmMain
   end
   object pbFrameDraw: TPaintBox
     Left = 152
-    Height = 655
+    Height = 653
     Top = 40
-    Width = 468
+    Width = 460
     Align = alClient
     OnMouseDown = pbFrameDrawMouseDown
     OnMouseMove = pbFrameDrawMouseMove

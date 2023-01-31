@@ -1,7 +1,6 @@
 {"version":1,"strings":[
 {"hash":165131795,"name":"tfrmprojectprops.caption","sourcebytes":[80,114,111,106,101,99,116,32,112,114,111,112,101,114,116,105,101,115],"value":"Project properties"},
 {"hash":895898,"name":"tfrmprojectprops.bbtnok.caption","sourcebytes":[208,158,208,154],"value":"\u041E\u041A"},
-{"hash":77089212,"name":"tfrmprojectprops.bbtncancel.caption","sourcebytes":[67,97,110,99,101,108],"value":"Cancel"},
 {"hash":65159971,"name":"tfrmprojectprops.bbtnsave.hint","sourcebytes":[83,97,118,101,32,111,112,116,105,111,110,115],"value":"Save options"},
 {"hash":231000124,"name":"tfrmprojectprops.tsgeneral.caption","sourcebytes":[71,101,110,101,114,97,108],"value":"General"},
 {"hash":5966629,"name":"tfrmprojectprops.lbltitle.caption","sourcebytes":[84,105,116,108,101],"value":"Title"},

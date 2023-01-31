@@ -22,7 +22,7 @@ msgstr ""
 
 #: tfrmabout.label3.caption
 msgid ""
-"Created by (c) Vadim Vitomsky, 2000-2022\n"
+"Created by (c) Vadim Vitomsky, 2000-2023\n"
 "Contributed by Eddie Mattos\n"
 "(translation to pt-br, Mascot animation)\n"
 "Mascot based on Original image created by Unknown_Chan"
@@ -523,11 +523,6 @@ msgstr ""
 
 #: tfrmnamedlg.bbtncancel.caption
 msgctxt "tfrmnamedlg.bbtncancel.caption"
-msgid "Cancel"
-msgstr ""
-
-#: tfrmprojectprops.bbtncancel.caption
-msgctxt "tfrmprojectprops.bbtncancel.caption"
 msgid "Cancel"
 msgstr ""
 

@@ -21,8 +21,14 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Um Editor de Sprites Gratuito e de Código Aberto - V.4.0"
 
 #: tfrmabout.label3.caption
+#, fuzzy
+#| msgid ""
+#| "Created by (c) Vadim Vitomsky, 2000-2022\n"
+#| "Contributed by Eddie Mattos\n"
+#| "(translation to pt-br, Mascot animation)\n"
+#| "Mascot based on Original image created by Unknown_Chan"
 msgid ""
-"Created by (c) Vadim Vitomsky, 2000-2022\n"
+"Created by (c) Vadim Vitomsky, 2000-2023\n"
 "Contributed by Eddie Mattos\n"
 "(translation to pt-br, Mascot animation)\n"
 "Mascot based on Original image created by Unknown_Chan"
@@ -531,12 +537,6 @@ msgstr "Seleção retangular — 'S'"
 
 #: tfrmnamedlg.bbtncancel.caption
 msgctxt "tfrmnamedlg.bbtncancel.caption"
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: tfrmprojectprops.bbtncancel.caption
-#, fuzzy
-msgctxt "tfrmprojectprops.bbtncancel.caption"
 msgid "Cancel"
 msgstr "Cancelar"
 
