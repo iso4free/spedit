@@ -104,7 +104,7 @@ type
     actUndo: TEditUndo;
     FgColor: TBGRAGraphicControl;
     actExit: TFileExit;
-    FramePreview: TPaintBox;
+    FramePreview: TImage;
     HexaColorPicker1: THexaColorPicker;
     JSONPropStorage1: TJSONPropStorage;
     lbpPalettePresrts: TLabel;
@@ -543,6 +543,7 @@ begin
       0, 0, ProjectInfo.ActiveFrame.Layers[activeName].Drawable, dmDrawWithTransparency);
     ProjectInfo.ActiveFrame.DeleteLayer(activeName);
     ProjectInfo.ActiveFrame.ActiveLayer := ProjectInfo.ActiveFrame.Layers[aMergeName];
+
     LayersChange;
   end
   else
@@ -1354,9 +1355,9 @@ end;
 procedure TfrmMain.FramePreviewPaint(Sender: TObject);
 begin
   if Assigned(ProjectInfo) then
-  begin
-    if ProjectInfo.FramesCount>0 then
-    ProjectInfo.ActiveFrame.Preview.Draw(FramePreview.Canvas,0,0);
+   if (ProjectInfo.FramesCount>0) and Assigned(ProjectInfo.ActiveFrame) then begin
+    ProjectInfo.ActiveFrame.RenderPicture;
+    ProjectInfo.ActiveFrame.Preview.Draw(FramePreview.Picture.Bitmap.Canvas,0,0);
   end;
 end;
 
@@ -1580,7 +1581,7 @@ begin
   pbFrameDraw.Invalidate;
   drwgrdLayers.Invalidate;
   if ssCtrl in Shift then FgColor.Invalidate;
-  //BgColor.Invalidate;
+  FramePreview.Invalidate;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseWheelDown(Sender: TObject;

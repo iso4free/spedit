@@ -523,6 +523,7 @@ procedure TSPDrawTool.StartDraw(x, y: Integer; Shift: TShiftState;
 begin
   ProjectInfo.ActiveFrame.SaveState;
   ToolOptions.Color:=aColor;
+  ClearBitmap(DrawLayer.Drawable);
   DrawLayer.Drawable.Canvas.Pen.Color:=ToolOptions.Color;
   DrawLayer.Drawable.Canvas.Brush.Color:=ToolOptions.Color;
   DrawLayer.Drawable.Canvas.Pen.Width:=ToolOptions.PenSize;
@@ -551,7 +552,7 @@ begin
   if not Assigned(FrameGrid) then Exit;
 
   ProjectInfo.ActiveFrame.ActiveLayer.Drawable.PutImage(0,0,DrawLayer.Drawable,dmSetExceptTransparent);
-  DrawLayer.ClearDrawable;
+  ClearBitmap(DrawLayer.Drawable);
 
 end;
 

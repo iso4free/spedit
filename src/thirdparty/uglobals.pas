@@ -206,7 +206,6 @@ type
     procedure Resize(w,h : Integer; Stretched : Boolean = false); //set new size and stretch if need
     property Drawable : TBGRABitmap read fLayerImg write fLayerImg;  //BGRABitmap for drawing
     procedure RestoreFromString(aBASE64 : String); //restore layer data from BASE64 encoded string
-    procedure ClearDrawable; //clear BGRABitmap for new drawing
     function ToBASE64String : String; //encode layer image to BASE64
     function ToJSON : String; //serialize layer to JSON data
 
@@ -1205,6 +1204,7 @@ begin
  fLayers:=TLayers.Create(true);
  AddLayer(aName);
  DrawLayer.Drawable.SetSize(w,h);
+ ClearBitmap(DrawLayer.Drawable);
  FPreview:=TBGRABitmap.Create(w,h);
 end;
 
@@ -1400,6 +1400,7 @@ begin
   i:=fLayers.IndexOf(aLayerName);
   if i<>-1 then begin
     fLayers.Delete(i);
+    fLayersList.Delete(fLayersList.IndexOf(aLayerName));
     if i>0 then ActiveLayer:=Layers[fLayersList.Strings[i-1]]
        else ActiveLayer:=Layers[fLayersList.Strings[0]];
     Layers.Remove(aLayerName);
@@ -1487,11 +1488,6 @@ begin
     fLayerImg.PutImage(0,0,tmpbmp,dmSetExceptTransparent);
     FreeAndNil(tmpbmp);
   end;
-end;
-
-procedure TSPLayer.ClearDrawable;
-begin
-  ClearBitmap(fLayerImg);
 end;
 
 { TFrameGrid }

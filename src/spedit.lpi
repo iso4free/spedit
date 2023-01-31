@@ -77,10 +77,11 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="../bin/spedit"/>
+            <Filename Value="../bin/spedit-$(TargetCPU)-$(TargetOS)"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="thirdparty"/>
             <UnitOutputDirectory Value="../lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -107,10 +108,11 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="../bin/spedit"/>
+            <Filename Value="../bin/spedit-$(TargetCPU)-$(TargetOS)"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="thirdparty"/>
             <UnitOutputDirectory Value="../lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -139,10 +141,11 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="../bin/spedit"/>
+            <Filename Value="../bin/spedit-$(TargetCPU)-$(TargetOS)"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="thirdparty"/>
             <UnitOutputDirectory Value="../lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -156,6 +159,40 @@
           <Linking>
             <Debugging>
               <GenerateDebugInfo Value="False"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item>
+      <Item Name="linux-x32">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="../bin/spedit-$(TargetCPU)-$(TargetOS)"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="thirdparty"/>
+            <UnitOutputDirectory Value="../lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <TargetProcessor Value="pentiumm"/>
+            <TargetCPU Value="i386"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="3"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <DebugInfoType Value="dsDwarf2Set"/>
             </Debugging>
             <LinkSmart Value="True"/>
             <Options>
