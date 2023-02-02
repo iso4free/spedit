@@ -1,174 +1,151 @@
 msgid ""
-msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Crowdin-Project: spedit\n"
-"X-Crowdin-Project-ID: 548623\n"
-"X-Crowdin-Language: pt-BR\n"
-"X-Crowdin-File: spedit.pot\n"
-"X-Crowdin-File-ID: 1\n"
-"Project-Id-Version: spedit\n"
-"Language-Team: Portuguese, Brazilian\n"
-"Language: pt_BR\n"
-"PO-Revision-Date: 2023-01-11 11:56\n"
+msgstr "Content-Type: text/plain; charset=UTF-8"
 
 #: tfrmabout.label1.caption
 msgid "SPEdit"
-msgstr "SPEdit"
+msgstr ""
 
 #: tfrmabout.label2.caption
 msgid "Free and Open source Sprite Editor V.4.0"
-msgstr "Um Editor de Sprites Gratuito e de Código Aberto - V.4.0"
+msgstr ""
 
 #: tfrmabout.label3.caption
-#, fuzzy
-#| msgid ""
-#| "Created by (c) Vadim Vitomsky, 2000-2022\n"
-#| "Contributed by Eddie Mattos\n"
-#| "(translation to pt-br, Mascot animation)\n"
-#| "Mascot based on Original image created by Unknown_Chan"
 msgid ""
 "Created by (c) Vadim Vitomsky, 2000-2023\n"
 "Contributed by Eddie Mattos\n"
 "(translation to pt-br, Mascot animation)\n"
 "Mascot based on Original image created by Unknown_Chan"
 msgstr ""
-"Criado por (c) Vadim Vitomsky, 2000-2022\n"
-"Contribuído por Eddie Mattos\n"
-"(tradução para pt-br, Animação de mascote)\n"
-"Mascote baseado na imagem original criada por Unknown_Chan"
 
 #: tfrmabout.showsplashcheckbox.caption
 msgid "Show at startup"
-msgstr "Exibir ao iniciar"
+msgstr ""
 
 #: tfrmframedlg.caption
 msgctxt "tfrmframedlg.caption"
 msgid "New frame"
-msgstr "Novo quadro"
+msgstr ""
 
 #: tfrmframedlg.checkbox1.caption
 msgid "Copy all layers"
-msgstr "Copiar todas as camadas"
+msgstr ""
 
 #: tfrmframedlg.edtframename.text
 msgctxt "tfrmframedlg.edtframename.text"
 msgid "Frame"
-msgstr "Quadro"
+msgstr ""
 
 #: tfrmframedlg.frmframewidth.caption
 msgid "Frame width"
-msgstr "Largura do quadro"
+msgstr ""
 
 #: tfrmframedlg.label1.caption
 msgid "Min. cell size"
-msgstr "Tamanho min. da célula"
+msgstr ""
 
 #: tfrmframedlg.lblframeheight.caption
 msgid "Frame height"
-msgstr "Altura do quadro"
+msgstr ""
 
 #: tfrmframedlg.lblframename.caption
 msgid "Frame name"
-msgstr "Nome do quadro"
+msgstr ""
 
 #: tfrmmain.acimportframe.caption
 msgctxt "tfrmmain.acimportframe.caption"
 msgid "Import frame"
-msgstr "Importar quadro"
+msgstr ""
 
 #: tfrmmain.actaddlayer.caption
 msgid "Add layer"
-msgstr "Adicionar camada"
+msgstr ""
 
 #: tfrmmain.actcopy.caption
 msgid "Copy"
-msgstr "Copiar"
+msgstr ""
 
 #: tfrmmain.actcopylayer.caption
 msgid "Copy layer"
-msgstr "Copiar camada"
+msgstr ""
 
 #: tfrmmain.actcut.caption
 msgid "Cut"
-msgstr "Cortar"
+msgstr ""
 
 #: tfrmmain.actdeletelayer.caption
 msgid "Delete layer"
-msgstr "Deletar camada"
+msgstr ""
 
 #: tfrmmain.actdither.caption
 msgid "Dither frame"
-msgstr "Pontilhar quadro"
+msgstr ""
 
 #: tfrmmain.actdither.hint
 msgid "Reduse colors to preset palette"
-msgstr "Reduzir cores para a paleta predefinida"
+msgstr ""
 
 #: tfrmmain.actexit.caption
 msgid "&Exit"
-msgstr "&Sair"
+msgstr ""
 
 #: tfrmmain.actfliph.caption
 msgid "Flip horizontal"
-msgstr "Inverter horizontalmente"
+msgstr ""
 
 #: tfrmmain.actflipv.caption
 msgid "Flip vertical"
-msgstr "Inverter verticalmente"
+msgstr ""
 
 #: tfrmmain.actframeexportpng.caption
 msgid "Export frame as PNG"
-msgstr "Exportar quadro como PNG"
+msgstr ""
 
 #: tfrmmain.actframeresize.caption
 msgctxt "tfrmmain.actframeresize.caption"
 msgid "Resize frame"
-msgstr "Redimensionar quadro"
+msgstr ""
 
 #: tfrmmain.actgridtoggle.caption
 msgid "Toggle grid visibility"
-msgstr "Alterar visibilidade da grade"
+msgstr ""
 
 #: tfrmmain.actgridtoggle.hint
 msgctxt "tfrmmain.actgridtoggle.hint"
 msgid "Show/hide grid"
-msgstr "Exibir/ocultar grade"
+msgstr ""
 
 #: tfrmmain.actimportpiskel.caption
-msgctxt "tfrmmain.actimportpiskel.caption"
 msgid "Import Piskel file"
 msgstr ""
 
 #: tfrmmain.actlanguageselect.caption
-msgctxt "tfrmmain.actlanguageselect.caption"
 msgid "Language"
-msgstr "Idioma"
+msgstr ""
 
 #: tfrmmain.actlayerstoggle.caption
 msgid "Show layers"
-msgstr "Exibir camadas"
+msgstr ""
 
 #: tfrmmain.actloadpresets.caption
 msgid "Load presets"
-msgstr "Carregar predefinição"
+msgstr ""
 
 #: tfrmmain.actmergelayers.caption
 msgid "Merge layers"
-msgstr "Mesclar camadas"
+msgstr ""
 
 #: tfrmmain.actmovedown.caption
 msgid "Move Down"
-msgstr "Mover Abaixo"
+msgstr ""
 
 #: tfrmmain.actmoveup.caption
 msgid "Move Up"
-msgstr "Mover Acima"
+msgstr ""
 
 #: tfrmmain.actnewframe.caption
 msgctxt "tfrmmain.actnewframe.caption"
 msgid "New frame"
-msgstr "Novo quadro"
+msgstr ""
 
 #: tfrmmain.actnewproj.caption
 msgid "New Sprite project"
@@ -176,37 +153,35 @@ msgstr ""
 
 #: tfrmmain.actnotimplemented.caption
 msgid "Not implemented yet"
-msgstr "Ainda não implementado"
+msgstr ""
 
 #: tfrmmain.actopenproj.caption
 msgid "Open project"
 msgstr ""
 
 #: tfrmmain.actpaletteimport.caption
-msgctxt "tfrmmain.actpaletteimport.caption"
 msgid "Import from image file"
-msgstr "Importar de uma imagem"
+msgstr ""
 
 #: tfrmmain.actpaletteload.caption
 msgid "Load palette from file"
-msgstr "Abrir paleta"
+msgstr ""
 
 #: tfrmmain.actpalettereset.caption
-msgctxt "tfrmmain.actpalettereset.caption"
 msgid "Reset palette"
-msgstr "Redefinir paleta"
+msgstr ""
 
 #: tfrmmain.actpalettesave.caption
 msgid "Save palette to file"
-msgstr "Salvar paleta"
+msgstr ""
 
 #: tfrmmain.actpalettetoggle.caption
 msgid "Toggle palette"
-msgstr "Alternar paleta"
+msgstr ""
 
 #: tfrmmain.actpaste.caption
 msgid "Paste"
-msgstr "Colar"
+msgstr ""
 
 #: tfrmmain.actpreviewtoggle.caption
 msgid "Toggle preview"
@@ -220,19 +195,19 @@ msgstr ""
 #: tfrmmain.actredo.caption
 msgctxt "tfrmmain.actredo.caption"
 msgid "Redo"
-msgstr "Refazer"
+msgstr ""
 
 #: tfrmmain.actreferencetoggle.caption
 msgid "Reference"
-msgstr "Referência"
+msgstr ""
 
 #: tfrmmain.actrotateccw.caption
 msgid "Rotate CCW 90"
-msgstr "Girar 90º anti-horário"
+msgstr ""
 
 #: tfrmmain.actrotatecw.caption
 msgid "Rotate CW 90"
-msgstr "Girar 90º horário"
+msgstr ""
 
 #: tfrmmain.actsaveproj.caption
 msgid "Save project"
@@ -240,16 +215,16 @@ msgstr ""
 
 #: tfrmmain.actselectall.caption
 msgid "Select all"
-msgstr "Selecionar tudo"
+msgstr ""
 
 #: tfrmmain.actsettings.caption
 msgctxt "tfrmmain.actsettings.caption"
 msgid "Settings"
-msgstr "Configurações"
+msgstr ""
 
 #: tfrmmain.acttogglefullscreen.caption
 msgid "Full Screen (ZEN mode)"
-msgstr "Tela cheia (modo ZEN)"
+msgstr ""
 
 #: tfrmmain.actundo.caption
 msgctxt "tfrmmain.actundo.caption"
@@ -258,57 +233,54 @@ msgstr ""
 
 #: tfrmmain.actzoomin.caption
 msgid "Zoom ++"
-msgstr "Mais zoom"
+msgstr ""
 
 #: tfrmmain.actzoomout.caption
 msgid "Zoom --"
-msgstr "Menos zoom"
+msgstr ""
 
 #: tfrmmain.actzoomreset.caption
-msgctxt "tfrmmain.actzoomreset.caption"
 msgid "Reset zoom"
-msgstr "Redefinir zoom"
+msgstr ""
 
 #: tfrmmain.bbtngridtoggle.hint
 msgctxt "tfrmmain.bbtngridtoggle.hint"
 msgid "Show/hide grid"
-msgstr "Exibir/ocultar grade"
+msgstr ""
 
 #: tfrmmain.bbtnimportframe.hint
 msgctxt "tfrmmain.bbtnimportframe.hint"
 msgid "Import frame"
-msgstr "Importar quadro"
+msgstr ""
 
 #: tfrmmain.bbtnnewframe.hint
 msgid "Create new frame"
-msgstr "Criar um novo quadro"
+msgstr ""
 
 #: tfrmmain.bbtnresize.hint
 msgctxt "tfrmmain.bbtnresize.hint"
 msgid "Resize frame"
-msgstr "Redimensionar quadro"
+msgstr ""
 
 #: tfrmmain.bbtnshowlayers.hint
 msgid "Show/hide layers"
-msgstr "Exibir/ocultar camadas"
+msgstr ""
 
 #: tfrmmain.bbtnshowpalette.hint
 msgid "Show/hide palette"
-msgstr "Exibir/ocultar paleta"
+msgstr ""
 
 #: tfrmmain.bbtnswapcolors.hint
-msgctxt "tfrmmain.bbtnswapcolors.hint"
 msgid "Swap colors [X]"
-msgstr "Trocar cores [X]"
+msgstr ""
 
 #: tfrmmain.bbtntogglepreview.hint
 msgid "Show/hide referense window"
-msgstr "Exibir/ocultar janela de referência"
+msgstr ""
 
 #: tfrmmain.bgcolor.caption
-msgctxt "tfrmmain.bgcolor.caption"
 msgid "BG"
-msgstr "PF"
+msgstr ""
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
@@ -316,33 +288,26 @@ msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
 msgstr ""
-"Clique esquedo para selecionar a cor\n"
-"Clique direito para definir a cor como transparente"
 
 #: tfrmmain.drwgrdlayers.columns[0].title.caption
-msgctxt "tfrmmain.drwgrdlayers.columns[0].title.caption"
 msgid "Visible"
-msgstr "Visível"
+msgstr ""
 
 #: tfrmmain.drwgrdlayers.columns[1].title.caption
-msgctxt "tfrmmain.drwgrdlayers.columns[1].title.caption"
 msgid "Locked"
-msgstr "Bloqueado"
+msgstr ""
 
 #: tfrmmain.drwgrdlayers.columns[2].title.caption
-msgctxt "tfrmmain.drwgrdlayers.columns[2].title.caption"
 msgid "Name"
-msgstr "Nome"
+msgstr ""
 
 #: tfrmmain.drwgrdlayers.columns[3].title.caption
-msgctxt "tfrmmain.drwgrdlayers.columns[3].title.caption"
 msgid "Image"
-msgstr "Imagem"
+msgstr ""
 
 #: tfrmmain.fgcolor.caption
-msgctxt "tfrmmain.fgcolor.caption"
 msgid "FG"
-msgstr "PP"
+msgstr ""
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
@@ -350,134 +315,117 @@ msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
 msgstr ""
-"Clique esquedo para selecionar a cor\n"
-"Clique direito para definir a cor como transparente"
 
 #: tfrmmain.layersgroupbox.caption
 msgctxt "tfrmmain.layersgroupbox.caption"
 msgid "Layers"
-msgstr "Camadas"
+msgstr ""
 
 #: tfrmmain.lblpensize.caption
 msgid "Pen size"
-msgstr "Tamanho da caneta"
+msgstr ""
 
 #: tfrmmain.lbppalettepresrts.caption
 msgid "Standard presets"
-msgstr "Paletas predefinidas"
+msgstr ""
 
 #: tfrmmain.miabout.caption
-msgctxt "tfrmmain.miabout.caption"
 msgid "About"
-msgstr "Sobre"
+msgstr ""
 
 #: tfrmmain.midrawingtools.caption
-msgctxt "tfrmmain.midrawingtools.caption"
 msgid "Drawing tools"
-msgstr "Ferramentas de desenho"
+msgstr ""
 
 #: tfrmmain.miedit.caption
-msgctxt "tfrmmain.miedit.caption"
 msgid "Edit"
-msgstr "Editar"
+msgstr ""
 
 #: tfrmmain.miexport.caption
 msgid "Export"
-msgstr "Exportar"
+msgstr ""
 
 #: tfrmmain.mifilemenu.caption
-msgctxt "tfrmmain.mifilemenu.caption"
 msgid "File"
-msgstr "Arquivo"
+msgstr ""
 
 #: tfrmmain.mifliprotate.caption
 msgid "Flip/Rotate"
-msgstr "Inverter/Girar"
+msgstr ""
 
 #: tfrmmain.miframe.caption
 msgctxt "tfrmmain.miframe.caption"
 msgid "Frame"
-msgstr "Quadro"
+msgstr ""
 
 #: tfrmmain.miframes.caption
 msgid "Frames"
-msgstr "Quadros"
+msgstr ""
 
 #: tfrmmain.mihelp.caption
-msgctxt "tfrmmain.mihelp.caption"
 msgid "Help"
-msgstr "Ajuda"
+msgstr ""
 
 #: tfrmmain.miimport.caption
 msgid "Import..."
 msgstr ""
 
 #: tfrmmain.miimportspritesheet.caption
-msgctxt "tfrmmain.miimportspritesheet.caption"
 msgid "Import Spritesheet"
-msgstr "Importar Planilha de sprites"
+msgstr ""
 
 #: tfrmmain.miimportspritesheet.hint
-msgctxt "tfrmmain.miimportspritesheet.hint"
 msgid ""
 "You can import image or spritesheet file\n"
 "and add it to the library"
-msgstr "Você pode importar uma imagem ou planilha de sprites e adicioná-la à biblioteca"
+msgstr ""
 
 #: tfrmmain.milayers.caption
 msgctxt "tfrmmain.milayers.caption"
 msgid "Layers"
-msgstr "Camadas"
+msgstr ""
 
 #: tfrmmain.milayerspanel.caption
 msgctxt "tfrmmain.milayerspanel.caption"
 msgid "Layers"
-msgstr "Camadas"
+msgstr ""
 
 #: tfrmmain.minewlibrary.caption
-msgctxt "tfrmmain.minewlibrary.caption"
 msgid "New Sprite Library"
-msgstr "Nova Biblioteca de Sprites"
+msgstr ""
 
 #: tfrmmain.mipalette.caption
-msgctxt "tfrmmain.mipalette.caption"
 msgid "Palette"
-msgstr "Paleta"
+msgstr ""
 
 #: tfrmmain.mipreview.caption
-msgctxt "tfrmmain.mipreview.caption"
 msgid "Preview"
-msgstr "Previsualização"
+msgstr ""
 
 #: tfrmmain.miredo.caption
 msgctxt "tfrmmain.miredo.caption"
 msgid "Redo"
-msgstr "Refazer"
+msgstr ""
 
 #: tfrmmain.misavelibrary.caption
-msgctxt "tfrmmain.misavelibrary.caption"
 msgid "Save Sprite Library"
-msgstr "Salvar Biblioteca de Sprites"
+msgstr ""
 
 #: tfrmmain.misaveprojectas.caption
-msgctxt "tfrmmain.misaveprojectas.caption"
 msgid "Save Sprite Project As..."
-msgstr "Salvar Projeto de Sprites como..."
+msgstr ""
 
 #: tfrmmain.miselectlibrary.caption
-msgctxt "tfrmmain.miselectlibrary.caption"
 msgid "Select Sprite Library"
-msgstr "Selecionar Biblioteca de Sprites"
+msgstr ""
 
 #: tfrmmain.misprite.caption
-msgctxt "tfrmmain.misprite.caption"
 msgid "Sprite"
-msgstr "Sprite"
+msgstr ""
 
 #: tfrmmain.mitioolpanels.caption
-msgctxt "tfrmmain.mitioolpanels.caption"
 msgid "Tool panels"
-msgstr "Painéis de Ferramentas"
+msgstr ""
 
 #: tfrmmain.miundo.caption
 msgctxt "tfrmmain.miundo.caption"
@@ -485,59 +433,57 @@ msgid "Undo"
 msgstr ""
 
 #: tfrmmain.miview.caption
-msgctxt "tfrmmain.miview.caption"
 msgid "View"
-msgstr "Visualizar"
+msgstr ""
 
 #: tfrmmain.pmilayerfliprotate.caption
 msgid "Flip/rotate layer"
-msgstr "Inverter/Girar Camada"
+msgstr ""
 
 #: tfrmmain.sbcircle.hint
 msgid "Circle tool - hotkey 'C'"
-msgstr "Círculo — 'C'"
+msgstr ""
 
 #: tfrmmain.sberacer.hint
 msgid "Eraser tool - hotkey 'E'"
-msgstr "Borracha — 'E'"
+msgstr ""
 
 #: tfrmmain.sbfilledrect.hint
 msgid "Filled rectangle tool - hotkey 'Shift+R'"
-msgstr "Retângulo preenchido — 'Shift+R'"
+msgstr ""
 
 #: tfrmmain.sbfloodfill.hint
 msgid "Flood fill tool - hotkey 'F'"
-msgstr "Preenchimento — 'F'"
+msgstr ""
 
 #: tfrmmain.sbline.hint
-msgctxt "tfrmmain.sbline.hint"
 msgid "Line tool - hotkey 'L'"
-msgstr "Linha — 'L'"
+msgstr ""
 
 #: tfrmmain.sbmove.hint
 msgid "Move tool - hotkey 'M'"
-msgstr "Mover — 'M'"
+msgstr ""
 
 #: tfrmmain.sbpen.hint
 msgid "Pen tool - hotkey 'P'"
-msgstr "Caneta — 'P'"
+msgstr ""
 
 #: tfrmmain.sbpipette.hint
 msgid "Pipette tool - hotkey 'O'"
-msgstr "Pipeta — 'O'"
+msgstr ""
 
 #: tfrmmain.sbrect.hint
 msgid "Rectangle tool - hotkey 'R'"
-msgstr "Retângulo — 'R'"
+msgstr ""
 
 #: tfrmmain.sbrectselection.hint
 msgid "Rectangular selection tool - hotkey 'S'"
-msgstr "Seleção retangular — 'S'"
+msgstr ""
 
 #: tfrmnamedlg.bbtncancel.caption
 msgctxt "tfrmnamedlg.bbtncancel.caption"
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #: tfrmprojectprops.bbtnok.caption
 msgid "ОК"
@@ -583,69 +529,69 @@ msgstr ""
 #: tfrmresize.bbtncancel.caption
 msgctxt "tfrmresize.bbtncancel.caption"
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #: tfrmresize.caption
 msgid "Resize"
-msgstr "Redimensionar"
+msgstr ""
 
 #: tfrmresize.cbkeepproportions.caption
 msgid "Keep propoprtions"
-msgstr "Manter proporções"
+msgstr ""
 
 #: tfrmresize.cbstretch.caption
 msgid "Stretch"
-msgstr "Esticar"
+msgstr ""
 
 #: tfrmresize.grpbresize.caption
 msgid "Resize options"
-msgstr "Opções de Redimensionamento"
+msgstr ""
 
 #: tfrmresize.lblheight.caption
 msgid "Height"
-msgstr "Altura"
+msgstr ""
 
 #: tfrmresize.lblwidth.caption
 msgid "Width"
-msgstr "Largura"
+msgstr ""
 
 #: tfrmsettings.bbtncancel.caption
 msgctxt "tfrmsettings.bbtncancel.caption"
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #: tfrmsettings.caption
 msgctxt "tfrmsettings.caption"
 msgid "Settings"
-msgstr "Configurações"
+msgstr ""
 
 #: uglobals.rsactivetool
 msgid "Active tool: "
-msgstr "Ferramenta ativa: "
+msgstr ""
 
 #: uglobals.rsbg
 msgid " / BG: "
-msgstr " / PF"
+msgstr ""
 
 #: uglobals.rscantmerge
 msgid "Can't merge layers!"
-msgstr "Camadas não podem ser mescladas!"
+msgstr ""
 
 #: uglobals.rscircle
 msgid "Circle"
-msgstr "Círculo"
+msgstr ""
 
 #: uglobals.rscolors
 msgid "Colors: "
-msgstr "Cores"
+msgstr ""
 
 #: uglobals.rscopyof
 msgid "Copy of "
-msgstr "Cópia de"
+msgstr ""
 
 #: uglobals.rseraser
 msgid "Eraser"
-msgstr "Borracha"
+msgstr ""
 
 #: uglobals.rserrorproject
 msgid "Error: project file name not set!!!"
@@ -653,39 +599,36 @@ msgstr ""
 
 #: uglobals.rsfg
 msgid "FG: "
-msgstr "PP"
+msgstr ""
 
 #: uglobals.rsfilledrectan
 msgid "Filled rectangle"
-msgstr "Retângulo preenchido"
+msgstr ""
 
 #: uglobals.rsfloodfill
 msgid "Flood fill"
-msgstr "Preenchimento"
+msgstr ""
 
 #: uglobals.rsframe
-#, fuzzy
 msgctxt "uglobals.rsframe"
 msgid "Frame"
-msgstr "Quadro"
+msgstr ""
 
 #: uglobals.rsgenerictool
 msgid "Generic tool"
-msgstr "Ferramenta genérica"
+msgstr ""
 
 #: uglobals.rshasnonint
-#, fuzzy
-msgctxt "uglobals.rshasnonint"
 msgid " has non-integer value!"
-msgstr "tem valor não inteiro!"
+msgstr ""
 
 #: uglobals.rsimagehastoom
 msgid "Image has too many colors!"
-msgstr "A imagem tem muitas cores!"
+msgstr ""
 
 #: uglobals.rsinputnewlaye
 msgid "Input new layer name:"
-msgstr "Insira o nome da nova camada:"
+msgstr ""
 
 #: uglobals.rslayer
 msgid "Layer"
@@ -693,36 +636,36 @@ msgstr ""
 
 #: uglobals.rslayername
 msgid "Layer name"
-msgstr "Nome da camada"
+msgstr ""
 
 #: uglobals.rslayersislock
 #, object-pascal-format
 msgid "Layer %s is locked for changes!!"
-msgstr "A camada %s está bloqueada para alterações!!"
+msgstr ""
 
 #: uglobals.rsline
 msgid "Line"
-msgstr "Linha"
+msgstr ""
 
 #: uglobals.rsmovetool
 msgid "Move tool"
-msgstr "Mover"
+msgstr ""
 
 #: uglobals.rspalettewillb
 msgid "Palette will be resetted to default colors! Are You shure?"
-msgstr "A paleta vai ser reiniciada para as cores padrão! Você tem certeza?"
+msgstr ""
 
 #: uglobals.rspen
 msgid "Pen"
-msgstr "Caneta"
+msgstr ""
 
 #: uglobals.rspipette
 msgid "Pipette"
-msgstr "Pipeta"
+msgstr ""
 
 #: uglobals.rspleaseinputn
 msgid "Please input new library name"
-msgstr "Por favor, insira o nome da nova biblioteca"
+msgstr ""
 
 #: uglobals.rsprojinfo
 msgid "Project info: "
@@ -730,31 +673,31 @@ msgstr ""
 
 #: uglobals.rsrectangle
 msgid "Rectangle"
-msgstr "Retângulo"
+msgstr ""
 
 #: uglobals.rsrectanglesel
 msgid "Rectangle selection"
-msgstr "Seleção retangular"
+msgstr ""
 
 #: uglobals.rssorry
 msgid "Sorry, will be implemented soon!"
-msgstr "Essa função será implementada em breve!"
+msgstr ""
 
 #: uglobals.rsthislayercan
 msgid "This layer can't be renamed!"
-msgstr "Essa camada não pode se renomeada!"
+msgstr ""
 
 #: uglobals.rsthislayercan2
 msgid "This layer can't be deleted!"
-msgstr "Essa camada não pode ser deletada!"
+msgstr ""
 
 #: uglobals.rsthistoolwill
 msgid "This tool will be realised soon, sorry"
-msgstr "Essa ferramenta será lançada em breve"
+msgstr ""
 
 #: uglobals.rsunsupportedfmt
 msgid "There is no supported format in Clipboard!"
-msgstr "Não há nenhum formato suportado na área de transferência!"
+msgstr ""
 
 #: uglobals.rsuntitled
 msgid "Untitled"
@@ -762,13 +705,13 @@ msgstr ""
 
 #: uglobals.rswarning
 msgid "Warning!"
-msgstr "Aviso!"
+msgstr ""
 
 #: uglobals.rsyoumustoverr
 msgid "You must override MouseUp() method! Class name: "
-msgstr "Você deve substituir o método MouseUp()! Nome da classe: "
+msgstr ""
 
 #: uglobals.rsyoumustoverr2
 msgid "You must override MouseMove() method! Class name: "
-msgstr "Você deve substituir o método MouseMove()! Nome da classe: "
+msgstr ""
 

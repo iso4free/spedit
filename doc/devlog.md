@@ -226,3 +226,7 @@ DEV.LOG
 - [!] Fixed Frame change if frames has different sizes
 - [+] Created first public pre-alpha builds for Linux64/Linux32/Windows64/Windows32
       (links avaliable in our Discord - see readme.md)
+
+02.02.2023
+=
+- [!] Fixed preview - made as floating moveable panel inside main window

@@ -5,6 +5,7 @@ bin/x86_64-win64/**
 lib/**
 debug/**
 src/backup/**
+src/thirdparty/lib/**
 src/thirdparty/backup/**
 src/thirdparty/piskelinfo/backup/**
 *.mo

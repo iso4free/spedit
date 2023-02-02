@@ -77,7 +77,7 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="../bin/spedit-$(TargetCPU)-$(TargetOS)"/>
+            <Filename Value="../bin/$(TargetCPU)-$(TargetOS)/spedit"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -214,6 +214,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="spedit"/>
+      </Item>
+      <Item>
         <PackageName Value="mbColorLibLaz"/>
       </Item>
       <Item>
@@ -291,6 +294,10 @@
         <ComponentName Value="frmProjectProps"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="upreview.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
   </ProjectOptions>

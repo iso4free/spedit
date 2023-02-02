@@ -208,6 +208,10 @@ msgstr "Показати/приховати палітру"
 msgid "Paste"
 msgstr "Вставити"
 
+#: tfrmmain.actpreviewtoggle.caption
+msgid "Toggle preview"
+msgstr ""
+
 #: tfrmmain.actprojprops.caption
 msgctxt "tfrmmain.actprojprops.caption"
 msgid "Project properties"
@@ -348,11 +352,6 @@ msgid ""
 msgstr ""
 "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
-
-#: tfrmmain.framepreview.hint
-msgctxt "tfrmmain.framepreview.hint"
-msgid "Click to export PNG"
-msgstr "Клацніть для збереження PNG"
 
 #: tfrmmain.layersgroupbox.caption
 msgctxt "tfrmmain.layersgroupbox.caption"

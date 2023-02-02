@@ -1,10 +1,10 @@
 object frmMain: TfrmMain
-  Left = 528
-  Height = 737
-  Top = 0
+  Left = 529
+  Height = 733
+  Top = 4
   Width = 752
   AllowDropFiles = True
-  ClientHeight = 714
+  ClientHeight = 710
   ClientWidth = 752
   DoubleBuffered = True
   KeyPreview = True
@@ -14,13 +14,13 @@ object frmMain: TfrmMain
   OnDropFiles = FormDropFiles
   OnKeyUp = FormKeyUp
   ParentDoubleBuffered = False
-  SessionProperties = 'FormStyle;Position;WindowState;actLayersToggle.Checked;actToggleFullScreen.Checked;pnlFrames.Visible;pnlLayers.Visible;pnlTools.Visible'
+  SessionProperties = 'actLayersToggle.Checked;actToggleFullScreen.Checked;FormStyle;pnlFrames.Visible;pnlLayers.Visible;pnlTools.Visible;Position;WindowState;pnlPreview.Visible;pnlPreview.Top;pnlPreview.Left'
   LCLVersion = '2.2.4.0'
   WindowState = wsMaximized
   object StatusBar1: TStatusBar
     Left = 0
     Height = 21
-    Top = 693
+    Top = 689
     Width = 752
     Panels = <    
       item
@@ -42,26 +42,26 @@ object frmMain: TfrmMain
   end
   object pnlLayers: TPanel
     Left = 0
-    Height = 653
+    Height = 649
     Top = 40
     Width = 147
     Align = alLeft
-    ClientHeight = 653
+    ClientHeight = 649
     ClientWidth = 147
     TabOrder = 1
     object LayersGroupBox: TGroupBox
       Left = 1
-      Height = 383
+      Height = 379
       Top = 1
       Width = 145
       Align = alClient
       Caption = 'Layers'
-      ClientHeight = 364
+      ClientHeight = 360
       ClientWidth = 141
       TabOrder = 0
       object drwgrdLayers: TDrawGrid
         Left = 0
-        Height = 329
+        Height = 325
         Top = 35
         Width = 141
         Align = alClient
@@ -197,7 +197,7 @@ object frmMain: TfrmMain
     object drwgrdFrames: TDrawGrid
       Left = 1
       Height = 268
-      Top = 384
+      Top = 380
       Width = 145
       Align = alBottom
       AutoEdit = False
@@ -406,7 +406,7 @@ object frmMain: TfrmMain
   end
   object pnlTools: TFlowPanel
     Left = 729
-    Height = 653
+    Height = 649
     Top = 40
     Width = 23
     Align = alRight
@@ -629,13 +629,13 @@ object frmMain: TfrmMain
   end
   object Splitter1: TSplitter
     Left = 147
-    Height = 653
+    Height = 649
     Top = 40
     Width = 5
   end
   object Splitter2: TSplitter
     Left = 612
-    Height = 653
+    Height = 649
     Top = 40
     Width = 5
     Align = alRight
@@ -644,19 +644,19 @@ object frmMain: TfrmMain
   end
   object pnlPalette: TPanel
     Left = 617
-    Height = 653
+    Height = 649
     Top = 40
     Width = 112
     Align = alRight
     AutoSize = True
-    ClientHeight = 653
+    ClientHeight = 649
     ClientWidth = 112
     ParentBidiMode = False
     TabOrder = 6
     object pnlColors: TPanel
       Left = 1
       Height = 152
-      Top = 500
+      Top = 496
       Width = 110
       Align = alBottom
       AutoSize = True
@@ -680,7 +680,7 @@ object frmMain: TfrmMain
     object cbPalettePresets: TComboBox
       Left = 1
       Height = 31
-      Top = 119
+      Top = 18
       Width = 110
       Align = alTop
       ItemHeight = 0
@@ -693,7 +693,7 @@ object frmMain: TfrmMain
     object lbpPalettePresrts: TLabel
       Left = 1
       Height = 17
-      Top = 102
+      Top = 1
       Width = 110
       Align = alTop
       Caption = 'Standard presets'
@@ -702,7 +702,7 @@ object frmMain: TfrmMain
     object mbPaletteGrid: TmbColorPalette
       Left = 1
       Height = 134
-      Top = 272
+      Top = 171
       Width = 110
       Align = alTop
       HintFormat = 'RGB(%r, %g, %b)'#13'Hex: #%hex'
@@ -715,7 +715,7 @@ object frmMain: TfrmMain
     object mbColorPalettePreset: TmbColorPalette
       Left = 1
       Height = 122
-      Top = 150
+      Top = 49
       Width = 110
       Align = alTop
       HintFormat = 'RGB(%r, %g, %b)'#13'Hex: #%hex'
@@ -725,25 +725,10 @@ object frmMain: TfrmMain
       TabOrder = 3
       OnCellClick = mbColorPalettePresetCellClick
     end
-    object FramePreview: TImage
-      Left = 6
-      Height = 91
-      Hint = 'Click to export PNG'
-      Top = 6
-      Width = 100
-      Align = alTop
-      BorderSpacing.Around = 5
-      Constraints.MinHeight = 32
-      Constraints.MinWidth = 32
-      OnClick = FramePreviewClick
-      OnPaint = FramePreviewPaint
-      ParentShowHint = False
-      ShowHint = True
-    end
   end
   object pbFrameDraw: TPaintBox
     Left = 152
-    Height = 653
+    Height = 649
     Top = 40
     Width = 460
     Align = alClient
@@ -753,6 +738,99 @@ object frmMain: TfrmMain
     OnMouseWheelDown = pbFrameDrawMouseWheelDown
     OnMouseWheelUp = pbFrameDrawMouseWheelUp
     OnPaint = pbFrameDrawPaint
+  end
+  object pnlPreview: TJvMovablePanel
+    Left = 320
+    Height = 114
+    Top = 360
+    Width = 94
+    AutoSize = True
+    ClientHeight = 114
+    ClientWidth = 94
+    Constraints.MaxHeight = 500
+    Constraints.MaxWidth = 500
+    Constraints.MinHeight = 64
+    Constraints.MinWidth = 64
+    TabOrder = 7
+    object ScrollBox1: TScrollBox
+      AnchorSideLeft.Control = pnlPreview
+      AnchorSideTop.Control = SpeedButton1
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = pnlPreview
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = pnlPreview
+      AnchorSideBottom.Side = asrBottom
+      Left = 1
+      Height = 92
+      Top = 21
+      Width = 92
+      HorzScrollBar.Page = 90
+      VertScrollBar.Page = 90
+      Align = alCustom
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      ClientHeight = 90
+      ClientWidth = 90
+      TabOrder = 0
+      object FramePreview: TImage
+        AnchorSideLeft.Control = ScrollBox1
+        AnchorSideTop.Control = ScrollBox1
+        Left = 0
+        Height = 90
+        Top = 0
+        Width = 90
+        AutoSize = True
+        Center = True
+        OnClick = FramePreviewClick
+      end
+    end
+    object SpeedButton1: TSpeedButton
+      AnchorSideTop.Control = pnlPreview
+      AnchorSideRight.Control = pnlPreview
+      AnchorSideRight.Side = asrBottom
+      Left = 73
+      Height = 20
+      Top = 1
+      Width = 20
+      Anchors = [akTop, akRight]
+      AutoSize = True
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000006F0000002F000000000000
+        00000000000F0000007F0000000F000000000000000000000000000000000000
+        00000000000000000000000000000000003F000000FF000000EF0000002F0000
+        000F000000CF000000FF0000007F000000000000000000000000000000000000
+        0000000000000000000000000000000000000000009F000000FF000000EF0000
+        00CF000000FF000000CF0000000F000000000000000000000000000000000000
+        000000000000000000000000000000000000000000000000009F000000FF0000
+        00FF000000CF0000000F00000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000F000000CF000000FF0000
+        00FF000000EF0000002F00000000000000000000000000000000000000000000
+        00000000000000000000000000000000000F000000CF000000FF000000CF0000
+        009F000000FF000000EF0000002F000000000000000000000000000000000000
+        00000000000000000000000000000000002F000000FF000000CF0000000F0000
+        00000000009F000000FF0000006F000000000000000000000000000000000000
+        0000000000000000000000000000000000000000002F0000000F000000000000
+        0000000000000000003F00000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000
+      }
+      OnClick = SpeedButton1Click
+    end
   end
   object MainMenu1: TMainMenu
     Images = ButtonsImageList
@@ -900,6 +978,12 @@ object frmMain: TfrmMain
       end
       object MenuItem1: TMenuItem
         Action = actGridToggle
+      end
+      object Separator14: TMenuItem
+        Caption = '-'
+      end
+      object miTogglePreview: TMenuItem
+        Action = actPreviewToggle
       end
       object Separator4: TMenuItem
         Caption = '-'
@@ -1998,6 +2082,13 @@ object frmMain: TfrmMain
       Category = 'File'
       Caption = 'Open project'
       OnExecute = actOpenProjExecute
+    end
+    object actPreviewToggle: TAction
+      Category = 'View'
+      Caption = 'Toggle preview'
+      Checked = True
+      OnExecute = actPreviewToggleExecute
+      ShortCut = 118
     end
   end
   object BGRAImageList24x24: TBGRAImageList

@@ -187,6 +187,10 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
+#: tfrmmain.actpreviewtoggle.caption
+msgid "Toggle preview"
+msgstr ""
+
 #: tfrmmain.actprojprops.caption
 msgctxt "tfrmmain.actprojprops.caption"
 msgid "Project properties"
@@ -322,11 +326,6 @@ msgctxt "tfrmmain.fgcolor.hint"
 msgid ""
 "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-
-#: tfrmmain.framepreview.hint
-msgctxt "tfrmmain.framepreview.hint"
-msgid "Click to export PNG"
 msgstr ""
 
 #: tfrmmain.layersgroupbox.caption

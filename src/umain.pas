@@ -31,7 +31,7 @@ interface
 
 uses
   {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
-  LResources, uglobals, Classes, SysUtils, Forms,
+  LResources, uglobals, JvMovableBevel, Classes, SysUtils, Forms,
   Controls, Graphics, Types, Dialogs, Menus, ComCtrls, ExtCtrls, Buttons,
   ActnList, Grids, JSONPropStorage, ExtDlgs, StdCtrls, StdActns, LCLIntf,
   LCLType, Spin, HexaColorPicker, mbColorPalette, BGRAImageList,
@@ -55,6 +55,7 @@ type
     actFlipH: TAction;
     actFlipV: TAction;
     actImportPiskel: TAction;
+    actPreviewToggle: TAction;
     actOpenProj: TAction;
     actSaveProj: TAction;
     actNewProj: TAction;
@@ -104,9 +105,11 @@ type
     actUndo: TEditUndo;
     FgColor: TBGRAGraphicControl;
     actExit: TFileExit;
-    FramePreview: TImage;
     HexaColorPicker1: THexaColorPicker;
+    FramePreview: TImage;
     JSONPropStorage1: TJSONPropStorage;
+    miTogglePreview: TMenuItem;
+    pnlPreview: TJvMovablePanel;
     lbpPalettePresrts: TLabel;
     lblPenSize: TLabel;
     LayersFlowPanel: TFlowPanel;
@@ -204,6 +207,7 @@ type
     sbPen: TSpeedButton;
     sbPipette: TSpeedButton;
     sbRect: TSpeedButton;
+    ScrollBox1: TScrollBox;
     sdExportFrameSaveDialog: TSaveDialog;
     SelectDirectoryDialog1: TSelectDirectoryDialog;
     Separator1: TMenuItem;
@@ -211,6 +215,7 @@ type
     Separator11: TMenuItem;
     Separator12: TMenuItem;
     Separator13: TMenuItem;
+    Separator14: TMenuItem;
     Separator2: TMenuItem;
     Separator3: TMenuItem;
     Separator4: TMenuItem;
@@ -224,6 +229,7 @@ type
     bbtnGridToggle: TBitBtn;
     sbMove: TSpeedButton;
     drwgrdFrames: TDrawGrid;
+    SpeedButton1: TSpeedButton;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     StatusBar1: TStatusBar;
@@ -256,6 +262,7 @@ type
     procedure actPaletteSaveExecute(Sender: TObject);
     procedure actPaletteToggleExecute(Sender: TObject);
     procedure actPasteExecute(Sender: TObject);
+    procedure actPreviewToggleExecute(Sender: TObject);
     procedure actProjPropsExecute(Sender: TObject);
     procedure actRedoExecute(Sender: TObject);
     procedure actReferenceToggleExecute(Sender: TObject);
@@ -298,7 +305,6 @@ type
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
     procedure FormKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure FramePreviewClick(Sender: TObject);
-    procedure FramePreviewPaint(Sender: TObject);
     procedure HexaColorPicker1MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: integer);
     procedure lwFramesColumnClick(Sender: TObject; Column: TListColumn);
@@ -323,6 +329,7 @@ type
     procedure sbPenClick(Sender: TObject);
     procedure drwgrdFramesDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
+    procedure SpeedButton1Click(Sender: TObject);
     procedure trkbrPenSizeChange(Sender: TObject);
   private
     fDrawGridMode: TDrawGridMode;
@@ -418,8 +425,8 @@ begin
   if frmResize.ModalResult = mrOk then
   begin
     //todo: change frame and grid sizes
-{    FrameGrid.Resize(frmResize.spnWidth.Value, frmResize.spnHeight.Value,
-      frmResize.cbStretch.Checked);}
+   ProjectInfo.ActiveFrame.Resize(frmResize.spnWidth.Value, frmResize.spnHeight.Value,
+      frmResize.cbStretch.Checked);
     pbFrameDraw.Invalidate;
   end;
 end;
@@ -803,6 +810,12 @@ begin
   LayersChange;
   pbFrameDraw.Invalidate;
   FramePreview.Invalidate;
+end;
+
+procedure TfrmMain.actPreviewToggleExecute(Sender: TObject);
+begin
+ pnlPreview.Visible:=not pnlPreview.Visible;
+ actPreviewToggle.Checked:=pnlPreview.Visible;
 end;
 
 procedure TfrmMain.actProjPropsExecute(Sender: TObject);
@@ -1300,6 +1313,10 @@ begin
   if Shift = [] then
   begin
     case Key of
+      VK_F7: begin
+         //toggle preview
+        actPreviewToggleExecute(Sender);
+      end;
       VK_P: begin
         //P key Pen tool
         sbPen.Click;
@@ -1359,18 +1376,6 @@ end;
 procedure TfrmMain.FramePreviewClick(Sender: TObject);
 begin
   actFrameExportPNGExecute(Sender);
-end;
-
-procedure TfrmMain.FramePreviewPaint(Sender: TObject);
-begin
-  if Assigned(ProjectInfo) then
-   if (ProjectInfo.FramesCount>0) and Assigned(ProjectInfo.ActiveFrame) then begin
-    ProjectInfo.ActiveFrame.RenderPicture;
-    FramePreview.Picture.Bitmap.Canvas.Brush.Color:=clDefault;
-    FramePreview.Picture.Bitmap.Canvas.FillRect(FramePreview.ClientRect);
-
-    ProjectInfo.ActiveFrame.Preview.Draw(FramePreview.Picture.Bitmap.Canvas,FramePreview.ClientRect);
-  end;
 end;
 
 procedure TfrmMain.FramesChange;
@@ -1630,6 +1635,7 @@ begin
   if Assigned(FrameGrid) then
   begin
     FrameGrid.RenderAndDraw(pbFrameDraw.Canvas);
+    FramePreview.Picture.Bitmap.Assign(ProjectInfo.ActiveFrame.Preview);
   end;
   StatusBar1.Panels[2].Text := 'w=' + IntToStr(pbFrameDraw.ClientWidth) +
     '/h=' + IntToStr(pbFrameDraw.ClientHeight);
@@ -1660,6 +1666,11 @@ begin
   ToolOptions.Color := aColor;
   Palette.AddColor(aColor);
   mbPaletteGrid.Invalidate;
+end;
+
+procedure TfrmMain.SpeedButton1Click(Sender: TObject);
+begin
+  actPreviewToggleExecute(Sender);
 end;
 
 procedure TfrmMain.drwgrdFramesDrawCell(Sender: TObject; aCol, aRow: Integer;

@@ -15,12 +15,12 @@ object frmFrameDlg: TfrmFrameDlg
   LCLVersion = '2.2.4.0'
   object Panel1: TPanel
     Left = 0
-    Height = 40
-    Top = 158
+    Height = 44
+    Top = 154
     Width = 286
     Align = alBottom
     AutoSize = True
-    ClientHeight = 40
+    ClientHeight = 44
     ClientWidth = 286
     TabOrder = 0
     object BitBtnOk: TBitBtn
@@ -28,9 +28,9 @@ object frmFrameDlg: TfrmFrameDlg
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
       Left = 6
-      Height = 28
+      Height = 32
       Top = 6
-      Width = 51
+      Width = 55
       AutoSize = True
       BorderSpacing.Around = 5
       Default = True
@@ -45,9 +45,9 @@ object frmFrameDlg: TfrmFrameDlg
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       AnchorSideTop.Side = asrCenter
-      Left = 62
+      Left = 66
       Height = 30
-      Top = 5
+      Top = 7
       Width = 107
       AutoSize = True
       Cancel = True
@@ -60,12 +60,12 @@ object frmFrameDlg: TfrmFrameDlg
   object Panel2: TPanel
     AnchorSideTop.Side = asrBottom
     Left = 0
-    Height = 158
+    Height = 154
     Top = 0
     Width = 286
     Align = alClient
     AutoSize = True
-    ClientHeight = 158
+    ClientHeight = 154
     ClientWidth = 286
     TabOrder = 1
     object lblFrameName: TLabel
@@ -98,7 +98,7 @@ object frmFrameDlg: TfrmFrameDlg
       AnchorSideTop.Side = asrCenter
       Left = 6
       Height = 17
-      Top = 38
+      Top = 37
       Width = 81
       Anchors = [akLeft]
       Caption = 'Frame width'
@@ -124,7 +124,7 @@ object frmFrameDlg: TfrmFrameDlg
       AnchorSideTop.Side = asrCenter
       Left = 6
       Height = 17
-      Top = 73
+      Top = 72
       Width = 86
       Caption = 'Frame height'
       ParentColor = False
@@ -135,7 +135,7 @@ object frmFrameDlg: TfrmFrameDlg
       AnchorSideTop.Side = asrBottom
       Left = 127
       Height = 27
-      Top = 68
+      Top = 67
       Width = 93
       BorderSpacing.Top = 13
       MaxValue = 1024
@@ -149,7 +149,7 @@ object frmFrameDlg: TfrmFrameDlg
       AnchorSideTop.Side = asrBottom
       Left = 6
       Height = 22
-      Top = 132
+      Top = 131
       Width = 121
       BorderSpacing.Top = 5
       Caption = 'Copy all layers'
@@ -161,7 +161,7 @@ object frmFrameDlg: TfrmFrameDlg
       AnchorSideTop.Side = asrCenter
       Left = 6
       Height = 17
-      Top = 105
+      Top = 104
       Width = 85
       Caption = 'Min. cell size'
       ParentColor = False
@@ -172,13 +172,13 @@ object frmFrameDlg: TfrmFrameDlg
       AnchorSideTop.Side = asrBottom
       Left = 127
       Height = 27
-      Top = 100
+      Top = 99
       Width = 50
       BorderSpacing.Top = 5
       MaxValue = 20
-      MinValue = 4
+      MinValue = 1
       TabOrder = 4
-      Value = 4
+      Value = 1
     end
   end
 end
