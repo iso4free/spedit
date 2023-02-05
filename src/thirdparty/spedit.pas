@@ -8,13 +8,14 @@ unit spedit;
 interface
 
 uses
-  JvMovableBevel, LazarusPackageIntf;
+  JvMovableBevel, ColorPalette, HexaColorPicker, lazspedit, mbColorPalette, 
+  LazarusPackageIntf;
 
 implementation
 
 procedure Register;
 begin
-  RegisterUnit('JvMovableBevel', @JvMovableBevel.Register);
+  RegisterUnit('lazspedit', @lazspedit.Register);
 end;
 
 initialization

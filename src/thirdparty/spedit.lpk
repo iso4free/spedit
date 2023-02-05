@@ -6,14 +6,30 @@
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
-        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)/"/>
+        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
     <Files>
       <Item>
         <Filename Value="jvmovablebevel.pas"/>
-        <HasRegisterProc Value="True"/>
         <UnitName Value="JvMovableBevel"/>
+      </Item>
+      <Item>
+        <Filename Value="colorpalette.pas"/>
+        <UnitName Value="ColorPalette"/>
+      </Item>
+      <Item>
+        <Filename Value="HexaColorPicker.pas"/>
+        <UnitName Value="HexaColorPicker"/>
+      </Item>
+      <Item>
+        <Filename Value="lazspedit.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="lazspedit"/>
+      </Item>
+      <Item>
+        <Filename Value="mbColorPalette.pas"/>
+        <UnitName Value="mbColorPalette"/>
       </Item>
     </Files>
     <RequiredPkgs>

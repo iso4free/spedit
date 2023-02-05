@@ -230,3 +230,12 @@ DEV.LOG
 02.02.2023
 =
 - [!] Fixed preview - made as floating moveable panel inside main window
+
+05.02.2023
+=
+- [!] Fixed screen refresh after frame resize
+- [!] Fixed some project save/load bugs
+- [!] Some other internal bugs fixed
+- [*] Docs updated
+- [+] Created single own package SPEDit with external components from other packages (see src/thirdparty)
+- [+] Added few hotkeys for create, save and open project

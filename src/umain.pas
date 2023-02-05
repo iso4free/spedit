@@ -1390,7 +1390,8 @@ end;
 
 procedure TfrmMain.FramesChange;
 begin
-  if Assigned(ProjectInfo) then begin
+  if Assigned(ProjectInfo) then
+    if ProjectInfo.FramesCount<>0 then begin
      drwgrdFrames.RowCount:=ProjectInfo.FramesCount;
      drwgrdFrames.Invalidate;
   end;
@@ -1660,7 +1661,8 @@ end;
 
 procedure TfrmMain.LayersChange;
 begin
-   if not Assigned(ProjectInfo.ActiveFrame) then Exit;
+   if not Assigned(ProjectInfo) then Exit;
+   if ProjectInfo.FramesCount=0 then Exit;
    ProjectInfo.ActiveFrame.ActiveLayer.Visible := True;
    drwgrdLayers.RowCount := ProjectInfo.ActiveFrame.LayersList.Count + 1;
    drwgrdLayers.Invalidate;

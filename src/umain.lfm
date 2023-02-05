@@ -2071,17 +2071,20 @@ object frmMain: TfrmMain
       Caption = 'New Sprite project'
       ImageIndex = 9
       OnExecute = actNewProjExecute
+      ShortCut = 16462
     end
     object actSaveProj: TAction
       Category = 'File'
       Caption = 'Save project'
       ImageIndex = 39
       OnExecute = actSaveProjExecute
+      ShortCut = 16467
     end
     object actOpenProj: TAction
       Category = 'File'
       Caption = 'Open project'
       OnExecute = actOpenProjExecute
+      ShortCut = 16463
     end
     object actPreviewToggle: TAction
       Category = 'View'
