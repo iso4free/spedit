@@ -384,6 +384,9 @@ type
    //create new frame from image file
    procedure CreateFromImage(aFile : TFileName);
 
+   //reindex frames as names in list
+   procedure Reindex;
+
    //return all frames in JSON array
    function ToJSON : String;
    //create frames from JSON data
@@ -427,6 +430,8 @@ type
 
    constructor Create;
    destructor Destroy; override;
+
+   procedure Clear;
 
    //path and file to save project
    property Filename : TFilename read FFilename write SetFilename;
@@ -850,6 +855,7 @@ begin
    {$ENDIF}
    Self.AddOrSetData(aFrame.FrameName,aFrame);
    FNames.Add(aFrame.FrameName);
+   aFrame.Index:=Names.IndexOf(aFrame.FrameName);
    aFrame.RenderPicture;
    ProjectInfo.ActiveFrame:=aFrame;
    ProjectInfo.FFramesCount:=FNames.Count;
@@ -913,6 +919,14 @@ begin
   Result:=FNames.Count;
 end;
 
+procedure TFrames.Reindex;
+var
+    i : Integer;
+begin
+   if Names.Count=0 then Exit;
+   for i:=0 to Names.Count-1 do Self[Names.Strings[i]].Index:=i;
+end;
+
 function TFrames.ToJSON: String;
 var
     aJson : TJsonNode;
@@ -924,16 +938,10 @@ begin
    for i:=0 to Count-1 do begin
      if FNames[i]<>'' then
         aJson.Force(IntToStr(i)).Value:=Self[FNames.Strings[i]].ToJSON;
-     {$IFDEF DEBUG}
-      DebugLn('In: TFrames.ToJSON(): '+Self[FNames.Strings[i]].ToJSON);
-     {$ENDIF}
    end;
  end;
 
  Result:=aJson.Value;
-      {$IFDEF DEBUG}
-      DebugLn('In: TFrames.ToJSON() all frames:'+Result);
-     {$ENDIF}
  FreeAndNil(aJson);
 end;
 
@@ -941,22 +949,27 @@ end;
 
 constructor TSPProjectInfo.Create;
 begin
-  FFilename:='';
+  FFrames:=TFrames.Create;
+  FActions:=TSPActions.Create;
+  Clear;
+end;
+
+procedure TSPProjectInfo.Clear;
+begin
+ FFilename:='';
   FTitle:=rsUntitled+'*';
   FDescription:='';
-  {$IFDEF UNIX}
-  FAuthor:=sysutils.GetEnvironmentVariable('USER');
-  {$ELSE}   //check in windows
+  {$IFDEF WINDOWS}
   FAuthor:=sysutils.GetEnvironmentVariable('USERNAME');
+  {$ELSE}
+  FAuthor:=sysutils.GetEnvironmentVariable('USER');
   {$ENDIF}
   //frames
-  FFrames:=TFrames.Create;
-  FActiveFrame:=nil;
+  Frames.Clear;
   FFramesCount:=0;
   //actions
-  FActions:=TSPActions.Create;
+  FActions.Clear;
   FActionsCount:=0;
-
 end;
 
 destructor TSPProjectInfo.Destroy;
@@ -997,12 +1010,11 @@ begin
    fh:=aJSON.Force('frames/'+IntToStr(i)+'/height').AsInteger;
    Frames.Add(TSPFrame.Create(fname,fw,fh));
    Frames[fname].RestoreFromJSON(aJSON.Force('frames/'+IntToStr(i)).AsJson);
+   Frames[fname].RenderPicture;
   end;
   ActiveFrame:=Frames[aJSON.Force('project/active frame').AsString];
  end;
- {$IFDEF DEBUG}
- DebugLn('In: TSPProjectInfo.Load() after load frames: '+Frames.Names.Text);
- {$ENDIF}
+ Frames.Reindex;
  FChanged:=False;
  FreeAndNil(aJSON);
 end;
@@ -1365,10 +1377,12 @@ begin
  FHeight:=h;
  FPreview.SetSize(w,h);
  DrawLayer.Drawable.SetSize(w,h);
+ ClearBitmap(DrawLayer.Drawable);
  if LayersList.Count=0 then Exit;
  for i:=0 to LayersList.Count-1 do begin
   Layers[LayersList.Strings[i]].Resize(w,h,Stretched);
  end;
+ RenderPicture;
 end;
 
 function TSPFrame.AddLayer(LayerName: String): Boolean;

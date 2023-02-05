@@ -335,6 +335,7 @@ type
     fDrawGridMode: TDrawGridMode;
     dx, dy: integer;             //offset to move grid
     startx, starty: integer;     //start position to move
+    fCheckers : TBGRABitmap;
     procedure LayersChange;
     procedure FramesChange;
     procedure LoadPresets(aDir: string);
@@ -418,16 +419,17 @@ begin
 end;
 
 procedure TfrmMain.actFrameResizeExecute(Sender: TObject);
+var
+  canSelect : Boolean;
 begin
   if not Assigned(FrameGrid) then Exit;
   frmResize.CheckSettings;
   frmResize.ShowModal;
   if frmResize.ModalResult = mrOk then
   begin
-    //todo: change frame and grid sizes
-   ProjectInfo.ActiveFrame.Resize(frmResize.spnWidth.Value, frmResize.spnHeight.Value,
-      frmResize.cbStretch.Checked);
-    pbFrameDraw.Invalidate;
+    ProjectInfo.ActiveFrame.Resize(frmResize.spnWidth.Value, frmResize.spnHeight.Value,
+       frmResize.cbStretch.Checked);
+    drwgrdFramesSelectCell(Sender,drwgrdFrames.Col,drwgrdFrames.Row,canSelect);
   end;
 end;
 
@@ -694,24 +696,27 @@ begin
 end;
 
 procedure TfrmMain.actOpenProjExecute(Sender: TObject);
+var
+  aframename : String;
+  canselect : Boolean;
+  idx : Integer;
 begin
   if not Assigned(ProjectInfo) then ProjectInfo := TSPProjectInfo.Create;
 
   dlgOpenProj.InitialDir := INI.ReadString('PATH', 'EXPORT', GetUserDir());
   if dlgOpenProj.Execute then
   begin
+    ProjectInfo.Clear;
     ProjectInfo.Filename := dlgOpenProj.FileName;
     ProjectInfo.Load;
-    Caption:=APP_NAME+' - '+ProjectInfo.Title;
-    actProjPropsExecute(Sender);
-    //todo: read which frame was last active
-    if not Assigned(FrameGrid) then
-    begin
-      FrameGrid := TFrameGrid.Create();
-    end;
-    //todo: (change) set active frame ater project loaded
-    LayersChange;
-    FramesChange;
+    aframename:=ProjectInfo.ActiveFrame.FrameName;
+    idx:=ProjectInfo.ActiveFrame.Index;
+    Caption:=APP_NAME+' - '+ProjectInfo.Title+'/'+rsFrame+': '+aframename;
+
+    drwgrdFrames.RowCount:=ProjectInfo.FramesCount;
+    ProjectInfo.ActiveFrame:=ProjectInfo.Frames[aframename];
+
+    drwgrdFramesSelectCell(Sender,0,idx,canselect);
   end;
 end;
 
@@ -880,10 +885,13 @@ begin
     sdExportFrameSaveDialog.InitialDir := INI.ReadString('PATH', 'EXPORT', GetUserDir());
     sdExportFrameSaveDialog.DefaultExt := '.json';
     sdExportFrameSaveDialog.FileName := ProjectInfo.Title;
-    if sdExportFrameSaveDialog.Execute then
+    if ProjectInfo.Filename='' then
+    if sdExportFrameSaveDialog.Execute then begin
       ProjectInfo.Filename := sdExportFrameSaveDialog.FileName;
-  end;
-  ProjectInfo.Save;
+      ProjectInfo.Save;
+    end;
+  end
+  else ProjectInfo.Save;
 end;
 
 procedure TfrmMain.actSelectAllExecute(Sender: TObject);
@@ -1251,12 +1259,14 @@ begin
   end;
   CreateCursors;
   pbFrameDraw.Cursor := 1;
+  fCheckers:=TBGRABitmap.Create;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   if cbPalettePresets.Items.Count > 0 then
     INI.WriteString('INTERFACE', 'PRESET', cbPalettePresets.Text);
+  FreeAndNil(fCheckers);
   JSONPropStorage1.Save;
   FreeAndNil(DrawTool);
   if Assigned(frmAbout) then FreeAndNil(frmAbout);
@@ -1429,10 +1439,14 @@ begin
 end;
 
 procedure TfrmMain.miSaveProjectAsClick(Sender: TObject);
+var
+  oldname : String;
 begin
   if not Assigned(ProjectInfo) then Exit;
+  oldname:=ProjectInfo.Filename;
   ProjectInfo.Filename := '';
   actSaveProjExecute(Sender);
+  if ProjectInfo.Filename='' then ProjectInfo.Filename:=oldname;
 end;
 
 procedure TfrmMain.miUndoClick(Sender: TObject);
@@ -1635,7 +1649,10 @@ begin
   if Assigned(FrameGrid) then
   begin
     FrameGrid.RenderAndDraw(pbFrameDraw.Canvas);
-    FramePreview.Picture.Bitmap.Assign(ProjectInfo.ActiveFrame.Preview);
+    fCheckers.DrawCheckers(Rect(0,0,fCheckers.Width-1,fCheckers.Height-1), $BFBFBF,
+                       $FFFFFF);
+    fCheckers.PutImage(0,0,ProjectInfo.ActiveFrame.Preview,dmSetExceptTransparent);
+    FramePreview.Picture.Bitmap.Assign(fCheckers);
   end;
   StatusBar1.Panels[2].Text := 'w=' + IntToStr(pbFrameDraw.ClientWidth) +
     '/h=' + IntToStr(pbFrameDraw.ClientHeight);
@@ -1643,12 +1660,12 @@ end;
 
 procedure TfrmMain.LayersChange;
 begin
-  if not Assigned(ProjectInfo.ActiveFrame) then Exit;
-  ProjectInfo.ActiveFrame.ActiveLayer.Visible := True;
-  drwgrdLayers.RowCount := ProjectInfo.ActiveFrame.LayersList.Count + 1;
-  drwgrdLayers.Invalidate;
-  pbFrameDraw.Invalidate;
-  FramePreview.Invalidate;
+   if not Assigned(ProjectInfo.ActiveFrame) then Exit;
+   ProjectInfo.ActiveFrame.ActiveLayer.Visible := True;
+   drwgrdLayers.RowCount := ProjectInfo.ActiveFrame.LayersList.Count + 1;
+   drwgrdLayers.Invalidate;
+   pbFrameDraw.Invalidate;
+   FramePreview.Invalidate;
 end;
 
 procedure TfrmMain.SetSelectedColor(const Button: TMouseButton; aColor: TBGRAPixel);
@@ -1706,13 +1723,15 @@ procedure TfrmMain.drwgrdFramesSelectCell(Sender: TObject; aCol, aRow: Integer;
   var CanSelect: Boolean);
 begin
   if not Assigned(ProjectInfo) then Exit;
+
   ProjectInfo.ActiveFrame:=ProjectInfo.Frames[ProjectInfo.Frames.Names.Strings[aRow]];
   FreeAndNil(FrameGrid);
   FrameGrid:=TFrameGrid.Create(ProjectInfo.ActiveFrame.Width,
                                ProjectInfo.ActiveFrame.Height);
-  drwgrdFrames.Invalidate;
-  drwgrdLayers.Invalidate;
-  pbFrameDraw.Invalidate;
+  fCheckers.SetSize(ProjectInfo.ActiveFrame.Width,
+                               ProjectInfo.ActiveFrame.Height);
+  LayersChange;
+  FramesChange;
 end;
 
 procedure TfrmMain.LoadPresets(aDir: string);

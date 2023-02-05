@@ -37,7 +37,7 @@ uses
   LazLogger,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, umain, udraw, uglobals, uabout, ureferense,
+  Forms, umain, udraw, uabout, ureferense,
   uframedlg,  sysutils, usettings, uresizedlg, unamedlg, uprojprops;
 
 {$R *.res}
