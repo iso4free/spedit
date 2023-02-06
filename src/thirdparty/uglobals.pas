@@ -335,7 +335,7 @@ type
     fFrameGridSize : Word;   //current grid size
     fFrameWidth,
     fFrameHeight   : Integer;   //frame size in pixels
-    fFrameZoom     : Integer;//zoom coeff for drawing grid (0 for normal size)
+    fFrameZoom     : Integer;//zoom koeff for drawing grid (0 for normal size)
     fRect          : TRect;  //grid area on canvas
     fShowGrid      : Boolean;//if true grid will be draw if possible
     fOffset        : TPoint; //offset to draw frame on canvas
@@ -352,7 +352,6 @@ type
     constructor Create(aW: Integer = 32; aH : Integer = 32; aSize : Word = 4);
     destructor Destroy; override;
 
-    function HasCoords(aPoint : TPoint) : Boolean; //check if frame has point
     procedure RenderAndDraw(Canvas : TCanvas);  //draw background and all layers data to canvas
     property ShowGrid : Boolean read fShowGrid write fShowGrid;      //draw grid
     property FrameZoom : Integer read fFrameZoom write SetFrameZoom; //scale index
@@ -1521,17 +1520,17 @@ function TFrameGrid.Coords(x, y: Integer): TPoint;
 var posx,posy : Integer; //relative grid coordinates
 begin
   Result := Point(-1,-1);
-  if fRect.Contains(Point(x,y)) then begin
+  //if fRect.Contains(Point(x,y)) then begin
      posx:=x-fOffset.X;
      posy:=y-fOffset.Y;
      Result.X:= posx div (fFrameGridSize+fFrameZoom);
-     Result.Y:= (posy+1) div (fFrameGridSize+fFrameZoom)+1;
-  end;
+     Result.Y:= posy div (fFrameGridSize+fFrameZoom);
+ // end;
 end;
 
 function TFrameGrid.PixelPos(x, y: Integer): Integer;
 begin
-    if ((x<0) or (y<0)) then Result:=-1 else
+    if ((x<-1) or (y<-1)) then Result:=-1 else
     Result := y*fFrameWidth+x;
 end;
 
@@ -1545,7 +1544,7 @@ end;
 procedure TFrameGrid.SetCheckersSize(AValue: Byte);
 begin
   if FCheckersSize=AValue then Exit;
-  if (AValue>0) and (AValue<255) then FCheckersSize:=AValue;
+  if (AValue>0) and (AValue<fFrameGridSize) then FCheckersSize:=AValue;
 end;
 
 procedure TFrameGrid.CalcGridRect;
@@ -1581,11 +1580,6 @@ begin
   FreeAndNil(fBuffer);
   FreeAndNil(FCellCursor);
   inherited Destroy;
-end;
-
-function TFrameGrid.HasCoords(aPoint: TPoint): Boolean;
-begin
-  result := fRect.Contains(aPoint);
 end;
 
 procedure TFrameGrid.RenderAndDraw(Canvas: TCanvas);

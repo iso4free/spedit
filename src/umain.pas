@@ -1540,8 +1540,6 @@ begin
           ShowMessage(Format(rsLayerSIsLock,
             [ProjectInfo.ActiveFrame.ActiveLayer.LayerName]));
         end;
-        if (FrameGrid.HasCoords(Point(x, y))) then
-        begin
           fDrawGridMode := dgmDraw;
           p := FrameGrid.Coords(x, y);
           ToolOptions.PenSize := trkbrPenSize.Value;
@@ -1550,7 +1548,6 @@ begin
           else if Button = mbRight then
             DrawTool.StartDraw(p.X, p.Y, Shift, Button, spclBackColor);
         end;
-      end;
 
       mbMiddle: begin   //start grid drag
         fDrawGridMode := dgmMove;
@@ -1583,7 +1580,7 @@ begin
   end;
   if fDrawGridMode = dgmDraw then
   begin //draw if layer not locked
-    if Assigned(DrawTool) and (FrameGrid.HasCoords(Point(X, Y))) then
+    if Assigned(DrawTool) then
     begin
       if ProjectInfo.ActiveFrame.ActiveLayer.Locked then Exit;
       p := FrameGrid.Coords(X, Y);
