@@ -73,7 +73,7 @@
           </Other>
         </CompilerOptions>
       </Item>
-      <Item Name="Release">
+      <Item Name="linux-x64">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -86,6 +86,9 @@
           </SearchPaths>
           <CodeGeneration>
             <SmartLinkUnit Value="True"/>
+            <TargetProcessor Value="ATHLON64"/>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="linux"/>
             <Optimizations>
               <OptimizationLevel Value="3"/>
             </Optimizations>
@@ -104,7 +107,7 @@
           </Linking>
         </CompilerOptions>
       </Item>
-      <Item Name="win64">
+      <Item Name="windows-x64">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
@@ -138,7 +141,7 @@
           </Linking>
         </CompilerOptions>
       </Item>
-      <Item Name="win32">
+      <Item Name="windows-x32">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>

@@ -222,6 +222,7 @@ type
   TSPFrame = class
    private
     fActiveLayerName: String;
+    FBackgroundFrame: TSPFrame;
     FCount : Byte;
     fFrameName: String;
     FHeight: Integer;
@@ -231,13 +232,16 @@ type
     fLayers : TLayers;
     fModifiead: Boolean;
     fModified: Boolean;
+    FUseOnionSkin: Boolean;
     FWidth: Integer;
     FPreview : TBGRABitmap;
     fUndo : TSPUndoRedoManager;
+    procedure SetBackgroundFrame(AValue: TSPFrame);
     procedure SetIndex(AValue: Integer);
     procedure SetActiveLayer(aLayer : TSPLayer);
     procedure RestoreLayerFromJSON(aJSONData : String);
     function  GetActiveLayer : TSPLayer;
+    procedure SetUseOnionSkin(AValue: Boolean);
    public
     constructor Create(aName : String; w : Integer; h : integer);
     procedure RestoreFromJSON(aJSONData : String);
@@ -262,6 +266,8 @@ type
     property IsMainLayerActive : Boolean read FIsMainLayerActive;
     procedure RenderPicture; //create preview with all layers
     procedure ExportPNG(aFile : TFileName); //export frame to PNG file
+    property UseOnionSkin : Boolean read FUseOnionSkin write SetUseOnionSkin; //used for draw animations - true for half-transparent background
+    property BackgroundFrame : TSPFrame read FBackgroundFrame write SetBackgroundFrame; //link for frame for 'onion skin' - nil if UseOnionSkin=false
   end;
 
   //used in TAction for set mirror kind if mirrored
@@ -377,6 +383,8 @@ type
    constructor Create;
    destructor Destroy; override;
 
+   procedure Clear;
+
    //add new frame to mappped array
    procedure Add(const aFrame : TSPFrame);
 
@@ -466,6 +474,8 @@ type
    procedure Save;
    //load project from JSON-based file
    procedure Load;
+   //import piskel file
+   procedure ImportPiskel(aPiskelFile : TFileName);
   end;
 
 var
@@ -512,10 +522,9 @@ var
   function Base64ToStream(const ABase64: String; var AStream: TMemoryStream): Boolean;
   procedure ReloadPresets(aDirectory: String);  //loads palette presets from selected dir
 
-
 implementation
 
-uses udraw, upiskelformat;
+uses udraw;
 
 
 //for image encode/decode BASE64
@@ -813,6 +822,7 @@ begin
   FreeAndNil(tmp);
 end;
 
+
 { TAction }
 
 procedure TAction.SetActionName(AValue: String);
@@ -852,12 +862,19 @@ begin
    {$IFDEF DEBUG}
    DebugLn('In: TFrames.Add() Frame JSON:'+LineEnding+aFrame.ToJSON);
    {$ENDIF}
-   Self.AddOrSetData(aFrame.FrameName,aFrame);
+   Self[aFrame.FrameName]:=aFrame;
    FNames.Add(aFrame.FrameName);
    aFrame.Index:=Names.IndexOf(aFrame.FrameName);
    aFrame.RenderPicture;
    ProjectInfo.ActiveFrame:=aFrame;
    ProjectInfo.FFramesCount:=FNames.Count;
+end;
+
+procedure TFrames.Clear;
+begin
+  FNames.Clear;
+  FCount:=0;
+ inherited Clear;
 end;
 
 procedure TFrames.CreateFromImage(aFile: TFileName);
@@ -1095,6 +1112,67 @@ begin
  Result:=Frames[FActiveFrameName];
 end;
 
+procedure TSPProjectInfo.ImportPiskel(aPiskelFile: TFileName);
+var
+    aData : TJsonNode;
+    alayers : TJsonNode;
+    aname , abase64: String;
+    aframename,
+    alayername : String;
+    aw,ah : Integer;
+    aframescnt,
+    alayerscnt , i, j: Integer;
+    arect : TRect; //for actual selected part of image to copy from layer
+    atmpimg : TSPLayer; //for copy part of each frame from layer and paste actual frame/layer
+begin
+ aData:=TJsonNode.Create;
+ aData.LoadFromFile(aPiskelFile);
+ if not aData.Exists('piskel') then begin
+  ShowMessage('Not a piskel file!');
+  FreeAndNil(aData);
+  Exit;
+ end;
+ aname:=aData.Force('piskel/name').AsString;
+ aw := aData.Force('piskel/width').AsInteger;
+ ah := aData.Force('piskel/height').AsInteger;
+ alayers:=aData.Force('piskel/layers').AsArray;
+ for i:=0 to alayers.Count-1 do
+ alayers.Force(IntToStr(i)).AsJson:=alayers.Force(IntToStr(i)).AsString;
+ //aData.SaveToFile('modified.json');
+ //in piskel file layer contains all frames placed horizomtally
+ //we need copy part of each layer to actual frame
+
+ alayerscnt:=alayers.Count;
+ aframescnt := aData.Force('piskel/layers/0/frameCount').AsInteger;
+ atmpimg:=TSPLayer.Create('temp piskel layer',0,0);
+ //create frame
+ for i:=0 to aframescnt-1 do begin
+  aframename:=aname+'/'+IntToStr(i);
+  Frames.Add(TSPFrame.Create(aframename,aw,ah));
+  //then add layers
+  for j:=0 to alayerscnt-1 do begin
+   abase64:=alayers.Force(IntToStr(j)+'/chunks/0/base64PNG').AsString;
+   Delete(abase64,1,Length('data:image/png;base64,'));
+   atmpimg.RestoreFromString(abase64);
+    //if first layer, just copy frame image from src layer
+    alayername:=aframename;
+    if j>0 then begin
+     alayername:=aname+'/'+IntToStr(j);
+     Frames[aframename].AddLayer(alayername);
+    end;
+     arect.Left:=aw*i;
+     arect.Right:=aw*i+aw;
+     arect.Top:=0;
+     arect.Bottom:=ah;
+     Frames[aframename].Layers[alayername].Drawable.PutImagePart(0,0,atmpimg.Drawable,arect,dmSetExceptTransparent);
+  end;
+
+
+ end;
+ FreeAndNil(atmpimg);
+ FreeAndNil(aData);
+end;
+
 { TPalettePreset }
 
 constructor TPalettePreset.Create(aFilename: TFilename);
@@ -1209,6 +1287,12 @@ begin
   FIndex:=AValue;
 end;
 
+procedure TSPFrame.SetUseOnionSkin(AValue: Boolean);
+begin
+  if not AValue then FBackgroundFrame:=nil;
+  FUseOnionSkin:=AValue;
+end;
+
 constructor TSPFrame.Create(aName: String; w: Integer; h: integer);
 begin
  //create an empty frame without layers
@@ -1264,6 +1348,12 @@ procedure TSPFrame.SetActiveLayer(aLayer: TSPLayer);
 begin
  fActiveLayerName:=aLayer.LayerName;
  FIsMainLayerActive:=aLayer.LayerName=fFrameName;
+end;
+
+procedure TSPFrame.SetBackgroundFrame(AValue: TSPFrame);
+begin
+  if FBackgroundFrame=AValue then Exit;
+  FBackgroundFrame:=AValue;
 end;
 
 destructor TSPFrame.Destroy;

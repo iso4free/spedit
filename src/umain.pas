@@ -352,7 +352,7 @@ var
 implementation
 
 uses uprojprops, udraw, uabout, unamedlg, uframedlg, uresizedlg,
-  ureferense, usettings, upiskelformat;
+  ureferense, usettings;
 
 procedure EraseSelection;
 begin
@@ -887,7 +887,7 @@ begin
     sdExportFrameSaveDialog.FileName := ProjectInfo.Title;
     if ProjectInfo.Filename='' then
     if sdExportFrameSaveDialog.Execute then begin
-      ProjectInfo.Filename := sdExportFrameSaveDialog.FileName;
+      ProjectInfo.Filename := sdExportFrameSaveDialog.FileName+sdExportFrameSaveDialog.DefaultExt;
       ProjectInfo.Save;
     end;
   end
@@ -1423,14 +1423,21 @@ end;
 
 procedure TfrmMain.actImportPiskelExecute(Sender: TObject);
 var
-  Piskel: TPiskelFile;
+  canselect : Boolean;
+  idx : Integer;
 begin
+  if not Assigned(ProjectInfo) then ProjectInfo := TSPProjectInfo.Create;
   dlgOpenProj.InitialDir := INI.ReadString('PATH', 'Piskel files', '');
+  dlgOpenProj.DefaultExt:='.piskel';
   if dlgOpenProj.Execute then
   begin
-    Piskel := LoadPiskelFile(dlgOpenProj.FileName);
+    ProjectInfo.ImportPiskel(dlgOpenProj.FileName);
+    ProjectInfo.Frames.Reindex;
     INI.WriteString('PATH', 'Piskel files', ExtractFilePath(dlgOpenProj.FileName));
-    FreeAndNil(Piskel);
+    idx:=ProjectInfo.Frames.Names.IndexOf(ProjectInfo.ActiveFrame.FrameName);
+    drwgrdFrames.RowCount:=ProjectInfo.FramesCount;
+    drwgrdFramesSelectCell(Sender,0,idx,canselect);
+    FramesChange;
   end;
 end;
 

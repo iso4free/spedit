@@ -19,8 +19,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="1574"/>
-        <CursorPos X="26" Y="1583"/>
+        <TopLine Value="1424"/>
+        <CursorPos X="18" Y="1440"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 Y="394"/>
@@ -54,7 +54,7 @@
         <ComponentName Value="frmFrameDlg"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="54"/>
         <CursorPos X="3" Y="63"/>
         <UsageCount Value="200"/>
@@ -105,7 +105,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="26"/>
         <CursorPos Y="55"/>
-        <UsageCount Value="176"/>
+        <UsageCount Value="183"/>
       </Unit>
       <Unit>
         <Filename Value="uprojprops.pas"/>
@@ -116,7 +116,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="74"/>
         <CursorPos Y="91"/>
-        <UsageCount Value="124"/>
+        <UsageCount Value="131"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -756,8 +756,8 @@
       <Unit>
         <Filename Value="thirdparty/upiskelformat.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="216"/>
-        <CursorPos X="36" Y="233"/>
+        <TopLine Value="58"/>
+        <CursorPos X="3" Y="101"/>
         <UsageCount Value="37"/>
       </Unit>
       <Unit>
@@ -769,17 +769,18 @@
       </Unit>
       <Unit>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="346"/>
-        <CursorPos X="45" Y="353"/>
-        <UsageCount Value="57"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="1141"/>
+        <CursorPos X="22" Y="1166"/>
+        <UsageCount Value="60"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="thirdparty/piskelinfo/umain.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="52"/>
-        <UsageCount Value="6"/>
+        <TopLine Value="68"/>
+        <CursorPos X="10" Y="74"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="thirdparty/jsontools.pas"/>
@@ -1054,124 +1055,124 @@
     </OtherDefines>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="690" Column="31" TopLine="677"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="266" Column="15" TopLine="256"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="831" Column="26" TopLine="825"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="339" Column="23" TopLine="329"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1663" TopLine="1660"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="340" Column="19" TopLine="330"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1398" Column="2" TopLine="1390"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="668" TopLine="658"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1664" TopLine="1654"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="668" TopLine="658"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1665" Column="42" TopLine="1650"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1517" Column="3" TopLine="1521"/>
+        <Filename Value="thirdparty/uglobals.pas"/>
+        <Caret Line="1160" TopLine="1144"/>
       </Position>
       <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="349" Column="14" TopLine="339"/>
+        <Caret Line="1161" TopLine="1145"/>
       </Position>
       <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1523" Column="20" TopLine="1519"/>
+        <Caret Line="1163" TopLine="1147"/>
       </Position>
       <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="349" Column="19" TopLine="333"/>
+        <Caret Line="1164" TopLine="1148"/>
       </Position>
       <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1523" Column="3" TopLine="1519"/>
+        <Caret Line="1165" TopLine="1149"/>
       </Position>
       <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="349" Column="14" TopLine="340"/>
+        <Caret Line="1166" TopLine="1150"/>
       </Position>
       <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1548" Column="43" TopLine="1531"/>
+        <Caret Line="1167" TopLine="1151"/>
       </Position>
       <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="350" Column="17" TopLine="338"/>
+        <Caret Line="1153" TopLine="1149"/>
       </Position>
       <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1534" Column="12" TopLine="1531"/>
+        <Caret Line="1149" TopLine="1139"/>
       </Position>
       <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="349" Column="14" TopLine="341"/>
+        <Caret Line="1172" TopLine="1162"/>
       </Position>
       <Position>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1523" Column="27" TopLine="1516"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="355" Column="20" TopLine="340"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1588" Column="13" TopLine="1585"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="349" Column="18" TopLine="348"/>
+        <Caret Line="1173" TopLine="1162"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="1544" Column="16" TopLine="1534"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="355" Column="14" TopLine="346"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="1588" Column="3" TopLine="1585"/>
-      </Position>
-      <Position>
-        <Filename Value="thirdparty/uglobals.pas"/>
-        <Caret Line="353" Column="45" TopLine="346"/>
+        <Caret Line="1428" Column="3" TopLine="1424"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="1550" Column="11" TopLine="1553"/>
+        <Caret Line="719" Column="39" TopLine="705"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="708" Column="6" TopLine="704"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="293" Column="15" TopLine="283"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1730" TopLine="1724"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1731" TopLine="1724"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1733" TopLine="1724"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1732" TopLine="1724"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1735" TopLine="1724"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1734" TopLine="1724"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1736" TopLine="1724"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1730" TopLine="1724"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="713" Column="41" TopLine="705"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1438" Column="40" TopLine="1423"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="293" Column="15" TopLine="284"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1729" Column="3" TopLine="1725"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="340" Column="15" TopLine="331"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1396" Column="14" TopLine="1390"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="890" Column="98" TopLine="880"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -1195,15 +1196,6 @@
     </HistoryLists>
   </ProjectSession>
   <Debugging>
-    <BreakPoints>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="thirdparty/uglobals.pas"/>
-        <Line Value="1331"/>
-      </Item>
-    </BreakPoints>
     <Watches>
       <Item>
         <Expression Value="e.Key"/>
