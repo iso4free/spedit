@@ -217,6 +217,9 @@ object frmProjectProps: TfrmProjectProps
           TabOrder = 4
         end
       end
+      object tsEntities: TTabSheet
+        Caption = 'Entities'
+      end
     end
   end
   object StatusBar1: TStatusBar

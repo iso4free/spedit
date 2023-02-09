@@ -8,5 +8,6 @@
 {"hash":156067838,"name":"tfrmprojectprops.gbdescript.caption","sourcebytes":[68,101,115,99,114,105,112,116,105,111,110],"value":"Description"},
 {"hash":49923525,"name":"tfrmprojectprops.lbllicense.caption","sourcebytes":[76,105,99,101,110,115,101],"value":"License"},
 {"hash":246919721,"name":"tfrmprojectprops.edlicense.text","sourcebytes":[70,111,114,32,110,111,110,45,99,111,109,109,101,114,99,105,97,108,32,117,115,101,32,111,110,108,121],"value":"For non-commercial use only"},
-{"hash":176926963,"name":"tfrmprojectprops.lblcredits.caption","sourcebytes":[67,114,101,100,105,116,115],"value":"Credits"}
+{"hash":176926963,"name":"tfrmprojectprops.lblcredits.caption","sourcebytes":[67,114,101,100,105,116,115],"value":"Credits"},
+{"hash":95464195,"name":"tfrmprojectprops.tsentities.caption","sourcebytes":[69,110,116,105,116,105,101,115],"value":"Entities"}
 ]}

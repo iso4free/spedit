@@ -14,7 +14,7 @@
 {*                                                                         *}
 {***************************************************************************}
 {*    Sprite Editor 4.0                                                    *}
-{*    Copyright (c) 2000-2022 by Vadim Vitomsky                            *}
+{*    Copyright (c) 2000-2023 by Vadim Vitomsky                            *}
 {*                                                                         *}
 {*    See the file LICENSE, included in this distribution, for details.    *}
 {*                                                                         *}
@@ -55,6 +55,7 @@ type
     actFlipH: TAction;
     actFlipV: TAction;
     actImportPiskel: TAction;
+    actImportSprites: TAction;
     actPreviewToggle: TAction;
     actOpenProj: TAction;
     actSaveProj: TAction;
@@ -108,6 +109,8 @@ type
     HexaColorPicker1: THexaColorPicker;
     FramePreview: TImage;
     JSONPropStorage1: TJSONPropStorage;
+    pmiDeleteFrame: TMenuItem;
+    pmiAddFrame: TMenuItem;
     miTogglePreview: TMenuItem;
     pnlPreview: TJvMovablePanel;
     lbpPalettePresrts: TLabel;
@@ -199,6 +202,7 @@ type
     pnlEditor: TPanel;
     pnlLayers: TPanel;
     pmLayers: TPopupMenu;
+    pmFrames: TPopupMenu;
     SavePaletteDialog: TSaveDialog;
     sbCircle: TSpeedButton;
     sbEracer: TSpeedButton;
@@ -245,6 +249,7 @@ type
     procedure actAddLayerExecute(Sender: TObject);
     procedure actCopyLayerExecute(Sender: TObject);
     procedure actDeleteLayerExecute(Sender: TObject);
+    procedure actImportSpritesExecute(Sender: TObject);
     procedure actLanguageSelectExecute(Sender: TObject);
     procedure actLayersToggleExecute(Sender: TObject);
     procedure actLoadPresetsExecute(Sender: TObject);
@@ -352,7 +357,7 @@ var
 implementation
 
 uses uprojprops, udraw, uabout, unamedlg, uframedlg, uresizedlg,
-  ureferense, usettings;
+  ureferense, usettings, uspriteimport;
 
 procedure EraseSelection;
 begin
@@ -1439,6 +1444,11 @@ begin
     drwgrdFramesSelectCell(Sender,0,idx,canselect);
     FramesChange;
   end;
+end;
+
+procedure TfrmMain.actImportSpritesExecute(Sender: TObject);
+begin
+  frmImportSheet.ShowOnTop;
 end;
 
 procedure TfrmMain.miRedoClick(Sender: TObject);

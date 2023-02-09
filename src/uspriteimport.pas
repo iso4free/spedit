@@ -22,66 +22,95 @@
 {*    but WITHOUT ANY WARRANTY; without even the implied warranty of       *}
 {*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.                 *}
 {***************************************************************************}
-unit ureferense;
+
+unit uspriteimport;
 
 {$mode ObjFPC}{$H+}
+{$modeswitch advancedrecords}
 
 interface
 
 uses
-  {$IFDEF DEBUG}LazLoggerBase,{$ENDIF}
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtDlgs, ExtCtrls;
+  {$IFDEF DEBUG}LazLoggerBase, {$ENDIF}
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
+  ExtDlgs, Buttons, fgl;
 
 type
 
-  { TfrmReferense }
+  { TfrmImportSheet }
 
-  TfrmReferense = class(TForm)
+  TSelectionData = class
+   private
+    fIndex : Integer;
+    fRect : TRect;
+   public
+    property Index : Integer read fIndex write fIndex;
+    property Rect : TRect read fRect write fRect;
+  end;
+
+  TSelectionList = specialize TFPGObjectList <TSelectionData>;
+
+  TfrmImportSheet = class(TForm)
+    BitBtn1: TBitBtn;
+    chgrpSelections: TGroupBox;
+    imgImported: TImage;
     OpenPictureDialog1: TOpenPictureDialog;
-    ReferenceImage: TImage;
-    procedure FormClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    pnlSheet: TPanel;
+    pnlLeft: TPanel;
+    pnlBottom: TPanel;
+    pnlTop: TPanel;
+    ScrollBox1: TScrollBox;
+    procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
+    procedure imgImportedMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
-
+    FSelectionsList: TSelectionList;
+    procedure LoadSpriteSheet(aFile : TFilename);
   public
-
+    property SelectionsList : TSelectionList read FSelectionsList; //here will be all selected rects
   end;
 
 var
-  frmReferense: TfrmReferense;
+  frmImportSheet: TfrmImportSheet;
 
 implementation
 
-uses uglobals, umain;
-
+ uses uglobals, umain;
 {$R *.lfm}
 
-{ TfrmReferense }
+{ TfrmImportSheet }
 
-procedure TfrmReferense.FormClick(Sender: TObject);
+procedure TfrmImportSheet.FormCreate(Sender: TObject);
 begin
-  //frmMain.HideWindows;
-    if OpenPictureDialog1.Execute then begin
-   ReferenceImage.Picture.Clear;
-   ReferenceImage.Picture.LoadFromFile(OpenPictureDialog1.FileName);
-  end;
-  //frmMain.ShowWindows;
+  FSelectionsList:=TSelectionList.Create;
 end;
 
-procedure TfrmReferense.FormClose(Sender: TObject; var CloseAction: TCloseAction
-  );
+procedure TfrmImportSheet.FormDestroy(Sender: TObject);
 begin
-  frmMain.miReferense.Checked:=false;
-  frmMain.SetFocus;
+  FreeAndNil(FSelectionsList);
 end;
 
-procedure TfrmReferense.FormDestroy(Sender: TObject);
+procedure TfrmImportSheet.FormDropFiles(Sender: TObject;
+  const FileNames: array of string);
 begin
-  INI.WriteInteger('FRMREFERENSE','TOP',frmReferense.Top);
-  INI.WriteInteger('FRMREFERENSE','LEFT',frmReferense.Left);
-  INI.WriteInteger('FRMREFERENSE','WIDTH',frmReferense.Width);
-  INI.WriteInteger('FRMREFERENSE','HEIGHT',frmReferense.Height);
+  //todo: check file extension (load supported images only) load dropped image
+  LoadSpritesheet(FileNames[0]);
+end;
+
+procedure TfrmImportSheet.imgImportedMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+
+end;
+
+procedure TfrmImportSheet.LoadSpriteSheet(aFile: TFilename);
+var
+  ext : String;
+begin
+  ext:=LowerCase(ExtractFileExt(aFile));
+  if ExtensionSupported(ext) then imgImported.Picture.LoadFromFile(aFile);
 end;
 
 end.

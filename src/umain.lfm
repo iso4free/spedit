@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
   Left = 529
   Height = 733
-  Top = 4
+  Top = 0
   Width = 752
   AllowDropFiles = True
   ClientHeight = 710
@@ -206,6 +206,7 @@ object frmMain: TfrmMain
       ExtendedSelect = False
       FixedCols = 0
       FixedRows = 0
+      PopupMenu = pmFrames
       RowCount = 0
       TabOrder = 1
       UseXORFeatures = True
@@ -878,8 +879,7 @@ object frmMain: TfrmMain
       object miImport: TMenuItem
         Caption = 'Import...'
         object miImportSpritesheet: TMenuItem
-          Caption = 'Import Spritesheet'
-          Hint = 'You can import image or spritesheet file'#10'and add it to the library'
+          Action = actImportSprites
         end
         object miPiskelImport: TMenuItem
           Action = actImportPiskel
@@ -2093,6 +2093,11 @@ object frmMain: TfrmMain
       OnExecute = actPreviewToggleExecute
       ShortCut = 118
     end
+    object actImportSprites: TAction
+      Category = 'File'
+      Caption = 'Import spritesheet'
+      OnExecute = actImportSpritesExecute
+    end
   end
   object BGRAImageList24x24: TBGRAImageList
     Left = 440
@@ -2304,5 +2309,15 @@ object frmMain: TfrmMain
     Filter = 'JSON files|*.json; *.JSON|All files|*.*'
     Left = 200
     Top = 280
+  end
+  object pmFrames: TPopupMenu
+    Left = 71
+    Top = 483
+    object pmiAddFrame: TMenuItem
+      Action = actNewFrame
+    end
+    object pmiDeleteFrame: TMenuItem
+      Caption = 'pmiDeleteFrame'
+    end
   end
 end

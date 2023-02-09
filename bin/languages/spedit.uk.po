@@ -72,6 +72,18 @@ msgstr "Висота фрейму"
 msgid "Frame name"
 msgstr "Назва фрейму"
 
+#: tfrmimportsheet.bitbtn1.caption
+msgid "BitBtn1"
+msgstr ""
+
+#: tfrmimportsheet.caption
+msgid "Import sprites"
+msgstr ""
+
+#: tfrmimportsheet.chgrpselections.caption
+msgid "Selections"
+msgstr ""
+
 #: tfrmmain.acimportframe.caption
 msgctxt "tfrmmain.acimportframe.caption"
 msgid "Import frame"
@@ -139,6 +151,10 @@ msgstr "Показати/приховати сітку"
 msgctxt "tfrmmain.actimportpiskel.caption"
 msgid "Import Piskel file"
 msgstr "Імпорт файлу Piskel"
+
+#: tfrmmain.actimportsprites.caption
+msgid "Import spritesheet"
+msgstr ""
 
 #: tfrmmain.actlanguageselect.caption
 msgctxt "tfrmmain.actlanguageselect.caption"
@@ -412,20 +428,6 @@ msgstr "Довідка"
 msgid "Import..."
 msgstr "Імпорт..."
 
-#: tfrmmain.miimportspritesheet.caption
-msgctxt "tfrmmain.miimportspritesheet.caption"
-msgid "Import Spritesheet"
-msgstr "Імпорт таблиці спрайтів"
-
-#: tfrmmain.miimportspritesheet.hint
-msgctxt "tfrmmain.miimportspritesheet.hint"
-msgid ""
-"You can import image or spritesheet file\n"
-"and add it to the library"
-msgstr ""
-"Імпортувати зображення або файл таблиці спрайтів\n"
-"і додати його в бібліотеку"
-
 #: tfrmmain.milayers.caption
 msgctxt "tfrmmain.milayers.caption"
 msgid "Layers"
@@ -490,6 +492,10 @@ msgstr "Скасувати"
 msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr "Вид"
+
+#: tfrmmain.pmideleteframe.caption
+msgid "pmiDeleteFrame"
+msgstr ""
 
 #: tfrmmain.pmilayerfliprotate.caption
 msgid "Flip/rotate layer"
@@ -577,6 +583,10 @@ msgstr "Ліцензія"
 #: tfrmprojectprops.lbltitle.caption
 msgid "Title"
 msgstr "Назва"
+
+#: tfrmprojectprops.tsentities.caption
+msgid "Entities"
+msgstr ""
 
 #: tfrmprojectprops.tsgeneral.caption
 msgid "General"

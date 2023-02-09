@@ -30,6 +30,8 @@ type
     pnlTop: TPanel;
     pnlBottom: TPanel;
     StatusBar1: TStatusBar;
+    TabSheet1: TTabSheet;
+    tsEntities: TTabSheet;
     tsGeneral: TTabSheet;
     procedure bbtnOkClick(Sender: TObject);
     procedure bbtnSaveClick(Sender: TObject);

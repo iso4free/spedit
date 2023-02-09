@@ -33,8 +33,6 @@
 {"hash":80705172,"name":"tfrmmain.miexport.caption","sourcebytes":[69,120,112,111,114,116],"value":"Export"},
 {"hash":2472553,"name":"tfrmmain.minewlibrary.caption","sourcebytes":[78,101,119,32,83,112,114,105,116,101,32,76,105,98,114,97,114,121],"value":"New Sprite Library"},
 {"hash":124338510,"name":"tfrmmain.miimport.caption","sourcebytes":[73,109,112,111,114,116,46,46,46],"value":"Import..."},
-{"hash":160949332,"name":"tfrmmain.miimportspritesheet.caption","sourcebytes":[73,109,112,111,114,116,32,83,112,114,105,116,101,115,104,101,101,116],"value":"Import Spritesheet"},
-{"hash":254659625,"name":"tfrmmain.miimportspritesheet.hint","sourcebytes":[89,111,117,32,99,97,110,32,105,109,112,111,114,116,32,105,109,97,103,101,32,111,114,32,115,112,114,105,116,101,115,104,101,101,116,32,102,105,108,101,10,97,110,100,32,97,100,100,32,105,116,32,116,111,32,116,104,101,32,108,105,98,114,97,114,121],"value":"You can import image or spritesheet file\nand add it to the library"},
 {"hash":129176489,"name":"tfrmmain.miselectlibrary.caption","sourcebytes":[83,101,108,101,99,116,32,83,112,114,105,116,101,32,76,105,98,114,97,114,121],"value":"Select Sprite Library"},
 {"hash":216357465,"name":"tfrmmain.misavelibrary.caption","sourcebytes":[83,97,118,101,32,83,112,114,105,116,101,32,76,105,98,114,97,114,121],"value":"Save Sprite Library"},
 {"hash":310020,"name":"tfrmmain.miedit.caption","sourcebytes":[69,100,105,116],"value":"Edit"},
@@ -99,5 +97,7 @@
 {"hash":36621524,"name":"tfrmmain.actsaveproj.caption","sourcebytes":[83,97,118,101,32,112,114,111,106,101,99,116],"value":"Save project"},
 {"hash":49597396,"name":"tfrmmain.actopenproj.caption","sourcebytes":[79,112,101,110,32,112,114,111,106,101,99,116],"value":"Open project"},
 {"hash":38989063,"name":"tfrmmain.actpreviewtoggle.caption","sourcebytes":[84,111,103,103,108,101,32,112,114,101,118,105,101,119],"value":"Toggle preview"},
-{"hash":29955922,"name":"tfrmmain.pmilayerfliprotate.caption","sourcebytes":[70,108,105,112,47,114,111,116,97,116,101,32,108,97,121,101,114],"value":"Flip/rotate layer"}
+{"hash":163046484,"name":"tfrmmain.actimportsprites.caption","sourcebytes":[73,109,112,111,114,116,32,115,112,114,105,116,101,115,104,101,101,116],"value":"Import spritesheet"},
+{"hash":29955922,"name":"tfrmmain.pmilayerfliprotate.caption","sourcebytes":[70,108,105,112,47,114,111,116,97,116,101,32,108,97,121,101,114],"value":"Flip/rotate layer"},
+{"hash":155665285,"name":"tfrmmain.pmideleteframe.caption","sourcebytes":[112,109,105,68,101,108,101,116,101,70,114,97,109,101],"value":"pmiDeleteFrame"}
 ]}

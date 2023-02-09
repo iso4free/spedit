@@ -1,0 +1,5 @@
+{"version":1,"strings":[
+{"hash":235903411,"name":"tfrmimportsheet.caption","sourcebytes":[73,109,112,111,114,116,32,115,112,114,105,116,101,115],"value":"Import sprites"},
+{"hash":151558993,"name":"tfrmimportsheet.bitbtn1.caption","sourcebytes":[66,105,116,66,116,110,49],"value":"BitBtn1"},
+{"hash":196049523,"name":"tfrmimportsheet.chgrpselections.caption","sourcebytes":[83,101,108,101,99,116,105,111,110,115],"value":"Selections"}
+]}

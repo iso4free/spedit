@@ -51,6 +51,18 @@ msgstr ""
 msgid "Frame name"
 msgstr ""
 
+#: tfrmimportsheet.bitbtn1.caption
+msgid "BitBtn1"
+msgstr ""
+
+#: tfrmimportsheet.caption
+msgid "Import sprites"
+msgstr ""
+
+#: tfrmimportsheet.chgrpselections.caption
+msgid "Selections"
+msgstr ""
+
 #: tfrmmain.acimportframe.caption
 msgctxt "tfrmmain.acimportframe.caption"
 msgid "Import frame"
@@ -117,6 +129,10 @@ msgstr ""
 #: tfrmmain.actimportpiskel.caption
 msgctxt "tfrmmain.actimportpiskel.caption"
 msgid "Import Piskel file"
+msgstr ""
+
+#: tfrmmain.actimportsprites.caption
+msgid "Import spritesheet"
 msgstr ""
 
 #: tfrmmain.actlanguageselect.caption
@@ -387,18 +403,6 @@ msgstr ""
 msgid "Import..."
 msgstr ""
 
-#: tfrmmain.miimportspritesheet.caption
-msgctxt "tfrmmain.miimportspritesheet.caption"
-msgid "Import Spritesheet"
-msgstr ""
-
-#: tfrmmain.miimportspritesheet.hint
-msgctxt "tfrmmain.miimportspritesheet.hint"
-msgid ""
-"You can import image or spritesheet file\n"
-"and add it to the library"
-msgstr ""
-
 #: tfrmmain.milayers.caption
 msgctxt "tfrmmain.milayers.caption"
 msgid "Layers"
@@ -462,6 +466,10 @@ msgstr ""
 #: tfrmmain.miview.caption
 msgctxt "tfrmmain.miview.caption"
 msgid "View"
+msgstr ""
+
+#: tfrmmain.pmideleteframe.caption
+msgid "pmiDeleteFrame"
 msgstr ""
 
 #: tfrmmain.pmilayerfliprotate.caption
@@ -549,6 +557,10 @@ msgstr ""
 
 #: tfrmprojectprops.lbltitle.caption
 msgid "Title"
+msgstr ""
+
+#: tfrmprojectprops.tsentities.caption
+msgid "Entities"
 msgstr ""
 
 #: tfrmprojectprops.tsgeneral.caption

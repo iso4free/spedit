@@ -14,7 +14,7 @@
 {*                                                                         *}
 {***************************************************************************}
 {*    Sprite Editor 4.0                                                    *}
-{*    Copyright (c) 2000-2022 by Vadim Vitomsky                            *}
+{*    Copyright (c) 2000-2023 by Vadim Vitomsky                            *}
 {*                                                                         *}
 {*    See the file LICENSE, included in this distribution, for details.    *}
 {*                                                                         *}
@@ -83,11 +83,11 @@ const
       APP_VER_MINOR = '0';
       APP_VER_SUFFIX = 'pre-alpha';
       //todo: change it every build date change!!!
-      APP_VER_BUILDDATE = '2023-01-21';
+      APP_VER_BUILDDATE = '2023-02-08';
 
       //MAX_FRAMES = 50;           //it will be enought for one animation?
       MAX_PALETTE_COLORS = 255;  //max colors count in palette
-      MAX_PIXELS = 512*512;      //max pixels array (sprite size 512x512 pixels)
+      //MAX_PIXELS = 512*512;      //max pixels array (sprite size 512x512 pixels)
       //MAX_LAYERS = 10;           //max layers count in one frame
 
       //cINTERNALLAYERANDFRAME = 'spedit v.4'; //default frame name and background layer name
@@ -102,8 +102,19 @@ type
   TDrawGridMode = (dgmNone,dgmMove,dgmDraw);
 
   TColors = array[0..MAX_PALETTE_COLORS] of TBGRAPixel;  //palette - array of colors
-  TPixels = array[0..MAX_PIXELS] of TBGRAPixel;      //array of pixels
+  //TPixels = array[0..MAX_PIXELS] of TBGRAPixel;      //array of pixels
   TColorsArray = array of TColor;
+
+  TSupportedGraphicksExtensions  =
+   (spxPNG,spxPixmap,spxBitmap,spxCursor,spxIcon,spxIcnsIcon,spxJpeg2000,spxJpegImage,spxTIFF,spxGif,spxTARGA);
+
+ const
+  TStringGraphicksExtensions : array[TSupportedGraphicksExtensions] of String =
+  ('.png','.xpm','.bmp','.cur','.ico','.icns','.jpeg','.jpg','.tiff','.gif','.tga');
+
+  //check if image extension supported
+  function ExtensionSupported (ext :String) : Boolean;
+
 
   type
   TDitherColorError = record
@@ -118,7 +129,7 @@ type
   TPalette = record
     private
      fCount : Byte;   //colors in palette
-     fColors : TPixels; //colors array
+     fColors : array[0..262144] of TBGRAPixel; //colors array
      fSelected : Byte;
      FSelectedColor: TBGRAPixel;
      function GetColor(Index : Byte): TBGRAPixel;
@@ -584,6 +595,19 @@ begin
        SpriteLibNames.Add(sr.Name);
     until (FindNext(sr) <> 0);
   FindClose(sr);
+end;
+
+function ExtensionSupported(ext: String): Boolean;
+var
+  i: TSupportedGraphicksExtensions;
+begin
+  Result := False;
+  for i in TSupportedGraphicksExtensions do begin
+    if ext=TStringGraphicksExtensions[i] then begin
+      Result:=True;
+      Exit;
+    end;
+  end;
 end;
 
 function StrToMirrorKind(aName: String): TSPMirrorKind;
@@ -1132,7 +1156,7 @@ begin
   FreeAndNil(aData);
   Exit;
  end;
- aname:=aData.Force('piskel/name').AsString;
+ aname:=ChangeFileExt(ExtractFileName(aPiskelFile),'')+'/'+aData.Force('piskel/name').AsString;
  aw := aData.Force('piskel/width').AsInteger;
  ah := aData.Force('piskel/height').AsInteger;
  alayers:=aData.Force('piskel/layers').AsArray;
@@ -1614,7 +1638,7 @@ begin
      posx:=x-fOffset.X;
      posy:=y-fOffset.Y;
      Result.X:= posx div (fFrameGridSize+fFrameZoom);
-     Result.Y:= posy div (fFrameGridSize+fFrameZoom);
+     Result.Y:= posy div (fFrameGridSize+fFrameZoom)+1;
  // end;
 end;
 

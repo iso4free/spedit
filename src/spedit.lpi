@@ -291,6 +291,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="uspriteimport.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmImportSheet"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
