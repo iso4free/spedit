@@ -1,0 +1,17 @@
+{"version":1,"strings":[
+{"hash":43127843,"name":"tfrmgridoptions.caption","sourcebytes":[71,114,105,100,32,111,112,116,105,111,110,115],"value":"Grid options"},
+{"hash":92531397,"name":"tfrmgridoptions.gbcell.caption","sourcebytes":[111,114,32,67,101,108,108,32,115,105,122,101],"value":"or Cell size"},
+{"hash":6159272,"name":"tfrmgridoptions.lblwidth.caption","sourcebytes":[87,105,100,116,104],"value":"Width"},
+{"hash":82574836,"name":"tfrmgridoptions.lblheight.caption","sourcebytes":[72,101,105,103,104,116],"value":"Height"},
+{"hash":89971140,"name":"tfrmgridoptions.gboffset.caption","sourcebytes":[79,102,102,115,101,116],"value":"Offset"},
+{"hash":88,"name":"tfrmgridoptions.lblx.caption","sourcebytes":[88],"value":"X"},
+{"hash":89,"name":"tfrmgridoptions.lbly.caption","sourcebytes":[89],"value":"Y"},
+{"hash":258469765,"name":"tfrmgridoptions.gbgridsize.caption","sourcebytes":[71,114,105,100,32,115,105,122,101],"value":"Grid size"},
+{"hash":174310419,"name":"tfrmgridoptions.lblcols.caption","sourcebytes":[67,111,108,117,109,110,115],"value":"Columns"},
+{"hash":366307,"name":"tfrmgridoptions.lblrows.caption","sourcebytes":[82,111,119,115],"value":"Rows"},
+{"hash":305504,"name":"tfrmgridoptions.gbcrop.caption","sourcebytes":[67,114,111,112],"value":"Crop"},
+{"hash":338900,"name":"tfrmgridoptions.lblleft.caption","sourcebytes":[76,101,102,116],"value":"Left"},
+{"hash":5832180,"name":"tfrmgridoptions.lblright.caption","sourcebytes":[82,105,103,104,116],"value":"Right"},
+{"hash":23392,"name":"tfrmgridoptions.lbltop.caption","sourcebytes":[84,111,112],"value":"Top"},
+{"hash":76987229,"name":"tfrmgridoptions.lblbottom.caption","sourcebytes":[66,111,116,116,111,109],"value":"Bottom"}
+]}

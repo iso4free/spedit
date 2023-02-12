@@ -295,6 +295,14 @@
         <Filename Value="uspriteimport.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmImportSheet"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ugridoptions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmGridOptions"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>

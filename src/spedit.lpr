@@ -39,7 +39,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, umain, udraw, uabout, ureferense,
   uframedlg,  sysutils, usettings, uresizedlg, unamedlg, uprojprops, 
-uspriteimport;
+uspriteimport, ugridoptions;
 
 {$R *.res}
 
@@ -59,6 +59,7 @@ begin
   Application.CreateForm(TfrmNameDlg, frmNameDlg);
   Application.CreateForm(TfrmProjectProps, frmProjectProps);
   Application.CreateForm(TfrmImportSheet, frmImportSheet);
+  Application.CreateForm(TfrmGridOptions, frmGridOptions);
   Application.Run;
 end.
 

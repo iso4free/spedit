@@ -364,8 +364,6 @@ type
     procedure GetBounds;
    public
     function Coords(x,y : Integer): TPoint; //return pixel coordinates in grid cell
-    function PixelPos(x,y : Integer) : Integer; //return pixel index in array
-
     constructor Create(aW: Integer = 32; aH : Integer = 32; aSize : Word = 4);
     destructor Destroy; override;
 
@@ -1642,12 +1640,6 @@ begin
  // end;
 end;
 
-function TFrameGrid.PixelPos(x, y: Integer): Integer;
-begin
-    if ((x<-1) or (y<-1)) then Result:=-1 else
-    Result := y*fFrameWidth+x;
-end;
-
 procedure TFrameGrid.SetFrameZoom(AValue: Integer);
 begin
   if fFrameZoom=AValue then Exit;
@@ -1735,11 +1727,11 @@ begin
                        $BFBFBF,
                        $FFFFFF,
                        FCheckersSize,
-                       FCheckersSize);;
+                       FCheckersSize);
   //draw preview picture and just zoom it up to grid size
   ProjectInfo.ActiveFrame.RenderPicture;
   tmpbmp:=ProjectInfo.ActiveFrame.Preview.Resample(fBuffer.Width,fBuffer.Height,rmSimpleStretch);
-  fBuffer.PutImage(0,0,tmpbmp,dmSetExceptTransparent);
+  fBuffer.PutImage(0,0,tmpbmp,dmDrawWithTransparency);
   FreeAndNil(tmpbmp);
   if ShowGrid and ((fFrameGridSize+fFrameZoom)>5) then DrawGrid(0,0,fBuffer.Width-1,fBuffer.Height-1,fFrameGridSize+fFrameZoom);
 

@@ -1279,9 +1279,7 @@ end;
 
 procedure TfrmMain.FormDropFiles(Sender: TObject; const FileNames: array of string);
 begin
- {$IFDEF DEBUG}
-  DebugLn('In: FormDropFiles() Filenames[0]='+FileNames[0]);
- {$ENDIF}
+  if not Assigned(ProjectInfo) then Exit;
   ImportFrame(FileNames[0]);
 end;
 
@@ -1666,7 +1664,7 @@ begin
     FrameGrid.RenderAndDraw(pbFrameDraw.Canvas);
     fCheckers.DrawCheckers(Rect(0,0,fCheckers.Width-1,fCheckers.Height-1), $BFBFBF,
                        $FFFFFF);
-    fCheckers.PutImage(0,0,ProjectInfo.ActiveFrame.Preview,dmSetExceptTransparent);
+    fCheckers.PutImage(0,0,ProjectInfo.ActiveFrame.Preview,dmDrawWithTransparency);
     FramePreview.Picture.Bitmap.Assign(fCheckers);
   end;
   StatusBar1.Panels[2].Text := 'w=' + IntToStr(pbFrameDraw.ClientWidth) +

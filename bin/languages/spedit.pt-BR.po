@@ -72,16 +72,112 @@ msgstr "Altura do quadro"
 msgid "Frame name"
 msgstr "Nome do quadro"
 
-#: tfrmimportsheet.bitbtn1.caption
-msgid "BitBtn1"
+#: tfrmgridoptions.caption
+msgctxt "tfrmgridoptions.caption"
+msgid "Grid options"
+msgstr ""
+
+#: tfrmgridoptions.gbcell.caption
+msgid "or Cell size"
+msgstr ""
+
+#: tfrmgridoptions.gbcrop.caption
+msgid "Crop"
+msgstr ""
+
+#: tfrmgridoptions.gbgridsize.caption
+msgid "Grid size"
+msgstr ""
+
+#: tfrmgridoptions.gboffset.caption
+msgid "Offset"
+msgstr ""
+
+#: tfrmgridoptions.lblbottom.caption
+msgid "Bottom"
+msgstr ""
+
+#: tfrmgridoptions.lblcols.caption
+msgid "Columns"
+msgstr ""
+
+#: tfrmgridoptions.lblheight.caption
+#, fuzzy
+msgctxt "tfrmgridoptions.lblheight.caption"
+msgid "Height"
+msgstr "Altura"
+
+#: tfrmgridoptions.lblleft.caption
+msgid "Left"
+msgstr ""
+
+#: tfrmgridoptions.lblright.caption
+msgid "Right"
+msgstr ""
+
+#: tfrmgridoptions.lblrows.caption
+msgid "Rows"
+msgstr ""
+
+#: tfrmgridoptions.lbltop.caption
+msgid "Top"
+msgstr ""
+
+#: tfrmgridoptions.lblwidth.caption
+#, fuzzy
+msgctxt "tfrmgridoptions.lblwidth.caption"
+msgid "Width"
+msgstr "Largura"
+
+#: tfrmgridoptions.lblx.caption
+msgid "X"
+msgstr ""
+
+#: tfrmgridoptions.lbly.caption
+msgid "Y"
+msgstr ""
+
+#: tfrmimportsheet.bbadd.hint
+msgid "Add current selection as frame to selections"
+msgstr ""
+
+#: tfrmimportsheet.bbcancel.caption
+#, fuzzy
+msgctxt "tfrmimportsheet.bbcancel.caption"
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: tfrmimportsheet.bbgridoptions.caption
+msgctxt "tfrmimportsheet.bbgridoptions.caption"
+msgid "Grid options"
+msgstr ""
+
+#: tfrmimportsheet.bbimport.caption
+msgid "Impotr frames"
+msgstr ""
+
+#: tfrmimportsheet.bbspritesheetopen.caption
+msgid "Open spritesheet"
+msgstr ""
+
+#: tfrmimportsheet.bbspritesheetopen.hint
+msgid "Import spritesheet from image file"
 msgstr ""
 
 #: tfrmimportsheet.caption
 msgid "Import sprites"
 msgstr ""
 
+#: tfrmimportsheet.cbgrig.caption
+msgid "Import as grid"
+msgstr ""
+
 #: tfrmimportsheet.chgrpselections.caption
 msgid "Selections"
+msgstr ""
+
+#: tfrmimportsheet.lblnametemplate.caption
+msgid "Name template"
 msgstr ""
 
 #: tfrmmain.acimportframe.caption
@@ -614,10 +710,12 @@ msgid "Resize options"
 msgstr "Opções de Redimensionamento"
 
 #: tfrmresize.lblheight.caption
+msgctxt "tfrmresize.lblheight.caption"
 msgid "Height"
 msgstr "Altura"
 
 #: tfrmresize.lblwidth.caption
+msgctxt "tfrmresize.lblwidth.caption"
 msgid "Width"
 msgstr "Largura"
 
