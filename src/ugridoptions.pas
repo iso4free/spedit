@@ -100,7 +100,9 @@ begin
     frmImportSheet.CroppedRect.Top :=spTop.Value;
     frmImportSheet.CroppedRect.Right:=frmImportSheet.imgImported.Width-spRight.Value;
     frmImportSheet.CroppedRect.Bottom:=frmImportSheet.imgImported.Height-spBottom.Value;
+    if spCols.Value<>0 then
     spWidth.Value:=(frmImportSheet.CroppedRect.Width-spX.Value) div spCols.Value;
+    if spRows.Value<>0 then
     spHeight.Value:=(frmImportSheet.CroppedRect.Height-spY.Value) div spRows.Value;
     frmImportSheet.imgImported.Invalidate;
 end;

@@ -32,7 +32,8 @@ interface
 uses
   {$IFDEF DEBUG}LazLoggerBase, {$ENDIF}
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  ExtDlgs, Buttons, fgl, Types, Grids, BGRABitmap, BGRABitmapTypes;
+  ExtDlgs, Buttons, fgl, Types, Grids, JvMovableBevel, Spin, BGRABitmap,
+  BGRABitmapTypes;
 
 type
 
@@ -86,14 +87,28 @@ type
     bbCancel: TBitBtn;
     bbAdd: TBitBtn;
     bbDelete: TBitBtn;
-    bbGridOptions: TBitBtn;
     bbClear: TBitBtn;
     cbGrig: TCheckBox;
     chgrpSelections: TGroupBox;
     cbSizes: TComboBox;
     dgImportedFrames: TDrawGrid;
     edNameTemplate: TEdit;
+    gbCell: TGroupBox;
+    gbCrop: TGroupBox;
+    gbGridSize: TGroupBox;
+    gbOffset: TGroupBox;
     imgImported: TImage;
+    lblBottom: TLabel;
+    lblCols: TLabel;
+    lblHeight: TLabel;
+    lblLeft: TLabel;
+    lblRight: TLabel;
+    lblRows: TLabel;
+    lblTop: TLabel;
+    lblWidth: TLabel;
+    lblX: TLabel;
+    lblY: TLabel;
+    pnlGridOptions: TJvMovablePanel;
     lblNameTemplate: TLabel;
     OpenPictureDialog1: TOpenPictureDialog;
     pnlSelections: TPanel;
@@ -102,23 +117,35 @@ type
     pnlBottom: TPanel;
     pnlTop: TPanel;
     ScrollBox1: TScrollBox;
+    spBottom: TSpinEdit;
+    spCols: TSpinEdit;
+    sbCloseOptions: TSpeedButton;
+    spHeight: TSpinEdit;
+    spLeft: TSpinEdit;
     Splitter1: TSplitter;
-    procedure bbGridOptionsClick(Sender: TObject);
+    spRight: TSpinEdit;
+    spRows: TSpinEdit;
+    spTop: TSpinEdit;
+    spWidth: TSpinEdit;
+    spX: TSpinEdit;
+    spY: TSpinEdit;
     procedure bbSpritesheetOpenClick(Sender: TObject);
     procedure cbGrigChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
-    procedure imgImportedMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure imgImportedPaint(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure cbSizesChange(Sender: TObject);
     procedure dgImportedFramesDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
-    procedure imgImportedMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
-    procedure SelectionChange(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
+    procedure imgImportedMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure imgImportedMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure imgImportedPaint(Sender: TObject);
+    procedure SelectionChange(Sender: TObject);
+    procedure spWidthChange(Sender: TObject);
+    procedure LoadSpriteSheet(aFile: TFilename);
   private
     isDown : Boolean; //if mouse left button pressedfor selection
     isSelection : Boolean; //if mouse pressed inside any pravious selected rects
@@ -128,7 +155,6 @@ type
     aBuff : TBGRABitmap;
     Scale : Byte;
     srcFile :TFileName;
-    procedure LoadSpriteSheet(aFile : TFilename);
     procedure DrawGrid(const aCanvas : TCanvas; const aRect : TRect; cellwidth, cellheight : Integer);
   public
     CroppedRect : TRect;
@@ -254,12 +280,6 @@ end;
 
 { TfrmImportSheet }
 
-procedure TfrmImportSheet.bbGridOptionsClick(Sender: TObject);
-begin
-  frmGridOptions.ShowOnTop;
-  frmGridOptions.spWidthChange(frmGridOptions);
-end;
-
 procedure TfrmImportSheet.bbSpritesheetOpenClick(Sender: TObject);
 begin
   if OpenPictureDialog1.Execute then LoadSpriteSheet(OpenPictureDialog1.FileName);
@@ -267,7 +287,7 @@ end;
 
 procedure TfrmImportSheet.cbGrigChange(Sender: TObject);
 begin
-  bbGridOptions.Enabled:=cbGrig.Checked;
+  pnlGridOptions.Visible:=cbGrig.Checked;
   imgImported.Invalidate;
 end;
 
@@ -324,7 +344,7 @@ begin
   xsize := (aRect.Right-aRect.Left) div cellheight;
   ysize := (aRect.Bottom-aRect.Top) div cellwidth;
   aCanvas.Pen.Mode:=pmCopy;
-  aCanvas.Pen.Color:=VGANavy;
+  aCanvas.Pen.Color:=clNavy;
   For i := 1 to ysize do aCanvas.Line(aRect.Left,aRect.Top+cellwidth*i,aRect.Right,aRect.Top+cellwidth*i);
   For i := 1 to xsize do aCanvas.Line(aRect.Left+cellheight*i,aRect.Top,aRect.Left+cellheight*i,aRect.Bottom);
   aCanvas.Brush.Style:=bsClear;
@@ -341,6 +361,29 @@ procedure TfrmImportSheet.SelectionChange(Sender: TObject);
 begin
   dgImportedFrames.RowCount:=FSelectionsList.Count+1;
   dgImportedFrames.Invalidate;
+end;
+
+procedure TfrmImportSheet.spWidthChange(Sender: TObject);
+begin
+  case TComponent(Sender).Tag of
+  1: begin
+   //cell width change
+    spCols.Value:=(CroppedRect.Width-spX.Value) div spWidth.Value;
+  end;
+  2: begin
+  //cell height change
+    spRows.Value:=(CroppedRect.Height-spY.Value) div spHeight.Value;
+  //rows change
+  end;
+  5:begin
+    spWidth.Value:=(CroppedRect.Width-spX.Value) div spCols.Value;
+  //rows change
+  end;
+  6: begin
+    spHeight.Value:=(CroppedRect.Height-spY.Value) div spRows.Value;
+  end;
+ end;
+ imgImported.Invalidate;
 end;
 
 procedure TfrmImportSheet.FormCreate(Sender: TObject);
@@ -378,27 +421,24 @@ var
     function CellCoords(x, y: Integer): TPoint;
     var posx,posy : Integer; //relative grid coordinates
     begin
-      Result := Point(-1,-1);
-         posx:=x-fOffset.X;
-         posy:=y-fOffset.Y;
-         Result.X:= posx div (fFrameGridSize+fFrameZoom);
-         Result.Y:= posy div (fFrameGridSize+fFrameZoom)+1;
+      Result.X:= posx div cw;
+      Result.Y:= posy div ch;
     end;
 
 
   begin
-     ofx:=frmGridOptions.spX.Value;
-     ofy:=frmGridOptions.spY.Value;
+     ofx:=CroppedRect.Left;
+     ofy:=CroppedRect.Top;
      cw:=frmGridOptions.spWidth.Value;
      ch:=frmGridOptions.spHeight.Value;
      posx:=x-ofx;
      posy:=y-ofy;
-     Result.Left:= posx div cw;
-     Result.Top:= posy div ch;
+     Result.Left:= ofx+(posx div cw);
+     Result.Top:= ofy+(posy div ch);
      Result.Right:=Result.Left+cw;
      Result.Bottom:=Result.Top+ch;
      {$IFDEF DEBUG}
-     DebugLn('In: CetCellRect() Rect:'+Format('x=%d, y=%d',[Result.Left,Result.Top]));
+     DebugLn('In: CetCellRect() Rect:'+Format('x=%d, y=%d, x1=%d, y1=%d',[Result.Left,Result.Top,Result.Right,Result.Bottom]));
      {$ENDIF}
   end;
 
@@ -449,11 +489,15 @@ begin
     FSelectionsList.DrawSelections(aBuff.Canvas);
     end;
     //todo: draw current selection as hilighted
-    if not SelRect.IsEmpty then begin
-         TImage(Sender).Canvas.Pen.Color:=clRed;
-         TImage(Sender).Canvas.Pen.Style:=psDash;
-         TImage(Sender).Canvas.Rectangle(SelRect);
-    end;
+    //if not SelRect.IsEmpty then begin
+         aBuff.Canvas.Pen.Mode:=pmXor;
+         aBuff.Canvas.Pen.Color:=clRed;
+         aBuff.Canvas.Pen.Style:=psSolid;
+         aBuff.Canvas.Rectangle(SelRect);
+         {$IFDEF DEBUG}
+         DebugLn('In: ImgImportPaint() SelRect: ');
+         {$ENDIF}
+    //end;
    aBuff.Draw(TImage(Sender).Canvas,0,0);
 end;
 

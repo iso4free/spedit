@@ -57,26 +57,32 @@ msgid "Grid options"
 msgstr ""
 
 #: tfrmgridoptions.gbcell.caption
+msgctxt "tfrmgridoptions.gbcell.caption"
 msgid "or Cell size"
 msgstr ""
 
 #: tfrmgridoptions.gbcrop.caption
+msgctxt "tfrmgridoptions.gbcrop.caption"
 msgid "Crop"
 msgstr ""
 
 #: tfrmgridoptions.gbgridsize.caption
+msgctxt "tfrmgridoptions.gbgridsize.caption"
 msgid "Grid size"
 msgstr ""
 
 #: tfrmgridoptions.gboffset.caption
+msgctxt "tfrmgridoptions.gboffset.caption"
 msgid "Offset"
 msgstr ""
 
 #: tfrmgridoptions.lblbottom.caption
+msgctxt "tfrmgridoptions.lblbottom.caption"
 msgid "Bottom"
 msgstr ""
 
 #: tfrmgridoptions.lblcols.caption
+msgctxt "tfrmgridoptions.lblcols.caption"
 msgid "Columns"
 msgstr ""
 
@@ -86,18 +92,22 @@ msgid "Height"
 msgstr ""
 
 #: tfrmgridoptions.lblleft.caption
+msgctxt "tfrmgridoptions.lblleft.caption"
 msgid "Left"
 msgstr ""
 
 #: tfrmgridoptions.lblright.caption
+msgctxt "tfrmgridoptions.lblright.caption"
 msgid "Right"
 msgstr ""
 
 #: tfrmgridoptions.lblrows.caption
+msgctxt "tfrmgridoptions.lblrows.caption"
 msgid "Rows"
 msgstr ""
 
 #: tfrmgridoptions.lbltop.caption
+msgctxt "tfrmgridoptions.lbltop.caption"
 msgid "Top"
 msgstr ""
 
@@ -107,10 +117,12 @@ msgid "Width"
 msgstr ""
 
 #: tfrmgridoptions.lblx.caption
+msgctxt "tfrmgridoptions.lblx.caption"
 msgid "X"
 msgstr ""
 
 #: tfrmgridoptions.lbly.caption
+msgctxt "tfrmgridoptions.lbly.caption"
 msgid "Y"
 msgstr ""
 
@@ -121,11 +133,6 @@ msgstr ""
 #: tfrmimportsheet.bbcancel.caption
 msgctxt "tfrmimportsheet.bbcancel.caption"
 msgid "Cancel"
-msgstr ""
-
-#: tfrmimportsheet.bbgridoptions.caption
-msgctxt "tfrmimportsheet.bbgridoptions.caption"
-msgid "Grid options"
 msgstr ""
 
 #: tfrmimportsheet.bbimport.caption
@@ -152,8 +159,78 @@ msgstr ""
 msgid "Selections"
 msgstr ""
 
+#: tfrmimportsheet.gbcell.caption
+msgctxt "tfrmimportsheet.gbcell.caption"
+msgid "or Cell size"
+msgstr ""
+
+#: tfrmimportsheet.gbcrop.caption
+msgctxt "tfrmimportsheet.gbcrop.caption"
+msgid "Crop"
+msgstr ""
+
+#: tfrmimportsheet.gbgridsize.caption
+msgctxt "tfrmimportsheet.gbgridsize.caption"
+msgid "Grid size"
+msgstr ""
+
+#: tfrmimportsheet.gboffset.caption
+msgctxt "tfrmimportsheet.gboffset.caption"
+msgid "Offset"
+msgstr ""
+
+#: tfrmimportsheet.lblbottom.caption
+msgctxt "tfrmimportsheet.lblbottom.caption"
+msgid "Bottom"
+msgstr ""
+
+#: tfrmimportsheet.lblcols.caption
+msgctxt "tfrmimportsheet.lblcols.caption"
+msgid "Columns"
+msgstr ""
+
+#: tfrmimportsheet.lblheight.caption
+msgctxt "tfrmimportsheet.lblheight.caption"
+msgid "Height"
+msgstr ""
+
+#: tfrmimportsheet.lblleft.caption
+msgctxt "tfrmimportsheet.lblleft.caption"
+msgid "Left"
+msgstr ""
+
 #: tfrmimportsheet.lblnametemplate.caption
 msgid "Name template"
+msgstr ""
+
+#: tfrmimportsheet.lblright.caption
+msgctxt "tfrmimportsheet.lblright.caption"
+msgid "Right"
+msgstr ""
+
+#: tfrmimportsheet.lblrows.caption
+msgctxt "tfrmimportsheet.lblrows.caption"
+msgid "Rows"
+msgstr ""
+
+#: tfrmimportsheet.lbltop.caption
+msgctxt "tfrmimportsheet.lbltop.caption"
+msgid "Top"
+msgstr ""
+
+#: tfrmimportsheet.lblwidth.caption
+msgctxt "tfrmimportsheet.lblwidth.caption"
+msgid "Width"
+msgstr ""
+
+#: tfrmimportsheet.lblx.caption
+msgctxt "tfrmimportsheet.lblx.caption"
+msgid "X"
+msgstr ""
+
+#: tfrmimportsheet.lbly.caption
+msgctxt "tfrmimportsheet.lbly.caption"
+msgid "Y"
 msgstr ""
 
 #: tfrmmain.acimportframe.caption

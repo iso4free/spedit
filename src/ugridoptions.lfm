@@ -1,7 +1,7 @@
 object frmGridOptions: TfrmGridOptions
-  Left = 300
+  Left = 945
   Height = 274
-  Top = 272
+  Top = 261
   Width = 249
   Caption = 'Grid options'
   ClientHeight = 274

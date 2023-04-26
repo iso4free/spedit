@@ -1605,9 +1605,6 @@ begin
   end;
   StatusBar1.Panels[0].Text := 'x=' + IntToStr(x) + '/y=' + IntToStr(y);
   pbFrameDraw.Invalidate;
-  //todo: fix undo/redo enabled
-  //actUndo.Enabled:=True;//UndoRedoManager.CanUndo;
-  //actRedo.Enabled:=True;//UndoRedoManager.CanRedo;
 end;
 
 procedure TfrmMain.pbFrameDrawMouseUp(Sender: TObject; Button: TMouseButton;

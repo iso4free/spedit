@@ -1631,13 +1631,10 @@ end;
 function TFrameGrid.Coords(x, y: Integer): TPoint;
 var posx,posy : Integer; //relative grid coordinates
 begin
-  Result := Point(-1,-1);
-  //if fRect.Contains(Point(x,y)) then begin
      posx:=x-fOffset.X;
      posy:=y-fOffset.Y;
      Result.X:= posx div (fFrameGridSize+fFrameZoom);
      Result.Y:= posy div (fFrameGridSize+fFrameZoom)+1;
- // end;
 end;
 
 procedure TFrameGrid.SetFrameZoom(AValue: Integer);

@@ -1,7 +1,7 @@
 object frmImportSheet: TfrmImportSheet
-  Left = 306
+  Left = 297
   Height = 365
-  Top = 81
+  Top = 205
   Width = 881
   AllowDropFiles = True
   Caption = 'Import sprites'
@@ -85,32 +85,19 @@ object frmImportSheet: TfrmImportSheet
       Style = csDropDownList
       TabOrder = 2
     end
-    object bbGridOptions: TBitBtn
-      Left = 765
-      Height = 32
-      Top = 1
-      Width = 115
-      Align = alRight
-      AutoSize = True
-      Caption = 'Grid options'
-      Enabled = False
-      Images = frmMain.ButtonsImageList
-      ImageIndex = 32
-      OnClick = bbGridOptionsClick
-      TabOrder = 3
-    end
     object cbGrig: TCheckBox
       AnchorSideTop.Control = pnlTop
       AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = bbGridOptions
-      Left = 650
+      AnchorSideRight.Control = pnlTop
+      AnchorSideRight.Side = asrBottom
+      Left = 765
       Height = 22
       Top = 6
       Width = 115
       Anchors = [akTop, akRight]
       Caption = 'Import as grid'
       OnChange = cbGrigChange
-      TabOrder = 4
+      TabOrder = 3
     end
   end
   object pnlBottom: TPanel
@@ -257,8 +244,8 @@ object frmImportSheet: TfrmImportSheet
       Height = 291
       Top = 1
       Width = 702
-      HorzScrollBar.Page = 312
-      VertScrollBar.Page = 248
+      HorzScrollBar.Page = 678
+      VertScrollBar.Page = 260
       Align = alClient
       ClientHeight = 289
       ClientWidth = 700
@@ -274,6 +261,380 @@ object frmImportSheet: TfrmImportSheet
         OnMouseDown = imgImportedMouseDown
         OnMouseUp = imgImportedMouseUp
         OnPaint = imgImportedPaint
+      end
+      object pnlGridOptions: TJvMovablePanel
+        Left = 440
+        Height = 244
+        Top = 16
+        Width = 238
+        AutoSize = True
+        ClientHeight = 244
+        ClientWidth = 238
+        TabOrder = 0
+        Visible = False
+        object sbCloseOptions: TSpeedButton
+          AnchorSideTop.Control = pnlGridOptions
+          AnchorSideRight.Control = pnlGridOptions
+          AnchorSideRight.Side = asrBottom
+          Left = 217
+          Height = 20
+          Top = 1
+          Width = 20
+          Anchors = [akTop, akRight]
+          AutoSize = True
+          Glyph.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000006F0000002F000000000000
+            00000000000F0000007F0000000F000000000000000000000000000000000000
+            00000000000000000000000000000000003F000000FF000000EF0000002F0000
+            000F000000CF000000FF0000007F000000000000000000000000000000000000
+            0000000000000000000000000000000000000000009F000000FF000000EF0000
+            00CF000000FF000000CF0000000F000000000000000000000000000000000000
+            000000000000000000000000000000000000000000000000009F000000FF0000
+            00FF000000CF0000000F00000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000F000000CF000000FF0000
+            00FF000000EF0000002F00000000000000000000000000000000000000000000
+            00000000000000000000000000000000000F000000CF000000FF000000CF0000
+            009F000000FF000000EF0000002F000000000000000000000000000000000000
+            00000000000000000000000000000000002F000000FF000000CF0000000F0000
+            00000000009F000000FF0000006F000000000000000000000000000000000000
+            0000000000000000000000000000000000000000002F0000000F000000000000
+            0000000000000000003F00000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000
+          }
+          OnClick = cbGrigChange
+        end
+        object gbGridSize: TGroupBox
+          AnchorSideTop.Control = sbCloseOptions
+          AnchorSideTop.Side = asrBottom
+          Left = 1
+          Height = 47
+          Top = 21
+          Width = 236
+          Align = alCustom
+          AutoSize = True
+          Caption = 'Grid size'
+          ClientHeight = 28
+          ClientWidth = 232
+          TabOrder = 0
+          object lblCols: TLabel
+            AnchorSideLeft.Control = gbGridSize
+            AnchorSideTop.Control = gbGridSize
+            AnchorSideTop.Side = asrCenter
+            Left = 5
+            Height = 17
+            Top = 6
+            Width = 57
+            BorderSpacing.Around = 5
+            Caption = 'Columns'
+            ParentColor = False
+          end
+          object lblRows: TLabel
+            Tag = 5
+            AnchorSideLeft.Control = spCols
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = gbGridSize
+            AnchorSideTop.Side = asrCenter
+            Left = 132
+            Height = 17
+            Top = 6
+            Width = 35
+            BorderSpacing.Around = 5
+            Caption = 'Rows'
+            ParentColor = False
+          end
+          object spCols: TSpinEdit
+            Tag = 5
+            AnchorSideLeft.Control = lblCols
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = gbGridSize
+            AnchorSideTop.Side = asrCenter
+            Left = 67
+            Height = 27
+            Top = 1
+            Width = 60
+            OnChange = spWidthChange
+            TabOrder = 0
+          end
+          object spRows: TSpinEdit
+            Tag = 6
+            AnchorSideLeft.Control = lblRows
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = gbGridSize
+            AnchorSideTop.Side = asrCenter
+            Left = 172
+            Height = 27
+            Top = 1
+            Width = 60
+            OnChange = spWidthChange
+            TabOrder = 1
+          end
+        end
+        object gbCell: TGroupBox
+          AnchorSideLeft.Control = gbGridSize
+          AnchorSideTop.Control = gbGridSize
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = gbGridSize
+          AnchorSideRight.Side = asrBottom
+          Left = 1
+          Height = 47
+          Top = 68
+          Width = 236
+          Align = alCustom
+          Anchors = [akTop, akLeft, akRight]
+          AutoSize = True
+          Caption = 'or Cell size'
+          ClientHeight = 28
+          ClientWidth = 232
+          TabOrder = 1
+          object lblWidth: TLabel
+            AnchorSideLeft.Control = gbCell
+            AnchorSideTop.Control = gbCell
+            AnchorSideTop.Side = asrCenter
+            Left = 5
+            Height = 17
+            Top = 6
+            Width = 38
+            BorderSpacing.Around = 5
+            Caption = 'Width'
+            ParentColor = False
+          end
+          object lblHeight: TLabel
+            AnchorSideLeft.Control = spWidth
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = gbCell
+            AnchorSideTop.Side = asrCenter
+            Left = 113
+            Height = 17
+            Top = 6
+            Width = 43
+            BorderSpacing.Around = 5
+            Caption = 'Height'
+            ParentColor = False
+          end
+          object spWidth: TSpinEdit
+            Tag = 1
+            AnchorSideLeft.Control = lblWidth
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = gbCell
+            AnchorSideTop.Side = asrCenter
+            Left = 48
+            Height = 27
+            Top = 1
+            Width = 60
+            OnChange = spWidthChange
+            TabOrder = 0
+            Value = 32
+          end
+          object spHeight: TSpinEdit
+            Tag = 2
+            AnchorSideLeft.Control = lblHeight
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = gbCell
+            AnchorSideTop.Side = asrCenter
+            Left = 161
+            Height = 27
+            Top = 1
+            Width = 60
+            OnChange = spWidthChange
+            TabOrder = 1
+            Value = 32
+          end
+        end
+        object gbCrop: TGroupBox
+          AnchorSideLeft.Control = gbGridSize
+          AnchorSideTop.Control = gbCell
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = gbGridSize
+          AnchorSideRight.Side = asrBottom
+          Left = 1
+          Height = 81
+          Top = 115
+          Width = 236
+          Align = alCustom
+          Anchors = [akTop, akLeft, akRight]
+          AutoSize = True
+          Caption = 'Crop'
+          ClientHeight = 62
+          ClientWidth = 232
+          TabOrder = 2
+          object lblLeft: TLabel
+            AnchorSideLeft.Control = gbCrop
+            AnchorSideTop.Control = spLeft
+            AnchorSideTop.Side = asrCenter
+            Left = 5
+            Height = 17
+            Top = 10
+            Width = 24
+            BorderSpacing.Around = 5
+            Caption = 'Left'
+            ParentColor = False
+          end
+          object lblRight: TLabel
+            AnchorSideLeft.Control = lblLeft
+            AnchorSideTop.Control = spRight
+            AnchorSideTop.Side = asrCenter
+            Left = 5
+            Height = 17
+            Top = 40
+            Width = 34
+            Caption = 'Right'
+            ParentColor = False
+          end
+          object lblTop: TLabel
+            AnchorSideLeft.Control = spLeft
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = lblLeft
+            AnchorSideTop.Side = asrCenter
+            Left = 119
+            Height = 17
+            Top = 10
+            Width = 22
+            BorderSpacing.Left = 10
+            Caption = 'Top'
+            ParentColor = False
+          end
+          object lblBottom: TLabel
+            AnchorSideLeft.Control = lblTop
+            AnchorSideTop.Control = lblRight
+            AnchorSideTop.Side = asrCenter
+            Left = 119
+            Height = 17
+            Top = 40
+            Width = 48
+            Caption = 'Bottom'
+            ParentColor = False
+          end
+          object spLeft: TSpinEdit
+            AnchorSideLeft.Control = lblLeft
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = gbCrop
+            Left = 49
+            Height = 27
+            Top = 5
+            Width = 60
+            BorderSpacing.Left = 20
+            BorderSpacing.Top = 5
+            TabOrder = 0
+          end
+          object spRight: TSpinEdit
+            AnchorSideLeft.Control = spLeft
+            AnchorSideTop.Control = spLeft
+            AnchorSideTop.Side = asrBottom
+            Left = 49
+            Height = 27
+            Top = 35
+            Width = 60
+            BorderSpacing.Top = 3
+            TabOrder = 1
+          end
+          object spTop: TSpinEdit
+            AnchorSideLeft.Control = lblTop
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = lblLeft
+            AnchorSideTop.Side = asrCenter
+            Left = 171
+            Height = 27
+            Top = 5
+            Width = 60
+            BorderSpacing.Left = 30
+            TabOrder = 2
+          end
+          object spBottom: TSpinEdit
+            AnchorSideLeft.Control = spTop
+            AnchorSideTop.Control = lblRight
+            AnchorSideTop.Side = asrCenter
+            Left = 171
+            Height = 27
+            Top = 35
+            Width = 60
+            TabOrder = 3
+          end
+        end
+        object gbOffset: TGroupBox
+          AnchorSideLeft.Control = gbGridSize
+          AnchorSideTop.Control = gbCrop
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = gbGridSize
+          AnchorSideRight.Side = asrBottom
+          Left = 1
+          Height = 47
+          Top = 196
+          Width = 236
+          Align = alCustom
+          Anchors = [akTop, akLeft, akRight]
+          AutoSize = True
+          Caption = 'Offset'
+          ClientHeight = 28
+          ClientWidth = 232
+          TabOrder = 3
+          object lblX: TLabel
+            AnchorSideLeft.Control = gbOffset
+            AnchorSideTop.Control = gbOffset
+            AnchorSideTop.Side = asrCenter
+            Left = 5
+            Height = 17
+            Top = 6
+            Width = 9
+            BorderSpacing.Around = 5
+            Caption = 'X'
+            ParentColor = False
+          end
+          object lblY: TLabel
+            AnchorSideLeft.Control = spX
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = gbOffset
+            AnchorSideTop.Side = asrCenter
+            Left = 114
+            Height = 17
+            Top = 6
+            Width = 8
+            BorderSpacing.Left = 30
+            BorderSpacing.Around = 5
+            Caption = 'Y'
+            ParentColor = False
+          end
+          object spX: TSpinEdit
+            Tag = 3
+            AnchorSideLeft.Control = lblX
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = gbOffset
+            AnchorSideTop.Side = asrCenter
+            Left = 19
+            Height = 27
+            Top = 1
+            Width = 60
+            TabOrder = 0
+          end
+          object spY: TSpinEdit
+            Tag = 4
+            AnchorSideLeft.Control = lblY
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = gbOffset
+            AnchorSideTop.Side = asrCenter
+            Left = 127
+            Height = 27
+            Top = 1
+            Width = 60
+            TabOrder = 1
+          end
+        end
       end
     end
     object Splitter1: TSplitter
