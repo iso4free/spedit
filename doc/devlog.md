@@ -239,3 +239,8 @@ DEV.LOG
 - [*] Docs updated
 - [+] Created single own package SPEDit with external components from other packages (see src/thirdparty)
 - [+] Added few hotkeys for create, save and open project
+
+05.06.2023
+=
+- [*] Some minor fixes
+- [*] Some code refactored

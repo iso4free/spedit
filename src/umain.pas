@@ -1231,10 +1231,58 @@ var
   aPreset: string;
 begin
   Caption:=APP_NAME;
+  //create some components from code instead install additional packages
+  //preview window
+  pnlPreview:=TJvMovablePanel.Create(Self);
+  pnlPreview.Parent:=Self;;
+  pnlPreview.AutoSize:=True;
+  pnlPreview.Constraints.MaxHeight:=500;
+  pnlPreview.Constraints.MaxWidth:=500;
+  pnlPreview.Constraints.MinHeight:=64;
+  pnlPreview.Constraints.MinWidth:=64;
+  //button for hide preview - like close button
+  SpeedButton1:=TSpeedButton.Create(pnlPreview);
+  SpeedButton1.Parent:=pnlPreview;
+  SpeedButton1.Anchors:=[akTop, akRight];
+  SpeedButton1.Images:=BGRAImageList24x24;
+  SpeedButton1.ImageIndex:=17; //may change if images order will change
+  SpeedButton1.AutoSize:=True;
+  SpeedButton1.AnchorSideTop.Control:=pnlPreview;
+  SpeedButton1.AnchorSideRight.Control:=pnlPreview;
+  SpeedButton1.AnchorSideRight.Side:=asrBottom;
+  SpeedButton1.OnClick:=@SpeedButton1Click;
+
+  //scrollbox if preview too large
+  ScrollBox1:=TScrollBox.Create(pnlPreview);
+  ScrollBox1.Parent:=pnlPreview;
+  ScrollBox1.Align:=alCustom;
+  ScrollBox1.Anchors:=[akTop, akLeft, akRight, akBottom];
+  ScrollBox1.AnchorSideLeft.Control:=pnlPreview;
+  ScrollBox1.AnchorSideRight.Control:=pnlPreview;
+  ScrollBox1.AnchorSideBottom.Control:=pnlPreview;
+  ScrollBox1.AnchorSideTop.Control:=SpeedButton1;
+  ScrollBox1.AnchorSideTop.Side:=asrBottom;
+  ScrollBox1.AnchorSideRight.Side:=asrBottom;
+  ScrollBox1.AnchorSideBottom.Side:=asrBottom;
+  ScrollBox1.HorzScrollBar.Page:=90;
+  ScrollBox1.VertScrollBar.Page:=90;
+
+  //image for preview
+  FramePreview:=TImage.Create(ScrollBox1);
+  FramePreview.Parent:=ScrollBox1;
+  FramePreview.Center:=True;
+  FramePreview.AutoSize:=True;
+  FramePreview.AnchorSideLeft.Control:=ScrollBox1;
+  FramePreview.AnchorSideTop.Control:=ScrollBox1;
+  FramePreview.OnClick:=@FramePreviewClick;
+
+
+  SessionProperties:=SessionProperties+';pnlPreview.Visible;pnlPreview.Left;pnlPreview.Top';
+  //actLayersToggle.Checked;actToggleFullScreen.Checked;FormStyle;pnlFrames.Visible;pnlLayers.Visible;pnlTools.Visible;Position;WindowState
   JSONProp := UserSettingsPath + 'spedit.json';
   JSONPropStorage1.JSONFileName := JSONProp;
-   {$IFDEF DEBUG}
-   //DebugLn(DateTimeToStr(Now()),' In: frmMain.Create() JSONProp=',JSONProp);
+  {$IFDEF DEBUG}
+   ShowMessage(SessionProperties);
    {$ENDIF}
 
   DetectPOLanguage(INI.ReadString('INTERFACE', 'L10n file', ''));

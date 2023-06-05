@@ -7,10 +7,11 @@
       <Unit>
         <Filename Value="spedit.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="32"/>
-        <CursorPos X="68" Y="41"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="50"/>
+        <CursorPos Y="64"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="umain.pas"/>
@@ -18,8 +19,9 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="1592"/>
-        <CursorPos Y="1608"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="1278"/>
+        <CursorPos X="33" Y="1285"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 Y="399"/>
@@ -107,10 +109,10 @@
         <ComponentName Value="frmProjectProps"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="73"/>
         <CursorPos Y="93"/>
-        <UsageCount Value="173"/>
+        <UsageCount Value="175"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -120,11 +122,10 @@
         <ComponentName Value="frmImportSheet"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="339"/>
         <CursorPos X="3" Y="344"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -134,10 +135,10 @@
         <ComponentName Value="frmGridOptions"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="108"/>
         <CursorPos X="26" Y="118"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -687,10 +688,9 @@
       </Unit>
       <Unit>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="1733"/>
+        <EditorIndex Value="4"/>
         <CursorPos X="3" Y="1723"/>
-        <UsageCount Value="80"/>
+        <UsageCount Value="82"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -1064,54 +1064,13 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
+    <Debugger>
+      <Backend Value="IDE"/>
+    </Debugger>
     <OtherDefines Count="1">
       <Define0 Value="DEBUG"/>
     </OtherDefines>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="475" Column="40" TopLine="461"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="425" Column="42" TopLine="406"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="409" Column="20" TopLine="401"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="427" Column="36" TopLine="417"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="144" Column="15" TopLine="135"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="380" Column="27" TopLine="369"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="135" Column="43" TopLine="120"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="277" Column="38" TopLine="267"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="389" Column="56" TopLine="381"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="392" Column="3" TopLine="381"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="139" Column="15" TopLine="130"/>
-      </Position>
       <Position>
         <Filename Value="uspriteimport.pas"/>
         <Caret Line="400" Column="11" TopLine="390"/>
@@ -1188,6 +1147,50 @@
         <Filename Value="uspriteimport.pas"/>
         <Caret Line="158" Column="15" TopLine="149"/>
       </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1608" TopLine="1592"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1246" Column="14" TopLine="1232"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="887" Column="3" TopLine="884"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1248" Column="24" TopLine="1234"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1255" Column="28" TopLine="1242"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1725" Column="3" TopLine="1722"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1237" TopLine="1232"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1283" Column="48" TopLine="1273"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="85" Column="5" TopLine="78"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1286" Column="5" TopLine="1280"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1285" Column="99" TopLine="1278"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -1200,13 +1203,15 @@
       </Modes>
     </RunParams>
     <HistoryLists>
-      <List Name="LaunchingApplication" Type="File" Count="2">
+      <List Name="LaunchingApplication" Type="File" Count="3">
         <Item1 Value="/usr/bin/xterm -T &apos;Lazarus Run Output&apos; -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
         <Item2 Value="/usr/bin/gnome-terminal -t &apos;Lazarus Run Output&apos; -e &apos;$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)&apos;"/>
+        <Item3 Value="/usr/bin/konsole -T &apos;Lazarus Run Output&apos; -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
       </List>
       <List Name="CommandLineParameters" Count="1">
         <Item1 Value="--debug-log=spedit.log"/>
       </List>
+      <List Name="WorkingDirectory" Type="File" Count="1"/>
     </HistoryLists>
   </ProjectSession>
   <Debugging>

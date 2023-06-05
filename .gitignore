@@ -2,6 +2,7 @@ bin/i386-win32/**
 bin/i386-linux/**
 bin/x86_64-linux/**
 bin/x86_64-win64/**
+bin/x86_64-haiku/**
 lib/**
 debug/**
 src/backup/**
@@ -13,3 +14,4 @@ src/thirdparty/piskelinfo/backup/**
 bin/datatest-*
 *.bz2
 *.zip
+*.log
