@@ -255,9 +255,6 @@
     </RunParams>
     <RequiredPackages>
       <Item>
-        <PackageName Value="spedit"/>
-      </Item>
-      <Item>
         <PackageName Value="bgracontrols"/>
       </Item>
       <Item>

@@ -59,7 +59,6 @@ begin
   Application.CreateForm(TfrmNameDlg, frmNameDlg);
   Application.CreateForm(TfrmProjectProps, frmProjectProps);
   Application.CreateForm(TfrmImportSheet, frmImportSheet);
-  Application.CreateForm(TfrmGridOptions, frmGridOptions);
   Application.Run;
 end.
 

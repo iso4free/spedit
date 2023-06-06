@@ -8,8 +8,8 @@
         <Filename Value="spedit.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="50"/>
-        <CursorPos Y="64"/>
+        <TopLine Value="49"/>
+        <CursorPos X="59" Y="61"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit>
@@ -19,9 +19,8 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="1278"/>
-        <CursorPos X="33" Y="1285"/>
+        <TopLine Value="1846"/>
+        <CursorPos X="10" Y="1856"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 Y="399"/>
@@ -112,7 +111,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="73"/>
         <CursorPos Y="93"/>
-        <UsageCount Value="175"/>
+        <UsageCount Value="176"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -122,10 +121,11 @@
         <ComponentName Value="frmImportSheet"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="339"/>
-        <CursorPos X="3" Y="344"/>
-        <UsageCount Value="62"/>
+        <TopLine Value="389"/>
+        <CursorPos X="49" Y="396"/>
+        <UsageCount Value="63"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -136,11 +136,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="108"/>
-        <CursorPos X="26" Y="118"/>
-        <UsageCount Value="51"/>
+        <CursorPos X="3" Y="79"/>
+        <UsageCount Value="52"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="uglobals.pas"/>
@@ -1073,38 +1071,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="uspriteimport.pas"/>
-        <Caret Line="400" Column="11" TopLine="390"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="498" Column="61" TopLine="492"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="143" Column="15" TopLine="129"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="503" Column="3" TopLine="501"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="402" Column="64" TopLine="396"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="143" Column="22" TopLine="131"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="142" Column="5" TopLine="132"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="141" Column="52" TopLine="132"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
         <Caret Line="407" Column="47" TopLine="397"/>
       </Position>
       <Position>
@@ -1191,6 +1157,38 @@
         <Filename Value="umain.pas"/>
         <Caret Line="1285" Column="99" TopLine="1278"/>
       </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1237" Column="33" TopLine="1231"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1244" Column="38" TopLine="1231"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1319" Column="10" TopLine="1308"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="349" Column="15" TopLine="343"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1541" Column="3" TopLine="1538"/>
+      </Position>
+      <Position>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="344" Column="3" TopLine="339"/>
+      </Position>
+      <Position>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="518" TopLine="490"/>
+      </Position>
+      <Position>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="357" Column="3" TopLine="347"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -1211,7 +1209,6 @@
       <List Name="CommandLineParameters" Count="1">
         <Item1 Value="--debug-log=spedit.log"/>
       </List>
-      <List Name="WorkingDirectory" Type="File" Count="1"/>
     </HistoryLists>
   </ProjectSession>
   <Debugging>

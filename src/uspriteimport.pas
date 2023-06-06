@@ -392,6 +392,8 @@ begin
   FSelectionsList.OnChange:=@SelectionChange;
   aImg:=TBGRABitmap.Create(0,0);
   aBuff:=TBGRABitmap.Create(0,0);
+  //todo: create manually pnlGridOptions(ScrollBox1) with all internal components
+  //and remove ugridoptions.pasfrom dependencies
 end;
 
 procedure TfrmImportSheet.FormDestroy(Sender: TObject);
