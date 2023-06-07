@@ -1233,15 +1233,13 @@ begin
   Caption:=APP_NAME;
   //create some components from code instead install additional packages
   //preview window
-  pnlPreview:=TJvMovablePanel.Create(frmMain);
-  pnlPreview.Parent:=frmMain;
+  pnlPreview:=TJvMovablePanel.Create(Self);
+  pnlPreview.Parent:=Self;;
   pnlPreview.AutoSize:=True;
   pnlPreview.Constraints.MaxHeight:=500;
   pnlPreview.Constraints.MaxWidth:=500;
   pnlPreview.Constraints.MinHeight:=64;
   pnlPreview.Constraints.MinWidth:=64;
-  pnlPreview.Left:=pnlPalette.Left-pnlPreview.Width-20;
-  pnlPreview.Top:=pnlEditor.Height+20;
   //button for hide preview - like close button
   SpeedButton1:=TSpeedButton.Create(pnlPreview);
   SpeedButton1.Parent:=pnlPreview;
@@ -1278,18 +1276,14 @@ begin
   FramePreview.AnchorSideTop.Control:=ScrollBox1;
   FramePreview.OnClick:=@FramePreviewClick;
 
-  //hex palette
-  HexaColorPicker1:=THexaColorPicker.Create(pnlColors);
-  HexaColorPicker1.Parent:=pnlColors;
-  HexaColorPicker1.Align:=alClient;
-  HexaColorPicker1.HintFormat:='RGB(%r, %g, %b)'#13'Hex: #%hex';
-  HexaColorPicker1.OnMouseUp:=@HexaColorPicker1MouseUp;
-
 
   SessionProperties:=SessionProperties+';pnlPreview.Visible;pnlPreview.Left;pnlPreview.Top';
-
+  //actLayersToggle.Checked;actToggleFullScreen.Checked;FormStyle;pnlFrames.Visible;pnlLayers.Visible;pnlTools.Visible;Position;WindowState
   JSONProp := UserSettingsPath + 'spedit.json';
   JSONPropStorage1.JSONFileName := JSONProp;
+  {$IFDEF DEBUG}
+   ShowMessage(SessionProperties);
+   {$ENDIF}
 
   DetectPOLanguage(INI.ReadString('INTERFACE', 'L10n file', ''));
   //if checked create and  show  splashscreen
