@@ -1,7 +1,7 @@
 object frmImportSheet: TfrmImportSheet
-  Left = 297
+  Left = 299
   Height = 365
-  Top = 205
+  Top = 199
   Width = 881
   AllowDropFiles = True
   Caption = 'Import sprites'
@@ -12,24 +12,24 @@ object frmImportSheet: TfrmImportSheet
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   Position = poScreenCenter
-  LCLVersion = '2.2.4.0'
+  LCLVersion = '8.1'
   WindowState = wsMaximized
   object pnlTop: TPanel
     Left = 0
-    Height = 34
+    Height = 37
     Top = 0
     Width = 881
     Align = alTop
     AutoSize = True
-    ClientHeight = 34
+    ClientHeight = 37
     ClientWidth = 881
     TabOrder = 0
     object bbSpritesheetOpen: TBitBtn
       Left = 1
-      Height = 32
+      Height = 35
       Hint = 'Import spritesheet from image file'
       Top = 1
-      Width = 147
+      Width = 188
       Align = alLeft
       AutoSize = True
       Caption = 'Open spritesheet'
@@ -45,10 +45,10 @@ object frmImportSheet: TfrmImportSheet
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = pnlTop
       AnchorSideTop.Side = asrCenter
-      Left = 168
-      Height = 17
+      Left = 209
+      Height = 19
       Top = 9
-      Width = 102
+      Width = 125
       BorderSpacing.Left = 20
       Caption = 'Name template'
       ParentColor = False
@@ -58,8 +58,8 @@ object frmImportSheet: TfrmImportSheet
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = pnlTop
       AnchorSideTop.Side = asrCenter
-      Left = 280
-      Height = 25
+      Left = 344
+      Height = 27
       Top = 5
       Width = 80
       BorderSpacing.Left = 10
@@ -70,12 +70,12 @@ object frmImportSheet: TfrmImportSheet
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = pnlTop
       AnchorSideTop.Side = asrCenter
-      Left = 365
+      Left = 429
       Height = 27
-      Top = 4
+      Top = 5
       Width = 100
       BorderSpacing.Left = 5
-      ItemHeight = 0
+      ItemHeight = 19
       Items.Strings = (
         'Normal'
         'x2'
@@ -90,10 +90,10 @@ object frmImportSheet: TfrmImportSheet
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = pnlTop
       AnchorSideRight.Side = asrBottom
-      Left = 765
-      Height = 22
+      Left = 742
+      Height = 25
       Top = 6
-      Width = 115
+      Width = 138
       Anchors = [akTop, akRight]
       Caption = 'Import as grid'
       OnChange = cbGrigChange
@@ -102,12 +102,12 @@ object frmImportSheet: TfrmImportSheet
   end
   object pnlBottom: TPanel
     Left = 0
-    Height = 38
-    Top = 327
+    Height = 36
+    Top = 329
     Width = 881
     Align = alBottom
     AutoSize = True
-    ClientHeight = 38
+    ClientHeight = 36
     ClientWidth = 881
     TabOrder = 1
     object bbImport: TBitBtn
@@ -115,9 +115,9 @@ object frmImportSheet: TfrmImportSheet
       AnchorSideTop.Control = pnlBottom
       AnchorSideTop.Side = asrCenter
       Left = 3
-      Height = 32
+      Height = 30
       Top = 3
-      Width = 129
+      Width = 156
       AutoSize = True
       BorderSpacing.Around = 2
       Caption = 'Impotr frames'
@@ -131,10 +131,10 @@ object frmImportSheet: TfrmImportSheet
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = pnlBottom
       AnchorSideTop.Side = asrCenter
-      Left = 134
+      Left = 161
       Height = 30
-      Top = 4
-      Width = 78
+      Top = 3
+      Width = 97
       AutoSize = True
       Cancel = True
       Caption = 'Cancel'
@@ -145,16 +145,16 @@ object frmImportSheet: TfrmImportSheet
   end
   object pnlLeft: TPanel
     Left = 0
-    Height = 293
-    Top = 34
+    Height = 292
+    Top = 37
     Width = 170
     Align = alLeft
-    ClientHeight = 293
+    ClientHeight = 292
     ClientWidth = 170
     TabOrder = 2
     object chgrpSelections: TGroupBox
       Left = 1
-      Height = 257
+      Height = 253
       Top = 1
       Width = 168
       Align = alClient
@@ -167,14 +167,14 @@ object frmImportSheet: TfrmImportSheet
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 1
-      ClientHeight = 238
-      ClientWidth = 164
+      ClientHeight = 225
+      ClientWidth = 162
       TabOrder = 0
       object dgImportedFrames: TDrawGrid
         Left = 6
-        Height = 226
+        Height = 213
         Top = 6
-        Width = 152
+        Width = 150
         ColCount = 3
         ExtendedSelect = False
         FixedCols = 0
@@ -185,20 +185,20 @@ object frmImportSheet: TfrmImportSheet
     end
     object pnlSelections: TPanel
       Left = 1
-      Height = 34
-      Top = 258
+      Height = 37
+      Top = 254
       Width = 168
       Align = alBottom
       AutoSize = True
-      ClientHeight = 34
+      ClientHeight = 37
       ClientWidth = 168
       TabOrder = 1
       object bbAdd: TBitBtn
         Left = 1
-        Height = 32
+        Height = 35
         Hint = 'Add current selection as frame to selections'
         Top = 1
-        Width = 32
+        Width = 46
         Align = alLeft
         AutoSize = True
         Images = frmMain.ButtonsImageList
@@ -208,10 +208,10 @@ object frmImportSheet: TfrmImportSheet
         TabOrder = 0
       end
       object bbDelete: TBitBtn
-        Left = 41
-        Height = 32
+        Left = 61
+        Height = 35
         Top = 1
-        Width = 32
+        Width = 46
         Align = alLeft
         AutoSize = True
         Images = frmMain.ButtonsImageList
@@ -219,10 +219,10 @@ object frmImportSheet: TfrmImportSheet
         TabOrder = 1
       end
       object bbClear: TBitBtn
-        Left = 33
-        Height = 32
+        Left = 47
+        Height = 35
         Top = 1
-        Width = 8
+        Width = 14
         Align = alLeft
         AutoSize = True
         Images = frmMain.ButtonsImageList
@@ -232,23 +232,23 @@ object frmImportSheet: TfrmImportSheet
   end
   object pnlSheet: TPanel
     Left = 170
-    Height = 293
-    Top = 34
+    Height = 292
+    Top = 37
     Width = 711
     Align = alClient
-    ClientHeight = 293
+    ClientHeight = 292
     ClientWidth = 711
     TabOrder = 3
     object ScrollBox1: TScrollBox
       Left = 8
-      Height = 291
+      Height = 290
       Top = 1
       Width = 702
-      HorzScrollBar.Page = 678
-      VertScrollBar.Page = 260
+      HorzScrollBar.Page = 686
+      VertScrollBar.Page = 274
       Align = alClient
-      ClientHeight = 289
-      ClientWidth = 700
+      ClientHeight = 274
+      ClientWidth = 686
       TabOrder = 0
       object imgImported: TImage
         AnchorSideLeft.Control = ScrollBox1
@@ -264,19 +264,19 @@ object frmImportSheet: TfrmImportSheet
       end
       object pnlGridOptions: TJvMovablePanel
         Left = 440
-        Height = 244
+        Height = 366
         Top = 16
-        Width = 238
+        Width = 260
         AutoSize = True
-        ClientHeight = 244
-        ClientWidth = 238
+        ClientHeight = 366
+        ClientWidth = 260
         TabOrder = 0
         Visible = False
         object sbCloseOptions: TSpeedButton
           AnchorSideTop.Control = pnlGridOptions
           AnchorSideRight.Control = pnlGridOptions
           AnchorSideRight.Side = asrBottom
-          Left = 217
+          Left = 239
           Height = 20
           Top = 1
           Width = 20
@@ -324,23 +324,23 @@ object frmImportSheet: TfrmImportSheet
           AnchorSideTop.Control = sbCloseOptions
           AnchorSideTop.Side = asrBottom
           Left = 1
-          Height = 47
+          Height = 84
           Top = 21
-          Width = 236
+          Width = 258
           Align = alCustom
           AutoSize = True
           Caption = 'Grid size'
-          ClientHeight = 28
-          ClientWidth = 232
+          ClientHeight = 56
+          ClientWidth = 252
           TabOrder = 0
           object lblCols: TLabel
             AnchorSideLeft.Control = gbGridSize
             AnchorSideTop.Control = gbGridSize
             AnchorSideTop.Side = asrCenter
             Left = 5
-            Height = 17
-            Top = 6
-            Width = 57
+            Height = 19
+            Top = 19
+            Width = 70
             BorderSpacing.Around = 5
             Caption = 'Columns'
             ParentColor = False
@@ -351,10 +351,10 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = gbGridSize
             AnchorSideTop.Side = asrCenter
-            Left = 132
-            Height = 17
-            Top = 6
-            Width = 35
+            Left = 145
+            Height = 19
+            Top = 19
+            Width = 42
             BorderSpacing.Around = 5
             Caption = 'Rows'
             ParentColor = False
@@ -365,9 +365,9 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = gbGridSize
             AnchorSideTop.Side = asrCenter
-            Left = 67
-            Height = 27
-            Top = 1
+            Left = 80
+            Height = 28
+            Top = 14
             Width = 60
             OnChange = spWidthChange
             TabOrder = 0
@@ -378,9 +378,9 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = gbGridSize
             AnchorSideTop.Side = asrCenter
-            Left = 172
-            Height = 27
-            Top = 1
+            Left = 192
+            Height = 28
+            Top = 14
             Width = 60
             OnChange = spWidthChange
             TabOrder = 1
@@ -393,24 +393,24 @@ object frmImportSheet: TfrmImportSheet
           AnchorSideRight.Control = gbGridSize
           AnchorSideRight.Side = asrBottom
           Left = 1
-          Height = 47
-          Top = 68
-          Width = 236
+          Height = 84
+          Top = 105
+          Width = 258
           Align = alCustom
           Anchors = [akTop, akLeft, akRight]
           AutoSize = True
           Caption = 'or Cell size'
-          ClientHeight = 28
-          ClientWidth = 232
+          ClientHeight = 56
+          ClientWidth = 252
           TabOrder = 1
           object lblWidth: TLabel
             AnchorSideLeft.Control = gbCell
             AnchorSideTop.Control = gbCell
             AnchorSideTop.Side = asrCenter
             Left = 5
-            Height = 17
-            Top = 6
-            Width = 38
+            Height = 19
+            Top = 19
+            Width = 47
             BorderSpacing.Around = 5
             Caption = 'Width'
             ParentColor = False
@@ -420,10 +420,10 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = gbCell
             AnchorSideTop.Side = asrCenter
-            Left = 113
-            Height = 17
-            Top = 6
-            Width = 43
+            Left = 122
+            Height = 19
+            Top = 19
+            Width = 53
             BorderSpacing.Around = 5
             Caption = 'Height'
             ParentColor = False
@@ -434,9 +434,9 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = gbCell
             AnchorSideTop.Side = asrCenter
-            Left = 48
-            Height = 27
-            Top = 1
+            Left = 57
+            Height = 28
+            Top = 14
             Width = 60
             OnChange = spWidthChange
             TabOrder = 0
@@ -448,9 +448,9 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = gbCell
             AnchorSideTop.Side = asrCenter
-            Left = 161
-            Height = 27
-            Top = 1
+            Left = 180
+            Height = 28
+            Top = 14
             Width = 60
             OnChange = spWidthChange
             TabOrder = 1
@@ -464,24 +464,24 @@ object frmImportSheet: TfrmImportSheet
           AnchorSideRight.Control = gbGridSize
           AnchorSideRight.Side = asrBottom
           Left = 1
-          Height = 81
-          Top = 115
-          Width = 236
+          Height = 92
+          Top = 189
+          Width = 258
           Align = alCustom
           Anchors = [akTop, akLeft, akRight]
           AutoSize = True
           Caption = 'Crop'
-          ClientHeight = 62
-          ClientWidth = 232
+          ClientHeight = 64
+          ClientWidth = 252
           TabOrder = 2
           object lblLeft: TLabel
             AnchorSideLeft.Control = gbCrop
             AnchorSideTop.Control = spLeft
             AnchorSideTop.Side = asrCenter
             Left = 5
-            Height = 17
+            Height = 19
             Top = 10
-            Width = 24
+            Width = 31
             BorderSpacing.Around = 5
             Caption = 'Left'
             ParentColor = False
@@ -491,9 +491,9 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideTop.Control = spRight
             AnchorSideTop.Side = asrCenter
             Left = 5
-            Height = 17
-            Top = 40
-            Width = 34
+            Height = 19
+            Top = 41
+            Width = 43
             Caption = 'Right'
             ParentColor = False
           end
@@ -502,10 +502,10 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = lblLeft
             AnchorSideTop.Side = asrCenter
-            Left = 119
-            Height = 17
+            Left = 126
+            Height = 19
             Top = 10
-            Width = 22
+            Width = 27
             BorderSpacing.Left = 10
             Caption = 'Top'
             ParentColor = False
@@ -514,10 +514,10 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Control = lblTop
             AnchorSideTop.Control = lblRight
             AnchorSideTop.Side = asrCenter
-            Left = 119
-            Height = 17
-            Top = 40
-            Width = 48
+            Left = 126
+            Height = 19
+            Top = 41
+            Width = 59
             Caption = 'Bottom'
             ParentColor = False
           end
@@ -525,8 +525,8 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Control = lblLeft
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = gbCrop
-            Left = 49
-            Height = 27
+            Left = 56
+            Height = 28
             Top = 5
             Width = 60
             BorderSpacing.Left = 20
@@ -537,9 +537,9 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Control = spLeft
             AnchorSideTop.Control = spLeft
             AnchorSideTop.Side = asrBottom
-            Left = 49
-            Height = 27
-            Top = 35
+            Left = 56
+            Height = 28
+            Top = 36
             Width = 60
             BorderSpacing.Top = 3
             TabOrder = 1
@@ -549,8 +549,8 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = lblLeft
             AnchorSideTop.Side = asrCenter
-            Left = 171
-            Height = 27
+            Left = 183
+            Height = 28
             Top = 5
             Width = 60
             BorderSpacing.Left = 30
@@ -560,9 +560,9 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Control = spTop
             AnchorSideTop.Control = lblRight
             AnchorSideTop.Side = asrCenter
-            Left = 171
-            Height = 27
-            Top = 35
+            Left = 183
+            Height = 28
+            Top = 36
             Width = 60
             TabOrder = 3
           end
@@ -574,24 +574,24 @@ object frmImportSheet: TfrmImportSheet
           AnchorSideRight.Control = gbGridSize
           AnchorSideRight.Side = asrBottom
           Left = 1
-          Height = 47
-          Top = 196
-          Width = 236
+          Height = 84
+          Top = 281
+          Width = 258
           Align = alCustom
           Anchors = [akTop, akLeft, akRight]
           AutoSize = True
           Caption = 'Offset'
-          ClientHeight = 28
-          ClientWidth = 232
+          ClientHeight = 56
+          ClientWidth = 252
           TabOrder = 3
           object lblX: TLabel
             AnchorSideLeft.Control = gbOffset
             AnchorSideTop.Control = gbOffset
             AnchorSideTop.Side = asrCenter
             Left = 5
-            Height = 17
-            Top = 6
-            Width = 9
+            Height = 19
+            Top = 19
+            Width = 11
             BorderSpacing.Around = 5
             Caption = 'X'
             ParentColor = False
@@ -601,10 +601,10 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = gbOffset
             AnchorSideTop.Side = asrCenter
-            Left = 114
-            Height = 17
-            Top = 6
-            Width = 8
+            Left = 116
+            Height = 19
+            Top = 19
+            Width = 10
             BorderSpacing.Left = 30
             BorderSpacing.Around = 5
             Caption = 'Y'
@@ -616,9 +616,9 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = gbOffset
             AnchorSideTop.Side = asrCenter
-            Left = 19
-            Height = 27
-            Top = 1
+            Left = 21
+            Height = 28
+            Top = 14
             Width = 60
             TabOrder = 0
           end
@@ -628,9 +628,9 @@ object frmImportSheet: TfrmImportSheet
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = gbOffset
             AnchorSideTop.Side = asrCenter
-            Left = 127
-            Height = 27
-            Top = 1
+            Left = 131
+            Height = 28
+            Top = 14
             Width = 60
             TabOrder = 1
           end
@@ -639,7 +639,7 @@ object frmImportSheet: TfrmImportSheet
     end
     object Splitter1: TSplitter
       Left = 1
-      Height = 291
+      Height = 290
       Top = 1
       Width = 7
     end

@@ -33,7 +33,6 @@
           <Parsing>
             <SyntaxOptions>
               <IncludeAssertionCode Value="True"/>
-              <StaticKeyword Value="True"/>
             </SyntaxOptions>
           </Parsing>
           <CodeGeneration>
@@ -217,22 +216,20 @@
     </RunParams>
     <RequiredPackages>
       <Item>
-        <PackageName Value="spedit"/>
+        <PackageName Value="pl_bgracontrols"/>
       </Item>
       <Item>
-        <PackageName Value="bgracontrols"/>
-      </Item>
-      <Item>
-        <PackageName Value="LCL"/>
+        <PackageName Value="adLCL"/>
       </Item>
     </RequiredPackages>
     <Units>
       <Unit>
-        <Filename Value="spedit.lpr"/>
+        <Filename Value="spedit.ppr"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="umain.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
@@ -244,6 +241,7 @@
       </Unit>
       <Unit>
         <Filename Value="ureferense.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmReferense"/>
         <HasResources Value="True"/>
@@ -251,6 +249,7 @@
       </Unit>
       <Unit>
         <Filename Value="uframedlg.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmFrameDlg"/>
         <HasResources Value="True"/>
@@ -258,6 +257,7 @@
       </Unit>
       <Unit>
         <Filename Value="uabout.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmAbout"/>
         <HasResources Value="True"/>
@@ -265,6 +265,7 @@
       </Unit>
       <Unit>
         <Filename Value="usettings.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmSettings"/>
         <HasResources Value="True"/>
@@ -272,6 +273,7 @@
       </Unit>
       <Unit>
         <Filename Value="uresizedlg.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmResize"/>
         <HasResources Value="True"/>
@@ -279,6 +281,7 @@
       </Unit>
       <Unit>
         <Filename Value="unamedlg.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmNameDlg"/>
         <HasResources Value="True"/>
@@ -286,6 +289,7 @@
       </Unit>
       <Unit>
         <Filename Value="uprojprops.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmProjectProps"/>
         <HasResources Value="True"/>
@@ -293,6 +297,7 @@
       </Unit>
       <Unit>
         <Filename Value="uspriteimport.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmImportSheet"/>
         <HasResources Value="True"/>
@@ -300,6 +305,7 @@
       </Unit>
       <Unit>
         <Filename Value="ugridoptions.pas"/>
+        <FRMtype Value="200"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmGridOptions"/>
         <HasResources Value="True"/>

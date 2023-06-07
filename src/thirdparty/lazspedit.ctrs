@@ -1,4 +1,4 @@
-LazarusResources.Add('tjvmovablebevel','PNG',[
+TyphonResources.Add('tjvmovablebevel','PNG',[
   #137'PNG'#13#10#26#10#0#0#0#13'IHDR'#0#0#0#24#0#0#0#24#8#6#0#0#0#224'w='#248#0
   +#0#0#4'sBIT'#8#8#8#8'|'#8'd'#136#0#0#0#9'pHYs'#0#0#14#196#0#0#14#196#1#149'+'
   +#14#27#0#0#0#25'tEXtSoftware'#0'www.inkscape.org'#155#238'<'#26#0#0#2'HIDATH'
@@ -29,7 +29,7 @@ LazarusResources.Add('tjvmovablebevel','PNG',[
   +'}v'#184#27'{'#234'v'#238'n'#220#191#139#220#241#31'Tc'#144#8#144'"Y'#163#0#0
   +#0#0'IEND'#174'B`'#130
 ]);
-LazarusResources.Add('tjvmovablepanel','PNG',[
+TyphonResources.Add('tjvmovablepanel','PNG',[
   #137'PNG'#13#10#26#10#0#0#0#13'IHDR'#0#0#0#24#0#0#0#24#8#6#0#0#0#224'w='#248#0
   +#0#0#4'sBIT'#8#8#8#8'|'#8'd'#136#0#0#0#9'pHYs'#0#0#14#196#0#0#14#196#1#149'+'
   +#14#27#0#0#0#25'tEXtSoftware'#0'www.inkscape.org'#155#238'<'#26#0#0#2#27'IDA'
@@ -58,7 +58,7 @@ LazarusResources.Add('tjvmovablepanel','PNG',[
   +'B'#181#234#176'P'#159#247#156#0#195#174#29'C'#175'%'#174#238'~1<E~'#249#15
   +#198#138#171#253#176'F'#191#181#0#0#0#0'IEND'#174'B`'#130
 ]);
-LazarusResources.Add('tcolorpalette','XPM',[
+TyphonResources.Add('tcolorpalette','XPM',[
   '/* XPM */'#10'static char *graphic[] = {'#10'"20 21 13 1",'#10'". c #848484"'
   +','#10'", c None",'#10'"- c #FFFFFF",'#10'"* c #C6C6C6",'#10'"a c #000000",'
   +#10'"b c #840000",'#10'"c c #848400",'#10'"d c #808000",'#10'"e c #FF0000",'
@@ -72,7 +72,7 @@ LazarusResources.Add('tcolorpalette','XPM',[
   +'.-aggggahhhhaiiiia.-",'#10'".-aaaaaaaaaaaaaaaa.-",'#10'".*.................'
   +'-",'#10'",-------------------",'#10'",,,,,,,,,,,,,,,,,,,,"}'#10
 ]);
-LazarusResources.Add('THexaColorPicker','PNG',[
+TyphonResources.Add('THexaColorPicker','PNG',[
   #137'PNG'#13#10#26#10#0#0#0#13'IHDR'#0#0#0#24#0#0#0#24#8#6#0#0#0#224'w='#248#0
   +#0#0#9'pHYs'#0#0#11#19#0#0#11#19#1#0#154#156#24#0#0#2'lIDATH'#199#237#149'!s'
   +#219'@'#16#133'?'#205#4#172#216#29';A'#149#25#134#6#186',e'#13'Ka~B'#203#250

@@ -80,7 +80,7 @@ var
 
 implementation
   uses uspriteimport;
-{$R *.lfm}
+{$R *.frm}
 
   { TfrmGridOptions }
 

@@ -34,10 +34,10 @@
     </Files>
     <RequiredPkgs>
       <Item>
-        <PackageName Value="LCL"/>
+        <PackageName Value="adLCL"/>
       </Item>
       <Item>
-        <PackageName Value="FCL"/>
+        <PackageName Value="adFCL"/>
       </Item>
     </RequiredPkgs>
     <UsageOptions>

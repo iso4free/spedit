@@ -55,7 +55,7 @@ implementation
 
 uses uglobals, umain;
 
-{$R *.lfm}
+{$R *.frm}
 
 { TfrmReferense }
 

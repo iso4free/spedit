@@ -170,7 +170,7 @@ var
 implementation
 
  uses uglobals, umain, ugridoptions;
-{$R *.lfm}
+{$R *.frm}
 
 { TSelectionList }
 

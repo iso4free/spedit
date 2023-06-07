@@ -47,7 +47,7 @@ var
 
 implementation
 uses umain, uglobals;
-{$R *.lfm}
+{$R *.frm}
 
 { TfrmProjectProps }
 

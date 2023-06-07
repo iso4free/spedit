@@ -12,16 +12,16 @@ Welcome to Spedit 4.0, free and open source pixel-art editor and Sprite Library 
 
 INTRODUCTION
 ============
-Program written with Lazarus IDE/Free Pascal Compiler.
+Program written with CodeTyphon Studio/Free Pascal Compiler.
 Simple but (maybe) powerful Sprite Editor and local sprite library for pixel-art based 2D games.
 
 HOW TO GET
 ===========
-When the editor is sufficiently ready for use (basic functions will be implemented, the program will work relatively stably), precompiled binaries will be available for download in the Releases section.
+When the editor is sufficiently ready for use (basic functions will be implemented, the program will work relatively stably), precompiled binaries will be available for download in the Releases section. Latest development prebuilds for supported OSes can be downloaded throught [SPEdit Discord Server](https://discord.gg/JEU3ghn6W7) in channel #links.
 
-If you want to try to compile SPEdit from sources, you must have the Lazarus IDE with the Free Pascal Compiler installed on your operating system (it is recommended to use the latest stable builds). The latest stable version is usually available at [official site](https://lazarus-ide.org). In addition, the [BGRAControls](https://github.com/bgrabitmap/bgracontrols) package, from which individual components are used, must be additionally installed in the Lazarus environment. The [mbColorLib](https://wiki.lazarus.freepascal.org/mbColorLib) package is used to work with the color palette. From [JVCL](https://github.com/project-jedi/jvcl) used TJvMovablePanel component. Or simply install the SPEDit package to automatically resolve additional dependencies (see src/thirdparty).
+If you want to try to compile SPEdit from sources, you must have the CodeTyphon Studio with the Free Pascal Compiler installed on your operating system (it is recommended to use the latest stable builds). The latest stable version is usually available at [official site](https://www.pilotlogic.com/).
 
-You can then open the spedit.lpi project file in the Lazarus environment and compile and run it in the usual way for that environment.
+You can then open the spedit.ctpr project file in the Typhon IDE and compile and run it in the usual way for that environment.
 
 WORK PROGRESS
 =============
@@ -68,7 +68,7 @@ If you want to see SPEdit localized to your language, you can contribute to the 
 
 SHORT DOCUMENTATION
 ===================
-Just use the mouse like in any image editor.
+Just use the mouse like in any image editor. Drawing tablets also supported, so use it if You have.
 
 In Tools window select primary and secondary color, select tool for mouse drawing and change pen size. Pencil (hotkey 'P'), Line (hotkey 'L'), Rectangle (hotkey 'R'), Filled Rectangle (hotkey 'Shift+R'), Circle (hotkey 'C'), Flood fill (hotkey 'F'), Eraser (hotkey 'E'),  Pipette (hotkey 'O') and Rectangular selection (hotkey 'S') are currently available for drawing. To disable selection press 'Esc' key.
 

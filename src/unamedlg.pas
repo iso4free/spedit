@@ -52,7 +52,7 @@ var
   frmNameDlg: TfrmNameDlg;
 
 implementation
-{$R *.lfm}
+{$R *.frm}
 
 end.
 

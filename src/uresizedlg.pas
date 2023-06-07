@@ -62,7 +62,7 @@ var
 
 implementation
  uses uglobals;
-{$R *.lfm}
+{$R *.frm}
 
  { TfrmResize }
 

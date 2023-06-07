@@ -1321,7 +1321,7 @@ end;
 
 
 initialization
-//{$I colorpalette.lrs}
+//{$I colorpalette.ctrs}
 
 end.
 

@@ -239,3 +239,8 @@ DEV.LOG
 - [*] Docs updated
 - [+] Created single own package SPEDit with external components from other packages (see src/thirdparty)
 - [+] Added few hotkeys for create, save and open project
+
+07.02.2023
+=
+- [*] Migrated frim Lazarus IDE to CodeTyphon Studio - no external dependencies needed
+- [*] Docs updated

@@ -68,7 +68,7 @@ var
 
 implementation
 
-{$R *.lfm}
+{$R *.frm}
 
 uses uglobals;
 

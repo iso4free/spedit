@@ -9,7 +9,7 @@ interface
 
 uses
   JvMovableBevel, ColorPalette, HexaColorPicker, lazspedit, mbColorPalette, 
-  LazarusPackageIntf;
+  TyphonPackageIntf;
 
 implementation
 

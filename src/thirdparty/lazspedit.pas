@@ -18,7 +18,7 @@ end;
 
  {$IFDEF FPC}
  initialization
-   {$I lazspedit.lrs}
+   {$I lazspedit.ctrs}
  {$ENDIF}
 
 end.

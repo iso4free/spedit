@@ -369,7 +369,7 @@ begin
   end;
 end;
 
-{$R *.lfm}
+{$R *.frm}
 
 { TfrmMain }
 
@@ -1488,7 +1488,7 @@ begin
   for i := 1 to 10 do
   begin
     aCur := TCursorImage.Create;
-    aCur.LoadFromLazarusResource(IntToStr(i));
+    aCur.LoadFromTyphonResource(IntToStr(i));
     aCur.HotSpot.Create(0, 15);
     Screen.Cursors[i] := aCur.ReleaseHandle;
     aCur.Free;
@@ -1810,6 +1810,6 @@ begin
 end;
 
 initialization
-{$I cursors.lrs}
+{$I cursors.ctrs}
 
 end.
