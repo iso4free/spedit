@@ -98,14 +98,6 @@
 {"hash":49597396,"name":"tfrmmain.actopenproj.caption","sourcebytes":[79,112,101,110,32,112,114,111,106,101,99,116],"value":"Open project"},
 {"hash":38989063,"name":"tfrmmain.actpreviewtoggle.caption","sourcebytes":[84,111,103,103,108,101,32,112,114,101,118,105,101,119],"value":"Toggle preview"},
 {"hash":163046484,"name":"tfrmmain.actimportsprites.caption","sourcebytes":[73,109,112,111,114,116,32,115,112,114,105,116,101,115,104,101,101,116],"value":"Import spritesheet"},
-{"hash":218146437,"name":"tfrmmain.openpicturedialog1.title","sourcebytes":[79,112,101,110,32,101,120,105,115,116,105,110,103,32,102,105,108,101],"value":"Open existing file"},
-{"hash":66489026,"name":"tfrmmain.colordialog1.title","sourcebytes":[83,101,108,101,99,116,32,99,111,108,111,114],"value":"Select color"},
-{"hash":218146437,"name":"tfrmmain.opndlglocalization.title","sourcebytes":[79,112,101,110,32,101,120,105,115,116,105,110,103,32,102,105,108,101],"value":"Open existing file"},
-{"hash":218146437,"name":"tfrmmain.openpalettedialog.title","sourcebytes":[79,112,101,110,32,101,120,105,115,116,105,110,103,32,102,105,108,101],"value":"Open existing file"},
-{"hash":159035875,"name":"tfrmmain.savepalettedialog.title","sourcebytes":[83,97,118,101,32,102,105,108,101,32,97,115],"value":"Save file as"},
-{"hash":159035875,"name":"tfrmmain.sdexportframesavedialog.title","sourcebytes":[83,97,118,101,32,102,105,108,101,32,97,115],"value":"Save file as"},
-{"hash":52003257,"name":"tfrmmain.selectdirectorydialog1.title","sourcebytes":[83,101,108,101,99,116,32,68,105,114,101,99,116,111,114,121],"value":"Select Directory"},
 {"hash":29955922,"name":"tfrmmain.pmilayerfliprotate.caption","sourcebytes":[70,108,105,112,47,114,111,116,97,116,101,32,108,97,121,101,114],"value":"Flip/rotate layer"},
-{"hash":218146437,"name":"tfrmmain.dlgopenproj.title","sourcebytes":[79,112,101,110,32,101,120,105,115,116,105,110,103,32,102,105,108,101],"value":"Open existing file"},
 {"hash":155665285,"name":"tfrmmain.pmideleteframe.caption","sourcebytes":[112,109,105,68,101,108,101,116,101,70,114,97,109,101],"value":"pmiDeleteFrame"}
 ]}

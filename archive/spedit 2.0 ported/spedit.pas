@@ -23,12 +23,7 @@ Uses
   {$IFDEF UNIX}
   cthreads,
   {$ENDIF}
-  {$IFDEF GO32V2}
-  Graph,crt,
-  {$ELSE}
-  ptcgraph,ptccrt,
-  {$ENDIF}
-  Classes, sysutils;
+  ptcgraph,ptccrt,Classes, sysutils;
 
 
 Const sz1=9;

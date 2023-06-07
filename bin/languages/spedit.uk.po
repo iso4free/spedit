@@ -510,15 +510,6 @@ msgstr ""
 "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
-#: tfrmmain.colordialog1.title
-msgid "Select color"
-msgstr ""
-
-#: tfrmmain.dlgopenproj.title
-msgctxt "tfrmmain.dlgopenproj.title"
-msgid "Open existing file"
-msgstr ""
-
 #: tfrmmain.drwgrdlayers.columns[0].title.caption
 msgctxt "tfrmmain.drwgrdlayers.columns[0].title.caption"
 msgid "Visible"
@@ -677,21 +668,6 @@ msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr "Вид"
 
-#: tfrmmain.openpalettedialog.title
-msgctxt "tfrmmain.openpalettedialog.title"
-msgid "Open existing file"
-msgstr ""
-
-#: tfrmmain.openpicturedialog1.title
-msgctxt "tfrmmain.openpicturedialog1.title"
-msgid "Open existing file"
-msgstr ""
-
-#: tfrmmain.opndlglocalization.title
-msgctxt "tfrmmain.opndlglocalization.title"
-msgid "Open existing file"
-msgstr ""
-
 #: tfrmmain.pmideleteframe.caption
 msgid "pmiDeleteFrame"
 msgstr ""
@@ -699,11 +675,6 @@ msgstr ""
 #: tfrmmain.pmilayerfliprotate.caption
 msgid "Flip/rotate layer"
 msgstr "Віддзеркалити/Обернути шар"
-
-#: tfrmmain.savepalettedialog.title
-msgctxt "tfrmmain.savepalettedialog.title"
-msgid "Save file as"
-msgstr ""
 
 #: tfrmmain.sbcircle.hint
 msgid "Circle tool - hotkey 'C'"
@@ -745,15 +716,6 @@ msgstr "Інструмент Прямокутник - гаряча клавіш�
 #: tfrmmain.sbrectselection.hint
 msgid "Rectangular selection tool - hotkey 'S'"
 msgstr "Прямокутне виділення - гаряча клавіша 'S'"
-
-#: tfrmmain.sdexportframesavedialog.title
-msgctxt "tfrmmain.sdexportframesavedialog.title"
-msgid "Save file as"
-msgstr ""
-
-#: tfrmmain.selectdirectorydialog1.title
-msgid "Select Directory"
-msgstr ""
 
 #: tfrmnamedlg.bbtncancel.caption
 msgctxt "tfrmnamedlg.bbtncancel.caption"
