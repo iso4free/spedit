@@ -265,6 +265,10 @@ msgstr ""
 msgid "Cut"
 msgstr ""
 
+#: tfrmmain.actdeleteframe.caption
+msgid "Delete frame"
+msgstr ""
+
 #: tfrmmain.actdeletelayer.caption
 msgid "Delete layer"
 msgstr ""
@@ -535,6 +539,15 @@ msgid ""
 "Right click to set transparent color"
 msgstr ""
 
+#: tfrmmain.label1.caption
+msgid "'Onion skin' settings"
+msgstr ""
+
+#: tfrmmain.label2.caption
+msgctxt "tfrmmain.label2.caption"
+msgid "Preview"
+msgstr ""
+
 #: tfrmmain.layersgroupbox.caption
 msgctxt "tfrmmain.layersgroupbox.caption"
 msgid "Layers"
@@ -657,10 +670,6 @@ msgstr ""
 #: tfrmmain.miview.caption
 msgctxt "tfrmmain.miview.caption"
 msgid "View"
-msgstr ""
-
-#: tfrmmain.pmideleteframe.caption
-msgid "pmiDeleteFrame"
 msgstr ""
 
 #: tfrmmain.pmilayerfliprotate.caption

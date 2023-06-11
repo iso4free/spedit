@@ -1,20 +1,20 @@
 object frmProjectProps: TfrmProjectProps
-  Left = 364
+  Left = 356
   Height = 470
-  Top = 213
+  Top = 214
   Width = 722
   Caption = 'Project properties'
   ClientHeight = 470
   ClientWidth = 722
-  LCLVersion = '2.2.4.0'
+  LCLVersion = '8.1'
   object pnlBottom: TPanel
     Left = 0
-    Height = 34
-    Top = 415
+    Height = 32
+    Top = 420
     Width = 722
     Align = alBottom
     AutoSize = True
-    ClientHeight = 34
+    ClientHeight = 32
     ClientWidth = 722
     TabOrder = 0
     object bbtnOk: TBitBtn
@@ -22,10 +22,10 @@ object frmProjectProps: TfrmProjectProps
       AnchorSideLeft.Side = asrCenter
       AnchorSideTop.Control = pnlBottom
       AnchorSideTop.Side = asrCenter
-      Left = 334
-      Height = 32
+      Left = 335
+      Height = 30
       Top = 1
-      Width = 55
+      Width = 52
       Align = alCustom
       AutoSize = True
       BorderSpacing.Left = 10
@@ -39,20 +39,20 @@ object frmProjectProps: TfrmProjectProps
   end
   object pnlTop: TPanel
     Left = 0
-    Height = 34
+    Height = 40
     Top = 0
     Width = 722
     Align = alTop
     AutoSize = True
-    ClientHeight = 34
+    ClientHeight = 40
     ClientWidth = 722
     TabOrder = 1
     object bbtnSave: TBitBtn
       Left = 1
-      Height = 32
+      Height = 38
       Hint = 'Save options'
       Top = 1
-      Width = 32
+      Width = 38
       AutoSize = True
       Images = frmMain.ButtonsImageList
       ImageIndex = 39
@@ -64,34 +64,34 @@ object frmProjectProps: TfrmProjectProps
   end
   object pnl: TPanel
     Left = 0
-    Height = 381
-    Top = 34
+    Height = 380
+    Top = 40
     Width = 722
     Align = alClient
-    ClientHeight = 381
+    ClientHeight = 380
     ClientWidth = 722
     TabOrder = 2
     object pcProject: TPageControl
       Left = 1
-      Height = 379
+      Height = 378
       Top = 1
       Width = 720
-      ActivePage = tsGeneral
+      ActivePage = tsEntities
       Align = alClient
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 0
       object tsGeneral: TTabSheet
         Caption = 'General'
-        ClientHeight = 344
-        ClientWidth = 714
+        ClientHeight = 348
+        ClientWidth = 710
         object lblTitle: TLabel
           AnchorSideLeft.Control = tsGeneral
           AnchorSideTop.Control = edTitle
           AnchorSideTop.Side = asrCenter
           Left = 12
-          Height = 17
-          Top = 10
-          Width = 29
+          Height = 16
+          Top = 12
+          Width = 27
           BorderSpacing.Left = 6
           BorderSpacing.Around = 6
           Caption = 'Title'
@@ -103,9 +103,9 @@ object frmProjectProps: TfrmProjectProps
           AnchorSideRight.Control = tsGeneral
           AnchorSideRight.Side = asrBottom
           Left = 106
-          Height = 25
+          Height = 28
           Top = 6
-          Width = 602
+          Width = 598
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Left = 100
           BorderSpacing.Around = 6
@@ -117,8 +117,8 @@ object frmProjectProps: TfrmProjectProps
           AnchorSideTop.Control = edAuthor
           AnchorSideTop.Side = asrCenter
           Left = 12
-          Height = 17
-          Top = 41
+          Height = 16
+          Top = 46
           Width = 43
           Caption = 'Author'
           ParentColor = False
@@ -130,9 +130,9 @@ object frmProjectProps: TfrmProjectProps
           AnchorSideRight.Control = edTitle
           AnchorSideRight.Side = asrBottom
           Left = 106
-          Height = 25
-          Top = 37
-          Width = 602
+          Height = 28
+          Top = 40
+          Width = 598
           Anchors = [akTop, akLeft, akRight]
           OnChange = edTitleChange
           TabOrder = 1
@@ -145,19 +145,19 @@ object frmProjectProps: TfrmProjectProps
           AnchorSideRight.Side = asrBottom
           Left = 6
           Height = 105
-          Top = 64
-          Width = 702
+          Top = 68
+          Width = 698
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Around = 6
           Caption = 'Description'
-          ClientHeight = 86
-          ClientWidth = 698
+          ClientHeight = 88
+          ClientWidth = 696
           TabOrder = 2
           object mDescription: TMemo
             Left = 0
-            Height = 86
+            Height = 88
             Top = 0
-            Width = 698
+            Width = 696
             Align = alClient
             OnChange = edTitleChange
             ScrollBars = ssAutoVertical
@@ -169,9 +169,9 @@ object frmProjectProps: TfrmProjectProps
           AnchorSideTop.Control = edLicense
           AnchorSideTop.Side = asrCenter
           Left = 12
-          Height = 17
-          Top = 179
-          Width = 49
+          Height = 16
+          Top = 185
+          Width = 44
           Caption = 'License'
           ParentColor = False
         end
@@ -182,9 +182,9 @@ object frmProjectProps: TfrmProjectProps
           AnchorSideRight.Control = edTitle
           AnchorSideRight.Side = asrBottom
           Left = 106
-          Height = 25
-          Top = 175
-          Width = 602
+          Height = 28
+          Top = 179
+          Width = 598
           Anchors = [akTop, akLeft, akRight]
           OnChange = edTitleChange
           TabOrder = 3
@@ -195,9 +195,9 @@ object frmProjectProps: TfrmProjectProps
           AnchorSideTop.Control = edCredits
           AnchorSideTop.Side = asrCenter
           Left = 12
-          Height = 17
-          Top = 210
-          Width = 46
+          Height = 16
+          Top = 219
+          Width = 42
           Caption = 'Credits'
           ParentColor = False
         end
@@ -208,9 +208,9 @@ object frmProjectProps: TfrmProjectProps
           AnchorSideRight.Control = edTitle
           AnchorSideRight.Side = asrBottom
           Left = 106
-          Height = 25
-          Top = 206
-          Width = 602
+          Height = 28
+          Top = 213
+          Width = 598
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Top = 6
           OnChange = edTitleChange
@@ -224,8 +224,8 @@ object frmProjectProps: TfrmProjectProps
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 21
-    Top = 449
+    Height = 18
+    Top = 452
     Width = 722
     Panels = <    
       item

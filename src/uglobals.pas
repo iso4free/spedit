@@ -233,7 +233,7 @@ type
   TSPFrame = class
    private
     fActiveLayerName: String;
-    FBackgroundFrame: TSPFrame;
+    FPrevFrame: TSPFrame;
     FCount : Byte;
     fFrameName: String;
     FHeight: Integer;
@@ -243,15 +243,17 @@ type
     fLayers : TLayers;
     fModifiead: Boolean;
     fModified: Boolean;
+    FNextFrame: TSPFrame;
     FUseOnionSkin: Boolean;
     FWidth: Integer;
     FPreview : TBGRABitmap;
     fUndo : TSPUndoRedoManager;
-    procedure SetBackgroundFrame(AValue: TSPFrame);
+    procedure SetPrevFrame(AValue: TSPFrame);
     procedure SetIndex(AValue: Integer);
     procedure SetActiveLayer(aLayer : TSPLayer);
     procedure RestoreLayerFromJSON(aJSONData : String);
     function  GetActiveLayer : TSPLayer;
+    procedure SetNextFrame(AValue: TSPFrame);
     procedure SetUseOnionSkin(AValue: Boolean);
    public
     constructor Create(aName : String; w : Integer; h : integer);
@@ -278,7 +280,8 @@ type
     procedure RenderPicture; //create preview with all layers
     procedure ExportPNG(aFile : TFileName); //export frame to PNG file
     property UseOnionSkin : Boolean read FUseOnionSkin write SetUseOnionSkin; //used for draw animations - true for half-transparent background
-    property BackgroundFrame : TSPFrame read FBackgroundFrame write SetBackgroundFrame; //link for frame for 'onion skin' - nil if UseOnionSkin=false
+    property PrevFrame : TSPFrame read FPrevFrame write SetPrevFrame; //link to previous frame for 'onion skin' - nil if UseOnionSkin=false
+    property NextFrame : TSPFrame read FNextFrame write SetNextFrame; //link to next ftame for 'onion skin' - nil if UseOnionSkin=false
   end;
 
   //used in TAction for set mirror kind if mirrored
@@ -448,6 +451,9 @@ type
    destructor Destroy; override;
 
    procedure Clear;
+
+   //delete aFrame from project
+   procedure DeleteFrame(aFrame : TSPFrame);
 
    //path and file to save project
    property Filename : TFilename read FFilename write SetFilename;
@@ -1010,6 +1016,12 @@ begin
   FActionsCount:=0;
 end;
 
+procedure TSPProjectInfo.DeleteFrame(aFrame: TSPFrame);
+begin
+ //todo: fix frame delete
+ FFrames.Remove(aFrame.FrameName);
+end;
+
 destructor TSPProjectInfo.Destroy;
 begin
   FreeAndNil(FActions);
@@ -1311,7 +1323,7 @@ end;
 
 procedure TSPFrame.SetUseOnionSkin(AValue: Boolean);
 begin
-  if not AValue then FBackgroundFrame:=nil;
+  if not AValue then FPrevFrame:=nil;
   FUseOnionSkin:=AValue;
 end;
 
@@ -1328,6 +1340,8 @@ begin
  DrawLayer.Drawable.SetSize(w,h);
  ClearBitmap(DrawLayer.Drawable);
  FPreview:=TBGRABitmap.Create(w,h);
+ FPrevFrame:=nil;
+ FNextFrame:=nil;
 end;
 
 procedure TSPFrame.RestoreFromJSON(aJSONData: String);
@@ -1341,7 +1355,11 @@ var
   aJSON.Parse(aJSONData);
 
   FIndex:=aJSON.Find('index').AsInteger;
-  fFrameName:=aJSON.Find('frame name').AsString;
+  if aJSON.Exists('frame name') then fFrameName:=aJSON.Find('frame name').AsString else begin
+   {$IFDEF DEBUG}
+   DebugLn('In: TSPFrame.RestoreFromJSON() frame name = ', fFrameName);
+   {$ENDIF}
+  end;
   FWidth:=aJSON.Find('width').AsInteger;
   FHeight:=aJSON.Find('height').AsInteger;
   FPreview.SetSize(FWidth,FHeight);
@@ -1372,10 +1390,10 @@ begin
  FIsMainLayerActive:=aLayer.LayerName=fFrameName;
 end;
 
-procedure TSPFrame.SetBackgroundFrame(AValue: TSPFrame);
+procedure TSPFrame.SetPrevFrame(AValue: TSPFrame);
 begin
-  if FBackgroundFrame=AValue then Exit;
-  FBackgroundFrame:=AValue;
+  if FPrevFrame=AValue then Exit;
+  FPrevFrame:=AValue;
 end;
 
 destructor TSPFrame.Destroy;
@@ -1386,7 +1404,9 @@ begin
   //just nil the link to drawlayer without freeing instance:
   //- it will deleted when app closed
   Layers[csDRAWLAYER]:=nil;
-
+  //also set to nil PrevFrame and NextFrame for onion skin
+  FPrevFrame:=nil;
+  FNextFrame:=nil;
   FreeAndNil(fLayers);
   FreeAndNil(fLayersList);
   inherited Destroy;
@@ -1477,6 +1497,12 @@ end;
 function TSPFrame.GetActiveLayer: TSPLayer;
 begin
   Result:=Layers[fActiveLayerName];
+end;
+
+procedure TSPFrame.SetNextFrame(AValue: TSPFrame);
+begin
+  if FNextFrame=AValue then Exit;
+  FNextFrame:=AValue;
 end;
 
 procedure TSPFrame.Resize(w, h: Integer; Stretched: Boolean);

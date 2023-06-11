@@ -56,6 +56,7 @@ type
     actFlipV: TAction;
     actImportPiskel: TAction;
     actImportSprites: TAction;
+    actDeleteFrame: TAction;
     actOnionSkin: TAction;
     actPreviewToggle: TAction;
     actOpenProj: TAction;
@@ -111,6 +112,8 @@ type
     HexaColorPicker1: THexaColorPicker;
     FramePreview: TImage;
     JSONPropStorage1: TJSONPropStorage;
+    Label1: TLabel;
+    Label2: TLabel;
     miOnionMode: TMenuItem;
     Separator15: TMenuItem;
     pnlOnion: TPanel;
@@ -247,6 +250,7 @@ type
     trkbrPenSize: TSpinEdit;
     procedure actCopyExecute(Sender: TObject);
     procedure actCutExecute(Sender: TObject);
+    procedure actDeleteFrameExecute(Sender: TObject);
     procedure actDitherExecute(Sender: TObject);
     procedure actFlipVExecute(Sender: TObject);
     procedure actFrameExportPNGExecute(Sender: TObject);
@@ -501,6 +505,22 @@ begin
   ProjectInfo.ActiveFrame.SaveState;
   actCopyExecute(Sender);
   EraseSelection;
+end;
+
+procedure TfrmMain.actDeleteFrameExecute(Sender: TObject);
+var todelete : TSPFrame;
+begin
+  if not Assigned(FrameGrid) then Exit;
+  if not Assigned(ProjectInfo.ActiveFrame) then
+  begin
+    ShowMessage('This frame does not exist!');
+    Exit;
+  end;
+  todelete:= ProjectInfo.ActiveFrame;
+  //todo: change active frame before delete
+ // ProjectInfo.ActiveFrame:=ProjectInfo.Frames;
+  ProjectInfo.DeleteFrame(todelete);
+  drwgrdFrames.Refresh;
 end;
 
 procedure TfrmMain.actDeleteLayerExecute(Sender: TObject);

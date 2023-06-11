@@ -280,6 +280,10 @@ msgstr "Copiar camada"
 msgid "Cut"
 msgstr "Cortar"
 
+#: tfrmmain.actdeleteframe.caption
+msgid "Delete frame"
+msgstr ""
+
 #: tfrmmain.actdeletelayer.caption
 msgid "Delete layer"
 msgstr "Deletar camada"
@@ -554,6 +558,16 @@ msgstr ""
 "Clique esquedo para selecionar a cor\n"
 "Clique direito para definir a cor como transparente"
 
+#: tfrmmain.label1.caption
+msgid "'Onion skin' settings"
+msgstr ""
+
+#: tfrmmain.label2.caption
+#, fuzzy
+msgctxt "tfrmmain.label2.caption"
+msgid "Preview"
+msgstr "Previsualização"
+
 #: tfrmmain.layersgroupbox.caption
 msgctxt "tfrmmain.layersgroupbox.caption"
 msgid "Layers"
@@ -677,10 +691,6 @@ msgstr ""
 msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr "Visualizar"
-
-#: tfrmmain.pmideleteframe.caption
-msgid "pmiDeleteFrame"
-msgstr ""
 
 #: tfrmmain.pmilayerfliprotate.caption
 msgid "Flip/rotate layer"
