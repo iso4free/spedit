@@ -20,13 +20,14 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1670"/>
-        <CursorPos X="3" Y="1670"/>
+        <TopLine Value="25"/>
+        <CursorPos X="33" Y="37"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
-          <Item0 Y="399"/>
+          <Item0 Y="409"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -129,7 +130,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="73"/>
         <CursorPos Y="93"/>
-        <UsageCount Value="173"/>
+        <UsageCount Value="175"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -140,12 +141,11 @@
         <ComponentName Value="frmImportSheet"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="339"/>
         <CursorPos X="3" Y="344"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -158,9 +158,9 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="108"/>
+        <TopLine Value="97"/>
         <CursorPos X="26" Y="118"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -791,9 +791,9 @@
         <Filename Value="thirdparty/uglobals.pas"/>
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1733"/>
-        <CursorPos X="3" Y="1723"/>
-        <UsageCount Value="80"/>
+        <TopLine Value="72"/>
+        <CursorPos X="112" Y="84"/>
+        <UsageCount Value="81"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -1224,58 +1224,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="uspriteimport.pas"/>
-        <Caret Line="425" Column="42" TopLine="406"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="409" Column="20" TopLine="401"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="427" Column="36" TopLine="417"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="144" Column="15" TopLine="135"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="380" Column="27" TopLine="369"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="135" Column="43" TopLine="120"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="277" Column="38" TopLine="267"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="389" Column="56" TopLine="381"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="392" Column="3" TopLine="381"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="139" Column="15" TopLine="130"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="400" Column="11" TopLine="390"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="498" Column="61" TopLine="492"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="143" Column="15" TopLine="129"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
         <Caret Line="503" Column="3" TopLine="501"/>
       </Position>
       <Position>
@@ -1341,6 +1289,58 @@
       <Position>
         <Filename Value="umain.pas"/>
         <Caret Line="1609" TopLine="1592"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1670" Column="3" TopLine="1670"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1671" Column="3" TopLine="1671"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1675" Column="3" TopLine="1675"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1674" Column="3" TopLine="1674"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1673" Column="3" TopLine="1673"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1674" Column="3" TopLine="1674"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1681" Column="3" TopLine="1681"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="712" Column="24" TopLine="710"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1008" Column="24" TopLine="1006"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1009" Column="24" TopLine="1007"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1011" Column="24" TopLine="1009"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1727" Column="29" TopLine="1725"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1011" Column="15" TopLine="993"/>
       </Position>
     </JumpHistory>
     <RunParams>

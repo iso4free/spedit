@@ -216,6 +216,12 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="pl_ColorLib"/>
+      </Item>
+      <Item>
+        <PackageName Value="pl_JVCL"/>
+      </Item>
+      <Item>
         <PackageName Value="pl_bgracontrols"/>
       </Item>
       <Item>

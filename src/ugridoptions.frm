@@ -1,22 +1,22 @@
 object frmGridOptions: TfrmGridOptions
-  Left = 945
+  Left = 941
   Height = 274
-  Top = 261
+  Top = 257
   Width = 249
   Caption = 'Grid options'
   ClientHeight = 274
   ClientWidth = 249
   OnDeactivate = FormDeactivate
   Position = poMainFormCenter
-  LCLVersion = '2.2.4.0'
+  LCLVersion = '8.1'
   object pnlBottom: TPanel
     Left = 0
-    Height = 40
-    Top = 234
+    Height = 38
+    Top = 236
     Width = 249
     Align = alBottom
     AutoSize = True
-    ClientHeight = 40
+    ClientHeight = 38
     ClientWidth = 249
     TabOrder = 0
     object bbOk: TBitBtn
@@ -24,10 +24,10 @@ object frmGridOptions: TfrmGridOptions
       AnchorSideLeft.Side = asrCenter
       AnchorSideTop.Control = pnlBottom
       AnchorSideTop.Side = asrCenter
-      Left = 97
-      Height = 32
+      Left = 98
+      Height = 30
       Top = 4
-      Width = 55
+      Width = 52
       AutoSize = True
       BorderSpacing.Around = 3
       Default = True
@@ -40,32 +40,32 @@ object frmGridOptions: TfrmGridOptions
   end
   object pnlCenetr: TPanel
     Left = 0
-    Height = 234
+    Height = 236
     Top = 0
     Width = 249
     Align = alClient
-    ClientHeight = 234
+    ClientHeight = 236
     ClientWidth = 249
     TabOrder = 1
     object gbCell: TGroupBox
       Left = 1
-      Height = 47
-      Top = 48
+      Height = 45
+      Top = 46
       Width = 247
       Align = alTop
       AutoSize = True
       Caption = 'or Cell size'
       ClientHeight = 28
-      ClientWidth = 243
+      ClientWidth = 245
       TabOrder = 0
       object lblWidth: TLabel
         AnchorSideLeft.Control = gbCell
         AnchorSideTop.Control = gbCell
         AnchorSideTop.Side = asrCenter
         Left = 5
-        Height = 17
+        Height = 16
         Top = 6
-        Width = 38
+        Width = 36
         BorderSpacing.Around = 5
         Caption = 'Width'
         ParentColor = False
@@ -75,10 +75,10 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = gbCell
         AnchorSideTop.Side = asrCenter
-        Left = 113
-        Height = 17
+        Left = 111
+        Height = 16
         Top = 6
-        Width = 43
+        Width = 40
         BorderSpacing.Around = 5
         Caption = 'Height'
         ParentColor = False
@@ -89,9 +89,9 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = gbCell
         AnchorSideTop.Side = asrCenter
-        Left = 48
-        Height = 27
-        Top = 1
+        Left = 46
+        Height = 28
+        Top = 0
         Width = 60
         OnChange = spWidthChange
         TabOrder = 0
@@ -103,9 +103,9 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = gbCell
         AnchorSideTop.Side = asrCenter
-        Left = 161
-        Height = 27
-        Top = 1
+        Left = 156
+        Height = 28
+        Top = 0
         Width = 60
         OnChange = spWidthChange
         TabOrder = 1
@@ -114,23 +114,23 @@ object frmGridOptions: TfrmGridOptions
     end
     object gbOffset: TGroupBox
       Left = 1
-      Height = 57
-      Top = 95
+      Height = 63
+      Top = 91
       Width = 247
       Align = alClient
       AutoSize = True
       Caption = 'Offset'
-      ClientHeight = 38
-      ClientWidth = 243
+      ClientHeight = 46
+      ClientWidth = 245
       TabOrder = 1
       object lblX: TLabel
         AnchorSideLeft.Control = gbOffset
         AnchorSideTop.Control = gbOffset
         AnchorSideTop.Side = asrCenter
         Left = 5
-        Height = 17
-        Top = 11
-        Width = 9
+        Height = 16
+        Top = 15
+        Width = 8
         BorderSpacing.Around = 5
         Caption = 'X'
         ParentColor = False
@@ -140,9 +140,9 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = gbOffset
         AnchorSideTop.Side = asrCenter
-        Left = 114
-        Height = 17
-        Top = 11
+        Left = 113
+        Height = 16
+        Top = 15
         Width = 8
         BorderSpacing.Left = 30
         BorderSpacing.Around = 5
@@ -155,9 +155,9 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = gbOffset
         AnchorSideTop.Side = asrCenter
-        Left = 19
-        Height = 27
-        Top = 6
+        Left = 18
+        Height = 28
+        Top = 9
         Width = 60
         OnChange = spWidthChange
         TabOrder = 0
@@ -168,9 +168,9 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = gbOffset
         AnchorSideTop.Side = asrCenter
-        Left = 127
-        Height = 27
-        Top = 6
+        Left = 126
+        Height = 28
+        Top = 9
         Width = 60
         OnChange = spWidthChange
         TabOrder = 1
@@ -178,23 +178,23 @@ object frmGridOptions: TfrmGridOptions
     end
     object gbGridSize: TGroupBox
       Left = 1
-      Height = 47
+      Height = 45
       Top = 1
       Width = 247
       Align = alTop
       AutoSize = True
       Caption = 'Grid size'
       ClientHeight = 28
-      ClientWidth = 243
+      ClientWidth = 245
       TabOrder = 2
       object lblCols: TLabel
         AnchorSideLeft.Control = gbGridSize
         AnchorSideTop.Control = gbGridSize
         AnchorSideTop.Side = asrCenter
         Left = 5
-        Height = 17
+        Height = 16
         Top = 6
-        Width = 57
+        Width = 53
         BorderSpacing.Around = 5
         Caption = 'Columns'
         ParentColor = False
@@ -205,10 +205,10 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = gbGridSize
         AnchorSideTop.Side = asrCenter
-        Left = 132
-        Height = 17
+        Left = 128
+        Height = 16
         Top = 6
-        Width = 35
+        Width = 32
         BorderSpacing.Around = 5
         Caption = 'Rows'
         ParentColor = False
@@ -219,9 +219,9 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = gbGridSize
         AnchorSideTop.Side = asrCenter
-        Left = 67
-        Height = 27
-        Top = 1
+        Left = 63
+        Height = 28
+        Top = 0
         Width = 60
         OnChange = spWidthChange
         TabOrder = 0
@@ -232,9 +232,9 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = gbGridSize
         AnchorSideTop.Side = asrCenter
-        Left = 172
-        Height = 27
-        Top = 1
+        Left = 165
+        Height = 28
+        Top = 0
         Width = 60
         OnChange = spWidthChange
         TabOrder = 1
@@ -243,21 +243,21 @@ object frmGridOptions: TfrmGridOptions
     object gbCrop: TGroupBox
       Left = 1
       Height = 81
-      Top = 152
+      Top = 154
       Width = 247
       Align = alBottom
       AutoSize = True
       Caption = 'Crop'
-      ClientHeight = 62
-      ClientWidth = 243
+      ClientHeight = 64
+      ClientWidth = 245
       TabOrder = 3
       object lblLeft: TLabel
         AnchorSideLeft.Control = gbCrop
         AnchorSideTop.Control = spLeft
         AnchorSideTop.Side = asrCenter
         Left = 5
-        Height = 17
-        Top = 10
+        Height = 16
+        Top = 11
         Width = 24
         BorderSpacing.Around = 5
         Caption = 'Left'
@@ -268,9 +268,9 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideTop.Control = spRight
         AnchorSideTop.Side = asrCenter
         Left = 5
-        Height = 17
-        Top = 40
-        Width = 34
+        Height = 16
+        Top = 42
+        Width = 32
         Caption = 'Right'
         ParentColor = False
       end
@@ -280,9 +280,9 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideTop.Control = lblLeft
         AnchorSideTop.Side = asrCenter
         Left = 119
-        Height = 17
-        Top = 10
-        Width = 22
+        Height = 16
+        Top = 11
+        Width = 23
         BorderSpacing.Left = 10
         Caption = 'Top'
         ParentColor = False
@@ -292,9 +292,9 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideTop.Control = lblRight
         AnchorSideTop.Side = asrCenter
         Left = 119
-        Height = 17
-        Top = 40
-        Width = 48
+        Height = 16
+        Top = 42
+        Width = 46
         Caption = 'Bottom'
         ParentColor = False
       end
@@ -303,7 +303,7 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = gbCrop
         Left = 49
-        Height = 27
+        Height = 28
         Top = 5
         Width = 60
         BorderSpacing.Left = 20
@@ -316,8 +316,8 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideTop.Control = spLeft
         AnchorSideTop.Side = asrBottom
         Left = 49
-        Height = 27
-        Top = 35
+        Height = 28
+        Top = 36
         Width = 60
         BorderSpacing.Top = 3
         OnChange = spLeftChange
@@ -328,8 +328,8 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideLeft.Side = asrBottom
         AnchorSideTop.Control = lblLeft
         AnchorSideTop.Side = asrCenter
-        Left = 171
-        Height = 27
+        Left = 172
+        Height = 28
         Top = 5
         Width = 60
         BorderSpacing.Left = 30
@@ -340,9 +340,9 @@ object frmGridOptions: TfrmGridOptions
         AnchorSideLeft.Control = spTop
         AnchorSideTop.Control = lblRight
         AnchorSideTop.Side = asrCenter
-        Left = 171
-        Height = 27
-        Top = 35
+        Left = 172
+        Height = 28
+        Top = 36
         Width = 60
         OnChange = spLeftChange
         TabOrder = 3

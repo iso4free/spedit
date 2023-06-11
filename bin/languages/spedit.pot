@@ -343,6 +343,11 @@ msgstr ""
 msgid "Not implemented yet"
 msgstr ""
 
+#: tfrmmain.actonionskin.caption
+msgctxt "tfrmmain.actonionskin.caption"
+msgid "'Onion skin' mode"
+msgstr ""
+
 #: tfrmmain.actopenproj.caption
 msgid "Open project"
 msgstr ""
@@ -446,6 +451,11 @@ msgstr ""
 
 #: tfrmmain.bbtnnewframe.hint
 msgid "Create new frame"
+msgstr ""
+
+#: tfrmmain.bbtnonionmode.hint
+msgctxt "tfrmmain.bbtnonionmode.hint"
+msgid "'Onion skin' mode"
 msgstr ""
 
 #: tfrmmain.bbtnresize.hint

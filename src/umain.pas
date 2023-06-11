@@ -56,6 +56,7 @@ type
     actFlipV: TAction;
     actImportPiskel: TAction;
     actImportSprites: TAction;
+    actOnionSkin: TAction;
     actPreviewToggle: TAction;
     actOpenProj: TAction;
     actSaveProj: TAction;
@@ -99,6 +100,7 @@ type
     bbtnImportFrame: TBitBtn;
     bbtnNewFrame: TBitBtn;
     bbtnResize: TBitBtn;
+    bbtnOnionMode: TBitBtn;
     ButtonsImageList: TBGRAImageList;
     ColorDialog1: TColorDialog;
     cbPalettePresets: TComboBox;
@@ -109,6 +111,9 @@ type
     HexaColorPicker1: THexaColorPicker;
     FramePreview: TImage;
     JSONPropStorage1: TJSONPropStorage;
+    miOnionMode: TMenuItem;
+    Separator15: TMenuItem;
+    pnlOnion: TPanel;
     pmiDeleteFrame: TMenuItem;
     pmiAddFrame: TMenuItem;
     miTogglePreview: TMenuItem;
@@ -163,6 +168,7 @@ type
     pnlColors: TPanel;
     pnlPalette: TPanel;
     pbFrameDraw: TPaintBox;
+    pnlOnionMode: TJvMovablePanel;
     pnlTools: TFlowPanel;
     MainMenu1: TMainMenu;
     miAbout: TMenuItem;
@@ -234,6 +240,7 @@ type
     sbMove: TSpeedButton;
     drwgrdFrames: TDrawGrid;
     SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     StatusBar1: TStatusBar;
@@ -260,6 +267,7 @@ type
     procedure actNewFrameExecute(Sender: TObject);
     procedure actNewProjExecute(Sender: TObject);
     procedure actNotImplementedExecute(Sender: TObject);
+    procedure actOnionSkinExecute(Sender: TObject);
     procedure actOpenProjExecute(Sender: TObject);
     procedure actPaletteImportExecute(Sender: TObject);
     procedure actPaletteLoadExecute(Sender: TObject);
@@ -286,6 +294,7 @@ type
     procedure bbtnGridToggleClick(Sender: TObject);
     procedure bbtnMergeLayersClick(Sender: TObject);
     procedure bbtnNewFrameClick(Sender: TObject);
+    procedure bbtnOnionModeClick(Sender: TObject);
     procedure bbtnShowLayersClick(Sender: TObject);
     procedure bbtnShowPaletteClick(Sender: TObject);
     procedure bbtnSwapColorsClick(Sender: TObject);
@@ -335,6 +344,7 @@ type
     procedure drwgrdFramesDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
     procedure trkbrPenSizeChange(Sender: TObject);
   private
     fDrawGridMode: TDrawGridMode;
@@ -700,6 +710,12 @@ begin
   ShowMessage(rsSorry);
 end;
 
+procedure TfrmMain.actOnionSkinExecute(Sender: TObject);
+begin
+  actOnionSkin.Checked :=not actOnionSkin.Checked;
+  pnlOnionMode.Visible := actOnionSkin.Checked;
+end;
+
 procedure TfrmMain.actOpenProjExecute(Sender: TObject);
 var
   aframename : String;
@@ -988,6 +1004,11 @@ end;
 procedure TfrmMain.bbtnNewFrameClick(Sender: TObject);
 begin
   actNewFrameExecute(Sender);
+end;
+
+procedure TfrmMain.bbtnOnionModeClick(Sender: TObject);
+begin
+  actOnionSkinExecute(Sender);
 end;
 
 procedure TfrmMain.bbtnShowLayersClick(Sender: TObject);
@@ -1699,6 +1720,11 @@ end;
 procedure TfrmMain.SpeedButton1Click(Sender: TObject);
 begin
   actPreviewToggleExecute(Sender);
+end;
+
+procedure TfrmMain.SpeedButton2Click(Sender: TObject);
+begin
+  actOnionSkinExecute(Sender);
 end;
 
 procedure TfrmMain.drwgrdFramesDrawCell(Sender: TObject; aCol, aRow: Integer;

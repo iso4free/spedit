@@ -369,6 +369,11 @@ msgstr "Новий проєкт спрайтів"
 msgid "Not implemented yet"
 msgstr "Ще не реалізовано"
 
+#: tfrmmain.actonionskin.caption
+msgctxt "tfrmmain.actonionskin.caption"
+msgid "'Onion skin' mode"
+msgstr ""
+
 #: tfrmmain.actopenproj.caption
 msgid "Open project"
 msgstr "Відкрити проєкт"
@@ -473,6 +478,11 @@ msgstr "Імпортувати фрейм"
 #: tfrmmain.bbtnnewframe.hint
 msgid "Create new frame"
 msgstr "Створити новий фрейм"
+
+#: tfrmmain.bbtnonionmode.hint
+msgctxt "tfrmmain.bbtnonionmode.hint"
+msgid "'Onion skin' mode"
+msgstr ""
 
 #: tfrmmain.bbtnresize.hint
 msgctxt "tfrmmain.bbtnresize.hint"

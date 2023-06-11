@@ -17,6 +17,7 @@
 {"hash":201827941,"name":"tfrmmain.lblpensize.caption","sourcebytes":[80,101,110,32,115,105,122,101],"value":"Pen size"},
 {"hash":48310069,"name":"tfrmmain.bbtnresize.hint","sourcebytes":[82,101,115,105,122,101,32,102,114,97,109,101],"value":"Resize frame"},
 {"hash":85767060,"name":"tfrmmain.bbtngridtoggle.hint","sourcebytes":[83,104,111,119,47,104,105,100,101,32,103,114,105,100],"value":"Show/hide grid"},
+{"hash":112935077,"name":"tfrmmain.bbtnonionmode.hint","sourcebytes":[39,79,110,105,111,110,32,115,107,105,110,39,32,109,111,100,101],"value":"'Onion skin' mode"},
 {"hash":54864311,"name":"tfrmmain.sbpen.hint","sourcebytes":[80,101,110,32,116,111,111,108,32,45,32,104,111,116,107,101,121,32,39,80,39],"value":"Pen tool - hotkey 'P'"},
 {"hash":54555863,"name":"tfrmmain.sbpipette.hint","sourcebytes":[80,105,112,101,116,116,101,32,116,111,111,108,32,45,32,104,111,116,107,101,121,32,39,79,39],"value":"Pipette tool - hotkey 'O'"},
 {"hash":79530231,"name":"tfrmmain.sbline.hint","sourcebytes":[76,105,110,101,32,116,111,111,108,32,45,32,104,111,116,107,101,121,32,39,76,39],"value":"Line tool - hotkey 'L'"},
@@ -98,6 +99,7 @@
 {"hash":49597396,"name":"tfrmmain.actopenproj.caption","sourcebytes":[79,112,101,110,32,112,114,111,106,101,99,116],"value":"Open project"},
 {"hash":38989063,"name":"tfrmmain.actpreviewtoggle.caption","sourcebytes":[84,111,103,103,108,101,32,112,114,101,118,105,101,119],"value":"Toggle preview"},
 {"hash":163046484,"name":"tfrmmain.actimportsprites.caption","sourcebytes":[73,109,112,111,114,116,32,115,112,114,105,116,101,115,104,101,101,116],"value":"Import spritesheet"},
+{"hash":112935077,"name":"tfrmmain.actonionskin.caption","sourcebytes":[39,79,110,105,111,110,32,115,107,105,110,39,32,109,111,100,101],"value":"'Onion skin' mode"},
 {"hash":29955922,"name":"tfrmmain.pmilayerfliprotate.caption","sourcebytes":[70,108,105,112,47,114,111,116,97,116,101,32,108,97,121,101,114],"value":"Flip/rotate layer"},
 {"hash":155665285,"name":"tfrmmain.pmideleteframe.caption","sourcebytes":[112,109,105,68,101,108,101,116,101,70,114,97,109,101],"value":"pmiDeleteFrame"}
 ]}
