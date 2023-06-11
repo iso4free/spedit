@@ -249,3 +249,4 @@ DEV.LOG
 =
 - [+] Added interface template for 'Onion skin' mode
 - [*] Fixed some dependencies, removed duplicated units
+- [*] Fixed some button icons

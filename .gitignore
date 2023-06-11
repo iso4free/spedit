@@ -13,3 +13,4 @@ src/thirdparty/piskelinfo/backup/**
 bin/datatest-*
 *.bz2
 *.zip
+*.log

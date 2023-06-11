@@ -126,7 +126,7 @@
         <ComponentName Value="frmProjectProps"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="73"/>
         <CursorPos Y="93"/>
@@ -789,12 +789,11 @@
       </Unit>
       <Unit>
         <Filename Value="thirdparty/uglobals.pas"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="72"/>
         <CursorPos X="112" Y="84"/>
         <UsageCount Value="81"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="thirdparty/piskelinfo/umain.pas"/>
