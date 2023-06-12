@@ -508,19 +508,16 @@ begin
 end;
 
 procedure TfrmMain.actDeleteFrameExecute(Sender: TObject);
-var todelete : TSPFrame;
 begin
+  if MessageDlg(rsWarning, rsActionNotUndone,mtWarning,mbYesNo,'')<>mrYes then Exit;
   if not Assigned(FrameGrid) then Exit;
   if not Assigned(ProjectInfo.ActiveFrame) then
   begin
-    ShowMessage('This frame does not exist!');
+    ShowMessage(rsFrameNotExist);
     Exit;
   end;
-  todelete:= ProjectInfo.ActiveFrame;
-  //todo: change active frame before delete
- // ProjectInfo.ActiveFrame:=ProjectInfo.Frames;
-  ProjectInfo.DeleteFrame(todelete);
-  drwgrdFrames.Refresh;
+  ProjectInfo.DeleteFrame(ProjectInfo.ActiveFrame);
+  FramesChange;
 end;
 
 procedure TfrmMain.actDeleteLayerExecute(Sender: TObject);
@@ -704,10 +701,10 @@ begin
   begin
     if ProjectInfo.Changed then
     begin
-      mr := MessageDlg(rsWarning, 'Current project not saved!' + LineEnding +
-        'Press "Yes" to save and continue,' + LineEnding +
-        '"No" to continue without saving' + LineEnding +
-        'or "Cancel" to continue with current project',
+      mr := MessageDlg(rsWarning, rsProjNotSaved + LineEnding +
+        rsPressYesToSave + LineEnding +
+       rsNoToContinue + LineEnding +
+        rsCancelToContinue,
         mtWarning, mbYesNoCancel, '');
       case mr of
         mrYes: begin
@@ -742,12 +739,11 @@ var
   canselect : Boolean;
   idx : Integer;
 begin
-  if not Assigned(ProjectInfo) then ProjectInfo := TSPProjectInfo.Create;
-
   dlgOpenProj.InitialDir := INI.ReadString('PATH', 'EXPORT', GetUserDir());
   if dlgOpenProj.Execute then
   begin
-    ProjectInfo.Clear;
+    if Assigned(ProjectInfo) then FreeAndNil(ProjectInfo);
+    ProjectInfo:=TSPProjectInfo.Create;
     ProjectInfo.Filename := dlgOpenProj.FileName;
     ProjectInfo.Load;
     aframename:=ProjectInfo.ActiveFrame.FrameName;
@@ -758,6 +754,7 @@ begin
     ProjectInfo.ActiveFrame:=ProjectInfo.Frames[aframename];
 
     drwgrdFramesSelectCell(Sender,0,idx,canselect);
+    INI.WriteString('PATH', 'EXPORT', ExtractFilePath(dlgOpenProj.FileName));
   end;
 end;
 

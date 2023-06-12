@@ -248,5 +248,12 @@ DEV.LOG
 11.06.2023
 =
 - [+] Added interface template for 'Onion skin' mode
-- [*] Fixed some dependencies, removed duplicated units
-- [*] Fixed some button icons
+- [!] Fixed some dependencies, removed duplicated units
+- [*] Changed some button icons
+
+12.06.2023
+=
+- [!] Fixed Frame delete
+- [!] Fixed save last opened project path
+- [!] Fixed memory leak (if open few projects one after another)
+- [*] Some messages tranfered from hardcoded to resourcestrings for translation

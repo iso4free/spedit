@@ -74,6 +74,12 @@ resourcestring
   rsLayer = 'Layer';
   rsUntitled = 'Untitled';
   rsProjInfo = 'Project info: ';
+  rsProjNotSaved = 'Current project not saved!';
+  rsPressYesToSave = 'Press "Yes" to save and continue,';
+  rsNoToContinue = '"No" to continue without saving';
+  rsCancelToContinue = 'or "Cancel" to continue with current project';
+  rsFrameNotExist = 'This frame does not exist!';
+  rsActionNotUndone = 'This action cannot be undone! Continue?';
 
 
 
@@ -83,7 +89,13 @@ const
       APP_VER_MINOR = '0';
       APP_VER_SUFFIX = 'pre-alpha';
       //todo: change it every build date change!!!
-      APP_VER_BUILDDATE = '2023-02-08';
+      APP_VER_BUILDDATE = '2023-06-12';
+      spUSER=
+      {$IFDEF WINDOWS}
+      'USERNAME';
+      {$ELSE IFDEF POSIX}
+      'USER';
+      {$ENDIF}
 
       //MAX_FRAMES = 50;           //it will be enought for one animation?
       MAX_PALETTE_COLORS = 255;  //max colors count in palette
@@ -1003,11 +1015,7 @@ begin
  FFilename:='';
   FTitle:=rsUntitled+'*';
   FDescription:='';
-  {$IFDEF WINDOWS}
-  FAuthor:=sysutils.GetEnvironmentVariable('USERNAME');
-  {$ELSE}
-  FAuthor:=sysutils.GetEnvironmentVariable('USER');
-  {$ENDIF}
+  FAuthor:=sysutils.GetEnvironmentVariable(spUser);
   //frames
   Frames.Clear;
   FFramesCount:=0;
@@ -1018,8 +1026,9 @@ end;
 
 procedure TSPProjectInfo.DeleteFrame(aFrame: TSPFrame);
 begin
- //todo: fix frame delete
+ FFrames.Names.Delete(FFrames.Names.IndexOf(aFrame.FrameName));
  FFrames.Remove(aFrame.FrameName);
+ FFramesCount:=FFrames.Count;
 end;
 
 destructor TSPProjectInfo.Destroy;

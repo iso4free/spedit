@@ -958,18 +958,18 @@ object frmMain: TfrmMain
       object miFileNewPoject: TMenuItem
         Action = actNewProj
       end
+      object miOpenProj: TMenuItem
+        Action = actOpenProj
+      end
+      object Separator12: TMenuItem
+        Caption = '-'
+      end
       object miFileSaveProject: TMenuItem
         Action = actSaveProj
       end
       object miSaveProjectAs: TMenuItem
         Caption = 'Save Sprite Project As...'
         OnClick = miSaveProjectAsClick
-      end
-      object Separator12: TMenuItem
-        Caption = '-'
-      end
-      object miOpenProj: TMenuItem
-        Action = actOpenProj
       end
       object Separator13: TMenuItem
         Caption = '-'
