@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: spedit\n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
-"PO-Revision-Date: 2023-01-30 13:19\n"
+"PO-Revision-Date: 2023-06-13 11:07\n"
 
 #: tfrmabout.label1.caption
 msgid "SPEdit"
@@ -21,20 +21,12 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Вільний і відкритий редактор спрайтів V.4.0"
 
 #: tfrmabout.label3.caption
-#, fuzzy
-#| msgid ""
-#| "Created by (c) Vadim Vitomsky, 2000-2022\n"
-#| "Contributed by Eddie Mattos\n"
-#| "(translation to pt-br, Mascot animation)\n"
-#| "Mascot based on Original image created by Unknown_Chan"
-msgid ""
-"Created by (c) Vadim Vitomsky, 2000-2023\n"
+msgid "Created by (c) Vadim Vitomsky, 2000-2023\n"
 "Contributed by Eddie Mattos\n"
 "(translation to pt-br, Mascot animation)\n"
 "Mascot based on Original image created by Unknown_Chan"
-msgstr ""
-"Створено (c) Вадим Vitomsky, 2000-2022\n"
-"участю Едді Маттос\n"
+msgstr "Створено (c) Вадим Вітомський, 2000-2022\n"
+"за участю Eddie Mattos\n"
 "(переклад до pt-br, Анімація Mascot)\n"
 "Mascot заснована на оригінальному зображенні, створеному Unknown_Chan"
 
@@ -75,40 +67,39 @@ msgstr "Назва фрейму"
 #: tfrmgridoptions.caption
 msgctxt "tfrmgridoptions.caption"
 msgid "Grid options"
-msgstr ""
+msgstr "Параметри сітки"
 
 #: tfrmgridoptions.gbcell.caption
 msgctxt "tfrmgridoptions.gbcell.caption"
 msgid "or Cell size"
-msgstr ""
+msgstr "або розмір комірки"
 
 #: tfrmgridoptions.gbcrop.caption
 msgctxt "tfrmgridoptions.gbcrop.caption"
 msgid "Crop"
-msgstr ""
+msgstr "Кадрування"
 
 #: tfrmgridoptions.gbgridsize.caption
 msgctxt "tfrmgridoptions.gbgridsize.caption"
 msgid "Grid size"
-msgstr ""
+msgstr "Розмір сітки"
 
 #: tfrmgridoptions.gboffset.caption
 msgctxt "tfrmgridoptions.gboffset.caption"
 msgid "Offset"
-msgstr ""
+msgstr "Зміщення"
 
 #: tfrmgridoptions.lblbottom.caption
 msgctxt "tfrmgridoptions.lblbottom.caption"
 msgid "Bottom"
-msgstr ""
+msgstr "Знизу"
 
 #: tfrmgridoptions.lblcols.caption
 msgctxt "tfrmgridoptions.lblcols.caption"
 msgid "Columns"
-msgstr ""
+msgstr "Стовпці"
 
 #: tfrmgridoptions.lblheight.caption
-#, fuzzy
 msgctxt "tfrmgridoptions.lblheight.caption"
 msgid "Height"
 msgstr "Висота"
@@ -116,25 +107,24 @@ msgstr "Висота"
 #: tfrmgridoptions.lblleft.caption
 msgctxt "tfrmgridoptions.lblleft.caption"
 msgid "Left"
-msgstr ""
+msgstr "Зліва"
 
 #: tfrmgridoptions.lblright.caption
 msgctxt "tfrmgridoptions.lblright.caption"
 msgid "Right"
-msgstr ""
+msgstr "Праворуч"
 
 #: tfrmgridoptions.lblrows.caption
 msgctxt "tfrmgridoptions.lblrows.caption"
 msgid "Rows"
-msgstr ""
+msgstr "Рядків"
 
 #: tfrmgridoptions.lbltop.caption
 msgctxt "tfrmgridoptions.lbltop.caption"
 msgid "Top"
-msgstr ""
+msgstr "Згори"
 
 #: tfrmgridoptions.lblwidth.caption
-#, fuzzy
 msgctxt "tfrmgridoptions.lblwidth.caption"
 msgid "Width"
 msgstr "Ширина"
@@ -142,79 +132,77 @@ msgstr "Ширина"
 #: tfrmgridoptions.lblx.caption
 msgctxt "tfrmgridoptions.lblx.caption"
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: tfrmgridoptions.lbly.caption
 msgctxt "tfrmgridoptions.lbly.caption"
 msgid "Y"
-msgstr ""
+msgstr "Y"
 
 #: tfrmimportsheet.bbadd.hint
 msgid "Add current selection as frame to selections"
-msgstr ""
+msgstr "Додати поточний вибір як фрейм до вибраного"
 
 #: tfrmimportsheet.bbcancel.caption
-#, fuzzy
 msgctxt "tfrmimportsheet.bbcancel.caption"
 msgid "Cancel"
 msgstr "Скасувати"
 
 #: tfrmimportsheet.bbimport.caption
 msgid "Impotr frames"
-msgstr ""
+msgstr "Імпортувати фрейм"
 
 #: tfrmimportsheet.bbspritesheetopen.caption
 msgid "Open spritesheet"
-msgstr ""
+msgstr "Відкрити спрайтшіт"
 
 #: tfrmimportsheet.bbspritesheetopen.hint
 msgid "Import spritesheet from image file"
-msgstr ""
+msgstr "Імпортувати спрайтшіт з файлу зображення"
 
 #: tfrmimportsheet.caption
 msgid "Import sprites"
-msgstr ""
+msgstr "Імпорт спрайтів"
 
 #: tfrmimportsheet.cbgrig.caption
 msgid "Import as grid"
-msgstr ""
+msgstr "Імпортувати як сітку"
 
 #: tfrmimportsheet.chgrpselections.caption
 msgid "Selections"
-msgstr ""
+msgstr "Вибрані об'єкти"
 
 #: tfrmimportsheet.gbcell.caption
 msgctxt "tfrmimportsheet.gbcell.caption"
 msgid "or Cell size"
-msgstr ""
+msgstr "або розмір комірки"
 
 #: tfrmimportsheet.gbcrop.caption
 msgctxt "tfrmimportsheet.gbcrop.caption"
 msgid "Crop"
-msgstr ""
+msgstr "Кадрування"
 
 #: tfrmimportsheet.gbgridsize.caption
 msgctxt "tfrmimportsheet.gbgridsize.caption"
 msgid "Grid size"
-msgstr ""
+msgstr "Розмір сітки"
 
 #: tfrmimportsheet.gboffset.caption
 msgctxt "tfrmimportsheet.gboffset.caption"
 msgid "Offset"
-msgstr ""
+msgstr "Зміщення"
 
 #: tfrmimportsheet.lblbottom.caption
 msgctxt "tfrmimportsheet.lblbottom.caption"
 msgid "Bottom"
-msgstr ""
+msgstr "Знизу"
 
 #: tfrmimportsheet.lblcols.caption
 msgctxt "tfrmimportsheet.lblcols.caption"
 msgid "Columns"
-msgstr ""
+msgstr "Стовпці"
 
 #: tfrmimportsheet.lblheight.caption
-#, fuzzy
 msgctxt "tfrmimportsheet.lblheight.caption"
 msgid "Height"
 msgstr "Висота"
@@ -222,29 +210,28 @@ msgstr "Висота"
 #: tfrmimportsheet.lblleft.caption
 msgctxt "tfrmimportsheet.lblleft.caption"
 msgid "Left"
-msgstr ""
+msgstr "Зліва"
 
 #: tfrmimportsheet.lblnametemplate.caption
 msgid "Name template"
-msgstr ""
+msgstr "Шаблон назви"
 
 #: tfrmimportsheet.lblright.caption
 msgctxt "tfrmimportsheet.lblright.caption"
 msgid "Right"
-msgstr ""
+msgstr "Праворуч"
 
 #: tfrmimportsheet.lblrows.caption
 msgctxt "tfrmimportsheet.lblrows.caption"
 msgid "Rows"
-msgstr ""
+msgstr "Рядків"
 
 #: tfrmimportsheet.lbltop.caption
 msgctxt "tfrmimportsheet.lbltop.caption"
 msgid "Top"
-msgstr ""
+msgstr "Згори"
 
 #: tfrmimportsheet.lblwidth.caption
-#, fuzzy
 msgctxt "tfrmimportsheet.lblwidth.caption"
 msgid "Width"
 msgstr "Ширина"
@@ -252,12 +239,12 @@ msgstr "Ширина"
 #: tfrmimportsheet.lblx.caption
 msgctxt "tfrmimportsheet.lblx.caption"
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: tfrmimportsheet.lbly.caption
 msgctxt "tfrmimportsheet.lbly.caption"
 msgid "Y"
-msgstr ""
+msgstr "Y"
 
 #: tfrmmain.acimportframe.caption
 msgctxt "tfrmmain.acimportframe.caption"
@@ -282,7 +269,7 @@ msgstr "Вирізати"
 
 #: tfrmmain.actdeleteframe.caption
 msgid "Delete frame"
-msgstr ""
+msgstr "Видалити фрейм"
 
 #: tfrmmain.actdeletelayer.caption
 msgid "Delete layer"
@@ -333,7 +320,7 @@ msgstr "Імпорт файлу Piskel"
 
 #: tfrmmain.actimportsprites.caption
 msgid "Import spritesheet"
-msgstr ""
+msgstr "Імпорт таблиці спрайтів"
 
 #: tfrmmain.actlanguageselect.caption
 msgctxt "tfrmmain.actlanguageselect.caption"
@@ -376,7 +363,7 @@ msgstr "Ще не реалізовано"
 #: tfrmmain.actonionskin.caption
 msgctxt "tfrmmain.actonionskin.caption"
 msgid "'Onion skin' mode"
-msgstr ""
+msgstr "Режим 'Цибулині лушпайки'"
 
 #: tfrmmain.actopenproj.caption
 msgid "Open project"
@@ -410,7 +397,7 @@ msgstr "Вставити"
 
 #: tfrmmain.actpreviewtoggle.caption
 msgid "Toggle preview"
-msgstr ""
+msgstr "Перемкнути попередній перегляд"
 
 #: tfrmmain.actprojprops.caption
 msgctxt "tfrmmain.actprojprops.caption"
@@ -486,7 +473,7 @@ msgstr "Створити новий фрейм"
 #: tfrmmain.bbtnonionmode.hint
 msgctxt "tfrmmain.bbtnonionmode.hint"
 msgid "'Onion skin' mode"
-msgstr ""
+msgstr "Режим 'Цибулині лушпайки'"
 
 #: tfrmmain.bbtnresize.hint
 msgctxt "tfrmmain.bbtnresize.hint"
@@ -517,11 +504,9 @@ msgstr "ФК"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.drwgrdlayers.columns[0].title.caption
@@ -551,19 +536,16 @@ msgstr "ПК"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
-msgid ""
-"Left click to select color\n"
+msgid "Left click to select color\n"
 "Right click to set transparent color"
-msgstr ""
-"Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.label1.caption
 msgid "'Onion skin' settings"
-msgstr ""
+msgstr "Налаштування 'Лушпайок цибулі'"
 
 #: tfrmmain.label2.caption
-#, fuzzy
 msgctxt "tfrmmain.label2.caption"
 msgid "Preview"
 msgstr "Попередній перегляд"
@@ -781,7 +763,7 @@ msgstr "Назва"
 
 #: tfrmprojectprops.tsentities.caption
 msgid "Entities"
-msgstr ""
+msgstr "Сутності"
 
 #: tfrmprojectprops.tsgeneral.caption
 msgid "General"
