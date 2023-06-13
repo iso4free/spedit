@@ -257,3 +257,7 @@ DEV.LOG
 - [!] Fixed save last opened project path
 - [!] Fixed memory leak (if open few projects one after another)
 - [*] Some messages tranfered from hardcoded to resourcestrings for translation
+
+13.06.2023
+=
+- [*] A lot work for 'Onion skin' almost done

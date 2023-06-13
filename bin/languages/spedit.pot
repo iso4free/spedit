@@ -416,6 +416,26 @@ msgstr ""
 msgid "Select all"
 msgstr ""
 
+#: tfrmmain.actsetasnext.caption
+msgid "'Onion skin' - set as next"
+msgstr ""
+
+#: tfrmmain.actsetasnext.hint
+msgid ""
+"In 'Onion skin' mode:\n"
+"Use selected frame as next for previous frame in list"
+msgstr ""
+
+#: tfrmmain.actsetasprevious.caption
+msgid "'Onion skin' - set as previous"
+msgstr ""
+
+#: tfrmmain.actsetasprevious.hint
+msgid ""
+"For 'Onion skin' mode:\n"
+"Use selected frame as previous for next frame in list"
+msgstr ""
+
 #: tfrmmain.actsettings.caption
 msgctxt "tfrmmain.actsettings.caption"
 msgid "Settings"

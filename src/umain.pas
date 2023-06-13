@@ -57,6 +57,8 @@ type
     actImportPiskel: TAction;
     actImportSprites: TAction;
     actDeleteFrame: TAction;
+    actSetAsNext: TAction;
+    actSetAsPrevious: TAction;
     actOnionSkin: TAction;
     actPreviewToggle: TAction;
     actOpenProj: TAction;
@@ -114,6 +116,9 @@ type
     JSONPropStorage1: TJSONPropStorage;
     Label1: TLabel;
     Label2: TLabel;
+    pmiSetAsNext: TMenuItem;
+    pmiSetAsPrev: TMenuItem;
+    Separator16: TMenuItem;
     miOnionMode: TMenuItem;
     Separator15: TMenuItem;
     pnlOnion: TPanel;
@@ -287,6 +292,8 @@ type
     procedure actRotateCWExecute(Sender: TObject);
     procedure actSaveProjExecute(Sender: TObject);
     procedure actSelectAllExecute(Sender: TObject);
+    procedure actSetAsNextExecute(Sender: TObject);
+    procedure actSetAsPreviousExecute(Sender: TObject);
     procedure actSettingsExecute(Sender: TObject);
     procedure actToggleFullScreenExecute(Sender: TObject);
     procedure actZoomInExecute(Sender: TObject);
@@ -731,6 +738,9 @@ procedure TfrmMain.actOnionSkinExecute(Sender: TObject);
 begin
   actOnionSkin.Checked :=not actOnionSkin.Checked;
   pnlOnionMode.Visible := actOnionSkin.Checked;
+  ProjectInfo.ActiveFrame.UseOnionSkin:=actOnionSkin.Checked;
+  pbFrameDraw.Invalidate;
+  drwgrdFrames.Invalidate;
 end;
 
 procedure TfrmMain.actOpenProjExecute(Sender: TObject);
@@ -939,6 +949,30 @@ begin
   ToolOptions.SelectionRect.Bottom := FrameGrid.FrameHeight;
   ToolOptions.SelectionRect.Right := FrameGrid.FrameWidth;
   ToolOptions.IsSelection := True;
+end;
+
+procedure TfrmMain.actSetAsNextExecute(Sender: TObject);
+var
+  ci: Integer;
+begin
+    ci := ProjectInfo.Frames.Names.IndexOf(ProjectInfo.ActiveFrame.FrameName);
+  if ci=0 then begin
+    ShowMessage('There is no frames before...');
+    Exit;
+  end;
+  ProjectInfo.Frames[ProjectInfo.Frames.Names[ci-1]].NextFrame:=ProjectInfo.ActiveFrame;
+end;
+
+procedure TfrmMain.actSetAsPreviousExecute(Sender: TObject);
+var
+  ci: Integer;          //current frame idx
+begin
+  ci := ProjectInfo.Frames.Names.IndexOf(ProjectInfo.ActiveFrame.FrameName);
+  if ci=ProjectInfo.Frames.Count then begin
+    ShowMessage(rsNoFramesAfter);
+    Exit;
+  end;
+  ProjectInfo.Frames[ProjectInfo.Frames.Names[ci+1]].PrevFrame:=ProjectInfo.ActiveFrame;
 end;
 
 procedure TfrmMain.actSettingsExecute(Sender: TObject);
@@ -1779,6 +1813,7 @@ begin
   if not Assigned(ProjectInfo) then Exit;
 
   ProjectInfo.ActiveFrame:=ProjectInfo.Frames[ProjectInfo.Frames.Names.Strings[aRow]];
+  ProjectInfo.ActiveFrame.UseOnionSkin:=actOnionSkin.Checked;
   FreeAndNil(FrameGrid);
   FrameGrid:=TFrameGrid.Create(ProjectInfo.ActiveFrame.Width,
                                ProjectInfo.ActiveFrame.Height);

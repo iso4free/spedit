@@ -854,10 +854,12 @@ object frmMain: TfrmMain
       AnchorSideLeft.Control = pnlPreview
       AnchorSideTop.Control = SpeedButton1
       AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = SpeedButton1
       Left = 1
       Height = 16
       Top = 3
-      Width = 47
+      Width = 72
+      Anchors = [akTop, akLeft, akRight]
       Caption = 'Preview'
     end
   end
@@ -942,10 +944,12 @@ object frmMain: TfrmMain
       AnchorSideLeft.Control = pnlOnionMode
       AnchorSideTop.Control = SpeedButton2
       AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = SpeedButton2
       Left = 1
       Height = 16
       Top = 3
-      Width = 120
+      Width = 201
+      Anchors = [akTop, akLeft, akRight]
       Caption = '''Onion skin'' settings'
     end
   end
@@ -2333,6 +2337,18 @@ object frmMain: TfrmMain
       Caption = 'Delete frame'
       OnExecute = actDeleteFrameExecute
     end
+    object actSetAsPrevious: TAction
+      Category = 'Frames'
+      Caption = '''Onion skin'' - set as previous'
+      Hint = 'For ''Onion skin'' mode:'#10'Use selected frame as previous for next frame in list'
+      OnExecute = actSetAsPreviousExecute
+    end
+    object actSetAsNext: TAction
+      Category = 'Frames'
+      Caption = '''Onion skin'' - set as next'
+      Hint = 'In ''Onion skin'' mode:'#10'Use selected frame as next for previous frame in list'
+      OnExecute = actSetAsNextExecute
+    end
   end
   object BGRAImageList24x24: TBGRAImageList
     Left = 440
@@ -2553,6 +2569,15 @@ object frmMain: TfrmMain
     end
     object pmiDeleteFrame: TMenuItem
       Action = actDeleteFrame
+    end
+    object Separator16: TMenuItem
+      Caption = '-'
+    end
+    object pmiSetAsPrev: TMenuItem
+      Action = actSetAsPrevious
+    end
+    object pmiSetAsNext: TMenuItem
+      Action = actSetAsNext
     end
   end
 end

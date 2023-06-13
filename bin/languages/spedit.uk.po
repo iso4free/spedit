@@ -21,11 +21,13 @@ msgid "Free and Open source Sprite Editor V.4.0"
 msgstr "Вільний і відкритий редактор спрайтів V.4.0"
 
 #: tfrmabout.label3.caption
-msgid "Created by (c) Vadim Vitomsky, 2000-2023\n"
+msgid ""
+"Created by (c) Vadim Vitomsky, 2000-2023\n"
 "Contributed by Eddie Mattos\n"
 "(translation to pt-br, Mascot animation)\n"
 "Mascot based on Original image created by Unknown_Chan"
-msgstr "Створено (c) Вадим Вітомський, 2000-2022\n"
+msgstr ""
+"Створено (c) Вадим Вітомський, 2000-2022\n"
 "за участю Eddie Mattos\n"
 "(переклад до pt-br, Анімація Mascot)\n"
 "Mascot заснована на оригінальному зображенні, створеному Unknown_Chan"
@@ -429,6 +431,26 @@ msgstr "Зберегти проект"
 msgid "Select all"
 msgstr "Виділити все"
 
+#: tfrmmain.actsetasnext.caption
+msgid "'Onion skin' - set as next"
+msgstr ""
+
+#: tfrmmain.actsetasnext.hint
+msgid ""
+"In 'Onion skin' mode:\n"
+"Use selected frame as next for previous frame in list"
+msgstr ""
+
+#: tfrmmain.actsetasprevious.caption
+msgid "'Onion skin' - set as previous"
+msgstr ""
+
+#: tfrmmain.actsetasprevious.hint
+msgid ""
+"For 'Onion skin' mode:\n"
+"Use selected frame as previous for next frame in list"
+msgstr ""
+
 #: tfrmmain.actsettings.caption
 msgctxt "tfrmmain.actsettings.caption"
 msgid "Settings"
@@ -504,9 +526,11 @@ msgstr "ФК"
 
 #: tfrmmain.bgcolor.hint
 msgctxt "tfrmmain.bgcolor.hint"
-msgid "Left click to select color\n"
+msgid ""
+"Left click to select color\n"
 "Right click to set transparent color"
-msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr ""
+"Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.drwgrdlayers.columns[0].title.caption
@@ -536,9 +560,11 @@ msgstr "ПК"
 
 #: tfrmmain.fgcolor.hint
 msgctxt "tfrmmain.fgcolor.hint"
-msgid "Left click to select color\n"
+msgid ""
+"Left click to select color\n"
 "Right click to set transparent color"
-msgstr "Натисніть ліву кнопку миші для вибору кольору\n"
+msgstr ""
+"Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
 #: tfrmmain.label1.caption

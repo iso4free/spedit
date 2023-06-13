@@ -80,6 +80,7 @@ resourcestring
   rsCancelToContinue = 'or "Cancel" to continue with current project';
   rsFrameNotExist = 'This frame does not exist!';
   rsActionNotUndone = 'This action cannot be undone! Continue?';
+  rsNoFramesAfter = 'There is no frames after...';
 
 
 
@@ -89,7 +90,7 @@ const
       APP_VER_MINOR = '0';
       APP_VER_SUFFIX = 'pre-alpha';
       //todo: change it every build date change!!!
-      APP_VER_BUILDDATE = '2023-06-12';
+      APP_VER_BUILDDATE = '2023-06-13';
       spUSER=
       {$IFDEF WINDOWS}
       'USERNAME';
@@ -290,6 +291,7 @@ type
     function RedoState : Boolean; //redo last restored state if possible. Return True if
     property IsMainLayerActive : Boolean read FIsMainLayerActive;
     procedure RenderPicture; //create preview with all layers
+    procedure RenderOnionSkinBg(hiligtColor : TBGRAPixel); //create preview as partially transparent with higlighted color
     procedure ExportPNG(aFile : TFileName); //export frame to PNG file
     property UseOnionSkin : Boolean read FUseOnionSkin write SetUseOnionSkin; //used for draw animations - true for half-transparent background
     property PrevFrame : TSPFrame read FPrevFrame write SetPrevFrame; //link to previous frame for 'onion skin' - nil if UseOnionSkin=false
@@ -519,6 +521,11 @@ var
   //Drawing colors
   spclForeColor : TBGRAPixel;  //foreground color - left mouse button drawing
   spclBackColor : TBGRAPixel; //background color - right mouse button drawing
+
+  spclPrevFrame : TBGRAPixel; //hilight color for previous frame in 'onion skin'
+  spclNextFrame : TBGRAPixel; //hilight color for next frame in 'onion skin'
+  spclOpacity   : Byte;       //opacity for draw hilighted frames in 'onion skin' mode
+
   //Work palette
   Palette       : TBGRAPalette;
   Presets       : TPresetsList; //palettes presets list
@@ -1451,6 +1458,46 @@ begin
      fPreview.PutImage(0,0,Layers[_ln].Drawable,dmDrawWithTransparency);
  end;
   fPreview.PutImage(0,0,DrawLayer.Drawable,dmDrawWithTransparency);
+   //todo: if enabled 'onion skin' draw previous and next frames if assigned
+  if UseOnionSkin then begin
+    if Assigned(FPrevFrame) then begin
+      FPrevFrame.RenderOnionSkinBg(spclPrevFrame);
+      FPreview.PutImage(0,0,FPrevFrame.Preview,dmDrawWithTransparency);
+    end;
+    if Assigned(FNextFrame) then begin
+      FNextFrame.RenderOnionSkinBg(spclNextFrame);
+      FPreview.PutImage(0,0,FNextFrame.Preview,dmDrawWithTransparency);
+    end;
+  end;
+end;
+
+procedure TSPFrame.RenderOnionSkinBg(hiligtColor: TBGRAPixel);
+var
+  i, x, y : Integer;
+  _ln : String;
+  p : PBGRAPixel;
+begin
+ if not Assigned(FPreview) then Exit;
+ ClearBitmap(FPreview);
+ //draw all layers to canvas
+ for i:=0 to LayersList.Count-1 do begin
+  _ln:=LayersList.Strings[i];
+   if ((Layers.IndexOf(_ln)<>-1) and (Layers[_ln].Visible)) then
+     FPreview.PutImage(0,0,Layers[_ln].Drawable,dmDrawWithTransparency);
+ end;
+ //todo: check opacity and highlight for each pixel use direct pixel access
+  for y:=0 to FPreview.Height-1 do begin
+   p:=FPreview.ScanLine[y];
+   for x:=0 to FPreview.Width-1 do begin
+    p^.red:=p^.red and hiligtColor.red;
+    p^.green:=p^.green and hiligtColor.green;
+    p^.blue:=p^.blue and hiligtColor.blue;
+    p^.alpha:=255-spclOpacity;
+    Inc(p);
+   end;
+  end;
+  FPreview.InvalidateBitmap;
+  fPreview.PutImage(0,0,DrawLayer.Drawable,dmDrawWithTransparency);
 end;
 
 function TSPFrame.ToJSON: String;
@@ -1760,6 +1807,7 @@ begin
                        $FFFFFF,
                        FCheckersSize,
                        FCheckersSize);
+
   //draw preview picture and just zoom it up to grid size
   ProjectInfo.ActiveFrame.RenderPicture;
   tmpbmp:=ProjectInfo.ActiveFrame.Preview.Resample(fBuffer.Width,fBuffer.Height,rmSimpleStretch);
@@ -2019,6 +2067,9 @@ initialization
  //frame editor params
  spclBackColor:=INI.ReadInteger('FRAME EDITOR','BACKGROUND COLOR',clNone);
  spclForeColor:=INI.ReadInteger('FRAME EDITOR','FOREGROUND COLOR',clBlackOpaque);
+ spclPrevFrame:=INI.ReadInteger('Onion skin','Prev frame color', clNavy);
+ spclNextFrame:=INI.ReadInteger('Onion skin','Next frame color', clRed);
+ spclOpacity:=INI.ReadInteger('Onion skin','Opacity', 128);
  //palette with default colors
  Palette:=TBGRAPalette.Create;
  Presets:=TPresetsList.Create(true);
