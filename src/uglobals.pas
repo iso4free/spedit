@@ -2078,6 +2078,8 @@ initialization
 
 
  finalization
+  INI.WriteInteger('Onion skin','Prev frame color', spclPrevFrame);
+  INI.WriteInteger('Onion skin','Next frame color', spclNextFrame);
   INI.WriteString('INTERFACE','SPRITELIB',CurrentLibName);
   FreeAndNil(Presets);
   FreeAndNil(DrawLayer);

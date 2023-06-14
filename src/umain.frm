@@ -2,10 +2,10 @@ object frmMain: TfrmMain
   Left = 86
   Height = 676
   Top = 86
-  Width = 752
+  Width = 954
   AllowDropFiles = True
   ClientHeight = 676
-  ClientWidth = 752
+  ClientWidth = 954
   DoubleBuffered = True
   KeyPreview = True
   Menu = MainMenu1
@@ -21,7 +21,7 @@ object frmMain: TfrmMain
     Left = 0
     Height = 18
     Top = 658
-    Width = 752
+    Width = 954
     Panels = <    
       item
         Width = 200
@@ -218,11 +218,11 @@ object frmMain: TfrmMain
     Left = 0
     Height = 40
     Top = 0
-    Width = 752
+    Width = 954
     Align = alTop
     AutoSize = True
     ClientHeight = 40
-    ClientWidth = 752
+    ClientWidth = 954
     Constraints.MaxHeight = 40
     DoubleBuffered = True
     ParentDoubleBuffered = False
@@ -243,7 +243,7 @@ object frmMain: TfrmMain
     end
     object FgColor: TBGRAGraphicControl
       Tag = 2
-      Left = 649
+      Left = 851
       Height = 38
       Hint = 'Left click to select color'#10'Right click to set transparent color'
       Top = 1
@@ -260,7 +260,7 @@ object frmMain: TfrmMain
       Caption = 'FG'
     end
     object bbtnSwapColors: TBitBtn
-      Left = 681
+      Left = 883
       Height = 38
       Hint = 'Swap colors [X]'
       Top = 1
@@ -276,7 +276,7 @@ object frmMain: TfrmMain
     end
     object BgColor: TBGRAGraphicControl
       Tag = 1
-      Left = 719
+      Left = 921
       Height = 38
       Hint = 'Left click to select color'#10'Right click to set transparent color'
       Top = 1
@@ -352,7 +352,7 @@ object frmMain: TfrmMain
       TabOrder = 5
     end
     object trkbrPenSize: TSpinEdit
-      Left = 549
+      Left = 751
       Height = 38
       Top = 1
       Width = 100
@@ -366,7 +366,7 @@ object frmMain: TfrmMain
       AnchorSideTop.Control = trkbrPenSize
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = trkbrPenSize
-      Left = 496
+      Left = 698
       Height = 16
       Top = 12
       Width = 48
@@ -422,7 +422,7 @@ object frmMain: TfrmMain
     end
   end
   object pnlTools: TFlowPanel
-    Left = 729
+    Left = 931
     Height = 618
     Top = 40
     Width = 23
@@ -651,7 +651,7 @@ object frmMain: TfrmMain
     Width = 5
   end
   object Splitter2: TSplitter
-    Left = 620
+    Left = 822
     Height = 618
     Top = 40
     Width = 5
@@ -660,7 +660,7 @@ object frmMain: TfrmMain
     ResizeAnchor = akRight
   end
   object pnlPalette: TPanel
-    Left = 625
+    Left = 827
     Height = 618
     Top = 40
     Width = 104
@@ -749,7 +749,7 @@ object frmMain: TfrmMain
     Left = 152
     Height = 618
     Top = 40
-    Width = 468
+    Width = 670
     Align = alClient
     OnMouseDown = pbFrameDrawMouseDown
     OnMouseMove = pbFrameDrawMouseMove
@@ -850,26 +850,15 @@ object frmMain: TfrmMain
       }
       OnClick = SpeedButton1Click
     end
-    object Label2: TLabel
-      AnchorSideLeft.Control = pnlPreview
-      AnchorSideTop.Control = SpeedButton1
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = SpeedButton1
-      Left = 1
-      Height = 16
-      Top = 3
-      Width = 72
-      Anchors = [akTop, akLeft, akRight]
-      Caption = 'Preview'
-    end
   end
   object pnlOnionMode: TJvMovablePanel
-    Left = 408
-    Height = 200
-    Top = 224
-    Width = 223
-    ClientHeight = 200
-    ClientWidth = 223
+    Left = 680
+    Height = 222
+    Top = 80
+    Width = 136
+    AutoSize = True
+    ClientHeight = 222
+    ClientWidth = 136
     Constraints.MaxHeight = 500
     Constraints.MaxWidth = 500
     Constraints.MinHeight = 100
@@ -880,7 +869,7 @@ object frmMain: TfrmMain
       AnchorSideTop.Control = pnlOnionMode
       AnchorSideRight.Control = pnlOnionMode
       AnchorSideRight.Side = asrBottom
-      Left = 202
+      Left = 115
       Height = 20
       Top = 1
       Width = 20
@@ -933,24 +922,172 @@ object frmMain: TfrmMain
       AnchorSideBottom.Control = pnlOnionMode
       AnchorSideBottom.Side = asrBottom
       Left = 1
-      Height = 178
+      Height = 200
       Top = 21
-      Width = 221
+      Width = 134
       Align = alCustom
       Anchors = [akTop, akLeft, akRight, akBottom]
+      AutoSize = True
+      ClientHeight = 200
+      ClientWidth = 134
       TabOrder = 0
-    end
-    object Label1: TLabel
-      AnchorSideLeft.Control = pnlOnionMode
-      AnchorSideTop.Control = SpeedButton2
-      AnchorSideTop.Side = asrCenter
-      AnchorSideRight.Control = SpeedButton2
-      Left = 1
-      Height = 16
-      Top = 3
-      Width = 201
-      Anchors = [akTop, akLeft, akRight]
-      Caption = '''Onion skin'' settings'
+      object TrackBar1: TTrackBar
+        AnchorSideLeft.Control = Panel1
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = Panel1
+        AnchorSideBottom.Control = Panel1
+        AnchorSideBottom.Side = asrBottom
+        Left = 114
+        Height = 198
+        Hint = 'Set transparency for previous and next frames'
+        Top = 1
+        Width = 19
+        OnChange = TrackBar1Change
+        Orientation = trVertical
+        Position = 0
+        SelEnd = 255
+        Anchors = [akTop, akLeft, akBottom]
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+      end
+      object Panel1: TPanel
+        AnchorSideLeft.Control = pnlOnion
+        AnchorSideTop.Control = pnlOnion
+        Left = 1
+        Height = 198
+        Top = 1
+        Width = 113
+        AutoSize = True
+        Caption = 'Panel1'
+        ClientHeight = 198
+        ClientWidth = 113
+        TabOrder = 1
+        object gbPrewFrameOptions: TGroupBox
+          AnchorSideLeft.Control = Panel1
+          AnchorSideTop.Control = Panel1
+          Left = 6
+          Height = 93
+          Top = 6
+          Width = 101
+          AutoSize = True
+          BorderSpacing.Around = 5
+          Caption = 'Previous frame'
+          ClientHeight = 76
+          ClientWidth = 99
+          TabOrder = 0
+          object cbPrevFrameVisible: TCheckBox
+            AnchorSideLeft.Control = gbPrewFrameOptions
+            AnchorSideTop.Control = gbPrewFrameOptions
+            Left = 0
+            Height = 23
+            Top = 0
+            Width = 66
+            Caption = 'Visible'
+            Checked = True
+            OnChange = cbPrevFrameVisibleChange
+            State = cbChecked
+            TabOrder = 0
+          end
+          object imgPrevFrame: TImage
+            AnchorSideLeft.Control = cbPrevFrameVisible
+            AnchorSideTop.Control = cbPrevFrameVisible
+            AnchorSideTop.Side = asrBottom
+            Left = 0
+            Height = 32
+            Top = 23
+            Width = 32
+            AutoSize = True
+          end
+          object Label1: TLabel
+            AnchorSideLeft.Control = imgPrevFrame
+            AnchorSideTop.Control = imgPrevFrame
+            AnchorSideTop.Side = asrBottom
+            Left = 0
+            Height = 16
+            Top = 55
+            Width = 74
+            Caption = 'Hilight color'
+          end
+          object clbPrevHilight: TColorButton
+            AnchorSideLeft.Control = Label1
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = Label1
+            AnchorSideTop.Side = asrCenter
+            Left = 74
+            Height = 25
+            Top = 51
+            Width = 25
+            BorderWidth = 2
+            ButtonColorSize = 16
+            ButtonColor = clBlack
+            ColorDialog = ColorDialog1
+            OnColorChanged = clbPrevHilightColorChanged
+          end
+        end
+        object gbNextFrameOptions: TGroupBox
+          AnchorSideLeft.Control = gbPrewFrameOptions
+          AnchorSideTop.Control = gbPrewFrameOptions
+          AnchorSideTop.Side = asrBottom
+          Left = 6
+          Height = 93
+          Top = 104
+          Width = 101
+          AutoSize = True
+          Caption = 'Next frame'
+          ClientHeight = 76
+          ClientWidth = 99
+          TabOrder = 1
+          object cbNextFrameVisible: TCheckBox
+            AnchorSideLeft.Control = gbNextFrameOptions
+            AnchorSideTop.Control = gbNextFrameOptions
+            Left = 0
+            Height = 23
+            Top = 0
+            Width = 66
+            Caption = 'Visible'
+            Checked = True
+            OnChange = cbNextFrameVisibleChange
+            State = cbChecked
+            TabOrder = 0
+          end
+          object imgNextFrame: TImage
+            AnchorSideLeft.Control = cbNextFrameVisible
+            AnchorSideTop.Control = cbNextFrameVisible
+            AnchorSideTop.Side = asrBottom
+            Left = 0
+            Height = 32
+            Top = 23
+            Width = 32
+            AutoSize = True
+          end
+          object Label2: TLabel
+            AnchorSideLeft.Control = cbNextFrameVisible
+            AnchorSideTop.Control = imgNextFrame
+            AnchorSideTop.Side = asrBottom
+            Left = 0
+            Height = 16
+            Top = 55
+            Width = 74
+            Caption = 'Hilight color'
+          end
+          object clbNextHilight1: TColorButton
+            AnchorSideLeft.Control = Label2
+            AnchorSideLeft.Side = asrBottom
+            AnchorSideTop.Control = Label2
+            AnchorSideTop.Side = asrCenter
+            Left = 74
+            Height = 25
+            Top = 51
+            Width = 25
+            BorderWidth = 2
+            ButtonColorSize = 16
+            ButtonColor = clBlack
+            ColorDialog = ColorDialog1
+            OnColorChanged = clbPrevHilightColorChanged
+          end
+        end
+      end
     end
   end
   object MainMenu1: TMainMenu
