@@ -105,17 +105,26 @@ type
     bbtnResize: TBitBtn;
     bbtnOnionMode: TBitBtn;
     ButtonsImageList: TBGRAImageList;
+    cbPrevFrameVisible: TCheckBox;
+    cbNextFrameVisible: TCheckBox;
+    clbPrevHilight: TColorButton;
+    clbNextHilight1: TColorButton;
     ColorDialog1: TColorDialog;
     cbPalettePresets: TComboBox;
     drwgrdLayers: TDrawGrid;
     actUndo: TEditUndo;
     FgColor: TBGRAGraphicControl;
     actExit: TFileExit;
+    gbPrewFrameOptions: TGroupBox;
+    gbNextFrameOptions: TGroupBox;
     HexaColorPicker1: THexaColorPicker;
     FramePreview: TImage;
+    imgPrevFrame: TImage;
+    imgNextFrame: TImage;
     JSONPropStorage1: TJSONPropStorage;
     Label1: TLabel;
     Label2: TLabel;
+    Panel1: TPanel;
     pmiSetAsNext: TMenuItem;
     pmiSetAsPrev: TMenuItem;
     Separator16: TMenuItem;
@@ -252,6 +261,7 @@ type
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     StatusBar1: TStatusBar;
+    TrackBar1: TTrackBar;
     trkbrPenSize: TSpinEdit;
     procedure actCopyExecute(Sender: TObject);
     procedure actCutExecute(Sender: TObject);
@@ -312,9 +322,12 @@ type
     procedure bbtnImportFrameClick(Sender: TObject);
     procedure bbtnTogglePreviewClick(Sender: TObject);
     procedure bbtnResizeClick(Sender: TObject);
+    procedure cbNextFrameVisibleChange(Sender: TObject);
     procedure cbPalettePresetsChange(Sender: TObject);
     procedure cbPalettePresetsDrawItem(Control: TWinControl; Index: integer;
       ARect: TRect; State: TOwnerDrawState);
+    procedure cbPrevFrameVisibleChange(Sender: TObject);
+    procedure clbPrevHilightColorChanged(Sender: TObject);
     procedure drwgrdFramesSelectCell(Sender: TObject; aCol, aRow: Integer;
       var CanSelect: Boolean);
     procedure drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: integer;
@@ -356,6 +369,7 @@ type
       aRect: TRect; aState: TGridDrawState);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
+    procedure TrackBar1Change(Sender: TObject);
     procedure trkbrPenSizeChange(Sender: TObject);
   private
     fDrawGridMode: TDrawGridMode;
@@ -369,6 +383,7 @@ type
     procedure PaletteChange; //added colors to current palette
     procedure CreateCursors; //create custom cursors for drawing
     procedure ImportFrame(aFilename: TFilename);
+    procedure RedrawFrames; //disable frames hilight
   public
   end;
 
@@ -1098,6 +1113,11 @@ begin
   actFrameResizeExecute(Sender);
 end;
 
+procedure TfrmMain.cbNextFrameVisibleChange(Sender: TObject);
+begin
+  imgNextFrame.Visible:=cbNextFrameVisible.Checked;
+end;
+
 procedure TfrmMain.cbPalettePresetsChange(Sender: TObject);
 var
   i: integer;
@@ -1148,6 +1168,20 @@ begin
   TComboBox(Control).Canvas.TextOut(ARect.Left, ARect.Top,
     TComboBox(Control).Items[Index]);
 
+end;
+
+procedure TfrmMain.cbPrevFrameVisibleChange(Sender: TObject);
+begin
+  imgPrevFrame.Visible:=cbPrevFrameVisible.Checked;
+  pbFrameDraw.Invalidate;
+end;
+
+procedure TfrmMain.clbPrevHilightColorChanged(Sender: TObject);
+begin
+  spclPrevFrame:=clbPrevHilight.ButtonColor;
+  spclNextFrame:=clbNextHilight1.ButtonColor;
+  LayersChange;
+  FramesChange;
 end;
 
 procedure TfrmMain.drwgrdLayersDrawCell(Sender: TObject; aCol, aRow: integer;
@@ -1334,6 +1368,8 @@ begin
     cbPalettePresets.ItemIndex := cbPalettePresets.Items.IndexOf(aPreset);
     cbPalettePresetsChange(Sender);
   end;
+  clbPrevHilight.ButtonColor:=spclPrevFrame;
+  //todo: set next frame hilight and transparency
   CreateCursors;
   pbFrameDraw.Cursor := 1;
   fCheckers:=TBGRABitmap.Create;
@@ -1596,6 +1632,20 @@ begin
   pbFrameDraw.Invalidate;
 end;
 
+procedure TfrmMain.RedrawFrames;
+var
+  i: Integer;
+begin
+  for i:=0 to ProjectInfo.Frames.Count-1 do begin
+    if ProjectInfo.Frames.Names[i]<>ProjectInfo.ActiveFrame.FrameName
+      then begin
+        ProjectInfo.Frames[ProjectInfo.Frames.Names[i]].PrevFrame:=nil;
+        ProjectInfo.Frames[ProjectInfo.Frames.Names[i]].NextFrame:=nil;
+        ProjectInfo.Frames[ProjectInfo.Frames.Names[i]].RenderPicture;
+      end;
+  end;
+end;
+
 procedure TfrmMain.pbFrameDrawMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: integer);
 var
@@ -1778,6 +1828,11 @@ begin
   actOnionSkinExecute(Sender);
 end;
 
+procedure TfrmMain.TrackBar1Change(Sender: TObject);
+begin
+  spclOpacity:=TrackBar1.Position;
+end;
+
 procedure TfrmMain.drwgrdFramesDrawCell(Sender: TObject; aCol, aRow: Integer;
   aRect: TRect; aState: TGridDrawState);
 var
@@ -1813,6 +1868,11 @@ begin
   if not Assigned(ProjectInfo) then Exit;
 
   ProjectInfo.ActiveFrame:=ProjectInfo.Frames[ProjectInfo.Frames.Names.Strings[aRow]];
+  if aRow=0 then ProjectInfo.ActiveFrame.PrevFrame:=nil
+     else ProjectInfo.ActiveFrame.PrevFrame:=ProjectInfo.Frames[ProjectInfo.Frames.Names[aRow-1]];
+  if aRow=ProjectInfo.Frames.Count-1 then ProjectInfo.ActiveFrame.NextFrame:=nil
+     else ProjectInfo.ActiveFrame.NextFrame:=ProjectInfo.Frames[ProjectInfo.Frames.Names[aRow+1]];
+  RedrawFrames;
   ProjectInfo.ActiveFrame.UseOnionSkin:=actOnionSkin.Checked;
   FreeAndNil(FrameGrid);
   FrameGrid:=TFrameGrid.Create(ProjectInfo.ActiveFrame.Width,
@@ -1821,6 +1881,10 @@ begin
                                ProjectInfo.ActiveFrame.Height);
   LayersChange;
   FramesChange;
+  if Assigned(ProjectInfo.ActiveFrame.PrevFrame) then
+     imgPrevFrame.Picture.Bitmap.Assign(ProjectInfo.ActiveFrame.PrevFrame.Preview);
+  if Assigned(ProjectInfo.ActiveFrame.NextFrame) then
+     imgNextFrame.Picture.Bitmap.Assign(ProjectInfo.ActiveFrame.NextFrame.Preview);
 end;
 
 procedure TfrmMain.LoadPresets(aDir: string);

@@ -533,6 +533,18 @@ msgstr ""
 "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
+#: tfrmmain.cbnextframevisible.caption
+#, fuzzy
+msgctxt "tfrmmain.cbnextframevisible.caption"
+msgid "Visible"
+msgstr "Видимий"
+
+#: tfrmmain.cbprevframevisible.caption
+#, fuzzy
+msgctxt "tfrmmain.cbprevframevisible.caption"
+msgid "Visible"
+msgstr "Видимий"
+
 #: tfrmmain.drwgrdlayers.columns[0].title.caption
 msgctxt "tfrmmain.drwgrdlayers.columns[0].title.caption"
 msgid "Visible"
@@ -567,14 +579,24 @@ msgstr ""
 "Натисніть ліву кнопку миші для вибору кольору\n"
 "Права кнопка миші обрати прозорий колір"
 
+#: tfrmmain.gbnextframeoptions.caption
+msgid "Next frame"
+msgstr ""
+
+#: tfrmmain.gbprewframeoptions.caption
+msgctxt "tfrmmain.gbprewframeoptions.caption"
+msgid "Previous frame"
+msgstr ""
+
 #: tfrmmain.label1.caption
-msgid "'Onion skin' settings"
-msgstr "Налаштування 'Лушпайок цибулі'"
+msgctxt "tfrmmain.label1.caption"
+msgid "Hilight color"
+msgstr ""
 
 #: tfrmmain.label2.caption
 msgctxt "tfrmmain.label2.caption"
-msgid "Preview"
-msgstr "Попередній перегляд"
+msgid "Hilight color"
+msgstr ""
 
 #: tfrmmain.layersgroupbox.caption
 msgctxt "tfrmmain.layersgroupbox.caption"
@@ -700,6 +722,10 @@ msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr "Вид"
 
+#: tfrmmain.panel1.caption
+msgid "Panel1"
+msgstr ""
+
 #: tfrmmain.pmilayerfliprotate.caption
 msgid "Flip/rotate layer"
 msgstr "Віддзеркалити/Обернути шар"
@@ -744,6 +770,10 @@ msgstr "Інструмент Прямокутник - гаряча клавіш�
 #: tfrmmain.sbrectselection.hint
 msgid "Rectangular selection tool - hotkey 'S'"
 msgstr "Прямокутне виділення - гаряча клавіша 'S'"
+
+#: tfrmmain.trackbar1.hint
+msgid "Set transparency for previous and next frames"
+msgstr ""
 
 #: tfrmnamedlg.bbtncancel.caption
 msgctxt "tfrmnamedlg.bbtncancel.caption"

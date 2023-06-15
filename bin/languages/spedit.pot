@@ -516,6 +516,16 @@ msgid ""
 "Right click to set transparent color"
 msgstr ""
 
+#: tfrmmain.cbnextframevisible.caption
+msgctxt "tfrmmain.cbnextframevisible.caption"
+msgid "Visible"
+msgstr ""
+
+#: tfrmmain.cbprevframevisible.caption
+msgctxt "tfrmmain.cbprevframevisible.caption"
+msgid "Visible"
+msgstr ""
+
 #: tfrmmain.drwgrdlayers.columns[0].title.caption
 msgctxt "tfrmmain.drwgrdlayers.columns[0].title.caption"
 msgid "Visible"
@@ -548,13 +558,23 @@ msgid ""
 "Right click to set transparent color"
 msgstr ""
 
+#: tfrmmain.gbnextframeoptions.caption
+msgid "Next frame"
+msgstr ""
+
+#: tfrmmain.gbprewframeoptions.caption
+msgctxt "tfrmmain.gbprewframeoptions.caption"
+msgid "Previous frame"
+msgstr ""
+
 #: tfrmmain.label1.caption
-msgid "'Onion skin' settings"
+msgctxt "tfrmmain.label1.caption"
+msgid "Hilight color"
 msgstr ""
 
 #: tfrmmain.label2.caption
 msgctxt "tfrmmain.label2.caption"
-msgid "Preview"
+msgid "Hilight color"
 msgstr ""
 
 #: tfrmmain.layersgroupbox.caption
@@ -681,6 +701,10 @@ msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr ""
 
+#: tfrmmain.panel1.caption
+msgid "Panel1"
+msgstr ""
+
 #: tfrmmain.pmilayerfliprotate.caption
 msgid "Flip/rotate layer"
 msgstr ""
@@ -724,6 +748,10 @@ msgstr ""
 
 #: tfrmmain.sbrectselection.hint
 msgid "Rectangular selection tool - hotkey 'S'"
+msgstr ""
+
+#: tfrmmain.trackbar1.hint
+msgid "Set transparency for previous and next frames"
 msgstr ""
 
 #: tfrmnamedlg.bbtncancel.caption

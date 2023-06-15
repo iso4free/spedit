@@ -544,6 +544,18 @@ msgstr ""
 "Clique esquedo para selecionar a cor\n"
 "Clique direito para definir a cor como transparente"
 
+#: tfrmmain.cbnextframevisible.caption
+#, fuzzy
+msgctxt "tfrmmain.cbnextframevisible.caption"
+msgid "Visible"
+msgstr "Visível"
+
+#: tfrmmain.cbprevframevisible.caption
+#, fuzzy
+msgctxt "tfrmmain.cbprevframevisible.caption"
+msgid "Visible"
+msgstr "Visível"
+
 #: tfrmmain.drwgrdlayers.columns[0].title.caption
 msgctxt "tfrmmain.drwgrdlayers.columns[0].title.caption"
 msgid "Visible"
@@ -578,15 +590,24 @@ msgstr ""
 "Clique esquedo para selecionar a cor\n"
 "Clique direito para definir a cor como transparente"
 
+#: tfrmmain.gbnextframeoptions.caption
+msgid "Next frame"
+msgstr ""
+
+#: tfrmmain.gbprewframeoptions.caption
+msgctxt "tfrmmain.gbprewframeoptions.caption"
+msgid "Previous frame"
+msgstr ""
+
 #: tfrmmain.label1.caption
-msgid "'Onion skin' settings"
+msgctxt "tfrmmain.label1.caption"
+msgid "Hilight color"
 msgstr ""
 
 #: tfrmmain.label2.caption
-#, fuzzy
 msgctxt "tfrmmain.label2.caption"
-msgid "Preview"
-msgstr "Previsualização"
+msgid "Hilight color"
+msgstr ""
 
 #: tfrmmain.layersgroupbox.caption
 msgctxt "tfrmmain.layersgroupbox.caption"
@@ -712,6 +733,10 @@ msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr "Visualizar"
 
+#: tfrmmain.panel1.caption
+msgid "Panel1"
+msgstr ""
+
 #: tfrmmain.pmilayerfliprotate.caption
 msgid "Flip/rotate layer"
 msgstr "Inverter/Girar Camada"
@@ -756,6 +781,10 @@ msgstr "Retângulo — 'R'"
 #: tfrmmain.sbrectselection.hint
 msgid "Rectangular selection tool - hotkey 'S'"
 msgstr "Seleção retangular — 'S'"
+
+#: tfrmmain.trackbar1.hint
+msgid "Set transparency for previous and next frames"
+msgstr ""
 
 #: tfrmnamedlg.bbtncancel.caption
 msgctxt "tfrmnamedlg.bbtncancel.caption"
