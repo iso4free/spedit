@@ -206,4 +206,26 @@ REGISTRO DE DESENVOLVIMENTO
 =
 - [*] Adição do suporte JSON para TSPLayer e TSPFrame (Usado com o gerenciador de Desfazer/Refazer,
   em breve será usado um formato próprio do SPEdit)
-- [*] O gerenciado de Desfazer/Refazer foi reescrito
+- [*] O gerenciador de Desfazer/Refazer foi reescrito
+
+7.06.2023
+=
+- [*] Migração do Lazarus IDE para o CodeTyphon Studio - sem a necessidade de dependências externas
+- [*] Atualização dos documentos
+
+11.06.2023
+=
+- [+] Adição do modelo de interface para o modo 'Papel Vegetal' ('Onion skin')
+- [!] Ajuste de algumas dependências, remoção de unidades duplicadas
+- [*] Mudança do ícone de alguns botões
+
+12.06.2023
+=
+- [!] Conserto da função deletar quadro
+- [!] Ajuste da função salvar o caminho do último projeto aberto
+- [!] Conserto do vazamento de memória (se abrir vários projetos em sequência)
+- [*] Alguns textos foram devinculados do código para facilitar a tradução
+
+13.06.2023
+=
+- [*] A função 'Papel Vegetal' está quase pronta

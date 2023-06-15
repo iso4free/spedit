@@ -10,17 +10,16 @@ Boas-vindas ao Spedit 4.0, um Editor de Pixel Art e Gerenciador de Biblioteca de
 
 INTRODUÇÃO
 ============
-Programa escrito com Lazarus IDE/Free Pascal Compiler.
+Programa escrito com CodeTyphon Studio/Free Pascal Compiler.
 Um Editor de Sprites e Biblioteca local de sprites para jogos 2D em Pixel Art simples, mas poderoso.
 
 COMO OBTER
 ===========
-Quando o editor estiver pronto o suficiente para o uso (funções básicas implementadas, o programa funcionando com estabilidade), arquivos executáveis pré-compilados estarão disponíveis na área de 'Releases'.
+Quando o editor estiver pronto o suficiente para o uso (funções básicas implementadas, o programa funcionando com estabilidade), arquivos executáveis pré-compilados estarão disponíveis na área de 'Releases'. Você pode encontrar a última versão para os SO suportados na àrea Links do [SPEdit Discord Server](https://discord.gg/JEU3ghn6W7)
 
-Se você quiser compilar o SPEdit a partir do código fonte, você deve ter o Lazarus IDE com o Free Pascal Compiler instalado em seu sistema operacional (é recomendado que você use a última versão estável). A última versão estável geralmente está disponível no [site oficial](https://lazarus-ide.org). Além disso, o pacote [BGRAControls](https://github.com/bgrabitmap/bgracontrols), do qual componentes individuais são usados, deve ser instalado adicionalmente no ambiente Lazarus.
-O pacote [mbColorLib](https://wiki.lazarus.freepascal.org/mbColorLib) é usado para trabalhar com a paleta de cores.
+Se você quiser compilar o SPEdit a partir do código fonte, você deve ter o CodeTyphon Studio com o Free Pascal Compiler instalado em seu sistema operacional (é recomendado que você use a última versão estável). A última versão estável geralmente está disponível no [site oficial](https://www.pilotlogic.com/). 
 
-Vocẽ pode abrir o arquivo de projeto spedit.lpi no ambiente Lazarus, compilar e rodar (run) da maneira usual para esse ambiente..
+Vocẽ pode abrir o arquivo de projeto spedit.ctpr no ambiente Typhon IDE, compilar e rodar (run) da maneira usual para esse ambiente..
 
 TRABALHO EM PROGRESSO
 =============
