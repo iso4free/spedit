@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <MultiProject FileVersion="1">
+    <Elements Count="2">
+      <Element0 FileName="src/spedit.ctpr">
+        <BuildModes Count="7"/>
+        <Mode1 Name="Default"/>
+        <Mode2 Name="Debug"/>
+        <Mode3 Name="linux-x64"/>
+        <Mode4 Name="windows-x64"/>
+        <Mode5 Name="windows-x32"/>
+        <Mode6 Name="linux-x32"/>
+        <Mode7 Name="haiku-x64"/>
+      </Element0>
+      <Element1 FileName="archive/spedit 2.0 ported/spedit.ctpr">
+        <BuildModes Count="4"/>
+        <Mode1 Name="Default" Compile="True"/>
+        <Mode2 Name="Debug"/>
+        <Mode3 Name="Release"/>
+        <Mode4 Name="win32"/>
+      </Element1>
+    </Elements>
+  </MultiProject>
+</CONFIG>

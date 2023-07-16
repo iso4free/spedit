@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 86
+  Left = 85
   Height = 676
-  Top = 86
+  Top = 85
   Width = 954
   AllowDropFiles = True
   ClientHeight = 676
@@ -853,11 +853,10 @@ object frmMain: TfrmMain
   end
   object pnlOnionMode: TJvMovablePanel
     Left = 680
-    Height = 222
+    Height = 238
     Top = 80
     Width = 136
-    AutoSize = True
-    ClientHeight = 222
+    ClientHeight = 238
     ClientWidth = 136
     Constraints.MaxHeight = 500
     Constraints.MaxWidth = 500
@@ -922,27 +921,28 @@ object frmMain: TfrmMain
       AnchorSideBottom.Control = pnlOnionMode
       AnchorSideBottom.Side = asrBottom
       Left = 1
-      Height = 200
+      Height = 216
       Top = 21
       Width = 134
       Align = alCustom
       Anchors = [akTop, akLeft, akRight, akBottom]
       AutoSize = True
-      ClientHeight = 200
+      ClientHeight = 216
       ClientWidth = 134
       TabOrder = 0
-      object TrackBar1: TTrackBar
-        AnchorSideLeft.Control = Panel1
+      object tbOnionSkinOpacity: TTrackBar
+        AnchorSideLeft.Control = pnlOnionFrames
         AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Panel1
-        AnchorSideBottom.Control = Panel1
+        AnchorSideTop.Control = pnlOnionFrames
+        AnchorSideBottom.Control = pnlOnionFrames
         AnchorSideBottom.Side = asrBottom
         Left = 114
         Height = 198
         Hint = 'Set transparency for previous and next frames'
         Top = 1
         Width = 19
-        OnChange = TrackBar1Change
+        Max = 255
+        OnChange = tbOnionSkinOpacityChange
         Orientation = trVertical
         Position = 0
         SelEnd = 255
@@ -951,7 +951,7 @@ object frmMain: TfrmMain
         ShowHint = True
         TabOrder = 0
       end
-      object Panel1: TPanel
+      object pnlOnionFrames: TPanel
         AnchorSideLeft.Control = pnlOnion
         AnchorSideTop.Control = pnlOnion
         Left = 1
@@ -959,13 +959,12 @@ object frmMain: TfrmMain
         Top = 1
         Width = 113
         AutoSize = True
-        Caption = 'Panel1'
         ClientHeight = 198
         ClientWidth = 113
         TabOrder = 1
         object gbPrewFrameOptions: TGroupBox
-          AnchorSideLeft.Control = Panel1
-          AnchorSideTop.Control = Panel1
+          AnchorSideLeft.Control = pnlOnionFrames
+          AnchorSideTop.Control = pnlOnionFrames
           Left = 6
           Height = 93
           Top = 6
@@ -977,6 +976,7 @@ object frmMain: TfrmMain
           ClientWidth = 99
           TabOrder = 0
           object cbPrevFrameVisible: TCheckBox
+            Tag = 1
             AnchorSideLeft.Control = gbPrewFrameOptions
             AnchorSideTop.Control = gbPrewFrameOptions
             Left = 0
@@ -1010,6 +1010,7 @@ object frmMain: TfrmMain
             Caption = 'Hilight color'
           end
           object clbPrevHilight: TColorButton
+            Tag = 1
             AnchorSideLeft.Control = Label1
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = Label1
@@ -1039,6 +1040,7 @@ object frmMain: TfrmMain
           ClientWidth = 99
           TabOrder = 1
           object cbNextFrameVisible: TCheckBox
+            Tag = 2
             AnchorSideLeft.Control = gbNextFrameOptions
             AnchorSideTop.Control = gbNextFrameOptions
             Left = 0
@@ -1047,7 +1049,7 @@ object frmMain: TfrmMain
             Width = 66
             Caption = 'Visible'
             Checked = True
-            OnChange = cbNextFrameVisibleChange
+            OnChange = cbPrevFrameVisibleChange
             State = cbChecked
             TabOrder = 0
           end
@@ -1072,6 +1074,7 @@ object frmMain: TfrmMain
             Caption = 'Hilight color'
           end
           object clbNextHilight1: TColorButton
+            Tag = 2
             AnchorSideLeft.Control = Label2
             AnchorSideLeft.Side = asrBottom
             AnchorSideTop.Control = Label2
@@ -2228,28 +2231,24 @@ object frmMain: TfrmMain
     object actAddLayer: TAction
       Category = 'Layers'
       Caption = 'Add layer'
-      Enabled = False
       ImageIndex = 22
       OnExecute = actAddLayerExecute
     end
     object actDeleteLayer: TAction
       Category = 'Layers'
       Caption = 'Delete layer'
-      Enabled = False
       ImageIndex = 7
       OnExecute = actDeleteLayerExecute
     end
     object actCopyLayer: TAction
       Category = 'Layers'
       Caption = 'Copy layer'
-      Enabled = False
       ImageIndex = 23
       OnExecute = actCopyLayerExecute
     end
     object actMergeLayers: TAction
       Category = 'Layers'
       Caption = 'Merge layers'
-      Enabled = False
       ImageIndex = 5
       OnExecute = actMergeLayersExecute
     end
@@ -2386,14 +2385,12 @@ object frmMain: TfrmMain
     object actMoveUp: TAction
       Category = 'Layers'
       Caption = 'Move Up'
-      Enabled = False
       ImageIndex = 26
       OnExecute = actMoveUpExecute
     end
     object actMoveDown: TAction
       Category = 'Layers'
       Caption = 'Move Down'
-      Enabled = False
       ImageIndex = 25
       OnExecute = actMoveDownExecute
     end
@@ -2694,7 +2691,7 @@ object frmMain: TfrmMain
   end
   object dlgOpenProj: TOpenDialog
     DefaultExt = '.json'
-    Filter = 'JSON files|*.json; *.JSON|All files|*.*'
+    Filter = 'JSON files|*.json; *.JSON|PISKEL files|*.piskel; *.PISKEL|All files|*.*'
     Left = 200
     Top = 280
   end

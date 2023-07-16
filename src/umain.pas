@@ -124,7 +124,7 @@ type
     JSONPropStorage1: TJSONPropStorage;
     Label1: TLabel;
     Label2: TLabel;
-    Panel1: TPanel;
+    pnlOnionFrames: TPanel;
     pmiSetAsNext: TMenuItem;
     pmiSetAsPrev: TMenuItem;
     Separator16: TMenuItem;
@@ -261,7 +261,7 @@ type
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     StatusBar1: TStatusBar;
-    TrackBar1: TTrackBar;
+    tbOnionSkinOpacity: TTrackBar;
     trkbrPenSize: TSpinEdit;
     procedure actCopyExecute(Sender: TObject);
     procedure actCutExecute(Sender: TObject);
@@ -322,7 +322,6 @@ type
     procedure bbtnImportFrameClick(Sender: TObject);
     procedure bbtnTogglePreviewClick(Sender: TObject);
     procedure bbtnResizeClick(Sender: TObject);
-    procedure cbNextFrameVisibleChange(Sender: TObject);
     procedure cbPalettePresetsChange(Sender: TObject);
     procedure cbPalettePresetsDrawItem(Control: TWinControl; Index: integer;
       ARect: TRect; State: TOwnerDrawState);
@@ -369,7 +368,7 @@ type
       aRect: TRect; aState: TGridDrawState);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
-    procedure TrackBar1Change(Sender: TObject);
+    procedure tbOnionSkinOpacityChange(Sender: TObject);
     procedure trkbrPenSizeChange(Sender: TObject);
   private
     fDrawGridMode: TDrawGridMode;
@@ -708,9 +707,7 @@ begin
     Palette.Clear;
     //todo: here just add the frame name in visual control, in DrawItem use mapped frame Preview image (scalable)
 
-    LayersChange;
     mbPaletteGrid.Colors.Clear;
-    pbFrameDraw.Invalidate;
     FramesChange;
   end;
 end;
@@ -750,12 +747,15 @@ begin
 end;
 
 procedure TfrmMain.actOnionSkinExecute(Sender: TObject);
+var
+  canSelect : Boolean;
 begin
   actOnionSkin.Checked :=not actOnionSkin.Checked;
   pnlOnionMode.Visible := actOnionSkin.Checked;
   ProjectInfo.ActiveFrame.UseOnionSkin:=actOnionSkin.Checked;
   pbFrameDraw.Invalidate;
   drwgrdFrames.Invalidate;
+  drwgrdFramesSelectCell(Self,drwgrdFrames.Col,drwgrdFrames.Row,canSelect);
 end;
 
 procedure TfrmMain.actOpenProjExecute(Sender: TObject);
@@ -950,7 +950,7 @@ begin
     sdExportFrameSaveDialog.FileName := ProjectInfo.Title;
     if ProjectInfo.Filename='' then
     if sdExportFrameSaveDialog.Execute then begin
-      ProjectInfo.Filename := sdExportFrameSaveDialog.FileName+sdExportFrameSaveDialog.DefaultExt;
+      ProjectInfo.Filename := ChangeFileExt(sdExportFrameSaveDialog.FileName, sdExportFrameSaveDialog.DefaultExt);
       ProjectInfo.Save;
     end;
   end
@@ -1113,11 +1113,6 @@ begin
   actFrameResizeExecute(Sender);
 end;
 
-procedure TfrmMain.cbNextFrameVisibleChange(Sender: TObject);
-begin
-  imgNextFrame.Visible:=cbNextFrameVisible.Checked;
-end;
-
 procedure TfrmMain.cbPalettePresetsChange(Sender: TObject);
 var
   i: integer;
@@ -1171,16 +1166,30 @@ begin
 end;
 
 procedure TfrmMain.cbPrevFrameVisibleChange(Sender: TObject);
+var canSelect : Boolean;
 begin
-  imgPrevFrame.Visible:=cbPrevFrameVisible.Checked;
+  case TCheckBox(Sender).Tag of
+1: begin
+    imgPrevFrame.Visible:=cbPrevFrameVisible.Checked;
+    ProjectInfo.ActiveFrame.ShowPrevFrame:=cbPrevFrameVisible.Checked;
+   end;
+2: begin
+    imgNextFrame.Visible:=cbNextFrameVisible.Checked;
+    ProjectInfo.ActiveFrame.ShowNextFrame:=cbNextFrameVisible.Checked;
+   end;
+  end;
+  drwgrdFramesSelectCell(Self,drwgrdFrames.Col,drwgrdFrames.Row,canSelect);
+  RedrawFrames;
+  FramesChange;
   pbFrameDraw.Invalidate;
 end;
 
 procedure TfrmMain.clbPrevHilightColorChanged(Sender: TObject);
 begin
-  spclPrevFrame:=clbPrevHilight.ButtonColor;
-  spclNextFrame:=clbNextHilight1.ButtonColor;
-  LayersChange;
+  case TColorButton(Sender).Tag of
+ 1:spclPrevFrame:=clbPrevHilight.ButtonColor;
+ 2:spclNextFrame:=clbNextHilight1.ButtonColor;
+  end;
   FramesChange;
 end;
 
@@ -1336,11 +1345,12 @@ var
   i: integer;
   aPreset: string;
 begin
-  Caption:=APP_NAME;
+  Caption:=APP_NAME+' v.'+APP_VER_MAJOR+'.'+APP_VER_MINOR+' '+APP_VER_SUFFIX+' '+
+    rsBuild+' '+APP_VER_BUILDDATE;
   JSONProp := UserSettingsPath + 'spedit.json';
   JSONPropStorage1.JSONFileName := JSONProp;
    {$IFDEF DEBUG}
-   //DebugLn(DateTimeToStr(Now()),' In: frmMain.Create() JSONProp=',JSONProp);
+   DebugLn(DateTimeToStr(Now()),' In: frmMain.Create() JSONProp=',JSONProp);
    {$ENDIF}
 
   DetectPOLanguage(INI.ReadString('INTERFACE', 'L10n file', ''));
@@ -1368,8 +1378,11 @@ begin
     cbPalettePresets.ItemIndex := cbPalettePresets.Items.IndexOf(aPreset);
     cbPalettePresetsChange(Sender);
   end;
+  //hilight colors and transparency foronion skin
   clbPrevHilight.ButtonColor:=spclPrevFrame;
-  //todo: set next frame hilight and transparency
+  clbNextHilight1.ButtonColor:=spclNextFrame;
+  tbOnionSkinOpacity.Position:=spclOpacity;
+
   CreateCursors;
   pbFrameDraw.Cursor := 1;
   fCheckers:=TBGRABitmap.Create;
@@ -1505,6 +1518,7 @@ begin
     if ProjectInfo.FramesCount<>0 then begin
      drwgrdFrames.RowCount:=ProjectInfo.FramesCount;
      drwgrdFrames.Invalidate;
+     LayersChange;
   end;
 end;
 
@@ -1539,7 +1553,7 @@ var
 begin
   if not Assigned(ProjectInfo) then ProjectInfo := TSPProjectInfo.Create;
   dlgOpenProj.InitialDir := INI.ReadString('PATH', 'Piskel files', '');
-  dlgOpenProj.DefaultExt:='.piskel';
+  dlgOpenProj.DefaultExt:='*.piskel;';
   if dlgOpenProj.Execute then
   begin
     ProjectInfo.ImportPiskel(dlgOpenProj.FileName);
@@ -1828,9 +1842,9 @@ begin
   actOnionSkinExecute(Sender);
 end;
 
-procedure TfrmMain.TrackBar1Change(Sender: TObject);
+procedure TfrmMain.tbOnionSkinOpacityChange(Sender: TObject);
 begin
-  spclOpacity:=TrackBar1.Position;
+  spclOpacity:=tbOnionSkinOpacity.Position;
 end;
 
 procedure TfrmMain.drwgrdFramesDrawCell(Sender: TObject; aCol, aRow: Integer;
@@ -1874,12 +1888,15 @@ begin
      else ProjectInfo.ActiveFrame.NextFrame:=ProjectInfo.Frames[ProjectInfo.Frames.Names[aRow+1]];
   RedrawFrames;
   ProjectInfo.ActiveFrame.UseOnionSkin:=actOnionSkin.Checked;
+  if ProjectInfo.ActiveFrame.UseOnionSkin then begin
+    ProjectInfo.ActiveFrame.ShowPrevFrame:=cbPrevFrameVisible.Checked;
+    ProjectInfo.ActiveFrame.ShowNextFrame:=cbNextFrameVisible.Checked;
+  end;
   FreeAndNil(FrameGrid);
   FrameGrid:=TFrameGrid.Create(ProjectInfo.ActiveFrame.Width,
                                ProjectInfo.ActiveFrame.Height);
   fCheckers.SetSize(ProjectInfo.ActiveFrame.Width,
                                ProjectInfo.ActiveFrame.Height);
-  LayersChange;
   FramesChange;
   if Assigned(ProjectInfo.ActiveFrame.PrevFrame) then
      imgPrevFrame.Picture.Bitmap.Assign(ProjectInfo.ActiveFrame.PrevFrame.Preview);

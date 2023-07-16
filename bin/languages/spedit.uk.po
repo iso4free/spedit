@@ -722,10 +722,6 @@ msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr "Вид"
 
-#: tfrmmain.panel1.caption
-msgid "Panel1"
-msgstr ""
-
 #: tfrmmain.pmilayerfliprotate.caption
 msgid "Flip/rotate layer"
 msgstr "Віддзеркалити/Обернути шар"
@@ -771,7 +767,8 @@ msgstr "Інструмент Прямокутник - гаряча клавіш�
 msgid "Rectangular selection tool - hotkey 'S'"
 msgstr "Прямокутне виділення - гаряча клавіша 'S'"
 
-#: tfrmmain.trackbar1.hint
+#: tfrmmain.tbonionskinopacity.hint
+msgctxt "tfrmmain.tbonionskinopacity.hint"
 msgid "Set transparency for previous and next frames"
 msgstr ""
 

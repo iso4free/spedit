@@ -733,10 +733,6 @@ msgctxt "tfrmmain.miview.caption"
 msgid "View"
 msgstr "Visualizar"
 
-#: tfrmmain.panel1.caption
-msgid "Panel1"
-msgstr ""
-
 #: tfrmmain.pmilayerfliprotate.caption
 msgid "Flip/rotate layer"
 msgstr "Inverter/Girar Camada"
@@ -782,7 +778,8 @@ msgstr "Retângulo — 'R'"
 msgid "Rectangular selection tool - hotkey 'S'"
 msgstr "Seleção retangular — 'S'"
 
-#: tfrmmain.trackbar1.hint
+#: tfrmmain.tbonionskinopacity.hint
+msgctxt "tfrmmain.tbonionskinopacity.hint"
 msgid "Set transparency for previous and next frames"
 msgstr ""
 

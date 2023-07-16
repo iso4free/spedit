@@ -1,7 +1,7 @@
 object frmImportSheet: TfrmImportSheet
   Left = 299
   Height = 365
-  Top = 200
+  Top = 199
   Width = 881
   AllowDropFiles = True
   Caption = 'Import sprites'

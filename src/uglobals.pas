@@ -81,16 +81,17 @@ resourcestring
   rsFrameNotExist = 'This frame does not exist!';
   rsActionNotUndone = 'This action cannot be undone! Continue?';
   rsNoFramesAfter = 'There is no frames after...';
+  rsBuild = 'build';
 
 
 
 const
-      APP_NAME = 'SPEdit v.4';
+      APP_NAME = 'SPEdit';
       APP_VER_MAJOR = '4';
       APP_VER_MINOR = '0';
       APP_VER_SUFFIX = 'pre-alpha';
-      //todo: change it every build date change!!!
-      APP_VER_BUILDDATE = '2023-06-13';
+      //todo: change it for every build date!!!
+      APP_VER_BUILDDATE = '2023-07-16';
       spUSER=
       {$IFDEF WINDOWS}
       'USERNAME';
@@ -257,6 +258,8 @@ type
     fModifiead: Boolean;
     fModified: Boolean;
     FNextFrame: TSPFrame;
+    FShowNextFrame: Boolean;
+    FShowPrevFrame: Boolean;
     FUseOnionSkin: Boolean;
     FWidth: Integer;
     FPreview : TBGRABitmap;
@@ -296,6 +299,8 @@ type
     property UseOnionSkin : Boolean read FUseOnionSkin write SetUseOnionSkin; //used for draw animations - true for half-transparent background
     property PrevFrame : TSPFrame read FPrevFrame write SetPrevFrame; //link to previous frame for 'onion skin' - nil if UseOnionSkin=false
     property NextFrame : TSPFrame read FNextFrame write SetNextFrame; //link to next ftame for 'onion skin' - nil if UseOnionSkin=false
+    property ShowPrevFrame : Boolean read FShowPrevFrame write FShowPrevFrame; //show/hide previous frame
+    property ShowNextFrame : Boolean read FShowNextFrame write FShowNextFrame; //show/hide previous frame
   end;
 
   //used in TAction for set mirror kind if mirrored
@@ -1167,6 +1172,7 @@ var
     aData : TJsonNode;
     alayers : TJsonNode;
     aname , abase64: String;
+    adescr : String;
     aframename,
     alayername : String;
     aw,ah : Integer;
@@ -1183,9 +1189,14 @@ begin
   Exit;
  end;
  aname:=ChangeFileExt(ExtractFileName(aPiskelFile),'')+'/'+aData.Force('piskel/name').AsString;
+ adescr:=Trim(aData.Force('piskel/description').AsString);
+ if adescr<>'' then
+    if ProjectInfo.Description<>'' then ProjectInfo.Description:=ProjectInfo.Description+LineEnding+Description
+    else ProjectInfo.Description:=adescr;
  aw := aData.Force('piskel/width').AsInteger;
  ah := aData.Force('piskel/height').AsInteger;
  alayers:=aData.Force('piskel/layers').AsArray;
+
  for i:=0 to alayers.Count-1 do
  alayers.Force(IntToStr(i)).AsJson:=alayers.Force(IntToStr(i)).AsString;
  //aData.SaveToFile('modified.json');
@@ -1339,7 +1350,10 @@ end;
 
 procedure TSPFrame.SetUseOnionSkin(AValue: Boolean);
 begin
-  if not AValue then FPrevFrame:=nil;
+  if not AValue then begin
+    FPrevFrame:=nil;
+    FNextFrame:=nil;
+  end;
   FUseOnionSkin:=AValue;
 end;
 
@@ -1410,6 +1424,8 @@ procedure TSPFrame.SetPrevFrame(AValue: TSPFrame);
 begin
   if FPrevFrame=AValue then Exit;
   FPrevFrame:=AValue;
+  if Assigned(AValue) then FShowPrevFrame:=True
+     else FShowPrevFrame:=False;
 end;
 
 destructor TSPFrame.Destroy;
@@ -1458,13 +1474,13 @@ begin
      fPreview.PutImage(0,0,Layers[_ln].Drawable,dmDrawWithTransparency);
  end;
   fPreview.PutImage(0,0,DrawLayer.Drawable,dmDrawWithTransparency);
-   //todo: if enabled 'onion skin' draw previous and next frames if assigned
+   //if enabled 'onion skin' draw previous and next frames if assigned
   if UseOnionSkin then begin
-    if Assigned(FPrevFrame) then begin
+    if Assigned(FPrevFrame) and ShowPrevFrame then begin
       FPrevFrame.RenderOnionSkinBg(spclPrevFrame);
       FPreview.PutImage(0,0,FPrevFrame.Preview,dmDrawWithTransparency);
     end;
-    if Assigned(FNextFrame) then begin
+    if Assigned(FNextFrame) and ShowNextFrame then begin
       FNextFrame.RenderOnionSkinBg(spclNextFrame);
       FPreview.PutImage(0,0,FNextFrame.Preview,dmDrawWithTransparency);
     end;
@@ -1559,6 +1575,8 @@ procedure TSPFrame.SetNextFrame(AValue: TSPFrame);
 begin
   if FNextFrame=AValue then Exit;
   FNextFrame:=AValue;
+  if Assigned(AValue) then FShowNextFrame:=True
+     else FShowNextFrame:=False;
 end;
 
 procedure TSPFrame.Resize(w, h: Integer; Stretched: Boolean);
@@ -2080,6 +2098,7 @@ initialization
  finalization
   INI.WriteInteger('Onion skin','Prev frame color', spclPrevFrame);
   INI.WriteInteger('Onion skin','Next frame color', spclNextFrame);
+  INI.WriteInteger('Onion skin','Opacity', spclOpacity);
   INI.WriteString('INTERFACE','SPRITELIB',CurrentLibName);
   FreeAndNil(Presets);
   FreeAndNil(DrawLayer);

@@ -1,7 +1,7 @@
 object frmProjectProps: TfrmProjectProps
   Left = 356
   Height = 470
-  Top = 214
+  Top = 213
   Width = 722
   Caption = 'Project properties'
   ClientHeight = 470
@@ -76,9 +76,9 @@ object frmProjectProps: TfrmProjectProps
       Height = 378
       Top = 1
       Width = 720
-      ActivePage = tsEntities
+      ActivePage = tsGeneral
       Align = alClient
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
       object tsGeneral: TTabSheet
         Caption = 'General'
