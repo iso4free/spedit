@@ -752,6 +752,8 @@ var
 begin
   actOnionSkin.Checked :=not actOnionSkin.Checked;
   pnlOnionMode.Visible := actOnionSkin.Checked;
+  if not Assigned(ProjectInfo) then Exit;
+  if not Assigned(ProjectInfo.ActiveFrame) then Exit;
   ProjectInfo.ActiveFrame.UseOnionSkin:=actOnionSkin.Checked;
   pbFrameDraw.Invalidate;
   drwgrdFrames.Invalidate;

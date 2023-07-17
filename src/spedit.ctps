@@ -2,18 +2,16 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="12"/>
-    <BuildModes Active="linux-x32"/>
+    <BuildModes Active="Debug"/>
     <Units>
       <Unit>
         <Filename Value="spedit.ppr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="29"/>
         <CursorPos Y="64"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="umain.pas"/>
@@ -24,8 +22,8 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="940"/>
-        <CursorPos X="79" Y="953"/>
+        <TopLine Value="748"/>
+        <CursorPos X="54" Y="756"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
           <Item0 Y="434"/>
@@ -125,7 +123,7 @@
         <ComponentName Value="frmProjectProps"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="15"/>
         <CursorPos X="3" Y="15"/>
@@ -140,9 +138,10 @@
         <ComponentName Value="frmImportSheet"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="473"/>
+        <TopLine Value="50"/>
         <CursorPos Y="491"/>
         <UsageCount Value="85"/>
         <Loaded Value="True"/>
@@ -155,7 +154,7 @@
         <ComponentName Value="frmGridOptions"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="97"/>
         <CursorPos X="26" Y="118"/>
@@ -165,7 +164,7 @@
       </Unit>
       <Unit>
         <Filename Value="uglobals.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="273"/>
         <CursorPos X="43" Y="303"/>
@@ -1236,14 +1235,6 @@
     </OtherDefines>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="271" Column="15" TopLine="256"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="755" Column="32" TopLine="748"/>
-      </Position>
-      <Position>
         <Filename Value="umain.pas"/>
         <Caret Line="1373" Column="5" TopLine="1356"/>
       </Position>
@@ -1354,6 +1345,14 @@
       <Position>
         <Filename Value="umain.pas"/>
         <Caret Line="953" Column="79" TopLine="940"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1077" Column="3" TopLine="1075"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="289" Column="15" TopLine="274"/>
       </Position>
     </JumpHistory>
     <RunParams>
