@@ -82,6 +82,7 @@ resourcestring
   rsActionNotUndone = 'This action cannot be undone! Continue?';
   rsNoFramesAfter = 'There is no frames after...';
   rsBuild = 'build';
+  rsFrameExists = 'Frame %S already exist!';
 
 
 
@@ -273,8 +274,9 @@ type
     procedure SetUseOnionSkin(AValue: Boolean);
    public
     constructor Create(aName : String; w : Integer; h : integer);
-    procedure RestoreFromJSON(aJSONData : String);
     destructor Destroy; override;
+
+    procedure RestoreFromJSON(aJSONData : String);
     function ToJSON : String; //serialize Frame data with layers to JSON
     procedure Resize(w,h : Integer; Stretched : Boolean = false); //resize all layers belongs to frame
     property FrameName : String read fFrameName;//unique frame name for correct managing in mapped list
@@ -560,6 +562,7 @@ var
   function StreamToBase64(const AStream: TMemoryStream; out Base64: String): Boolean;
   function Base64ToStream(const ABase64: String; var AStream: TMemoryStream): Boolean;
   procedure ReloadPresets(aDirectory: String);  //loads palette presets from selected dir
+  procedure SwapInts(var a,b : Integer);
 
 implementation
 
@@ -874,6 +877,15 @@ begin
   FreeAndNil(tmp);
 end;
 
+procedure SwapInts(var a,b : Integer);
+var
+      tmp : Integer;
+begin
+  tmp:= a;
+  a:=b;
+  b:=tmp;
+end;
+
 
 { TAction }
 
@@ -1028,12 +1040,6 @@ begin
   FTitle:=rsUntitled+'*';
   FDescription:='';
   FAuthor:=sysutils.GetEnvironmentVariable(spUser);
-  //frames
-  Frames.Clear;
-  FFramesCount:=0;
-  //actions
-  FActions.Clear;
-  FActionsCount:=0;
 end;
 
 procedure TSPProjectInfo.DeleteFrame(aFrame: TSPFrame);
@@ -1045,6 +1051,8 @@ end;
 
 destructor TSPProjectInfo.Destroy;
 begin
+  Clear;
+  FActiveFrame:=nil;
   FreeAndNil(FActions);
   FreeAndNil(FFrames);
   inherited Destroy;
@@ -1430,17 +1438,16 @@ end;
 
 destructor TSPFrame.Destroy;
 begin
-  FreeAndNil(FPreview);
-  FreeAndNil(fUndo);
-  FreeAndNil(FPreview);
+  FPrevFrame:=nil;
+  FNextFrame:=nil;
+  if Assigned(FPreview) then  FreeAndNil(FPreview);
+  if Assigned(fUndo) then FreeAndNil(fUndo);
   //just nil the link to drawlayer without freeing instance:
   //- it will deleted when app closed
   Layers[csDRAWLAYER]:=nil;
   //also set to nil PrevFrame and NextFrame for onion skin
-  FPrevFrame:=nil;
-  FNextFrame:=nil;
-  FreeAndNil(fLayers);
-  FreeAndNil(fLayersList);
+  if Assigned(fLayers) then FreeAndNil(fLayers);
+  if Assigned(fLayersList) then FreeAndNil(fLayersList);
   inherited Destroy;
 end;
 

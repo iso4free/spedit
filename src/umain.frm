@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 85
+  Left = 86
   Height = 676
-  Top = 85
+  Top = 86
   Width = 954
   AllowDropFiles = True
   ClientHeight = 676
@@ -46,24 +46,24 @@ object frmMain: TfrmMain
     Top = 40
     Width = 147
     Align = alLeft
-    ClientHeight = 618
-    ClientWidth = 147
+    ClientHeight = 614
+    ClientWidth = 143
     TabOrder = 1
     object LayersGroupBox: TGroupBox
       Left = 1
-      Height = 348
+      Height = 344
       Top = 1
-      Width = 145
+      Width = 141
       Align = alClient
       Caption = 'Layers'
-      ClientHeight = 331
-      ClientWidth = 143
+      ClientHeight = 327
+      ClientWidth = 139
       TabOrder = 0
       object drwgrdLayers: TDrawGrid
         Left = 0
-        Height = 290
+        Height = 286
         Top = 41
-        Width = 143
+        Width = 139
         Align = alClient
         ColCount = 4
         Columns = <        
@@ -108,7 +108,7 @@ object frmMain: TfrmMain
         Left = 0
         Height = 41
         Top = 0
-        Width = 143
+        Width = 139
         Align = alTop
         AutoSize = True
         AutoWrap = False
@@ -197,8 +197,8 @@ object frmMain: TfrmMain
     object drwgrdFrames: TDrawGrid
       Left = 1
       Height = 268
-      Top = 349
-      Width = 145
+      Top = 345
+      Width = 141
       Align = alBottom
       AutoEdit = False
       ColCount = 2
@@ -760,12 +760,12 @@ object frmMain: TfrmMain
   end
   object pnlPreview: TJvMovablePanel
     Left = 176
-    Height = 114
+    Height = 116
     Top = 352
-    Width = 94
+    Width = 96
     AutoSize = True
-    ClientHeight = 114
-    ClientWidth = 94
+    ClientHeight = 116
+    ClientWidth = 96
     Constraints.MaxHeight = 500
     Constraints.MaxWidth = 500
     Constraints.MinHeight = 64
@@ -780,9 +780,9 @@ object frmMain: TfrmMain
       AnchorSideBottom.Control = pnlPreview
       AnchorSideBottom.Side = asrBottom
       Left = 1
-      Height = 92
+      Height = 94
       Top = 21
-      Width = 92
+      Width = 94
       HorzScrollBar.Page = 90
       VertScrollBar.Page = 90
       Align = alCustom
@@ -806,7 +806,7 @@ object frmMain: TfrmMain
       AnchorSideTop.Control = pnlPreview
       AnchorSideRight.Control = pnlPreview
       AnchorSideRight.Side = asrBottom
-      Left = 73
+      Left = 75
       Height = 20
       Top = 1
       Width = 20
@@ -1155,7 +1155,7 @@ object frmMain: TfrmMain
         Caption = '-'
       end
       object miFileExit: TMenuItem
-        Action = actExit
+        Action = actExitApp
       end
     end
     object miEdit: TMenuItem
@@ -2196,12 +2196,14 @@ object frmMain: TfrmMain
     object actNewFrame: TAction
       Category = 'Frames'
       Caption = 'New frame'
+      DisableIfNoHandler = False
       ImageIndex = 22
       OnExecute = actNewFrameExecute
     end
     object acImportFrame: TAction
       Category = 'Frames'
       Caption = 'Import frame'
+      DisableIfNoHandler = False
       ImageIndex = 31
       OnExecute = actImportFrameExecute
     end
@@ -2209,24 +2211,23 @@ object frmMain: TfrmMain
       Category = 'View'
       Caption = 'Show layers'
       Checked = True
+      DisableIfNoHandler = False
       ImageIndex = 21
       OnExecute = actLayersToggleExecute
     end
     object actUndo: TEditUndo
       Category = 'Edit'
       Caption = 'Undo'
+      DisableIfNoHandler = False
       OnExecute = actUndoExecute
       ShortCut = 16474
     end
     object actRedo: TAction
       Category = 'Edit'
       Caption = 'Redo'
+      DisableIfNoHandler = False
       OnExecute = actRedoExecute
       ShortCut = 24666
-    end
-    object actExit: TFileExit
-      Category = 'File'
-      Caption = '&Exit'
     end
     object actAddLayer: TAction
       Category = 'Layers'
@@ -2347,6 +2348,7 @@ object frmMain: TfrmMain
     object actDither: TAction
       Category = 'Frames'
       Caption = 'Dither frame'
+      Enabled = False
       Hint = 'Reduse colors to preset palette'
       ImageIndex = 41
       OnExecute = actDitherExecute
@@ -2426,11 +2428,13 @@ object frmMain: TfrmMain
     object actProjProps: TAction
       Category = 'File'
       Caption = 'Project properties'
+      Enabled = False
       OnExecute = actProjPropsExecute
     end
     object actNewProj: TAction
       Category = 'File'
       Caption = 'New Sprite project'
+      Enabled = False
       ImageIndex = 9
       OnExecute = actNewProjExecute
       ShortCut = 16462
@@ -2438,6 +2442,7 @@ object frmMain: TfrmMain
     object actSaveProj: TAction
       Category = 'File'
       Caption = 'Save project'
+      Enabled = False
       ImageIndex = 39
       OnExecute = actSaveProjExecute
       ShortCut = 16467
@@ -2445,6 +2450,7 @@ object frmMain: TfrmMain
     object actOpenProj: TAction
       Category = 'File'
       Caption = 'Open project'
+      Enabled = False
       OnExecute = actOpenProjExecute
       ShortCut = 16463
     end
@@ -2463,6 +2469,7 @@ object frmMain: TfrmMain
     object actOnionSkin: TAction
       Category = 'Frames'
       Caption = '''Onion skin'' mode'
+      Enabled = False
       ImageIndex = 40
       OnExecute = actOnionSkinExecute
     end
@@ -2482,6 +2489,12 @@ object frmMain: TfrmMain
       Caption = '''Onion skin'' - set as next'
       Hint = 'In ''Onion skin'' mode:'#10'Use selected frame as next for previous frame in list'
       OnExecute = actSetAsNextExecute
+    end
+    object actExitApp: TAction
+      Category = 'File'
+      Caption = 'Exit'
+      DisableIfNoHandler = False
+      OnExecute = actExitAppExecute
     end
   end
   object BGRAImageList24x24: TBGRAImageList

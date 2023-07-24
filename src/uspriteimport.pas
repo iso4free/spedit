@@ -33,7 +33,7 @@ uses
   {$IFDEF DEBUG}LazLoggerBase, {$ENDIF}
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
   ExtDlgs, Buttons, fgl, Types, Grids, JvMovableBevel, Spin, BGRABitmap,
-  BGRABitmapTypes;
+  BGRABitmapTypes, BGRASpriteAnimation, lazfileutils;
 
 type
 
@@ -88,6 +88,8 @@ type
     bbAdd: TBitBtn;
     bbDelete: TBitBtn;
     bbClear: TBitBtn;
+    anImportedGif: TBGRASpriteAnimation;
+    bbAutoFrames: TBitBtn;
     cbGrig: TCheckBox;
     chgrpSelections: TGroupBox;
     cbSizes: TComboBox;
@@ -129,6 +131,8 @@ type
     spWidth: TSpinEdit;
     spX: TSpinEdit;
     spY: TSpinEdit;
+    procedure bbAddClick(Sender: TObject);
+    procedure bbCancelClick(Sender: TObject);
     procedure bbSpritesheetOpenClick(Sender: TObject);
     procedure cbGrigChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -140,16 +144,21 @@ type
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
     procedure imgImportedMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure imgImportedMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
     procedure imgImportedMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure imgImportedPaint(Sender: TObject);
     procedure SelectionChange(Sender: TObject);
     procedure spWidthChange(Sender: TObject);
     procedure LoadSpriteSheet(aFile: TFilename);
+    procedure LoadFramesFromGif(aGif : TFilename);
   private
     isDown : Boolean; //if mouse left button pressedfor selection
     isSelection : Boolean; //if mouse pressed inside any pravious selected rects
     SelRect : TRect;  //current selection
+    pStart,
+    pEnd    : TPoint; //points for selection
     FSelectionsList: TSelectionList;
     aImg : TBGRABitmap;
     aBuff : TBGRABitmap;
@@ -282,7 +291,25 @@ end;
 
 procedure TfrmImportSheet.bbSpritesheetOpenClick(Sender: TObject);
 begin
-  if OpenPictureDialog1.Execute then LoadSpriteSheet(OpenPictureDialog1.FileName);
+  if OpenPictureDialog1.Execute then begin
+    edNameTemplate.Text:=ExtractFileNameWithoutExt(OpenPictureDialog1.FileName);
+    if LowerCase(ExtractFileExt(OpenPictureDialog1.FileName))='.gif' then begin
+     LoadFramesFromGif(OpenPictureDialog1.FileName);
+    end else  LoadSpriteSheet(OpenPictureDialog1.FileName);
+    if SelectionsList.Count=0 then dgImportedFrames.RowCount:=1
+    else dgImportedFrames.RowCount:=SelectionsList.Count+1;
+    dgImportedFrames.Invalidate;
+  end;
+end;
+
+procedure TfrmImportSheet.bbAddClick(Sender: TObject);
+begin
+
+end;
+
+procedure TfrmImportSheet.bbCancelClick(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TfrmImportSheet.cbGrigChange(Sender: TObject);
@@ -410,66 +437,84 @@ end;
 
 procedure TfrmImportSheet.imgImportedMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-var
-  aIdx : String;
-
-  function GetCellRect(const x,y : Integer): TRect;
-  var
-    ofx,ofy, cw,ch : Integer;
-    posx,posy : Integer;
-
-    function CellCoords(x, y: Integer): TPoint;
-    var posx,posy : Integer; //relative grid coordinates
-    begin
-      Result.X:= posx div cw;
-      Result.Y:= posy div ch;
-    end;
-
-
-  begin
-     ofx:=CroppedRect.Left;
-     ofy:=CroppedRect.Top;
-     cw:=frmGridOptions.spWidth.Value;
-     ch:=frmGridOptions.spHeight.Value;
-     posx:=x-ofx;
-     posy:=y-ofy;
-     Result.Left:= ofx+(posx div cw);
-     Result.Top:= ofy+(posy div ch);
-     Result.Right:=Result.Left+cw;
-     Result.Bottom:=Result.Top+ch;
-     {$IFDEF DEBUG}
-     DebugLn('In: CetCellRect() Rect:'+Format('x=%d, y=%d, x1=%d, y1=%d',[Result.Left,Result.Top,Result.Right,Result.Bottom]));
-     {$ENDIF}
-  end;
-
 begin
   //work if only left button pressed
   if Button<>mbLeft then Exit;
-  //if grid enabled then check click coords and get selected cell rect
+  //if click not in any rect start select new rect
+     isDown:=True;
+     isSelection:=False;
+     pStart.X:=x;
+     pEnd.X:=x;
+     pStart.Y:=y;
+     pEnd.Y:=y;
+     SelRect.Left:=x;
+     SelRect.Right:=x;
+     SelRect.Top:=y;
+     SelRect.Bottom:=y;
+end;
+
+procedure TfrmImportSheet.imgImportedMouseMove(Sender: TObject;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  pEnd.X:=x;
+  pEnd.Y:=Y;
+  if pStart.X>pEnd.X then SwapInts(pStart.X,pEnd.X);
+  if pStart.Y>pEnd.Y then SwapInts(pStart.Y,pEnd.Y);
+  SelRect.TopLeft:=pStart;
+  SelRect.BottomRight:=pEnd;
+end;
+
+procedure TfrmImportSheet.imgImportedMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+function GetCellRect(const x,y : Integer): TRect;
+var
+  ofx,ofy, cw,ch : Integer;
+  posx,posy : Integer;
+
+  function CellCoords(x, y: Integer): TPoint;
+  var posx,posy : Integer; //relative grid coordinates
+  begin
+    Result.X:= posx div cw;
+    Result.Y:= posy div ch;
+  end;
+
+
+begin
+   ofx:=CroppedRect.Left;
+   ofy:=CroppedRect.Top;
+   cw:=frmGridOptions.spWidth.Value;
+   ch:=frmGridOptions.spHeight.Value;
+   posx:=x-ofx;
+   posy:=y-ofy;
+   Result.Left:= ofx+(posx div cw);
+   Result.Top:= ofy+(posy div ch);
+   Result.Right:=Result.Left+cw;
+   Result.Bottom:=Result.Top+ch;
+   {$IFDEF DEBUG}
+   DebugLn('In: CetCellRect() Rect:'+Format('x=%d, y=%d, x1=%d, y1=%d',[Result.Left,Result.Top,Result.Right,Result.Bottom]));
+   {$ENDIF}
+end;
+
+var
+  aIdx : String;
+begin
+  if Button=mbLeft then begin
+    //if grid enabled then check click coords and get selected cell rect
   if cbGrig.Checked then begin
     FSelectionsList.NewSelection(edNameTemplate.Text,GetCellRect(x,y));
   end else
   //check if click in any selected rect ten make it active
   if SelectionsList.CheckSelection(x,y,aIdx) then begin
    SelRect:=SelectionsList[aIdx].Rect;
-   isDown:=False;
+
    isSelection:=True;
-   //if click not in any rect start select new rect
+   //todo: if click not in any rect start select new rect
   end else begin
-     isDown:=True;
-     isSelection:=False;
-     SelRect.Left:=x;
-     SelRect.Right:=x;
-     SelRect.Top:=y;
-     SelRect.Bottom:=y;
+
   end;
+     isDown:=False;
+   SelectionChange(Sender);
 end;
-
-procedure TfrmImportSheet.imgImportedMouseUp(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-begin
-
-  SelectionChange(Sender);
 end;
 
 procedure TfrmImportSheet.imgImportedPaint(Sender: TObject);
@@ -495,7 +540,7 @@ begin
          aBuff.Canvas.Pen.Style:=psSolid;
          aBuff.Canvas.Rectangle(SelRect);
          {$IFDEF DEBUG}
-         DebugLn('In: ImgImportPaint() SelRect: ');
+         DebugLn('In: ImgImportPaint() SelRect: (',IntToStr(SelRect.Left),', ', IntToStr(SelRect.Top),', ',IntToStr(SelRect.Width),', ',IntToStr(SelRect.Height),')');
          {$ENDIF}
     //end;
    aBuff.Draw(TImage(Sender).Canvas,0,0);
@@ -521,6 +566,29 @@ begin
       spRight.Value:=0;
    end;
    cbSizesChange(Self);
+  end;
+end;
+
+procedure TfrmImportSheet.LoadFramesFromGif(aGif: TFilename);
+var
+  aBmp : TBGRABitmap;
+  i: Integer;
+begin
+  anImportedGif.AnimatedGifToSprite(aGif);
+  aBmp:=TBGRABitmap.Create(anImportedGif.Sprite);
+  aImg.Assign(aBmp);
+  FreeAndNil(aBmp);
+  //let`s add every frame to selections
+  if anImportedGif.SpriteCount>1 then begin
+   for i:=0 to anImportedGif.SpriteCount-1 do begin
+    SelectionsList.NewSelection(edNameTemplate.Text,
+                                Rect(anImportedGif.Width*(cbSizes.ItemIndex+1)*i,
+                                0,
+                                anImportedGif.Width*(cbSizes.ItemIndex+1)*(i+1),
+                                anImportedGif.Height*(cbSizes.ItemIndex+1)));
+   end;
+  end else begin
+   SelectionsList.NewSelection(edNameTemplate.Text,Rect(0,0,(anImportedGif.Width-1)*(cbSizes.ItemIndex+1),(anImportedGif.Height-1)*(cbSizes.ItemIndex+1)));
   end;
 end;
 

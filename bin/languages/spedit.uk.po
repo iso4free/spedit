@@ -145,13 +145,19 @@ msgstr "Y"
 msgid "Add current selection as frame to selections"
 msgstr "Додати поточний вибір як фрейм до вибраного"
 
+#: tfrmimportsheet.bbautoframes.caption
+msgid "Autodetect frames"
+msgstr ""
+
 #: tfrmimportsheet.bbcancel.caption
 msgctxt "tfrmimportsheet.bbcancel.caption"
 msgid "Cancel"
 msgstr "Скасувати"
 
 #: tfrmimportsheet.bbimport.caption
-msgid "Impotr frames"
+#, fuzzy
+#| msgid "Impotr frames"
+msgid "Import frames"
 msgstr "Імпортувати фрейм"
 
 #: tfrmimportsheet.bbspritesheetopen.caption
@@ -285,9 +291,9 @@ msgstr "Дизеринг фрейму"
 msgid "Reduse colors to preset palette"
 msgstr "Зменшити кількість кольорів для попередньо налаштованої палітри"
 
-#: tfrmmain.actexit.caption
-msgid "&Exit"
-msgstr "Вихід &E"
+#: tfrmmain.actexitapp.caption
+msgid "Exit"
+msgstr ""
 
 #: tfrmmain.actfliph.caption
 msgid "Flip horizontal"

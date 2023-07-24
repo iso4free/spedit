@@ -261,3 +261,11 @@ DEV.LOG
 13.06.2023
 =
 - [*] A lot work for 'Onion skin' almost done
+
+16.07.2023
+=
+- [!] Fixed 'Onion skin' mode, and some other minor fixes
+
+24.07.2023
+=
+- [+] Added posibility for import animated GIF as separate frames

@@ -1,7 +1,7 @@
 object frmImportSheet: TfrmImportSheet
   Left = 299
   Height = 365
-  Top = 199
+  Top = 200
   Width = 881
   AllowDropFiles = True
   Caption = 'Import sprites'
@@ -99,6 +99,23 @@ object frmImportSheet: TfrmImportSheet
       OnChange = cbGrigChange
       TabOrder = 3
     end
+    object bbAutoFrames: TBitBtn
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = pnlTop
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = cbGrig
+      Left = 611
+      Height = 38
+      Top = 1
+      Width = 154
+      Anchors = [akTop, akRight]
+      AutoSize = True
+      BorderSpacing.Right = 5
+      Caption = 'Autodetect frames'
+      Images = frmMain.ButtonsImageList
+      ImageIndex = 9
+      TabOrder = 4
+    end
   end
   object pnlBottom: TPanel
     Left = 0
@@ -120,7 +137,7 @@ object frmImportSheet: TfrmImportSheet
       Width = 119
       AutoSize = True
       BorderSpacing.Around = 2
-      Caption = 'Impotr frames'
+      Caption = 'Import frames'
       Default = True
       Kind = bkOK
       ModalResult = 1
@@ -140,6 +157,7 @@ object frmImportSheet: TfrmImportSheet
       Caption = 'Cancel'
       Kind = bkCancel
       ModalResult = 2
+      OnClick = bbCancelClick
       TabOrder = 1
     end
   end
@@ -203,6 +221,7 @@ object frmImportSheet: TfrmImportSheet
         AutoSize = True
         Images = frmMain.ButtonsImageList
         ImageIndex = 22
+        OnClick = bbAddClick
         ParentShowHint = False
         ShowHint = True
         TabOrder = 0
@@ -259,6 +278,7 @@ object frmImportSheet: TfrmImportSheet
         Width = 312
         AutoSize = True
         OnMouseDown = imgImportedMouseDown
+        OnMouseMove = imgImportedMouseMove
         OnMouseUp = imgImportedMouseUp
         OnPaint = imgImportedPaint
       end
@@ -635,6 +655,31 @@ object frmImportSheet: TfrmImportSheet
             TabOrder = 1
           end
         end
+      end
+      object anImportedGif: TBGRASpriteAnimation
+        Left = 362
+        Height = 50
+        Top = 167
+        Width = 75
+        AnimInvert = False
+        AnimPosition = 1
+        AnimRepeat = 0
+        AnimRepeatLap = 0
+        AnimSpeed = 1000
+        AnimStatic = False
+        Center = True
+        Proportional = True
+        SpriteCount = 1
+        SpriteFillOpacity = 255
+        SpriteFlipMode = flNone
+        SpriteKeyColor = clNone
+        SpriteResampleFilter = rfLinear
+        SpriteResampleMode = rmSimpleStretch
+        SpriteRotation = rtNone
+        Stretch = True
+        Tile = False
+        AutoSize = True
+        Visible = False
       end
     end
     object Splitter1: TSplitter

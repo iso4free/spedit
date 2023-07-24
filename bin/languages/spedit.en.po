@@ -141,13 +141,17 @@ msgstr ""
 msgid "Add current selection as frame to selections"
 msgstr ""
 
+#: tfrmimportsheet.bbautoframes.caption
+msgid "Autodetect frames"
+msgstr ""
+
 #: tfrmimportsheet.bbcancel.caption
 msgctxt "tfrmimportsheet.bbcancel.caption"
 msgid "Cancel"
 msgstr ""
 
 #: tfrmimportsheet.bbimport.caption
-msgid "Impotr frames"
+msgid "Import frames"
 msgstr ""
 
 #: tfrmimportsheet.bbspritesheetopen.caption
@@ -281,8 +285,8 @@ msgstr ""
 msgid "Reduse colors to preset palette"
 msgstr ""
 
-#: tfrmmain.actexit.caption
-msgid "&Exit"
+#: tfrmmain.actexitapp.caption
+msgid "Exit"
 msgstr ""
 
 #: tfrmmain.actfliph.caption

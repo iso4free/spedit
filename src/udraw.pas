@@ -174,14 +174,6 @@ type
 
 implementation
 
-procedure SwapInts(var a,b : Integer);
-var
-      tmp : Integer;
-begin
-  tmp:= a;
-  a:=b;
-  b:=tmp;
-end;
 
 { TSPMove }
 

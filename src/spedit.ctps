@@ -22,11 +22,11 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="748"/>
-        <CursorPos X="54" Y="756"/>
+        <TopLine Value="7"/>
+        <CursorPos X="73" Y="38"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
-          <Item0 Y="434"/>
+          <Item0 Y="435"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -34,11 +34,12 @@
       <Unit>
         <Filename Value="udraw.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="513"/>
-        <CursorPos X="48" Y="17"/>
+        <TopLine Value="163"/>
+        <CursorPos Y="177"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="ureferense.pas"/>
@@ -123,11 +124,11 @@
         <ComponentName Value="frmProjectProps"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="15"/>
         <CursorPos X="3" Y="15"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -139,11 +140,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="50"/>
-        <CursorPos Y="491"/>
-        <UsageCount Value="85"/>
+        <TopLine Value="526"/>
+        <CursorPos X="161" Y="543"/>
+        <UsageCount Value="93"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -154,20 +155,20 @@
         <ComponentName Value="frmGridOptions"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="97"/>
         <CursorPos X="26" Y="118"/>
-        <UsageCount Value="74"/>
+        <UsageCount Value="82"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="uglobals.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="273"/>
-        <CursorPos X="43" Y="303"/>
+        <TopLine Value="1042"/>
+        <CursorPos Y="1054"/>
         <UsageCount Value="197"/>
         <Loaded Value="True"/>
       </Unit>
@@ -1226,8 +1227,52 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1770"/>
-        <CursorPos Y="1789"/>
-        <UsageCount Value="9"/>
+        <CursorPos Y="1775"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/inc/typshrdh.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="13"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/fpcsrc/rtl/objpas/types.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="Types"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="114"/>
+        <CursorPos X="18" Y="128"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/include/control.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/controls.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="Controls"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2956"/>
+        <CursorPos Y="2970"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/codetyphon/typhon/lcl/grids.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="Grids"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="5524"/>
+        <CursorPos Y="5543"/>
+        <UsageCount Value="10"/>
       </Unit>
     </Units>
     <OtherDefines Count="1">
@@ -1235,124 +1280,124 @@
     </OtherDefines>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1373" Column="5" TopLine="1356"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="574" Column="4" TopLine="541"/>
+      </Position>
+      <Position>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="154" Column="25" TopLine="137"/>
+      </Position>
+      <Position>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="567" Column="45" TopLine="548"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="708" TopLine="693"/>
+        <Caret Line="38" Column="73" TopLine="7"/>
+      </Position>
+      <Position>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="294" Column="52" TopLine="276"/>
+      </Position>
+      <Position>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="578" Column="134" TopLine="551"/>
+      </Position>
+      <Position>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="36" Column="53" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="294" Column="79" TopLine="276"/>
+      </Position>
+      <Position>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="580" Column="96" TopLine="551"/>
+      </Position>
+      <Position>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="333" Column="4" TopLine="318"/>
       </Position>
       <Position>
         <Filename Value="umain.pas"/>
-        <Caret Line="1789" Column="25" TopLine="1783"/>
+        <Caret Line="38" Column="73" TopLine="7"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1340" Column="3" TopLine="1334"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="333" Column="2" TopLine="321"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="1359" Column="12" TopLine="1345"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="577" Column="51" TopLine="553"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="301" Column="106" TopLine="281"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="580" Column="97" TopLine="553"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="299" Column="61" TopLine="273"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="583" Column="136" TopLine="553"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="266" Column="15" TopLine="252"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="584" Column="7" TopLine="553"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="1426" TopLine="1420"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="298" Column="32" TopLine="291"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="271" Column="16" TopLine="252"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="135" Column="15" TopLine="133"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1178" Column="70" TopLine="1168"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="298" Column="53" TopLine="290"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1797" Column="23" TopLine="1792"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="338" Column="3" TopLine="329"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="391" Column="15" TopLine="374"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="140" Column="15" TopLine="106"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1800" Column="5" TopLine="1792"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="154" Column="33" TopLine="143"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="296" Column="28" TopLine="269"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="584" Column="155" TopLine="554"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="1489" Column="30" TopLine="1488"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="306" Column="32" TopLine="291"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="295" Column="15" TopLine="282"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="152" Column="80" TopLine="138"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="1480" Column="41"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="543" Column="50" TopLine="526"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1800" Column="5" TopLine="1792"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="596" TopLine="561"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1077" Column="3" TopLine="1075"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="528" Column="18" TopLine="519"/>
       </Position>
       <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="289" Column="15" TopLine="274"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="155" Column="21" TopLine="146"/>
       </Position>
       <Position>
-        <Filename Value="uglobals.pas"/>
-        <Caret Line="300" Column="63" TopLine="274"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="758" Column="80" TopLine="748"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1896" Column="10" TopLine="1879"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="379" Column="15" TopLine="364"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1521" Column="15" TopLine="1514"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1903" Column="49" TopLine="1878"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="953" Column="79" TopLine="940"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="1077" Column="3" TopLine="1075"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="289" Column="15" TopLine="274"/>
+        <Filename Value="uspriteimport.pas"/>
+        <Caret Line="580" Column="21" TopLine="561"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -1360,18 +1405,24 @@
       <Modes ActiveMode="default">
         <Mode Name="default">
           <local>
-            <CommandLineParams Value="--debug-log=spedit.log"/>
+            <CommandLineParams Value="--debug-log_terminal=spedit.log"/>
           </local>
         </Mode>
       </Modes>
     </RunParams>
     <HistoryLists>
-      <List Name="LaunchingApplication" Type="File" Count="2">
-        <Item1 Value="/usr/bin/xterm -T &apos;Lazarus Run Output&apos; -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
-        <Item2 Value="/usr/bin/gnome-terminal -t &apos;Lazarus Run Output&apos; -e &apos;$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)&apos;"/>
+      <List Name="LaunchingApplication" Type="File" Count="7">
+        <Item1 Value="/usr/bin/xterm -T &apos;Typhon Run Output&apos; -e $(TargetCmdLine)"/>
+        <Item2 Value="/usr/bin/xterm -T &apos;Lazarus Run Output&apos; -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+        <Item3 Value="/usr/bin/gnome-terminal -t &apos;Lazarus Run Output&apos; -e &apos;$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)&apos;"/>
+        <Item4 Value="${CmdExe} ${TargetCmdLine}"/>
+        <Item5 Value="&quot;$(Pas2JSBrowser)&quot; &quot;$(Pas2JSProjectURL)&quot;"/>
+        <Item6 Value="$(Pas2JSBrowser) &quot;$(Pas2JSProjectURL)&quot;"/>
+        <Item7 Value="/usr/bin/gnome-terminal -t &apos;Typhon Run Output&apos; -e &apos;$(TargetCmdLine)&apos;"/>
       </List>
-      <List Name="CommandLineParameters" Count="1">
-        <Item1 Value="--debug-log=spedit.log"/>
+      <List Name="CommandLineParameters" Count="2">
+        <Item1 Value="--debug-log_terminal=spedit.log"/>
+        <Item2 Value="--debug-log=spedit.log"/>
       </List>
     </HistoryLists>
   </ProjectSession>

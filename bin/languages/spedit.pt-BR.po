@@ -153,6 +153,10 @@ msgstr ""
 msgid "Add current selection as frame to selections"
 msgstr ""
 
+#: tfrmimportsheet.bbautoframes.caption
+msgid "Autodetect frames"
+msgstr ""
+
 #: tfrmimportsheet.bbcancel.caption
 #, fuzzy
 msgctxt "tfrmimportsheet.bbcancel.caption"
@@ -160,7 +164,7 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #: tfrmimportsheet.bbimport.caption
-msgid "Impotr frames"
+msgid "Import frames"
 msgstr ""
 
 #: tfrmimportsheet.bbspritesheetopen.caption
@@ -296,9 +300,9 @@ msgstr "Pontilhar quadro"
 msgid "Reduse colors to preset palette"
 msgstr "Reduzir cores para a paleta predefinida"
 
-#: tfrmmain.actexit.caption
-msgid "&Exit"
-msgstr "&Sair"
+#: tfrmmain.actexitapp.caption
+msgid "Exit"
+msgstr ""
 
 #: tfrmmain.actfliph.caption
 msgid "Flip horizontal"

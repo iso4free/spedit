@@ -35,7 +35,7 @@ uses
   Controls, Graphics, Types, Dialogs, Menus, ComCtrls, ExtCtrls, Buttons,
   ActnList, Grids, JSONPropStorage, ExtDlgs, StdCtrls, StdActns, LCLIntf,
   LCLType, Spin, HexaColorPicker, mbColorPalette, BGRAImageList,
-  BGRAGraphicControl, BGRABitmapTypes, BGRABitmap, Clipbrd;
+  BGRAGraphicControl, BGRABitmapTypes, BGRABitmap, Clipbrd, LazFileUtils;
 
 type
 
@@ -57,6 +57,7 @@ type
     actImportPiskel: TAction;
     actImportSprites: TAction;
     actDeleteFrame: TAction;
+    actExitApp: TAction;
     actSetAsNext: TAction;
     actSetAsPrevious: TAction;
     actOnionSkin: TAction;
@@ -114,7 +115,6 @@ type
     drwgrdLayers: TDrawGrid;
     actUndo: TEditUndo;
     FgColor: TBGRAGraphicControl;
-    actExit: TFileExit;
     gbPrewFrameOptions: TGroupBox;
     gbNextFrameOptions: TGroupBox;
     HexaColorPicker1: THexaColorPicker;
@@ -267,6 +267,7 @@ type
     procedure actCutExecute(Sender: TObject);
     procedure actDeleteFrameExecute(Sender: TObject);
     procedure actDitherExecute(Sender: TObject);
+    procedure actExitAppExecute(Sender: TObject);
     procedure actFlipVExecute(Sender: TObject);
     procedure actFrameExportPNGExecute(Sender: TObject);
     procedure actFrameResizeExecute(Sender: TObject);
@@ -456,6 +457,11 @@ begin
   pbFrameDraw.Invalidate;
   FramePreview.Invalidate;
   PaletteChange;
+end;
+
+procedure TfrmMain.actExitAppExecute(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TfrmMain.actFrameResizeExecute(Sender: TObject);
@@ -684,6 +690,11 @@ begin
   if frmFrameDlg.isOk then
   begin
     //at first let's create new frame
+    //todo: check if frame already exists
+    if ProjectInfo.Frames.IndexOf(frmFrameDlg.edtFrameName.Text)<>-1 then begin
+      ShowMessage(Format(rsFrameExists, [frmFrameDlg.edtFrameName.Text]));
+      Exit;
+    end;
     ProjectInfo.Frames.Add(TSPFrame.Create(frmFrameDlg.edtFrameName.Text,
       frmFrameDlg.spnedtWidth.Value,
       frmFrameDlg.spnedtHeight.Value));
@@ -1346,6 +1357,16 @@ var
   JSONProp: TFilename;
   i: integer;
   aPreset: string;
+
+ procedure AllEnable;
+ //todo: fix only avaliable actions and menu items enabled
+ var
+    i : Integer;
+ begin
+   for i:=0 to MainMenu1.Items.Count-1 do MainMenu1.Items.Items[i].Enabled:=True;
+
+ end;
+
 begin
   Caption:=APP_NAME+' v.'+APP_VER_MAJOR+'.'+APP_VER_MINOR+' '+APP_VER_SUFFIX+' '+
     rsBuild+' '+APP_VER_BUILDDATE;
@@ -1380,7 +1401,7 @@ begin
     cbPalettePresets.ItemIndex := cbPalettePresets.Items.IndexOf(aPreset);
     cbPalettePresetsChange(Sender);
   end;
-  //hilight colors and transparency foronion skin
+  //hilight colors and transparency for onion skin
   clbPrevHilight.ButtonColor:=spclPrevFrame;
   clbNextHilight1.ButtonColor:=spclNextFrame;
   tbOnionSkinOpacity.Position:=spclOpacity;
@@ -1388,6 +1409,7 @@ begin
   CreateCursors;
   pbFrameDraw.Cursor := 1;
   fCheckers:=TBGRABitmap.Create;
+  AllEnable;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -1855,6 +1877,7 @@ var
   aName : String;
 begin
   if not Assigned(ProjectInfo) then Exit;
+  if ProjectInfo.Frames.Count=0 then Exit;
   aName:=ProjectInfo.Frames.Names.Strings[aRow];
   case aCol of
 0:begin
