@@ -350,6 +350,7 @@ type
       Shift: TShiftState; Index: integer; AColor: TColor; var DontCheck: boolean);
     procedure miAboutClick(Sender: TObject);
     procedure actImportPiskelExecute(Sender: TObject);
+    procedure miOpenProjClick(Sender: TObject);
     procedure miRedoClick(Sender: TObject);
     procedure miSaveProjectAsClick(Sender: TObject);
     procedure miUndoClick(Sender: TObject);
@@ -1360,11 +1361,9 @@ var
 
  procedure AllEnable;
  //todo: fix only avaliable actions and menu items enabled
- var
-    i : Integer;
  begin
-   for i:=0 to MainMenu1.Items.Count-1 do MainMenu1.Items.Items[i].Enabled:=True;
-
+  miOpenProj.Enabled:=True;
+  miOpenProj.OnClick:=@actOpenProjExecute;
  end;
 
 begin
@@ -1588,6 +1587,11 @@ begin
     drwgrdFramesSelectCell(Sender,0,idx,canselect);
     FramesChange;
   end;
+end;
+
+procedure TfrmMain.miOpenProjClick(Sender: TObject);
+begin
+  actOpenProjExecute(Sender);
 end;
 
 procedure TfrmMain.actImportSpritesExecute(Sender: TObject);

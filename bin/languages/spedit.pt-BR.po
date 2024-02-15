@@ -383,6 +383,7 @@ msgid "'Onion skin' mode"
 msgstr ""
 
 #: tfrmmain.actopenproj.caption
+msgctxt "tfrmmain.actopenproj.caption"
 msgid "Open project"
 msgstr ""
 
@@ -686,6 +687,11 @@ msgstr "Camadas"
 msgctxt "tfrmmain.minewlibrary.caption"
 msgid "New Sprite Library"
 msgstr "Nova Biblioteca de Sprites"
+
+#: tfrmmain.miopenproj.caption
+msgctxt "tfrmmain.miopenproj.caption"
+msgid "Open project"
+msgstr ""
 
 #: tfrmmain.mipalette.caption
 msgctxt "tfrmmain.mipalette.caption"

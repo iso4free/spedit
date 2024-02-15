@@ -374,6 +374,7 @@ msgid "'Onion skin' mode"
 msgstr "Режим 'Цибулині лушпайки'"
 
 #: tfrmmain.actopenproj.caption
+msgctxt "tfrmmain.actopenproj.caption"
 msgid "Open project"
 msgstr "Відкрити проєкт"
 
@@ -677,6 +678,12 @@ msgstr "Шари"
 msgctxt "tfrmmain.minewlibrary.caption"
 msgid "New Sprite Library"
 msgstr "Нова бібліотека спрайтів"
+
+#: tfrmmain.miopenproj.caption
+#, fuzzy
+msgctxt "tfrmmain.miopenproj.caption"
+msgid "Open project"
+msgstr "Відкрити проєкт"
 
 #: tfrmmain.mipalette.caption
 msgctxt "tfrmmain.mipalette.caption"

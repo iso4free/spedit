@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 86
+  Left = 85
   Height = 676
-  Top = 86
+  Top = 85
   Width = 954
   AllowDropFiles = True
   ClientHeight = 676
@@ -9,14 +9,14 @@ object frmMain: TfrmMain
   DoubleBuffered = True
   KeyPreview = True
   Menu = MainMenu1
+  ParentDoubleBuffered = False
+  SessionProperties = 'actLayersToggle.Checked;actToggleFullScreen.Checked;FormStyle;pnlFrames.Visible;pnlLayers.Visible;pnlPreview.Left;pnlPreview.Top;pnlPreview.Visible;pnlTools.Visible;Position;WindowState;pnlOnionMode.Top;pnlOnionMode.Left'
+  LCLVersion = '8.3'
+  WindowState = wsMaximized
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   OnKeyUp = FormKeyUp
-  ParentDoubleBuffered = False
-  SessionProperties = 'actLayersToggle.Checked;actToggleFullScreen.Checked;FormStyle;pnlFrames.Visible;pnlLayers.Visible;pnlPreview.Left;pnlPreview.Top;pnlPreview.Visible;pnlTools.Visible;Position;WindowState;pnlOnionMode.Top;pnlOnionMode.Left'
-  LCLVersion = '8.1'
-  WindowState = wsMaximized
   object StatusBar1: TStatusBar
     Left = 0
     Height = 18
@@ -46,24 +46,24 @@ object frmMain: TfrmMain
     Top = 40
     Width = 147
     Align = alLeft
-    ClientHeight = 614
-    ClientWidth = 143
+    ClientHeight = 618
+    ClientWidth = 147
     TabOrder = 1
     object LayersGroupBox: TGroupBox
       Left = 1
-      Height = 344
+      Height = 348
       Top = 1
-      Width = 141
+      Width = 145
       Align = alClient
       Caption = 'Layers'
-      ClientHeight = 327
-      ClientWidth = 139
+      ClientHeight = 331
+      ClientWidth = 143
       TabOrder = 0
       object drwgrdLayers: TDrawGrid
         Left = 0
-        Height = 286
-        Top = 41
-        Width = 139
+        Height = 288
+        Top = 43
+        Width = 143
         Align = alClient
         ColCount = 4
         Columns = <        
@@ -106,9 +106,9 @@ object frmMain: TfrmMain
       end
       object LayersFlowPanel: TFlowPanel
         Left = 0
-        Height = 41
+        Height = 43
         Top = 0
-        Width = 139
+        Width = 143
         Align = alTop
         AutoSize = True
         AutoWrap = False
@@ -138,67 +138,67 @@ object frmMain: TfrmMain
         TabOrder = 1
         object bbtnAddLayer: TBitBtn
           Left = 1
-          Height = 38
+          Height = 40
           Top = 1
-          Width = 38
+          Width = 40
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
           ImageIndex = 22
-          OnClick = bbtnAddLayerClick
           ParentShowHint = False
           ShowHint = True
           TabOrder = 0
+          OnClick = bbtnAddLayerClick
         end
         object bbtnDeleteLayer: TBitBtn
-          Left = 39
-          Height = 38
+          Left = 41
+          Height = 40
           Top = 1
-          Width = 38
+          Width = 40
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
           ImageIndex = 7
-          OnClick = bbtnDeleteLayerClick
           ParentShowHint = False
           ShowHint = True
           TabOrder = 1
+          OnClick = bbtnDeleteLayerClick
         end
         object bbtnCopyLayer: TBitBtn
-          Left = 77
-          Height = 38
+          Left = 81
+          Height = 40
           Top = 1
-          Width = 38
+          Width = 40
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
           ImageIndex = 23
-          OnClick = bbtnCopyLayerClick
           ParentShowHint = False
           ShowHint = True
           TabOrder = 2
+          OnClick = bbtnCopyLayerClick
         end
         object bbtnMergeLayers: TBitBtn
-          Left = 115
-          Height = 38
+          Left = 121
+          Height = 40
           Top = 1
-          Width = 38
+          Width = 40
           Anchors = []
           AutoSize = True
           Images = ButtonsImageList
           ImageIndex = 5
-          OnClick = bbtnMergeLayersClick
           ParentShowHint = False
           ShowHint = True
           TabOrder = 3
+          OnClick = bbtnMergeLayersClick
         end
       end
     end
     object drwgrdFrames: TDrawGrid
       Left = 1
       Height = 268
-      Top = 345
-      Width = 141
+      Top = 349
+      Width = 145
       Align = alBottom
       AutoEdit = False
       ColCount = 2
@@ -236,14 +236,14 @@ object frmMain: TfrmMain
       Align = alLeft
       Images = ButtonsImageList
       ImageIndex = 8
-      OnClick = bbtnNewFrameClick
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
+      OnClick = bbtnNewFrameClick
     end
     object FgColor: TBGRAGraphicControl
       Tag = 2
-      Left = 851
+      Left = 849
       Height = 38
       Hint = 'Left click to select color'#10'Right click to set transparent color'
       Top = 1
@@ -260,19 +260,19 @@ object frmMain: TfrmMain
       Caption = 'FG'
     end
     object bbtnSwapColors: TBitBtn
-      Left = 883
+      Left = 881
       Height = 38
       Hint = 'Swap colors [X]'
       Top = 1
-      Width = 38
+      Width = 40
       Align = alRight
       AutoSize = True
       Images = ButtonsImageList
       ImageIndex = 27
-      OnClick = bbtnSwapColorsClick
       ParentShowHint = False
       ShowHint = True
       TabOrder = 1
+      OnClick = bbtnSwapColorsClick
     end
     object BgColor: TBGRAGraphicControl
       Tag = 1
@@ -296,77 +296,77 @@ object frmMain: TfrmMain
       Height = 38
       Hint = 'Import frame'
       Top = 1
-      Width = 38
+      Width = 40
       Align = alLeft
       AutoSize = True
       Images = ButtonsImageList
       ImageIndex = 31
-      OnClick = bbtnImportFrameClick
       ParentShowHint = False
       ShowHint = True
       TabOrder = 2
+      OnClick = bbtnImportFrameClick
     end
     object bbtnShowLayers: TBitBtn
-      Left = 115
+      Left = 119
       Height = 38
       Hint = 'Show/hide layers'
       Top = 1
-      Width = 38
+      Width = 40
       Align = alLeft
       AutoSize = True
       Images = ButtonsImageList
       ImageIndex = 21
-      OnClick = bbtnShowLayersClick
       ParentShowHint = False
       ShowHint = True
       TabOrder = 3
+      OnClick = bbtnShowLayersClick
     end
     object bbtnShowPalette: TBitBtn
-      Left = 153
+      Left = 159
       Height = 38
       Hint = 'Show/hide palette'
       Top = 1
-      Width = 38
+      Width = 40
       Align = alLeft
       AutoSize = True
       Images = ButtonsImageList
       ImageIndex = 10
-      OnClick = bbtnShowPaletteClick
       ParentShowHint = False
       ShowHint = True
       TabOrder = 4
+      OnClick = bbtnShowPaletteClick
     end
     object bbtnTogglePreview: TBitBtn
-      Left = 191
+      Left = 199
       Height = 38
       Hint = 'Show/hide referense window'
       Top = 1
-      Width = 38
+      Width = 40
       Align = alLeft
       AutoSize = True
       Images = ButtonsImageList
       ImageIndex = 20
-      OnClick = bbtnTogglePreviewClick
       ParentShowHint = False
       ShowHint = True
       TabOrder = 5
+      OnClick = bbtnTogglePreviewClick
     end
     object trkbrPenSize: TSpinEdit
-      Left = 751
+      Left = 749
       Height = 38
       Top = 1
       Width = 100
       Align = alRight
       MaxValue = 1
       MinValue = 1
-      OnChange = trkbrPenSizeChange
       TabOrder = 6
+      OnChange = trkbrPenSizeChange
     end
     object lblPenSize: TLabel
       AnchorSideTop.Control = trkbrPenSize
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = trkbrPenSize
-      Left = 698
+      Left = 696
       Height = 16
       Top = 12
       Width = 48
@@ -377,48 +377,48 @@ object frmMain: TfrmMain
       ParentColor = False
     end
     object bbtnResize: TBitBtn
-      Left = 77
+      Left = 79
       Height = 38
       Hint = 'Resize frame'
       Top = 1
-      Width = 38
+      Width = 40
       Align = alLeft
       AutoSize = True
       Images = ButtonsImageList
       ImageIndex = 30
-      OnClick = bbtnResizeClick
       TabOrder = 7
+      OnClick = bbtnResizeClick
     end
     object bbtnGridToggle: TBitBtn
-      Left = 229
+      Left = 239
       Height = 38
       Hint = 'Show/hide grid'
       Top = 1
-      Width = 38
+      Width = 40
       Align = alLeft
       AutoSize = True
       Images = ButtonsImageList
       ImageIndex = 32
-      OnClick = bbtnGridToggleClick
       ParentShowHint = False
       ShowHint = True
       TabOrder = 8
+      OnClick = bbtnGridToggleClick
     end
     object bbtnOnionMode: TBitBtn
       AnchorSideLeft.Control = bbtnGridToggle
       AnchorSideLeft.Side = asrBottom
-      Left = 267
-      Height = 38
+      Left = 279
+      Height = 40
       Hint = '''Onion skin'' mode'
       Top = 1
-      Width = 38
+      Width = 40
       AutoSize = True
       Images = ButtonsImageList
       ImageIndex = 40
-      OnClick = bbtnOnionModeClick
       ParentShowHint = False
       ShowHint = True
       TabOrder = 9
+      OnClick = bbtnOnionModeClick
     end
   end
   object pnlTools: TFlowPanel
@@ -495,9 +495,9 @@ object frmMain: TfrmMain
       GroupIndex = 1
       Images = BGRAImageList24x24
       ImageIndex = 4
-      OnClick = sbPenClick
       ShowHint = True
       ParentShowHint = False
+      OnClick = sbPenClick
     end
     object sbPipette: TSpeedButton
       Tag = 4
@@ -512,9 +512,9 @@ object frmMain: TfrmMain
       GroupIndex = 1
       Images = BGRAImageList24x24
       ImageIndex = 13
-      OnClick = sbPenClick
       ShowHint = True
       ParentShowHint = False
+      OnClick = sbPenClick
     end
     object sbLine: TSpeedButton
       Tag = 2
@@ -528,9 +528,9 @@ object frmMain: TfrmMain
       GroupIndex = 1
       Images = BGRAImageList24x24
       ImageIndex = 12
-      OnClick = sbPenClick
       ShowHint = True
       ParentShowHint = False
+      OnClick = sbPenClick
     end
     object sbRect: TSpeedButton
       Tag = 5
@@ -544,9 +544,9 @@ object frmMain: TfrmMain
       GroupIndex = 1
       Images = BGRAImageList24x24
       ImageIndex = 14
-      OnClick = sbPenClick
       ShowHint = True
       ParentShowHint = False
+      OnClick = sbPenClick
     end
     object sbFilledRect: TSpeedButton
       Tag = 6
@@ -560,9 +560,9 @@ object frmMain: TfrmMain
       GroupIndex = 1
       Images = BGRAImageList24x24
       ImageIndex = 10
-      OnClick = sbPenClick
       ShowHint = True
       ParentShowHint = False
+      OnClick = sbPenClick
     end
     object sbCircle: TSpeedButton
       Tag = 7
@@ -576,9 +576,9 @@ object frmMain: TfrmMain
       GroupIndex = 1
       Images = BGRAImageList24x24
       ImageIndex = 7
-      OnClick = sbPenClick
       ShowHint = True
       ParentShowHint = False
+      OnClick = sbPenClick
     end
     object sbEracer: TSpeedButton
       Tag = 3
@@ -593,9 +593,9 @@ object frmMain: TfrmMain
       GroupIndex = 1
       Images = BGRAImageList24x24
       ImageIndex = 9
-      OnClick = sbPenClick
       ShowHint = True
       ParentShowHint = False
+      OnClick = sbPenClick
     end
     object sbFloodFill: TSpeedButton
       Tag = 8
@@ -609,9 +609,9 @@ object frmMain: TfrmMain
       GroupIndex = 1
       Images = BGRAImageList24x24
       ImageIndex = 11
-      OnClick = sbPenClick
       ShowHint = True
       ParentShowHint = False
+      OnClick = sbPenClick
     end
     object sbRectSelection: TSpeedButton
       Tag = 9
@@ -624,9 +624,9 @@ object frmMain: TfrmMain
       GroupIndex = 1
       Images = BGRAImageList24x24
       ImageIndex = 15
-      OnClick = sbPenClick
       ShowHint = True
       ParentShowHint = False
+      OnClick = sbPenClick
     end
     object sbMove: TSpeedButton
       Tag = 10
@@ -639,9 +639,9 @@ object frmMain: TfrmMain
       GroupIndex = 1
       Images = BGRAImageList24x24
       ImageIndex = 16
-      OnClick = sbPenClick
       ShowHint = True
       ParentShowHint = False
+      OnClick = sbPenClick
     end
   end
   object Splitter1: TSplitter
@@ -685,10 +685,10 @@ object frmMain: TfrmMain
         Height = 150
         Top = 1
         Width = 100
+        ParentColor = False
         Align = alClient
         HintFormat = 'RGB(%r, %g, %b)'#13'Hex: #%hex'
         IntensityText = 'Intensity'
-        ParentColor = False
         TabOrder = 0
         Color = clBlack
         Constraints.MinHeight = 150
@@ -698,16 +698,16 @@ object frmMain: TfrmMain
     end
     object cbPalettePresets: TComboBox
       Left = 1
-      Height = 37
+      Height = 39
       Top = 17
       Width = 102
       Align = alTop
       ItemHeight = 27
-      OnChange = cbPalettePresetsChange
-      OnDrawItem = cbPalettePresetsDrawItem
       Sorted = True
       Style = csOwnerDrawVariable
       TabOrder = 1
+      OnChange = cbPalettePresetsChange
+      OnDrawItem = cbPalettePresetsDrawItem
     end
     object lbpPalettePresrts: TLabel
       Left = 1
@@ -721,7 +721,7 @@ object frmMain: TfrmMain
     object mbPaletteGrid: TmbColorPalette
       Left = 1
       Height = 1
-      Top = 55
+      Top = 57
       Width = 102
       Align = alTop
       HintFormat = 'RGB(%r, %g, %b)'#13'Hex: #%hex'
@@ -734,7 +734,7 @@ object frmMain: TfrmMain
     object mbColorPalettePreset: TmbColorPalette
       Left = 1
       Height = 1
-      Top = 54
+      Top = 56
       Width = 102
       Align = alTop
       HintFormat = 'RGB(%r, %g, %b)'#13'Hex: #%hex'
@@ -760,12 +760,12 @@ object frmMain: TfrmMain
   end
   object pnlPreview: TJvMovablePanel
     Left = 176
-    Height = 116
+    Height = 114
     Top = 352
-    Width = 96
+    Width = 94
     AutoSize = True
-    ClientHeight = 116
-    ClientWidth = 96
+    ClientHeight = 114
+    ClientWidth = 94
     Constraints.MaxHeight = 500
     Constraints.MaxWidth = 500
     Constraints.MinHeight = 64
@@ -780,9 +780,9 @@ object frmMain: TfrmMain
       AnchorSideBottom.Control = pnlPreview
       AnchorSideBottom.Side = asrBottom
       Left = 1
-      Height = 94
+      Height = 92
       Top = 21
-      Width = 94
+      Width = 92
       HorzScrollBar.Page = 90
       VertScrollBar.Page = 90
       Align = alCustom
@@ -806,7 +806,7 @@ object frmMain: TfrmMain
       AnchorSideTop.Control = pnlPreview
       AnchorSideRight.Control = pnlPreview
       AnchorSideRight.Side = asrBottom
-      Left = 75
+      Left = 73
       Height = 20
       Top = 1
       Width = 20
@@ -940,12 +940,12 @@ object frmMain: TfrmMain
         Height = 198
         Hint = 'Set transparency for previous and next frames'
         Top = 1
-        Width = 19
+        Width = 30
         Max = 255
-        OnChange = tbOnionSkinOpacityChange
         Orientation = trVertical
         Position = 0
         SelEnd = 255
+        OnChange = tbOnionSkinOpacityChange
         Anchors = [akTop, akLeft, akBottom]
         ParentShowHint = False
         ShowHint = True
@@ -985,9 +985,9 @@ object frmMain: TfrmMain
             Width = 66
             Caption = 'Visible'
             Checked = True
-            OnChange = cbPrevFrameVisibleChange
             State = cbChecked
             TabOrder = 0
+            OnChange = cbPrevFrameVisibleChange
           end
           object imgPrevFrame: TImage
             AnchorSideLeft.Control = cbPrevFrameVisible
@@ -1049,9 +1049,9 @@ object frmMain: TfrmMain
             Width = 66
             Caption = 'Visible'
             Checked = True
-            OnChange = cbPrevFrameVisibleChange
             State = cbChecked
             TabOrder = 0
+            OnChange = cbPrevFrameVisibleChange
           end
           object imgNextFrame: TImage
             AnchorSideLeft.Control = cbNextFrameVisible
@@ -1103,7 +1103,9 @@ object frmMain: TfrmMain
         Action = actNewProj
       end
       object miOpenProj: TMenuItem
-        Action = actOpenProj
+        Caption = 'Open project'
+        ShortCut = 16463
+        OnClick = miOpenProjClick
       end
       object Separator12: TMenuItem
         Caption = '-'
@@ -2219,119 +2221,137 @@ object frmMain: TfrmMain
       Category = 'Edit'
       Caption = 'Undo'
       DisableIfNoHandler = False
-      OnExecute = actUndoExecute
       ShortCut = 16474
+      OnExecute = actUndoExecute
     end
     object actRedo: TAction
       Category = 'Edit'
       Caption = 'Redo'
       DisableIfNoHandler = False
-      OnExecute = actRedoExecute
       ShortCut = 24666
+      OnExecute = actRedoExecute
     end
     object actAddLayer: TAction
       Category = 'Layers'
       Caption = 'Add layer'
+      DisableIfNoHandler = False
       ImageIndex = 22
       OnExecute = actAddLayerExecute
     end
     object actDeleteLayer: TAction
       Category = 'Layers'
       Caption = 'Delete layer'
+      DisableIfNoHandler = False
       ImageIndex = 7
       OnExecute = actDeleteLayerExecute
     end
     object actCopyLayer: TAction
       Category = 'Layers'
       Caption = 'Copy layer'
+      DisableIfNoHandler = False
       ImageIndex = 23
       OnExecute = actCopyLayerExecute
     end
     object actMergeLayers: TAction
       Category = 'Layers'
       Caption = 'Merge layers'
+      DisableIfNoHandler = False
       ImageIndex = 5
       OnExecute = actMergeLayersExecute
     end
     object actPaletteReset: TAction
       Category = 'Palette'
       Caption = 'Reset palette'
+      DisableIfNoHandler = False
       ImageIndex = 10
       OnExecute = actPaletteResetExecute
     end
     object actPaletteLoad: TAction
       Category = 'Palette'
       Caption = 'Load palette from file'
+      DisableIfNoHandler = False
       ImageIndex = 12
       OnExecute = actPaletteLoadExecute
     end
     object actPaletteSave: TAction
       Category = 'Palette'
       Caption = 'Save palette to file'
+      DisableIfNoHandler = False
       OnExecute = actPaletteSaveExecute
     end
     object actPaletteImport: TAction
       Category = 'Palette'
       Caption = 'Import from image file'
+      DisableIfNoHandler = False
       OnExecute = actPaletteImportExecute
     end
     object actPaletteToggle: TAction
       Category = 'View'
       Caption = 'Toggle palette'
+      DisableIfNoHandler = False
       ImageIndex = 10
       OnExecute = actPaletteToggleExecute
     end
     object actZoomIn: TAction
       Category = 'View'
       Caption = 'Zoom ++'
+      DisableIfNoHandler = False
       ImageIndex = 0
-      OnExecute = actZoomInExecute
       ShortCut = 16491
+      OnExecute = actZoomInExecute
     end
     object actZoomOut: TAction
       Category = 'View'
       Caption = 'Zoom --'
+      DisableIfNoHandler = False
       ImageIndex = 1
-      OnExecute = actZoomOutExecute
       ShortCut = 16493
+      OnExecute = actZoomOutExecute
     end
     object actZoomReset: TAction
       Category = 'View'
       Caption = 'Reset zoom'
+      DisableIfNoHandler = False
       ImageIndex = 3
-      OnExecute = actZoomResetExecute
       ShortCut = 16490
+      OnExecute = actZoomResetExecute
     end
     object actToggleFullScreen: TAction
       Category = 'View'
       Caption = 'Full Screen (ZEN mode)'
-      OnExecute = actToggleFullScreenExecute
+      DisableIfNoHandler = False
       ShortCut = 122
+      OnExecute = actToggleFullScreenExecute
     end
     object actLanguageSelect: TAction
       Category = 'View'
       Caption = 'Language'
+      DisableIfNoHandler = False
       OnExecute = actLanguageSelectExecute
     end
     object actReferenceToggle: TAction
       Category = 'View'
       Caption = 'Reference'
+      DisableIfNoHandler = False
       ImageIndex = 20
       OnExecute = actReferenceToggleExecute
     end
     object actFrameExportPNG: TAction
       Category = 'File'
       Caption = 'Export frame as PNG'
+      DisableIfNoHandler = False
       OnExecute = actFrameExportPNGExecute
     end
     object actLoadPresets: TAction
       Category = 'Palette'
       Caption = 'Load presets'
+      DisableIfNoHandler = False
       OnExecute = actLoadPresetsExecute
     end
     object actSettings: TAction
       Category = 'View'
       Caption = 'Settings'
+      DisableIfNoHandler = False
       OnExecute = actSettingsExecute
     end
     object actFrameResize: TAction
@@ -2343,12 +2363,13 @@ object frmMain: TfrmMain
     end
     object actNotImplemented: TAction
       Caption = 'Not implemented yet'
+      DisableIfNoHandler = False
       OnExecute = actNotImplementedExecute
     end
     object actDither: TAction
       Category = 'Frames'
       Caption = 'Dither frame'
-      Enabled = False
+      DisableIfNoHandler = False
       Hint = 'Reduse colors to preset palette'
       ImageIndex = 41
       OnExecute = actDitherExecute
@@ -2356,30 +2377,35 @@ object frmMain: TfrmMain
     object actSelectAll: TAction
       Category = 'Edit'
       Caption = 'Select all'
-      OnExecute = actSelectAllExecute
+      DisableIfNoHandler = False
       ShortCut = 16449
+      OnExecute = actSelectAllExecute
     end
     object actCopy: TAction
       Category = 'Edit'
       Caption = 'Copy'
-      OnExecute = actCopyExecute
+      DisableIfNoHandler = False
       ShortCut = 16451
+      OnExecute = actCopyExecute
     end
     object actCut: TAction
       Category = 'Edit'
       Caption = 'Cut'
-      OnExecute = actCutExecute
+      DisableIfNoHandler = False
       ShortCut = 16472
+      OnExecute = actCutExecute
     end
     object actPaste: TAction
       Category = 'Edit'
       Caption = 'Paste'
-      OnExecute = actPasteExecute
+      DisableIfNoHandler = False
       ShortCut = 16470
+      OnExecute = actPasteExecute
     end
     object actGridToggle: TAction
       Category = 'View'
       Caption = 'Toggle grid visibility'
+      DisableIfNoHandler = False
       Hint = 'Show/hide grid'
       ImageIndex = 32
       OnExecute = actGridToggleExecute
@@ -2387,106 +2413,118 @@ object frmMain: TfrmMain
     object actMoveUp: TAction
       Category = 'Layers'
       Caption = 'Move Up'
+      DisableIfNoHandler = False
       ImageIndex = 26
       OnExecute = actMoveUpExecute
     end
     object actMoveDown: TAction
       Category = 'Layers'
       Caption = 'Move Down'
+      DisableIfNoHandler = False
       ImageIndex = 25
       OnExecute = actMoveDownExecute
     end
     object actFlipH: TAction
       Category = 'Layers'
       Caption = 'Flip horizontal'
+      DisableIfNoHandler = False
       ImageIndex = 34
       OnExecute = actFlipHExecute
     end
     object actFlipV: TAction
       Category = 'Layers'
       Caption = 'Flip vertical'
+      DisableIfNoHandler = False
       ImageIndex = 35
       OnExecute = actFlipVExecute
     end
     object actRotateCW: TAction
       Category = 'Layers'
       Caption = 'Rotate CW 90'
+      DisableIfNoHandler = False
       ImageIndex = 36
       OnExecute = actRotateCWExecute
     end
     object actRotateCCW: TAction
       Category = 'Layers'
       Caption = 'Rotate CCW 90'
+      DisableIfNoHandler = False
       ImageIndex = 37
       OnExecute = actRotateCCWExecute
     end
     object actImportPiskel: TAction
       Category = 'File'
       Caption = 'Import Piskel file'
+      DisableIfNoHandler = False
       OnExecute = actImportPiskelExecute
     end
     object actProjProps: TAction
       Category = 'File'
       Caption = 'Project properties'
-      Enabled = False
+      DisableIfNoHandler = False
       OnExecute = actProjPropsExecute
     end
     object actNewProj: TAction
       Category = 'File'
       Caption = 'New Sprite project'
-      Enabled = False
+      DisableIfNoHandler = False
       ImageIndex = 9
-      OnExecute = actNewProjExecute
       ShortCut = 16462
+      OnExecute = actNewProjExecute
     end
     object actSaveProj: TAction
       Category = 'File'
       Caption = 'Save project'
-      Enabled = False
+      DisableIfNoHandler = False
       ImageIndex = 39
-      OnExecute = actSaveProjExecute
       ShortCut = 16467
+      OnExecute = actSaveProjExecute
     end
     object actOpenProj: TAction
       Category = 'File'
       Caption = 'Open project'
-      Enabled = False
-      OnExecute = actOpenProjExecute
+      DisableIfNoHandler = False
       ShortCut = 16463
+      OnExecute = actOpenProjExecute
     end
     object actPreviewToggle: TAction
       Category = 'View'
       Caption = 'Toggle preview'
       Checked = True
-      OnExecute = actPreviewToggleExecute
+      DisableIfNoHandler = False
       ShortCut = 118
+      OnExecute = actPreviewToggleExecute
     end
     object actImportSprites: TAction
       Category = 'File'
       Caption = 'Import spritesheet'
+      DisableIfNoHandler = False
       OnExecute = actImportSpritesExecute
     end
     object actOnionSkin: TAction
       Category = 'Frames'
       Caption = '''Onion skin'' mode'
-      Enabled = False
+      DisableIfNoHandler = False
       ImageIndex = 40
       OnExecute = actOnionSkinExecute
     end
     object actDeleteFrame: TAction
       Category = 'Frames'
       Caption = 'Delete frame'
+      DisableIfNoHandler = False
       OnExecute = actDeleteFrameExecute
     end
     object actSetAsPrevious: TAction
       Category = 'Frames'
       Caption = '''Onion skin'' - set as previous'
+      DisableIfNoHandler = False
       Hint = 'For ''Onion skin'' mode:'#10'Use selected frame as previous for next frame in list'
       OnExecute = actSetAsPreviousExecute
     end
     object actSetAsNext: TAction
       Category = 'Frames'
       Caption = '''Onion skin'' - set as next'
+      DisableIfNoHandler = False
       Hint = 'In ''Onion skin'' mode:'#10'Use selected frame as next for previous frame in list'
       OnExecute = actSetAsNextExecute
     end

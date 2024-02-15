@@ -2,16 +2,19 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="12"/>
+    <ManyBuildModesSelection Value="linux-x64,windows-x64,windows-x32"/>
     <BuildModes Active="Debug"/>
     <Units>
       <Unit>
         <Filename Value="spedit.ppr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="29"/>
+        <TopLine Value="26"/>
         <CursorPos Y="64"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="umain.pas"/>
@@ -22,11 +25,11 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="7"/>
-        <CursorPos X="73" Y="38"/>
+        <TopLine Value="1356"/>
+        <CursorPos Y="1366"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
-          <Item0 Y="435"/>
+          <Item0 Y="436"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -34,7 +37,7 @@
       <Unit>
         <Filename Value="udraw.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="163"/>
         <CursorPos Y="177"/>
@@ -124,7 +127,7 @@
         <ComponentName Value="frmProjectProps"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="15"/>
         <CursorPos X="3" Y="15"/>
@@ -139,12 +142,11 @@
         <ComponentName Value="frmImportSheet"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="526"/>
         <CursorPos X="161" Y="543"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="95"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -155,17 +157,17 @@
         <ComponentName Value="frmGridOptions"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="97"/>
         <CursorPos X="26" Y="118"/>
-        <UsageCount Value="82"/>
+        <UsageCount Value="84"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="uglobals.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1042"/>
         <CursorPos Y="1054"/>
@@ -1281,50 +1283,6 @@
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="uspriteimport.pas"/>
-        <Caret Line="574" Column="4" TopLine="541"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="154" Column="25" TopLine="137"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="567" Column="45" TopLine="548"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="38" Column="73" TopLine="7"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="294" Column="52" TopLine="276"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="578" Column="134" TopLine="551"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="36" Column="53" TopLine="22"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="294" Column="79" TopLine="276"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="580" Column="96" TopLine="551"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
-        <Caret Line="333" Column="4" TopLine="318"/>
-      </Position>
-      <Position>
-        <Filename Value="umain.pas"/>
-        <Caret Line="38" Column="73" TopLine="7"/>
-      </Position>
-      <Position>
-        <Filename Value="uspriteimport.pas"/>
         <Caret Line="333" Column="2" TopLine="321"/>
       </Position>
       <Position>
@@ -1398,6 +1356,50 @@
       <Position>
         <Filename Value="uspriteimport.pas"/>
         <Caret Line="580" Column="21" TopLine="561"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="38" Column="73" TopLine="7"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1413" Column="8" TopLine="1383"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1361" Column="12" TopLine="1343"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="341" Column="15" TopLine="325"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1365" Column="3" TopLine="1354"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="780" Column="9" TopLine="678"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1374" Column="15" TopLine="1355"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="781" Column="3" TopLine="775"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1594" Column="28" TopLine="1592"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="781" TopLine="761"/>
+      </Position>
+      <Position>
+        <Filename Value="umain.pas"/>
+        <Caret Line="1366" TopLine="1356"/>
       </Position>
     </JumpHistory>
     <RunParams>
