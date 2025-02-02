@@ -55,7 +55,7 @@ var
 
 implementation
   uses uglobals, umain;
-{$R *.frm}
+{$R *.lfm}
 
   { TfrmSettings }
 

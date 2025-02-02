@@ -255,21 +255,21 @@
     </RunParams>
     <RequiredPackages>
       <Item>
-        <PackageName Value="pl_ColorLib"/>
+        <PackageName Value="mbcolorliblaz"/>
       </Item>
       <Item>
-        <PackageName Value="pl_JVCL"/>
+        <PackageName Value="jvctrlslazr"/>
       </Item>
       <Item>
-        <PackageName Value="pl_bgracontrols"/>
+        <PackageName Value="bgracontrols"/>
       </Item>
       <Item>
-        <PackageName Value="adLCL"/>
+        <PackageName Value="LCL"/>
       </Item>
     </RequiredPackages>
     <Units>
       <Unit>
-        <Filename Value="spedit.ppr"/>
+        <Filename Value="spedit.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
