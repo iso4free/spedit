@@ -10,7 +10,7 @@ Boas-vindas ao Spedit 4.0, um Editor de Pixel Art e Gerenciador de Biblioteca de
 
 INTRODUÇÃO
 ============
-Programa escrito com CodeTyphon Studio/Free Pascal Compiler.
+Programa escrito com Lazarus IDE/Free Pascal Compiler.
 Um Editor de Sprites e Biblioteca local de sprites para jogos 2D em Pixel Art simples, mas poderoso.
 
 COMO OBTER
